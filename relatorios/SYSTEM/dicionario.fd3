@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<variables>
+  <item Name=" SIAP"/>
+  <item Name="DATA_AGENDA"/>
+  <item Name="GLOBAL_ORGAO"/>
+  <item Name="GLOBAL_DEPARTAMENTO"/>
+  <item Name="GLOBAL_DIRETORIA"/>
+  <item Name="GLOBAL_CONFERE"/>
+  <item Name="ID_UP" Value="101"/>
+</variables>
