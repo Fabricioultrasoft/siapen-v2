@@ -15,6 +15,9 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     Top = 88
     Width = 233
     Height = 25
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Preparando os dados...'
+    ScreenMask.Target = Owner
     Caption = 'Visualizar'
     TabOrder = 2
     OnClick = UniBitBtnVisualizarClick

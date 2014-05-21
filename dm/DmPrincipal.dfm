@@ -4976,7 +4976,8 @@ object Dm: TDm
       'D:\@ Fontes\alexandresoftware\trunk\SoftwareWEB\database\SOFTWAR' +
       'E IMOBILI'#193'RIO.FDB'
     SpecificOptions.Strings = (
-      'PostgreSQL.Charset=WIN1252')
+      'PostgreSQL.Charset=WIN1252'
+      'InterBase.ClientLibrary=fbclient.dll')
     Username = 'SYSDBA'
     Password = 'masterkey'
     Server = 'localhost'
