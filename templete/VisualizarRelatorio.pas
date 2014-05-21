@@ -26,8 +26,7 @@ uses
   uniBitBtn,
   Vcl.Menus,
   uniMainMenu,
-  SWSystem,
-  rpgraphicex,
+  IWSystem,
   Vcl.Imaging.jpeg,
   uniImage;
 

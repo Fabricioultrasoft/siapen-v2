@@ -16,7 +16,6 @@ uses
   uniGUIAbstractClasses,
   uniGUIClasses,
   uniGUIForm,
-  rpgraphicex,
   uniLabel,
   Vcl.Imaging.jpeg,
   uniImage,

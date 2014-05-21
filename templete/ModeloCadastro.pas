@@ -46,8 +46,7 @@ uses
   MemDS,
   DBAccess,
   Uni,
-  uniBitBtn,
-  rpgraphicex;
+  uniBitBtn;
 
 type
   TFrmModeloCadastro = class(TUniForm)

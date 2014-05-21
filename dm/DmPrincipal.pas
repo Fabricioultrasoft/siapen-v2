@@ -13,7 +13,7 @@ uses
   Inifiles,
   Data.DBXFirebird,
   Data.DB,
-  SWSystem,
+  IWSystem,
   Dialogs,
   Vcl.ImgList,
   Vcl.Controls,

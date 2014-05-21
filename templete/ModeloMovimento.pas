@@ -46,8 +46,7 @@ uses
   MemDS,
   DBAccess,
   Uni,
-  uniBitBtn,
-  rpgraphicex;
+  uniBitBtn;
 
 type
   TFrmModeloMovimento = class(TUniForm)
