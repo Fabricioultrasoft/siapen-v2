@@ -70,7 +70,6 @@ type
     TabSheetConsulta: TUniTabSheet;
     DBGridConsulta: TUniDBGrid;
     StatusBar1: TUniStatusBar;
-    UniToolButtonConfirmaSelecao: TUniToolButton;
     UniTimerNovo: TUniTimer;
     UniScreenMaskNovo: TUniScreenMask;
     UniScreenMaskSalvar: TUniScreenMask;
@@ -92,19 +91,24 @@ type
     procedure ExcluirClick(Sender: TObject);
     procedure FecharClick(Sender: TObject);
     procedure DBGridConsultaTitleClick(Column: TUniDBGridColumn);
-    procedure UniFormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormCreate(Sender: TObject);
     procedure DBGridConsultaDblClick(Sender: TObject);
-    procedure DBGridConsultaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridConsultaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure UniBtnFiltrarClick(Sender: TObject);
-    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormShow(Sender: TObject);
     procedure UniToolButtonConfirmaSelecaoClick(Sender: TObject);
     procedure EditLocalizarChange(Sender: TObject);
     function ValidarRegistro: Boolean;
     procedure UniTimerNovoTimer(Sender: TObject);
-    procedure ClientDataSetReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+    procedure ClientDataSetReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   protected
     function CancelaTransCadastro: Boolean;
     function FinalizaTransCadastro: Boolean;
@@ -120,7 +124,8 @@ type
     FTelaSelecao: String;
     { Private declarations }
   public
-    property ConfirmarSelecao: Boolean read FConfirmarSelecao write FConfirmarSelecao;
+    property ConfirmarSelecao: Boolean read FConfirmarSelecao
+      write FConfirmarSelecao;
     property TelaSelecao: String read FTelaSelecao write FTelaSelecao;
     property TD: TTransactionDesc read FTD write FTD;
     property DIRETO: Boolean read FDIRETO write FDIRETO;
@@ -140,11 +145,12 @@ uses
   ServerModule,
   humanejs,
   Lib;
-  // , DMSoftwareImobiliario; // , Lib;
+// , DMSoftwareImobiliario; // , Lib;
 
 function FrmModeloMovimento: TFrmModeloMovimento;
 begin
-  Result := TFrmModeloMovimento(UniMainModule.GetFormInstance(TFrmModeloMovimento));
+  Result := TFrmModeloMovimento
+    (UniMainModule.GetFormInstance(TFrmModeloMovimento));
 end;
 
 procedure TFrmModeloMovimento.EditarClick(Sender: TObject);
@@ -162,7 +168,8 @@ begin
 
     if assigned(CompEdit) then
     begin
-      DsCadastro.DataSet.FieldByName(TUniDBEdit(CompEdit).DataField).ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
+      DsCadastro.DataSet.FieldByName(TUniDBEdit(CompEdit).DataField)
+        .ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
     end;
   end;
 
@@ -187,17 +194,13 @@ begin
   UniBtnFiltrar.OnClick(NIL);
 end;
 
-procedure TFrmModeloMovimento.EditLocalizarKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFrmModeloMovimento.EditLocalizarKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
 begin
   if Key = VK_RETURN then
   begin
     if not Self.DsCadastro.DataSet.IsEmpty then
     begin
-      if UniToolButtonConfirmaSelecao.Visible then
-      begin
-        UniToolButtonConfirmaSelecao.OnClick(nil);
-      end
-      else
         Editar.OnClick(nil);
     end;
   end;
@@ -246,7 +249,6 @@ begin
 
     end);
 
-
   StatusBar1.Panels[1].Text := '...';
 
 end;
@@ -265,7 +267,8 @@ begin
 
     if assigned(CompEdit) then
     begin
-      DsCadastro.DataSet.FieldByName(TUniDBEdit(CompEdit).DataField).ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
+      DsCadastro.DataSet.FieldByName(TUniDBEdit(CompEdit).DataField)
+        .ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
     end;
   end;
 
@@ -329,14 +332,12 @@ end;
 procedure TFrmModeloMovimento.DBGridConsultaDblClick(Sender: TObject);
 begin
 
-  if ConfirmarSelecao then
-    UniToolButtonConfirmaSelecao.OnClick(nil)
-  else
     Editar.OnClick(nil);
 
 end;
 
-procedure TFrmModeloMovimento.DBGridConsultaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFrmModeloMovimento.DBGridConsultaKeyDown(Sender: TObject;
+var Key: Word; Shift: TShiftState);
 begin
   if (Key = VK_RETURN) then
   begin
@@ -345,7 +346,8 @@ begin
 
 end;
 
-procedure TFrmModeloMovimento.DBGridConsultaTitleClick(Column: TUniDBGridColumn);
+procedure TFrmModeloMovimento.DBGridConsultaTitleClick
+  (Column: TUniDBGridColumn);
 begin
   if Column.Field.FieldKind in [fkdata] then
     TClientDataSet(Column.Field.DataSet).IndexFieldNames := Column.FieldName;
@@ -356,7 +358,8 @@ function TFrmModeloMovimento.IniciaTransCadastro: Boolean;
 begin
 
   try
-    FTD.TransactionID := trunc(StrToFloat(FormatDateTime('yyyymmddhhnnsszzz', now)) / 2);
+    FTD.TransactionID := trunc(StrToFloat(FormatDateTime('yyyymmddhhnnsszzz',
+      now)) / 2);
     FTD.IsolationLevel := xilREADCOMMITTED;
     Dm.Conexao.StartTransaction(FTD);
   except // se der erro para abrir uma TransCadastro
@@ -394,7 +397,7 @@ begin
   if ValidarRegistro then
   begin
     TabSheetConsulta.Enabled := true;
-    sNome := DBGridConsulta.Columns.Items[0].Field.AsString;
+//    sNome := DBGridConsulta.Columns.Items[0].Field.AsString;
 
     Salvar.Tag := 1;
 
@@ -423,23 +426,28 @@ begin
         begin
           if (CompClientDataSet[iComp] as TClientDataSet).active then
           begin
-            if (CompClientDataSet[iComp] as TClientDataSet).state in [dsedit, dsinsert] then
+            if (CompClientDataSet[iComp] as TClientDataSet).state
+              in [dsedit, dsinsert] then
               (CompClientDataSet[iComp] as TClientDataSet).post;
           end;
         end;
 
-        erro_transacao := erro_transacao + TClientDataSet(Self.DsCadastro.DataSet).ApplyUpdates(-1);
+        erro_transacao := erro_transacao +
+          TClientDataSet(Self.DsCadastro.DataSet).ApplyUpdates(-1);
 
         if erro_transacao = 0 then
         begin
           for iComp := Low(CompClientDataSet) to High(CompClientDataSet) do
           begin
-            TClientDataSet(CompClientDataSet[iComp]).OnReconcileError := ClientDataSetReconcileError;
+            TClientDataSet(CompClientDataSet[iComp]).OnReconcileError :=
+              ClientDataSetReconcileError;
             if (CompClientDataSet[iComp] as TClientDataSet).active then
             begin
-              if (CompClientDataSet[iComp] as TClientDataSet).ChangeCount > 0 then
+              if (CompClientDataSet[iComp] as TClientDataSet).ChangeCount > 0
+              then
               begin
-                erro_transacao := erro_transacao + (CompClientDataSet[iComp] as TClientDataSet).ApplyUpdates(-1);
+                erro_transacao := erro_transacao +
+                  (CompClientDataSet[iComp] as TClientDataSet).ApplyUpdates(-1);
               end;
             end;
           end;
@@ -461,7 +469,8 @@ begin
     else
     begin
       CancelaTransCadastro;
-      ShowMessage('<b><font Color=red>ATENÇÃO !!!</font></b><br>' + 'Erro na transação, não salvou.');
+      ShowMessage('<b><font Color=red>ATENÇÃO !!!</font></b><br>' +
+        'Erro na transação, não salvou.');
       StatusBar1.Panels[1].Text := '...';
       Exit;
     end;
@@ -482,8 +491,8 @@ begin
       PageControlCadastro.ActivePageIndex := 0;
       ShowMessage('Registro Salvo com Sucesso!');
       PageControlModeloCadastro.ActivePageIndex := 1;
-// Self.EditLocalizar.Text := sNome;
-// Self.UniBtnFiltrar.OnClick(nil);
+      // Self.EditLocalizar.Text := sNome;
+      // Self.UniBtnFiltrar.OnClick(nil);
       if EditLocalizar.CanFocus then
         EditLocalizar.SetFocus;
 
@@ -517,13 +526,17 @@ begin
       if DBGridConsulta.Columns.Items[0].Field.FieldKind in [fkdata] then
       begin
 
-        if (DBGridConsulta.Columns.Items[0].Field.DataType in [ftSmallint, ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
+        if (DBGridConsulta.Columns.Items[0].Field.DataType in [ftSmallint,
+          ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
         begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter := DBGridConsulta.Columns.Items[0].FieldName + ' = ' + EditLocalizar.Text;
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+            DBGridConsulta.Columns.Items[0].FieldName + ' = ' +
+            EditLocalizar.Text;
         end
         else
         begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter := DBGridConsulta.Columns.Items[0].FieldName + ' LIKE ' +
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+            DBGridConsulta.Columns.Items[0].FieldName + ' LIKE ' +
             QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
         end;
 
@@ -539,16 +552,12 @@ begin
 
 end;
 
-procedure TFrmModeloMovimento.UniFormClose(Sender: TObject; var Action: TCloseAction);
+procedure TFrmModeloMovimento.UniFormClose(Sender: TObject;
+var Action: TCloseAction);
 begin
   Cancelar.OnClick(nil);
 
-  if not UniToolButtonConfirmaSelecao.Visible then
-  begin
-    Self.DsCadastro.DataSet.Close;
-// Dm.ConectaBalcao;
-  end;
-
+  Self.DsCadastro.DataSet.Close;
   FConfirmarSelecao := false;
 
 end;
@@ -561,7 +570,8 @@ begin
   JaTem := false;
   for lIdx := 0 to DataSet.Fields.Count - 1 do
   begin
-    if ((not JaTem) and (copy(DataSet.Fields[lIdx].FieldName, 1, 2) = 'ID')) then
+    if ((not JaTem) and (copy(DataSet.Fields[lIdx].FieldName, 1, 2) = 'ID'))
+    then
     begin
       DataSet.Fields[lIdx].ProviderFlags := [pfInUpdate, pfInWhere, pfInKey];
       JaTem := true;
@@ -594,7 +604,8 @@ begin
     if (Components[iComp] is TUniDBLookupComboBox) then
     begin
       SetLength(CompLookupComboBox, High(CompLookupComboBox) + 2);
-      CompLookupComboBox[High(CompLookupComboBox)] := (Components[iComp] as TUniDBLookupComboBox);
+      CompLookupComboBox[High(CompLookupComboBox)] :=
+        (Components[iComp] as TUniDBLookupComboBox);
     end;
 
     if (Components[iComp] is TClientDataSet) then
@@ -603,10 +614,12 @@ begin
       if TClientDataSet(Components[iComp]).Name <> CdsCadastro.Name then
       begin
         SetLength(CompClientDataSet, High(CompClientDataSet) + 2);
-        CompClientDataSet[High(CompClientDataSet)] := (Components[iComp] as TClientDataSet);
+        CompClientDataSet[High(CompClientDataSet)] :=
+          (Components[iComp] as TClientDataSet);
       end;
 
-      TClientDataSet(Components[iComp]).OnReconcileError := ClientDataSetReconcileError;
+      TClientDataSet(Components[iComp]).OnReconcileError :=
+        ClientDataSetReconcileError;
 
     end;
 
@@ -620,7 +633,8 @@ begin
 
 end;
 
-procedure TFrmModeloMovimento.UniFormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFrmModeloMovimento.UniFormKeyDown(Sender: TObject; var Key: Word;
+Shift: TShiftState);
 begin
 
   if Key = vk_escape then
@@ -654,15 +668,7 @@ begin
   if EditLocalizar.CanFocus then
     EditLocalizar.SetFocus;
 
-  UniToolButtonConfirmaSelecao.Visible := FConfirmarSelecao;
-  if UniToolButtonConfirmaSelecao.Visible then
-  begin
-// Self.FreeOnClose := False;
-  end;
-
   PanelTituloModeloCadastro.caption := Self.caption;
-  UniBtnFiltrar.OnClick(NIL);
-  UniTimerNovo.Enabled := true;
 
 end;
 
@@ -675,7 +681,8 @@ begin
   end;
 end;
 
-procedure TFrmModeloMovimento.UniToolButtonConfirmaSelecaoClick(Sender: TObject);
+procedure TFrmModeloMovimento.UniToolButtonConfirmaSelecaoClick
+  (Sender: TObject);
 begin
 
   Self.ModalResult := mrOk;
@@ -690,12 +697,7 @@ end;
 procedure TFrmModeloMovimento.FecharClick(Sender: TObject);
 begin
 
-  if not UniToolButtonConfirmaSelecao.Visible then
-  begin
-    TabSheetConsulta.Enabled := true;
-    Self.DsCadastro.DataSet.Close;
-    Self.Close;
-  end;
+  Self.Close;
 
 end;
 
@@ -728,7 +730,8 @@ begin
 
 end;
 
-procedure TFrmModeloMovimento.ClientDataSetReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
+procedure TFrmModeloMovimento.ClientDataSetReconcileError
+  (DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
 var Action: TReconcileAction);
 var
   arquivo: TextFile;
@@ -745,7 +748,8 @@ begin
     AssignFile(arquivo, NomeArquivo);
     Rewrite(arquivo);
 
-    Writeln(arquivo, DateTimeToStr(now) + #13#10 + 'cds: ' + DataSet.Name + ' - ' + E.Message);
+    Writeln(arquivo, DateTimeToStr(now) + #13#10 + 'cds: ' + DataSet.Name +
+      ' - ' + E.Message);
 
     CloseFile(arquivo);
 

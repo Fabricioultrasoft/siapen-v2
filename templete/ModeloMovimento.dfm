@@ -931,17 +931,6 @@ object FrmModeloMovimento: TFrmModeloMovimento
         Caption = 'Fechar'
         OnClick = FecharClick
       end
-      object UniToolButtonConfirmaSelecao: TUniToolButton
-        AlignWithMargins = True
-        Left = 739
-        Top = 3
-        Hint = 'Confirma o registro selecionado e retorna a tela anterior!'
-        ShowHint = True
-        ParentShowHint = False
-        ImageIndex = 6
-        Caption = 'OK - Confirma'
-        OnClick = UniToolButtonConfirmaSelecaoClick
-      end
     end
   end
   object PanelModeloCadastro: TUniPanel
@@ -963,10 +952,6 @@ object FrmModeloMovimento: TFrmModeloMovimento
       Anchors = [akLeft, akTop, akRight]
       object TabSheetConsulta: TUniTabSheet
         Caption = 'Consulta'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 256
-        ExplicitHeight = 128
         object DBGridConsulta: TUniDBGrid
           Left = 0
           Top = 0
@@ -1005,10 +990,6 @@ object FrmModeloMovimento: TFrmModeloMovimento
         Anchors = [akLeft, akTop, akRight, akBottom]
         object UniTabSheetPrincipalCadastro: TUniTabSheet
           Caption = 'Principal'
-          ExplicitLeft = 0
-          ExplicitTop = 0
-          ExplicitWidth = 256
-          ExplicitHeight = 128
         end
       end
     end

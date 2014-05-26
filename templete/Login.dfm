@@ -8,6 +8,7 @@ object FrmLogin: TFrmLogin
   OldCreateOrder = False
   NavigateKeys.Next.Key = 13
   MonitoredKeys.Keys = <>
+  ActiveControl = UniEdit1
   OnCreate = UniLoginFormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -158,9 +159,11 @@ object FrmLogin: TFrmLogin
       Hint = 'Informe o seu login.'
       ShowHint = True
       ParentShowHint = False
+      CharCase = ecUpperCase
       TabOrder = 2
       Color = clWindow
       OnExit = UniEdit1Exit
+      OnKeyDown = UniEdit1KeyDown
     end
     object UniEdit2: TUniEdit
       Left = 9
@@ -264,10 +267,10 @@ object FrmLogin: TFrmLogin
         0404FCCBDAFC146B6A34FCF1D6FC04040404040404040202020202FCFCC7C7C7
         C7C7C7FCFC020202020202020202}
       Caption = 'Sair'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = UniBitBtn2Click
     end
-    object UniBitBtn1: TUniBitBtn
+    object UniBitBtnEntrar: TUniBitBtn
       Left = 104
       Top = 61
       Width = 140
@@ -330,20 +333,20 @@ object FrmLogin: TFrmLogin
         348567E8171717171717171717E8E8EBE91C072513051832484052E817171717
         17171717171717171717E8E8E8E8E8E8ECFBE817171717171717}
       Caption = 'Entrar'
-      TabOrder = 2
-      OnClick = UniBitBtn1Click
-    end
-    object UniDBLookupComboBox1: TUniDBLookupComboBox
-      Left = 16
-      Top = 23
-      Width = 489
-      Enabled = False
-      ListField = 'NOME_UP'
-      ListSource = DsUP
-      KeyField = 'ID_UP'
-      ListFieldIndex = 0
       TabOrder = 1
+      OnClick = UniBitBtnEntrarClick
     end
+  end
+  object UniDBEdit1: TUniDBEdit
+    Left = 176
+    Top = 112
+    Width = 491
+    Height = 22
+    DataField = 'NOME_UP'
+    DataSource = Dm.DsUP
+    TabOrder = 4
+    Color = clWindow
+    ReadOnly = True
   end
   object UniTimer1: TUniTimer
     ClientEvent.Strings = (
@@ -380,91 +383,5 @@ object FrmLogin: TFrmLogin
     DataSet = Cdsservidor
     Left = 572
     Top = 16
-  end
-  object DsUP: TDataSource
-    DataSet = CdsUP
-    Left = 572
-    Top = 64
-  end
-  object CdsUP: TClientDataSet
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'DspUP'
-    Left = 544
-    Top = 64
-    object CdsUPID_UP: TIntegerField
-      FieldName = 'ID_UP'
-      Required = True
-    end
-    object CdsUPNOME_UP: TStringField
-      FieldName = 'NOME_UP'
-      Size = 50
-    end
-    object CdsUPENDERECO: TStringField
-      FieldName = 'ENDERECO'
-      Size = 50
-    end
-    object CdsUPNUMERO: TStringField
-      FieldName = 'NUMERO'
-      Size = 30
-    end
-    object CdsUPBAIRRO: TStringField
-      FieldName = 'BAIRRO'
-      Size = 50
-    end
-    object CdsUPCOMPLEMENTO: TStringField
-      FieldName = 'COMPLEMENTO'
-      Size = 50
-    end
-    object CdsUPCEP: TStringField
-      FieldName = 'CEP'
-      Size = 8
-    end
-    object CdsUPID_CIDADE: TIntegerField
-      FieldName = 'ID_CIDADE'
-    end
-    object CdsUPFONE: TStringField
-      FieldName = 'FONE'
-      Size = 10
-    end
-    object CdsUPFAX: TStringField
-      FieldName = 'FAX'
-      Size = 10
-    end
-    object CdsUPCONTATO: TStringField
-      FieldName = 'CONTATO'
-      Size = 50
-    end
-    object CdsUPFOTO: TStringField
-      FieldName = 'FOTO'
-      Size = 16386
-    end
-    object CdsUPCAPITAL: TStringField
-      FieldName = 'CAPITAL'
-      Size = 30
-    end
-    object CdsUPREGIAO: TStringField
-      FieldName = 'REGIAO'
-      Size = 50
-    end
-    object CdsUPSIGLA: TStringField
-      FieldName = 'SIGLA'
-      Size = 50
-    end
-  end
-  object DspUP: TDataSetProvider
-    DataSet = SqlUP
-    Left = 516
-    Top = 64
-  end
-  object SqlUP: TSQLQuery
-    MaxBlobSize = -1
-    Params = <>
-    SQL.Strings = (
-      'SELECT * FROM UNIDADE_PENAL'
-      'order by nome_up')
-    SQLConnection = Dm.Conexao
-    Left = 488
-    Top = 64
   end
 end

@@ -25,7 +25,9 @@ uses
   UniEditFormat in 'lib\UniEditFormat.pas',
   ModeloCadastro in 'templete\ModeloCadastro.pas' {FrmModeloCadastro: TUniForm},
   Confere in 'forms\Confere.pas' {FrmConfere: TUniForm},
-  MenuRelatorio in 'templete\MenuRelatorio.pas' {FrmMenuRelatorio: TUniForm};
+  MenuRelatorio in 'templete\MenuRelatorio.pas' {FrmMenuRelatorio: TUniForm},
+  SituacaoDisciplinar in 'forms\SituacaoDisciplinar.pas' {FrmSituacaoDisciplinar: TUniForm},
+  Interno in 'forms\Interno.pas' {FrmInterno: TUniForm};
 
 {$R *.res}
 

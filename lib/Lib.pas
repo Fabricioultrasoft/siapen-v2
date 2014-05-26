@@ -106,6 +106,10 @@ function Generator(sGenerator: string): Integer;
 procedure GravaIniValor(Arquivo, Sessao, Campo, Valor: string);
 function LerIniValor(Arquivo, Sessao, Campo, Valor: string): string;
 function TemPacelaPaga(sIdMovfinan: String): Boolean;
+function VerificaInternoExiste(sNomeInterno, sNomeMae: string): boolean;
+function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
+function VerificaRGIExiste(sRGI: string): boolean;
+function VerificaVisitaExiste(scpf: string): boolean;
 
 const
   QBtn1 = 1;
@@ -121,6 +125,8 @@ Var
   IndexCorFundo: Integer;
   IndexCorFonte: Integer;
   sIp, sBrowser, sVersao, sOSType: string;
+  var_disciplinar: string;
+  var_data_disciplinar: TDateTime;
 
 implementation
 
@@ -1045,7 +1051,7 @@ end;
 function Generator(sGenerator: string): Integer;
 begin
 
-  DM.SqlExecute.SQL.Text := 'select gen_id(' + sGenerator + ',1) as id from rdb$database';
+  DM.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id(' + sGenerator + ',1) as id from rdb$database';
   DM.SqlExecute.Close;
   DM.SqlExecute.Open;
   Result := DM.SqlExecute.FieldByName('ID').AsInteger;
@@ -1093,5 +1099,74 @@ begin
   Result := DM.SqlExecute.FieldByName('pago').AsFloat > 0;
   DM.SqlExecute.Close;
 end;
+
+function VerificaInternoExiste(sNomeInterno, sNomeMae: string): boolean;
+var
+  ret_Interno: string;
+begin
+
+  Result := False;
+
+  if Trim(sNomeMae) = '' then
+    Exit;
+
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'NOME_INTERNO', 'TRIM(UPPER(NOME_INTERNO)) = TRIM(UPPER(' + QS(sNomeInterno)
+    + ')) AND TRIM(UPPER(MAE)) = TRIM(UPPER(' + qs(sNomeMae) + '))', ''), '');
+
+  Result := (sNomeInterno = ret_Interno);
+
+end;
+
+function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
+begin
+  try
+    if (Trim(Where) <> '') and (Pos('WHERE', UpperCase(Where)) = 0) then
+      Where := ' WHERE ' + Where;
+
+    if Trim(CampoSelect) = '' then
+      CampoSelect := CampoRetorno;
+
+    DM.sqlExecute.sql.text := 'SELECT ' + CampoSelect + ' FROM ' + Tabela + ' ' + Where;
+    Dm.DsExecute.DataSet.close;
+    Dm.DsExecute.DataSet.open;
+    Result := Dm.DsExecute.DataSet.FieldByName(CampoRetorno).AsVariant;
+    Dm.DsExecute.DataSet.close;
+  finally
+  end;
+
+end;
+
+function VerificaRGIExiste(sRGI: string): boolean;
+var
+  ret_Interno: string;
+begin
+
+  Result := False;
+
+  if Trim(sRGI) = '' then
+    Exit;
+
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'RGI', 'TRIM(UPPER(RGI)) = TRIM(UPPER(' + QS(sRGI) + '))', ''), '');
+
+  Result := (sRGI = ret_Interno);
+
+end;
+
+function VerificaVisitaExiste(scpf: string): boolean;
+var
+  ret_VISITA: string;
+begin
+
+  Result := False;
+
+  if Trim(scpf) = '' then
+    Exit;
+
+  ret_visita := VarToStrDef(ConsultaRapida('VISITANTE', 'cpf', 'TRIM(UPPER(cpf)) = TRIM(UPPER(' + QS(sCPF) + '))', ''), '');
+
+  Result := (sCPF = ret_VISITA);
+
+end;
+
 
 end.

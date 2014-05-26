@@ -96,9 +96,6 @@ type
     DsConsultaUnica: TDataSource;
     CdsConsultaUnica: TClientDataSet;
     DspCdsConsultaUnica: TDataSetProvider;
-    SqlExecute: TUniQuery;
-    SqlExecute2: TUniQuery;
-    SqlExecute3: TUniQuery;
     frxDBXComponents1: TfrxDBXComponents;
     UniImageListStatus16x16: TUniImageList;
     frxChartObject1: TfrxChartObject;
@@ -183,7 +180,6 @@ type
     DSPFUNCAOINTERNO: TDataSetProvider;
     CDSFUNCAOINTERNO: TClientDataSet;
     DSFUNCAOINTERNO: TDataSource;
-    SQLQuery1: TSQLQuery;
     DspExecute: TDataSetProvider;
     CdsExecute: TClientDataSet;
     DsExecute: TDataSource;
@@ -416,6 +412,7 @@ type
     Dspservidor: TDataSetProvider;
     Cdsservidor: TClientDataSet;
     Dsservidor: TDataSource;
+    SqlExecute: TSQLQuery;
     procedure UniGUIMainModuleCreate(Sender: TObject);
   private
     FTD: TTransactionDesc; // Para os Lançamentos .
@@ -710,15 +707,6 @@ begin
     Conexao.Connected := True;
     UniConnetion.Connected := True;
     Result := True;
-
-// DsLocalCob.DataSet.Close;
-// DsLocalCob.DataSet.Open;
-
-// DsFornecedor.DataSet.Close;
-// DsFornecedor.DataSet.Open;
-//
-// DsInvestidor.DataSet.Close;
-// DsInvestidor.DataSet.Open;
 
   except
     on e: exception do

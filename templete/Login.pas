@@ -26,7 +26,7 @@ uses
   uniLabel,
   uniTimer, Data.FMTBcd, Data.DB, Datasnap.DBClient, Datasnap.Provider,
   Data.SqlExpr, uniPanel, uniGroupBox, uniMultiItem, uniComboBox, uniDBComboBox,
-  uniDBLookupComboBox;
+  uniDBLookupComboBox, uniDBEdit;
 
 type
   TFrmLogin = class(TUniLoginForm)
@@ -36,25 +36,6 @@ type
     Dspservidor: TDataSetProvider;
     Cdsservidor: TClientDataSet;
     Dsservidor: TDataSource;
-    DsUP: TDataSource;
-    CdsUP: TClientDataSet;
-    CdsUPID_UP: TIntegerField;
-    CdsUPNOME_UP: TStringField;
-    CdsUPENDERECO: TStringField;
-    CdsUPNUMERO: TStringField;
-    CdsUPBAIRRO: TStringField;
-    CdsUPCOMPLEMENTO: TStringField;
-    CdsUPCEP: TStringField;
-    CdsUPID_CIDADE: TIntegerField;
-    CdsUPFONE: TStringField;
-    CdsUPFAX: TStringField;
-    CdsUPCONTATO: TStringField;
-    CdsUPFOTO: TStringField;
-    CdsUPCAPITAL: TStringField;
-    CdsUPREGIAO: TStringField;
-    CdsUPSIGLA: TStringField;
-    DspUP: TDataSetProvider;
-    SqlUP: TSQLQuery;
     UniGroupBox1: TUniGroupBox;
     PanelTituloModeloCadastro: TUniPanel;
     UniImage2: TUniImage;
@@ -67,14 +48,17 @@ type
     UniLabel2: TUniLabel;
     UniLabel1: TUniLabel;
     UniBitBtn2: TUniBitBtn;
-    UniBitBtn1: TUniBitBtn;
-    UniDBLookupComboBox1: TUniDBLookupComboBox;
+    UniBitBtnEntrar: TUniBitBtn;
+    UniDBEdit1: TUniDBEdit;
     procedure UniBitBtn2Click(Sender: TObject);
-    procedure UniBitBtn1Click(Sender: TObject);
-    procedure UniEdit2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure UniBitBtnEntrarClick(Sender: TObject);
+    procedure UniEdit2KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniLabel1Click(Sender: TObject);
     procedure UniLoginFormCreate(Sender: TObject);
     procedure UniEdit1Exit(Sender: TObject);
+    procedure UniEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     { Private declarations }
   public
@@ -100,261 +84,200 @@ begin
   Result := TFrmLogin(UniMainModule.GetFormInstance(TFrmLogin));
 end;
 
-procedure TFrmLogin.UniBitBtn1Click(Sender: TObject);
+procedure TFrmLogin.UniBitBtnEntrarClick(Sender: TObject);
 begin
 
-  Dsservidor.DataSet.Filtered := false;
-  Dm.UP_Logado := Dsup.DataSet.FieldByName('sigla').Asstring;
-  Dm.GLOBAL_NOME_UP := Dsup.DataSet.FieldByName('NOME_UP').Asstring;
-  Dm.LOGIN_CONECTADO := UniEdit1.Text;
-  Dm.liberado := False;
-  if (Dm.LOGIN_CONECTADO = '') then
+  if not dm.Dsup.DataSet.Active then
   begin
     showmessage('Digite o Login!!');
-    if Uniedit1.canfocus then
-      Uniedit1.setfocus;
-  end
-  else
+    if UniEdit1.canfocus then
+      UniEdit1.setfocus;
+    exit;
+  end;
+
+  if UniEdit2.Text = '' then
   begin
-    if Uniedit2.text = '' then
+    showmessage('Digite a Senha!');
+    if UniEdit2.canfocus then
+      UniEdit2.setfocus;
+    exit;
+  end;
+
+  dm.UP_Logado := dm.Dsup.DataSet.FieldByName('sigla').Asstring;
+  dm.GLOBAL_NOME_UP := dm.Dsup.DataSet.FieldByName('NOME_UP').Asstring;
+  dm.LOGIN_CONECTADO := UniEdit1.Text;
+  dm.liberado := False;
+
+  try
+    dm.GLOBAL_SENHA_USUARIO := UniEdit2.Text;
+    Sqlservidor.sql.Text := 'select * from funcionario where login =' +
+      Qs(dm.LOGIN_CONECTADO)+' and (SENHA = ' + Qs(dm.GLOBAL_SENHA_USUARIO) +
+        ' OR ' + 'SENHA = ' + Qs(Senha(dm.GLOBAL_SENHA_USUARIO))+')';
+    Dsservidor.DataSet.close;
+    Dsservidor.DataSet.open;
+    if not Dsservidor.DataSet.IsEmpty then
     begin
+      if not Dsservidor.DataSet.IsEmpty then
+      begin
+        // Permissões estilo "CEDIR"
+        dm.PERMISSAO_CONFERE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_CONFERE').Asstring;
+        dm.PERMISSAO_VISITANTE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_visitante').Asstring;
+        dm.PERMISSAO_TRABALHO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_setortrabalho').Asstring;
+        dm.PERMISSAO_CADASTRO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_CADASTRO').Asstring;
+        dm.PERMISSAO_EDUCACAO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_setoreducacao').Asstring;
+        dm.PERMISSAO_PSICOSSOCIAL := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_PSICOSSOCIAL').Asstring;
+        dm.PERMISSAO_JURIDICA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_JURIDICA').Asstring;
+        dm.PERMISSAO_DISCIPLINA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_DISCIPLINA').Asstring;
+        dm.PERMISSAO_INTELIGENCIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_INTELIGENCIA').Asstring;
+        dm.PERMISSAO_ENFERMAGEM := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_ENFERMAGEM').Asstring;
+        dm.PERMISSAO_FARMACIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_FARMACIA').Asstring;
+        dm.PERMISSAO_CLINICAMEDICA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_CLINICAMEDICA').Asstring;
+        dm.PERMISSAO_PSICOLOGIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_PSICOLOGIA').Asstring;
+        dm.PERMISSAO_PSIQUIATRIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_PSIQUIATRIA').Asstring;
+        dm.PERMISSAO_SAUDE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_SAUDE').Asstring;
+        dm.PERMISSAO_TERAPIAOCUPACIONAL := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_TERAPIAOCUPACIONAL').Asstring;
+        dm.PERMISSAO_ODONTOLOGIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_ODONTOLOGIA').Asstring;
+        dm.PERMISSAO_PEDAGOGIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_PEDAGOGIA').Asstring;
+        dm.PERMISSAO_SERVICOSOCIAL := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_SERVICOSOCIAL').Asstring;
+        dm.PERMISSAO_ARMAS := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_ARMAS').Asstring;
+        dm.PERMISSAO_MONITORAMENTO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_MONITORAMENTO').Asstring;
+        dm.PERMISSAO_OCORRENCIA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_OCORRENCIA').Asstring;
+        dm.PERMISSAO_CONSELHODISCIPLINAR := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_CONSELHODISCIPLINAR').Asstring;
+        dm.PERMISSAO_TRANSFERENCIAINTERNO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_TRANSFERENCIAINTERNO').Asstring;
+        dm.PERMISSAO_MUDANCACELA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_MUDANCACELA').Asstring;
+        dm.PERMISSAO_SAIDAO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_SAIDAO').Asstring;
+        dm.PERMISSAO_SAIDAO_CADASTRO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_SAIDAO_CADASTRO').Asstring;
+        dm.PERMISSAO_CIRCULACAOINTERNO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_CIRCULACAOINTERNO').Asstring;
+        dm.PERMISSAO_MOVIMENTOSEMIABERTO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_MOVIMENTOSEMIABERTO').Asstring;
+        dm.PERMISSAO_FUNCIONARIO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_FUNCIONARIO').Asstring;
+        dm.PERMISSAO_FUNCAOFUNCIONARIO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_FUNCAOFUNCIONARIO').Asstring;
+        dm.PERMISSAO_UNIDADEPENAL := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_UNIDADEPENAL').Asstring;
+        dm.PERMISSAO_HORARIOFUNCIONARIO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_HORARIOFUNCIONARIO').Asstring;
+        dm.PERMISSAO_PADRAOSISTEMA := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_PADRAOSISTEMA').Asstring;
+        dm.PERMISSAO_EQUIPE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_EQUIPE').Asstring;
+        dm.PERMISSAO_LOCALPOSTOTRABALHO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_LOCALPOSTOTRABALHO').Asstring;
+        dm.PERMISSAO_AGENTEPOREQUIPE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_AGENTEPOREQUIPE').Asstring;
+        dm.PERMISSAO_REGRAVISITACAO := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_REGRAVISITACAO').Asstring;
 
-      showmessage('Digite a Senha!');
+        // Permissões estilo SIM ou NÃO.
+        dm.PERMISSAO_ENTRADAVISITANTE := Dsservidor.DataSet.FieldByName
+          ('PERMISSAO_ENTRADAVISITANTE').Asstring;
+        dm.VISUALIZA_OUTRAS_UP := Dsservidor.DataSet.FieldByName
+          ('VISUALIZA_OUTRAS_UP').Asstring;
+        dm.CONFIGURACAO := Dsservidor.DataSet.FieldByName
+          ('configuracoes').Asstring;
 
-      if Uniedit2.canfocus then
-        Uniedit2.setfocus;
+        { Método transitório utilizado para que TODOS os usuários não fiquem sem a permissão
+          para criar/editar cadastro de funcionários e suas permissões.. }
+        if ContemValor('S', dm.CONFIGURACAO) then
+        begin
+          dm.PERMISSAO_FUNCIONARIO := 'CEDIR';
+        end;
+
+        dm.GLOBAL_NOME_FUNCIONARIO_LOGADO := Dsservidor.DataSet.FieldByName
+          ('NOME_FUNCIONARIO').Asstring;
+        dm.liberado := True;
+        ModalResult := mrOK; // Login is valid so proceed to MainForm
+
+      end
+      else
+      begin
+        showmessage('Senha Invalida!!');
+        if UniEdit2.canfocus then
+          UniEdit2.setfocus;
+      end;
 
     end
     else
     begin
-
-      if (Dm.LOGIN_CONECTADO = '99999') then
-      begin
-
-        if LowerCase(Uniedit2.text) = LowerCase('SUPER' + formatdatetime('DD', Date)) then
-        begin
-
-          Dm.Liberado := True;
-
-          //Permissões estilo "CEDIR".
-          Dm.PERMISSAO_CONFERE := 'CEDIR';
-          Dm.PERMISSAO_VISITANTE := 'CEDIR';
-          Dm.PERMISSAO_TRABALHO := 'CEDIR';
-          Dm.PERMISSAO_CADASTRO := 'CEDIR';
-          Dm.PERMISSAO_EDUCACAO := 'CEDIR';
-          Dm.PERMISSAO_PSICOSSOCIAL := 'CEDIR';
-          Dm.PERMISSAO_JURIDICA := 'CEDIR';
-          Dm.PERMISSAO_DISCIPLINA := 'CEDIR';
-          Dm.PERMISSAO_INTELIGENCIA := 'CEDIR';
-          Dm.PERMISSAO_ENFERMAGEM := 'CEDIR';
-          Dm.PERMISSAO_FARMACIA := 'CEDIR';
-          Dm.PERMISSAO_CLINICAMEDICA := 'CEDIR';
-          Dm.PERMISSAO_PSICOLOGIA := 'CEDIR';
-          Dm.PERMISSAO_PSIQUIATRIA := 'CEDIR';
-          Dm.PERMISSAO_SAUDE := 'CEDIR';
-          Dm.PERMISSAO_TERAPIAOCUPACIONAL := 'CEDIR';
-          Dm.PERMISSAO_ODONTOLOGIA := 'CEDIR';
-          Dm.PERMISSAO_PEDAGOGIA := 'CEDIR';
-          Dm.PERMISSAO_SERVICOSOCIAL := 'CEDIR';
-          Dm.PERMISSAO_ARMAS := 'CEDIR';
-          Dm.PERMISSAO_MONITORAMENTO := 'CEDIR';
-          Dm.PERMISSAO_OCORRENCIA := 'CEDIR';
-          Dm.PERMISSAO_CONSELHODISCIPLINAR := 'CEDIR';
-          Dm.PERMISSAO_TRANSFERENCIAINTERNO := 'CEDIR';
-          Dm.PERMISSAO_MUDANCACELA := 'CEDIR';
-          Dm.PERMISSAO_SAIDAO := 'CEDIR';
-          Dm.PERMISSAO_CIRCULACAOINTERNO := 'CEDIR';
-          Dm.PERMISSAO_MOVIMENTOSEMIABERTO := 'CEDIR';
-          Dm.PERMISSAO_FUNCIONARIO := 'CEDIR';
-          Dm.PERMISSAO_FUNCAOFUNCIONARIO := 'CEDIR';
-          Dm.PERMISSAO_UNIDADEPENAL := 'CEDIR';
-          Dm.PERMISSAO_HORARIOFUNCIONARIO := 'CEDIR';
-          Dm.PERMISSAO_PADRAOSISTEMA := 'CEDIR';
-          Dm.PERMISSAO_EQUIPE := 'CEDIR';
-          Dm.PERMISSAO_LOCALPOSTOTRABALHO := 'CEDIR';
-          Dm.PERMISSAO_AGENTEPOREQUIPE := 'CEDIR';
-          Dm.PERMISSAO_REGRAVISITACAO := 'CEDIR';
-
-          //Permissões estilo SIM ou NÃO;
-          Dm.PERMISSAO_ENTRADAVISITANTE := 'S';
-          Dm.VISUALIZA_OUTRAS_UP := 'S';
-          Dm.CONFIGURACAO := 'S';
-
-          ModalResult := mrOK; // Login is valid so proceed to MainForm
-
-        end;
-
-      end;
-
-      if (UniDBLookupComboBox1.keyvalue <= 0) then
-      begin
-        showmessage('Funcionário não cadastrado!!');
-        if UniDBLookupComboBox1.canfocus then
-          UniDBLookupComboBox1.setfocus;
-      end
-      else
-      begin
-        try
-          Sqlservidor.sql.text := 'select * from funcionario where login =' + Qs(Dm.LOGIN_CONECTADO);
-          Dsservidor.dataset.close;
-          Dsservidor.dataset.open;
-          if not Dsservidor.DataSet.IsEmpty then
-          begin
-            Dm.GLOBAL_SENHA_USUARIO := uniEdit2.Text;
-            Dsservidor.DataSet.Filter := 'SENHA = ' + QS(Dm.GLOBAL_SENHA_USUARIO) + ' OR ' + 'SENHA = ' + QS(Senha(Dm.GLOBAL_SENHA_USUARIO));
-            Dsservidor.DataSet.Filtered := true;
-            if not Dsservidor.DataSet.IsEmpty then
-            begin
-              //Permissões estilo "CEDIR"
-              Dm.PERMISSAO_CONFERE := Dsservidor.DataSet.FieldByName('PERMISSAO_CONFERE').AsString;
-              Dm.PERMISSAO_VISITANTE := Dsservidor.DataSet.FieldByName('PERMISSAO_visitante').AsString;
-              Dm.PERMISSAO_TRABALHO := Dsservidor.DataSet.FieldByName('PERMISSAO_setortrabalho').AsString;
-              Dm.PERMISSAO_CADASTRO := Dsservidor.DataSet.FieldByName('PERMISSAO_CADASTRO').AsString;
-              Dm.PERMISSAO_EDUCACAO := Dsservidor.DataSet.FieldByName('PERMISSAO_setoreducacao').AsString;
-              Dm.PERMISSAO_PSICOSSOCIAL := Dsservidor.DataSet.FieldByName('PERMISSAO_PSICOSSOCIAL').AsString;
-              Dm.PERMISSAO_JURIDICA := Dsservidor.DataSet.FieldByName('PERMISSAO_JURIDICA').AsString;
-              Dm.PERMISSAO_DISCIPLINA := Dsservidor.DataSet.FieldByName('PERMISSAO_DISCIPLINA').AsString;
-              Dm.PERMISSAO_INTELIGENCIA := Dsservidor.DataSet.FieldByName('PERMISSAO_INTELIGENCIA').AsString;
-              Dm.PERMISSAO_ENFERMAGEM := Dsservidor.DataSet.FieldByName('PERMISSAO_ENFERMAGEM').AsString;
-              Dm.PERMISSAO_FARMACIA := Dsservidor.DataSet.FieldByName('PERMISSAO_FARMACIA').AsString;
-              Dm.PERMISSAO_CLINICAMEDICA := Dsservidor.DataSet.FieldByName('PERMISSAO_CLINICAMEDICA').AsString;
-              Dm.PERMISSAO_PSICOLOGIA := Dsservidor.DataSet.FieldByName('PERMISSAO_PSICOLOGIA').AsString;
-              Dm.PERMISSAO_PSIQUIATRIA := Dsservidor.DataSet.FieldByName('PERMISSAO_PSIQUIATRIA').AsString;
-              Dm.PERMISSAO_SAUDE := Dsservidor.DataSet.FieldByName('PERMISSAO_SAUDE').AsString;
-              Dm.PERMISSAO_TERAPIAOCUPACIONAL := Dsservidor.DataSet.FieldByName('PERMISSAO_TERAPIAOCUPACIONAL').AsString;
-              Dm.PERMISSAO_ODONTOLOGIA := Dsservidor.DataSet.FieldByName('PERMISSAO_ODONTOLOGIA').AsString;
-              Dm.PERMISSAO_PEDAGOGIA := Dsservidor.DataSet.FieldByName('PERMISSAO_PEDAGOGIA').AsString;
-              Dm.PERMISSAO_SERVICOSOCIAL := Dsservidor.DataSet.FieldByName('PERMISSAO_SERVICOSOCIAL').AsString;
-              Dm.PERMISSAO_ARMAS := Dsservidor.DataSet.FieldByName('PERMISSAO_ARMAS').AsString;
-              Dm.PERMISSAO_MONITORAMENTO := Dsservidor.DataSet.FieldByName('PERMISSAO_MONITORAMENTO').AsString;
-              Dm.PERMISSAO_OCORRENCIA := Dsservidor.DataSet.FieldByName('PERMISSAO_OCORRENCIA').AsString;
-              Dm.PERMISSAO_CONSELHODISCIPLINAR := Dsservidor.DataSet.FieldByName('PERMISSAO_CONSELHODISCIPLINAR').AsString;
-              Dm.PERMISSAO_TRANSFERENCIAINTERNO := Dsservidor.DataSet.FieldByName('PERMISSAO_TRANSFERENCIAINTERNO').AsString;
-              Dm.PERMISSAO_MUDANCACELA := Dsservidor.DataSet.FieldByName('PERMISSAO_MUDANCACELA').AsString;
-              Dm.PERMISSAO_SAIDAO := Dsservidor.DataSet.FieldByName('PERMISSAO_SAIDAO').AsString;
-              Dm.PERMISSAO_SAIDAO_CADASTRO := Dsservidor.DataSet.FieldByName('PERMISSAO_SAIDAO_CADASTRO').AsString;
-              Dm.PERMISSAO_CIRCULACAOINTERNO := Dsservidor.DataSet.FieldByName('PERMISSAO_CIRCULACAOINTERNO').AsString;
-              Dm.PERMISSAO_MOVIMENTOSEMIABERTO := Dsservidor.DataSet.FieldByName('PERMISSAO_MOVIMENTOSEMIABERTO').AsString;
-              Dm.PERMISSAO_FUNCIONARIO := Dsservidor.DataSet.FieldByName('PERMISSAO_FUNCIONARIO').AsString;
-              Dm.PERMISSAO_FUNCAOFUNCIONARIO := Dsservidor.DataSet.FieldByName('PERMISSAO_FUNCAOFUNCIONARIO').AsString;
-              Dm.PERMISSAO_UNIDADEPENAL := Dsservidor.DataSet.FieldByName('PERMISSAO_UNIDADEPENAL').AsString;
-              Dm.PERMISSAO_HORARIOFUNCIONARIO := Dsservidor.DataSet.FieldByName('PERMISSAO_HORARIOFUNCIONARIO').AsString;
-              Dm.PERMISSAO_PADRAOSISTEMA := Dsservidor.DataSet.FieldByName('PERMISSAO_PADRAOSISTEMA').AsString;
-              Dm.PERMISSAO_EQUIPE := Dsservidor.DataSet.FieldByName('PERMISSAO_EQUIPE').AsString;
-              Dm.PERMISSAO_LOCALPOSTOTRABALHO := Dsservidor.DataSet.FieldByName('PERMISSAO_LOCALPOSTOTRABALHO').AsString;
-              Dm.PERMISSAO_AGENTEPOREQUIPE := Dsservidor.DataSet.FieldByName('PERMISSAO_AGENTEPOREQUIPE').AsString;
-              Dm.PERMISSAO_REGRAVISITACAO := Dsservidor.DataSet.FieldByName('PERMISSAO_REGRAVISITACAO').AsString;
-
-              //Permissões estilo SIM ou NÃO.
-              Dm.PERMISSAO_ENTRADAVISITANTE := Dsservidor.DataSet.FieldByName('PERMISSAO_ENTRADAVISITANTE').AsString;
-              Dm.VISUALIZA_OUTRAS_UP := Dsservidor.DataSet.FieldByName('VISUALIZA_OUTRAS_UP').AsString;
-              Dm.CONFIGURACAO := Dsservidor.DataSet.FieldByName('configuracoes').AsString;
-
-              {Método transitório utilizado para que TODOS os usuários não fiquem sem a permissão
-              para criar/editar cadastro de funcionários e suas permissões..}
-              if ContemValor('S', Dm.configuracao) then
-              begin
-                Dm.PERMISSAO_FUNCIONARIO := 'CEDIR';
-              end;
-
-              Dm.GLOBAL_NOME_FUNCIONARIO_LOGADO := Dsservidor.DataSet.FieldByName('NOME_FUNCIONARIO').AsString;
-              Dm.Liberado := True;
-              ModalResult := mrOK; // Login is valid so proceed to MainForm
-
-            end
-            else
-            begin
-              ShowMessage('Senha Invalida!!');
-              if Uniedit2.canfocus then
-                UniEdit2.SetFocus;
-            end;
-
-          end
-          else
-          begin
-            ShowMessage('Login não localizado.');
-            if Uniedit1.canfocus then
-              UniEdit1.SetFocus;
-          end;
-
-        except
-          ShowMessage('Codigo invalido');
-        end
-      end;
-
+      showmessage('Login não localizado.');
+      if UniEdit1.canfocus then
+        UniEdit1.setfocus;
     end;
-  end;
 
+  except
+    showmessage('Codigo invalido');
+  end
 
 end;
 
 procedure TFrmLogin.UniBitBtn2Click(Sender: TObject);
 begin
-  Dm.Liberado := false;
+  dm.liberado := False;
   UniMainModule.Terminate;
   ModalResult := mrCancel; // Login is valid so proceed to MainForm
 end;
 
 procedure TFrmLogin.UniEdit1Exit(Sender: TObject);
 begin
-  dm.LOGIN_CONECTADO := uniEdit1.Text;
+  dm.LOGIN_CONECTADO := UniEdit1.Text;
   if dm.LOGIN_CONECTADO <> '' then
   begin
     if (dm.LOGIN_CONECTADO = '99999') then
     begin
-      if LowerCase(uniedit2.text) = 'SUPER' + formatdatetime('DD', Date) then
+      if LowerCase(UniEdit2.Text) = 'SUPER' + formatdatetime('DD', Date) then
       begin
-        uniDBLookupComboBox1.Enabled := True;
-        Exit;
+        exit;
       end;
     end;
 
     try
-      Sqlservidor.sql.text := 'select * from funcionario where login=' + Qs(dm.LOGIN_CONECTADO);
-      Dsservidor.dataset.close;
-      Dsservidor.dataset.open;
-      if Dsservidor.dataset.recordcount > 0 then
+      dm.Dsup.DataSet.close;
+      Sqlservidor.sql.Text := 'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO from funcionario where login=' +
+        Qs(dm.LOGIN_CONECTADO);
+      Dsservidor.DataSet.close;
+      Dsservidor.DataSet.open;
+      if Dsservidor.DataSet.recordcount > 0 then
       begin
+        dm.SqlUP.sql.Text := 'SELECT * FROM UNIDADE_PENAL ' + ' where id_up = '
+          + Dsservidor.DataSet.FieldByName('ID_UP').Asstring +
+          ' order by nome_up';
+        dm.Dsup.DataSet.open;
+
         dm.GLOBAL_ID_UP := Dsservidor.DataSet.FieldByName('ID_UP').AsInteger;
-        dm.GLOBAL_ID_FUNCIONARIO := Dsservidor.DataSet.FieldByName('ID_FUNCIONARIO').AsInteger;
-        dm.GLOBAL_IDPOSTO_TRABALHO := Dsservidor.DataSet.FieldByName('IDPOSTO_TRABALHO').AsInteger;
+        dm.GLOBAL_ID_FUNCIONARIO := Dsservidor.DataSet.FieldByName
+          ('ID_FUNCIONARIO').AsInteger;
+        dm.GLOBAL_IDPOSTO_TRABALHO := Dsservidor.DataSet.FieldByName
+          ('IDPOSTO_TRABALHO').AsInteger;
         dm.GLOBAL_MEUS_DOCUMENTOS := GetEnvironmentVariable('USERPROFILE');
-
-        if Dsservidor.DataSet.FieldByName('DIRETORIO_RELATORIO').AsString <> '' then
-        begin
-          if DirectoryExists(Dsservidor.DataSet.FieldByName('DIRETORIO_RELATORIO').AsString) then
-          begin
-            dm.GLOBAL_PATCH_RELATORIO := Dsservidor.DataSet.FieldByName('DIRETORIO_RELATORIO').AsString;
-          end
-          else
-          begin
-            CreateDir(dm.GLOBAL_PATCH_SISTEMA + '..\Sem Relatório');
-            dm.GLOBAL_PATCH_RELATORIO := dm.GLOBAL_PATCH_SISTEMA + '..\Sem Relatório';
-          end;
-        end
-        else
-        begin
-
-          dm.GLOBAL_PATCH_RELATORIO := dm.GLOBAL_PATCH_SISTEMA + '..\' + IntToStr(dm.GLOBAL_ID_UP);
-
-          if not DirectoryExists(dm.GLOBAL_PATCH_RELATORIO) then
-          begin
-            dm.GLOBAL_PATCH_RELATORIO := dm.GLOBAL_PATCH_SISTEMA + '..\Relatórios';
-          end;
-
-          if not DirectoryExists(dm.GLOBAL_PATCH_RELATORIO) then
-          begin
-            CreateDir(dm.GLOBAL_PATCH_SISTEMA + '..\Relatórios');
-            dm.GLOBAL_PATCH_RELATORIO := dm.GLOBAL_PATCH_SISTEMA + '..\Sem Relatório';
-          end;
-
-        end;
-
-        uniDBLookupComboBox1.KeyValue := dm.GLOBAL_ID_UP;
-      end
-      else
-      begin
-
       end;
 
     except
@@ -364,27 +287,31 @@ begin
 
 end;
 
-procedure TFrmLogin.UniEdit2KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFrmLogin.UniEdit1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    UniBitBtn1Click(nil);
+    UniEdit2.setfocus;
+end;
+
+procedure TFrmLogin.UniEdit2KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_RETURN then
+    UniBitBtnEntrarClick(nil);
 end;
 
 procedure TFrmLogin.UniLabel1Click(Sender: TObject);
 begin
-  Dm.Liberado := true;
+  dm.liberado := True;
   ModalResult := mrOK;
 end;
 
 procedure TFrmLogin.UniLoginFormCreate(Sender: TObject);
 begin
 
-  DsUP.DataSet.Close;
-  DsUP.DataSet.open;
-
-  UniGroupBox1.Caption := Dm.GLOBAL_LOCAL;
-  LabelTitulo.Caption := Dm.GLOBAL_NOME;
-
+  UniGroupBox1.Caption := dm.GLOBAL_LOCAL;
+  LabelTitulo.Caption := dm.GLOBAL_NOME;
 
 end;
 
