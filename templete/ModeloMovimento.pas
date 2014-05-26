@@ -80,10 +80,10 @@ type
     PanelLocalizaConsulta: TUniPanel;
     UniLabel2: TUniLabel;
     EditLocalizar: TUniEdit;
-    UniBtnFiltrar: TUniBitBtn;
     PanelCadastro: TUniPanel;
     PageControlCadastro: TUniPageControl;
     UniTabSheetPrincipalCadastro: TUniTabSheet;
+    UniBtnFiltrar: TUniBitBtn;
     procedure NovoClick(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure CancelarClick(Sender: TObject);

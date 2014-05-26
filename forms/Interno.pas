@@ -9,11 +9,13 @@ uses
   DBAccess, Uni, uniScreenMask, uniGUIBaseClasses, uniTimer, Datasnap.DBClient,
   Datasnap.Provider, Data.SqlExpr, uniStatusBar, uniBasicGrid, uniDBGrid,
   uniButton, uniBitBtn, uniEdit, uniPageControl, uniToolBar, uniLabel,
-  Vcl.Imaging.jpeg, uniImage, uniPanel, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.ComCtrls,
-  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, uniDBNavigator,
+  uniImage, uniPanel, uniDBNavigator,
   uniDateTimePicker, uniDBMemo, uniMemo, uniDBComboBox, uniDBImage,
   uniMultiItem, uniComboBox, uniDBLookupComboBox, uniDBEdit, uniSpeedButton,
-  uniCheckBox, uniDBCheckBox;
+  uniCheckBox, uniDBCheckBox, Vcl.Imaging.jpeg, uniRadioGroup;
+
+const
+  SqlConstanteInterno: string = 'SELECT FIRST 1 INTERNO.* ';
 
 type
   TFrmInterno = class(TFrmModeloCadastro)
@@ -275,7 +277,14 @@ type
     UniDBCheckBoxStatus: TUniDBCheckBox;
     UniLabel3: TUniLabel;
     UniDBComboBox2: TUniDBComboBox;
+    UniRadioGroupStatus: TUniRadioGroup;
+    procedure EditLocalizarChange(Sender: TObject);
+    procedure UniBtnFiltrarClick(Sender: TObject);
+    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EditarClick(Sender: TObject);
   private
+    procedure AbrirTabelas;
     { Private declarations }
   public
     { Public declarations }
@@ -288,11 +297,121 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication;
+  MainModule, uniGUIApplication, DmPrincipal, Lib;
 
 function FrmInterno: TFrmInterno;
 begin
   Result := TFrmInterno(UniMainModule.GetFormInstance(TFrmInterno));
+end;
+
+procedure TFrmInterno.EditarClick(Sender: TObject);
+begin
+  PageControlInterno.ActivePageIndex := 0;
+  if CdsConsulta.Active then
+  begin
+    if not CdsConsulta.IsEmpty then
+    begin
+      if SqlCadastro.Tag <> CdsConsulta.FieldByName('ID_INTERNO').AsInteger then
+      begin
+        SqlCadastro.Tag := CdsConsulta.FieldByName('ID_INTERNO').AsInteger;
+
+        SqlCadastro.SQL.Text := SqlConstanteInterno +
+          ' FROM INTERNO WHERE INTERNO.ID_INTERNO=' + CdsConsulta.FieldByName
+          ('ID_INTERNO').AsString;
+
+        CdsCadastro.Close;
+        CdsCadastro.Open;
+        PageControlModeloCadastro.ActivePageIndex := 0;
+
+      end;
+    end;
+  end;
+
+  inherited;
+
+end;
+
+procedure TFrmInterno.EditLocalizarChange(Sender: TObject);
+begin
+  // inherited;
+
+end;
+
+procedure TFrmInterno.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  inherited;
+  if Key = VK_RETURN then
+  begin
+    UniBtnFiltrarClick(nil);
+  end;
+
+end;
+
+procedure TFrmInterno.UniBtnFiltrarClick(Sender: TObject);
+var
+  Status, Campo: string;
+begin
+  // inherited;
+
+  case UniRadioGroupStatus.ItemIndex of
+    0:
+      Status := ' and interno.st = ''A'' ';
+    1:
+      Status := ' ';
+  end;
+
+  Campo := 'NOME_INTERNO';
+
+  if UniRadioGroupStatus.ItemIndex = 1 then
+  begin
+    SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + ' and interno.' + Campo
+      + ' like ' + qs(EditLocalizar.Text + '%') +
+      ' order by interno.nome_interno ';
+  end
+  else
+  begin
+    SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + Status +
+      ' and interno.id_up=' + inttostr(dm.global_id_up) + ' and interno.' +
+      Campo + ' like ' + qs(EditLocalizar.Text + '%') +
+      ' order by interno.nome_interno ';
+  end;
+
+  DsConsulta.DataSet.Close;
+  DsConsulta.DataSet.Open;
+
+  AbrirTabelas;
+
+end;
+
+procedure TFrmInterno.AbrirTabelas;
+begin
+
+  if not dm.DsCondicaoInterno.DataSet.Active then
+  begin
+    dm.DsCondicaoInterno.DataSet.Open;
+  end;
+
+  if not dm.DsProcedencia.DataSet.Active then
+  begin
+    dm.DsProcedencia.DataSet.Open;
+  end;
+
+  if not dm.DsDestino.DataSet.Active then
+  begin
+    dm.DsDestino.DataSet.Open;
+  end;
+
+  if not dm.DsSetorTrabalho.DataSet.Active then
+  begin
+    dm.DsSetorTrabalho.DataSet.Open;
+  end;
+
+  if not DSHISTORICO_interno.DataSet.Active then
+  begin
+    DSHISTORICO_interno.DataSet.Open;
+  end;
+
 end;
 
 end.

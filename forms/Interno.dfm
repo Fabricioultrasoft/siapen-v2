@@ -2,70 +2,53 @@ inherited FrmInterno: TFrmInterno
   ClientHeight = 607
   ClientWidth = 884
   Caption = 'Cadastro do Interno'
-  ExplicitLeft = -111
   ExplicitWidth = 900
   ExplicitHeight = 646
   PixelsPerInch = 96
   TextHeight = 13
   inherited PanelTituloModeloCadastro: TUniPanel
     Width = 884
-    ExplicitWidth = 773
+    ExplicitWidth = 884
     inherited UniImage1: TUniImage
       Width = 882
-      ExplicitWidth = 771
+      ExplicitWidth = 882
     end
   end
   inherited PanelBotoes: TUniPanel
     Width = 96
     Height = 540
-    ExplicitLeft = 0
-    ExplicitTop = 41
     ExplicitWidth = 96
-    ExplicitHeight = 588
-    inherited Fechar: TUniBitBtn
-      OnClick = nil
-    end
-    inherited Excluir: TUniBitBtn
-      OnClick = nil
-    end
-    inherited Salvar: TUniBitBtn
-      OnClick = nil
-    end
-    inherited Cancelar: TUniBitBtn
-      OnClick = nil
-    end
+    ExplicitHeight = 540
     inherited Editar: TUniBitBtn
-      OnClick = nil
-    end
-    inherited Novo: TUniBitBtn
-      OnClick = nil
+      OnClick = EditarClick
     end
   end
   inherited PanelModeloCadastro: TUniPanel
     Left = 96
     Width = 788
     Height = 540
+    ExplicitLeft = 96
     ExplicitWidth = 449
     ExplicitHeight = 588
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 786
       Height = 538
-      ExplicitWidth = 771
-      ExplicitHeight = 531
+      ExplicitWidth = 786
+      ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
         ExplicitWidth = 1067
         ExplicitHeight = 503
         inherited PanelCadastro: TUniPanel
           Width = 778
           Height = 510
-          ExplicitWidth = 763
-          ExplicitHeight = 503
+          ExplicitWidth = 778
+          ExplicitHeight = 510
           object PageControlInterno: TUniPageControl
             Left = 1
             Top = 1
             Width = 776
             Height = 508
-            ActivePage = TabSheet7
+            ActivePage = TabSheet1
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -73,8 +56,6 @@ inherited FrmInterno: TFrmInterno
             ExplicitHeight = 523
             object TabSheet1: TUniTabSheet
               Caption = 'Principal'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object Label2: TUniLabel
                 Left = 149
                 Top = 9
@@ -796,8 +777,6 @@ inherited FrmInterno: TFrmInterno
             end
             object TabSheet2: TUniTabSheet
               Caption = 'Dados Gerais'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object Label11: TUniLabel
                 Left = 24
                 Top = 56
@@ -1301,8 +1280,6 @@ inherited FrmInterno: TFrmInterno
             end
             object ts1: TUniTabSheet
               Caption = 'Advogados'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object lbl3: TUniLabel
                 Left = 16
                 Top = 21
@@ -1401,8 +1378,6 @@ inherited FrmInterno: TFrmInterno
             end
             object TabSheet3: TUniTabSheet
               Caption = 'Endere'#231'o'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object Label28: TUniLabel
                 Left = 16
                 Top = 8
@@ -1596,8 +1571,6 @@ inherited FrmInterno: TFrmInterno
             end
             object TabSheet5: TUniTabSheet
               Caption = 'Hist'#243'rico'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object Label53: TUniLabel
                 Left = 7
                 Top = 16
@@ -1689,8 +1662,6 @@ inherited FrmInterno: TFrmInterno
             end
             object TabSheet6: TUniTabSheet
               Caption = 'Fotos'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object FOTO: TUniLabel
                 Left = 16
                 Top = 7
@@ -1901,8 +1872,6 @@ inherited FrmInterno: TFrmInterno
             end
             object TabSheet4: TUniTabSheet
               Caption = 'Mov. Anterior'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object DBMemo2: TUniDBMemo
                 Left = 0
                 Top = 0
@@ -1914,14 +1883,10 @@ inherited FrmInterno: TFrmInterno
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 0
                 Color = clWindow
-                ExplicitWidth = 753
-                ExplicitHeight = 473
               end
             end
             object TabSheet7: TUniTabSheet
               Caption = 'Mapa'
-              ExplicitWidth = 753
-              ExplicitHeight = 473
               object Label61: TUniLabel
                 Left = 24
                 Top = 16
@@ -2203,15 +2168,54 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitWidth = 763
-        ExplicitHeight = 503
+        ExplicitWidth = 778
+        ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel
           Width = 778
-          ExplicitWidth = 763
+          Height = 56
+          ExplicitWidth = 778
+          ExplicitHeight = 56
+          inherited UniLabel2: TUniLabel
+            Left = 103
+            Top = 35
+            ExplicitLeft = 103
+            ExplicitTop = 35
+          end
+          inherited EditLocalizar: TUniEdit
+            Left = 154
+            Top = 29
+            Width = 439
+            ScreenMask.Enabled = True
+            ScreenMask.Message = 'Aguarde... localizando o interno...'
+            ScreenMask.Target = DBGridConsulta
+            ExplicitLeft = 154
+            ExplicitTop = 29
+            ExplicitWidth = 439
+          end
+          object UniRadioGroupStatus: TUniRadioGroup [2]
+            Left = 16
+            Top = 1
+            Width = 81
+            Height = 48
+            Items.Strings = (
+              'Ativo'
+              'Inativo')
+            ItemIndex = 0
+            TabOrder = 3
+          end
+          inherited UniBtnFiltrar: TUniBitBtn
+            Left = 599
+            Top = 26
+            TabOrder = 4
+            ExplicitLeft = 599
+            ExplicitTop = 26
+          end
         end
         inherited DBGridConsulta: TUniDBGrid
+          Top = 56
           Width = 778
-          Height = 469
+          Height = 454
+          DataSource = DsConsulta
           Columns = <>
         end
       end
@@ -2220,8 +2224,8 @@ inherited FrmInterno: TFrmInterno
   inherited StatusBar1: TUniStatusBar
     Top = 584
     Width = 878
-    ExplicitTop = 632
-    ExplicitWidth = 767
+    ExplicitTop = 584
+    ExplicitWidth = 878
   end
   object SqlFaccao: TSQLQuery
     MaxBlobSize = -1

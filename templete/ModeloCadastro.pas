@@ -74,7 +74,6 @@ type
     UniScreenMaskFiltrar: TUniScreenMask;
     UniScreenMaskEditLocalizar: TUniScreenMask;
     UniQueryCadastro: TUniQuery;
-    UniBtnFiltrar: TUniBitBtn;
     UniImageLogoMarca: TUniImage;
     Fechar: TUniBitBtn;
     Excluir: TUniBitBtn;
@@ -82,6 +81,7 @@ type
     Cancelar: TUniBitBtn;
     Editar: TUniBitBtn;
     Novo: TUniBitBtn;
+    UniBtnFiltrar: TUniBitBtn;
     procedure NovoClick(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure CancelarClick(Sender: TObject);
