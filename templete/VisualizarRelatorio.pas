@@ -149,7 +149,6 @@ begin
     nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + FNome + '.html';
 
     FArquivo := UniServerModule.LocalCachePath + nome_agora;
-
     FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' + FNome + '.fr3';
 
     Dm.frxReport1.ShowProgress := false;
@@ -176,8 +175,8 @@ begin
       Dm.frxReport1.Variables.AddVariable('GLOBAL', 'ID_UP', Dm.GLOBAL_ID_UP);
       Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ID_FUNCIONARIO');
       Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_FUNCIONARIO', Dm.GLOBAL_ID_FUNCIONARIO);
-      Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ID_INTERNO');
-      Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_INTERNO', Dm.GLOBAL_ID_INTERNO);
+      Dm.frxReport1.Variables.DeleteVariable('ID_INTERNO');
+      Dm.frxReport1.Variables.AddVariable('GLOBAL', 'ID_INTERNO', Dm.GLOBAL_ID_INTERNO);
       Dm.frxReport1.Variables.DeleteVariable('GLOBAL_IDAGENDA_ATENDIMENTO');
       Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_IDAGENDA_ATENDIMENTO', Qs(Dm.GLOBAL_IDAGENDA_ATENDIMENTO));
       Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ORGAO');

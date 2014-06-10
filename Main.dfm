@@ -1,11 +1,12 @@
 object MainForm: TMainForm
   Left = 0
   Top = 0
-  ClientHeight = 537
-  ClientWidth = 1103
-  Caption = 'MainForm'
+  ClientHeight = 641
+  ClientWidth = 1027
+  Caption = 'Siapen Vers'#227'o 2.0 - Sistema Web: JavaScript, Ajax, Firebird 2.5'
   OnShow = UniFormShow
   Color = clBtnFace
+  WindowState = wsMaximized
   OldCreateOrder = False
   Menu = MainMenu1
   MonitoredKeys.Keys = <>
@@ -15,16 +16,17 @@ object MainForm: TMainForm
   object UniImage1: TUniImage
     Left = 0
     Top = 0
-    Width = 1103
+    Width = 1027
     Height = 153
-    Align = alTop
-    Anchors = [akLeft, akTop, akRight]
+    Visible = False
+    Stretch = True
+    Proportional = True
   end
   object UniPageControlPrincipal: TUniPageControl
     Left = 0
-    Top = 153
-    Width = 1103
-    Height = 384
+    Top = 128
+    Width = 1027
+    Height = 513
     ScreenMask.Enabled = True
     ScreenMask.WaitData = True
     ScreenMask.Message = 'Aguarde...'
@@ -38,16 +40,13 @@ object MainForm: TMainForm
     ExplicitHeight = 193
     object UniTabSheetPrincipal: TUniTabSheet
       Caption = 'Principal'
-      ExplicitHeight = 376
       object UniBitBtnConfere: TUniBitBtn
         Left = 35
         Top = 6
         Width = 290
         Height = 70
         ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde... Abrindo as tabela do sistema!'
-        ScreenMask.Target = Owner
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Caption = 'Confere'
         ParentFont = False
         Font.Color = clNavy
@@ -60,17 +59,22 @@ object MainForm: TMainForm
         Top = 94
         Width = 290
         Height = 70
-        Caption = 'Agenda de Atendimento'
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
+        Caption = 'Entrada de Visitante'
         ParentFont = False
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 1
+        OnClick = UniBitBtn2Click
       end
       object UniBitBtn3: TUniBitBtn
         Left = 35
         Top = 185
         Width = 290
         Height = 70
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Caption = 'Requerimentos'
         ParentFont = False
         Font.Color = clNavy
@@ -82,6 +86,8 @@ object MainForm: TMainForm
         Top = 6
         Width = 290
         Height = 70
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Caption = 'Relat'#243'rios'
         ParentFont = False
         Font.Color = clNavy
@@ -94,6 +100,8 @@ object MainForm: TMainForm
         Top = 94
         Width = 290
         Height = 70
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Caption = 'Consultas'
         ParentFont = False
         Font.Color = clNavy
@@ -105,6 +113,8 @@ object MainForm: TMainForm
         Top = 185
         Width = 290
         Height = 70
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Caption = 'Hist'#243'ricos'
         ParentFont = False
         Font.Color = clNavy
@@ -112,32 +122,35 @@ object MainForm: TMainForm
         TabOrder = 5
       end
       object UniImage2: TUniImage
-        Left = 348
-        Top = 31
+        Left = 344
+        Top = 43
         Width = 320
-        Height = 297
+        Height = 320
         Center = True
+        Stretch = True
         Proportional = True
       end
       object UniDBLookupComboBoxUP: TUniDBLookupComboBox
-        Left = 348
+        Left = 344
         Top = 6
         Width = 320
+        Height = 31
         ListField = 'NOME_UP'
         ListSource = DsUP
         KeyField = 'ID_UP'
         ListFieldIndex = 0
         ParentFont = False
         Font.Color = clLime
+        Font.Height = -19
         TabOrder = 6
         ParentColor = False
         Color = clBlack
         OnCloseUp = UniDBLookupComboBoxUPCloseUp
       end
       object UniURLFrameGrafico: TUniURLFrame
-        Left = 691
-        Top = 260
-        Width = 342
+        Left = 696
+        Top = 261
+        Width = 305
         Height = 149
         TabOrder = 8
         ParentColor = False
@@ -162,9 +175,9 @@ object MainForm: TMainForm
         end
       end
       object EditHora: TUniEdit
-        Left = 402
-        Top = 360
-        Width = 225
+        Left = 344
+        Top = 369
+        Width = 320
         ScreenMask.Enabled = True
         ScreenMask.Message = 'Pesquisando registros... aguarde...'
         CharCase = ecUpperCase
@@ -178,7 +191,6 @@ object MainForm: TMainForm
     end
     object UniTabSheetSetores: TUniTabSheet
       Caption = 'Setores'
-      ExplicitHeight = 376
       object BitBtn15: TUniBitBtn
         Left = 32
         Top = 14
@@ -3661,6 +3673,24 @@ object MainForm: TMainForm
       end
     end
   end
+  object UniPanelTop: TUniPanel
+    Left = 0
+    Top = 0
+    Width = 1027
+    Height = 128
+    Align = alTop
+    Anchors = [akLeft, akTop, akRight]
+    TabOrder = 2
+    object UniURLFrame1: TUniURLFrame
+      Left = 0
+      Top = 6
+      Width = 1027
+      Height = 122
+      TabOrder = 1
+      ParentColor = False
+      Color = clBtnFace
+    end
+  end
   object DsUP: TDataSource
     DataSet = CdsUP
     Left = 164
@@ -3704,7 +3734,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011D002200200010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011D002200480010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -4769,10 +4799,12 @@ object MainForm: TMainForm
   end
   object MainMenu1: TUniMainMenu
     Images = ImageList1
+    ScreenMask.Enabled = True
+    ScreenMask.Message = 'Aguarde... abrindo a tela...'
     Left = 444
     Top = 8
     object Cadastro1: TUniMenuItem
-      Caption = 'Cadastro'
+      Caption = '&Cadastro'
       ImageIndex = 22
       object Pavilho1: TUniMenuItem
         Caption = 'Pavilh'#227'o'
@@ -4857,7 +4889,7 @@ object MainForm: TMainForm
       end
     end
     object Movimentao1: TUniMenuItem
-      Caption = 'Movimenta'#231#227'o'
+      Caption = '&Movimenta'#231#227'o'
       object ransfernciadeInterno1: TUniMenuItem
         Caption = 'Transfer'#234'ncia de Interno (Movimento Externo)'
         ImageIndex = 24
@@ -4916,7 +4948,7 @@ object MainForm: TMainForm
       end
     end
     object Setores1: TUniMenuItem
-      Caption = 'Setores'
+      Caption = '&Setores'
       ImageIndex = 22
       object disciplina1: TUniMenuItem
         Caption = 'Disciplina'
@@ -5090,7 +5122,7 @@ object MainForm: TMainForm
       end
     end
     object Visitantes1: TUniMenuItem
-      Caption = 'Visitantes'
+      Caption = '&Visitantes'
       ImageIndex = 21
       object EntradadeVisitantes1: TUniMenuItem
         Caption = 'Entrada de Visitantes'
@@ -5117,7 +5149,7 @@ object MainForm: TMainForm
       end
     end
     object Relatrios1: TUniMenuItem
-      Caption = 'Relat'#243'rios'
+      Caption = '&Relat'#243'rios'
       ImageIndex = 16
       object MenudeRelatrios1: TUniMenuItem
         Caption = 'Menu de Relat'#243'rios'
@@ -5136,7 +5168,7 @@ object MainForm: TMainForm
       end
     end
     object Mdulos1: TUniMenuItem
-      Caption = 'M'#243'dulos'
+      Caption = 'M'#243'&dulos'
       object Patrimnio1: TUniMenuItem
         Caption = 'Patrim'#244'nio'
         ImageIndex = 13
@@ -5229,7 +5261,7 @@ object MainForm: TMainForm
       end
     end
     object Configurao1: TUniMenuItem
-      Caption = 'Configura'#231#227'o'
+      Caption = 'Confi&gura'#231#227'o'
       ImageIndex = 24
       object Funcionrio2: TUniMenuItem
         Caption = 'Funcion'#225'rio'
@@ -5278,7 +5310,7 @@ object MainForm: TMainForm
       end
     end
     object Manuteno1: TUniMenuItem
-      Caption = 'Manuten'#231#227'o'
+      Caption = 'Manu&ten'#231#227'o'
       ImageIndex = 24
       object rocarSenha1: TUniMenuItem
         Caption = 'Trocar Senha'
@@ -5312,7 +5344,7 @@ object MainForm: TMainForm
       end
     end
     object Agendamento1: TUniMenuItem
-      Caption = 'Agendamento'
+      Caption = '&Agendamento'
       ImageIndex = 0
       object ipodeContatos1: TUniMenuItem
         Caption = 'Tipo de Contatos'
@@ -5335,7 +5367,7 @@ object MainForm: TMainForm
       end
     end
     object Sobre1: TUniMenuItem
-      Caption = 'Sobre'
+      Caption = 'So&bre'
       object Informaes1: TUniMenuItem
         Caption = 'Informa'#231#245'es'
         ImageIndex = 0
@@ -5360,7 +5392,24 @@ object MainForm: TMainForm
       end
     end
     object Sair1: TUniMenuItem
-      Caption = 'Sair'
+      Caption = 'Sa&ir'
+      Default = True
     end
+  end
+  object UniFileUploadImagem: TUniFileUpload
+    OnCompleted = UniFileUploadImagemCompleted
+    MaxAllowedSize = 10485760
+    Filter = '*.jpg'
+    Title = 'Enviar uma imagem'
+    Messages.Uploading = 'Enviando...'
+    Messages.PleaseWait = 'Por favor confirme'
+    Messages.Cancel = 'Cancelar'
+    Messages.Processing = 'Processando...'
+    Messages.UploadError = 'Erro ao Enviar...'
+    Messages.Upload = 'Enviar'
+    Messages.NoFileError = 'Por favor selecione o arquivo'
+    Messages.BrowseText = 'Procurar'
+    Left = 336
+    Top = 8
   end
 end

@@ -27,7 +27,10 @@ uses
   Confere in 'forms\Confere.pas' {FrmConfere: TUniForm},
   MenuRelatorio in 'templete\MenuRelatorio.pas' {FrmMenuRelatorio: TUniForm},
   SituacaoDisciplinar in 'forms\SituacaoDisciplinar.pas' {FrmSituacaoDisciplinar: TUniForm},
-  Interno in 'forms\Interno.pas' {FrmInterno: TUniForm};
+  Interno in 'forms\Interno.pas' {FrmInterno: TUniForm},
+  EntradaVisitante in 'forms\EntradaVisitante.pas' {FrmEntradaVisitante: TUniForm},
+  Aguarde in 'templete\Aguarde.pas' {FrmAguarde: TUniForm},
+  Consulta in 'templete\Consulta.pas' {FrmConsulta: TUniForm};
 
 {$R *.res}
 

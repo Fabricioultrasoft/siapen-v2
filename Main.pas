@@ -32,8 +32,9 @@ uses
   Data.DB,
   Data.SqlExpr,
   Datasnap.Provider,
-  Datasnap.DBClient, Vcl.StdCtrls, Vcl.Buttons, uniURLFrame, uniEdit, uniTimer, uniMainMenu,
-  uniImageList, Vcl.ImgList, Vcl.Menus;
+  Datasnap.DBClient, Vcl.StdCtrls, Vcl.Buttons, uniURLFrame, uniEdit, uniTimer,
+  uniMainMenu,
+  uniImageList, Vcl.ImgList, Vcl.Menus, uniFileUpload;
 
 type
   TMainForm = class(TUniForm)
@@ -234,17 +235,32 @@ type
     Manual1: TUniMenuItem;
     AtribuicaoSetores1: TUniMenuItem;
     Sair1: TUniMenuItem;
+    UniFileUploadImagem: TUniFileUpload;
+    UniPanelTop: TUniPanel;
+    UniURLFrame1: TUniURLFrame;
     procedure UniBitBtnConfereClick(Sender: TObject);
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniDBLookupComboBoxUPCloseUp(Sender: TObject);
     procedure UniTimer1Timer(Sender: TObject);
     procedure CadastrodeInternos2Click(Sender: TObject);
+    procedure UniBitBtn2Click(Sender: TObject);
+    procedure UniFileUploadImagemCompleted(Sender: TObject;
+      AStream: TFileStream);
   private
+    FNomeImagemUpload: String;
+    FNomeCampoUpload: String;
+    FDsUploadImagem: TDataSource;
     procedure MostraGrafico;
     procedure MostraAgenda;
     { Private declarations }
   public
+    property NomeImagemUpload: string read FNomeImagemUpload
+      write FNomeImagemUpload;
+    property NomeCampoUpload: String read FNomeCampoUpload
+      write FNomeCampoUpload;
+    property DsUploadImagem: TDataSource read FDsUploadImagem
+      write FDsUploadImagem;
     { Public declarations }
   end;
 
@@ -260,7 +276,7 @@ uses
   uniGUIApplication,
   DmPrincipal,
   Confere,
-  MenuRelatorio, ServerModule, Interno;
+  MenuRelatorio, ServerModule, Interno, EntradaVisitante, Lib;
 
 function MainForm: TMainForm;
 begin
@@ -270,18 +286,18 @@ end;
 procedure TMainForm.UniBitBtnConfereClick(Sender: TObject);
 begin
   FrmConfere.ShowModal();
+  // FrmEntradaVisitante.ShowModal();
 end;
 
 procedure TMainForm.UniDBLookupComboBoxUPCloseUp(Sender: TObject);
 begin
-  {
-    if not(dm.VISUALIZA_OUTRAS_UP = 'S') then
-    begin
+  if not(dm.VISUALIZA_OUTRAS_UP = 'S') then
+  begin
     UniDBLookupComboBoxUP.KeyValue := dm.GLOBAL_ID_UP;
     ShowMessage('Sem permissão para visualizar outro estabelecimento penal.');
     Exit;
-    end;
-  }
+  end;
+
   with DsUP.DataSet do
   begin
 
@@ -328,8 +344,46 @@ begin
 
 end;
 
-procedure TMainForm.UniFormShow(Sender: TObject);
+procedure TMainForm.UniFileUploadImagemCompleted(Sender: TObject;
+  AStream: TFileStream);
+var
+  sArquivo, sNomeJpeg: string;
 begin
+
+  if not DirectoryExists(UniServerModule.StartPath + 'FotosSistema\') then
+    ForceDirectories(UniServerModule.StartPath + 'FotosSistema\');
+
+  sArquivo := UniServerModule.StartPath + 'FotosSistema\' + FNomeImagemUpload +
+    ExtractFileExt(AStream.FileName);
+
+  CopyFile(PChar(AStream.FileName), PChar(sArquivo), False);
+
+  if FDsUploadImagem.DataSet.State in [dsedit, dsinsert] then
+  begin
+    sNomeJpeg := JpgToBmp(AStream.FileName); // ConverterBmpParaJPeg();
+    TBlobField(FDsUploadImagem.DataSet.FieldByName(FNomeCampoUpload))
+      .LoadFromFile(sNomeJpeg);
+  end;
+
+  MainForm.FNomeImagemUpload := '';
+  MainForm.FNomeCampoUpload := '';
+  MainForm.FDsUploadImagem := Nil;
+
+end;
+
+procedure TMainForm.UniFormShow(Sender: TObject);
+var
+  i: integer;
+begin
+
+  UniPageControlPrincipal.ActivePageIndex := 0;
+
+  UniURLFrame1.URL := 'http://www.agepen.ms.gov.br/recursos/61814_animação.swf';
+
+  UniURLFrame1.Refresh;
+  UniURLFrame1.Repaint;
+  UniURLFrame1.Update;
+
   if FileExists(UniServerModule.StartPath + 'logo\logo_panel1.jpg') then
     UniImage1.Picture.LoadFromFile(UniServerModule.StartPath +
       'logo\logo_panel1.jpg');
@@ -349,11 +403,22 @@ begin
   MostraAgenda;
   MostraGrafico;
 
+
+  // for I := 0 to MainMenu1.Items.Count -1 do
+  // begin
+  // Mainmenu1.Merge(MainMenu1);
+  // end;
+
 end;
 
 procedure TMainForm.UniTimer1Timer(Sender: TObject);
 begin
   EditHora.Text := FormatDateTime('dd/mm/yyyy  -  hh:mm:ss', now);
+end;
+
+procedure TMainForm.UniBitBtn2Click(Sender: TObject);
+begin
+  FrmEntradaVisitante.ShowModal();
 end;
 
 procedure TMainForm.UniBitBtn4Click(Sender: TObject);
@@ -374,17 +439,17 @@ begin
     FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
     FCaminhoFR3 := UniServerModule.StartPath +
-      'relatorios\SYSTEM\relatorio_tela.fr3';
+      'SYSTEM\relatorio_tela.fr3';
 
-    dm.frxReport1.ShowProgress := false;
-    dm.frxReport1.StoreInDFM := false;
-    dm.frxHTMLExport1.Navigator := false;
-    dm.frxHTMLExport1.OverwritePrompt := false;
-    dm.frxHTMLExport1.PicsInSameFolder := false;
-    dm.frxHTMLExport1.ShowDialog := false;
-    dm.frxHTMLExport1.ShowProgress := false;
-    dm.frxHTMLExport1.OpenAfterExport := false;
-    dm.frxHTMLExport1.Multipage := false;
+    dm.frxReport1.ShowProgress := False;
+    dm.frxReport1.StoreInDFM := False;
+    dm.frxHTMLExport1.Navigator := False;
+    dm.frxHTMLExport1.OverwritePrompt := False;
+    dm.frxHTMLExport1.PicsInSameFolder := False;
+    dm.frxHTMLExport1.ShowDialog := False;
+    dm.frxHTMLExport1.ShowProgress := False;
+    dm.frxHTMLExport1.OpenAfterExport := False;
+    dm.frxHTMLExport1.Multipage := False;
     dm.frxHTMLExport1.Server := true;
     dm.frxHTMLExport1.FileName := FArquivo;
     if FileExists(FCaminhoFR3) then
@@ -438,17 +503,17 @@ begin
     FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
     FCaminhoFR3 := UniServerModule.StartPath +
-      'relatorios\SYSTEM\relatorio_tela2.fr3';
+      'SYSTEM\relatorio_tela2.fr3';
 
-    dm.frxReport1.ShowProgress := false;
-    dm.frxReport1.StoreInDFM := false;
-    dm.frxHTMLExport1.Navigator := false;
-    dm.frxHTMLExport1.OverwritePrompt := false;
-    dm.frxHTMLExport1.PicsInSameFolder := false;
-    dm.frxHTMLExport1.ShowDialog := false;
-    dm.frxHTMLExport1.ShowProgress := false;
-    dm.frxHTMLExport1.OpenAfterExport := false;
-    dm.frxHTMLExport1.Multipage := false;
+    dm.frxReport1.ShowProgress := False;
+    dm.frxReport1.StoreInDFM := False;
+    dm.frxHTMLExport1.Navigator := False;
+    dm.frxHTMLExport1.OverwritePrompt := False;
+    dm.frxHTMLExport1.PicsInSameFolder := False;
+    dm.frxHTMLExport1.ShowDialog := False;
+    dm.frxHTMLExport1.ShowProgress := False;
+    dm.frxHTMLExport1.OpenAfterExport := False;
+    dm.frxHTMLExport1.Multipage := False;
     dm.frxHTMLExport1.Server := true;
     dm.frxHTMLExport1.FileName := FArquivo;
     if FileExists(FCaminhoFR3) then

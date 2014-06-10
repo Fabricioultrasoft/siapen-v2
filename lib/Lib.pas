@@ -67,7 +67,8 @@ uses Forms,
   zeSave,
   zeSaveODS,
   zeSaveXLSX,
-  zeSaveEXML;
+  zeSaveEXML,
+  Vcl.Imaging.jpeg;
 
 type
   TChars = set of Char;
@@ -110,6 +111,9 @@ function VerificaInternoExiste(sNomeInterno, sNomeMae: string): boolean;
 function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
 function VerificaRGIExiste(sRGI: string): boolean;
 function VerificaVisitaExiste(scpf: string): boolean;
+function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
+function JpgToBmp(cImageJpg: string; cWidth: integer = 205; cHeight: integer = 154): string; // Requer a Jpeg declarada na clausua uses da unit
+procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
 
 const
   QBtn1 = 1;
@@ -1167,6 +1171,120 @@ begin
   Result := (sCPF = ret_VISITA);
 
 end;
+
+function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
+var
+  Bmp: TBitmap;
+  JPeg: TJPegImage;
+begin
+  Bmp := TBitmap.Create;
+  try
+    Bmp.LoadFromFile(Arquivo);
+    JPeg := TJPegImage.Create;
+    try
+      JPeg.Assign(Bmp);
+      result := ChangeFileExt(Arquivo, '.jpg');
+      JPeg.SaveToFile(result);
+    finally
+      JPeg.Free;
+    end;
+  finally
+    Bmp.Free;
+  end;
+end;
+
+function JpgToBmp(cImageJpg: string; cWidth: integer = 205; cHeight: integer = 154): string; // Requer a Jpeg declarada na clausua uses da unit
+var
+  MyJPEG: TJPEGImage;
+  MyBMP: TBitmap;
+begin
+  Result := '';
+  if fileExists(cImageJpg) then
+  begin
+    MyJPEG := TJPEGImage.Create;
+    with MyJPEG do
+    begin
+      try
+        LoadFromFile(cImageJpg);
+        MyBMP := TBitmap.Create;
+
+        with MyBMP do
+        begin
+          Width := cWidth;
+          Height := cHeight;
+          Canvas.StretchDraw(Rect(0, 0, MyBMP.width, MyBMP.Height), MyJPEG);
+          Result := 'conversor_siap.Bmp';
+          SaveToFile(Result);
+          Free;
+        end;
+
+      finally
+        Free;
+      end;
+    end;
+  end;
+end;
+
+procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
+var
+  sCmd, sOrder, sGroup: string;
+  iPosOrderBy: Integer;
+  iPosGroupBy: Integer;
+  SQLOriginal: string;
+begin
+  try
+    if WhereClause = '' then
+      Exit;
+
+    iPosOrderBy := Pos('ORDER BY', UpperCase(Query.SQL.Text));
+    iPosGroupBy := Pos('GROUP BY', UpperCase(Query.SQL.Text));
+
+    if iPosOrderBy = 0 then
+    begin
+      sCmd := Query.SQL.Text;
+      sOrder := '';
+    end
+    else
+    begin
+      if iPosGroupBy = 0 then
+      begin
+        sCmd := Copy(Query.SQL.Text, 0, iPosOrderBy - 1);
+        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) -
+          iPosOrderBy);
+      end
+      else
+      begin
+        sCmd := Copy(Query.SQL.Text, 0, iPosGroupBy - 1);
+        sGroup := Copy(Query.SQL.Text, iPosGroupBy, Length(Query.SQL.Text) -
+          iPosOrderBy);
+        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) -
+          iPosOrderBy);
+      end;
+    end;
+    Query.SQL.Text := sCmd;
+
+    if Pos('WHERE', UpperCase(Query.SQL.Text)) = 0 then
+      Query.SQL.Text := Query.SQL.Text + ' WHERE ' + WhereClause
+    else
+    begin
+      if Trim(StrAndOr) = 'OR' then
+        Query.SQL.Text := Query.SQL.Text + ' OR ' + WhereClause
+      else
+        Query.SQL.Text := Query.SQL.Text + ' AND ' + WhereClause;
+    end;
+
+    if sGroup <> '' then
+      Query.SQL.Text := Query.SQL.Text + sGroup;
+    if sOrder <> '' then
+      Query.SQL.Text := Query.SQL.Text + sOrder;
+  except
+    on e: Exception do
+    begin
+      Query.SQL.SaveToFile('sql_addwhere.sql');
+    end;
+  end;
+end;
+
 
 
 end.

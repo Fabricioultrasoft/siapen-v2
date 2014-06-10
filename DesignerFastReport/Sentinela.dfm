@@ -75,7 +75,7 @@ object FrmSentinela: TFrmSentinela
     Top = 16
   end
   object frxReport1: TfrxReport
-    Version = '4.12.6'
+    Version = '4.15.10'
     DotMatrixReport = False
     IniFile = '\Software\Fast Reports'
     PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
@@ -211,6 +211,7 @@ object FrmSentinela: TFrmSentinela
     Outline = False
     Background = False
     HTMLTags = True
+    Quality = 95
     Author = 'FastReport'
     Subject = 'FastReport PDF export'
     Creator = 'FastReport (http://www.fast-report.com)'
@@ -349,6 +350,7 @@ object FrmSentinela: TFrmSentinela
     UseIniFile = True
     TimeOut = 60
     ConfurmReading = False
+    UseMAPI = False
     Left = 72
     Top = 172
   end
@@ -468,7 +470,7 @@ object FrmSentinela: TFrmSentinela
     Left = 616
     Top = 32
     Bitmap = {
-      494C010106000800380010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C0101060008003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

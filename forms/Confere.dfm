@@ -1,16 +1,15 @@
 inherited FrmConfere: TFrmConfere
   ClientHeight = 601
-  ClientWidth = 989
+  ClientWidth = 1013
   Caption = 'Confere'
-  ExplicitLeft = 8
-  ExplicitWidth = 1005
+  ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
   TextHeight = 13
   inherited PanelTituloModeloCadastro: TUniPanel
-    Width = 989
+    Width = 1013
     Height = 52
-    ExplicitWidth = 989
+    ExplicitWidth = 1013
     ExplicitHeight = 52
     inherited UniImageLogoMarca: TUniImage
       AlignWithMargins = True
@@ -74,79 +73,77 @@ inherited FrmConfere: TFrmConfere
     end
     inherited PanelLocalizaConsulta: TUniPanel
       Left = 64
-      Width = 925
+      Width = 949
       Height = 50
       TabOrder = 1
       ExplicitLeft = 64
-      ExplicitWidth = 925
+      ExplicitWidth = 949
       ExplicitHeight = 50
       inherited UniLabel2: TUniLabel
         Left = 128
         Top = 20
-        TabOrder = 3
         ExplicitLeft = 128
         ExplicitTop = 20
       end
       inherited EditLocalizar: TUniEdit
         Left = 179
         Top = 14
-        ScreenMask.Enabled = True
         ScreenMask.Message = 'Pesquisando registros... aguarde...'
         ScreenMask.Target = DBGridConsulta
-        TabOrder = 2
         CheckChangeDelay = 50
         OnChange = nil
         ExplicitLeft = 179
         ExplicitTop = 14
       end
-      object UniRadioGroupStatus: TUniRadioGroup [2]
+      inherited UniBtnFiltrar: TUniBitBtn
+        Left = 753
+        Top = 20
+        ExplicitLeft = 753
+        ExplicitTop = 20
+      end
+      object UniRadioGroupStatus: TUniRadioGroup
         Left = 16
         Top = 1
-        Width = 81
-        Height = 48
+        Width = 97
+        Height = 44
         Items.Strings = (
           'Ativo'
           'Inativo')
         ItemIndex = 0
-        TabOrder = 1
-      end
-      inherited UniBtnFiltrar: TUniBitBtn
-        Left = 753
-        Top = 20
         TabOrder = 4
-        ExplicitLeft = 753
-        ExplicitTop = 20
       end
     end
   end
   inherited PanelBotoes: TUniPanel
     Top = 52
-    Width = 989
+    Width = 1013
     ExplicitTop = 52
-    ExplicitWidth = 989
+    ExplicitWidth = 1013
     inherited ToolBarModeloCadastro: TUniToolBar
-      Width = 983
-      ExplicitWidth = 983
+      Width = 1007
+      ExplicitWidth = 1007
     end
   end
   inherited PanelModeloCadastro: TUniPanel
     Top = 107
-    Width = 989
+    Width = 1013
     Height = 468
     ExplicitTop = 107
     ExplicitWidth = 1061
     ExplicitHeight = 463
     inherited PageControlModeloCadastro: TUniPageControl
-      Width = 987
+      Width = 1011
       Height = 177
-      ExplicitWidth = 987
+      ExplicitWidth = 1011
       ExplicitHeight = 177
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitWidth = 979
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 1003
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
-          Width = 979
-          Height = 149
+          Width = 1003
+          Height = 123
           DataSource = DsConsulta
           Columns = <
             item
@@ -230,29 +227,68 @@ inherited FrmConfere: TFrmConfere
               Expanded = False
             end>
         end
+        object UniToolBarSetores: TUniToolBar
+          Left = 0
+          Top = 123
+          Width = 1003
+          Height = 26
+          ShowHint = True
+          ParentShowHint = False
+          ButtonHeight = 20
+          ButtonWidth = 44
+          Images = Dm.ImageListNetworkI
+          BorderWidth = 0
+          Anchors = [akLeft, akRight, akBottom]
+          Align = alBottom
+          TabOrder = 1
+          object UniToolButton1: TUniToolButton
+            Left = 66
+            Top = 0
+            Hint = 'Cadastro de Identifica'#231#227'o do Interno(a)'
+            ScreenMask.Enabled = True
+            ScreenMask.Message = 'Aguarde, abrindo o cadastro...'
+            ShowHint = True
+            ImageIndex = 23
+            Caption = 'Interno'
+            OnClick = UniToolButton1Click
+          end
+          object UniLabel18: TUniLabel
+            Left = 0
+            Top = 0
+            Width = 66
+            Height = 13
+            ShowHint = True
+            Caption = 'Outras telas: '
+            Align = alLeft
+            Anchors = [akLeft, akTop, akBottom]
+            TabOrder = 1
+          end
+        end
       end
     end
     inherited PanelCadastro: TUniPanel
       Top = 177
-      Width = 987
+      Width = 1011
       Height = 291
       ExplicitTop = 177
-      ExplicitWidth = 987
+      ExplicitWidth = 1011
       ExplicitHeight = 291
       inherited PageControlCadastro: TUniPageControl
-        Width = 985
+        Width = 1009
         Height = 289
         ExplicitWidth = 977
         ExplicitHeight = 267
         inherited UniTabSheetPrincipalCadastro: TUniTabSheet
-          ExplicitWidth = 977
+          ExplicitLeft = 4
+          ExplicitTop = 24
+          ExplicitWidth = 1001
           ExplicitHeight = 261
           object UniPageControlConfere: TUniPageControl
             Left = 0
             Top = 56
-            Width = 977
+            Width = 1001
             Height = 205
-            ActivePage = UniTabSheetCela
+            ActivePage = UniTabSheetDados
             TabOrder = 10
             Align = alBottom
             Anchors = [akLeft, akRight, akBottom]
@@ -472,6 +508,7 @@ inherited FrmConfere: TFrmConfere
                 Center = True
                 Stretch = True
                 Proportional = True
+                OnClick = UniDBImage1Click
               end
             end
             object UniTabSheetCela: TUniTabSheet
@@ -922,9 +959,9 @@ inherited FrmConfere: TFrmConfere
   end
   inherited StatusBar1: TUniStatusBar
     Top = 578
-    Width = 983
+    Width = 1007
     ExplicitTop = 578
-    ExplicitWidth = 983
+    ExplicitWidth = 1007
   end
   inherited SqlCadastro: TSQLQuery
     SQL.Strings = (

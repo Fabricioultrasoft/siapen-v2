@@ -784,17 +784,17 @@ object FrmModeloCadastro: TFrmModeloCadastro
   object PanelBotoes: TUniPanel
     Left = 0
     Top = 41
-    Width = 97
+    Width = 106
     Height = 324
     Align = alLeft
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 1
     object Fechar: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 157
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 244
+      Width = 100
+      Height = 40
       Hint = 'Fechar tela.'
       ShowHint = True
       ParentShowHint = False
@@ -834,15 +834,18 @@ object FrmModeloCadastro: TFrmModeloCadastro
         FF00FF00FF00FF00FF00FF00FF00FF00FF00993232FF993232FF653232FFFF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       Caption = 'Fechar'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 1
       OnClick = FecharClick
     end
     object Excluir: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 126
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 196
+      Width = 100
+      Height = 40
       Hint = 'Excluir registro no banco de dados.'
       Visible = False
       ShowHint = True
@@ -883,15 +886,18 @@ object FrmModeloCadastro: TFrmModeloCadastro
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF000000CCFF0000CCFFFF00FF000000CCFF0000CCFF}
       Caption = 'Excluir'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 2
       OnClick = ExcluirClick
     end
     object Salvar: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 99
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 148
+      Width = 100
+      Height = 40
       Hint = 'Salvar registro no banco de dados.'
       ShowHint = True
       ParentShowHint = False
@@ -931,15 +937,18 @@ object FrmModeloCadastro: TFrmModeloCadastro
         C0FFEAEAEAFFDDDDDDFFDDDDDDFFDDDDDDFFE3E3E3FFCC9999FFFF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       Caption = 'Salvar'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 3
       OnClick = SalvarClick
     end
     object Cancelar: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 68
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 100
+      Width = 100
+      Height = 40
       Hint = 'Cancelar intera'#231#245'es atuais.'
       ShowHint = True
       ParentShowHint = False
@@ -979,15 +988,18 @@ object FrmModeloCadastro: TFrmModeloCadastro
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       Caption = 'Cancelar'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 4
       OnClick = CancelarClick
     end
     object Editar: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 37
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 52
+      Width = 100
+      Height = 40
       Hint = 'Alterar o registro selecionado.'
       ShowHint = True
       ParentShowHint = False
@@ -1027,15 +1039,18 @@ object FrmModeloCadastro: TFrmModeloCadastro
         00FF003200FF003200FF003200FF003200FF003200FF003200FF003200FF0032
         00FF003200FF003200FF003200FF003200FF003200FF003200FF}
       Caption = 'Editar'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 5
       OnClick = EditarClick
     end
     object Novo: TUniBitBtn
       AlignWithMargins = True
-      Left = 11
-      Top = 6
-      Width = 75
-      Height = 25
+      Left = 2
+      Top = 5
+      Width = 100
+      Height = 40
       Hint = 'Cadastrar um registro novo.'
       ShowHint = True
       ParentShowHint = False
@@ -1075,14 +1090,17 @@ object FrmModeloCadastro: TFrmModeloCadastro
         FF00FF00FF00FF00FF00FF00FF00CC3200FFCC3200FFCC3200FFCC3200FFCC32
         00FFCC3200FFCC3200FFCC3200FFCC3200FFCC3200FFFF00FF00}
       Caption = 'Novo'
+      ParentFont = False
+      Font.Color = clNavy
+      Font.Style = [fsBold]
       TabOrder = 6
       OnClick = NovoClick
     end
   end
   object PanelModeloCadastro: TUniPanel
-    Left = 97
+    Left = 106
     Top = 41
-    Width = 752
+    Width = 743
     Height = 324
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -1090,7 +1108,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
     object PageControlModeloCadastro: TUniPageControl
       Left = 1
       Top = 1
-      Width = 750
+      Width = 741
       Height = 322
       ActivePage = TabSheetConsulta
       TabOrder = 1
@@ -1101,7 +1119,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
         object PanelCadastro: TUniPanel
           Left = 0
           Top = 0
-          Width = 742
+          Width = 733
           Height = 294
           Align = alClient
           Anchors = [akLeft, akTop, akRight, akBottom]
@@ -1113,7 +1131,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
         object PanelLocalizaConsulta: TUniPanel
           Left = 0
           Top = 0
-          Width = 742
+          Width = 733
           Height = 41
           Align = alTop
           Anchors = [akLeft, akTop, akRight]
@@ -1196,7 +1214,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
         object DBGridConsulta: TUniDBGrid
           Left = 0
           Top = 41
-          Width = 742
+          Width = 733
           Height = 253
           DataSource = DsCadastro
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]

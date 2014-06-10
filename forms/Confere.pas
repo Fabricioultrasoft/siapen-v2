@@ -3,46 +3,17 @@ unit Confere;
 interface
 
 uses
-  Windows,
-  Messages,
-  SysUtils,
-  Variants,
-  Classes,
-  Graphics,
-  Controls,
-  Forms,
-  Dialogs,
-  uniGUITypes,
-  uniGUIAbstractClasses,
-  uniGUIClasses,
-  uniGUIForm,
-  ModeloMovimento,
-  Data.FMTBcd,
-  Data.DB,
-  MemDS,
-  DBAccess,
-  Uni,
-  uniScreenMask,
-  uniGUIBaseClasses,
-  uniTimer,
-  Datasnap.DBClient,
-  Datasnap.Provider,
-  Data.SqlExpr,
-  uniStatusBar,
-  uniBasicGrid,
-  uniDBGrid,
-  uniPageControl,
-  uniToolBar,
-  uniButton,
-  uniBitBtn,
-  uniEdit,
-  uniLabel,
-  uniImage,
-  uniPanel,
-  uniRadioGroup,
-  uniDBEdit, uniDateTimePicker, uniDBDateTimePicker, uniCheckBox, uniDBCheckBox,
-  uniMultiItem, uniComboBox, uniDBComboBox, uniDBLookupComboBox, uniSpeedButton,
-  Vcl.Imaging.jpeg, uniDBImage, Vcl.DBCtrls;
+  Windows, Messages, SysUtils, Variants, Classes, Graphics,
+  Controls, Forms, Dialogs, uniGUITypes, uniGUIAbstractClasses,
+  uniGUIClasses, uniGUIForm, Data.FMTBcd, Data.DB, MemDS,
+  DBAccess, Uni, uniScreenMask, uniGUIBaseClasses, uniTimer, Datasnap.DBClient,
+  Datasnap.Provider, Data.SqlExpr, uniStatusBar, uniBasicGrid, uniDBGrid,
+  uniButton, uniBitBtn, uniEdit, uniPageControl, uniToolBar, uniLabel,
+  uniImage, uniPanel, uniDBNavigator,
+  uniDateTimePicker, uniDBMemo, uniMemo, uniDBComboBox, uniDBImage,
+  uniMultiItem, uniComboBox, uniDBLookupComboBox, uniDBEdit, uniSpeedButton,
+  uniCheckBox, uniDBCheckBox, Vcl.Imaging.jpeg, uniRadioGroup, uniFileUpload,
+  uniDBDateTimePicker, ModeloMovimento;
 
 const
   SqlConstanteInterno
@@ -155,7 +126,6 @@ type
     CdsVinc_Mudanca_Cela: TClientDataSet;
     DspVinc_Mudanca_Cela: TDataSetProvider;
     SqlVinc_Mudanca_Cela: TSQLQuery;
-    UniRadioGroupStatus: TUniRadioGroup;
     UniPageControlConfere: TUniPageControl;
     UniTabSheetDados: TUniTabSheet;
     UniTabSheetCela: TUniTabSheet;
@@ -223,8 +193,11 @@ type
     UniDBEditStatusIsolamento: TUniDBEdit;
     UniLabel17: TUniLabel;
     UniDBEdit1: TUniDBEdit;
+    UniRadioGroupStatus: TUniRadioGroup;
+    UniToolBarSetores: TUniToolBar;
+    UniLabel18: TUniLabel;
+    UniToolButton1: TUniToolButton;
     procedure UniFormCreate(Sender: TObject);
-    procedure UniFormShow(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
     procedure UniBtnFiltrarClick(Sender: TObject);
@@ -234,6 +207,10 @@ type
     procedure DsCadastroDataChange(Sender: TObject; Field: TField);
     procedure SalvarClick(Sender: TObject);
     procedure UniBitBtn1Click(Sender: TObject);
+    procedure UniDBImage1Click(Sender: TObject);
+    procedure UniFormShow(Sender: TObject);
+    procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure UniToolButton1Click(Sender: TObject);
   private
     statusold, em_transito_old: string;
     idcela_old, idsolario_old, idgaleria_old, idpavilhao_old: string;
@@ -251,10 +228,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule,
-  uniGUIApplication,
-  Lib,
-  DmPrincipal, SituacaoDisciplinar;
+  MainModule, uniGUIApplication, DmPrincipal, Lib,
+  SituacaoDisciplinar, ServerModule, Main, Aguarde, Interno;
 
 function FrmConfere: TFrmConfere;
 begin
@@ -331,8 +306,8 @@ begin
             if CdsCadastro.FieldByName('idsolario').AsInteger > 0 then
             begin
               SqlCela.SQL.Text :=
-                'select id_cela, cela from cela where idsolario = '
-                + CdsCadastro.FieldByName('idsolario').AsString +
+                'select id_cela, cela from cela where idsolario = ' +
+                CdsCadastro.FieldByName('idsolario').AsString +
                 ' order by cela';
               DsCela.DataSet.Open;
             end;
@@ -374,6 +349,7 @@ end;
 procedure TFrmConfere.EditarClick(Sender: TObject);
 begin
   UniPageControlConfere.ActivePageIndex := 0;
+  AbrirTabelas;
   if CdsConsulta.Active then
   begin
     if not CdsConsulta.IsEmpty then
@@ -420,8 +396,8 @@ begin
         if CdsCadastro.FieldByName('idsolario').AsInteger > 0 then
         begin
           SqlCela.SQL.Text :=
-            'select id_cela, cela from cela where idsolario = '
-            + CdsCadastro.FieldByName('idsolario').AsString + ' order by cela';
+            'select id_cela, cela from cela where idsolario = ' +
+            CdsCadastro.FieldByName('idsolario').AsString + ' order by cela';
           DsCela.DataSet.Close;
           DsCela.DataSet.Open;
         end;
@@ -463,7 +439,13 @@ procedure TFrmConfere.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key = VK_RETURN then
   begin
-    UniBtnFiltrarClick(nil);
+    FrmAguarde.UniLabel1.Caption := 'Aguarde...';
+    FrmAguarde.Width := 180;
+    FrmAguarde.ShowModal(
+      procedure(Res: Integer)
+      begin
+        UniBtnFiltrar.OnClick(nil);
+      end);
   end;
 
 end;
@@ -553,7 +535,7 @@ end;
 procedure TFrmConfere.SalvarClick(Sender: TObject);
 var
   sMovimento, sSqlExecute, MotivoSaida: string;
-  iErro, LIMITE_POR_CELA: integer;
+  iErro, LIMITE_POR_CELA: Integer;
 begin
 
   if UniDBEditNome.CanFocus then
@@ -1049,7 +1031,8 @@ begin
   begin
     { edição/inserção do interno ativo }
 
-    dm.SqlExecute.SQL.Text := 'SELECT LIMITE_POR_CELA, ISOLAMENTO FROM CELA WHERE ID_CELA = ' +
+    dm.SqlExecute.SQL.Text :=
+      'SELECT LIMITE_POR_CELA, ISOLAMENTO FROM CELA WHERE ID_CELA = ' +
       inttostr(DBLookupComboBoxCela.KeyValue);
 
     dm.DsExecute.DataSet.Close;
@@ -1066,7 +1049,7 @@ begin
         EXIT;
       end;
     end;
-    
+
     if DBLookupComboBoxCela.KeyValue = -1 then
     begin
       UniPageControlConfere.ActivePageIndex := 1;
@@ -1296,7 +1279,7 @@ procedure TFrmConfere.UniBitBtn1Click(Sender: TObject);
 begin
   inherited;
   FrmSituacaoDisciplinar.ShowModal(
-    procedure(Result: integer)
+    procedure(Result: Integer)
     begin
       if Result = mrOk then
       begin
@@ -1341,7 +1324,27 @@ begin
   DsConsulta.DataSet.Close;
   DsConsulta.DataSet.Open;
 
-  AbrirTabelas;
+  // AbrirTabelas;
+
+end;
+
+procedure TFrmConfere.UniDBImage1Click(Sender: TObject);
+begin
+  inherited;
+  if dscadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+    MainForm.NomeImagemUpload := 'FOTO-idinterno-' +
+      dscadastro.DataSet.FieldByName('ID_INTERNO').AsString;
+    MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
+    MainForm.DsUploadImagem := dscadastro;
+    MainForm.UniFileUploadImagem.Execute;
+  end;
+end;
+
+procedure TFrmConfere.UniFormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  inherited;
+  DsConsulta.DataSet.Close;
 
 end;
 
@@ -1437,6 +1440,19 @@ begin
   DsConsulta.DataSet.Close;
   EditLocalizar.Text := '';
 
+end;
+
+procedure TFrmConfere.UniToolButton1Click(Sender: TObject);
+begin
+  inherited;
+  //
+  if not CdsConsulta.IsEmpty then
+  begin
+    FrmInterno.ID_INTERNO := CdsConsulta.FieldByName('ID_INTERNO').AsInteger;
+    FrmInterno.ShowModal();
+  end
+  else
+    ShowMessage('Informe um interno(a)');
 end;
 
 procedure TFrmConfere.AbrirTabelas;

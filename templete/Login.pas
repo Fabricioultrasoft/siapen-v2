@@ -52,12 +52,12 @@ type
     UniDBEdit1: TUniDBEdit;
     procedure UniBitBtn2Click(Sender: TObject);
     procedure UniBitBtnEntrarClick(Sender: TObject);
-    procedure UniEdit2KeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure UniLabel1Click(Sender: TObject);
     procedure UniLoginFormCreate(Sender: TObject);
     procedure UniEdit1Exit(Sender: TObject);
     procedure UniEdit1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure UniEdit2KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
   private
     { Private declarations }
@@ -77,7 +77,7 @@ uses
   uniGUIApplication,
   DmPrincipal,
   Lib,
-  humanejs;
+  humanejs, Aguarde;
 
 function FrmLogin: TFrmLogin;
 begin
@@ -86,12 +86,13 @@ end;
 
 procedure TFrmLogin.UniBitBtnEntrarClick(Sender: TObject);
 begin
-
+  UniBitBtnEntrar.Visible := false;
   if not dm.Dsup.DataSet.Active then
   begin
     showmessage('Digite o Login!!');
     if UniEdit1.canfocus then
       UniEdit1.setfocus;
+    UniBitBtnEntrar.Visible := true;
     exit;
   end;
 
@@ -100,19 +101,20 @@ begin
     showmessage('Digite a Senha!');
     if UniEdit2.canfocus then
       UniEdit2.setfocus;
+    UniBitBtnEntrar.Visible := true;
     exit;
   end;
 
   dm.UP_Logado := dm.Dsup.DataSet.FieldByName('sigla').Asstring;
   dm.GLOBAL_NOME_UP := dm.Dsup.DataSet.FieldByName('NOME_UP').Asstring;
   dm.LOGIN_CONECTADO := UniEdit1.Text;
-  dm.liberado := False;
+  dm.liberado := false;
 
   try
     dm.GLOBAL_SENHA_USUARIO := UniEdit2.Text;
     Sqlservidor.sql.Text := 'select * from funcionario where login =' +
-      Qs(dm.LOGIN_CONECTADO)+' and (SENHA = ' + Qs(dm.GLOBAL_SENHA_USUARIO) +
-        ' OR ' + 'SENHA = ' + Qs(Senha(dm.GLOBAL_SENHA_USUARIO))+')';
+      Qs(dm.LOGIN_CONECTADO) + ' and (SENHA = ' + Qs(dm.GLOBAL_SENHA_USUARIO) +
+      ' OR ' + 'SENHA = ' + Qs(Senha(dm.GLOBAL_SENHA_USUARIO)) + ')';
     Dsservidor.DataSet.close;
     Dsservidor.DataSet.open;
     if not Dsservidor.DataSet.IsEmpty then
@@ -196,7 +198,6 @@ begin
           ('PERMISSAO_AGENTEPOREQUIPE').Asstring;
         dm.PERMISSAO_REGRAVISITACAO := Dsservidor.DataSet.FieldByName
           ('PERMISSAO_REGRAVISITACAO').Asstring;
-
         // Permissões estilo SIM ou NÃO.
         dm.PERMISSAO_ENTRADAVISITANTE := Dsservidor.DataSet.FieldByName
           ('PERMISSAO_ENTRADAVISITANTE').Asstring;
@@ -214,13 +215,14 @@ begin
 
         dm.GLOBAL_NOME_FUNCIONARIO_LOGADO := Dsservidor.DataSet.FieldByName
           ('NOME_FUNCIONARIO').Asstring;
-        dm.liberado := True;
+        dm.liberado := true;
         ModalResult := mrOK; // Login is valid so proceed to MainForm
 
       end
       else
       begin
-        showmessage('Senha Invalida!!');
+        showmessage('Senha incorreta!!');
+        UniBitBtnEntrar.Visible := true;
         if UniEdit2.canfocus then
           UniEdit2.setfocus;
       end;
@@ -229,19 +231,24 @@ begin
     else
     begin
       showmessage('Login não localizado.');
+      UniBitBtnEntrar.Visible := true;
       if UniEdit1.canfocus then
         UniEdit1.setfocus;
     end;
 
   except
-    showmessage('Codigo invalido');
+    on e: Exception do
+    begin
+      UniBitBtnEntrar.Visible := true;
+      showmessage('Sistema diz: ' + e.Message);
+    end;
   end
 
 end;
 
 procedure TFrmLogin.UniBitBtn2Click(Sender: TObject);
 begin
-  dm.liberado := False;
+  dm.liberado := false;
   UniMainModule.Terminate;
   ModalResult := mrCancel; // Login is valid so proceed to MainForm
 end;
@@ -261,8 +268,9 @@ begin
 
     try
       dm.Dsup.DataSet.close;
-      Sqlservidor.sql.Text := 'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO from funcionario where login=' +
-        Qs(dm.LOGIN_CONECTADO);
+      Sqlservidor.sql.Text :=
+        'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA from funcionario where login='
+        + Qs(dm.LOGIN_CONECTADO);
       Dsservidor.DataSet.close;
       Dsservidor.DataSet.open;
       if Dsservidor.DataSet.recordcount > 0 then
@@ -281,7 +289,10 @@ begin
       end;
 
     except
-
+      on e: Exception do
+      begin
+        showmessage('Sistema diz: ' + e.Message);
+      end;
     end
   end;
 
@@ -298,12 +309,18 @@ procedure TFrmLogin.UniEdit2KeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = VK_RETURN then
-    UniBitBtnEntrarClick(nil);
+  begin
+    FrmAguarde.ShowModal(
+      procedure(Res: Integer)
+      begin
+        UniBitBtnEntrar.OnClick(nil);
+      end);
+  end;
 end;
 
 procedure TFrmLogin.UniLabel1Click(Sender: TObject);
 begin
-  dm.liberado := True;
+  dm.liberado := true;
   ModalResult := mrOK;
 end;
 

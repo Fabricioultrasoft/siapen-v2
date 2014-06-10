@@ -1037,13 +1037,13 @@ object FrmModeloMovimento: TFrmModeloMovimento
       'SELECT * '
       'FROM USUARIO')
     SQLConnection = Dm.Conexao
-    Left = 704
+    Left = 744
     Top = 48
   end
   object DspCadastro: TDataSetProvider
     DataSet = SqlCadastro
     UpdateMode = upWhereKeyOnly
-    Left = 732
+    Left = 772
     Top = 48
   end
   object CdsCadastro: TClientDataSet
@@ -1052,25 +1052,13 @@ object FrmModeloMovimento: TFrmModeloMovimento
     Params = <>
     ProviderName = 'DspCadastro'
     OnReconcileError = ClientDataSetReconcileError
-    Left = 760
+    Left = 800
     Top = 48
   end
   object DsCadastro: TDataSource
     DataSet = CdsCadastro
-    Left = 788
+    Left = 828
     Top = 48
-  end
-  object UniTimerNovo: TUniTimer
-    OnTimer = UniTimerNovoTimer
-    Interval = 500
-    Enabled = False
-    ClientEvent.Strings = (
-      'function(sender)'
-      '{'
-      '   '
-      '}')
-    Left = 600
-    Top = 8
   end
   object UniScreenMaskNovo: TUniScreenMask
     AttachedControl = Novo

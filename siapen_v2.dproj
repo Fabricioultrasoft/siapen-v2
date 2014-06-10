@@ -150,6 +150,20 @@
 				<FormType>dfm</FormType>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
+			<DCCReference Include="forms\EntradaVisitante.pas">
+				<Form>FrmEntradaVisitante</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Aguarde.pas">
+				<Form>FrmAguarde</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Consulta.pas">
+				<Form>FrmConsulta</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

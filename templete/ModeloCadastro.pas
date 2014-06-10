@@ -89,19 +89,24 @@ type
     procedure ExcluirClick(Sender: TObject);
     procedure FecharClick(Sender: TObject);
     procedure DBGridConsultaTitleClick(Column: TUniDBGridColumn);
-    procedure UniFormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormCreate(Sender: TObject);
     procedure DBGridConsultaDblClick(Sender: TObject);
-    procedure DBGridConsultaKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure DBGridConsultaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure UniBtnFiltrarClick(Sender: TObject);
-    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
     procedure UniFormShow(Sender: TObject);
     procedure UniToolButtonConfirmaSelecaoClick(Sender: TObject);
     procedure EditLocalizarChange(Sender: TObject);
     function ValidarRegistro: Boolean;
     procedure UniTimerNovoTimer(Sender: TObject);
-    procedure ClientDataSetReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind; var Action: TReconcileAction);
+    procedure ClientDataSetReconcileError(DataSet: TCustomClientDataSet;
+      E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   protected
     function CancelaTransCadastro: Boolean;
     function FinalizaTransCadastro: Boolean;
@@ -117,7 +122,8 @@ type
     FTelaSelecao: String;
     { Private declarations }
   public
-    property ConfirmarSelecao: Boolean read FConfirmarSelecao write FConfirmarSelecao;
+    property ConfirmarSelecao: Boolean read FConfirmarSelecao
+      write FConfirmarSelecao;
     property TelaSelecao: String read FTelaSelecao write FTelaSelecao;
     property TD: TTransactionDesc read FTD write FTD;
     property DIRETO: Boolean read FDIRETO write FDIRETO;
@@ -137,17 +143,25 @@ uses
   ServerModule,
   humanejs,
   Lib;
-  // , DMSoftwareImobiliario; // , Lib;
+// , DMSoftwareImobiliario; // , Lib;
 
 function FrmModeloCadastro: TFrmModeloCadastro;
 begin
-  Result := TFrmModeloCadastro(UniMainModule.GetFormInstance(TFrmModeloCadastro));
+  Result := TFrmModeloCadastro(UniMainModule.GetFormInstance
+    (TFrmModeloCadastro));
 end;
 
 procedure TFrmModeloCadastro.EditarClick(Sender: TObject);
 var
   CompEdit: TComponent;
 begin
+  if not Editar.Visible then
+  begin
+    ShowMessage('Não tem acesso para editar!');
+    exit;
+  end;
+
+  PageControlModeloCadastro.ActivePageIndex := 0;
 
   if DsCadastro.DataSet = CdsCadastro then
   begin
@@ -166,8 +180,7 @@ begin
 
   TabSheetConsulta.Enabled := false;
   PanelCadastro.Enabled := true;
-  PageControlModeloCadastro.ActivePageIndex := 0;
-  //PageControlCadastro.ActivePageIndex := 0;
+  // PageControlCadastro.ActivePageIndex := 0;
   StatusBar1.Panels[1].Text := 'EDIÇÃO';
 
   Novo.Enabled := false;
@@ -192,7 +205,7 @@ begin
   begin
     if not Self.DsCadastro.DataSet.IsEmpty then
     begin
-        Editar.OnClick(nil);
+      Editar.OnClick(nil);
     end;
   end;
 
@@ -212,6 +225,12 @@ end;
 
 procedure TFrmModeloCadastro.ExcluirClick(Sender: TObject);
 begin
+  if not Excluir.Visible then
+  begin
+    ShowMessage('Não tem acesso para excluir!');
+    exit;
+  end;
+
   StatusBar1.Panels[1].Text := 'EXCLUINDO';
 
   MessageDlg('Excluir este registro?', mtWarning, mbYesNo,
@@ -232,8 +251,11 @@ begin
 
           PanelCadastro.Enabled := false;
         except
-          ShowMessage('Não pode excluir existe tabelas dependentes.');
-          CancelaTransCadastro;
+          on E: Exception do
+          begin
+            ShowMessage('Sistema diz: ' + E.Message);
+            CancelaTransCadastro;
+          end;
         end;
 
       end;
@@ -248,6 +270,11 @@ procedure TFrmModeloCadastro.NovoClick(Sender: TObject);
 var
   CompEdit: TComponent;
 begin
+  if not Novo.Visible then
+  begin
+    ShowMessage('Não tem acesso para inserir novo!');
+    exit;
+  end;
   if DsCadastro.DataSet = CdsCadastro then
   begin
 
@@ -266,7 +293,7 @@ begin
   TabSheetConsulta.Enabled := false;
   PanelCadastro.Enabled := true;
   PageControlModeloCadastro.ActivePageIndex := 0;
-  //PageControlCadastro.ActivePageIndex := 0;
+  // PageControlCadastro.ActivePageIndex := 0;
   StatusBar1.Panels[1].Text := 'NOVO';
 
   Novo.Enabled := false;
@@ -307,7 +334,7 @@ begin
   StatusBar1.Panels[1].Text := '...';
 
   PanelCadastro.Enabled := false;
-  //PageControlCadastro.ActivePageIndex := 0;
+  // PageControlCadastro.ActivePageIndex := 0;
 
   PageControlModeloCadastro.ActivePageIndex := 1;
   if EditLocalizar.CanFocus then
@@ -322,8 +349,9 @@ end;
 
 procedure TFrmModeloCadastro.DBGridConsultaDblClick(Sender: TObject);
 begin
+  PageControlModeloCadastro.ActivePageIndex := 0;
 
-    Editar.OnClick(nil);
+  Editar.OnClick(nil);
 
 end;
 
@@ -337,8 +365,7 @@ begin
 
 end;
 
-procedure TFrmModeloCadastro.DBGridConsultaTitleClick
-  (Column: TUniDBGridColumn);
+procedure TFrmModeloCadastro.DBGridConsultaTitleClick(Column: TUniDBGridColumn);
 begin
   if Column.Field.FieldKind in [fkdata] then
     TClientDataSet(Column.Field.DataSet).IndexFieldNames := Column.FieldName;
@@ -388,7 +415,7 @@ begin
   if ValidarRegistro then
   begin
     TabSheetConsulta.Enabled := true;
-//    sNome := DBGridConsulta.Columns.Items[0].Field.AsString;
+    // sNome := DBGridConsulta.Columns.Items[0].Field.AsString;
 
     Salvar.Tag := 1;
 
@@ -448,7 +475,7 @@ begin
       on E: Exception do
       begin
         erro_transacao := 1;
-        ShowMessage('Erro: ' + E.Message);
+        ShowMessage('Sistema diz: ' + E.Message);
         CancelaTransCadastro;
       end;
     end;
@@ -479,7 +506,7 @@ begin
 
       DBGridConsulta.DataSource.DataSet.Close;
       DBGridConsulta.DataSource.DataSet.Open;
-      //PageControlCadastro.ActivePageIndex := 0;
+      // PageControlCadastro.ActivePageIndex := 0;
       ShowMessage('Registro Salvo com Sucesso!');
       PageControlModeloCadastro.ActivePageIndex := 1;
       // Self.EditLocalizar.Text := sNome;
@@ -577,7 +604,7 @@ var
   iComp: integer;
 begin
 
-  //PageControlCadastro.ActivePageIndex := 0;
+  // PageControlCadastro.ActivePageIndex := 0;
   PanelCadastro.Enabled := false;
 
   for iComp := 0 to Componentcount - 1 do
@@ -672,8 +699,7 @@ begin
   end;
 end;
 
-procedure TFrmModeloCadastro.UniToolButtonConfirmaSelecaoClick
-  (Sender: TObject);
+procedure TFrmModeloCadastro.UniToolButtonConfirmaSelecaoClick(Sender: TObject);
 begin
 
   Self.ModalResult := mrOk;
@@ -749,6 +775,10 @@ begin
     ShowMessage('Inconsistência nos dados:' + (E.Message));
 
   except
+    on E: Exception do
+    begin
+      ShowMessage('Sistema diz: ' + E.Message);
+    end;
   end;
 
 end;

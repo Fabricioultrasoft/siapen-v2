@@ -70,7 +70,6 @@ type
     TabSheetConsulta: TUniTabSheet;
     DBGridConsulta: TUniDBGrid;
     StatusBar1: TUniStatusBar;
-    UniTimerNovo: TUniTimer;
     UniScreenMaskNovo: TUniScreenMask;
     UniScreenMaskSalvar: TUniScreenMask;
     UniScreenMaskFiltrar: TUniScreenMask;
@@ -102,10 +101,8 @@ type
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure UniFormShow(Sender: TObject);
-    procedure UniToolButtonConfirmaSelecaoClick(Sender: TObject);
     procedure EditLocalizarChange(Sender: TObject);
     function ValidarRegistro: Boolean;
-    procedure UniTimerNovoTimer(Sender: TObject);
     procedure ClientDataSetReconcileError(DataSet: TCustomClientDataSet;
       E: EReconcileError; UpdateKind: TUpdateKind;
       var Action: TReconcileAction);
@@ -157,6 +154,11 @@ procedure TFrmModeloMovimento.EditarClick(Sender: TObject);
 var
   CompEdit: TComponent;
 begin
+  if not Editar.Visible then
+  begin
+    ShowMessage('Não tem acesso para editar!');
+    exit;
+  end;
 
   if DsCadastro.DataSet = CdsCadastro then
   begin
@@ -221,6 +223,11 @@ end;
 
 procedure TFrmModeloMovimento.ExcluirClick(Sender: TObject);
 begin
+  if not Excluir.Visible then
+  begin
+    ShowMessage('Não tem acesso para excluir!');
+    exit;
+  end;
   StatusBar1.Panels[1].Text := 'EXCLUINDO';
 
   MessageDlg('Excluir este registro?', mtWarning, mbYesNo,
@@ -257,6 +264,11 @@ procedure TFrmModeloMovimento.NovoClick(Sender: TObject);
 var
   CompEdit: TComponent;
 begin
+  if not Novo.Visible then
+  begin
+    ShowMessage('Não tem acesso para inserir novo!');
+    exit;
+  end;
   if DsCadastro.DataSet = CdsCadastro then
   begin
 
@@ -672,23 +684,6 @@ begin
 
 end;
 
-procedure TFrmModeloMovimento.UniTimerNovoTimer(Sender: TObject);
-begin
-  UniTimerNovo.Enabled := false;
-  if FDIRETO then
-  begin
-    Novo.OnClick(nil);
-  end;
-end;
-
-procedure TFrmModeloMovimento.UniToolButtonConfirmaSelecaoClick
-  (Sender: TObject);
-begin
-
-  Self.ModalResult := mrOk;
-
-end;
-
 function TFrmModeloMovimento.ValidarRegistro: Boolean;
 begin
   Result := true;
@@ -696,9 +691,7 @@ end;
 
 procedure TFrmModeloMovimento.FecharClick(Sender: TObject);
 begin
-
   Self.Close;
-
 end;
 
 function TFrmModeloMovimento.FinalizaTransCadastro: Boolean;

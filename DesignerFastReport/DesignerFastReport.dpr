@@ -1,11 +1,9 @@
 program DesignerFastReport;
 
 uses
-  ExceptionLog,
   Vcl.Forms,
   Sentinela in 'Sentinela.pas' {FrmSentinela},
-  frxDBXComponents in 'C:\Program Files\FastReports\LibD16\frxDBXComponents.pas',
-  humanejs in '..\lib\humanejs.pas';
+  frxDBXComponents in 'C:\Program Files\FastReports\LibD16\frxDBXComponents.pas';
 
 {$R *.res}
 

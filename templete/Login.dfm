@@ -170,7 +170,8 @@ object FrmLogin: TFrmLogin
       Top = 89
       Width = 116
       Hint = 'Informe sua senha.'
-      ScreenMask.Message = 'Validando login...'
+      ScreenMask.Enabled = True
+      ScreenMask.Message = '( Criptografando sua senha )'
       ShowHint = True
       ParentShowHint = False
       PasswordChar = '*'

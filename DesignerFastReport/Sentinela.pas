@@ -3,7 +3,7 @@ unit Sentinela;
 interface
 
 uses
-  SWSystem,
+  IWSystem,
   Winapi.Windows,
   Winapi.Messages,
   System.SysUtils,
@@ -578,8 +578,8 @@ var
   Nodestatus, Noderesult, Nodegeometry, Nodelocation: IXMLNode;
   Nodeviewport, Nodesouthwest, Nodenortheast: IXMLNode;
 begin
-
-  Conexao.ExecuteDirect('EXECUTE PROCEDURE AA_CORDENADAS_CLIFORNE');
+ exit;
+//  Conexao.ExecuteDirect('EXECUTE PROCEDURE AA_CORDENADAS_CLIFORNE');
 
   Conexao.Close;
   Conexao.Open;
