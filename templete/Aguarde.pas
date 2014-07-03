@@ -5,7 +5,8 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, Dialogs, uniGUITypes, uniGUIAbstractClasses,
-  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniLabel, uniTimer, uniImage;
+  uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniLabel, uniTimer, uniImage,
+  Vcl.Imaging.GIFImg;
 
 type
   TFrmAguarde = class(TUniForm)

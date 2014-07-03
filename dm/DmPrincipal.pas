@@ -62,7 +62,6 @@ type
     frxReport1: TfrxReport;
     frxDesigner1: TfrxDesigner;
     frxTIFFExport1: TfrxTIFFExport;
-    frxDBDataset1: TfrxDBDataset;
     frxODTExport1: TfrxODTExport;
     frxODSExport1: TfrxODSExport;
     frxPDFExport1: TfrxPDFExport;
@@ -525,7 +524,18 @@ type
     Furl_imagem_empresa: String;
     FFECHA_AGENDA_ATENDIMENTO: boolean;
     FGLOBAL_DATA: TDateTime;
+    FGLOBAL_TIPOPROCESSO: String;
+    FGLOBAL_OFICIO: String;
+    FGLOBAL_DATA_INICIAL: String;
+    FGLOBAL_DATA_FINAL: String;
+    FGLOBAL_ID_FALTA_DISCIPLINAR: String;
+    FGLOBAL_IDFUNCIONARIO_FILTRO: Integer;
   public
+    property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
+    property GLOBAL_ID_FALTA_DISCIPLINAR: String read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
+    property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL write FGLOBAL_DATA_INICIAL;
+    property GLOBAL_DATA_FINAL: String read FGLOBAL_DATA_FINAL write FGLOBAL_DATA_FINAL;
+    property GLOBAL_TIPOPROCESSO: String read FGLOBAL_TIPOPROCESSO write FGLOBAL_TIPOPROCESSO;
     property GLOBAL_DATA: TDateTime read FGLOBAL_DATA write FGLOBAL_DATA;
     property IDSENHA: Integer read FIDSENHA write FIDSENHA;
     property GLOBAL_ID_UP: Integer read FGLOBAL_ID_UP write FGLOBAL_ID_UP;
@@ -709,6 +719,9 @@ type
     property Liberado: boolean read FLiberado write FLiberado;
     property MaquinaDesenvolvimento: boolean read FMaquinaDesenvolvimento
       write FMaquinaDesenvolvimento;
+
+    property GLOBAL_OFICIO: String read FGLOBAL_OFICIO write FGLOBAL_OFICIO;
+
 
     function ConectaSiapen: boolean;
     function CancelaTransGeral: boolean;

@@ -114,6 +114,9 @@ function VerificaVisitaExiste(scpf: string): boolean;
 function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
 function JpgToBmp(cImageJpg: string; cWidth: integer = 205; cHeight: integer = 154): string; // Requer a Jpeg declarada na clausua uses da unit
 procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
+procedure ListarDiretorios(Folder: string; lista: TStrings);
+function LimpaChar(sValor: string): string;
+function LimpaTexto(sString: string): string;
 
 const
   QBtn1 = 1;
@@ -1286,5 +1289,80 @@ begin
 end;
 
 
+procedure ListarDiretorios(Folder: string; lista: TStrings);
+var
+  Rec: TSearchRec;
+  i: integer;
+  temps: string;
+begin
+  lista.Clear;
+  if SysUtils.FindFirst(Folder + '*', faDirectory, Rec) = 0 then
+    try
+      repeat
+        lista.Add(Rec.Name);
+      until SysUtils.FindNext(Rec) <> 0;
+    finally
+      if lista.Count <> 0 then
+      begin
+        // deleta o diretorio ..
+        lista.Delete(1);
+        // deleta o diretorio .
+        lista.Delete(0);
+        i := 0;
+        // deleta os arquivos isto e fica apenas os diretorios
+        if lista.Count <> 0 then
+        begin
+          repeat
+            temps := lista.Strings[i];
+            temps := extractfileext(temps);
+            if temps <> '' then
+              lista.Delete(i)
+            else
+              inc(i);
+          until i >= lista.Count;
+        end;
+      end;
+    end;
+end;
+
+
+function LimpaChar(sValor: string): string;
+var
+  x: Integer;
+begin
+  for x := 1 to Length(sValor) do
+  begin
+    if (not (sValor[x] in ['0'..'9',
+      'A'..'Z', 'a'..'z', '.', ';',
+        ',', '*', '+', '-', '=',
+        '&', '@', '!', '"',
+        ':', '?', '$', '%', '_', '/', '\'])) then
+    begin
+      // willian - 23/12/2009 - Nao aceita na Nfe estes caracteres
+      if (sValor[x] in ['(', '[', '{']) then
+        sValor[x] := '"'
+      else if (sValor[x] in [')', ']', '}']) then
+        sValor[x] := '"'
+      else
+        sValor[x] := ' ';
+    end;
+  end;
+  Result := sValor;
+end;
+
+function LimpaTexto(sString: string): string;
+var
+  x: Integer;
+begin
+  Result := '';
+  for x := 1 to Length(sString) do
+  begin
+    if ((sString[x] in ['0'..'9',
+      'A'..'Z', 'a'..'z'])) then
+    begin
+      Result := Result + sString[x];
+    end;
+  end;
+end;
 
 end.

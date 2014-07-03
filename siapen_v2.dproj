@@ -135,8 +135,8 @@
 				<FormType>dfm</FormType>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
-			<DCCReference Include="templete\MenuRelatorio.pas">
-				<Form>FrmMenuRelatorio</Form>
+			<DCCReference Include="templete\MenuRelatorios.pas">
+				<Form>FrmMenuRelatorios</Form>
 				<FormType>dfm</FormType>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
@@ -162,6 +162,69 @@
 			</DCCReference>
 			<DCCReference Include="templete\Consulta.pas">
 				<Form>FrmConsulta</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\AlterarSenha.pas">
+				<Form>FrmAlterarSenha</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Sobre.pas">
+				<Form>FrmSobre</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Disciplina.pas">
+				<Form>FrmDisciplina</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\VincFaltaDisiciplinar.pas">
+				<Form>FrmVincFaltaDisiciplinar</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\ConselhoDisciplinar.pas">
+				<Form>FrmConselhoDisciplinar</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Psicossocial.pas">
+				<Form>FrmPsicossocial</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\PresencaLocal.pas">
+				<Form>FrmPresencaLocal</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\PresencaLocalRegistro.pas">
+				<Form>FrmPresencaLocalRegistro</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroFaltasDisciplinares.pas">
+				<Form>FrmCadastroFaltasDisciplinares</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\TipoProcesso.pas">
+				<Form>FrmTipoProcesso</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FiltroPeriodoServidor.pas">
+				<Form>frmFiltroPeriodoServidor</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FiltroPeriodo.pas">
+				<Form>FrmFiltroPeriodo</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\ConsultaInterno.pas">
+				<Form>FrmConsultaInterno</Form>
+				<FormType>dfm</FormType>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
 			<BuildConfiguration Include="Release">

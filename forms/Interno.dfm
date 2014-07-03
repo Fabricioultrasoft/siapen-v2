@@ -2,6 +2,7 @@ inherited FrmInterno: TFrmInterno
   ClientHeight = 607
   ClientWidth = 892
   Caption = 'Cadastro do Interno'
+  WindowState = wsMaximized
   ExplicitWidth = 908
   ExplicitHeight = 646
   PixelsPerInch = 96
@@ -25,6 +26,22 @@ inherited FrmInterno: TFrmInterno
       ScreenMask.Message = 'Preparando edi'#231#227'o...'
       ExplicitTop = 51
     end
+    inherited Novo: TUniBitBtn
+      Enabled = False
+      OnClick = nil
+    end
+    object UniDBImage1: TUniDBImage
+      Left = 1
+      Top = 383
+      Width = 103
+      Height = 157
+      DataField = 'FOTO'
+      DataSource = DsConsulta
+      Stretch = True
+      Proportional = True
+      Align = alBottom
+      Anchors = [akLeft, akRight, akBottom]
+    end
   end
   inherited PanelModeloCadastro: TUniPanel
     Left = 105
@@ -36,6 +53,7 @@ inherited FrmInterno: TFrmInterno
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 785
       Height = 538
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
@@ -53,13 +71,13 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheet1
+            ActivePage = TabSheetHistorico
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
             ExplicitWidth = 799
             ExplicitHeight = 523
-            object TabSheet1: TUniTabSheet
+            object TabSheetPrincipal: TUniTabSheet
               Caption = 'Principal'
               object Label2: TUniLabel
                 Left = 149
@@ -83,7 +101,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 79
                 Height = 13
                 Caption = 'RGI (Prontu'#225'rio)'
-                TabOrder = 17
+                TabOrder = 14
               end
               object Label10: TUniLabel
                 Left = 149
@@ -91,7 +109,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 64
                 Height = 13
                 Caption = 'Data Entrada'
-                TabOrder = 28
+                TabOrder = 25
               end
               object Label12: TUniLabel
                 Left = 8
@@ -99,15 +117,15 @@ inherited FrmInterno: TFrmInterno
                 Width = 58
                 Height = 13
                 Caption = 'Proced'#234'ncia'
-                TabOrder = 29
+                TabOrder = 26
               end
               object Label40: TUniLabel
-                Left = 238
+                Left = 248
                 Top = 136
                 Width = 55
                 Height = 13
                 Caption = 'Data Pris'#227'o'
-                TabOrder = 30
+                TabOrder = 27
               end
               object Label45: TUniLabel
                 Left = 8
@@ -115,7 +133,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 98
                 Height = 13
                 Caption = 'Condi'#231#227'o do Interno'
-                TabOrder = 31
+                TabOrder = 28
               end
               object Label43: TUniLabel
                 Left = 8
@@ -123,7 +141,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 11
                 Height = 13
                 Caption = 'ID'
-                TabOrder = 32
+                TabOrder = 29
               end
               object Label46: TUniLabel
                 Left = 66
@@ -131,7 +149,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 68
                 Height = 13
                 Caption = 'Unidade Penal'
-                TabOrder = 33
+                TabOrder = 30
               end
               object Label27: TUniLabel
                 Left = 149
@@ -139,7 +157,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 58
                 Height = 13
                 Caption = 'Outro Nome'
-                TabOrder = 34
+                TabOrder = 31
               end
               object Label36: TUniLabel
                 Left = 432
@@ -147,15 +165,15 @@ inherited FrmInterno: TFrmInterno
                 Width = 26
                 Height = 13
                 Caption = 'Vulgo'
-                TabOrder = 35
+                TabOrder = 32
               end
               object Label55: TUniLabel
-                Left = 431
-                Top = 135
+                Left = 442
+                Top = 136
                 Width = 70
                 Height = 13
                 Caption = 'CI/OF Entrada'
-                TabOrder = 36
+                TabOrder = 33
               end
               object Label65: TUniLabel
                 Left = 168
@@ -163,7 +181,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 69
                 Height = 13
                 Caption = 'NOME SOCIAL'
-                TabOrder = 37
+                TabOrder = 34
               end
               object Label66: TUniLabel
                 Left = 8
@@ -171,7 +189,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 88
                 Height = 13
                 Caption = 'Orienta'#231#227'o Sexual'
-                TabOrder = 38
+                TabOrder = 35
               end
               object Label163: TUniLabel
                 Left = 302
@@ -179,7 +197,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 81
                 Height = 13
                 Caption = 'Cargo na Fac'#231#227'o'
-                TabOrder = 39
+                TabOrder = 36
               end
               object lbl1: TUniLabel
                 Left = 149
@@ -187,7 +205,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 53
                 Height = 13
                 Caption = 'N'#186' Infopen'
-                TabOrder = 40
+                TabOrder = 37
               end
               object Label38: TUniLabel
                 Left = 8
@@ -195,15 +213,15 @@ inherited FrmInterno: TFrmInterno
                 Width = 65
                 Height = 13
                 Caption = 'Regime Inicial'
-                TabOrder = 41
+                TabOrder = 38
               end
               object Label49: TUniLabel
-                Left = 327
+                Left = 346
                 Top = 136
                 Width = 87
                 Height = 13
                 Caption = 'Data Perman'#234'ncia'
-                TabOrder = 42
+                TabOrder = 39
               end
               object Label62: TUniLabel
                 Left = 365
@@ -211,7 +229,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 61
                 Height = 13
                 Caption = 'N'#186' da Roupa'
-                TabOrder = 43
+                TabOrder = 40
               end
               object Label78: TUniLabel
                 Left = 8
@@ -219,7 +237,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 32
                 Height = 13
                 Caption = 'Ano(s)'
-                TabOrder = 44
+                TabOrder = 41
               end
               object Label79: TUniLabel
                 Left = 74
@@ -227,7 +245,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 38
                 Height = 13
                 Caption = 'M'#234's(es)'
-                TabOrder = 45
+                TabOrder = 42
               end
               object Label80: TUniLabel
                 Left = 141
@@ -235,7 +253,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 28
                 Height = 13
                 Caption = 'Dia(s)'
-                TabOrder = 46
+                TabOrder = 43
               end
               object Label82: TUniLabel
                 Left = 218
@@ -243,7 +261,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 63
                 Height = 13
                 Caption = 'Regime Atual'
-                TabOrder = 47
+                TabOrder = 44
               end
               object Label83: TUniLabel
                 Left = 490
@@ -251,7 +269,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 109
                 Height = 13
                 Caption = 'Grau de Periculosidade'
-                TabOrder = 48
+                TabOrder = 45
               end
               object Label67: TUniLabel
                 Left = 373
@@ -259,7 +277,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 56
                 Height = 13
                 Caption = 'Tipo Justi'#231'a'
-                TabOrder = 49
+                TabOrder = 46
               end
               object Label18: TUniLabel
                 Left = 302
@@ -267,7 +285,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 34
                 Height = 13
                 Caption = 'Fac'#231#227'o'
-                TabOrder = 50
+                TabOrder = 47
               end
               object Label51: TUniLabel
                 Left = 507
@@ -275,7 +293,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 73
                 Height = 13
                 Caption = 'ID Monitora'#231#227'o'
-                TabOrder = 51
+                TabOrder = 48
               end
               object Label57: TUniLabel
                 Left = 8
@@ -283,7 +301,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 226
                 Height = 13
                 Caption = 'Origem do Mandado/Estado solicitante da vaga'
-                TabOrder = 52
+                TabOrder = 49
               end
               object Label58: TUniLabel
                 Left = 302
@@ -291,7 +309,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 89
                 Height = 13
                 Caption = 'Presidio de Origem'
-                TabOrder = 53
+                TabOrder = 50
               end
               object Label60: TUniLabel
                 Left = 421
@@ -299,7 +317,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 131
                 Height = 13
                 Caption = 'Comportamento do Interno'
-                TabOrder = 54
+                TabOrder = 51
               end
               object DBEditCodigo: TUniDBEdit
                 Left = 149
@@ -333,26 +351,6 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 4
                 Color = clWindow
               end
-              object DBEditdtentrada: TUniDBEdit
-                Left = 149
-                Top = 152
-                Width = 84
-                Height = 21
-                DataField = 'DATA_ENTRADA'
-                DataSource = DsCadastro
-                TabOrder = 10
-                Color = clWindow
-              end
-              object DBEditdtprisao: TUniDBEdit
-                Left = 238
-                Top = 152
-                Width = 83
-                Height = 21
-                DataField = 'DATA_PRISAO'
-                DataSource = DsCadastro
-                TabOrder = 11
-                Color = clWindow
-              end
               object DBEdit7: TUniDBEdit
                 Left = 8
                 Top = 278
@@ -361,7 +359,7 @@ inherited FrmInterno: TFrmInterno
                 Enabled = False
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
-                TabOrder = 19
+                TabOrder = 16
                 Color = clWindow
               end
               object DBLookupComboBox2: TUniDBLookupComboBox
@@ -376,7 +374,7 @@ inherited FrmInterno: TFrmInterno
                 ListFieldIndex = 0
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
-                TabOrder = 20
+                TabOrder = 17
               end
               object DBEdit24: TUniDBEdit
                 Left = 149
@@ -399,13 +397,13 @@ inherited FrmInterno: TFrmInterno
                 Color = clWindow
               end
               object DBEdit29: TUniDBEdit
-                Left = 432
-                Top = 151
-                Width = 169
+                Left = 443
+                Top = 152
+                Width = 159
                 Height = 21
                 DataField = 'CI'
                 DataSource = DsCadastro
-                TabOrder = 13
+                TabOrder = 10
                 Color = clWindow
               end
               object DBEdit35: TUniDBEdit
@@ -415,7 +413,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'NOME_SOCIAL'
                 DataSource = DsCadastro
-                TabOrder = 15
+                TabOrder = 12
                 Color = clWindow
               end
               object DBComboBox3: TUniDBComboBox
@@ -431,7 +429,7 @@ inherited FrmInterno: TFrmInterno
                   'BISSEXUAL'
                   'HETEROSEXUAL')
                 ItemIndex = -1
-                TabOrder = 16
+                TabOrder = 13
               end
               object DBEdit86: TUniDBEdit
                 Left = 149
@@ -461,18 +459,7 @@ inherited FrmInterno: TFrmInterno
                   'Semi-Aberto Com Trabalho e Sa'#237'da'
                   'Semi-Aberto Com Sa'#237'da')
                 ItemIndex = -1
-                TabOrder = 14
-              end
-              object DBEditpermanencia: TUniDBEdit
-                Left = 326
-                Top = 152
-                Width = 91
-                Height = 21
-                Enabled = False
-                DataField = 'DATA_PERMANENCIA'
-                DataSource = DsCadastro
-                TabOrder = 12
-                Color = clWindow
+                TabOrder = 11
               end
               object DBEdit19: TUniDBEdit
                 Left = 366
@@ -481,7 +468,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'NUMERO_ROUPA'
                 DataSource = DsCadastro
-                TabOrder = 21
+                TabOrder = 18
                 Color = clWindow
               end
               object DBEdit28: TUniDBEdit
@@ -491,7 +478,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TEMPO_CONSOLIDADO_ANO'
                 DataSource = DsCadastro
-                TabOrder = 23
+                TabOrder = 20
                 Color = clWindow
               end
               object DBEdit31: TUniDBEdit
@@ -501,7 +488,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TEMPO_CONSOLIDADO_MES'
                 DataSource = DsCadastro
-                TabOrder = 24
+                TabOrder = 21
                 Color = clWindow
               end
               object DBEdit33: TUniDBEdit
@@ -511,7 +498,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TEMPO_CONSOLIDADO_DIA'
                 DataSource = DsCadastro
-                TabOrder = 25
+                TabOrder = 22
                 Color = clWindow
               end
               object DBComboBox5: TUniDBComboBox
@@ -538,7 +525,7 @@ inherited FrmInterno: TFrmInterno
                   'Tempor'#225'rio'
                   'N'#227'o Informado')
                 ItemIndex = -1
-                TabOrder = 26
+                TabOrder = 23
               end
               object DBComboBoxpericulosidade: TUniDBComboBox
                 Left = 490
@@ -560,7 +547,7 @@ inherited FrmInterno: TFrmInterno
                   'Nivel 5'
                   'Nivel 5-A')
                 ItemIndex = -1
-                TabOrder = 27
+                TabOrder = 24
               end
               object DBEdit36: TUniDBEdit
                 Left = 373
@@ -580,7 +567,7 @@ inherited FrmInterno: TFrmInterno
                 Hint = 'FACCAO'
                 DataField = 'FACCAO'
                 DataSource = DsCadastro
-                TabOrder = 22
+                TabOrder = 19
                 Color = clWindow
               end
               object DBEdit8: TUniDBEdit
@@ -606,7 +593,7 @@ inherited FrmInterno: TFrmInterno
                   'REGULAR'
                   'RUIM')
                 ItemIndex = -1
-                TabOrder = 18
+                TabOrder = 15
               end
               object UniLabel8: TUniLabel
                 Left = 239
@@ -614,7 +601,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 24
                 Height = 13
                 Caption = 'Sexo'
-                TabOrder = 55
+                TabOrder = 52
               end
               object UniDBComboBoxSexo: TUniDBComboBox
                 Left = 239
@@ -626,7 +613,7 @@ inherited FrmInterno: TFrmInterno
                   'M'
                   'F')
                 ItemIndex = -1
-                TabOrder = 56
+                TabOrder = 53
               end
               object UniLabel1: TUniLabel
                 Left = 305
@@ -634,7 +621,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 104
                 Height = 13
                 Caption = 'Reincidente / Prim'#225'rio'
-                TabOrder = 57
+                TabOrder = 54
               end
               object UniDBComboBox1: TUniDBComboBox
                 Left = 305
@@ -646,7 +633,7 @@ inherited FrmInterno: TFrmInterno
                   'R'
                   'P')
                 ItemIndex = -1
-                TabOrder = 58
+                TabOrder = 55
               end
               object UniDBCheckBoxStatus: TUniDBCheckBox
                 Left = 607
@@ -659,7 +646,7 @@ inherited FrmInterno: TFrmInterno
                 ValueChecked = 'A'
                 ValueUnchecked = 'I'
                 Caption = 'Status: ATIVO'
-                TabOrder = 59
+                TabOrder = 56
               end
               object UniLabelProcedencia: TUniLabel
                 Left = 96
@@ -671,7 +658,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 60
+                TabOrder = 57
               end
               object UniBitBtnProcedencia: TUniBitBtn
                 Left = 68
@@ -705,7 +692,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 61
+                TabOrder = 58
                 OnClick = UniBitBtnProcedenciaClick
               end
               object UniDBEditProcedencia: TUniDBEdit
@@ -715,7 +702,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'ID_PROCEDENCIA'
                 DataSource = DsCadastro
-                TabOrder = 62
+                TabOrder = 59
                 Color = clWindow
                 OnExit = UniDBEditProcedenciaExit
               end
@@ -729,7 +716,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 63
+                TabOrder = 60
               end
               object UniBitBtnFaccao: TUniBitBtn
                 Left = 363
@@ -763,7 +750,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 64
+                TabOrder = 61
                 OnClick = UniBitBtnFaccaoClick
               end
               object UniDBEditFaccao: TUniDBEdit
@@ -773,7 +760,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'ID_FACCAO'
                 DataSource = DsCadastro
-                TabOrder = 65
+                TabOrder = 62
                 Color = clWindow
                 OnExit = UniDBEditFaccaoExit
               end
@@ -784,7 +771,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDCONDICAO_INTERNO'
                 DataSource = DsCadastro
-                TabOrder = 66
+                TabOrder = 63
                 Color = clWindow
                 OnExit = UniDBEditCondicaoExit
               end
@@ -820,7 +807,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 67
+                TabOrder = 64
                 OnClick = UniBitBtnCondicaoClick
               end
               object UniLabelCondicao: TUniLabel
@@ -833,7 +820,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 68
+                TabOrder = 65
               end
               object UniDBEditOrigem: TUniDBEdit
                 Left = 8
@@ -842,7 +829,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'ID_SOLICITANTE_VAGA'
                 DataSource = DsCadastro
-                TabOrder = 69
+                TabOrder = 66
                 Color = clWindow
                 OnExit = UniDBEditOrigemExit
               end
@@ -878,7 +865,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 70
+                TabOrder = 67
                 OnClick = UniBitBtnOrigemClick
               end
               object UniLabelOrigem: TUniLabel
@@ -891,7 +878,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 71
+                TabOrder = 68
               end
               object UniDBEditPresidioOrigem: TUniDBEdit
                 Left = 302
@@ -900,7 +887,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'ID_PRESIDIO_ORIGEM'
                 DataSource = DsCadastro
-                TabOrder = 72
+                TabOrder = 69
                 Color = clWindow
                 OnExit = UniDBEditPresidioOrigemExit
               end
@@ -936,7 +923,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 73
+                TabOrder = 70
                 OnClick = UniBitBtnPresidioOrigemClick
               end
               object UniLabelPresidioOrigem: TUniLabel
@@ -949,7 +936,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 74
+                TabOrder = 71
               end
               object UniPanel9: TUniPanel
                 Left = 7
@@ -957,7 +944,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 139
                 Height = 167
                 Caption = 'UniPanel1'
-                TabOrder = 75
+                TabOrder = 72
                 object DBImageFOTOInterno: TUniDBImage
                   Left = 1
                   Top = 1
@@ -972,8 +959,44 @@ inherited FrmInterno: TFrmInterno
                   OnClick = DBImageFOTOInternoClick
                 end
               end
+              object UniDBDateTimePicker2: TUniDBDateTimePicker
+                Left = 248
+                Top = 152
+                Width = 92
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 73
+                DataField = 'DATA_PRISAO'
+                DataSource = DsCadastro
+              end
+              object UniDBDateTimePicker3: TUniDBDateTimePicker
+                Left = 149
+                Top = 152
+                Width = 95
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 74
+                DataField = 'DATA_ENTRADA'
+                DataSource = DsCadastro
+              end
+              object UniDBDateTimePicker4: TUniDBDateTimePicker
+                Left = 346
+                Top = 151
+                Width = 92
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 75
+                DataField = 'DATA_PERMANENCIA'
+                DataSource = DsCadastro
+              end
             end
-            object TabSheet2: TUniTabSheet
+            object TabSheetDadosGerais: TUniTabSheet
               Caption = 'Dados Gerais'
               object Label11: TUniLabel
                 Left = 24
@@ -981,7 +1004,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 20
                 Height = 13
                 Caption = 'M'#227'e'
-                TabOrder = 18
+                TabOrder = 17
               end
               object Label19: TUniLabel
                 Left = 312
@@ -989,7 +1012,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 14
                 Height = 13
                 Caption = 'Pai'
-                TabOrder = 19
+                TabOrder = 18
               end
               object Label21: TUniLabel
                 Left = 312
@@ -997,7 +1020,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 66
                 Height = 13
                 Caption = 'Nacionalidade'
-                TabOrder = 20
+                TabOrder = 19
               end
               object Label22: TUniLabel
                 Left = 134
@@ -1005,7 +1028,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 24
                 Height = 13
                 Caption = 'Ra'#231'a'
-                TabOrder = 21
+                TabOrder = 20
               end
               object Label23: TUniLabel
                 Left = 25
@@ -1013,7 +1036,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 60
                 Height = 13
                 Caption = 'Escolaridade'
-                TabOrder = 22
+                TabOrder = 21
               end
               object Label20: TUniLabel
                 Left = 24
@@ -1021,7 +1044,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 61
                 Height = 13
                 Caption = 'Naturalidade'
-                TabOrder = 23
+                TabOrder = 22
               end
               object Label37: TUniLabel
                 Left = 25
@@ -1029,7 +1052,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 37
                 Height = 13
                 Caption = 'Religi'#227'o'
-                TabOrder = 24
+                TabOrder = 23
               end
               object Label41: TUniLabel
                 Left = 24
@@ -1037,7 +1060,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 60
                 Height = 13
                 Caption = 'Condena'#231#227'o'
-                TabOrder = 25
+                TabOrder = 24
               end
               object Label42: TUniLabel
                 Left = 24
@@ -1045,7 +1068,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 41
                 Height = 13
                 Caption = 'Hist'#243'rico'
-                TabOrder = 26
+                TabOrder = 25
               end
               object Label13: TUniLabel
                 Left = 312
@@ -1053,7 +1076,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 44
                 Height = 13
                 Caption = 'Profiss'#227'o'
-                TabOrder = 27
+                TabOrder = 26
               end
               object Label5: TUniLabel
                 Left = 137
@@ -1061,7 +1084,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 14
                 Height = 13
                 Caption = 'RG'
-                TabOrder = 28
+                TabOrder = 27
               end
               object Label24: TUniLabel
                 Left = 351
@@ -1069,7 +1092,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 19
                 Height = 13
                 Caption = 'CPF'
-                TabOrder = 29
+                TabOrder = 28
               end
               object Label25: TUniLabel
                 Left = 486
@@ -1077,7 +1100,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 55
                 Height = 13
                 Caption = 'Estado Civil'
-                TabOrder = 30
+                TabOrder = 29
               end
               object Label26: TUniLabel
                 Left = 24
@@ -1085,7 +1108,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 86
                 Height = 13
                 Caption = 'Sinais Particulares'
-                TabOrder = 31
+                TabOrder = 30
               end
               object Label39: TUniLabel
                 Left = 24
@@ -1093,7 +1116,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 29
                 Height = 13
                 Caption = 'Altura'
-                TabOrder = 32
+                TabOrder = 31
               end
               object Label47: TUniLabel
                 Left = 74
@@ -1101,7 +1124,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 23
                 Height = 13
                 Caption = 'Peso'
-                TabOrder = 33
+                TabOrder = 32
               end
               object Label52: TUniLabel
                 Left = 24
@@ -1109,7 +1132,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 81
                 Height = 13
                 Caption = 'Data Nascimento'
-                TabOrder = 34
+                TabOrder = 33
               end
               object Label56: TUniLabel
                 Left = 24
@@ -1117,7 +1140,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 29
                 Height = 13
                 Caption = 'Artigo'
-                TabOrder = 35
+                TabOrder = 34
               end
               object Label63: TUniLabel
                 Left = 311
@@ -1125,7 +1148,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 67
                 Height = 13
                 Caption = 'Cor dos Olhos'
-                TabOrder = 36
+                TabOrder = 35
               end
               object Label64: TUniLabel
                 Left = 458
@@ -1133,7 +1156,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 68
                 Height = 13
                 Caption = 'Cor do Cabelo'
-                TabOrder = 37
+                TabOrder = 36
               end
               object Label149: TUniLabel
                 Left = 24
@@ -1141,7 +1164,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 46
                 Height = 13
                 Caption = 'Visitantes'
-                TabOrder = 38
+                TabOrder = 37
               end
               object Label48: TUniLabel
                 Left = 311
@@ -1149,7 +1172,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 74
                 Height = 13
                 Caption = 'Titulo de Eleitor'
-                TabOrder = 39
+                TabOrder = 38
               end
               object Label77: TUniLabel
                 Left = 241
@@ -1157,7 +1180,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 69
                 Height = 13
                 Caption = 'Org'#227'o Emissor'
-                TabOrder = 40
+                TabOrder = 39
               end
               object DBEdit1: TUniDBEdit
                 Left = 24
@@ -1166,7 +1189,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'MAE'
                 DataSource = DsCadastro
-                TabOrder = 5
+                TabOrder = 4
                 Color = clWindow
               end
               object DBEdit5: TUniDBEdit
@@ -1176,7 +1199,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'PAI'
                 DataSource = DsCadastro
-                TabOrder = 6
+                TabOrder = 5
                 Color = clWindow
               end
               object DBEdit21: TUniDBEdit
@@ -1186,7 +1209,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'CONDENACAO'
                 DataSource = DsCadastro
-                TabOrder = 13
+                TabOrder = 12
                 Color = clWindow
               end
               object DBEdit22: TUniDBEdit
@@ -1196,7 +1219,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'HISTORICO'
                 DataSource = DsCadastro
-                TabOrder = 14
+                TabOrder = 13
                 Color = clWindow
               end
               object DBEditrg: TUniDBEdit
@@ -1206,7 +1229,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'RG'
                 DataSource = DsCadastro
-                TabOrder = 1
+                TabOrder = 0
                 Color = clWindow
               end
               object DBEditCPF: TUniDBEdit
@@ -1216,7 +1239,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'CPF'
                 DataSource = DsCadastro
-                TabOrder = 3
+                TabOrder = 2
                 Color = clWindow
               end
               object DBEdit23: TUniDBEdit
@@ -1226,7 +1249,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'SINAIS_PARTICULARES'
                 DataSource = DsCadastro
-                TabOrder = 15
+                TabOrder = 14
                 Color = clWindow
               end
               object DBComboBox1: TUniDBComboBox
@@ -1247,7 +1270,7 @@ inherited FrmInterno: TFrmInterno
                   'Uni'#227'o Est'#225'vel'
                   'N'#227'o Declarado')
                 ItemIndex = -1
-                TabOrder = 4
+                TabOrder = 3
               end
               object DBEdit26: TUniDBEdit
                 Left = 24
@@ -1256,7 +1279,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'ALTURA'
                 DataSource = DsCadastro
-                TabOrder = 7
+                TabOrder = 6
                 Color = clWindow
               end
               object DBEdit27: TUniDBEdit
@@ -1266,17 +1289,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'PESO'
                 DataSource = DsCadastro
-                TabOrder = 8
-                Color = clWindow
-              end
-              object DBEditdtrnascimento: TUniDBEdit
-                Left = 24
-                Top = 32
-                Width = 105
-                Height = 21
-                DataField = 'DATA_NASCIMENTO'
-                DataSource = DsCadastro
-                TabOrder = 0
+                TabOrder = 7
                 Color = clWindow
               end
               object DBEdit30: TUniDBEdit
@@ -1286,7 +1299,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'ARTIGO'
                 DataSource = DsCadastro
-                TabOrder = 12
+                TabOrder = 11
                 Color = clWindow
               end
               object DBEdit32: TUniDBEdit
@@ -1296,7 +1309,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'COR_OLHOS'
                 DataSource = DsCadastro
-                TabOrder = 9
+                TabOrder = 8
                 Color = clWindow
               end
               object DBEdit34: TUniDBEdit
@@ -1306,7 +1319,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'COR_CABELOS'
                 DataSource = DsCadastro
-                TabOrder = 10
+                TabOrder = 9
                 Color = clWindow
               end
               object DBEdit83: TUniDBEdit
@@ -1316,7 +1329,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'VISITANTES'
                 DataSource = DsCadastro
-                TabOrder = 16
+                TabOrder = 15
                 Color = clWindow
               end
               object DBEdit4: TUniDBEdit
@@ -1326,7 +1339,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TITULO_ELEITOR'
                 DataSource = DsCadastro
-                TabOrder = 11
+                TabOrder = 10
                 Color = clWindow
               end
               object DBEdit20: TUniDBEdit
@@ -1336,7 +1349,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'ORGAO_EMISSOR_RG'
                 DataSource = DsCadastro
-                TabOrder = 2
+                TabOrder = 1
                 Color = clWindow
               end
               object DBComboBox4: TUniDBComboBox
@@ -1359,7 +1372,7 @@ inherited FrmInterno: TFrmInterno
                   'Sem Religi'#227'o'
                   'Outras')
                 ItemIndex = -1
-                TabOrder = 17
+                TabOrder = 16
               end
               object UniBitBtnNaturalidade: TUniBitBtn
                 Left = 83
@@ -1393,7 +1406,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 41
+                TabOrder = 40
                 OnClick = UniBitBtnNaturalidadeClick
               end
               object UniLabelNaturalidade: TUniLabel
@@ -1406,7 +1419,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 42
+                TabOrder = 41
               end
               object UniDBEditNaturalidade: TUniDBEdit
                 Left = 23
@@ -1415,7 +1428,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDNATURALIDADE'
                 DataSource = DsCadastro
-                TabOrder = 43
+                TabOrder = 42
                 Color = clWindow
                 OnExit = UniDBEditNaturalidadeExit
               end
@@ -1429,7 +1442,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 44
+                TabOrder = 43
               end
               object UniBitBtnNacionalidade: TUniBitBtn
                 Left = 372
@@ -1463,7 +1476,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 45
+                TabOrder = 44
                 OnClick = UniBitBtnNacionalidadeClick
               end
               object UniDBEditNacionalidade: TUniDBEdit
@@ -1473,7 +1486,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDNACIONALIDADE'
                 DataSource = DsCadastro
-                TabOrder = 46
+                TabOrder = 45
                 Color = clWindow
                 OnExit = UniDBEditNacionalidadeExit
               end
@@ -1484,7 +1497,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDRACA'
                 DataSource = DsCadastro
-                TabOrder = 47
+                TabOrder = 46
                 Color = clWindow
                 OnExit = UniDBEditRacaExit
               end
@@ -1520,7 +1533,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 48
+                TabOrder = 47
                 OnClick = UniBitBtnRacaClick
               end
               object UniLabelRaca: TUniLabel
@@ -1533,7 +1546,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 49
+                TabOrder = 48
               end
               object UniDBEditProfissao: TUniDBEdit
                 Left = 312
@@ -1542,7 +1555,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDPROFISSAO'
                 DataSource = DsCadastro
-                TabOrder = 50
+                TabOrder = 49
                 Color = clWindow
                 OnExit = UniDBEditProfissaoExit
               end
@@ -1578,7 +1591,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 51
+                TabOrder = 50
                 OnClick = UniBitBtnProfissaoClick
               end
               object UniLabelProfissao: TUniLabel
@@ -1591,7 +1604,7 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 52
+                TabOrder = 51
               end
               object UniDBEditEscolaridade: TUniDBEdit
                 Left = 25
@@ -1600,7 +1613,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 22
                 DataField = 'IDESCOLARIDADE'
                 DataSource = DsCadastro
-                TabOrder = 53
+                TabOrder = 52
                 Color = clWindow
                 OnExit = UniDBEditEscolaridadeExit
               end
@@ -1636,7 +1649,7 @@ inherited FrmInterno: TFrmInterno
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 54
+                TabOrder = 53
                 OnClick = UniBitBtnEscolaridadeClick
               end
               object UniLabelEscolaridade: TUniLabel
@@ -1649,10 +1662,22 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
+                TabOrder = 54
+              end
+              object UniDBDateTimePicker5: TUniDBDateTimePicker
+                Left = 24
+                Top = 31
+                Width = 102
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
                 TabOrder = 55
+                DataField = 'DATA_NASCIMENTO'
+                DataSource = DsCadastro
               end
             end
-            object ts1: TUniTabSheet
+            object TabSheetAdvogados: TUniTabSheet
               Caption = 'Advogados'
               object lbl3: TUniLabel
                 Left = 16
@@ -1790,7 +1815,7 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 8
               end
             end
-            object TabSheet3: TUniTabSheet
+            object TabSheetEndereco: TUniTabSheet
               Caption = 'Endere'#231'o'
               object Label28: TUniLabel
                 Left = 16
@@ -2051,8 +2076,11 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 21
               end
             end
-            object TabSheet5: TUniTabSheet
+            object TabSheetHistorico: TUniTabSheet
               Caption = 'Hist'#243'rico'
+              DesignSize = (
+                767
+                480)
               object Label53: TUniLabel
                 Left = 7
                 Top = 16
@@ -2072,12 +2100,13 @@ inherited FrmInterno: TFrmInterno
               object DBGrid1: TUniDBGrid
                 Left = 8
                 Top = 157
-                Width = 646
-                Height = 129
+                Width = 756
+                Height = 136
                 DataSource = DSHISTORICO_interno
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                 WebOptions.LoadMaskMsg = 'Please wait...'
                 OnCellClick = DBGrid1CellClick
+                Anchors = [akLeft, akTop, akRight]
                 TabOrder = 3
                 Columns = <
                   item
@@ -2103,8 +2132,8 @@ inherited FrmInterno: TFrmInterno
                   end>
               end
               object Button1: TUniButton
-                Left = 6
-                Top = 106
+                Left = 8
+                Top = 124
                 Width = 98
                 Height = 25
                 Caption = 'Incluir'
@@ -2118,18 +2147,21 @@ inherited FrmInterno: TFrmInterno
               object DBMemo1: TUniDBMemo
                 Left = 8
                 Top = 301
-                Width = 646
-                Height = 121
+                Width = 756
+                Height = 176
                 DataField = 'DESCRICAO'
                 DataSource = DSHISTORICO_interno
+                Anchors = [akLeft, akTop, akRight, akBottom]
+                ReadOnly = True
                 TabOrder = 4
                 Color = clWindow
               end
               object MemoDescricao: TUniMemo
                 Left = 108
                 Top = 33
-                Width = 542
-                Height = 97
+                Width = 656
+                Height = 117
+                Anchors = [akLeft, akTop, akRight]
                 Color = clWindow
                 TabOrder = 1
               end
@@ -2144,7 +2176,7 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 0
               end
             end
-            object TabSheet6: TUniTabSheet
+            object TabSheetFotos: TUniTabSheet
               Caption = 'Fotos'
               object FOTO: TUniLabel
                 Left = 16
@@ -2483,7 +2515,7 @@ inherited FrmInterno: TFrmInterno
                 end
               end
             end
-            object TabSheet4: TUniTabSheet
+            object TabSheetMovAnterior: TUniTabSheet
               Caption = 'Mov. Anterior'
               object DBMemo2: TUniDBMemo
                 Left = 0
@@ -2498,7 +2530,7 @@ inherited FrmInterno: TFrmInterno
                 Color = clWindow
               end
             end
-            object TabSheet7: TUniTabSheet
+            object TabSheetMapa: TUniTabSheet
               Caption = 'Mapa'
               object Label61: TUniLabel
                 Left = 24
@@ -2506,7 +2538,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 81
                 Height = 13
                 Caption = 'Data Nascimento'
-                TabOrder = 4
+                TabOrder = 2
               end
               object Label70: TUniLabel
                 Left = 136
@@ -2514,7 +2546,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 61
                 Height = 13
                 Caption = 'Naturalidade'
-                TabOrder = 9
+                TabOrder = 7
               end
               object Label71: TUniLabel
                 Left = 418
@@ -2522,7 +2554,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 51
                 Height = 13
                 Caption = 'Resid'#234'ncia'
-                TabOrder = 10
+                TabOrder = 8
               end
               object Label72: TUniLabel
                 Left = 24
@@ -2530,7 +2562,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 55
                 Height = 13
                 Caption = 'Data Pris'#227'o'
-                TabOrder = 11
+                TabOrder = 9
               end
               object Label75: TUniLabel
                 Left = 136
@@ -2538,7 +2570,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 226
                 Height = 13
                 Caption = 'Origem do Mandado/Estado solicitante da vaga'
-                TabOrder = 12
+                TabOrder = 10
               end
               object Label81: TUniLabel
                 Left = 418
@@ -2546,7 +2578,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 34
                 Height = 13
                 Caption = 'Artigos'
-                TabOrder = 13
+                TabOrder = 11
               end
               object Label85: TUniLabel
                 Left = 24
@@ -2554,7 +2586,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 93
                 Height = 13
                 Caption = 'Tipo Justi'#231'a, ex: JF'
-                TabOrder = 14
+                TabOrder = 12
               end
               object Label84: TUniLabel
                 Left = 24
@@ -2562,7 +2594,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 133
                 Height = 13
                 Caption = 'Benef'#237'cio / Situa'#231#227'o Jurid'#237'ca'
-                TabOrder = 15
+                TabOrder = 13
               end
               object Label86: TUniLabel
                 Left = 418
@@ -2570,7 +2602,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 60
                 Height = 13
                 Caption = 'Escolaridade'
-                TabOrder = 16
+                TabOrder = 14
               end
               object Label87: TUniLabel
                 Left = 24
@@ -2578,7 +2610,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 162
                 Height = 13
                 Caption = 'Previs'#227'o de Sa'#237'da e/ou Obs.Mapa'
-                TabOrder = 17
+                TabOrder = 15
               end
               object Label88: TUniLabel
                 Left = 136
@@ -2586,7 +2618,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 191
                 Height = 13
                 Caption = 'Condena'#231#227'o Descri'#231#227'o, ex: 10a 5m 12d'
-                TabOrder = 18
+                TabOrder = 16
               end
               object Label89: TUniLabel
                 Left = 351
@@ -2594,27 +2626,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 182
                 Height = 13
                 Caption = 'Quantidade de Ano(s) da condena'#231#227'o'
-                TabOrder = 19
-              end
-              object DBEdit9: TUniDBEdit
-                Left = 24
-                Top = 32
-                Width = 105
-                Height = 21
-                DataField = 'DATA_NASCIMENTO'
-                DataSource = DsCadastro
-                TabOrder = 0
-                Color = clWindow
-              end
-              object DBEdit14: TUniDBEdit
-                Left = 24
-                Top = 80
-                Width = 105
-                Height = 21
-                DataField = 'DATA_PRISAO'
-                DataSource = DsCadastro
-                TabOrder = 1
-                Color = clWindow
+                TabOrder = 17
               end
               object DBEdit15: TUniDBEdit
                 Left = 418
@@ -2623,7 +2635,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'ARTIGO'
                 DataSource = DsCadastro
-                TabOrder = 2
+                TabOrder = 0
                 Color = clWindow
               end
               object DBEdit16: TUniDBEdit
@@ -2633,7 +2645,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'NUMERO_PROCED'
                 DataSource = DsCadastro
-                TabOrder = 3
+                TabOrder = 1
                 Color = clWindow
               end
               object DBComboBox7: TUniDBComboBox
@@ -2643,7 +2655,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TIPOPROCESSO'
                 DataSource = DsCadastro
-                Style = csDropDownList
+                Style = csSimple
                 Items.Strings = (
                   'Condenado'
                   'Evas'#227'o'
@@ -2656,6 +2668,7 @@ inherited FrmInterno: TFrmInterno
                   'MP/Q'
                   'Processado'
                   'R.S.Aberto'
+                  'Regime Aberto'
                   'Reg. In. Sa'
                   'Regr.SA'
                   'Resp. Proc.'
@@ -2663,7 +2676,7 @@ inherited FrmInterno: TFrmInterno
                   'Semiaberto'
                   '')
                 ItemIndex = -1
-                TabOrder = 5
+                TabOrder = 3
               end
               object DBEdit18: TUniDBEdit
                 Tag = 1
@@ -2673,7 +2686,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'OBS_MAPA'
                 DataSource = DsCadastro
-                TabOrder = 6
+                TabOrder = 4
                 Color = clWindow
               end
               object DBEdit37: TUniDBEdit
@@ -2683,7 +2696,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'CONDENACAO'
                 DataSource = DsCadastro
-                TabOrder = 7
+                TabOrder = 5
                 Color = clWindow
               end
               object DBEdit38: TUniDBEdit
@@ -2693,7 +2706,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 21
                 DataField = 'TEMPO_CONSOLIDADO_ANO'
                 DataSource = DsCadastro
-                TabOrder = 8
+                TabOrder = 6
                 Color = clWindow
               end
               object UniLabel3: TUniLabel
@@ -2702,7 +2715,7 @@ inherited FrmInterno: TFrmInterno
                 Width = 104
                 Height = 13
                 Caption = 'Reincidente / Prim'#225'rio'
-                TabOrder = 20
+                TabOrder = 18
               end
               object UniDBComboBox2: TUniDBComboBox
                 Left = 544
@@ -2714,31 +2727,31 @@ inherited FrmInterno: TFrmInterno
                   'R'
                   'P')
                 ItemIndex = -1
-                TabOrder = 21
+                TabOrder = 19
               end
               object UniLabelNaturalidade2: TUniLabel
-                Left = 135
-                Top = 32
-                Width = 197
+                Left = 226
+                Top = 34
+                Width = 188
                 Height = 13
                 AutoSize = False
                 Caption = '(NATURALIDADE)'
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 22
+                TabOrder = 20
               end
               object UniLabelCidade2: TUniLabel
-                Left = 418
-                Top = 32
-                Width = 340
+                Left = 507
+                Top = 35
+                Width = 206
                 Height = 13
                 AutoSize = False
                 Caption = '(CIDADE)'
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 23
+                TabOrder = 21
               end
               object UniLabelEscolaridade2: TUniLabel
                 Left = 418
@@ -2750,19 +2763,181 @@ inherited FrmInterno: TFrmInterno
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 24
+                TabOrder = 22
               end
               object UniLabelOrigem2: TUniLabel
-                Left = 135
-                Top = 82
-                Width = 277
+                Left = 227
+                Top = 84
+                Width = 186
                 Height = 13
                 AutoSize = False
                 Caption = '(ORIGEM)'
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
+                TabOrder = 23
+              end
+              object UniBitBtn1: TUniBitBtn
+                Left = 196
+                Top = 80
+                Width = 26
+                Height = 22
+                Glyph.Data = {
+                  36030000424D3603000000000000360000002800000010000000100000000100
+                  18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                  B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                  83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                  D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                  3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                  97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                  DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                  B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                  99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                  978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                  BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                  A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                  EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                  CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                  B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                  F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                  DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                  C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                  9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                  E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                  70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                  FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                  EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                  86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                  A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                TabOrder = 24
+                OnClick = UniBitBtnOrigemClick
+              end
+              object UniDBEditOrigem2: TUniDBEdit
+                Left = 136
+                Top = 80
+                Width = 60
+                Height = 22
+                DataField = 'ID_SOLICITANTE_VAGA'
+                DataSource = DsCadastro
                 TabOrder = 25
+                Color = clWindow
+                OnExit = UniDBEditOrigemExit
+              end
+              object UniBitBtnNaturalidade2: TUniBitBtn
+                Left = 194
+                Top = 32
+                Width = 26
+                Height = 22
+                Glyph.Data = {
+                  36030000424D3603000000000000360000002800000010000000100000000100
+                  18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                  B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                  83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                  D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                  3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                  97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                  DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                  B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                  99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                  978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                  BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                  A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                  EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                  CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                  B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                  F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                  DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                  C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                  9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                  E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                  70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                  FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                  EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                  86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                  A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                TabOrder = 26
+                OnClick = UniBitBtnNaturalidadeClick
+              end
+              object UniDBEditNaturalidade2: TUniDBEdit
+                Left = 134
+                Top = 32
+                Width = 60
+                Height = 22
+                DataField = 'IDNATURALIDADE'
+                DataSource = DsCadastro
+                TabOrder = 27
+                Color = clWindow
+                OnExit = UniDBEditNaturalidadeExit
+              end
+              object UniDBEditCidade2: TUniDBEdit
+                Left = 418
+                Top = 31
+                Width = 60
+                Height = 22
+                DataField = 'IDCIDADE'
+                DataSource = DsCadastro
+                TabOrder = 28
+                Color = clWindow
+                OnExit = UniDBEditCidadeExit
+              end
+              object UniBitBtn2: TUniBitBtn
+                Left = 478
+                Top = 31
+                Width = 26
+                Height = 22
+                Glyph.Data = {
+                  36030000424D3603000000000000360000002800000010000000100000000100
+                  18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                  B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                  83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                  D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                  3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                  97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                  DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                  B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                  99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                  978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                  BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                  A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                  EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                  CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                  B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                  F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                  DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                  C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                  9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                  E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                  70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                  FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                  EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                  86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                  A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                TabOrder = 29
+                OnClick = UniBitBtnCidadeClick
+              end
+              object UniDBDateTimePicker6: TUniDBDateTimePicker
+                Left = 24
+                Top = 80
+                Width = 106
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 30
+                DataField = 'DATA_PRISAO'
+                DataSource = DsCadastro
+              end
+              object UniDBDateTimePicker7: TUniDBDateTimePicker
+                Left = 24
+                Top = 31
+                Width = 105
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 31
+                DataField = 'DATA_NASCIMENTO'
+                DataSource = DsCadastro
               end
             end
           end
@@ -2872,7 +3047,8 @@ inherited FrmInterno: TFrmInterno
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      'select '
+      'select FIRST 20'
+      '    interno.foto,'
       '    interno.nome_interno,'
       '    interno.rgi,'
       '    INTERNO.VULGO,'
@@ -2909,8 +3085,8 @@ inherited FrmInterno: TFrmInterno
         '   LEFT JOIN PROCEDENCIA ON (INTERNO.ID_PROCEDENCIA = PROCEDENCI' +
         'A.ID_PROCEDENCIA)'
       'where coalesce(interno.nome_interno,'#39#39')<>'#39#39)
-    Left = 8
-    Top = 296
+    Left = 280
+    Top = 288
   end
   object SqlConsulta: TSQLQuery
     MaxBlobSize = -1
@@ -2956,25 +3132,26 @@ inherited FrmInterno: TFrmInterno
       'ORDER BY INTERNO.NOME_INTERNO collate win_ptbr'
       ''
       ' ')
-    Left = 41
-    Top = 295
+    Left = 313
+    Top = 287
   end
   object DspConsulta: TDataSetProvider
     DataSet = SqlConsulta
-    Left = 72
-    Top = 295
+    Left = 344
+    Top = 287
   end
   object CdsConsulta: TClientDataSet
     Aggregates = <>
+    PacketRecords = 20
     Params = <>
     ProviderName = 'DspConsulta'
-    Left = 9
-    Top = 215
+    Left = 377
+    Top = 287
   end
   object DsConsulta: TDataSource
     DataSet = CdsConsulta
-    Left = 37
-    Top = 215
+    Left = 405
+    Top = 287
   end
   object SqlFilhos: TSQLQuery
     MaxBlobSize = -1
@@ -2989,13 +3166,13 @@ inherited FrmInterno: TFrmInterno
       'from filhos'
       'where idinterno=:id_interno'
       '')
-    Left = 1
-    Top = 353
+    Left = 273
+    Top = 345
   end
   object DspFilhos: TDataSetProvider
     DataSet = SqlFilhos
-    Left = 29
-    Top = 353
+    Left = 301
+    Top = 345
   end
   object CdsFilhos: TClientDataSet
     Aggregates = <>
@@ -3004,8 +3181,8 @@ inherited FrmInterno: TFrmInterno
     PacketRecords = 0
     Params = <>
     ProviderName = 'DspFilhos'
-    Left = 57
-    Top = 353
+    Left = 329
+    Top = 345
     object CdsFilhosIDFILHOS: TIntegerField
       FieldName = 'IDFILHOS'
       Required = True
@@ -3038,8 +3215,8 @@ inherited FrmInterno: TFrmInterno
   end
   object DsFilhos: TDataSource
     DataSet = CdsFilhos
-    Left = 85
-    Top = 353
+    Left = 357
+    Top = 345
   end
   object SQLHISTORICO_interno: TSQLQuery
     MaxBlobSize = -1

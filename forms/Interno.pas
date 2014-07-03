@@ -61,7 +61,7 @@ type
     cdsadvogadointernoOBSADVOGADO_INTERNO: TStringField;
     dsADVOGADO_INTERNO: TDataSource;
     PageControlInterno: TUniPageControl;
-    TabSheet1: TuniTabSheet;
+    TabSheetPrincipal: TUniTabSheet;
     Label2: TUniLabel;
     Label3: TUniLabel;
     Label4: TUniLabel;
@@ -95,8 +95,6 @@ type
     DBEditCodigo: TUniDBEdit;
     DBEdit2: TUniDBEdit;
     DBEdit3: TUniDBEdit;
-    DBEditdtentrada: TUniDBEdit;
-    DBEditdtprisao: TUniDBEdit;
     DBEdit7: TUniDBEdit;
     DBLookupComboBox2: TUniDBLookupComboBox;
     DBEdit24: TUniDBEdit;
@@ -106,7 +104,6 @@ type
     DBComboBox3: TUniDBComboBox;
     DBEdit86: TUniDBEdit;
     DBComboBox2: TUniDBComboBox;
-    DBEditpermanencia: TUniDBEdit;
     DBEdit19: TUniDBEdit;
     DBEdit28: TUniDBEdit;
     DBEdit31: TUniDBEdit;
@@ -117,7 +114,7 @@ type
     DBEdit84: TUniDBEdit;
     DBEdit8: TUniDBEdit;
     DBComboBox6: TUniDBComboBox;
-    TabSheet2: TuniTabSheet;
+    TabSheetDadosGerais: TUniTabSheet;
     Label11: TUniLabel;
     Label19: TUniLabel;
     Label21: TUniLabel;
@@ -151,7 +148,6 @@ type
     DBComboBox1: TUniDBComboBox;
     DBEdit26: TUniDBEdit;
     DBEdit27: TUniDBEdit;
-    DBEditdtrnascimento: TUniDBEdit;
     DBEdit30: TUniDBEdit;
     DBEdit32: TUniDBEdit;
     DBEdit34: TUniDBEdit;
@@ -159,14 +155,14 @@ type
     DBEdit4: TUniDBEdit;
     DBEdit20: TUniDBEdit;
     DBComboBox4: TUniDBComboBox;
-    ts1: TuniTabSheet;
+    TabSheetAdvogados: TUniTabSheet;
     lbl3: TUniLabel;
     Label50: TUniLabel;
     Button2: TUniButton;
     Memoobsadvogado: TUniMemo;
     DBGrid3: TUniDBGrid;
     Button3: TUniButton;
-    TabSheet3: TuniTabSheet;
+    TabSheetEndereco: TUniTabSheet;
     Label28: TUniLabel;
     Label29: TUniLabel;
     Label30: TUniLabel;
@@ -183,7 +179,7 @@ type
     DBEditcep: TUniDBEdit;
     DBEditfone: TUniDBEdit;
     DBEdit17: TUniDBEdit;
-    TabSheet5: TuniTabSheet;
+    TabSheetHistorico: TUniTabSheet;
     Label53: TUniLabel;
     Label54: TUniLabel;
     DBGrid1: TUniDBGrid;
@@ -191,7 +187,7 @@ type
     DBMemo1: TUniDBMemo;
     MemoDescricao: TUniMemo;
     DateTimePickerHistorico: TUniDateTimePicker;
-    TabSheet6: TuniTabSheet;
+    TabSheetFotos: TUniTabSheet;
     FOTO: TUniLabel;
     Label6: TUniLabel;
     Label7: TUniLabel;
@@ -200,9 +196,9 @@ type
     Label14: TUniLabel;
     Label15: TUniLabel;
     DBNavigator3: TUniDBNavigator;
-    TabSheet4: TuniTabSheet;
+    TabSheetMovAnterior: TUniTabSheet;
     DBMemo2: TUniDBMemo;
-    TabSheet7: TuniTabSheet;
+    TabSheetMapa: TUniTabSheet;
     Label61: TUniLabel;
     Label70: TUniLabel;
     Label71: TUniLabel;
@@ -215,8 +211,6 @@ type
     Label87: TUniLabel;
     Label88: TUniLabel;
     Label89: TUniLabel;
-    DBEdit9: TUniDBEdit;
-    DBEdit14: TUniDBEdit;
     DBEdit15: TUniDBEdit;
     DBEdit16: TUniDBEdit;
     DBComboBox7: TUniDBComboBox;
@@ -303,7 +297,20 @@ type
     UniLabelNaturalidade2: TUniLabel;
     UniLabelCidade2: TUniLabel;
     UniLabelEscolaridade2: TUniLabel;
+    UniDBImage1: TUniDBImage;
     UniLabelOrigem2: TUniLabel;
+    UniBitBtn1: TUniBitBtn;
+    UniDBEditOrigem2: TUniDBEdit;
+    UniBitBtnNaturalidade2: TUniBitBtn;
+    UniDBEditNaturalidade2: TUniDBEdit;
+    UniDBEditCidade2: TUniDBEdit;
+    UniBitBtn2: TUniBitBtn;
+    UniDBDateTimePicker2: TUniDBDateTimePicker;
+    UniDBDateTimePicker3: TUniDBDateTimePicker;
+    UniDBDateTimePicker4: TUniDBDateTimePicker;
+    UniDBDateTimePicker5: TUniDBDateTimePicker;
+    UniDBDateTimePicker6: TUniDBDateTimePicker;
+    UniDBDateTimePicker7: TUniDBDateTimePicker;
     procedure EditLocalizarChange(Sender: TObject);
     procedure UniBtnFiltrarClick(Sender: TObject);
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
@@ -510,19 +517,19 @@ var
   data_servidor: TDateTime;
 begin
   inherited;
-  dsdataservidor.DataSet.close;
-  dsdataservidor.DataSet.Open;
-  data_servidor := dsdataservidor.DataSet.fieldbyname('DATA').AsDateTime;
+
+  data_servidor := now;
   ontem := data_servidor - 1;
   amanha := data_servidor + 1;
+
   if (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime > ontem)
     and (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime <
     amanha) then
   begin
-    DBMemo1.Enabled := True;
+    DBMemo1.ReadOnly := False;
   end
   else
-    DBMemo1.Enabled := False;
+    DBMemo1.ReadOnly := True;
 
 end;
 
@@ -714,6 +721,7 @@ begin
   UniDBEditAdvogadoExit(nil);
   UniDBEditCidadeExit(nil);
   UniDBEditPaisExit(nil);
+  DBEdit2.SetFocus;
 
 end;
 
@@ -750,14 +758,14 @@ begin
   DsCadastro.DataSet.fieldbyname('ID_UP').AsInteger := dm.GLOBAL_ID_UP;
   DsCadastro.DataSet.fieldbyname('SEXO').AsString := 'M';
   DsCadastro.DataSet.fieldbyname('ST').AsString := 'A';
-  if DBEditdtentrada.CanFocus then
-    DBEditdtentrada.SetFocus;
 
   SqlFoto.ParamByName('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname
     ('id_interno').AsInteger;
 
   DsFoto.DataSet.close;
   DsFoto.DataSet.Open;
+
+  DBEdit2.SetFocus;
 
 end;
 
@@ -857,6 +865,8 @@ begin
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditCidade.Focused then
             UniDBEditCidade.SetFocus;
+          if UniDBEditCidade2.Focused then
+            UniDBEditCidade2.SetFocus;
         end;
       end);
 
@@ -1062,6 +1072,8 @@ begin
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditNaturalidade.Focused then
             UniDBEditNaturalidade.SetFocus;
+          if UniDBEditNaturalidade2.Focused then
+            UniDBEditNaturalidade2.SetFocus;
         end;
       end);
 
@@ -1094,6 +1106,7 @@ begin
         begin
           UniDBEditOrigem.Field.AsInteger :=
             FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+
           UniLabelOrigem.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
             ('DESCRICAO').AsString;
           UniLabelOrigem2.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
@@ -1104,6 +1117,9 @@ begin
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditOrigem.Focused then
             UniDBEditOrigem.SetFocus;
+
+          if UniDBEditOrigem2.Focused then
+            UniDBEditOrigem2.SetFocus;
         end;
       end);
 
@@ -1729,6 +1745,8 @@ begin
   inherited;
   FID_INTERNO := 0;
   DsConsulta.DataSet.close;
+  EditLocalizar.Text := '';
+  SqlCadastro.Tag := 0;
 end;
 
 procedure TFrmInterno.UniFormCreate(Sender: TObject);

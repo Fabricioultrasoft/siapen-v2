@@ -6,21 +6,24 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, Dialogs, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIRegClasses, uniGUIForm, uniButton, uniBitBtn,
-  Vcl.Imaging.jpeg, uniImage, uniEdit, uniGUIBaseClasses, uniLabel;
+  Vcl.Imaging.jpeg, uniImage, uniEdit, uniGUIBaseClasses, uniLabel, Data.DB,
+  Datasnap.DBClient;
 
 type
   TFrmAlterarSenha = class(TUniForm)
     UniLabel1: TUniLabel;
-    UniEditAntes: TUniEdit;
+    Edit1: TUniEdit;
     UniLabel2: TUniLabel;
-    UniEditRepetir: TUniEdit;
-    UniImage1: TUniImage;
+    Edit3: TUniEdit;
     UniLabel3: TUniLabel;
     UniBitBtn1: TUniBitBtn;
     UniLabel4: TUniLabel;
-    UniEditNova: TUniEdit;
+    Edit2: TUniEdit;
+    UniImageLogoMarca: TUniImage;
+    ClientDataSet1: TClientDataSet;
     procedure UniBitBtn1Click(Sender: TObject);
-    procedure UniEditRepetirKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Edit3KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure UniFormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -42,37 +45,58 @@ begin
 end;
 
 procedure TFrmAlterarSenha.UniBitBtn1Click(Sender: TObject);
+var
+  senhaatual, senhanova: string;
 begin
 
-  if UniEditNova.Text = UniEditRepetir.Text then
+  senhanova := Edit2.Text;
+
+  if Edit2.Text <> Edit3.Text then
   begin
-    Dm.SqlConsultaUnica.SQL.Text := 'select * from login where login = ' + qs(DM.GLOBAL_NOME_FUNCIONARIO_LOGADO) + ' and senha=' + qs(Senha(UniEditAntes.Text));
-    Dm.CDsConsultaUnica.Close;
-    Dm.CDsConsultaUnica.Open;
-    if not Dm.CDSConsultaUnica.IsEmpty then
-    begin
-
-      Dm.CdsConsultaUnica.edit;
-      Dm.CdsConsultaUnica.FieldByName('SENHA').AsString := Senha(UniEditNova.Text);
-      Dm.CdsConsultaUnica.post;
-      Dm.CdsConsultaUnica.ApplyUpdates(-1);
-      Dm.CdsConsultaUnica.close;
-
-      humane.info('<b><font Color=blue>Sucesso! </font></b><br>' + 'Senha alterada...');
-      ModalResult := mrOK; // Login is valid so proceed to MainForm
-    end
-    else
-      humane.error('<b><font Color=red>Login: ' + Dm.GLOBAL_NOME_FUNCIONARIO_LOGADO + ' </font></b><br>' + 'Senha anterior não localizada!!!');
+    showmessage('Confirmação de Senha Não Confere!');
+    Edit2.SetFocus;
   end
   else
-    humane.error('<b><font Color=red>Login: ' + Dm.GLOBAL_NOME_FUNCIONARIO_LOGADO + ' </font></b><br>' + 'Senha repetida é diferente da nova.');
+  begin
 
+    //if not DsVisitanteInterno.DataSet.Locate('PAVILHAO', QualPavilhao, []) then
+    if dm.dsfuncionario.DataSet.locate('id_funcionario', dm.GLOBAL_ID_FUNCIONARIO, []) = true then
+    begin
+
+      if dm.dsfuncionario.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString <> '' then
+        senhaatual := Senha(dm.dsfuncionario.DataSet.FieldByName('SENHA').AsString)
+      else
+        senhaatual := dm.dsfuncionario.DataSet.FieldByName('SENHA').AsString;
+
+      if senhaatual <> Edit1.text then
+      begin
+        showmessage('Senha Atual Invalida!');
+        Edit1.SetFocus;
+      end
+      else
+      begin
+        dm.dsfuncionario.DataSet.edit;
+        dm.dsfuncionario.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString := 'S';
+        dm.dsfuncionario.DataSet.FieldByName('SENHA').AsString := senha(UpperCase(senhanova));
+        dm.dsfuncionario.DataSet.Post;
+        TClientDataSet(DM.DSFUNCIONARIO.DataSet).ApplyUpdates(0);
+        ShowMessage('Senha Alterada Com Sucesso!');
+        CLOSE;
+      end;
+
+    end;
+  end;
 end;
 
 
-procedure TFrmAlterarSenha.UniEditRepetirKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TFrmAlterarSenha.UniFormCreate(Sender: TObject);
 begin
+  DM.dsfuncionario.DataSet.Close;
+  DM.dsfuncionario.DataSet.Open;
+end;
 
+procedure TFrmAlterarSenha.Edit3KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+begin
   if Key = VK_RETURN then
     UniBitBtn1Click(nil);
 end;

@@ -71,7 +71,7 @@ object FrmSentinela: TFrmSentinela
       'Trim Char=true'
       '')
     VendorLib = 'fbclient.dll'
-    Left = 112
+    Left = 96
     Top = 16
   end
   object frxReport1: TfrxReport
@@ -167,13 +167,6 @@ object FrmSentinela: TFrmSentinela
     DataOnly = False
     Left = 8
     Top = 72
-  end
-  object frxDBDataset1: TfrxDBDataset
-    UserName = 'frxDBDataset1'
-    CloseDataSource = False
-    BCDToCurrency = False
-    Left = 208
-    Top = 16
   end
   object frxODTExport1: TfrxODTExport
     UseFileCache = True
@@ -470,7 +463,7 @@ object FrmSentinela: TFrmSentinela
     Left = 616
     Top = 32
     Bitmap = {
-      494C0101060008003C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010106000800400010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000002000000001002000000000000020
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

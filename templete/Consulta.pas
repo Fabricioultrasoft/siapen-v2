@@ -57,10 +57,12 @@ type
   private
     FCOLUNA: Integer;
     FPreDescricao: string;
+    FCampoWhereSql: string;
     { Private declarations }
   public
     property Coluna: Integer read FCOLUNA write FCOLUNA;
     property PreDescricao: String read FPreDescricao write FPreDescricao;
+    property CampoWhereSql: String read FCampoWhereSql write FCampoWhereSql;
     { Public declarations }
   end;
 
@@ -125,61 +127,80 @@ end;
 
 procedure TFrmConsulta.UniBtnFiltrarClick(Sender: TObject);
 var
-  sSql: String;
+  sSql, sWhere: String;
 begin
   sSql := SqlCadastro.SQL.Text;
-
-  if EditLocalizar.Text <> '' then
+  if FCampoWhereSql = '' then
   begin
-    if DBGridConsulta.DataSource.DataSet.active then
+    if EditLocalizar.Text <> '' then
     begin
-
-      if DBGridConsulta.Columns.Items[FCOLUNA].Field.FieldKind in [fkdata] then
+      if DBGridConsulta.DataSource.DataSet.active then
       begin
 
-        if (DBGridConsulta.Columns.Items[FCOLUNA].Field.DataType in [ftSmallint,
-          ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
+        if DBGridConsulta.Columns.Items[FCOLUNA].Field.FieldKind in [fkdata]
+        then
         begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
-            DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' = ' +
-            EditLocalizar.Text;
-        end
-        else
-        begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
-            DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' LIKE ' +
-            QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+
+          if (DBGridConsulta.Columns.Items[FCOLUNA].Field.DataType
+            in [ftSmallint, ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd])
+          then
+          begin
+            TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+              DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' = ' +
+              EditLocalizar.Text;
+          end
+          else
+          begin
+            TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+              DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' LIKE ' +
+              QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+          end;
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := true;
         end;
-        {
-          AddWhere(SqlCadastro,
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter);
-
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
-        }
-
-        TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
-        TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := true;
-        // SqlCadastro.SQL.Text := sSql;
-
       end;
+    end
+    else
+    begin
+      TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
     end;
   end
   else
   begin
-    TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
+
+    if (DBGridConsulta.Columns.Items[FCOLUNA].Field.DataType in [ftSmallint,
+      ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
+    begin
+      sWhere := FCampoWhereSql + ' = ' + EditLocalizar.Text;
+    end
+    else
+    begin
+      sWhere :=
+        FCampoWhereSql+ ' LIKE ' +
+        QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+    end;
+
+    AddWhere(SqlCadastro,sWhere);
+    TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
+    TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
+    SqlCadastro.SQL.Text := sSql;
+
   end;
 
 end;
 
 procedure TFrmConsulta.UniFormClose(Sender: TObject; var Action: TCloseAction);
 begin
+  FCOLUNA := 1;
   FPreDescricao := '';
+  FCampoWhereSql := '';
 end;
 
 procedure TFrmConsulta.UniFormCreate(Sender: TObject);
 begin
+  FCOLUNA := 1;
   FPreDescricao := '';
+  FCampoWhereSql := '';
 end;
 
 procedure TFrmConsulta.UniFormKeyDown(Sender: TObject; var Key: Word;
@@ -199,6 +220,9 @@ procedure TFrmConsulta.UniFormShow(Sender: TObject);
 begin
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter := '';
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
+
+  FrmConsulta.DsCadastro.DataSet.Close;
+  FrmConsulta.DsCadastro.DataSet.Open;
 
   EditLocalizar.Text := FPreDescricao;
   EditLocalizar.SetFocus;

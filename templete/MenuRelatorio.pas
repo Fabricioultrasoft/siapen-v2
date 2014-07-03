@@ -56,7 +56,7 @@ uses
   uniGUIApplication,
   DmPrincipal,
   ServerModule,
-  VisualizarRelatorio, Lib, Consulta;
+  VisualizarRelatorio, Lib, Consulta, TipoProcesso;
 
 function FrmMenuRelatorio: TFrmMenuRelatorio;
 begin
@@ -69,6 +69,8 @@ begin
 end;
 
 procedure TFrmMenuRelatorio.UniBitBtnVisualizarClick(Sender: TObject);
+var
+  indexTipoProcesso: integer;
 begin
 
   if ContemValor('R1', 'xx' + UniComboBoxRelatorios.Text) then
@@ -78,15 +80,12 @@ begin
       begin
         if AResult = mrOK then
         begin
-
           FrmConsulta.SqlCadastro.SQL.Text := SqlConsultaBackup.SQL.Text +
             ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) +
             ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
             ' order by interno.nome_interno ';
           FrmConsulta.Coluna := 1;
           FrmConsulta.Width := Self.Width;
-          FrmConsulta.DsCadastro.DataSet.close;
-          FrmConsulta.DsCadastro.DataSet.Open;
           FrmConsulta.PreDescricao := uppercase(AText);
           FrmConsulta.EditLocalizar.SetFocus;
           FrmConsulta.ShowModal(
@@ -101,6 +100,35 @@ begin
                 FrmVisualizarRelatorio.ShowModal;
               end;
             end);
+        end;
+      end);
+  end
+  else if ContemValor('R2', 'xx' + UniComboBoxRelatorios.Text) then
+  begin
+    FrmTipoProcesso.ShowModal(
+      procedure(Result: integer)
+      begin
+        if Result = mrOK then
+        begin
+
+          indexTipoProcesso := FrmTipoProcesso.UniRadioGroup1.ItemIndex;
+
+          case indexTipoProcesso of
+            0:
+              dm.GLOBAL_TIPOPROCESSO := 'Condenado';
+            1:
+              dm.GLOBAL_TIPOPROCESSO := 'Processado';
+            2:
+              dm.GLOBAL_TIPOPROCESSO := 'Med. Segurança';
+            3:
+              dm.GLOBAL_TIPOPROCESSO := '(Em Branco)';
+            4:
+              dm.GLOBAL_TIPOPROCESSO := '';
+          end;
+
+          FrmVisualizarRelatorio.Nome := UniComboBoxRelatorios.Text;
+          FrmVisualizarRelatorio.ShowModal;
+
         end;
       end);
   end
@@ -122,8 +150,8 @@ end;
 procedure TFrmMenuRelatorio.UniFormShow(Sender: TObject);
 begin
   listtemp2 := TStringList.Create;
-  ListarArquivos(UniServerModule.StartPath + 'relatorios\', '*.fr3',
-    false, true);
+  ListarArquivos(UniServerModule.StartPath + 'relatorios\' +
+    inttostr(dm.GLOBAL_ID_UP) + '\', '*.fr3', false, true);
   UniComboBoxRelatorios.Items := listtemp2;
   listtemp2.free;
 

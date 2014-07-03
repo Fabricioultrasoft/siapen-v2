@@ -34,11 +34,10 @@ uses
   Datasnap.Provider,
   Datasnap.DBClient, Vcl.StdCtrls, Vcl.Buttons, uniURLFrame, uniEdit, uniTimer,
   uniMainMenu,
-  uniImageList, Vcl.ImgList, Vcl.Menus, uniFileUpload;
+  uniImageList, Vcl.ImgList, Vcl.Menus, uniFileUpload, Vcl.Imaging.GIFImg;
 
 type
   TMainForm = class(TUniForm)
-    UniImage1: TUniImage;
     UniPageControlPrincipal: TUniPageControl;
     UniTabSheetPrincipal: TUniTabSheet;
     UniTabSheetSetores: TUniTabSheet;
@@ -237,7 +236,9 @@ type
     Sair1: TUniMenuItem;
     UniFileUploadImagem: TUniFileUpload;
     UniPanelTop: TUniPanel;
-    UniURLFrame1: TUniURLFrame;
+    UniImage1: TUniImage;
+    UniImageList1: TUniImageList;
+    UniImageLogoMarca: TUniImage;
     procedure UniBitBtnConfereClick(Sender: TObject);
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
@@ -247,12 +248,24 @@ type
     procedure UniBitBtn2Click(Sender: TObject);
     procedure UniFileUploadImagemCompleted(Sender: TObject;
       AStream: TFileStream);
+    procedure rocarSenha1Click(Sender: TObject);
+    procedure Informaes1Click(Sender: TObject);
+    procedure Sair1Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure ConselhoDi1Click(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure FaltaDisciplinar1Click(Sender: TObject);
+    procedure Disciplina2Click(Sender: TObject);
+    procedure PSICOSSOCIAL1Click(Sender: TObject);
+    procedure UniFormCreate(Sender: TObject);
+    procedure UniBitBtn5Click(Sender: TObject);
   private
     FNomeImagemUpload: String;
     FNomeCampoUpload: String;
     FDsUploadImagem: TDataSource;
-    procedure MostraGrafico;
-    procedure MostraAgenda;
+    FTempoParaFechar: integer;
+    FJaAvisadoFechamento: Boolean;
+    FUltimoAvisoFechamento: Boolean;
     { Private declarations }
   public
     property NomeImagemUpload: string read FNomeImagemUpload
@@ -261,6 +274,8 @@ type
       write FNomeCampoUpload;
     property DsUploadImagem: TDataSource read FDsUploadImagem
       write FDsUploadImagem;
+    procedure MostraGrafico;
+    procedure MostraAgenda;
     { Public declarations }
   end;
 
@@ -275,8 +290,9 @@ uses
   MainModule,
   uniGUIApplication,
   DmPrincipal,
-  Confere,
-  MenuRelatorio, ServerModule, Interno, EntradaVisitante, Lib;
+  Confere, ServerModule, Interno, EntradaVisitante, Lib, AlterarSenha,
+  Sobre, Disciplina, ConselhoDisciplinar, Psicossocial, MenuRelatorios,
+  CadastroFaltasDisciplinares, humanejs, ConsultaInterno;
 
 function MainForm: TMainForm;
 begin
@@ -371,6 +387,15 @@ begin
 
 end;
 
+procedure TMainForm.UniFormCreate(Sender: TObject);
+begin
+
+  FTempoParaFechar := 60;
+  FJaAvisadoFechamento := False;
+  FUltimoAvisoFechamento := False;
+
+end;
+
 procedure TMainForm.UniFormShow(Sender: TObject);
 var
   i: integer;
@@ -378,11 +403,10 @@ begin
 
   UniPageControlPrincipal.ActivePageIndex := 0;
 
-  UniURLFrame1.URL := 'http://www.agepen.ms.gov.br/recursos/61814_animação.swf';
-
-  UniURLFrame1.Refresh;
-  UniURLFrame1.Repaint;
-  UniURLFrame1.Update;
+  // UniURLFrame1.URL := 'http://www.agepen.ms.gov.br/recursos/61814_animação.swf';
+  // UniURLFrame1.Refresh;
+  // UniURLFrame1.Repaint;
+  // UniURLFrame1.Update;
 
   if FileExists(UniServerModule.StartPath + 'logo\logo_panel1.jpg') then
     UniImage1.Picture.LoadFromFile(UniServerModule.StartPath +
@@ -414,6 +438,48 @@ end;
 procedure TMainForm.UniTimer1Timer(Sender: TObject);
 begin
   EditHora.Text := FormatDateTime('dd/mm/yyyy  -  hh:mm:ss', now);
+  if FileExists('atualizar.txt') then
+  begin
+    if FTempoParaFechar <= 0 then
+    begin
+      MainForm.Close;
+      UniMainModule.Terminate;
+    end;
+
+    if FTempoParaFechar > 10 then
+    begin
+      if not FJaAvisadoFechamento then
+      begin
+        FJaAvisadoFechamento := true;
+        humane.clickToClose(true);
+        humane.timeout(49000);
+        humane.log
+          ('<b><font Color=red>Atualização em Andamento!</font></b><br>O sistema fechará automáticamente em '
+          + inttostr(FTempoParaFechar) +
+          ' segundos! Acesse novamente em 01 minuto...');
+        // ShowMessage
+        // ('Atualização em andamento, o sistema fechará automáticamente em ' +
+        // inttostr(FTempoParaFechar) +
+        // ' segundos! Acesse novamente em 01 minuto...');
+      end;
+    end
+    else
+    begin
+      if not FUltimoAvisoFechamento then
+      begin
+        FUltimoAvisoFechamento := true;
+        humane.timeout(10000);
+        humane.error
+          ('<b><font Color=navy>Atualização em Andamento!</font></b><br>O sistema fechará automáticamente em '
+          + inttostr(FTempoParaFechar) +
+          ' segundos! Acesse novamente em 01 minuto...');
+      end;
+    end;
+
+    FTempoParaFechar := FTempoParaFechar - 1;
+
+  end;
+
 end;
 
 procedure TMainForm.UniBitBtn2Click(Sender: TObject);
@@ -423,7 +489,14 @@ end;
 
 procedure TMainForm.UniBitBtn4Click(Sender: TObject);
 begin
-  FrmMenuRelatorio.ShowModal();
+  // FrmMenuRelatorio.ShowModal();
+  FrmMenuRelatorios.ShowModal();
+end;
+
+procedure TMainForm.UniBitBtn5Click(Sender: TObject);
+begin
+  //
+  FrmConsultaInterno.ShowModal();
 end;
 
 procedure TMainForm.MostraGrafico();
@@ -438,8 +511,14 @@ begin
 
     FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
-    FCaminhoFR3 := UniServerModule.StartPath +
-      'SYSTEM\relatorio_tela.fr3';
+    FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\relatorio_tela.fr3';
+
+    if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
+      inttostr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3') then
+    begin
+      FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
+        inttostr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3';
+    end;
 
     dm.frxReport1.ShowProgress := False;
     dm.frxReport1.StoreInDFM := False;
@@ -485,9 +564,56 @@ begin
 
 end;
 
+procedure TMainForm.PSICOSSOCIAL1Click(Sender: TObject);
+begin
+  FrmPsicossocial.ShowModal();
+end;
+
+procedure TMainForm.rocarSenha1Click(Sender: TObject);
+begin
+  FrmAlterarSenha.ShowModal();
+end;
+
+procedure TMainForm.Sair1Click(Sender: TObject);
+begin
+  MainForm.Close;
+  UniMainModule.Terminate;
+end;
+
+procedure TMainForm.BitBtn1Click(Sender: TObject);
+begin
+  FrmDisciplina.ShowModal();
+end;
+
+procedure TMainForm.BitBtn4Click(Sender: TObject);
+begin
+  FrmPsicossocial.ShowModal();
+end;
+
 procedure TMainForm.CadastrodeInternos2Click(Sender: TObject);
 begin
   FrmInterno.ShowModal();
+end;
+
+procedure TMainForm.ConselhoDi1Click(Sender: TObject);
+begin
+  FrmConselhoDisciplinar.ShowModal;
+end;
+
+procedure TMainForm.Disciplina2Click(Sender: TObject);
+begin
+  //
+  FrmDisciplina.ShowModal();
+end;
+
+procedure TMainForm.FaltaDisciplinar1Click(Sender: TObject);
+begin
+  FrmCadastroFaltasDisciplinares.ShowModal();
+end;
+
+procedure TMainForm.Informaes1Click(Sender: TObject);
+begin
+  FrmSobre.ShowModal();
 end;
 
 procedure TMainForm.MostraAgenda();
@@ -502,8 +628,14 @@ begin
 
     FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
-    FCaminhoFR3 := UniServerModule.StartPath +
-      'SYSTEM\relatorio_tela2.fr3';
+    FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\relatorio_tela2.fr3';
+
+    if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
+      inttostr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3') then
+    begin
+      FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
+        inttostr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3';
+    end;
 
     dm.frxReport1.ShowProgress := False;
     dm.frxReport1.StoreInDFM := False;

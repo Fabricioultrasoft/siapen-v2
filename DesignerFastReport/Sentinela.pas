@@ -72,7 +72,6 @@ type
     frxDesigner1: TfrxDesigner;
     frxIBXComponents1: TfrxIBXComponents;
     frxTIFFExport1: TfrxTIFFExport;
-    frxDBDataset1: TfrxDBDataset;
     frxODTExport1: TfrxODTExport;
     frxODSExport1: TfrxODSExport;
     frxPDFExport1: TfrxPDFExport;

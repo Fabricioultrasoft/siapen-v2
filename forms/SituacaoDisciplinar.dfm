@@ -19,7 +19,8 @@ object FrmSituacaoDisciplinar: TFrmSituacaoDisciplinar
     Items.Strings = (
       '(1) SANCIONADO'
       '(2) SEGURO'
-      '(3) OBSERVA'#199#195'O')
+      '(3) OBSERVA'#199#195'O'
+      '(4) ISOLAMENTO PREVENTIVO')
     Caption = 'Qual motivo do isolamento?'
     TabOrder = 0
   end
@@ -62,6 +63,7 @@ object FrmSituacaoDisciplinar: TFrmSituacaoDisciplinar
     Top = 23
     Width = 113
     Height = 22
+    DateTime = 41800.000000000000000000
     DateFormat = 'dd/MM/yyyy'
     TimeFormat = 'HH:mm:ss'
     TabOrder = 2

@@ -1,25 +1,28 @@
 object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
   Left = 0
   Top = 0
-  ClientHeight = 490
-  ClientWidth = 777
+  ClientHeight = 461
+  ClientWidth = 771
   Caption = 'Visualizar Relat'#243'rios'
   OnShow = UniFormShow
   Color = clBtnFace
-  BorderStyle = bsNone
+  BorderStyle = bsSingle
+  WindowState = wsMaximized
   OldCreateOrder = False
+  OnClose = UniFormClose
   MonitoredKeys.Keys = <>
   ScreenMask.Enabled = True
   ScreenMask.WaitData = True
   ScreenMask.Message = 'Por favor aguarde... preparando registros...'
   ScreenMask.Target = Owner
+  OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object UniURLFrame1: TUniURLFrame
     Left = 0
     Top = 37
-    Width = 777
-    Height = 453
+    Width = 771
+    Height = 424
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
@@ -30,7 +33,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     AlignWithMargins = True
     Left = 3
     Top = 3
-    Width = 771
+    Width = 765
     Height = 31
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
@@ -38,7 +41,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     object UniImage1: TUniImage
       Left = 1
       Top = 1
-      Width = 769
+      Width = 763
       Height = 29
       Stretch = True
       Picture.Data = {
@@ -96,7 +99,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
         FEFC2685FCFB2181F9FA1F7FF7FA1E7CF4FA1C7BF1FA1D79EFFA1A76ECFA1974
         E8FA1872E4FA1670E1FA156DDDFA136BDBFB1169D4FC0E68CA6A}
       Caption = 'Fechar'
-      TabOrder = 3
+      TabOrder = 2
       OnClick = UniBitBtn1Click
     end
     object LabelTitulo: TUniLabel

@@ -25,12 +25,25 @@ uses
   UniEditFormat in 'lib\UniEditFormat.pas',
   ModeloCadastro in 'templete\ModeloCadastro.pas' {FrmModeloCadastro: TUniForm},
   Confere in 'forms\Confere.pas' {FrmConfere: TUniForm},
-  MenuRelatorio in 'templete\MenuRelatorio.pas' {FrmMenuRelatorio: TUniForm},
+  MenuRelatorios in 'templete\MenuRelatorios.pas' {FrmMenuRelatorios: TUniForm},
   SituacaoDisciplinar in 'forms\SituacaoDisciplinar.pas' {FrmSituacaoDisciplinar: TUniForm},
   Interno in 'forms\Interno.pas' {FrmInterno: TUniForm},
   EntradaVisitante in 'forms\EntradaVisitante.pas' {FrmEntradaVisitante: TUniForm},
   Aguarde in 'templete\Aguarde.pas' {FrmAguarde: TUniForm},
-  Consulta in 'templete\Consulta.pas' {FrmConsulta: TUniForm};
+  Consulta in 'templete\Consulta.pas' {FrmConsulta: TUniForm},
+  AlterarSenha in 'templete\AlterarSenha.pas' {FrmAlterarSenha: TUniForm},
+  Sobre in 'templete\Sobre.pas' {FrmSobre: TUniForm},
+  Disciplina in 'forms\Disciplina.pas' {FrmDisciplina: TUniForm},
+  VincFaltaDisiciplinar in 'forms\VincFaltaDisiciplinar.pas' {FrmVincFaltaDisiciplinar: TUniForm},
+  ConselhoDisciplinar in 'forms\ConselhoDisciplinar.pas' {FrmConselhoDisciplinar: TUniForm},
+  Psicossocial in 'forms\Psicossocial.pas' {FrmPsicossocial: TUniForm},
+  PresencaLocal in 'forms\PresencaLocal.pas' {FrmPresencaLocal: TUniForm},
+  PresencaLocalRegistro in 'forms\PresencaLocalRegistro.pas' {FrmPresencaLocalRegistro: TUniForm},
+  CadastroFaltasDisciplinares in 'forms\CadastroFaltasDisciplinares.pas' {FrmCadastroFaltasDisciplinares: TUniForm},
+  TipoProcesso in 'forms\TipoProcesso.pas' {FrmTipoProcesso: TUniForm},
+  FiltroPeriodoServidor in 'templete\FiltroPeriodoServidor.pas' {frmFiltroPeriodoServidor: TUniForm},
+  FiltroPeriodo in 'templete\FiltroPeriodo.pas' {FrmFiltroPeriodo: TUniForm},
+  ConsultaInterno in 'forms\ConsultaInterno.pas' {FrmConsultaInterno: TUniForm};
 
 {$R *.res}
 

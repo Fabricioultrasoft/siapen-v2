@@ -712,7 +712,7 @@ object UniServerModule: TUniServerModule
     0000000000000000000000000000000000000000000000000000000000000000
     00000000000000000000000000000000000000000000}
   FaviconOptions = [foVisible, foLocalCache]
-  AjaxTimeout = 60000
+  AjaxTimeout = 120000
   DefaultImageFormat = cfJpeg
   UseGlobalImageCache = True
   SuppressErrors = []
@@ -949,6 +949,10 @@ object UniServerModule: TUniServerModule
   ServerMessages.TerminateMessage = 'Web sess'#227'o encerrada.'
   ExtLocale = 'pt_BR'
   Compression.MinTextSize = 512
+  ServerLimits.MaxSessions = 10000
+  ServerLimits.MaxRequests = 1000
+  ServerLimits.MaxConnections = 10000
+  ServerLimits.MaxGDIObjects = 100000
   SSL.SSLOptions.RootCertFile = 'root.pem'
   SSL.SSLOptions.CertFile = 'cert.pem'
   SSL.SSLOptions.KeyFile = 'key.pem'

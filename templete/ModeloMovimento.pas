@@ -415,8 +415,8 @@ begin
 
     ItenRecord := nil;
 
-    if not DBGridConsulta.DataSource.DataSet.IsEmpty then
-      ItenRecord := DBGridConsulta.DataSource.DataSet.GetBookmark;
+//    if not DBGridConsulta.DataSource.DataSet.IsEmpty then
+//      ItenRecord := DBGridConsulta.DataSource.DataSet.GetBookmark;
 
     if PageControlModeloCadastro.CanFocus then
       PageControlModeloCadastro.SetFocus;
@@ -499,7 +499,7 @@ begin
       Cancelar.Enabled := false;
 
       DBGridConsulta.DataSource.DataSet.Close;
-      DBGridConsulta.DataSource.DataSet.Open;
+//      DBGridConsulta.DataSource.DataSet.Open;
       PageControlCadastro.ActivePageIndex := 0;
       ShowMessage('Registro Salvo com Sucesso!');
       PageControlModeloCadastro.ActivePageIndex := 1;
@@ -515,7 +515,7 @@ begin
       end;
 
     end;
-
+{
     if assigned(ItenRecord) then
     begin
       try
@@ -525,6 +525,7 @@ begin
         DBGridConsulta.DataSource.DataSet.FreeBookmark(ItenRecord);
       end;
     end;
+}
   end;
 end;
 

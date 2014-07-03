@@ -48,7 +48,7 @@ object FrmConsulta: TFrmConsulta
       OnKeyDown = EditLocalizarKeyDown
     end
     object UniBitBtnConfirma: TUniBitBtn
-      Left = 507
+      Left = 488
       Top = 37
       Width = 81
       Height = 25
@@ -82,7 +82,7 @@ object FrmConsulta: TFrmConsulta
       OnClick = UniBitBtnConfirmaClick
     end
     object UniBtnFiltrar: TUniBitBtn
-      Left = 420
+      Left = 401
       Top = 37
       Width = 81
       Height = 25

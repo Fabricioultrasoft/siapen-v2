@@ -49,6 +49,9 @@ begin
   if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 2 then
     var_disciplinar := '(3) OBSERVAÇÃO';
 
+  if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 3 then
+    var_disciplinar := '(4) ISOLAMENTO PREVENTIVO';
+
   var_data_disciplinar := UniDateTimePicker1.DateTime;
 
 end;

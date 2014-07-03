@@ -113,6 +113,7 @@ type
     function IniciaTransCadastro: Boolean;
     function ReeiniciaTransCadastro: Boolean;
   private
+    { Private declarations }
     FDIRETO: Boolean;
     FTD: TTransactionDesc; // Para os Lançamentos .
     CompLookupComboBox: array of TUniDBLookupComboBox;
@@ -120,8 +121,13 @@ type
     CompClientDataSet: array of TClientDataSet;
     FConfirmarSelecao: Boolean;
     FTelaSelecao: String;
-    { Private declarations }
+    FCOLUNA: Integer;
+    FPreDescricao: string;
+    FCampoWhereSql: string;
   public
+    property Coluna: Integer read FCOLUNA write FCOLUNA;
+    property PreDescricao: String read FPreDescricao write FPreDescricao;
+    property CampoWhereSql: String read FCampoWhereSql write FCampoWhereSql;
     property ConfirmarSelecao: Boolean read FConfirmarSelecao
       write FConfirmarSelecao;
     property TelaSelecao: String read FTelaSelecao write FTelaSelecao;
@@ -234,7 +240,7 @@ begin
   StatusBar1.Panels[1].Text := 'EXCLUINDO';
 
   MessageDlg('Excluir este registro?', mtWarning, mbYesNo,
-    procedure(Result: integer)
+    procedure(Result: Integer)
     begin
       if Result = mrYes then
       begin
@@ -318,7 +324,7 @@ end;
 
 procedure TFrmModeloCadastro.CancelarClick(Sender: TObject);
 var
-  iComp: integer;
+  iComp: Integer;
 begin
   TabSheetConsulta.Enabled := true;
 
@@ -407,7 +413,7 @@ end;
 
 procedure TFrmModeloCadastro.SalvarClick(Sender: TObject);
 var
-  erro_transacao, iComp: integer;
+  erro_transacao, iComp: Integer;
   ItenRecord: TBookmark;
   sNome, sMengTeste: String;
 begin
@@ -490,7 +496,7 @@ begin
       ShowMessage('<b><font Color=red>ATENÇÃO !!!</font></b><br>' +
         'Erro na transação, não salvou.');
       StatusBar1.Panels[1].Text := '...';
-      Exit;
+      exit;
     end;
 
     StatusBar1.Panels[1].Text := '...' + sMengTeste;
@@ -535,44 +541,75 @@ begin
 end;
 
 procedure TFrmModeloCadastro.UniBtnFiltrarClick(Sender: TObject);
+var
+  sSql, sWhere: String;
 begin
-  if EditLocalizar.Text <> '' then
+  sSql := SqlCadastro.SQL.Text;
+  if FCampoWhereSql = '' then
   begin
-    if DBGridConsulta.DataSource.DataSet.active then
+    if EditLocalizar.Text <> '' then
     begin
-
-      if DBGridConsulta.Columns.Items[0].Field.FieldKind in [fkdata] then
+      if DBGridConsulta.DataSource.DataSet.active then
       begin
 
-        if (DBGridConsulta.Columns.Items[0].Field.DataType in [ftSmallint,
-          ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
+        if DBGridConsulta.Columns.Items[FCOLUNA].Field.FieldKind in [fkdata]
+        then
         begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
-            DBGridConsulta.Columns.Items[0].FieldName + ' = ' +
-            EditLocalizar.Text;
-        end
-        else
-        begin
-          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
-            DBGridConsulta.Columns.Items[0].FieldName + ' LIKE ' +
-            QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+
+          if (DBGridConsulta.Columns.Items[FCOLUNA].Field.DataType
+            in [ftSmallint, ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd])
+          then
+          begin
+            TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+              DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' = ' +
+              EditLocalizar.Text;
+          end
+          else
+          begin
+            TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter :=
+              DBGridConsulta.Columns.Items[FCOLUNA].FieldName + ' LIKE ' +
+              QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+          end;
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
+          TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := true;
         end;
-
-        TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
-        TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := true;
-
       end;
-
+    end
+    else
+    begin
+      TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
     end;
   end
   else
-    TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
+  begin
+
+    if (DBGridConsulta.Columns.Items[FCOLUNA].Field.DataType in [ftSmallint,
+      ftInteger, ftWord, ftFloat, ftCurrency, ftFMTBcd]) then
+    begin
+      sWhere := FCampoWhereSql + ' = ' + EditLocalizar.Text;
+    end
+    else
+    begin
+      sWhere := FCampoWhereSql + ' LIKE ' +
+        QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
+    end;
+
+    AddWhere(SqlCadastro, sWhere);
+    TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
+    TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
+    SqlCadastro.SQL.Text := sSql;
+
+  end;
 
 end;
 
 procedure TFrmModeloCadastro.UniFormClose(Sender: TObject;
 var Action: TCloseAction);
 begin
+  FCOLUNA := 1;
+  FPreDescricao := '';
+  FCampoWhereSql := '';
+
   Cancelar.OnClick(nil);
 
   Self.DsCadastro.DataSet.Close;
@@ -582,7 +619,7 @@ end;
 
 procedure TFrmModeloCadastro.SQLDataSetPadraoAfterOpen(DataSet: TDataSet);
 var
-  lIdx: integer;
+  lIdx: Integer;
   JaTem: Boolean;
 begin
   JaTem := false;
@@ -601,8 +638,11 @@ end;
 
 procedure TFrmModeloCadastro.UniFormCreate(Sender: TObject);
 var
-  iComp: integer;
+  iComp: Integer;
 begin
+  FCOLUNA := 1;
+  FPreDescricao := '';
+  FCampoWhereSql := '';
 
   // PageControlCadastro.ActivePageIndex := 0;
   PanelCadastro.Enabled := false;
@@ -661,7 +701,7 @@ begin
   if Key = VK_F10 then
   begin
     Self.MessageDlg('Confirma salvar?', mtConfirmation, mbYesNoCancel, (
-      procedure(Result: integer)
+      procedure(Result: Integer)
       begin
         if Result = mrYes then
           Salvar.OnClick(nil);
@@ -672,6 +712,9 @@ end;
 
 procedure TFrmModeloCadastro.UniFormShow(Sender: TObject);
 begin
+  if FileExists(UniServerModule.StartPath + 'logo\logo_fundo.jpg') then
+    UniImageLogoMarca.Picture.LoadFromFile(UniServerModule.StartPath +
+      'logo\logo_fundo.jpg');
 
   if Dm.url_imagem_empresa <> '' then
     UniImageLogoMarca.Url := Dm.url_imagem_empresa;
@@ -687,6 +730,7 @@ begin
     EditLocalizar.SetFocus;
 
   PanelTituloModeloCadastro.caption := Self.caption;
+  LabelTitulo.caption := Self.caption;
 
 end;
 
