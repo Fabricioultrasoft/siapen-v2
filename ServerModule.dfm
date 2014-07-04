@@ -1,6 +1,6 @@
 object UniServerModule: TUniServerModule
   OldCreateOrder = False
-  AutoCoInitialize = False
+  AutoCoInitialize = True
   FilesFolder = 'files\'
   TempFolder = 'temp\'
   SessionTimeout = 86400000

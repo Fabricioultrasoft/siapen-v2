@@ -54,7 +54,7 @@ uses
   Uni,
   InterBaseUniProvider,
   MemDS,
-  frxChart, uniFileUpload;
+  frxChart, uniFileUpload, PDFSplitMerge_TLB;
 
 type
   TDm = class(TUniGUIMainModule)
@@ -421,7 +421,10 @@ type
     ImageListCorel1: TUniImageList;
     ImageListCorel2: TUniImageList;
     procedure UniGUIMainModuleCreate(Sender: TObject);
+    procedure UniGUIMainModuleDestroy(Sender: TObject);
   private
+    FMeuPDF :TCPDFSplitMergeObj;
+
     FTD: TTransactionDesc; // Para os Lançamentos .
     FLiberado: boolean;
     FMaquinaDesenvolvimento: boolean;
@@ -531,6 +534,7 @@ type
     FGLOBAL_ID_FALTA_DISCIPLINAR: String;
     FGLOBAL_IDFUNCIONARIO_FILTRO: Integer;
   public
+    property MeuPDF :TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
     property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
     property GLOBAL_ID_FALTA_DISCIPLINAR: String read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
     property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL write FGLOBAL_DATA_INICIAL;
@@ -840,7 +844,13 @@ end;
 
 procedure TDm.UniGUIMainModuleCreate(Sender: TObject);
 begin
+  FMeuPDF := TCPDFSplitMergeObj.Create(dm);
   ConectaSiapen;
+end;
+
+procedure TDm.UniGUIMainModuleDestroy(Sender: TObject);
+begin
+  Dm.MeuPDF.Free;
 end;
 
 function TDm.IniciaTransGeral: boolean;

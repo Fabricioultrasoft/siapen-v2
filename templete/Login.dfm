@@ -2,8 +2,9 @@ object FrmLogin: TFrmLogin
   Left = 0
   Top = 0
   ClientHeight = 248
-  ClientWidth = 685
+  ClientWidth = 730
   Caption = 'Informe o login e a senha'
+  OnShow = UniLoginFormShow
   Color = clBtnFace
   OldCreateOrder = False
   NavigateKeys.Next.Key = 13
@@ -16,7 +17,7 @@ object FrmLogin: TFrmLogin
     AlignWithMargins = True
     Left = 3
     Top = 232
-    Width = 679
+    Width = 724
     Height = 13
     Alignment = taCenter
     AutoSize = False
@@ -27,11 +28,12 @@ object FrmLogin: TFrmLogin
     Font.Name = 'Lucida Console'
     Font.Style = [fsBold]
     TabOrder = 3
+    ExplicitWidth = 679
   end
   object UniGroupBox1: TUniGroupBox
-    Left = 3
+    Left = 5
     Top = 8
-    Width = 676
+    Width = 722
     Height = 79
     Caption = 'AGEPEN'
     TabOrder = 0
@@ -44,15 +46,16 @@ object FrmLogin: TFrmLogin
     object PanelTituloModeloCadastro: TUniPanel
       Left = 2
       Top = 24
-      Width = 672
+      Width = 718
       Height = 47
       Align = alTop
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
+      ExplicitWidth = 672
       object UniImage2: TUniImage
         Left = 1
         Top = 1
-        Width = 670
+        Width = 716
         Height = 45
         Stretch = True
         Picture.Data = {
@@ -68,11 +71,12 @@ object FrmLogin: TFrmLogin
           0000FFDA000C03010002110311003F00DFD443700A9CB9FB720003FFD9}
         Align = alClient
         Anchors = [akLeft, akTop, akRight, akBottom]
+        ExplicitWidth = 670
       end
       object LabelTitulo: TUniLabel
-        Left = 85
+        Left = 71
         Top = 11
-        Width = 577
+        Width = 591
         Height = 23
         AutoSize = False
         Caption = 'AG'#202'NCIA ESTADUAL DE ADMINISTRA'#199#195'O DO SISTEMA PENITENCI'#193'RIO'
@@ -201,9 +205,9 @@ object FrmLogin: TFrmLogin
     end
   end
   object UniGroupBox3: TUniGroupBox
-    Left = 157
+    Left = 159
     Top = 93
-    Width = 520
+    Width = 566
     Height = 125
     Caption = 'Estabelecimento Penal'
     TabOrder = 2
@@ -339,9 +343,9 @@ object FrmLogin: TFrmLogin
     end
   end
   object UniDBEdit1: TUniDBEdit
-    Left = 176
+    Left = 178
     Top = 112
-    Width = 491
+    Width = 537
     Height = 22
     DataField = 'NOME_UP'
     DataSource = Dm.DsUP
@@ -350,13 +354,16 @@ object FrmLogin: TFrmLogin
     ReadOnly = True
   end
   object UniTimer1: TUniTimer
+    OnTimer = UniTimer1Timer
+    Interval = 10000
+    Enabled = False
     ClientEvent.Strings = (
       'function(sender)'
       '{'
       '   '
       '}')
-    Left = 256
-    Top = 216
+    Left = 200
+    Top = 88
   end
   object Sqlservidor: TSQLQuery
     MaxBlobSize = -1

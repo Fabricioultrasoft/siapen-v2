@@ -43,7 +43,8 @@ uses
   TipoProcesso in 'forms\TipoProcesso.pas' {FrmTipoProcesso: TUniForm},
   FiltroPeriodoServidor in 'templete\FiltroPeriodoServidor.pas' {frmFiltroPeriodoServidor: TUniForm},
   FiltroPeriodo in 'templete\FiltroPeriodo.pas' {FrmFiltroPeriodo: TUniForm},
-  ConsultaInterno in 'forms\ConsultaInterno.pas' {FrmConsultaInterno: TUniForm};
+  ConsultaInterno in 'forms\ConsultaInterno.pas' {FrmConsultaInterno: TUniForm},
+  DocumentosDigitalizados in 'forms\DocumentosDigitalizados.pas' {FrmDocumentosDigitalizados: TUniForm};
 
 {$R *.res}
 

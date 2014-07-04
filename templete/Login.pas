@@ -59,6 +59,8 @@ type
       Shift: TShiftState);
     procedure UniEdit2KeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure UniLoginFormShow(Sender: TObject);
+    procedure UniTimer1Timer(Sender: TObject);
   private
     { Private declarations }
   public
@@ -329,6 +331,27 @@ begin
 
   UniGroupBox1.Caption := dm.GLOBAL_LOCAL;
   LabelTitulo.Caption := dm.GLOBAL_NOME;
+
+end;
+
+procedure TFrmLogin.UniLoginFormShow(Sender: TObject);
+begin
+  if FileExists('atualizar.txt') then
+  begin
+    self.Hide;
+    humane.timeout(10000);
+    humane.log
+      ('<b><font Color=yellow>Atualização em Andamento!</font></b><br>Aguarde,'
+      + ' acesse novamente em 01 minuto...');
+    UniTimer1.enabled := true;
+  end;
+
+end;
+
+procedure TFrmLogin.UniTimer1Timer(Sender: TObject);
+begin
+    UniTimer1.enabled := false;
+    self.Close;
 
 end;
 

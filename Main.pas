@@ -239,6 +239,8 @@ type
     UniImage1: TUniImage;
     UniImageList1: TUniImageList;
     UniImageLogoMarca: TUniImage;
+    DocumentosDigitalizados1: TUniMenuItem;
+    UniFileUploadPdf: TUniFileUpload;
     procedure UniBitBtnConfereClick(Sender: TObject);
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
@@ -259,6 +261,7 @@ type
     procedure PSICOSSOCIAL1Click(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure UniBitBtn5Click(Sender: TObject);
+    procedure DocumentosDigitalizados1Click(Sender: TObject);
   private
     FNomeImagemUpload: String;
     FNomeCampoUpload: String;
@@ -292,7 +295,8 @@ uses
   DmPrincipal,
   Confere, ServerModule, Interno, EntradaVisitante, Lib, AlterarSenha,
   Sobre, Disciplina, ConselhoDisciplinar, Psicossocial, MenuRelatorios,
-  CadastroFaltasDisciplinares, humanejs, ConsultaInterno;
+  CadastroFaltasDisciplinares, humanejs, ConsultaInterno,
+  DocumentosDigitalizados;
 
 function MainForm: TMainForm;
 begin
@@ -454,7 +458,7 @@ begin
         humane.clickToClose(true);
         humane.timeout(49000);
         humane.log
-          ('<b><font Color=red>Atualização em Andamento!</font></b><br>O sistema fechará automáticamente em '
+          ('<b><font Color=yellow>Atualização em Andamento!</font></b><br>O sistema fechará automáticamente em '
           + inttostr(FTempoParaFechar) +
           ' segundos! Acesse novamente em 01 minuto...');
         // ShowMessage
@@ -604,6 +608,11 @@ procedure TMainForm.Disciplina2Click(Sender: TObject);
 begin
   //
   FrmDisciplina.ShowModal();
+end;
+
+procedure TMainForm.DocumentosDigitalizados1Click(Sender: TObject);
+begin
+FrmDocumentosDigitalizados.ShowModal();
 end;
 
 procedure TMainForm.FaltaDisciplinar1Click(Sender: TObject);

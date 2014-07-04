@@ -3327,7 +3327,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011D002200800010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011D0022008C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -4480,6 +4480,11 @@ object MainForm: TMainForm
         Caption = 'CTC'
         ImageIndex = 3
       end
+      object DocumentosDigitalizados1: TUniMenuItem
+        Caption = 'Documentos Digitalizados'
+        ImageIndex = 21
+        OnClick = DocumentosDigitalizados1Click
+      end
     end
     object Movimentao1: TUniMenuItem
       Caption = '&Movimenta'#231#227'o'
@@ -5018,7 +5023,7 @@ object MainForm: TMainForm
     Left = 232
     Top = 56
     Bitmap = {
-      494C01011A006400900020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011A0064009C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8720,5 +8725,20 @@ object MainForm: TMainForm
       FFFFFF00E0000007FFFFF001FA00001FFFFFFF00F000000FFFFFF001F800001F
       FFFFFFE1FE00007FFFFFFFFFFE01FFFF00000000000000000000000000000000
       000000000000}
+  end
+  object UniFileUploadPdf: TUniFileUpload
+    MaxAllowedSize = 0
+    Filter = '*.PDF'
+    Title = 'Enviar um arquivo em PDF'
+    Messages.Uploading = 'Enviando PDF...'
+    Messages.PleaseWait = 'Por favor confirme o PDF'
+    Messages.Cancel = 'Cancelar'
+    Messages.Processing = 'Processando...'
+    Messages.UploadError = 'Erro ao Enviar PDF...'
+    Messages.Upload = 'Enviar PDF'
+    Messages.NoFileError = 'Por favor selecione um arquivo PDF'
+    Messages.BrowseText = 'Selecionar'
+    Left = 400
+    Top = 8
   end
 end

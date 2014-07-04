@@ -68,20 +68,23 @@ uses Forms,
   zeSaveODS,
   zeSaveXLSX,
   zeSaveEXML,
-  Vcl.Imaging.jpeg;
+  Vcl.Imaging.jpeg,
+  ComObj, ActiveX;
 
 type
   TChars = set of Char;
 
-
-function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string; OldCaracter2: string = ''; NewCaracter2: string = ''; OldCaracter3: string = '';
-  NewCaracter3: string = ''): string;
+function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string;
+  OldCaracter2: string = ''; NewCaracter2: string = '';
+  OldCaracter3: string = ''; NewCaracter3: string = ''): string;
 function TrataExceptionErro(MsgErro: string): string;
 function Qs(sDescricao: string): string;
 function ApenasNumero(AValue: string): string;
-function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant): Variant;
+function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant)
+  : Variant;
 function ValidaCpfCnpj(Numero: string; Mensagem: Boolean = false): Boolean;
-function StrZero(const AValue: Variant; ALength: Integer; ANotEmpty: Boolean = false): string;
+function StrZero(const AValue: Variant; ALength: Integer;
+  ANotEmpty: Boolean = false): string;
 function UltimoDiaMes(Data: TDateTime): TDateTime;
 function VencimetoComDiaPadrao(dData: TDateTime; pDia: Integer): TDateTime;
 function VerificaDiasUteis(FormD: TUniForm; Data: TDateTime): TDateTime;
@@ -107,23 +110,30 @@ function Generator(sGenerator: string): Integer;
 procedure GravaIniValor(Arquivo, Sessao, Campo, Valor: string);
 function LerIniValor(Arquivo, Sessao, Campo, Valor: string): string;
 function TemPacelaPaga(sIdMovfinan: String): Boolean;
-function VerificaInternoExiste(sNomeInterno, sNomeMae: string): boolean;
-function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
-function VerificaRGIExiste(sRGI: string): boolean;
-function VerificaVisitaExiste(scpf: string): boolean;
-function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
-function JpgToBmp(cImageJpg: string; cWidth: integer = 205; cHeight: integer = 154): string; // Requer a Jpeg declarada na clausua uses da unit
-procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
+function VerificaInternoExiste(sNomeInterno, sNomeMae: string): Boolean;
+function ConsultaRapida(Tabela, CampoRetorno, Where,
+  CampoSelect: string): Variant;
+function VerificaRGIExiste(sRGI: string): Boolean;
+function VerificaVisitaExiste(scpf: string): Boolean;
+function ConverterBmpParaJPeg(Arquivo: string;
+  taxa_conv: Integer = 100): string;
+function JpgToBmp(cImageJpg: string; cWidth: Integer = 205;
+  cHeight: Integer = 154): string;
+// Requer a Jpeg declarada na clausua uses da unit
+procedure AddWhere(Query: TSQLQuery; WhereClause: string;
+  StrAndOr: string = ' AND ');
 procedure ListarDiretorios(Folder: string; lista: TStrings);
 function LimpaChar(sValor: string): string;
 function LimpaTexto(sString: string): string;
+function MeuGuidCreate: string;
 
 const
   QBtn1 = 1;
   QBtn2 = 2;
   QBtn3 = 3;
 
-  PortuguesLongMonthNames: Array [1 .. 12] of String = ('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+  PortuguesLongMonthNames: Array [1 .. 12] of String = ('Janeiro', 'Fevereiro',
+    'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
     'Novembro', 'Dezembro');
 
 Var
@@ -144,8 +154,9 @@ uses Main,
 
 { TLibVars }
 
-function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string; OldCaracter2: string = ''; NewCaracter2: string = ''; OldCaracter3: string = '';
-  NewCaracter3: string = ''): string;
+function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string;
+  OldCaracter2: string = ''; NewCaracter2: string = '';
+  OldCaracter3: string = ''; NewCaracter3: string = ''): string;
 begin
   Result := sString;
   Result := StringReplace(Result, OldCaracter1, NewCaracter1, [rfReplaceAll]);
@@ -160,16 +171,20 @@ begin
   Result := MsgErro;
   MsgErro := UpperCase(MsgErro);
   if Pos('MUST HAVE A VALUE', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'FIELD', 'O CAMPO', 'MUST HAVE A VALUE', 'PRECISA SER PREENCHIDO');
+    Result := SiapStringReplace(MsgErro, 'FIELD', 'O CAMPO',
+      'MUST HAVE A VALUE', 'PRECISA SER PREENCHIDO');
 
   if Pos('FIELD VALUE REQUIRED', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'FIELD', 'EXISTEM CAMPOS QUE ', 'VALUE REQUIRED', 'PRECISAM SER PREENCHIDOS');
+    Result := SiapStringReplace(MsgErro, 'FIELD', 'EXISTEM CAMPOS QUE ',
+      'VALUE REQUIRED', 'PRECISAM SER PREENCHIDOS');
 
   if Pos('CHANGED BY ANOTHER USER', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'RECORD NOT FOUND OR', '', 'CHANGED BY ANOTHER USER', 'O REGISTRO FOI ALTERADO POR OUTRO USUÁRIO');
+    Result := SiapStringReplace(MsgErro, 'RECORD NOT FOUND OR', '',
+      'CHANGED BY ANOTHER USER', 'O REGISTRO FOI ALTERADO POR OUTRO USUÁRIO');
 
   if Pos('VIOLATION OF FOREIGN KEY', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'VIOLATION OF FOREIGN KEY', 'VIOLAÇÃO DA CHAVE, EXISTE TABELA DEPENDENTE', 'ON TABLE', 'NA TABELA');
+    Result := SiapStringReplace(MsgErro, 'VIOLATION OF FOREIGN KEY',
+      'VIOLAÇÃO DA CHAVE, EXISTE TABELA DEPENDENTE', 'ON TABLE', 'NA TABELA');
 
 end;
 
@@ -188,7 +203,8 @@ begin
       Result := Result + AValue[I];
 end;
 
-function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant): Variant;
+function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant)
+  : Variant;
 begin
   if condicao then
     Result := Verdadeiro
@@ -213,15 +229,18 @@ begin
   Numero := ApenasNumero(Numero);
   // Caso o número não seja 11 (CPF) ou 14 (CNPJ), aborta
   case Length(Numero) of
-  11: CNPJ := false;
-  14: CNPJ := True;
-else
-begin
-  if Mensagem then
-    humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número do documento incompleto. </br>');
-  Result := false;
-  Exit;
-end;
+    11:
+      CNPJ := false;
+    14:
+      CNPJ := True;
+  else
+    begin
+      if Mensagem then
+        humane.error
+          ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número do documento incompleto. </br>');
+      Result := false;
+      Exit;
+    end;
 
   end;
   // Separa o número do digito
@@ -256,16 +275,19 @@ end;
   if (not CPFCNPJ) and Mensagem then
   begin
     if CNPJ then
-      humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número CNPJ inválido.</br>')
+      humane.error
+        ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número CNPJ inválido.</br>')
     else
-      humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Numero do CPF inválido.</br>')
+      humane.error
+        ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Numero do CPF inválido.</br>')
   end;
 
   Result := CPFCNPJ;
 
 end;
 
-function StrZero(const AValue: Variant; ALength: Integer; ANotEmpty: Boolean = false): string;
+function StrZero(const AValue: Variant; ALength: Integer;
+  ANotEmpty: Boolean = false): string;
 var
   strBase: string;
   int64Temp: Int64;
@@ -285,7 +307,8 @@ begin
       Result := AValue;
   end;
 
-  if (StrToInt64Def(Result, 0) = 0) and (Result <> '000') and (not ANotEmpty) then
+  if (StrToInt64Def(Result, 0) = 0) and (Result <> '000') and (not ANotEmpty)
+  then
     Result := EmptyStr;
 
 end;
@@ -384,16 +407,20 @@ begin
   end;
 
   CdsParcelas.First;
-  if (Valor_Digitado > Valor_Tot) or (Valor_Digitado < 0) or (Valor_Digitado = 0) or ((Soma_Atual >= Valor_Tot) and (not(Parc = 0))) then
+  if (Valor_Digitado > Valor_Tot) or (Valor_Digitado < 0) or
+    (Valor_Digitado = 0) or ((Soma_Atual >= Valor_Tot) and (not(Parc = 0))) then
   begin
-    humane.error('<b><font Color=red> ATENÇÃO !!!' + '</font></b><br>O valor digitado é inválido!');
+    humane.error('<b><font Color=red> ATENÇÃO !!!' +
+      '</font></b><br>O valor digitado é inválido!');
 
     CdsParcelas.First;
     while not CdsParcelas.Eof do
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('VALOR').AsFloat := CdsParcelas.FieldByName('VALOR').OldValue;
-      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR_ORIGINAL').OldValue;
+      CdsParcelas.FieldByName('VALOR').AsFloat :=
+        CdsParcelas.FieldByName('VALOR').OldValue;
+      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
+        CdsParcelas.FieldByName('VALOR_ORIGINAL').OldValue;
       CdsParcelas.Post;
       CdsParcelas.Next;
     end;
@@ -410,7 +437,8 @@ begin
     if CdsParcelas.FieldByName('NUM_PARCELA').AsInteger > Reg then
       CdsParcelas.FieldByName('VALOR').AsFloat := Round(Valor_Tot / Parc);
 
-    CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat;
+    CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
+      CdsParcelas.FieldByName('VALOR').AsFloat;
     CdsParcelas.Post;
     CdsParcelas.Next;
   end;
@@ -420,23 +448,31 @@ begin
   while not CdsParcelas.Eof do
   begin
     Soma_Atual := Round(Soma_Atual + CdsParcelas.FieldByName('VALOR').AsFloat);
-    if CdsParcelas.FieldByName('NUM_PARCELA').AsInteger = CdsParcelas.FieldByName('TOT_PARCELA').AsInteger then
+    if CdsParcelas.FieldByName('NUM_PARCELA')
+      .AsInteger = CdsParcelas.FieldByName('TOT_PARCELA').AsInteger then
     begin
       CdsParcelas.Edit;
       if Soma_Atual < ValorTotal then
-        CdsParcelas.FieldByName('VALOR').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat + (ValorTotal - Soma_Atual)
+        CdsParcelas.FieldByName('VALOR').AsFloat :=
+          CdsParcelas.FieldByName('VALOR').AsFloat + (ValorTotal - Soma_Atual)
       else if Soma_Atual > ValorTotal then
-        CdsParcelas.FieldByName('VALOR').AsFloat := (CdsParcelas.FieldByName('VALOR').AsFloat - (Soma_Atual - ValorTotal));
+        CdsParcelas.FieldByName('VALOR').AsFloat :=
+          (CdsParcelas.FieldByName('VALOR').AsFloat -
+          (Soma_Atual - ValorTotal));
 
-      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat;
+      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
+        CdsParcelas.FieldByName('VALOR').AsFloat;
       CdsParcelas.Post;
     end;
 
     if CdsParcelas.FieldByName('PRAZO').AsVariant <> Null then
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime := (CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime + CdsParcelas.FieldByName('PRAZO').AsVariant);
-      CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime := CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime;
+      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime :=
+        (CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime +
+        CdsParcelas.FieldByName('PRAZO').AsVariant);
+      CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime :=
+        CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime;
       CdsParcelas.FieldByName('IDCXBCO').AsVariant := Null;
       CdsParcelas.Post;
     end;
@@ -444,8 +480,11 @@ begin
     if CdsParcelas.FieldByName('DATAPRORROGACAO').AsVariant <> Null then
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('PRAZO').AsVariant := (CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime - CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime);
-      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime := CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime;
+      CdsParcelas.FieldByName('PRAZO').AsVariant :=
+        (CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime -
+        CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime);
+      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime :=
+        CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime;
       CdsParcelas.FieldByName('IDCXBCO').AsVariant := Null;
       CdsParcelas.Post;
     end;
@@ -559,10 +598,10 @@ begin
     DM.CdsClientesXML.Next;
     end;
     DM.CdsClientesXML.Close;
- }
+  }
   TextoXml.Add('</markers>');
 
-// TextoXml.SaveToFile(UniServerModule.StartPath + 'mapa\xml\clientes.xml');
+  // TextoXml.SaveToFile(UniServerModule.StartPath + 'mapa\xml\clientes.xml');
 
 end;
 
@@ -574,21 +613,30 @@ begin
 
   TextoXml := TStringList.Create;
   TextoXml.Clear;
-  TextoXml.Add('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+  TextoXml.Add
+    ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
   TextoXml.Add('<html xmlns="http://www.w3.org/1999/xhtml">');
   TextoXml.Add('<head>');
-  TextoXml.Add('	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">');
-  TextoXml.Add('    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">');
-  TextoXml.Add('    <meta name="description" content="Mapa - Alexandre Software - (67) 8401-2103">');
-  TextoXml.Add('    <meta name="author" content="Alexandre Albuquerque - (67) 8401-2103">');
-  TextoXml.Add('    <meta name="keywords" content="Alexandre Albuquerque, software, dados, administração">');
+  TextoXml.Add
+    ('	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">');
+  TextoXml.Add
+    ('    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">');
+  TextoXml.Add
+    ('    <meta name="description" content="Mapa - Alexandre Software - (67) 8401-2103">');
+  TextoXml.Add
+    ('    <meta name="author" content="Alexandre Albuquerque - (67) 8401-2103">');
+  TextoXml.Add
+    ('    <meta name="keywords" content="Alexandre Albuquerque, software, dados, administração">');
   TextoXml.Add('');
   TextoXml.Add('    <title>Mapa - Alexandre Software - (67) 8401-2103</title>');
-  TextoXml.Add('	<script src="http://maps.google.com/maps?file=api&amp;v=2.97&amp;' +
+  TextoXml.Add
+    ('	<script src="http://maps.google.com/maps?file=api&amp;v=2.97&amp;' +
     'key=ABQIAAAARu-WvQs4VW3yzGxnE_3NoRQDdZrPOy0F7QWzA6b-sYNJPVMCpBSee5Cya72jl8QYHk2RSZkHBHDnxQ" charset="UTF-8" type="text/javascript"></script>');
   TextoXml.Add('');
-  TextoXml.Add('    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>');
-  TextoXml.Add('	<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>');
+  TextoXml.Add
+    ('    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>');
+  TextoXml.Add
+    ('	<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>');
   TextoXml.Add('');
   TextoXml.Add('	<script type="text/javascript">');
   TextoXml.Add('	// coloque seus arquivos dentro do array');
@@ -600,12 +648,16 @@ begin
   TextoXml.Add('		"js/padrao.js"');
   TextoXml.Add('		);// Daqui pra frente é só copiar');
   TextoXml.Add('');
-  TextoXml.Add('	function TagLinkStyle() {var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +' +
-    ' "t=" + Math.floor(Math.random() * 5000);document.write("<link href=\"" + sFile + "\" rel=\"stylesheet\" type=\"text/css\" \/>");}');
-  TextoXml.Add('	function TagScriptJavascript() { var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +' +
-    ' "t=" + Math.floor(Math.random() * 5000); document.write("<script type=\"text\/javascript\" src=\"" + sFile + "\" language=\"javascript\"><\/script>"); }');
-  TextoXml.Add('	for (i = 0; i < aCSFiles.length; i++) TagLinkStyle(aCSFiles[i]);');
-  TextoXml.Add('	for (i = 0; i < aJSFiles.length; i++) TagScriptJavascript(aJSFiles[i]);');
+  TextoXml.Add
+    ('	function TagLinkStyle() {var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +'
+    + ' "t=" + Math.floor(Math.random() * 5000);document.write("<link href=\"" + sFile + "\" rel=\"stylesheet\" type=\"text/css\" \/>");}');
+  TextoXml.Add
+    ('	function TagScriptJavascript() { var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +'
+    + ' "t=" + Math.floor(Math.random() * 5000); document.write("<script type=\"text\/javascript\" src=\"" + sFile + "\" language=\"javascript\"><\/script>"); }');
+  TextoXml.Add
+    ('	for (i = 0; i < aCSFiles.length; i++) TagLinkStyle(aCSFiles[i]);');
+  TextoXml.Add
+    ('	for (i = 0; i < aJSFiles.length; i++) TagScriptJavascript(aJSFiles[i]);');
   TextoXml.Add('	</script>');
   TextoXml.Add('');
   TextoXml.Add('');
@@ -623,7 +675,8 @@ begin
   TextoXml.Add('	</form>');
   TextoXml.Add('	<script type="text/javascript">');
   TextoXml.Add('    <!--');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//VARIAVEIS GLOBAIS');
   TextoXml.Add('	var n=0;');
   TextoXml.Add('	var map;');
@@ -631,7 +684,8 @@ begin
   TextoXml.Add('	var geocoder = null;');
   TextoXml.Add('	var addressMarker;');
   TextoXml.Add('	var saida = "";');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//CRIACAO DO MAPA');
   TextoXml.Add('	map = new GMap2(document.getElementById("map"));');
   TextoXml.Add('	map.addControl(new GLargeMapControl());');
@@ -642,25 +696,34 @@ begin
   TextoXml.Add('	map.addControl(new GOverviewMapControl());');
   TextoXml.Add('	map.enableScrollWheelZoom();');
   TextoXml.Add('	geocoder = new GClientGeocoder();');
-  TextoXml.Add('	gdir = new GDirections(map, document.getElementById("resultado"));');
+  TextoXml.Add
+    ('	gdir = new GDirections(map, document.getElementById("resultado"));');
   TextoXml.Add('');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	/** CRIACAO DOS ICONES');
   TextoXml.Add('	 * Função: createIcon();');
-  TextoXml.Add('	 * Parâmetros: (Url da imagem do icone),(Url da sombra do icone),(Tipo do icone: 1-Icone customizado / 2-Icone padrao do google maps)');
+  TextoXml.Add
+    ('	 * Parâmetros: (Url da imagem do icone),(Url da sombra do icone),(Tipo do icone: 1-Icone customizado / 2-Icone padrao do google maps)');
   TextoXml.Add('	 */');
-  TextoXml.Add('	var icoClientes	= createIcon(''ico/marcador-clientes.ico'','',1);');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	var icoClientes	= createIcon(''ico/marcador-clientes.ico'','',1);');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//CRIACAO DOS GRUPOS markerGroups');
   TextoXml.Add('	var markericoClientes = new Array ();');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	/** CRIACAO DE XML NO GOOGLE MAPS');
   TextoXml.Add('	 * Função: createXMLGoogleMaps();');
-  TextoXml.Add('	 * Parâmetros: (Url do XML),(Título do balão do google maps),(Nome do Ícone),(Variáveis que deseja apresentar nas informações do ponto)');
+  TextoXml.Add
+    ('	 * Parâmetros: (Url do XML),(Título do balão do google maps),(Nome do Ícone),(Variáveis que deseja apresentar nas informações do ponto)');
   TextoXml.Add('	 */');
-  TextoXml.Add('	createXMLGoogleMaps("xml/clientes.xml","Dados do Cliente","icoClientes","Nome,Fantasia,Endereco,Bairro");');
+  TextoXml.Add
+    ('	createXMLGoogleMaps("xml/clientes.xml","Dados do Cliente","icoClientes","Nome,Fantasia,Endereco,Bairro");');
   TextoXml.Add('');
-  TextoXml.Add('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add
+    ('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('    </script>');
   TextoXml.Add('</body>');
   TextoXml.Add('</html>');
@@ -709,8 +772,11 @@ begin
   sVersao := IntToStr(C.BrowserVersion);
   sOSType := C.OSType;
 
-  DM.Conexao.ExecuteDirect('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) ' + ' values (0, ' + Qs(sLogin) + ', ' +
-    Qs(sSenha) + ', ''now'', ' + Qs(sIp) + ', ' + Qs('ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao + ' OSType:' + sOSType) + ')');
+  DM.Conexao.ExecuteDirect
+    ('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) '
+    + ' values (0, ' + Qs(sLogin) + ', ' + Qs(sSenha) + ', ''now'', ' + Qs(sIp)
+    + ', ' + Qs('ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao +
+    ' OSType:' + sOSType) + ')');
 
 end;
 
@@ -721,9 +787,11 @@ begin
 
   if DM.Conexao.Connected then
   BEGIN
-    DM.Conexao.ExecuteDirect('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) ' + ' values (0, ' +
-      Qs(Dm.GLOBAL_NOME_FUNCIONARIO_LOGADO) + ', ' + Qs('') + ', ''now'', ' + Qs(sIp) + ', ' + Qs('SAIDA - Browser:' + sBrowser + ' Versao:' + sVersao + ' OSType:'
-      + sOSType) + ')');
+    DM.Conexao.ExecuteDirect
+      ('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) '
+      + ' values (0, ' + Qs(DM.GLOBAL_NOME_FUNCIONARIO_LOGADO) + ', ' + Qs('') +
+      ', ''now'', ' + Qs(sIp) + ', ' + Qs('SAIDA - Browser:' + sBrowser +
+      ' Versao:' + sVersao + ' OSType:' + sOSType) + ')');
   END;
 
 end;
@@ -747,14 +815,18 @@ end;
 function TrocaCaracterEspecial(aTexto: string; aLimExt: Boolean): string;
 const
   // Lista de caracteres especiais
-  xCarEsp: array [1 .. 38] of String = ('á', 'à', 'ã', 'â', 'ä', 'Á', 'À', 'Ã', 'Â', 'Ä', 'é', 'è', 'É', 'È', 'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'ö', 'õ', 'ô', 'Ó',
-    'Ò', 'Ö', 'Õ', 'Ô', 'ú', 'ù', 'ü', 'Ú', 'Ù', 'Ü', 'ç', 'Ç', 'ñ', 'Ñ');
+  xCarEsp: array [1 .. 38] of String = ('á', 'à', 'ã', 'â', 'ä', 'Á', 'À', 'Ã',
+    'Â', 'Ä', 'é', 'è', 'É', 'È', 'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'ö', 'õ', 'ô',
+    'Ó', 'Ò', 'Ö', 'Õ', 'Ô', 'ú', 'ù', 'ü', 'Ú', 'Ù', 'Ü', 'ç', 'Ç', 'ñ', 'Ñ');
   // Lista de caracteres para troca
-  xCarTro: array [1 .. 38] of String = ('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A', 'A', 'e', 'e', 'E', 'E', 'i', 'i', 'I', 'I', 'o', 'o', 'o', 'o', 'o', 'O',
-    'O', 'O', 'O', 'O', 'u', 'u', 'u', 'u', 'u', 'u', 'c', 'C', 'n', 'N');
+  xCarTro: array [1 .. 38] of String = ('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A',
+    'A', 'A', 'e', 'e', 'E', 'E', 'i', 'i', 'I', 'I', 'o', 'o', 'o', 'o', 'o',
+    'O', 'O', 'O', 'O', 'O', 'u', 'u', 'u', 'u', 'u', 'u', 'c', 'C', 'n', 'N');
   // Lista de Caracteres Extras
-  xCarExt: array [1 .. 48] of string = ('<', '>', '!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']', '?', ';', ':', ',', '|',
-    '*', '"', '~', '^', '´', '`', '¨', 'æ', 'Æ', 'ø', '£', 'Ø', 'ƒ', 'ª', 'º', '¿', '®', '½', '¼', 'ß', 'µ', 'þ', 'ý', 'Ý');
+  xCarExt: array [1 .. 48] of string = ('<', '>', '!', '@', '#', '$', '%', '¨',
+    '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']', '?', ';', ':', ',',
+    '|', '*', '"', '~', '^', '´', '`', '¨', 'æ', 'Æ', 'ø', '£', 'Ø', 'ƒ', 'ª',
+    'º', '¿', '®', '½', '¼', 'ß', 'µ', 'þ', 'ý', 'Ý');
 var
   xTexto: string;
   I: Integer;
@@ -778,9 +850,11 @@ begin
   J := Count - 1;
   for K := 0 to Count - 1 do
   begin
-    if ((Points[K].Y <= Y) and (Y < Points[J].Y)) or ((Points[J].Y <= Y) and (Y < Points[K].Y)) then
+    if ((Points[K].Y <= Y) and (Y < Points[J].Y)) or
+      ((Points[J].Y <= Y) and (Y < Points[K].Y)) then
     begin
-      if (X < (Points[J].X - Points[K].X) * (Y - Points[K].Y) / (Points[J].Y - Points[K].Y) + Points[K].X) then
+      if (X < (Points[J].X - Points[K].X) * (Y - Points[K].Y) /
+        (Points[J].Y - Points[K].Y) + Points[K].X) then
         Result := not Result;
     end;
     J := K;
@@ -803,15 +877,15 @@ end;
 function FmtValorSql(Valor: Variant): string;
 var
   Vx, Vy: string;
-function FilterChars(const S: string; const ValidChars: TChars): string;
-var
-  I: Integer;
-begin
-  Result := '';
-  for I := 1 to Length(S) do
-    if S[I] in ValidChars then
-      Result := Result + S[I];
-end;
+  function FilterChars(const S: string; const ValidChars: TChars): string;
+  var
+    I: Integer;
+  begin
+    Result := '';
+    for I := 1 to Length(S) do
+      if S[I] in ValidChars then
+        Result := Result + S[I];
+  end;
 
 begin
   Vy := VarToStrDef(Valor, '0');
@@ -842,32 +916,32 @@ begin
       begin
 
         case pField.DataType of
-        ftString:
-        begin
-          strJSon := TJSONString.Create(pField.AsString);
-          ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
-        end;
-        ftInteger:
-        begin
-          intJSon := TJSONNumber.Create(pField.AsInteger);
-          ObjJSon.AddPair(LowerCase(pField.FieldName), intJSon);
-        end;
-        ftBoolean:
-        begin
-          TrueJSon := TJSONTrue.Create;
-          ObjJSon.AddPair(LowerCase(pField.FieldName), TrueJSon);
-        end;
-        ftFloat, ftBCD, ftCurrency:
-        begin
-          strJSon := TJSONString.Create(FmtValorSql(pField.AsString));
-          ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
-        end;
+          ftString:
+            begin
+              strJSon := TJSONString.Create(pField.AsString);
+              ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
+            end;
+          ftInteger:
+            begin
+              intJSon := TJSONNumber.Create(pField.AsInteger);
+              ObjJSon.AddPair(LowerCase(pField.FieldName), intJSon);
+            end;
+          ftBoolean:
+            begin
+              TrueJSon := TJSONTrue.Create;
+              ObjJSon.AddPair(LowerCase(pField.FieldName), TrueJSon);
+            end;
+          ftFloat, ftBCD, ftCurrency:
+            begin
+              strJSon := TJSONString.Create(FmtValorSql(pField.AsString));
+              ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
+            end;
 
-      else // casos gerais são tratados como string
-      begin
-        strJSon := TJSONString.Create(pField.AsString);
-        ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
-      end;
+        else // casos gerais são tratados como string
+          begin
+            strJSon := TJSONString.Create(pField.AsString);
+            ObjJSon.AddPair(LowerCase(pField.FieldName), strJSon);
+          end;
         end;
 
       end;
@@ -889,7 +963,8 @@ end;
 
 function MesExtenso(Mes: Word): string;
 const
-  meses: array [0 .. 11] of PChar = ('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
+  meses: array [0 .. 11] of PChar = ('Janeiro', 'Fevereiro', 'Março', 'Abril',
+    'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
     'Dezembro');
 begin
   Result := meses[Mes - 1];
@@ -939,7 +1014,8 @@ begin
 
     XMLSS.Styles[0].Font.Size := 8;
     XMLSS.Styles[0].Font.Name := 'Arial';
-    XMLSS.Styles[0].Alignment.Horizontal := ZHCenter; // This parameters are optional and some styles options too (line backcolor, text oriantation  etc).
+    XMLSS.Styles[0].Alignment.Horizontal := ZHCenter;
+    // This parameters are optional and some styles options too (line backcolor, text oriantation  etc).
     XMLSS.Styles[0].Alignment.Vertical := ZVCenter;
     XMLSS.Styles[0].Alignment.WrapText := True;
     XMLSS.Styles[0].Border[0].Weight := 2;
@@ -967,7 +1043,8 @@ begin
 
     // the count of rows and columns
     // ZEXMLSS must know how many contain rows and cols. You must set this properties before beginging exporting.
-    XMLSS.Sheets[0].RowCount := GridExport.DataSource.DataSet.RecordCount + 1; //
+    XMLSS.Sheets[0].RowCount := GridExport.DataSource.DataSet.RecordCount + 1;
+    //
     XMLSS.Sheets[0].ColCount := GridExport.Columns.Count + 1;
 
     TemTituloAgrupado := false;
@@ -989,27 +1066,32 @@ begin
       For XTitulo := 0 TO GridExport.Columns.Count - 1 do
       Begin
         XMLSS.Sheets[0].CELL[XTitulo, XLinha].CellStyle := 0;
-        XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo].GroupHeader;
+        XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns
+          [XTitulo].GroupHeader;
         if TituloAgrupadoAntes <> GridExport.Columns[XTitulo].GroupHeader then
         begin
           if ColunaAgrupadoInicial < (XTitulo - 1) then
-            XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha, XTitulo - 1, XLinha);
+            XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha,
+              XTitulo - 1, XLinha);
           ColunaAgrupadoInicial := XTitulo;
           TituloAgrupadoAntes := GridExport.Columns[XTitulo].GroupHeader;
         end;
       End;
       if ColunaAgrupadoInicial < (XTitulo - 1) then
-        XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha, XTitulo - 1, XLinha);
+        XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha,
+          XTitulo - 1, XLinha);
       Inc(XLinha); // row. First row contain field
     end;
 
     // All Field Names
     For XTitulo := 0 TO GridExport.Columns.Count - 1 do
     Begin
-      XMLSS.Sheets[0].Columns[XTitulo].Width := GridExport.Columns[XTitulo].Width;
+      XMLSS.Sheets[0].Columns[XTitulo].Width := GridExport.Columns
+        [XTitulo].Width;
       XMLSS.Sheets[0].Columns[XTitulo].AutoFitWidth := True;
       XMLSS.Sheets[0].CELL[XTitulo, XLinha].CellStyle := 0;
-      XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo].Title.Caption;
+      XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo]
+        .Title.Caption;
     End;
 
     //
@@ -1023,7 +1105,8 @@ begin
       For XColuna := 0 TO GridExport.Columns.Count - 1 do
       Begin
 
-        if (GridExport.Columns[XColuna].Field.DataType in [ftFloat, ftCurrency]) then
+        if (GridExport.Columns[XColuna].Field.DataType in [ftFloat, ftCurrency])
+        then
         begin
 
           if TFloatField(GridExport.Columns[XColuna].Field).Currency then
@@ -1032,13 +1115,15 @@ begin
             XMLSS.Sheets[0].CELL[XColuna, XLinha].CellStyle := 1;
 
           XMLSS.Sheets[0].CELL[XColuna, XLinha].CellType := ZENumber;
-          XMLSS.Sheets[0].CELL[XColuna, XLinha].AsDouble := GridExport.Columns[XColuna].Field.AsFloat;
+          XMLSS.Sheets[0].CELL[XColuna, XLinha].AsDouble :=
+            GridExport.Columns[XColuna].Field.AsFloat;
 
         end
         else
         begin
           XMLSS.Sheets[0].CELL[XColuna, XLinha].CellStyle := 1;
-          XMLSS.Sheets[0].CELL[XColuna, XLinha].Data := GridExport.Columns[XColuna].Field.AsString;
+          XMLSS.Sheets[0].CELL[XColuna, XLinha].Data := GridExport.Columns
+            [XColuna].Field.AsString;
         end;
 
       End;
@@ -1058,7 +1143,8 @@ end;
 function Generator(sGenerator: string): Integer;
 begin
 
-  DM.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id(' + sGenerator + ',1) as id from rdb$database';
+  DM.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id(' + sGenerator
+    + ',1) as id from rdb$database';
   DM.SqlExecute.Close;
   DM.SqlExecute.Open;
   Result := DM.SqlExecute.FieldByName('ID').AsInteger;
@@ -1071,7 +1157,8 @@ var
   ArqIni: TIniFile;
 begin
   try
-    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo + '.ini');
+    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo
+      + '.ini');
     try
       ArqIni.WriteString(Sessao, Campo, Valor);
     finally
@@ -1086,7 +1173,8 @@ var
   ArqIni: TIniFile;
 begin
   try
-    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo + '.ini');
+    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo
+      + '.ini');
     try
       Result := ArqIni.ReadString(Sessao, Campo, Valor);
     finally
@@ -1099,7 +1187,9 @@ end;
 function TemPacelaPaga(sIdMovfinan: String): Boolean;
 begin
   Result := false;
-  DM.SqlExecute.SQL.Text := 'select sum(VALOR_PAGO_RECEBIDO) pago from ctasrecpag where  idmovfinan=' + sIdMovfinan;
+  DM.SqlExecute.SQL.Text :=
+    'select sum(VALOR_PAGO_RECEBIDO) pago from ctasrecpag where  idmovfinan=' +
+    sIdMovfinan;
   DM.SqlExecute.Close;
   DM.SqlExecute.Open;
   DM.SqlExecute.First;
@@ -1107,24 +1197,26 @@ begin
   DM.SqlExecute.Close;
 end;
 
-function VerificaInternoExiste(sNomeInterno, sNomeMae: string): boolean;
+function VerificaInternoExiste(sNomeInterno, sNomeMae: string): Boolean;
 var
   ret_Interno: string;
 begin
 
-  Result := False;
+  Result := false;
 
   if Trim(sNomeMae) = '' then
     Exit;
 
-  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'NOME_INTERNO', 'TRIM(UPPER(NOME_INTERNO)) = TRIM(UPPER(' + QS(sNomeInterno)
-    + ')) AND TRIM(UPPER(MAE)) = TRIM(UPPER(' + qs(sNomeMae) + '))', ''), '');
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'NOME_INTERNO',
+    'TRIM(UPPER(NOME_INTERNO)) = TRIM(UPPER(' + Qs(sNomeInterno) +
+    ')) AND TRIM(UPPER(MAE)) = TRIM(UPPER(' + Qs(sNomeMae) + '))', ''), '');
 
   Result := (sNomeInterno = ret_Interno);
 
 end;
 
-function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
+function ConsultaRapida(Tabela, CampoRetorno, Where,
+  CampoSelect: string): Variant;
 begin
   try
     if (Trim(Where) <> '') and (Pos('WHERE', UpperCase(Where)) = 0) then
@@ -1133,78 +1225,84 @@ begin
     if Trim(CampoSelect) = '' then
       CampoSelect := CampoRetorno;
 
-    DM.sqlExecute.sql.text := 'SELECT ' + CampoSelect + ' FROM ' + Tabela + ' ' + Where;
-    Dm.DsExecute.DataSet.close;
-    Dm.DsExecute.DataSet.open;
-    Result := Dm.DsExecute.DataSet.FieldByName(CampoRetorno).AsVariant;
-    Dm.DsExecute.DataSet.close;
+    DM.SqlExecute.SQL.Text := 'SELECT ' + CampoSelect + ' FROM ' + Tabela +
+      ' ' + Where;
+    DM.DsExecute.DataSet.Close;
+    DM.DsExecute.DataSet.Open;
+    Result := DM.DsExecute.DataSet.FieldByName(CampoRetorno).AsVariant;
+    DM.DsExecute.DataSet.Close;
   finally
   end;
 
 end;
 
-function VerificaRGIExiste(sRGI: string): boolean;
+function VerificaRGIExiste(sRGI: string): Boolean;
 var
   ret_Interno: string;
 begin
 
-  Result := False;
+  Result := false;
 
   if Trim(sRGI) = '' then
     Exit;
 
-  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'RGI', 'TRIM(UPPER(RGI)) = TRIM(UPPER(' + QS(sRGI) + '))', ''), '');
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'RGI',
+    'TRIM(UPPER(RGI)) = TRIM(UPPER(' + Qs(sRGI) + '))', ''), '');
 
   Result := (sRGI = ret_Interno);
 
 end;
 
-function VerificaVisitaExiste(scpf: string): boolean;
+function VerificaVisitaExiste(scpf: string): Boolean;
 var
   ret_VISITA: string;
 begin
 
-  Result := False;
+  Result := false;
 
   if Trim(scpf) = '' then
     Exit;
 
-  ret_visita := VarToStrDef(ConsultaRapida('VISITANTE', 'cpf', 'TRIM(UPPER(cpf)) = TRIM(UPPER(' + QS(sCPF) + '))', ''), '');
+  ret_VISITA := VarToStrDef(ConsultaRapida('VISITANTE', 'cpf',
+    'TRIM(UPPER(cpf)) = TRIM(UPPER(' + Qs(scpf) + '))', ''), '');
 
-  Result := (sCPF = ret_VISITA);
+  Result := (scpf = ret_VISITA);
 
 end;
 
-function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
+function ConverterBmpParaJPeg(Arquivo: string;
+  taxa_conv: Integer = 100): string;
 var
   Bmp: TBitmap;
-  JPeg: TJPegImage;
+  jpeg: TJPegImage;
 begin
   Bmp := TBitmap.Create;
   try
     Bmp.LoadFromFile(Arquivo);
-    JPeg := TJPegImage.Create;
+    jpeg := TJPegImage.Create;
     try
-      JPeg.Assign(Bmp);
-      result := ChangeFileExt(Arquivo, '.jpg');
-      JPeg.SaveToFile(result);
+      jpeg.Assign(Bmp);
+      Result := ChangeFileExt(Arquivo, '.jpg');
+      jpeg.SaveToFile(Result);
     finally
-      JPeg.Free;
+      jpeg.Free;
     end;
   finally
     Bmp.Free;
   end;
 end;
 
-function JpgToBmp(cImageJpg: string; cWidth: integer = 205; cHeight: integer = 154): string; // Requer a Jpeg declarada na clausua uses da unit
+function JpgToBmp(cImageJpg: string; cWidth: Integer = 205;
+  cHeight: Integer = 154): string;
+// Requer a Jpeg declarada na clausua uses da unit
 var
-  MyJPEG: TJPEGImage;
+  MyJPEG: TJPegImage;
   MyBMP: TBitmap;
 begin
   Result := '';
   if fileExists(cImageJpg) then
   begin
-    MyJPEG := TJPEGImage.Create;
+    MyJPEG := TJPegImage.Create;
     with MyJPEG do
     begin
       try
@@ -1215,7 +1313,7 @@ begin
         begin
           Width := cWidth;
           Height := cHeight;
-          Canvas.StretchDraw(Rect(0, 0, MyBMP.width, MyBMP.Height), MyJPEG);
+          Canvas.StretchDraw(Rect(0, 0, MyBMP.Width, MyBMP.Height), MyJPEG);
           Result := 'conversor_siap.Bmp';
           SaveToFile(Result);
           Free;
@@ -1228,7 +1326,8 @@ begin
   end;
 end;
 
-procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
+procedure AddWhere(Query: TSQLQuery; WhereClause: string;
+  StrAndOr: string = ' AND ');
 var
   sCmd, sOrder, sGroup: string;
   iPosOrderBy: Integer;
@@ -1288,11 +1387,10 @@ begin
   end;
 end;
 
-
 procedure ListarDiretorios(Folder: string; lista: TStrings);
 var
   Rec: TSearchRec;
-  i: integer;
+  I: Integer;
   temps: string;
 begin
   lista.Clear;
@@ -1308,43 +1406,34 @@ begin
         lista.Delete(1);
         // deleta o diretorio .
         lista.Delete(0);
-        i := 0;
+        I := 0;
         // deleta os arquivos isto e fica apenas os diretorios
         if lista.Count <> 0 then
         begin
           repeat
-            temps := lista.Strings[i];
+            temps := lista.Strings[I];
             temps := extractfileext(temps);
             if temps <> '' then
-              lista.Delete(i)
+              lista.Delete(I)
             else
-              inc(i);
-          until i >= lista.Count;
+              Inc(I);
+          until I >= lista.Count;
         end;
       end;
     end;
 end;
 
-
 function LimpaChar(sValor: string): string;
 var
-  x: Integer;
+  X: Integer;
 begin
-  for x := 1 to Length(sValor) do
+  for X := 1 to Length(sValor) do
   begin
-    if (not (sValor[x] in ['0'..'9',
-      'A'..'Z', 'a'..'z', '.', ';',
-        ',', '*', '+', '-', '=',
-        '&', '@', '!', '"',
-        ':', '?', '$', '%', '_', '/', '\'])) then
+    if (not(sValor[X] in ['0' .. '9', 'A' .. 'Z', 'a' .. 'z', '.', ';', ',',
+      '*', '+', '-', '=', '&', '@', '!', '"', ':', '?', '$', '%', '_', '/',
+      '\'])) then
     begin
-      // willian - 23/12/2009 - Nao aceita na Nfe estes caracteres
-      if (sValor[x] in ['(', '[', '{']) then
-        sValor[x] := '"'
-      else if (sValor[x] in [')', ']', '}']) then
-        sValor[x] := '"'
-      else
-        sValor[x] := ' ';
+        sValor[X] := ' ';
     end;
   end;
   Result := sValor;
@@ -1352,16 +1441,26 @@ end;
 
 function LimpaTexto(sString: string): string;
 var
-  x: Integer;
+  X: Integer;
 begin
   Result := '';
-  for x := 1 to Length(sString) do
+  for X := 1 to Length(sString) do
   begin
-    if ((sString[x] in ['0'..'9',
-      'A'..'Z', 'a'..'z'])) then
+    if ((sString[X] in ['0' .. '9', 'A' .. 'Z', 'a' .. 'z'])) then
     begin
-      Result := Result + sString[x];
+      Result := Result + sString[X];
     end;
+  end;
+end;
+
+function MeuGuidCreate: string;
+var
+  ID: TGUID;
+begin
+  Result := '';
+  if CoCreateGuid(ID) = S_OK then
+  begin
+    Result := TRIM(LimpaChar(GUIDToString(ID)));
   end;
 end;
 
