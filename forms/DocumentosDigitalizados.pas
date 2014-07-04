@@ -21,7 +21,6 @@ type
     DspDocumentoProcessos: TDataSetProvider;
     CdsDocumentoProcessos: TClientDataSet;
     DsDocumentoProcessos: TDataSource;
-    UniDBGrid1: TUniDBGrid;
     UniPanel10: TUniPanel;
     UniBitBtnTodosDigitalizados: TUniBitBtn;
     UniEditDescricaoPDF: TUniEdit;
@@ -34,12 +33,16 @@ type
     DspTipoDocumento: TDataSetProvider;
     SqlTipoDocumento: TSQLQuery;
     UniDBLookupComboBoxTipoDocumento: TUniDBLookupComboBox;
+    UniPanel11: TUniPanel;
+    UniDBGrid1: TUniDBGrid;
+    UniBitBtn4: TUniBitBtn;
     procedure UniFormShow(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure UniDBGrid1CellClick(Column: TUniDBGridColumn);
     procedure UniBitBtnTodosDigitalizadosClick(Sender: TObject);
     procedure UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
     procedure UniBitBtn3Click(Sender: TObject);
+    procedure UniBitBtn4Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -53,7 +56,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, DmPrincipal, ServerModule, Lib, Main;
+  MainModule, uniGUIApplication, DmPrincipal, ServerModule, Lib, Main, humanejs,
+  Aguarde;
 
 function FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados;
 begin
@@ -67,7 +71,7 @@ begin
 
   SqlDocumentoProcessos.SQL.Text :=
     'select * from DOCUMENTOS_PROCESSO where id_interno=' +
-    dscadastro.DataSet.FieldByName('id_interno').AsString;
+    dscadastro.DataSet.FieldByName('id_interno').AsString + ' order by data ';
   // + ' order by data ';
   CdsDocumentoProcessos.close;
   CdsDocumentoProcessos.open;
@@ -77,7 +81,7 @@ begin
 
   UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
 
-  UniBitBtnTodosDigitalizadosClick(nil);
+  // UniBitBtnTodosDigitalizadosClick(nil);
 
 end;
 
@@ -99,6 +103,45 @@ begin
   MainForm.UniFileUploadPdf.Execute;
 end;
 
+procedure TFrmDocumentosDigitalizados.UniBitBtn4Click(Sender: TObject);
+begin
+  inherited;
+  //
+
+  MessageDlg('Desassociar este registro:' + CdsDocumentoProcessos.FieldByName
+    ('DESCRICAO').AsString + '?', mtWarning, mbYesNo,
+    procedure(Result: Integer)
+    begin
+      if Result = mrYes then
+      begin
+        try
+          CdsDocumentoProcessos.Edit;
+          CdsDocumentoProcessos.FieldByName('ID_INTERNO_DELETADO').AsInteger :=
+            CdsDocumentoProcessos.FieldByName('ID_INTERNO').AsInteger;
+          CdsDocumentoProcessos.FieldByName('ID_INTERNO').AsVariant := null;
+          CdsDocumentoProcessos.FieldByName('IDFUNCIONARIO').AsInteger :=
+            Dm.GLOBAL_ID_FUNCIONARIO;
+          CdsDocumentoProcessos.Post;
+          CdsDocumentoProcessos.ApplyUpdates(-1);
+
+          CdsDocumentoProcessos.close;
+          CdsDocumentoProcessos.open;
+
+          humane.success
+            ('<b><font Color=yellow>Foi desassociado!</font></b><br>Esta desassociação pode ser revertida via suporte.');
+        except
+          on E: Exception do
+          begin
+            showmessage('Sistema diz: ' + E.Message);
+          end;
+        end;
+
+      end;
+
+    end);
+
+end;
+
 procedure TFrmDocumentosDigitalizados.UniBitBtnTodosDigitalizadosClick
   (Sender: TObject);
 var
@@ -112,7 +155,7 @@ begin
   while not DsDocumentoProcessos.DataSet.eof do
   begin
 
-    sPdf := UniServerModule.StartPath + 'img_doc\' +
+    sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
       DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
 
     if FileExists(sPdf) then
@@ -129,16 +172,16 @@ begin
 
   if sArquivosPDFInterno <> '' then
   begin
-    if FileExists('img_doc\' + dscadastro.DataSet.FieldByName('id_interno')
-      .AsString + '.pdf') then
-      DeleteFile('img_doc\' + dscadastro.DataSet.FieldByName('id_interno')
-        .AsString + '.pdf');
+    if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+      dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+      DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
 
     try
       pdf := TCPDFSplitMergeObj.Create(self);
       pdf.SetCode('Siapen - V2');
-      pdf.Merge(sArquivosPDFInterno, 'img_doc\' + dscadastro.DataSet.FieldByName
-        ('id_interno').AsString + '.pdf');
+      pdf.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
     finally
       pdf.Free;
     end;
@@ -147,12 +190,13 @@ begin
 
   UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
 
-  if FileExists('img_doc\' + dscadastro.DataSet.FieldByName('id_interno')
-    .AsString + '.pdf') then
+  if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+    dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
   begin
-    UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../..///img_doc//' +
-      dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
-      '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/pdf/web/viewer.html?file=' +
+      '../..///img_doc//' + dscadastro.DataSet.FieldByName('id_interno')
+      .AsString + '.pdf' + '#page=1&zoom=100&time=' +
+      FormatDateTime('yyyymmdhhnnsszzz', Now);
   end;
 
 end;
@@ -161,12 +205,15 @@ procedure TFrmDocumentosDigitalizados.UniDBGrid1CellClick
   (Column: TUniDBGridColumn);
 begin
   inherited;
-  if FileExists(UniServerModule.StartPath + 'img_doc\' +
-    DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString) then
+  if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+    DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
+  // or (Dm.GLOBAL_HTTP_PDF <> '')
+  then
   begin
-    UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../..///img_doc//' +
-      DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
-      '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/pdf/web/viewer.html?file=' +
+      '../..///img_doc//' + DsDocumentoProcessos.DataSet.FieldByName
+      ('CAMINHO_DOC').AsString + '#page=1&zoom=100&time=' +
+      FormatDateTime('yyyymmdhhnnsszzz', Now);
   end
   else
   begin
@@ -176,21 +223,24 @@ begin
 end;
 
 procedure TFrmDocumentosDigitalizados.UniFileUploadPdfCompleted(Sender: TObject;
-  AStream: TFileStream);
+AStream: TFileStream);
 var
   sCaminhoArquivo, sArquivo, sNomePDF: string;
 begin
 
-  if not DirectoryExists(UniServerModule.StartPath + 'img_doc\') then
-    ForceDirectories(UniServerModule.StartPath + 'img_doc\');
+  FrmAguarde.showmodal;
+
+  if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\') then
+    ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\');
 
   sNomePDF := MeuGuidCreate;
 
   sArquivo := sNomePDF + ExtractFileExt(AStream.FileName);
-  sCaminhoArquivo := UniServerModule.StartPath + 'img_doc\' + sArquivo;
+  sCaminhoArquivo := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sArquivo;
 
   if CopyFile(PChar(AStream.FileName), PChar(sCaminhoArquivo), False) then
   begin
+
     CdsDocumentoProcessos.Append;
     CdsDocumentoProcessos.FieldByName('IDDOCUMENTOS_PROCESSO').AsInteger :=
       Generator('IDDOCUMENTOS_PROCESSO');
@@ -200,15 +250,31 @@ begin
       UniDBLookupComboBoxTipoDocumento.keyvalue;
     CdsDocumentoProcessos.FieldByName('DATA').AsDateTime := Now;
     CdsDocumentoProcessos.FieldByName('CAMINHO_DOC').AsString := sArquivo;
+    CdsDocumentoProcessos.FieldByName('IDFUNCIONARIO').AsInteger :=
+      Dm.GLOBAL_ID_FUNCIONARIO;
     CdsDocumentoProcessos.FieldByName('ID_INTERNO').AsInteger :=
       dscadastro.DataSet.FieldByName('id_interno').AsInteger;
     CdsDocumentoProcessos.Post;
     CdsDocumentoProcessos.ApplyUpdates(-1);
     CdsDocumentoProcessos.close;
     CdsDocumentoProcessos.open;
+    CdsDocumentoProcessos.Last;
+    UniDBGrid1CellClick(nil);
+
+    humane.clickToClose(true);
+    humane.success('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' +
+      UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
 
     UniDBLookupComboBoxTipoDocumento.keyvalue := null;
     UniEditDescricaoPDF.Text := '';
+
+  end
+  else
+  begin
+    showmessage('O documento, não foi salvo!');
+    humane.clickToClose(true);
+    humane.success('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>'
+      + UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
 
   end;
 

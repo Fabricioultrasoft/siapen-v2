@@ -533,7 +533,11 @@ type
     FGLOBAL_DATA_FINAL: String;
     FGLOBAL_ID_FALTA_DISCIPLINAR: String;
     FGLOBAL_IDFUNCIONARIO_FILTRO: Integer;
+    FGLOBAL_HTTP_PDF: string;
+    FGLOBAL_CAMINHO_PDF: string;
   public
+    property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
+    property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
     property MeuPDF :TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
     property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
     property GLOBAL_ID_FALTA_DISCIPLINAR: String read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
@@ -773,22 +777,15 @@ begin
         (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
       senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
 
-      GLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL', 'AGEPEN'));
-      GLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
-      GLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
-      GLOBAL_DEPARTAMENTO := UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
-      GLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
-{
-      GLOBAL_LOCAL := (ini.ReadString('SIAPEN', 'LOCAL', 'AGEPEN'));
-      GLOBAL_NOME := (ini.ReadString('SIAPEN', 'NOME', ''));
-      GLOBAL_ORGAO := (ini.ReadString('SIAPEN', 'ORGAO', ''));
-      GLOBAL_DEPARTAMENTO := (ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
-      GLOBAL_DIRETORIA := (ini.ReadString('SIAPEN', 'DIRETORIA', ''));
-}
-
-      GLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER',
-        'http://spf.mj.gov.br');
-      GLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
+      FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL', 'AGEPEN'));
+      FGLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
+      FGLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
+      FGLOBAL_DEPARTAMENTO := UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
+      FGLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
+      FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER','http://spf.mj.gov.br');
+      FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
+      FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
+      FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF', UniServerModule.StartPath);
 
     end
     else

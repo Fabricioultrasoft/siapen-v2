@@ -723,6 +723,8 @@ begin
   UniDBEditPaisExit(nil);
   DBEdit2.SetFocus;
 
+  StatusBar1.Panels[1].Text := CdsCADASTRO.fieldbyname('NOME_INTERNO').AsString;
+
 end;
 
 procedure TFrmInterno.EditLocalizarChange(Sender: TObject);
@@ -1852,6 +1854,8 @@ begin
     UniBtnFiltrarClick(nil);
     Editar.OnClick(nil);
   END;
+
+  Novo.Enabled := False;
 
 end;
 

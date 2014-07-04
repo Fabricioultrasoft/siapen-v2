@@ -57,8 +57,6 @@ inherited FrmInterno: TFrmInterno
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 1067
         ExplicitHeight = 503
         inherited PanelCadastro: TUniPanel
@@ -2944,8 +2942,6 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel

@@ -187,7 +187,7 @@ begin
   TabSheetConsulta.Enabled := false;
   PanelCadastro.Enabled := true;
   // PageControlCadastro.ActivePageIndex := 0;
-  StatusBar1.Panels[1].Text := 'EDIÇÃO';
+  StatusBar1.Panels[0].Text := 'EDIÇÃO';
 
   Novo.Enabled := false;
   Editar.Enabled := false;
@@ -237,7 +237,7 @@ begin
     exit;
   end;
 
-  StatusBar1.Panels[1].Text := 'EXCLUINDO';
+  StatusBar1.Panels[0].Text := 'EXCLUINDO';
 
   MessageDlg('Excluir este registro?', mtWarning, mbYesNo,
     procedure(Result: Integer)
@@ -268,7 +268,7 @@ begin
 
     end);
 
-  StatusBar1.Panels[1].Text := '...';
+  StatusBar1.Panels[0].Text := '...';
 
 end;
 
@@ -300,7 +300,7 @@ begin
   PanelCadastro.Enabled := true;
   PageControlModeloCadastro.ActivePageIndex := 0;
   // PageControlCadastro.ActivePageIndex := 0;
-  StatusBar1.Panels[1].Text := 'NOVO';
+  StatusBar1.Panels[0].Text := 'NOVO';
 
   Novo.Enabled := false;
   Editar.Enabled := false;
@@ -337,7 +337,7 @@ begin
   if Self.DsCadastro.DataSet.state in [dsedit, dsinsert] then
     Self.DsCadastro.DataSet.Cancel;
 
-  StatusBar1.Panels[1].Text := '...';
+  StatusBar1.Panels[0].Text := '...';
 
   PanelCadastro.Enabled := false;
   // PageControlCadastro.ActivePageIndex := 0;
@@ -436,7 +436,7 @@ begin
     try
       IniciaTransCadastro;
 
-      StatusBar1.Panels[1].Text := 'SALVANDO';
+      StatusBar1.Panels[0].Text := 'SALVANDO';
 
       if Self.DsCadastro.DataSet.state in [dsedit, dsinsert] then
         Self.DsCadastro.DataSet.post;
@@ -495,11 +495,11 @@ begin
       CancelaTransCadastro;
       ShowMessage('<b><font Color=red>ATENÇÃO !!!</font></b><br>' +
         'Erro na transação, não salvou.');
-      StatusBar1.Panels[1].Text := '...';
+      StatusBar1.Panels[0].Text := '...';
       exit;
     end;
 
-    StatusBar1.Panels[1].Text := '...' + sMengTeste;
+    StatusBar1.Panels[0].Text := '...' + sMengTeste;
     PanelCadastro.Enabled := false;
 
     if Salvar.Tag = 0 then

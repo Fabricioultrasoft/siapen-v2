@@ -37,13 +37,13 @@ end;
 
 procedure TFrmAguarde.UniFormCreate(Sender: TObject);
 begin
-UniTimer1.Enabled := true;
+  UniTimer1.Enabled := true;
 end;
 
 procedure TFrmAguarde.UniTimer1Timer(Sender: TObject);
 begin
-UniTimer1.Enabled := false;
-self.Close;
+  UniTimer1.Enabled := false;
+  self.Close;
 end;
 
 end.

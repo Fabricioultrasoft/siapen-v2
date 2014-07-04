@@ -8,1100 +8,1103 @@
   resources were bound to the produced executable.
 */
 
-#define AbResString_AbGzipBadFileSizeS 64096
-#define AbResString_AbTarInvalidS 64097
-#define AbResString_AbTarBadFileNameS 64098
-#define AbResString_AbTarBadLinkNameS 64099
-#define AbResString_AbTarBadOpS 64100
-#define AbResString_AbUnhandledEntityS 64101
-#define AbResString_AbBBSInvalidOriginS 64112
-#define AbResString_AbBBSWriteTooManyBytesS 64113
-#define AbResString_AbSWSNotEndofStreamS 64114
-#define AbResString_AbSWSSeekFailedS 64115
-#define AbResString_AbSWSWriteFailedS 64116
-#define AbResString_AbSWSInvalidOriginS 64117
-#define AbResString_AbSWSInvalidNewOriginS 64118
-#define AbResString_AbLtAddS 64119
-#define AbResString_AbLtDeleteS 64120
-#define AbResString_AbLtExtractS 64121
-#define AbResString_AbLtFreshenS 64122
-#define AbResString_AbLtMoveS 64123
-#define AbResString_AbLtReplaceS 64124
-#define AbResString_AbLtStartS 64125
-#define AbResString_AbGzipInvalidS 64126
-#define AbResString_AbGzipBadCRCS 64127
-#define AbResString_AbFCICreateErrorS 64128
-#define AbResString_AbFCIFlushCabinetErrorS 64129
-#define AbResString_AbFCIFlushFolderErrorS 64130
-#define AbResString_AbFDICopyErrorS 64131
-#define AbResString_AbFDICreateErrorS 64132
-#define AbResString_AbInvalidCabTemplateS 64133
-#define AbResString_AbInvalidCabFileS 64134
-#define AbResString_AbVMSReadTooManyBytesS 64135
-#define AbResString_AbVMSInvalidOriginS 64136
-#define AbResString_AbVMSErrorOpenSwapS 64137
-#define AbResString_AbVMSSeekFailS 64138
-#define AbResString_AbVMSReadFailS 64139
-#define AbResString_AbVMSWriteFailS 64140
-#define AbResString_AbVMSWriteTooManyBytesS 64141
-#define AbResString_AbBBSReadTooManyBytesS 64142
-#define AbResString_AbBBSSeekOutsideBufferS 64143
-#define AbResString_AbFileNotFoundS 64144
-#define AbResString_AbInvalidLFHS 64145
-#define AbResString_AbNoArchiveS 64146
-#define AbResString_AbReadErrorS 64147
-#define AbResString_AbInvalidIndexS 64148
-#define AbResString_AbInvalidThresholdS 64149
-#define AbResString_AbUnhandledFileTypeS 64150
-#define AbResString_AbSpanningNotSupportedS 64151
-#define AbResString_AbNoCabinetDllErrorS 64152
-#define AbResString_AbFCIFileOpenErrorS 64153
-#define AbResString_AbFCIFileReadErrorS 64154
-#define AbResString_AbFCIFileWriteErrorS 64155
-#define AbResString_AbFCIFileCloseErrorS 64156
-#define AbResString_AbFCIFileSeekErrorS 64157
-#define AbResString_AbFCIFileDeleteErrorS 64158
-#define AbResString_AbFCIAddFileErrorS 64159
-#define AbResString_AbNoInsertionMethodS 64160
-#define AbResString_AbInvalidFactorS 64161
-#define AbResString_AbDuplicateNameS 64162
-#define AbResString_AbUnsupportedCompressionMethodS 64163
-#define AbResString_AbUserAbortS 64164
-#define AbResString_AbArchiveBusyS 64165
-#define AbResString_AbBadSpanStreamS 64166
-#define AbResString_AbNoOverwriteSpanStreamS 64167
-#define AbResString_AbNoSpannedSelfExtractS 64168
-#define AbResString_AbStreamFullS 64169
-#define AbResString_AbNoSuchDirectoryS 64170
-#define AbResString_AbInflateBlockErrorS 64171
-#define AbResString_AbBadStreamTypeS 64172
-#define AbResString_AbTruncateErrorS 64173
-#define AbResString_AbZipBadCRCS 64174
-#define AbResString_AbZipBadStubS 64175
-#define IBCConstsUni_SCannotDisableArrayCache 64176
-#define IBCConstsUni_SArrayDimensionError 64177
-#define IBCConstsUni_SArrayLowBoundError 64178
-#define IBCConstsUni_SArrayHighBoundError 64179
-#define IBCConstsUni_SArrayIndexError 64180
-#define IBCConstsUni_SInvalidDimension 64181
-#define Xml_XMLConst_SDuplicateRegistration 64182
-#define Xml_XMLConst_SDOMNotSupported 64183
-#define Xml_XMLConst_SNodeExpected 64184
-#define Xml_XMLConst_SMSDOMNotInstalled 64185
-#define zesavecommon_DefaultSheetName 64186
-#define AbResString_AbErrZipInvalidS 64187
-#define AbResString_AbZipVersionNeededS 64188
-#define AbResString_AbUnknownCompressionMethodS 64189
-#define AbResString_AbNoExtractionMethodS 64190
-#define AbResString_AbInvalidPasswordS 64191
-#define IBCConstsUni_SParamIsNotStorable 64192
-#define IBCConstsUni_SSQLInfoError 64193
-#define IBCConstsUni_SWrongSQLType 64194
-#define IBCConstsUni_SEmptySQL 64195
-#define IBCConstsUni_SDPBConstantNotSupported 64196
-#define IBCConstsUni_SDPBConstantUnknown 64197
-#define IBCConstsUni_STPBConstantNotSupported 64198
-#define IBCConstsUni_STPBConstantUnknown 64199
-#define IBCConstsUni_SConnectionClosed 64200
-#define IBCConstsUni_SConnectionOpen 64201
-#define IBCConstsUni_SConnClosedOnTrStart 64202
-#define IBCConstsUni_SEventNameTooLong 64203
-#define IBCConstsUni_SSendEventNotSupported 64204
-#define IBCConstsUni_SVarIsNotArray 64205
-#define IBCConstsUni_SInvalidTable 64206
-#define IBCConstsUni_SInvalidColumn 64207
-#define UniConsts_SInvalidTimestamp 64208
-#define UniConsts_SNotCompletedIF 64209
-#define UniConsts_SUnexpectedChar 64210
-#define UniConsts_SUnexpectedElse 64211
-#define UniConsts_SUnexpectedEndif 64212
-#define UniConsts_SUnknownFunction 64213
-#define UniConsts_SWrongArgCnt 64214
-#define UniConsts_SCyclicConditions 64215
-#define IBCConstsUni_SNoRows 64216
-#define IBCConstsUni_SCursorNotOpened 64217
-#define IBCConstsUni_SCantExecuteNonSelectStatement 64218
-#define IBCConstsUni_SBlobNotAllocatted 64219
-#define IBCConstsUni_SCantReadEmptyBlobID 64220
-#define IBCConstsUni_SCantSetReadPosition 64221
-#define IBCConstsUni_SCannotChangeStreamed 64222
-#define IBCConstsUni_SCannotDisableBlobCache 64223
-#define DAConsts_SOperationNotSupported 64224
-#define DAConsts_SMultipleTransactionsNotSupported 64225
-#define DAConsts_SInvalidParamsArray 64226
-#define DAConsts_SUnsupportedMetaDataKind 64227
-#define DAConsts_SMDIsNotMemDataSet 64228
-#define DBMonitorClient_SAppStarted 64229
-#define DBMonitorClient_SAppFinished 64230
-#define UniConsts_SProviderNotDefined 64231
-#define UniConsts_SInvalidProviderName 64232
-#define UniConsts_SProviderNotRegistered 64233
-#define UniConsts_SAlertsNotSupported 64234
-#define UniConsts_SEmptyFunctionName 64235
-#define UniConsts_SEmptyMacroOrFunction 64236
-#define UniConsts_SInvalidBracketCount 64237
-#define UniConsts_SInvalidDate 64238
-#define UniConsts_SInvalidTime 64239
-#define DAConsts_SNoTimers 64240
-#define DAConsts_sBlobNotCompressed 64241
-#define DAConsts_SCompressorNotLinked 64242
-#define DAConsts_SUncompressorNotLinked 64243
-#define DAConsts_SUpdateComponentCircularReferences 64244
-#define DAConsts_SUpdateComponentInvalidType 64245
-#define DAConsts_SUpdateObjectEmptySQL 64246
-#define DAConsts_SWrongTblCount 64247
-#define DAConsts_SBackupQueryWrongTableCount 64248
-#define DAConsts_SInvalidLexem 64249
-#define DAConsts_SEmptySQLStatement 64250
-#define DAConsts_SInvalidBlobPosition 64251
-#define DAConsts_SNoConnectionsInTransaction 64252
-#define DAConsts_SConnectionInTransactionNotActive 64253
-#define DAConsts_SUnsupportedIsolationLevel 64254
-#define DAConsts_SIsolationLevelNotSupportedWithMTS 64255
-#define DAConsts_SNotInTransaction 64256
-#define DAConsts_SInTransaction 64257
-#define DAConsts_STransactionNotAssigned 64258
-#define DAConsts_SUpdateFailed 64259
-#define DAConsts_SCustomUpdateFailed 64260
-#define DAConsts_SRefreshFailed 64261
-#define DAConsts_SInvalidFetchRows 64262
-#define DAConsts_SNoCorrespondParam 64263
-#define DAConsts_SUnknownParamDataType 64264
-#define DAConsts_SRecordChanged 64265
-#define DAConsts_STableNameNotDefined 64266
-#define DAConsts_SStoredProcNotDefined 64267
-#define DAConsts_SConnectionIsClosed 64268
-#define DAConsts_SCannotPerformIfPooling 64269
-#define DAConsts_SMaxConnectionsReached 64270
-#define DAConsts_SCannotChangeIsUnicode 64271
-#define DAConsts_SNoKeyFields 64272
-#define DAConsts_SBadTableInfoName 64273
-#define DAConsts_SBadStatementType 64274
-#define DAConsts_SBadUpdatingTable 64275
-#define DAConsts_SKeyFieldNotFound 64276
-#define DAConsts_SInvalidUnComprBlobSize 64277
-#define DAConsts_SInvalidComprBlobSize 64278
-#define DAConsts_SInvalidComprBlobHeader 64279
-#define DAConsts_SInvalidComprBlobData 64280
-#define DAConsts_SDataSetIsNotPrepared 64281
-#define DAConsts_SNotCachedUpdate 64282
-#define DAConsts_SUpdateWrongDB 64283
-#define DAConsts_SConnectionNotDefined 64284
-#define DAConsts_SConnectionNotConnected 64285
-#define DAConsts_SCannotConnect 64286
-#define DAConsts_SMacroNotFound 64287
-#define IBSQLMonitor_StrStartTransaction 64288
-#define IBSQLMonitor_StrApplication 64289
-#define System_ZLibConst_sTargetBufferTooSmall 64290
-#define System_ZLibConst_sError 64291
-#define DAConsts_SUnknownDataType 64292
-#define DAConsts_SDataTypeNotSupported 64293
-#define DAConsts_SFieldNotFound 64294
-#define DAConsts_SAttributeNotFount 64295
-#define DAConsts_SCannotConvertType 64296
-#define DAConsts_SIllegalFilter 64297
-#define DAConsts_SNeedBlobType 64298
-#define DAConsts_SInvalidSharedObject 64299
-#define DAConsts_SInvalidBlob 64300
-#define DAConsts_SBlobMustBeCached 64301
-#define DAConsts_SKeyFieldsRequired 64302
-#define DAConsts_SKeyFieldsReq 64303
-#define IBSQLMonitor_StrError 64304
-#define IBSQLMonitor_StrAttach 64305
-#define IBSQLMonitor_StrDetach 64306
-#define IBSQLMonitor_StrQuery 64307
-#define IBSQLMonitor_StrStart 64308
-#define IBSQLMonitor_StrExecute 64309
-#define IBSQLMonitor_StrNULL 64310
-#define IBSQLMonitor_StrBLOB 64311
-#define IBSQLMonitor_StrFetch 64312
-#define IBSQLMonitor_StrPrepare 64313
-#define IBSQLMonitor_StrPlan 64314
-#define IBSQLMonitor_StrPlanCantRetrive 64315
-#define IBSQLMonitor_StrCommitHardComm 64316
-#define IBSQLMonitor_StrCommitRetaining 64317
-#define IBSQLMonitor_StrRollback 64318
-#define IBSQLMonitor_StrRollbackRetainin 64319
-#define IBXConst_STPBConstantUnknownEx 64320
-#define IBXConst_SUnknownPlan 64321
-#define IBXConst_SFieldSizeMismatch 64322
-#define IBXConst_SEventAlreadyRegistered 64323
-#define IBXConst_SStringTooLarge 64324
-#define IBXConst_SNoTimers 64325
-#define IBXConst_SIB65feature 64326
-#define IBXConst_SLoginPromptFailure 64327
-#define IBXConst_SIBMemoryError 64328
-#define IBXConst_SIB70feature 64329
-#define IBXConst_SIB71feature 64330
-#define IBXConst_SIB80feature 64331
-#define IBXConst_SFileSizeDumpCountIncompatibility 64332
-#define IBXConst_SIBUnknownServerType 64333
-#define IBXConst_SInvalidLibraryType 64334
-#define IBSQLMonitor_StrMisc 64335
-#define IBXConst_SEOFReached 64336
-#define IBXConst_SEOFInComment 64337
-#define IBXConst_SEOFInString 64338
-#define IBXConst_SParamNameExpected 64339
-#define IBXConst_SSuccess 64340
-#define IBXConst_SDelphiException 64341
-#define IBXConst_SNoOptionsSet 64342
-#define IBXConst_SNoDestinationDirectory 64343
-#define IBXConst_SNosourceDirectory 64344
-#define IBXConst_SNoUninstallFile 64345
-#define IBXConst_SOptionNeedsClient 64346
-#define IBXConst_SOptionNeedsServer 64347
-#define IBXConst_SInvalidOption 64348
-#define IBXConst_SInvalidOnErrorResult 64349
-#define IBXConst_SInvalidOnStatusResult 64350
-#define IBXConst_SDPBConstantUnknownEx 64351
-#define IBXConst_SNoEventsRegistered 64352
-#define IBXConst_SInvalidQueueing 64353
-#define IBXConst_SInvalidRegistration 64354
-#define IBXConst_SInvalidBatchMove 64355
-#define IBXConst_SSQLDialectInvalid 64356
-#define IBXConst_SSPBConstantNotSupported 64357
-#define IBXConst_SSPBConstantUnknown 64358
-#define IBXConst_SServiceActive 64359
-#define IBXConst_SServiceInActive 64360
-#define IBXConst_SServerNameMissing 64361
-#define IBXConst_SQueryParamsError 64362
-#define IBXConst_SStartParamsError 64363
-#define IBXConst_SOutputParsingError 64364
-#define IBXConst_SUseSpecificProcedures 64365
-#define IBXConst_SSQLMonitorAlreadyPresent 64366
-#define IBXConst_SCantPrintValue 64367
-#define IBXConst_SRequiredParamNotSet 64368
-#define IBXConst_SNoStoredProcName 64369
-#define IBXConst_SIsAExecuteProcedure 64370
-#define IBXConst_SUpdateFailed 64371
-#define IBXConst_SNotCachedUpdates 64372
-#define IBXConst_SNotLiveRequest 64373
-#define IBXConst_SNoProvider 64374
-#define IBXConst_SNoRecordsAffected 64375
-#define IBXConst_SNoTableName 64376
-#define IBXConst_SCannotCreatePrimaryIndex 64377
-#define IBXConst_SCannotDropSystemIndex 64378
-#define IBXConst_STableNameMismatch 64379
-#define IBXConst_SIndexFieldMissing 64380
-#define IBXConst_SInvalidCancellation 64381
-#define IBXConst_SInvalidEvent 64382
-#define IBXConst_SMaximumEvents 64383
-#define IBXConst_SCannotDelete 64384
-#define IBXConst_SCannotRefresh 64385
-#define IBXConst_SBufferNotSet 64386
-#define IBXConst_SCircularReference 64387
-#define IBXConst_SSQLParseError 64388
-#define IBXConst_SUserAbort 64389
-#define IBXConst_SDataSetUniDirectional 64390
-#define IBXConst_SCannotCreateSharedResource 64391
-#define IBXConst_SWindowsAPIError 64392
-#define IBXConst_SColumnListsDontMatch 64393
-#define IBXConst_SColumnTypesDontMatch 64394
-#define IBXConst_SCantEndSharedTransaction 64395
-#define IBXConst_SFieldUnsupportedType 64396
-#define IBXConst_SCircularDataLink 64397
-#define IBXConst_SEmptySQLStatement 64398
-#define IBXConst_SIsASelectStatement 64399
-#define IBXConst_SUnknownSQLDataType 64400
-#define IBXConst_SInvalidColumnIndex 64401
-#define IBXConst_SInvalidParamColumnIndex 64402
-#define IBXConst_SInvalidDataConversion 64403
-#define IBXConst_SColumnIsNotNullable 64404
-#define IBXConst_SBlobCannotBeRead 64405
-#define IBXConst_SBlobCannotBeWritten 64406
-#define IBXConst_SEmptyQuery 64407
-#define IBXConst_SCannotOpenNonSQLSelect 64408
-#define IBXConst_SNoFieldAccess 64409
-#define IBXConst_SFieldReadOnly 64410
-#define IBXConst_SFieldNotFound 64411
-#define IBXConst_SNotEditing 64412
-#define IBXConst_SCannotInsert 64413
-#define IBXConst_SCannotPost 64414
-#define IBXConst_SCannotUpdate 64415
-#define IBXConst_SInTransaction 64416
-#define IBXConst_STimeoutNegative 64417
-#define IBXConst_SNoDatabasesInTransaction 64418
-#define IBXConst_SUpdateWrongDB 64419
-#define IBXConst_SUpdateWrongTR 64420
-#define IBXConst_SDatabaseNotAssigned 64421
-#define IBXConst_STransactionNotAssigned 64422
-#define IBXConst_SXSQLDAIndexOutOfRange 64423
-#define IBXConst_SXSQLDANameDoesNotExist 64424
-#define IBXConst_SEOF 64425
-#define IBXConst_SBOF 64426
-#define IBXConst_SInvalidStatementHandle 64427
-#define IBXConst_SSQLOpen 64428
-#define IBXConst_SSQLClosed 64429
-#define IBXConst_SDatasetOpen 64430
-#define IBXConst_SDatasetClosed 64431
-#define IBXConst_SIB60feature 64432
-#define IBXConst_SNotSupported 64433
-#define IBXConst_SNotPermitted 64434
-#define IBXConst_SFileAccessError 64435
-#define IBXConst_SConnectionTimeout 64436
-#define IBXConst_SCannotSetDatabase 64437
-#define IBXConst_SCannotSetTransaction 64438
-#define IBXConst_SOperationCancelled 64439
-#define IBXConst_SDPBConstantNotSupported 64440
-#define IBXConst_SDPBConstantUnknown 64441
-#define IBXConst_STPBConstantNotSupported 64442
-#define IBXConst_STPBConstantUnknown 64443
-#define IBXConst_SDatabaseClosed 64444
-#define IBXConst_SDatabaseOpen 64445
-#define IBXConst_SDatabaseNameMissing 64446
-#define IBXConst_SNotInTransaction 64447
-#define uniFileUpload_Cancel_str 64448
-#define uniFileUpload_Processing_str 64449
-#define uniFileUpload_Upload_Error 64450
-#define uniFileUpload_NO_FILE_Error 64451
-#define Vcl_OleConst_SLinkProperties 64452
-#define Vcl_OleConst_SInvalidLinkSource 64453
-#define Vcl_OleConst_SCannotBreakLink 64454
-#define Vcl_OleConst_SLinkedObject 64455
-#define Vcl_OleConst_SEmptyContainer 64456
-#define Vcl_OleConst_SInvalidVerb 64457
-#define Vcl_OleConst_SPropDlgCaption 64458
-#define Vcl_OleConst_SInvalidStreamFormat 64459
-#define Vcl_OleConst_sNoRunningObject 64460
-#define IBXConst_SUnknownError 64461
-#define IBXConst_SInterBaseMissing 64462
-#define IBXConst_SInterBaseInstallMissing 64463
-#define Data_SqlConst_SLOCALTRANSACTIVE 64464
-#define Data_SqlConst_SMULTIPLETRANSNOTENABLED 64465
-#define Data_SqlConst_SCONNECTIONFAILED 64466
-#define Data_SqlConst_SDRIVERINITFAILED 64467
-#define Data_SqlConst_SOPTLOCKFAILED 64468
-#define Data_SqlConst_SINVALIDREF 64469
-#define Data_SqlConst_SNOTABLE 64470
-#define Data_SqlConst_SMISSINGPARAMINSQL 64471
-#define Data_SqlConst_SNOTIMPLEMENTED 64472
-#define Data_SqlConst_SDRIVERINCOMPATIBLE 64473
-#define Data_SqlConst_SObjectTypenameRequired 64474
-#define Data_SqlConst_SCannotCreateFile 64475
-#define uniFileUpload_Upload_str 64476
-#define uniFileUpload_Uploading_str 64477
-#define uniFileUpload_Browse_Text 64478
-#define uniFileUpload_Please_Wait_str 64479
-#define Data_SqlConst_SINVALIDFLDTYPE 64480
-#define Data_SqlConst_SINVALIDHNDL 64481
-#define Data_SqlConst_SNOTSUPPORTED 64482
-#define Data_SqlConst_SINVALIDTIME 64483
-#define Data_SqlConst_SINVALIDXLATION 64484
-#define Data_SqlConst_SOUTOFRANGE 64485
-#define Data_SqlConst_SINVALIDPARAM 64486
-#define Data_SqlConst_SEOF 64487
-#define Data_SqlConst_SSQLPARAMNOTSET 64488
-#define Data_SqlConst_SINVALIDUSRPASS 64489
-#define Data_SqlConst_SINVALIDPRECISION 64490
-#define Data_SqlConst_SINVALIDLEN 64491
-#define Data_SqlConst_SINVALIDXISOLEVEL 64492
-#define Data_SqlConst_SINVALIDTXNID 64493
-#define Data_SqlConst_SDUPLICATETXNID 64494
-#define Data_SqlConst_SDRIVERRESTRICTED 64495
-#define Data_SqlConst_SNoParameterValue 64496
-#define Data_SqlConst_SNoTableName 64497
-#define Data_SqlConst_SNoSqlStatement 64498
-#define Data_SqlConst_SMissingDriverName 64499
-#define Data_SqlConst_SPrepareError 64500
-#define Data_SqlConst_SObjectNameError 64501
-#define Data_SqlConst_SSQLDataSetOpen 64502
-#define Data_SqlConst_SNoActiveTrans 64503
-#define Data_SqlConst_SActiveTrans 64504
-#define Data_SqlConst_SMissingDriverRegFile 64505
-#define Data_SqlConst_SNoCursor 64506
-#define Data_SqlConst_SErrorMappingError 64507
-#define Data_SqlConst_STooManyActualParam 64508
-#define Data_SqlConst_SNOERROR 64509
-#define Data_SqlConst_SWARNING 64510
-#define Data_SqlConst_SNOMEMORY 64511
-#define Datasnap_MidConst_SDefExprFail 64512
-#define Datasnap_MidConst_SArrayElementError 64513
-#define Datasnap_MidConst_SNoTableName 64514
-#define Datasnap_MidConst_SNoEditsAllowed 64515
-#define Datasnap_MidConst_SNoDeletesAllowed 64516
-#define Datasnap_MidConst_SNoInsertsAllowed 64517
-#define Datasnap_MidConst_SCannotChangeCommandText 64518
-#define Datasnap_MidConst_SConnectionMissing 64519
-#define Datasnap_MidConst_SNoCircularConnection 64520
-#define Data_SqlConst_SLoginError 64521
-#define Data_SqlConst_SMonitorActive 64522
-#define Data_SqlConst_SDatabaseOpen 64523
-#define Data_SqlConst_SDatabaseClosed 64524
-#define Data_SqlConst_SMissingSQLConnection 64525
-#define Data_SqlConst_SConnectionNameMissing 64526
-#define Data_SqlConst_SEmptySQLStatement 64527
-#define Datasnap_MidConst_SNoCircularReference 64528
-#define Datasnap_MidConst_SErrorLoadingMidas 64529
-#define Datasnap_MidConst_SCannotCreateDataSet 64530
-#define Datasnap_MidConst_SNoConnectToBroker 64531
-#define Datasnap_MidConst_SNoParentConnection 64532
-#define Datasnap_MidConst_SInvalidResponse 64533
-#define Datasnap_MidConst_STooManyRecordsModified 64534
-#define Datasnap_MidConst_SInvalidOptParamType 64535
-#define Datasnap_MidConst_SMissingDataSet 64536
-#define Datasnap_MidConst_SConstraintFailed 64537
-#define Datasnap_MidConst_SField 64538
-#define Datasnap_MidConst_SReadOnlyProvider 64539
-#define Datasnap_MidConst_SNoKeySpecified 64540
-#define Datasnap_MidConst_SNoDataSets 64541
-#define Datasnap_MidConst_SRecConstFail 64542
-#define Datasnap_MidConst_SFieldConstFail 64543
-#define Data_DBXCommonResStrs_SNoTypeWithEnoughPrecision 64544
-#define Data_DBXCommonResStrs_SCannotBeUsedForAutoIncrement 64545
-#define Data_DBXCommonResStrs_SNoBlobTypeFound 64546
-#define Data_DBXCommonResStrs_STypeNameNotFound 64547
-#define Data_DBXCommonResStrs_SWrongViewDefinition 64548
-#define Data_DBXCommonResStrs_SNoSignedTypeFound 64549
-#define Data_DBXCommonResStrs_SCannotHoldWantedPrecision 64550
-#define Data_DBXCommonResStrs_SCannotHoldWantedScale 64551
-#define Data_DBXCommonResStrs_STypeNotFound 64552
-#define Data_DBXCommonResStrs_SCannotHoldUnicodeChars 64553
-#define Data_DBXCommonResStrs_SCannotRecreateConstraint 64554
-#define Data_DBXCommonResStrs_SUnknownColumnName 64555
-#define Datasnap_MidConst_SNoDataProvider 64556
-#define Datasnap_MidConst_SInvalidDataPacket 64557
-#define Datasnap_MidConst_SRefreshError 64558
-#define Datasnap_MidConst_SAggsNoSuchLevel 64559
-#define Data_DBXCommonResStrs_SIsPrimary 64560
-#define Data_DBXCommonResStrs_SSynonymName 64561
-#define Data_DBXCommonResStrs_SRoleName 64562
-#define Data_DBXCommonResStrs_STableCatalogName 64563
-#define Data_DBXCommonResStrs_SMaximumScale 64564
-#define Data_DBXCommonResStrs_SPrimarySchemaName 64565
-#define Data_DBXCommonResStrs_SMustCallNextFirst 64566
-#define Data_DBXCommonResStrs_SDbxDataType 64567
-#define Data_DBXCommonResStrs_SIsLong 64568
-#define Data_DBXCommonResStrs_SPrimaryTableName 64569
-#define Data_DBXCommonResStrs_SMaxInline 64570
-#define Data_DBXCommonResStrs_STableName 64571
-#define Data_DBXCommonResStrs_SProcedureName 64572
-#define Data_DBXCommonResStrs_SIsAutoIncrementable 64573
-#define Data_DBXCommonResStrs_SPastEndOfCursor 64574
-#define Data_DBXCommonResStrs_SDefinition 64575
-#define Data_DBXCommonResStrs_SIsNullable 64576
-#define Data_DBXCommonResStrs_SProviderDbType 64577
-#define Data_DBXCommonResStrs_SIsFixedLength 64578
-#define Data_DBXCommonResStrs_SIsSearchable 64579
-#define Data_DBXCommonResStrs_SConstraintName 64580
-#define Data_DBXCommonResStrs_SParameterName 64581
-#define Data_DBXCommonResStrs_STableType 64582
-#define Data_DBXCommonResStrs_SViewName 64583
-#define Data_DBXCommonResStrs_SMinimumScale 64584
-#define Data_DBXCommonResStrs_SColumnSize 64585
-#define Data_DBXCommonResStrs_SIsUnicode 64586
-#define Data_DBXCommonResStrs_SIsFixedPrecisionScale 64587
-#define Data_DBXCommonResStrs_SUnexpectedSymbol 64588
-#define Data_DBXCommonResStrs_SUnknownTableType 64589
-#define Data_DBXCommonResStrs_SMetaDataCommandExpected 64590
-#define Data_DBXCommonResStrs_SLiteralPrefix 64591
-#define Data_DBXCommonResStrs_SPackageName 64592
-#define Data_DBXCommonResStrs_SParameterMode 64593
-#define Data_DBXCommonResStrs_SPrecision 64594
-#define Data_DBXCommonResStrs_SIsBestMatch 64595
-#define Data_DBXCommonResStrs_SMissingImplementation 64596
-#define Data_DBXCommonResStrs_SMaximumVersion 64597
-#define Data_DBXCommonResStrs_SIsAutoIncrement 64598
-#define Data_DBXCommonResStrs_SLiteralSuffix 64599
-#define Data_DBXCommonResStrs_SCreateFormat 64600
-#define Data_DBXCommonResStrs_SSchemaName 64601
-#define Data_DBXCommonResStrs_SIsConcurrencyType 64602
-#define Data_DBXCommonResStrs_SReservedWord 64603
-#define Data_DBXCommonResStrs_SPrimaryCatalogName 64604
-#define Data_DBXCommonResStrs_SUserName 64605
-#define Data_DBXCommonResStrs_SExternalDefinition 64606
-#define Data_DBXCommonResStrs_STypeName 64607
-#define Data_DBXCommonResStrs_SForeignKeyName 64608
-#define Data_DBXCommonResStrs_SIndexName 64609
-#define Data_DBXCommonResStrs_SIsUnsigned 64610
-#define Data_DBXCommonResStrs_SIsUnique 64611
-#define Data_DBXCommonResStrs_SPrimaryKeyName 64612
-#define Data_DBXCommonResStrs_SIsAscending 64613
-#define Data_DBXCommonResStrs_SOrdinalOutOfRange 64614
-#define Data_DBXCommonResStrs_SScale 64615
-#define Data_DBXCommonResStrs_SColumnName 64616
-#define Data_DBXCommonResStrs_STableSchemaName 64617
-#define Data_DBXCommonResStrs_SPrimaryColumnName 64618
-#define Data_DBXCommonResStrs_SOrdinal 64619
-#define Data_DBXCommonResStrs_SIsCaseSensitive 64620
-#define Data_DBXCommonResStrs_SMinimumVersion 64621
-#define Data_DBXCommonResStrs_SIsSearchableWithLike 64622
-#define Data_DBXCommonResStrs_SCreateParameters 64623
-#define Data_DBXCommonResStrs_SDBXErrDatabaseUnspecified 64624
-#define Data_DBXCommonResStrs_SDBXErrLibraryNameUnspecified 64625
-#define Data_DBXCommonResStrs_SDBXErrGetDriverFuncUnspecified 64626
-#define Data_DBXCommonResStrs_SDBXErrVendorLibUnspecified 64627
-#define Data_DBXCommonResStrs_SIllegalArgument 64628
-#define Data_DBXCommonResStrs_SUnsupportedOperation 64629
-#define Data_DBXCommonResStrs_SUnexpectedStringOverflow 64630
-#define Data_DBXCommonResStrs_SUTF8InvalidHeaderByte 64631
-#define Data_DBXCommonResStrs_SUTF8UnexpectedByte 64632
-#define Data_DBXCommonResStrs_SUTF8Start 64633
-#define Data_DBXCommonResStrs_SIsLiteralSupported 64634
-#define Data_DBXCommonResStrs_SDataType 64635
-#define Data_DBXCommonResStrs_SCatalogName 64636
-#define Data_DBXCommonResStrs_SProcedureType 64637
-#define Data_DBXCommonResStrs_SUnclosedQuotes 64638
-#define Data_DBXCommonResStrs_SDefaultValue 64639
-#define Data_DBXCommonResStrs_SDBXErrDriverRestricted 64640
-#define Data_DBXCommonResStrs_SDBXErrTransactionActive 64641
-#define Data_DBXCommonResStrs_SDBXErrMultipleTransactionNotEnabled 64642
-#define Data_DBXCommonResStrs_SDBXErrConnectionFailed 64643
-#define Data_DBXCommonResStrs_SDBXErrDriverInitFailed 64644
-#define Data_DBXCommonResStrs_SDBXErrOptimisticLockFailed 64645
-#define Data_DBXCommonResStrs_SDBXErrInvalidReference 64646
-#define Data_DBXCommonResStrs_SDBXErrNoTable 64647
-#define Data_DBXCommonResStrs_SDBXErrMissingParameterMarker 64648
-#define Data_DBXCommonResStrs_SDBXErrNotImplemented 64649
-#define Data_DBXCommonResStrs_SDBXErrDriverIncompatible 64650
-#define Data_DBXCommonResStrs_SDBXErrInvalidArgument 64651
-#define Data_DBXCommonResStrs_SDBXErrNoData 64652
-#define Data_DBXCommonResStrs_SDBXErrVendorError 64653
-#define Data_DBXCommonResStrs_SDBXErrUnrecognizedCommandType 64654
-#define Data_DBXCommonResStrs_SDBXErrSchemaNameUnspecified 64655
-#define Data_DBXCommonResStrs_SDBXErrNoMemory 64656
-#define Data_DBXCommonResStrs_SDBXErrUnsupportedFieldType 64657
-#define Data_DBXCommonResStrs_SDBXErrInvalidHandle 64658
-#define Data_DBXCommonResStrs_SDBXErrNotSupported 64659
-#define Data_DBXCommonResStrs_SDBXErrInvalidTime 64660
-#define Data_DBXCommonResStrs_SDBXErrInvalidType 64661
-#define Data_DBXCommonResStrs_SDBXErrInvalidOrdinal 64662
-#define Data_DBXCommonResStrs_SDBXErrInvalidParameter 64663
-#define Data_DBXCommonResStrs_SDBXErrEOF 64664
-#define Data_DBXCommonResStrs_SDBXErrParameterNotSet 64665
-#define Data_DBXCommonResStrs_SDBXErrInvalidUserOrPassword 64666
-#define Data_DBXCommonResStrs_SDBXErrInvalidPrecision 64667
-#define Data_DBXCommonResStrs_SDBXErrInvalidLength 64668
-#define Data_DBXCommonResStrs_SDBXErrInvalidIsolationLevel 64669
-#define Data_DBXCommonResStrs_SDBXErrInvalidTransactionId 64670
-#define Data_DBXCommonResStrs_SDBXErrDuplicateTransactionId 64671
-#define Data_DBXCommonResStrs_SInvalidJSONFieldType 64672
-#define Data_DBXCommonResStrs_SObjectExpectedInArray 64673
-#define Data_DBXCommonResStrs_SStringExpectedInArray 64674
-#define Data_DBXCommonResStrs_SArrayExpectedForField 64675
-#define Data_DBXCommonResStrs_SObjectExpectedForField 64676
-#define Data_DBXCommonResStrs_SUnknownDataType 64677
-#define Data_DBXCommonResStrs_SNoMetadataProvider 64678
-#define Data_DBXCommonResStrs_SUnexpectedMetaDataType 64679
-#define Data_DBXCommonResStrs_SInsertNotCalled 64680
-#define Data_DBXCommonResStrs_SPostNotCalled 64681
-#define Data_DBXCommonResStrs_SMustKeepOriginalColumnOrder 64682
-#define Data_DBXCommonResStrs_SUnexpectedDataType 64683
-#define Data_DBXCommonResStrs_SDriverAlreadyRegistered 64684
-#define Data_DBXCommonResStrs_SNotDefinedIn 64685
-#define Data_DBXCommonResStrs_SDBXErrNone 64686
-#define Data_DBXCommonResStrs_SDBXErrWarning 64687
-#define Data_DBXCommonResStrs_SValueExpected 64688
-#define Data_DBXCommonResStrs_SInvalidContext 64689
-#define Data_DBXCommonResStrs_SObjectExpectedForPair 64690
-#define Data_DBXCommonResStrs_SInvalidContextForPair 64691
-#define Data_DBXCommonResStrs_STypeNotSupported 64692
-#define Data_DBXCommonResStrs_SNoTypeInterceptorExpected 64693
-#define Data_DBXCommonResStrs_SInconsistentConversion 64694
-#define Data_DBXCommonResStrs_SNoConversionForType 64695
-#define Data_DBXCommonResStrs_SNoFieldFoundForType 64696
-#define Data_DBXCommonResStrs_SNoValueConversionForField 64697
-#define Data_DBXCommonResStrs_SNoConversionAvailableForValue 64698
-#define Data_DBXCommonResStrs_SInvalidTypeForField 64699
-#define Data_DBXCommonResStrs_SCannotCreateType 64700
-#define Data_DBXCommonResStrs_SCannotCreateObject 64701
-#define Data_DBXCommonResStrs_SObjectNotFound 64702
-#define Data_DBXCommonResStrs_SUnexpectedPairName 64703
-#define Data_DBXCommonResStrs_SAlreadyPrepared 64704
-#define Data_DBXCommonResStrs_SInvalidTypeAccess 64705
-#define Data_DBXCommonResStrs_SConnectionClosed 64706
-#define Data_DBXCommonResStrs_SMetaDataLoadError 64707
-#define Data_DBXCommonResStrs_SJSONByteStream 64708
-#define Data_DBXCommonResStrs_SNoStatementToExecute 64709
-#define Data_DBXCommonResStrs_SAdditionalInfo 64710
-#define Data_DBXCommonResStrs_SInvalidDataType 64711
-#define Data_DBXCommonResStrs_SUnmatchedBrace 64712
-#define Data_DBXCommonResStrs_SParameterIndexOutOfRange 64713
-#define Data_DBXCommonResStrs_SFieldValueMissing 64714
-#define Data_DBXCommonResStrs_SFieldExpected 64715
-#define Data_DBXCommonResStrs_SArrayExpected 64716
-#define Data_DBXCommonResStrs_SNoArray 64717
-#define Data_DBXCommonResStrs_STypeExpected 64718
-#define Data_DBXCommonResStrs_STypeFieldsPairExpected 64719
-#define Data_DBXCommonResStrs_SDllLoadError 64720
-#define Data_DBXCommonResStrs_SDllProcLoadError 64721
-#define Data_DBXCommonResStrs_SUnknownDriver 64722
-#define Data_DBXCommonResStrs_SInvalidArgument 64723
-#define Data_DBXCommonResStrs_SInvalidTransaction 64724
-#define Data_DBXCommonResStrs_SNotImplemented 64725
-#define Data_DBXCommonResStrs_SRequiredProperty 64726
-#define Data_DBXCommonResStrs_SReaderNew 64727
-#define Data_DBXCommonResStrs_SReaderClosed 64728
-#define Data_DBXCommonResStrs_SReadOnlyType 64729
-#define Data_DBXCommonResStrs_SSetSingletonOnce 64730
-#define Data_DBXCommonResStrs_SConnectionFactoryInitFailed 64731
-#define Data_DBXCommonResStrs_SInvalidDelegationDepth 64732
-#define Data_DBXCommonResStrs_SInvalidOrdinal 64733
-#define Data_DBXCommonResStrs_SDefaultErrorMessage 64734
-#define Data_DBXCommonResStrs_SErrorCode 64735
-#define Vcl_VDBConsts_SPostEdit 64736
-#define Vcl_VDBConsts_SCancelEdit 64737
-#define Vcl_VDBConsts_SRefreshRecord 64738
-#define Vcl_VDBConsts_SApplyUpdates 64739
-#define Vcl_VDBConsts_SCancelUpdates 64740
-#define Vcl_VDBConsts_SDeleteRecordQuestion 64741
-#define Vcl_VDBConsts_SDeleteMultipleRecordsQuestion 64742
-#define Vcl_VDBConsts_SDataSourceFixed 64743
-#define Vcl_VDBConsts_SPropDefByLookup 64744
-#define Vcl_VDBConsts_STooManyColumns 64745
-#define Vcl_VDBConsts_SRemoteLogin 64746
-#define Data_DBXCommonResStrs_SBadVariantType 64747
-#define Data_DBXCommonResStrs_SAlreadyRegistered 64748
-#define Data_DBXCommonResStrs_SNotRegistered 64749
-#define Data_DBXCommonResStrs_SInvalidClassRegister 64750
-#define Data_DBXCommonResStrs_SCannotFreeClassRegistry 64751
-#define uIdResourceStringsProtocols_RSOSSLConnectError 64752
-#define uIdResourceStringsProtocols_RSOSSLConnectFailed 64753
-#define uIdResourceStringsProtocols_RSOSSLConnectExit 64754
-#define uIdResourceStringsProtocols_RSOSSLHandshakeStart 64755
-#define uIdResourceStringsProtocols_RSOSSLHandshakeDone 64756
-#define uIdResourceStringsProtocols_RSURINoProto 64757
-#define uIdResourceStringsProtocols_RSURINoHost 64758
-#define uniGUIServer_DEF_ExceptionTemplate 64759
-#define uniGUIServer_DEF_TerminateTemplate 64760
-#define Vcl_VDBConsts_SFirstRecord 64761
-#define Vcl_VDBConsts_SPriorRecord 64762
-#define Vcl_VDBConsts_SNextRecord 64763
-#define Vcl_VDBConsts_SLastRecord 64764
-#define Vcl_VDBConsts_SInsertRecord 64765
-#define Vcl_VDBConsts_SDeleteRecord 64766
-#define Vcl_VDBConsts_SEditRecord 64767
-#define uIdResourceStringsProtocols_RSSSLLoadingDHParamsError 64768
-#define uIdResourceStringsProtocols_RSSSLGetMethodError 64769
-#define uIdResourceStringsProtocols_RSSSLFDSetError 64770
-#define uIdResourceStringsProtocols_RSSSLDataBindingError 64771
-#define uIdResourceStringsProtocols_RSSSLEOFViolation 64772
-#define uIdResourceStringsProtocols_RSOSSLModeNotSet 64773
-#define uIdResourceStringsProtocols_RSOSSLCouldNotLoadSSLLibrary 64774
-#define uIdResourceStringsProtocols_RSOSSLStatusString 64775
-#define uIdResourceStringsProtocols_RSOSSLAlert 64776
-#define uIdResourceStringsProtocols_RSOSSLReadAlert 64777
-#define uIdResourceStringsProtocols_RSOSSLWriteAlert 64778
-#define uIdResourceStringsProtocols_RSOSSLAcceptLoop 64779
-#define uIdResourceStringsProtocols_RSOSSLAcceptError 64780
-#define uIdResourceStringsProtocols_RSOSSLAcceptFailed 64781
-#define uIdResourceStringsProtocols_RSOSSLAcceptExit 64782
-#define uIdResourceStringsProtocols_RSOSSLConnectLoop 64783
-#define uIdResourceStringsProtocols_RSHTTPGatewayTimeout 64784
-#define uIdResourceStringsProtocols_RSHTTPHTTPVersionNotSupported 64785
-#define uIdResourceStringsProtocols_RSHTTPUnknownResponseCode 64786
-#define uIdResourceStringsProtocols_RSHTTPHeaderAlreadyWritten 64787
-#define uIdResourceStringsProtocols_RSHTTPErrorParsingCommand 64788
-#define uIdResourceStringsProtocols_RSHTTPUnsupportedAuthorisationScheme 64789
-#define uIdResourceStringsProtocols_RSHTTPCannotSwitchSessionStateWhenActive 64790
-#define uIdResourceStringsProtocols_RSHTTPCannotSwitchSessionListWhenActive 64791
-#define uIdResourceStringsProtocols_RSSSLAcceptError 64792
-#define uIdResourceStringsProtocols_RSSSLConnectError 64793
-#define uIdResourceStringsProtocols_RSSSLSettingCipherError 64794
-#define uIdResourceStringsProtocols_RSSSLCreatingSessionError 64795
-#define uIdResourceStringsProtocols_RSSSLCreatingContextError 64796
-#define uIdResourceStringsProtocols_RSSSLLoadingRootCertError 64797
-#define uIdResourceStringsProtocols_RSSSLLoadingCertError 64798
-#define uIdResourceStringsProtocols_RSSSLLoadingKeyError 64799
-#define uIdResourceStringsProtocols_RSHTTPMethodNotAllowed 64800
-#define uIdResourceStringsProtocols_RSHTTPNotAcceptable 64801
-#define uIdResourceStringsProtocols_RSHTTPProxyAuthenticationRequired 64802
-#define uIdResourceStringsProtocols_RSHTTPRequestTimeout 64803
-#define uIdResourceStringsProtocols_RSHTTPConflict 64804
-#define uIdResourceStringsProtocols_RSHTTPGone 64805
-#define uIdResourceStringsProtocols_RSHTTPLengthRequired 64806
-#define uIdResourceStringsProtocols_RSHTTPPreconditionFailed 64807
-#define uIdResourceStringsProtocols_RSHTTPRequestEntityTooLong 64808
-#define uIdResourceStringsProtocols_RSHTTPRequestURITooLong 64809
-#define uIdResourceStringsProtocols_RSHTTPUnsupportedMediaType 64810
-#define uIdResourceStringsProtocols_RSHTTPExpectationFailed 64811
-#define uIdResourceStringsProtocols_RSHTTPInternalServerError 64812
-#define uIdResourceStringsProtocols_RSHTTPNotImplemented 64813
-#define uIdResourceStringsProtocols_RSHTTPBadGateway 64814
-#define uIdResourceStringsProtocols_RSHTTPServiceUnavailable 64815
-#define uIdResourceStringsProtocols_RSHTTPOK 64816
-#define uIdResourceStringsProtocols_RSHTTPCreated 64817
-#define uIdResourceStringsProtocols_RSHTTPAccepted 64818
-#define uIdResourceStringsProtocols_RSHTTPNonAuthoritativeInformation 64819
-#define uIdResourceStringsProtocols_RSHTTPNoContent 64820
-#define uIdResourceStringsProtocols_RSHTTPResetContent 64821
-#define uIdResourceStringsProtocols_RSHTTPPartialContent 64822
-#define uIdResourceStringsProtocols_RSHTTPMovedPermanently 64823
-#define uIdResourceStringsProtocols_RSHTTPMovedTemporarily 64824
-#define uIdResourceStringsProtocols_RSHTTPSeeOther 64825
-#define uIdResourceStringsProtocols_RSHTTPNotModified 64826
-#define uIdResourceStringsProtocols_RSHTTPUseProxy 64827
-#define uIdResourceStringsProtocols_RSHTTPBadRequest 64828
-#define uIdResourceStringsProtocols_RSHTTPUnauthorized 64829
-#define uIdResourceStringsProtocols_RSHTTPForbidden 64830
-#define uIdResourceStringsProtocols_RSHTTPNotFound 64831
-#define uIdResourceStringsCore_RSchedMaxThreadEx 64832
-#define uIdResourceStringsCore_RSTransparentProxyCannotBind 64833
-#define uIdResourceStringsCore_RSTransparentProxyCanNotSupportUDP 64834
-#define uIdResourceStringsCore_RSBufferMissingTerminator 64835
-#define uIdResourceStringsCore_RSBufferInvalidStartPos 64836
-#define uIdResourceStringsCore_RSIOHandlerCannotChange 64837
-#define uIdResourceStringsCore_RSIOHandlerTypeNotInstalled 64838
-#define uIdResourceStringsCore_RSReplyInvalidCode 64839
-#define uIdResourceStringsCore_RSReplyCodeAlreadyExists 64840
-#define uIdResourceStringsCore_RSThreadSchedulerThreadRequired 64841
-#define uIdResourceStringsCore_RSTCPServerSchedulerAlreadyActive 64842
-#define uIdResourceStringsProtocols_RSFIPSAlgorithmNotAllowed 64843
-#define uIdResourceStringsProtocols_RSMIMEExtensionEmpty 64844
-#define uIdResourceStringsProtocols_RSMIMEMIMETypeEmpty 64845
-#define uIdResourceStringsProtocols_RSMIMEMIMEExtAlreadyExists 64846
-#define uIdResourceStringsProtocols_RSHTTPContinue 64847
-#define uIdResourceStringsCore_RSNotEnoughDataInBuffer 64848
-#define uIdResourceStringsCore_RSTooMuchDataInBuffer 64849
-#define uIdResourceStringsCore_RSFileNotFound 64850
-#define uIdResourceStringsCore_RSNotConnected 64851
-#define uIdResourceStringsCore_RSObjectTypeNotSupported 64852
-#define uIdResourceStringsCore_RSIdNoDataToRead 64853
-#define uIdResourceStringsCore_RSReadTimeout 64854
-#define uIdResourceStringsCore_RSReadLnWaitMaxAttemptsExceeded 64855
-#define uIdResourceStringsCore_RSReadLnMaxLineLengthExceeded 64856
-#define uIdResourceStringsCore_RSRequiresLargeStream 64857
-#define uIdResourceStringsCore_RSDataTooLarge 64858
-#define uIdResourceStringsCore_RSConnectTimeout 64859
-#define uIdResourceStringsCore_RSThreadTerminateAndWaitFor 64860
-#define uIdResourceStringsCore_RSAlreadyConnected 64861
-#define uIdResourceStringsCore_RSMaximumNumberOfCaptureLineExceeded 64862
-#define uIdResourceStringsCore_RSInterceptIsDifferent 64863
-#define uIdResourceStringsCore_RSSocksRequestFailed 64864
-#define uIdResourceStringsCore_RSSocksRequestServerFailed 64865
-#define uIdResourceStringsCore_RSSocksRequestIdentFailed 64866
-#define uIdResourceStringsCore_RSSocksUnknownError 64867
-#define uIdResourceStringsCore_RSSocksServerRespondError 64868
-#define uIdResourceStringsCore_RSSocksAuthMethodError 64869
-#define uIdResourceStringsCore_RSSocksAuthError 64870
-#define uIdResourceStringsCore_RSSocksServerGeneralError 64871
-#define uIdResourceStringsCore_RSSocksServerPermissionError 64872
-#define uIdResourceStringsCore_RSSocksServerNetUnreachableError 64873
-#define uIdResourceStringsCore_RSSocksServerHostUnreachableError 64874
-#define uIdResourceStringsCore_RSSocksServerConnectionRefusedError 64875
-#define uIdResourceStringsCore_RSSocksServerTTLExpiredError 64876
-#define uIdResourceStringsCore_RSSocksServerCommandError 64877
-#define uIdResourceStringsCore_RSSocksServerAddressError 64878
-#define uIdResourceStringsCore_RSInterceptCircularLink 64879
-#define uIdResourceStrings_RSStackClassUndefined 64880
-#define uIdResourceStrings_RSStackAlreadyCreated 64881
-#define uIdResourceStrings_RSAntiFreezeOnlyOne 64882
-#define uIdResourceStrings_RSCannotSetIPVersionWhenConnected 64883
-#define uIdResourceStrings_RSCannotBindRange 64884
-#define uIdResourceStrings_RSConnectionClosedGracefully 64885
-#define uIdResourceStrings_RSCouldNotBindSocket 64886
-#define uIdResourceStrings_RSInvalidPortRange 64887
-#define uIdResourceStrings_RSInvalidServiceName 64888
-#define uIdResourceStrings_RSIPv6Unavailable 64889
-#define uIdResourceStrings_RSInvalidIPv6Address 64890
-#define uIdResourceStrings_RSIPVersionUnsupported 64891
-#define uIdResourceStrings_RSNotAllBytesSent 64892
-#define uIdResourceStrings_RSPackageSizeTooBig 64893
-#define uIdResourceStrings_RSSetSizeExceeded 64894
-#define uIdResourceStringsCore_RSSocksUDPNotSupported 64895
-#define uIdResourceStrings_RSStackENETRESET 64896
-#define uIdResourceStrings_RSStackECONNABORTED 64897
-#define uIdResourceStrings_RSStackECONNRESET 64898
-#define uIdResourceStrings_RSStackENOBUFS 64899
-#define uIdResourceStrings_RSStackEISCONN 64900
-#define uIdResourceStrings_RSStackENOTCONN 64901
-#define uIdResourceStrings_RSStackESHUTDOWN 64902
-#define uIdResourceStrings_RSStackETOOMANYREFS 64903
-#define uIdResourceStrings_RSStackETIMEDOUT 64904
-#define uIdResourceStrings_RSStackECONNREFUSED 64905
-#define uIdResourceStrings_RSStackELOOP 64906
-#define uIdResourceStrings_RSStackENAMETOOLONG 64907
-#define uIdResourceStrings_RSStackEHOSTDOWN 64908
-#define uIdResourceStrings_RSStackEHOSTUNREACH 64909
-#define uIdResourceStrings_RSStackENOTEMPTY 64910
-#define uIdResourceStrings_RSStackHOST_NOT_FOUND 64911
-#define uIdResourceStrings_RSStackEINPROGRESS 64912
-#define uIdResourceStrings_RSStackEALREADY 64913
-#define uIdResourceStrings_RSStackENOTSOCK 64914
-#define uIdResourceStrings_RSStackEDESTADDRREQ 64915
-#define uIdResourceStrings_RSStackEMSGSIZE 64916
-#define uIdResourceStrings_RSStackEPROTOTYPE 64917
-#define uIdResourceStrings_RSStackENOPROTOOPT 64918
-#define uIdResourceStrings_RSStackEPROTONOSUPPORT 64919
-#define uIdResourceStrings_RSStackESOCKTNOSUPPORT 64920
-#define uIdResourceStrings_RSStackEOPNOTSUPP 64921
-#define uIdResourceStrings_RSStackEPFNOSUPPORT 64922
-#define uIdResourceStrings_RSStackEAFNOSUPPORT 64923
-#define uIdResourceStrings_RSStackEADDRINUSE 64924
-#define uIdResourceStrings_RSStackEADDRNOTAVAIL 64925
-#define uIdResourceStrings_RSStackENETDOWN 64926
-#define uIdResourceStrings_RSStackENETUNREACH 64927
-#define uIdResourceStrings_RSWinsockCallError 64928
-#define uIdResourceStrings_RSWinsockLoadError 64929
-#define uIdResourceStrings_RSStatusResolving 64930
-#define uIdResourceStrings_RSStatusConnecting 64931
-#define uIdResourceStrings_RSStatusConnected 64932
-#define uIdResourceStrings_RSStatusDisconnecting 64933
-#define uIdResourceStrings_RSStatusDisconnected 64934
-#define uIdResourceStrings_RSStatusText 64935
-#define uIdResourceStrings_RSStackError 64936
-#define uIdResourceStrings_RSStackEINTR 64937
-#define uIdResourceStrings_RSStackEBADF 64938
-#define uIdResourceStrings_RSStackEACCES 64939
-#define uIdResourceStrings_RSStackEFAULT 64940
-#define uIdResourceStrings_RSStackEINVAL 64941
-#define uIdResourceStrings_RSStackEMFILE 64942
-#define uIdResourceStrings_RSStackEWOULDBLOCK 64943
-#define Vcl_Imaging_GIFConsts_sNoDIB 64944
-#define Vcl_Imaging_GIFConsts_sInvalidStream 64945
-#define Vcl_Imaging_GIFConsts_sInvalidColor 64946
-#define Vcl_Imaging_GIFConsts_sInvalidBitSize 64947
-#define Vcl_Imaging_GIFConsts_sEmptyColorMap 64948
-#define Vcl_Imaging_GIFConsts_sEmptyImage 64949
-#define Vcl_Imaging_GIFConsts_sMultipleGCE 64950
-#define Vcl_Imaging_GIFConsts_sNoPalette 64951
-#define Vcl_Imaging_GIFConsts_sGIFImageFile 64952
-#define Vcl_Imaging_GIFConsts_sProgressLoading 64953
-#define Vcl_Imaging_GIFConsts_sProgressSaving 64954
-#define Vcl_Imaging_GIFConsts_sProgressConverting 64955
-#define Vcl_Imaging_GIFConsts_sProgressRendering 64956
-#define Vcl_Imaging_GIFConsts_sProgressCopying 64957
-#define Vcl_Imaging_GIFConsts_sProgressOptimizing 64958
-#define uIdResourceStrings_RSFailedTimeZoneInfo 64959
-#define Vcl_Imaging_GIFConsts_sBadExtensionLabel 64960
-#define Vcl_Imaging_GIFConsts_sOutOfMemDIB 64961
-#define Vcl_Imaging_GIFConsts_sDecodeTooFewBits 64962
-#define Vcl_Imaging_GIFConsts_sDecodeCircular 64963
-#define Vcl_Imaging_GIFConsts_sBadTrailer 64964
-#define Vcl_Imaging_GIFConsts_sBadExtensionInstance 64965
-#define Vcl_Imaging_GIFConsts_sBadBlockSize 64966
-#define Vcl_Imaging_GIFConsts_sBadBlock 64967
-#define Vcl_Imaging_GIFConsts_sUnsupportedClass 64968
-#define Vcl_Imaging_GIFConsts_sInvalidData 64969
-#define Vcl_Imaging_GIFConsts_sBadSize 64970
-#define Vcl_Imaging_GIFConsts_sScreenSizeExceeded 64971
-#define Vcl_Imaging_GIFConsts_sNoColorTable 64972
-#define Vcl_Imaging_GIFConsts_sBadPixelCoordinates 64973
-#define Vcl_Imaging_GIFConsts_sInvalidPixelFormat 64974
-#define Vcl_Imaging_GIFConsts_sBadDimension 64975
-#define Vcl_Imaging_pnglang_EPNGCannotChangeTransparentText 64976
-#define Vcl_Imaging_pnglang_EPNGHeaderNotPresentText 64977
-#define Vcl_Imaging_pnglang_EInvalidNewSize 64978
-#define Vcl_Imaging_pnglang_EInvalidSpec 64979
-#define Vcl_Imaging_JConsts_sChangeJPGSize 64980
-#define Vcl_Imaging_JConsts_sJPEGError 64981
-#define Vcl_Imaging_JConsts_sJPEGImageFile 64982
-#define Vcl_Imaging_GIFConsts_sOutOfData 64983
-#define Vcl_Imaging_GIFConsts_sTooManyColors 64984
-#define Vcl_Imaging_GIFConsts_sBadColorIndex 64985
-#define Vcl_Imaging_GIFConsts_sBadColorIndexFixed 64986
-#define Vcl_Imaging_GIFConsts_sGIFErrorSaveEmpty 64987
-#define Vcl_Imaging_GIFConsts_sBadSignature 64988
-#define Vcl_Imaging_GIFConsts_sScreenBadColorSize 64989
-#define Vcl_Imaging_GIFConsts_sImageBadColorSize 64990
-#define Vcl_Imaging_GIFConsts_sUnknownExtension 64991
-#define Vcl_Imaging_pnglang_EPNGZLIBErrorText 64992
-#define Vcl_Imaging_pnglang_EPNGInvalidPaletteText 64993
-#define Vcl_Imaging_pnglang_EPNGInvalidFileHeaderText 64994
-#define Vcl_Imaging_pnglang_EPNGIHDRNotFirstText 64995
-#define Vcl_Imaging_pnglang_EPNGSizeExceedsText 64996
-#define Vcl_Imaging_pnglang_EPNGUnknownPalEntryText 64997
-#define Vcl_Imaging_pnglang_EPNGUnknownCriticalChunkText 64998
-#define Vcl_Imaging_pnglang_EPNGUnknownCompressionText 64999
-#define Vcl_Imaging_pnglang_EPNGUnknownInterlaceText 65000
-#define Vcl_Imaging_pnglang_EPNGCannotAssignChunkText 65001
-#define Vcl_Imaging_pnglang_EPNGUnexpectedEndText 65002
-#define Vcl_Imaging_pnglang_EPNGNoImageDataText 65003
-#define Vcl_Imaging_pnglang_EPNGCannotAddChunkText 65004
-#define Vcl_Imaging_pnglang_EPNGCannotAddInvalidImageText 65005
-#define Vcl_Imaging_pnglang_EPNGCouldNotLoadResourceText 65006
-#define Vcl_Imaging_pnglang_EPNGOutMemoryText 65007
-#define Data_DBConsts_SProviderSQLNotSupported 65008
-#define Data_DBConsts_SProviderExecuteNotSupported 65009
-#define Data_DBConsts_SExprNoAggOnCalcs 65010
-#define Data_DBConsts_SRecordChanged 65011
-#define Data_DBConsts_SDataSetUnidirectional 65012
-#define Data_DBConsts_SUnassignedVar 65013
-#define Data_DBConsts_SRecordNotFound 65014
-#define Data_DBConsts_SFileNameBlank 65015
-#define Data_DBConsts_SBcdOverflow 65016
-#define Data_DBConsts_SInvalidBcdValue 65017
-#define Data_DBConsts_SCouldNotParseTimeStamp 65018
-#define Data_DBConsts_SInvalidSqlTimeStamp 65019
-#define uniGUIConst_UNI_GUI_SERVER 65020
-#define Vcl_Imaging_pnglang_EPngInvalidCRCText 65021
-#define Vcl_Imaging_pnglang_EPNGInvalidIHDRText 65022
-#define Vcl_Imaging_pnglang_EPNGMissingMultipleIDATText 65023
-#define Data_DBConsts_SExprIncorrect 65024
-#define Data_DBConsts_SExprNothing 65025
-#define Data_DBConsts_SExprTypeMis 65026
-#define Data_DBConsts_SExprBadScope 65027
-#define Data_DBConsts_SExprNoArith 65028
-#define Data_DBConsts_SExprNotAgg 65029
-#define Data_DBConsts_SExprBadConst 65030
-#define Data_DBConsts_SExprNoAggFilter 65031
-#define Data_DBConsts_SExprEmptyInList 65032
-#define Data_DBConsts_SInvalidKeywordUse 65033
-#define Data_DBConsts_STextFalse 65034
-#define Data_DBConsts_STextTrue 65035
-#define Data_DBConsts_SParameterNotFound 65036
-#define Data_DBConsts_SInvalidVersion 65037
-#define Data_DBConsts_SBadFieldType 65038
-#define Data_DBConsts_SAggActive 65039
-#define Data_DBConsts_SNotEditing 65040
-#define Data_DBConsts_SDataSetClosed 65041
-#define Data_DBConsts_SDataSetEmpty 65042
-#define Data_DBConsts_SDataSetReadOnly 65043
-#define Data_DBConsts_SNestedDataSetClass 65044
-#define Data_DBConsts_SExprTermination 65045
-#define Data_DBConsts_SExprNameError 65046
-#define Data_DBConsts_SExprStringError 65047
-#define Data_DBConsts_SExprInvalidChar 65048
-#define Data_DBConsts_SExprNoLParen 65049
-#define Data_DBConsts_SExprNoRParen 65050
-#define Data_DBConsts_SExprNoRParenOrComma 65051
-#define Data_DBConsts_SExprExpected 65052
-#define Data_DBConsts_SExprBadField 65053
-#define Data_DBConsts_SExprBadNullTest 65054
-#define Data_DBConsts_SExprRangeError 65055
-#define Data_DBConsts_SDataSetMissing 65056
-#define Data_DBConsts_SInvalidCalcType 65057
-#define Data_DBConsts_SFieldReadOnly 65058
-#define Data_DBConsts_SFieldIndexError 65059
-#define Data_DBConsts_SNoFieldIndexes 65060
-#define Data_DBConsts_SNotIndexField 65061
-#define Data_DBConsts_SIndexFieldMissing 65062
-#define Data_DBConsts_SDuplicateIndexName 65063
-#define Data_DBConsts_SNoIndexForFields 65064
-#define Data_DBConsts_SIndexNotFound 65065
-#define Data_DBConsts_SDBDuplicateName 65066
-#define Data_DBConsts_SCircularDataLink 65067
-#define Data_DBConsts_SLookupInfoError 65068
-#define Data_DBConsts_SDataSourceChange 65069
-#define Data_DBConsts_SNoNestedMasterSource 65070
-#define Data_DBConsts_SDataSetOpen 65071
-#define Data_DBConsts_SUnknownFieldType 65072
-#define Data_DBConsts_SFieldNameMissing 65073
-#define Data_DBConsts_SDuplicateFieldName 65074
-#define Data_DBConsts_SFieldNotFound 65075
-#define Data_DBConsts_SFieldAccessError 65076
-#define Data_DBConsts_SFieldValueError 65077
-#define Data_DBConsts_SFieldRangeError 65078
-#define Data_DBConsts_SBcdFieldRangeError 65079
-#define Data_DBConsts_SInvalidIntegerValue 65080
-#define Data_DBConsts_SInvalidBoolValue 65081
-#define Data_DBConsts_SInvalidFloatValue 65082
-#define Data_DBConsts_SFieldTypeMismatch 65083
-#define Data_DBConsts_SFieldSizeMismatch 65084
-#define Data_DBConsts_SInvalidVarByteArray 65085
-#define Data_DBConsts_SFieldOutOfRange 65086
-#define Data_DBConsts_SFieldRequired 65087
-#define Vcl_ComStrs_sInvalidOwner 65088
-#define Vcl_ComStrs_sRichEditInsertError 65089
-#define Vcl_ComStrs_sRichEditLoadFail 65090
-#define Vcl_ComStrs_sRichEditSaveFail 65091
-#define Vcl_ComStrs_sUDAssociated 65092
-#define Vcl_ComStrs_sPageIndexError 65093
-#define Vcl_ComStrs_sInvalidComCtl32 65094
-#define Vcl_ComStrs_sDateTimeMax 65095
-#define Vcl_ComStrs_sDateTimeMin 65096
-#define Vcl_ComStrs_sNeedAllowNone 65097
-#define Vcl_ComStrs_sFailSetCalDateTime 65098
-#define Vcl_ComStrs_sFailSetCalMaxSelRange 65099
-#define Vcl_ComStrs_sFailSetCalMinMaxRange 65100
-#define Vcl_ComStrs_sFailsetCalSelRange 65101
-#define Data_DBConsts_SInvalidFieldSize 65102
-#define Data_DBConsts_SInvalidFieldKind 65103
-#define System_Win_ComConst_SDCOMNotInstalled 65104
-#define System_Win_ComConst_SDAXError 65105
-#define System_Win_ComConst_SAutomationWarning 65106
-#define System_Win_ComConst_SNoCloseActiveServer1 65107
-#define System_Win_ComConst_SNoCloseActiveServer2 65108
-#define Vcl_ComStrs_sTabFailClear 65109
-#define Vcl_ComStrs_sTabFailDelete 65110
-#define Vcl_ComStrs_sTabFailRetrieve 65111
-#define Vcl_ComStrs_sTabFailGetObject 65112
-#define Vcl_ComStrs_sTabFailSet 65113
-#define Vcl_ComStrs_sTabFailSetObject 65114
-#define Vcl_ComStrs_sTabMustBeMultiLine 65115
-#define Vcl_ComStrs_sInvalidLevel 65116
-#define Vcl_ComStrs_sInvalidLevelEx 65117
-#define Vcl_ComStrs_sInvalidIndex 65118
-#define Vcl_ComStrs_sInsertError 65119
-#define Vcl_Consts_SStyleRegisterError 65120
-#define Vcl_Consts_SStyleClassRegisterError 65121
-#define Vcl_Consts_SStyleNotFound 65122
-#define Vcl_Consts_SStyleClassNotFound 65123
-#define Vcl_Consts_SStyleInvalidHandle 65124
-#define Vcl_Consts_SStyleFormatError 65125
-#define Vcl_Consts_SStyleHookClassRegistered 65126
-#define Vcl_Consts_SStyleHookClassNotRegistered 65127
-#define Vcl_Consts_SStyleInvalidParameter 65128
-#define Vcl_Consts_SStyleFeatureNotSupported 65129
-#define System_Win_ComConst_SCreateRegKeyError 65130
-#define System_Win_ComConst_SOleError 65131
-#define System_Win_ComConst_SObjectFactoryMissing 65132
-#define System_Win_ComConst_SNoMethod 65133
-#define System_Win_ComConst_SVarNotObject 65134
-#define System_Win_ComConst_STooManyParams 65135
-#define Vcl_Consts_SNoGetItemEventHandler 65136
-#define Vcl_Consts_SInvalidPath 65137
-#define Vcl_Consts_SANSIEncoding 65138
-#define Vcl_Consts_SASCIIEncoding 65139
-#define Vcl_Consts_SUnicodeEncoding 65140
-#define Vcl_Consts_SBigEndianEncoding 65141
-#define Vcl_Consts_SUTF8Encoding 65142
-#define Vcl_Consts_SUTF7Encoding 65143
-#define Vcl_Consts_STrayIconRemoveError 65144
-#define Vcl_Consts_SPageControlNotSet 65145
-#define Vcl_Consts_SWindowsVistaRequired 65146
-#define Vcl_Consts_STaskDlgButtonCaption 65147
-#define Vcl_Consts_STaskDlgRadioButtonCaption 65148
-#define Vcl_Consts_SInvalidTaskDlgButtonCaption 65149
-#define Vcl_Consts_SStyleLoadError 65150
-#define Vcl_Consts_SStyleLoadErrors 65151
-#define Vcl_Consts_SDuplicateMenus 65152
-#define Vcl_Consts_SDockedCtlNeedsName 65153
-#define Vcl_Consts_SDockTreeRemoveError 65154
-#define Vcl_Consts_SDockZoneNotFound 65155
-#define Vcl_Consts_SDockZoneHasNoCtl 65156
-#define Vcl_Consts_SDockZoneVersionConflict 65157
-#define Vcl_Consts_SMultiSelectRequired 65158
-#define Vcl_Consts_SPromptArrayTooShort 65159
-#define Vcl_Consts_SPromptArrayEmpty 65160
-#define Vcl_Consts_SUsername 65161
-#define Vcl_Consts_SPassword 65162
-#define Vcl_Consts_SDomain 65163
-#define Vcl_Consts_SLogin 65164
-#define Vcl_Consts_SSeparator 65165
-#define Vcl_Consts_SErrorSettingCount 65166
-#define Vcl_Consts_SListBoxMustBeVirtual 65167
-#define Vcl_Consts_SmkcDown 65168
-#define Vcl_Consts_SmkcIns 65169
-#define Vcl_Consts_SmkcDel 65170
-#define Vcl_Consts_SmkcShift 65171
-#define Vcl_Consts_SmkcCtrl 65172
-#define Vcl_Consts_SmkcAlt 65173
-#define Vcl_Consts_srNone 65174
-#define Vcl_Consts_SOutOfRange 65175
-#define Vcl_Consts_sAllFilter 65176
-#define Vcl_Consts_SInsertLineError 65177
-#define Vcl_Consts_SInvalidClipFmt 65178
-#define Vcl_Consts_SIconToClipboard 65179
-#define Vcl_Consts_SCannotOpenClipboard 65180
-#define Vcl_Consts_SInvalidMemoSize 65181
-#define Vcl_Consts_SInvalidPrinterOp 65182
-#define Vcl_Consts_SNoDefaultPrinter 65183
-#define Vcl_Consts_SMsgDlgAll 65184
-#define Vcl_Consts_SMsgDlgNoToAll 65185
-#define Vcl_Consts_SMsgDlgYesToAll 65186
-#define Vcl_Consts_SMsgDlgClose 65187
-#define Vcl_Consts_SmkcBkSp 65188
-#define Vcl_Consts_SmkcTab 65189
-#define Vcl_Consts_SmkcEsc 65190
-#define Vcl_Consts_SmkcEnter 65191
-#define Vcl_Consts_SmkcSpace 65192
-#define Vcl_Consts_SmkcPgUp 65193
-#define Vcl_Consts_SmkcPgDn 65194
-#define Vcl_Consts_SmkcEnd 65195
-#define Vcl_Consts_SmkcHome 65196
-#define Vcl_Consts_SmkcLeft 65197
-#define Vcl_Consts_SmkcUp 65198
-#define Vcl_Consts_SmkcRight 65199
+#define AbResString_AbLtStartS 64096
+#define AbResString_AbGzipInvalidS 64097
+#define AbResString_AbGzipBadCRCS 64098
+#define AbResString_AbGzipBadFileSizeS 64099
+#define AbResString_AbTarInvalidS 64100
+#define AbResString_AbTarBadFileNameS 64101
+#define AbResString_AbTarBadLinkNameS 64102
+#define AbResString_AbTarBadOpS 64103
+#define AbResString_AbUnhandledEntityS 64104
+#define AbResString_AbVMSWriteTooManyBytesS 64112
+#define AbResString_AbBBSReadTooManyBytesS 64113
+#define AbResString_AbBBSSeekOutsideBufferS 64114
+#define AbResString_AbBBSInvalidOriginS 64115
+#define AbResString_AbBBSWriteTooManyBytesS 64116
+#define AbResString_AbSWSNotEndofStreamS 64117
+#define AbResString_AbSWSSeekFailedS 64118
+#define AbResString_AbSWSWriteFailedS 64119
+#define AbResString_AbSWSInvalidOriginS 64120
+#define AbResString_AbSWSInvalidNewOriginS 64121
+#define AbResString_AbLtAddS 64122
+#define AbResString_AbLtDeleteS 64123
+#define AbResString_AbLtExtractS 64124
+#define AbResString_AbLtFreshenS 64125
+#define AbResString_AbLtMoveS 64126
+#define AbResString_AbLtReplaceS 64127
+#define AbResString_AbFCIFileSeekErrorS 64128
+#define AbResString_AbFCIFileDeleteErrorS 64129
+#define AbResString_AbFCIAddFileErrorS 64130
+#define AbResString_AbFCICreateErrorS 64131
+#define AbResString_AbFCIFlushCabinetErrorS 64132
+#define AbResString_AbFCIFlushFolderErrorS 64133
+#define AbResString_AbFDICopyErrorS 64134
+#define AbResString_AbFDICreateErrorS 64135
+#define AbResString_AbInvalidCabTemplateS 64136
+#define AbResString_AbInvalidCabFileS 64137
+#define AbResString_AbVMSReadTooManyBytesS 64138
+#define AbResString_AbVMSInvalidOriginS 64139
+#define AbResString_AbVMSErrorOpenSwapS 64140
+#define AbResString_AbVMSSeekFailS 64141
+#define AbResString_AbVMSReadFailS 64142
+#define AbResString_AbVMSWriteFailS 64143
+#define AbResString_AbTruncateErrorS 64144
+#define AbResString_AbZipBadCRCS 64145
+#define AbResString_AbZipBadStubS 64146
+#define AbResString_AbFileNotFoundS 64147
+#define AbResString_AbInvalidLFHS 64148
+#define AbResString_AbNoArchiveS 64149
+#define AbResString_AbReadErrorS 64150
+#define AbResString_AbInvalidIndexS 64151
+#define AbResString_AbInvalidThresholdS 64152
+#define AbResString_AbUnhandledFileTypeS 64153
+#define AbResString_AbSpanningNotSupportedS 64154
+#define AbResString_AbNoCabinetDllErrorS 64155
+#define AbResString_AbFCIFileOpenErrorS 64156
+#define AbResString_AbFCIFileReadErrorS 64157
+#define AbResString_AbFCIFileWriteErrorS 64158
+#define AbResString_AbFCIFileCloseErrorS 64159
+#define AbResString_AbUnknownCompressionMethodS 64160
+#define AbResString_AbNoExtractionMethodS 64161
+#define AbResString_AbInvalidPasswordS 64162
+#define AbResString_AbNoInsertionMethodS 64163
+#define AbResString_AbInvalidFactorS 64164
+#define AbResString_AbDuplicateNameS 64165
+#define AbResString_AbUnsupportedCompressionMethodS 64166
+#define AbResString_AbUserAbortS 64167
+#define AbResString_AbArchiveBusyS 64168
+#define AbResString_AbBadSpanStreamS 64169
+#define AbResString_AbNoOverwriteSpanStreamS 64170
+#define AbResString_AbNoSpannedSelfExtractS 64171
+#define AbResString_AbStreamFullS 64172
+#define AbResString_AbNoSuchDirectoryS 64173
+#define AbResString_AbInflateBlockErrorS 64174
+#define AbResString_AbBadStreamTypeS 64175
+#define IBCConstsUni_SVarIsNotArray 64176
+#define IBCConstsUni_SInvalidTable 64177
+#define IBCConstsUni_SInvalidColumn 64178
+#define IBCConstsUni_SCannotDisableArrayCache 64179
+#define IBCConstsUni_SArrayDimensionError 64180
+#define IBCConstsUni_SArrayLowBoundError 64181
+#define IBCConstsUni_SArrayHighBoundError 64182
+#define IBCConstsUni_SArrayIndexError 64183
+#define IBCConstsUni_SInvalidDimension 64184
+#define Xml_XMLConst_SDuplicateRegistration 64185
+#define Xml_XMLConst_SDOMNotSupported 64186
+#define Xml_XMLConst_SNodeExpected 64187
+#define Xml_XMLConst_SMSDOMNotInstalled 64188
+#define zesavecommon_DefaultSheetName 64189
+#define AbResString_AbErrZipInvalidS 64190
+#define AbResString_AbZipVersionNeededS 64191
+#define IBCConstsUni_SCantSetReadPosition 64192
+#define IBCConstsUni_SCannotChangeStreamed 64193
+#define IBCConstsUni_SCannotDisableBlobCache 64194
+#define IBCConstsUni_SParamIsNotStorable 64195
+#define IBCConstsUni_SSQLInfoError 64196
+#define IBCConstsUni_SWrongSQLType 64197
+#define IBCConstsUni_SEmptySQL 64198
+#define IBCConstsUni_SDPBConstantNotSupported 64199
+#define IBCConstsUni_SDPBConstantUnknown 64200
+#define IBCConstsUni_STPBConstantNotSupported 64201
+#define IBCConstsUni_STPBConstantUnknown 64202
+#define IBCConstsUni_SConnectionClosed 64203
+#define IBCConstsUni_SConnectionOpen 64204
+#define IBCConstsUni_SConnClosedOnTrStart 64205
+#define IBCConstsUni_SEventNameTooLong 64206
+#define IBCConstsUni_SSendEventNotSupported 64207
+#define UniConsts_SInvalidBracketCount 64208
+#define UniConsts_SInvalidDate 64209
+#define UniConsts_SInvalidTime 64210
+#define UniConsts_SInvalidTimestamp 64211
+#define UniConsts_SNotCompletedIF 64212
+#define UniConsts_SUnexpectedChar 64213
+#define UniConsts_SUnexpectedElse 64214
+#define UniConsts_SUnexpectedEndif 64215
+#define UniConsts_SUnknownFunction 64216
+#define UniConsts_SWrongArgCnt 64217
+#define UniConsts_SCyclicConditions 64218
+#define IBCConstsUni_SNoRows 64219
+#define IBCConstsUni_SCursorNotOpened 64220
+#define IBCConstsUni_SCantExecuteNonSelectStatement 64221
+#define IBCConstsUni_SBlobNotAllocatted 64222
+#define IBCConstsUni_SCantReadEmptyBlobID 64223
+#define DAConsts_SConnectionInTransactionNotActive 64224
+#define DAConsts_SUnsupportedIsolationLevel 64225
+#define DAConsts_SIsolationLevelNotSupportedWithMTS 64226
+#define DAConsts_SOperationNotSupported 64227
+#define DAConsts_SMultipleTransactionsNotSupported 64228
+#define DAConsts_SInvalidParamsArray 64229
+#define DAConsts_SUnsupportedMetaDataKind 64230
+#define DAConsts_SMDIsNotMemDataSet 64231
+#define DBMonitorClient_SAppStarted 64232
+#define DBMonitorClient_SAppFinished 64233
+#define UniConsts_SProviderNotDefined 64234
+#define UniConsts_SInvalidProviderName 64235
+#define UniConsts_SProviderNotRegistered 64236
+#define UniConsts_SAlertsNotSupported 64237
+#define UniConsts_SEmptyFunctionName 64238
+#define UniConsts_SEmptyMacroOrFunction 64239
+#define DAConsts_SCannotPerformIfPooling 64240
+#define DAConsts_SMaxConnectionsReached 64241
+#define DAConsts_SCannotChangeIsUnicode 64242
+#define DAConsts_SNoTimers 64243
+#define DAConsts_sBlobNotCompressed 64244
+#define DAConsts_SCompressorNotLinked 64245
+#define DAConsts_SUncompressorNotLinked 64246
+#define DAConsts_SUpdateComponentCircularReferences 64247
+#define DAConsts_SUpdateComponentInvalidType 64248
+#define DAConsts_SUpdateObjectEmptySQL 64249
+#define DAConsts_SWrongTblCount 64250
+#define DAConsts_SBackupQueryWrongTableCount 64251
+#define DAConsts_SInvalidLexem 64252
+#define DAConsts_SEmptySQLStatement 64253
+#define DAConsts_SInvalidBlobPosition 64254
+#define DAConsts_SNoConnectionsInTransaction 64255
+#define DAConsts_SConnectionNotConnected 64256
+#define DAConsts_SCannotConnect 64257
+#define DAConsts_SMacroNotFound 64258
+#define DAConsts_SNotInTransaction 64259
+#define DAConsts_SInTransaction 64260
+#define DAConsts_STransactionNotAssigned 64261
+#define DAConsts_SUpdateFailed 64262
+#define DAConsts_SCustomUpdateFailed 64263
+#define DAConsts_SRefreshFailed 64264
+#define DAConsts_SInvalidFetchRows 64265
+#define DAConsts_SNoCorrespondParam 64266
+#define DAConsts_SUnknownParamDataType 64267
+#define DAConsts_SRecordChanged 64268
+#define DAConsts_STableNameNotDefined 64269
+#define DAConsts_SStoredProcNotDefined 64270
+#define DAConsts_SConnectionIsClosed 64271
+#define DAConsts_SBlobMustBeCached 64272
+#define DAConsts_SKeyFieldsRequired 64273
+#define DAConsts_SKeyFieldsReq 64274
+#define DAConsts_SNoKeyFields 64275
+#define DAConsts_SBadTableInfoName 64276
+#define DAConsts_SBadStatementType 64277
+#define DAConsts_SBadUpdatingTable 64278
+#define DAConsts_SKeyFieldNotFound 64279
+#define DAConsts_SInvalidUnComprBlobSize 64280
+#define DAConsts_SInvalidComprBlobSize 64281
+#define DAConsts_SInvalidComprBlobHeader 64282
+#define DAConsts_SInvalidComprBlobData 64283
+#define DAConsts_SDataSetIsNotPrepared 64284
+#define DAConsts_SNotCachedUpdate 64285
+#define DAConsts_SUpdateWrongDB 64286
+#define DAConsts_SConnectionNotDefined 64287
+#define IBSQLMonitor_StrCommitRetaining 64288
+#define IBSQLMonitor_StrRollback 64289
+#define IBSQLMonitor_StrRollbackRetainin 64290
+#define IBSQLMonitor_StrStartTransaction 64291
+#define IBSQLMonitor_StrApplication 64292
+#define System_ZLibConst_sTargetBufferTooSmall 64293
+#define System_ZLibConst_sError 64294
+#define DAConsts_SUnknownDataType 64295
+#define DAConsts_SDataTypeNotSupported 64296
+#define DAConsts_SFieldNotFound 64297
+#define DAConsts_SAttributeNotFount 64298
+#define DAConsts_SCannotConvertType 64299
+#define DAConsts_SIllegalFilter 64300
+#define DAConsts_SNeedBlobType 64301
+#define DAConsts_SInvalidSharedObject 64302
+#define DAConsts_SInvalidBlob 64303
+#define IBXConst_SIBUnknownServerType 64304
+#define IBXConst_SInvalidLibraryType 64305
+#define IBSQLMonitor_StrMisc 64306
+#define IBSQLMonitor_StrError 64307
+#define IBSQLMonitor_StrAttach 64308
+#define IBSQLMonitor_StrDetach 64309
+#define IBSQLMonitor_StrQuery 64310
+#define IBSQLMonitor_StrStart 64311
+#define IBSQLMonitor_StrExecute 64312
+#define IBSQLMonitor_StrNULL 64313
+#define IBSQLMonitor_StrBLOB 64314
+#define IBSQLMonitor_StrFetch 64315
+#define IBSQLMonitor_StrPrepare 64316
+#define IBSQLMonitor_StrPlan 64317
+#define IBSQLMonitor_StrPlanCantRetrive 64318
+#define IBSQLMonitor_StrCommitHardComm 64319
+#define IBXConst_SInvalidOnErrorResult 64320
+#define IBXConst_SInvalidOnStatusResult 64321
+#define IBXConst_SDPBConstantUnknownEx 64322
+#define IBXConst_STPBConstantUnknownEx 64323
+#define IBXConst_SUnknownPlan 64324
+#define IBXConst_SFieldSizeMismatch 64325
+#define IBXConst_SEventAlreadyRegistered 64326
+#define IBXConst_SStringTooLarge 64327
+#define IBXConst_SNoTimers 64328
+#define IBXConst_SIB65feature 64329
+#define IBXConst_SLoginPromptFailure 64330
+#define IBXConst_SIBMemoryError 64331
+#define IBXConst_SIB70feature 64332
+#define IBXConst_SIB71feature 64333
+#define IBXConst_SIB80feature 64334
+#define IBXConst_SFileSizeDumpCountIncompatibility 64335
+#define IBXConst_SUseSpecificProcedures 64336
+#define IBXConst_SSQLMonitorAlreadyPresent 64337
+#define IBXConst_SCantPrintValue 64338
+#define IBXConst_SEOFReached 64339
+#define IBXConst_SEOFInComment 64340
+#define IBXConst_SEOFInString 64341
+#define IBXConst_SParamNameExpected 64342
+#define IBXConst_SSuccess 64343
+#define IBXConst_SDelphiException 64344
+#define IBXConst_SNoOptionsSet 64345
+#define IBXConst_SNoDestinationDirectory 64346
+#define IBXConst_SNosourceDirectory 64347
+#define IBXConst_SNoUninstallFile 64348
+#define IBXConst_SOptionNeedsClient 64349
+#define IBXConst_SOptionNeedsServer 64350
+#define IBXConst_SInvalidOption 64351
+#define IBXConst_SInvalidCancellation 64352
+#define IBXConst_SInvalidEvent 64353
+#define IBXConst_SMaximumEvents 64354
+#define IBXConst_SNoEventsRegistered 64355
+#define IBXConst_SInvalidQueueing 64356
+#define IBXConst_SInvalidRegistration 64357
+#define IBXConst_SInvalidBatchMove 64358
+#define IBXConst_SSQLDialectInvalid 64359
+#define IBXConst_SSPBConstantNotSupported 64360
+#define IBXConst_SSPBConstantUnknown 64361
+#define IBXConst_SServiceActive 64362
+#define IBXConst_SServiceInActive 64363
+#define IBXConst_SServerNameMissing 64364
+#define IBXConst_SQueryParamsError 64365
+#define IBXConst_SStartParamsError 64366
+#define IBXConst_SOutputParsingError 64367
+#define IBXConst_SCircularDataLink 64368
+#define IBXConst_SEmptySQLStatement 64369
+#define IBXConst_SIsASelectStatement 64370
+#define IBXConst_SRequiredParamNotSet 64371
+#define IBXConst_SNoStoredProcName 64372
+#define IBXConst_SIsAExecuteProcedure 64373
+#define IBXConst_SUpdateFailed 64374
+#define IBXConst_SNotCachedUpdates 64375
+#define IBXConst_SNotLiveRequest 64376
+#define IBXConst_SNoProvider 64377
+#define IBXConst_SNoRecordsAffected 64378
+#define IBXConst_SNoTableName 64379
+#define IBXConst_SCannotCreatePrimaryIndex 64380
+#define IBXConst_SCannotDropSystemIndex 64381
+#define IBXConst_STableNameMismatch 64382
+#define IBXConst_SIndexFieldMissing 64383
+#define IBXConst_SCannotInsert 64384
+#define IBXConst_SCannotPost 64385
+#define IBXConst_SCannotUpdate 64386
+#define IBXConst_SCannotDelete 64387
+#define IBXConst_SCannotRefresh 64388
+#define IBXConst_SBufferNotSet 64389
+#define IBXConst_SCircularReference 64390
+#define IBXConst_SSQLParseError 64391
+#define IBXConst_SUserAbort 64392
+#define IBXConst_SDataSetUniDirectional 64393
+#define IBXConst_SCannotCreateSharedResource 64394
+#define IBXConst_SWindowsAPIError 64395
+#define IBXConst_SColumnListsDontMatch 64396
+#define IBXConst_SColumnTypesDontMatch 64397
+#define IBXConst_SCantEndSharedTransaction 64398
+#define IBXConst_SFieldUnsupportedType 64399
+#define IBXConst_SSQLClosed 64400
+#define IBXConst_SDatasetOpen 64401
+#define IBXConst_SDatasetClosed 64402
+#define IBXConst_SUnknownSQLDataType 64403
+#define IBXConst_SInvalidColumnIndex 64404
+#define IBXConst_SInvalidParamColumnIndex 64405
+#define IBXConst_SInvalidDataConversion 64406
+#define IBXConst_SColumnIsNotNullable 64407
+#define IBXConst_SBlobCannotBeRead 64408
+#define IBXConst_SBlobCannotBeWritten 64409
+#define IBXConst_SEmptyQuery 64410
+#define IBXConst_SCannotOpenNonSQLSelect 64411
+#define IBXConst_SNoFieldAccess 64412
+#define IBXConst_SFieldReadOnly 64413
+#define IBXConst_SFieldNotFound 64414
+#define IBXConst_SNotEditing 64415
+#define IBXConst_SDatabaseOpen 64416
+#define IBXConst_SDatabaseNameMissing 64417
+#define IBXConst_SNotInTransaction 64418
+#define IBXConst_SInTransaction 64419
+#define IBXConst_STimeoutNegative 64420
+#define IBXConst_SNoDatabasesInTransaction 64421
+#define IBXConst_SUpdateWrongDB 64422
+#define IBXConst_SUpdateWrongTR 64423
+#define IBXConst_SDatabaseNotAssigned 64424
+#define IBXConst_STransactionNotAssigned 64425
+#define IBXConst_SXSQLDAIndexOutOfRange 64426
+#define IBXConst_SXSQLDANameDoesNotExist 64427
+#define IBXConst_SEOF 64428
+#define IBXConst_SBOF 64429
+#define IBXConst_SInvalidStatementHandle 64430
+#define IBXConst_SSQLOpen 64431
+#define IBXConst_SUnknownError 64432
+#define IBXConst_SInterBaseMissing 64433
+#define IBXConst_SInterBaseInstallMissing 64434
+#define IBXConst_SIB60feature 64435
+#define IBXConst_SNotSupported 64436
+#define IBXConst_SNotPermitted 64437
+#define IBXConst_SFileAccessError 64438
+#define IBXConst_SConnectionTimeout 64439
+#define IBXConst_SCannotSetDatabase 64440
+#define IBXConst_SCannotSetTransaction 64441
+#define IBXConst_SOperationCancelled 64442
+#define IBXConst_SDPBConstantNotSupported 64443
+#define IBXConst_SDPBConstantUnknown 64444
+#define IBXConst_STPBConstantNotSupported 64445
+#define IBXConst_STPBConstantUnknown 64446
+#define IBXConst_SDatabaseClosed 64447
+#define uniFileUpload_Uploading_str 64448
+#define uniFileUpload_Browse_Text 64449
+#define uniFileUpload_Please_Wait_str 64450
+#define uniFileUpload_Cancel_str 64451
+#define uniFileUpload_Processing_str 64452
+#define uniFileUpload_Upload_Error 64453
+#define uniFileUpload_NO_FILE_Error 64454
+#define Vcl_OleConst_SLinkProperties 64455
+#define Vcl_OleConst_SInvalidLinkSource 64456
+#define Vcl_OleConst_SCannotBreakLink 64457
+#define Vcl_OleConst_SLinkedObject 64458
+#define Vcl_OleConst_SEmptyContainer 64459
+#define Vcl_OleConst_SInvalidVerb 64460
+#define Vcl_OleConst_SPropDlgCaption 64461
+#define Vcl_OleConst_SInvalidStreamFormat 64462
+#define Vcl_OleConst_sNoRunningObject 64463
+#define Data_SqlConst_SINVALIDTXNID 64464
+#define Data_SqlConst_SDUPLICATETXNID 64465
+#define Data_SqlConst_SDRIVERRESTRICTED 64466
+#define Data_SqlConst_SLOCALTRANSACTIVE 64467
+#define Data_SqlConst_SMULTIPLETRANSNOTENABLED 64468
+#define Data_SqlConst_SCONNECTIONFAILED 64469
+#define Data_SqlConst_SDRIVERINITFAILED 64470
+#define Data_SqlConst_SOPTLOCKFAILED 64471
+#define Data_SqlConst_SINVALIDREF 64472
+#define Data_SqlConst_SNOTABLE 64473
+#define Data_SqlConst_SMISSINGPARAMINSQL 64474
+#define Data_SqlConst_SNOTIMPLEMENTED 64475
+#define Data_SqlConst_SDRIVERINCOMPATIBLE 64476
+#define Data_SqlConst_SObjectTypenameRequired 64477
+#define Data_SqlConst_SCannotCreateFile 64478
+#define uniFileUpload_Upload_str 64479
+#define Data_SqlConst_SNOERROR 64480
+#define Data_SqlConst_SWARNING 64481
+#define Data_SqlConst_SNOMEMORY 64482
+#define Data_SqlConst_SINVALIDFLDTYPE 64483
+#define Data_SqlConst_SINVALIDHNDL 64484
+#define Data_SqlConst_SNOTSUPPORTED 64485
+#define Data_SqlConst_SINVALIDTIME 64486
+#define Data_SqlConst_SINVALIDXLATION 64487
+#define Data_SqlConst_SOUTOFRANGE 64488
+#define Data_SqlConst_SINVALIDPARAM 64489
+#define Data_SqlConst_SEOF 64490
+#define Data_SqlConst_SSQLPARAMNOTSET 64491
+#define Data_SqlConst_SINVALIDUSRPASS 64492
+#define Data_SqlConst_SINVALIDPRECISION 64493
+#define Data_SqlConst_SINVALIDLEN 64494
+#define Data_SqlConst_SINVALIDXISOLEVEL 64495
+#define Data_SqlConst_SMissingSQLConnection 64496
+#define Data_SqlConst_SConnectionNameMissing 64497
+#define Data_SqlConst_SEmptySQLStatement 64498
+#define Data_SqlConst_SNoParameterValue 64499
+#define Data_SqlConst_SNoTableName 64500
+#define Data_SqlConst_SNoSqlStatement 64501
+#define Data_SqlConst_SMissingDriverName 64502
+#define Data_SqlConst_SPrepareError 64503
+#define Data_SqlConst_SObjectNameError 64504
+#define Data_SqlConst_SSQLDataSetOpen 64505
+#define Data_SqlConst_SNoActiveTrans 64506
+#define Data_SqlConst_SActiveTrans 64507
+#define Data_SqlConst_SMissingDriverRegFile 64508
+#define Data_SqlConst_SNoCursor 64509
+#define Data_SqlConst_SErrorMappingError 64510
+#define Data_SqlConst_STooManyActualParam 64511
+#define Datasnap_MidConst_SNoDataSets 64512
+#define Datasnap_MidConst_SRecConstFail 64513
+#define Datasnap_MidConst_SFieldConstFail 64514
+#define Datasnap_MidConst_SDefExprFail 64515
+#define Datasnap_MidConst_SArrayElementError 64516
+#define Datasnap_MidConst_SNoTableName 64517
+#define Datasnap_MidConst_SNoEditsAllowed 64518
+#define Datasnap_MidConst_SNoDeletesAllowed 64519
+#define Datasnap_MidConst_SNoInsertsAllowed 64520
+#define Datasnap_MidConst_SCannotChangeCommandText 64521
+#define Datasnap_MidConst_SConnectionMissing 64522
+#define Datasnap_MidConst_SNoCircularConnection 64523
+#define Data_SqlConst_SLoginError 64524
+#define Data_SqlConst_SMonitorActive 64525
+#define Data_SqlConst_SDatabaseOpen 64526
+#define Data_SqlConst_SDatabaseClosed 64527
+#define Datasnap_MidConst_SInvalidDataPacket 64528
+#define Datasnap_MidConst_SRefreshError 64529
+#define Datasnap_MidConst_SAggsNoSuchLevel 64530
+#define Datasnap_MidConst_SNoCircularReference 64531
+#define Datasnap_MidConst_SErrorLoadingMidas 64532
+#define Datasnap_MidConst_SCannotCreateDataSet 64533
+#define Datasnap_MidConst_SNoConnectToBroker 64534
+#define Datasnap_MidConst_SNoParentConnection 64535
+#define Datasnap_MidConst_SInvalidResponse 64536
+#define Datasnap_MidConst_STooManyRecordsModified 64537
+#define Datasnap_MidConst_SInvalidOptParamType 64538
+#define Datasnap_MidConst_SMissingDataSet 64539
+#define Datasnap_MidConst_SConstraintFailed 64540
+#define Datasnap_MidConst_SField 64541
+#define Datasnap_MidConst_SReadOnlyProvider 64542
+#define Datasnap_MidConst_SNoKeySpecified 64543
+#define Data_DBXCommonResStrs_SIsAutoIncrementable 64544
+#define Data_DBXCommonResStrs_SPastEndOfCursor 64545
+#define Data_DBXCommonResStrs_SDefinition 64546
+#define Data_DBXCommonResStrs_SNoTypeWithEnoughPrecision 64547
+#define Data_DBXCommonResStrs_SCannotBeUsedForAutoIncrement 64548
+#define Data_DBXCommonResStrs_SNoBlobTypeFound 64549
+#define Data_DBXCommonResStrs_STypeNameNotFound 64550
+#define Data_DBXCommonResStrs_SWrongViewDefinition 64551
+#define Data_DBXCommonResStrs_SNoSignedTypeFound 64552
+#define Data_DBXCommonResStrs_SCannotHoldWantedPrecision 64553
+#define Data_DBXCommonResStrs_SCannotHoldWantedScale 64554
+#define Data_DBXCommonResStrs_STypeNotFound 64555
+#define Data_DBXCommonResStrs_SCannotHoldUnicodeChars 64556
+#define Data_DBXCommonResStrs_SCannotRecreateConstraint 64557
+#define Data_DBXCommonResStrs_SUnknownColumnName 64558
+#define Datasnap_MidConst_SNoDataProvider 64559
+#define Data_DBXCommonResStrs_SUnknownTableType 64560
+#define Data_DBXCommonResStrs_SMetaDataCommandExpected 64561
+#define Data_DBXCommonResStrs_SLiteralPrefix 64562
+#define Data_DBXCommonResStrs_SIsPrimary 64563
+#define Data_DBXCommonResStrs_SSynonymName 64564
+#define Data_DBXCommonResStrs_SRoleName 64565
+#define Data_DBXCommonResStrs_STableCatalogName 64566
+#define Data_DBXCommonResStrs_SMaximumScale 64567
+#define Data_DBXCommonResStrs_SPrimarySchemaName 64568
+#define Data_DBXCommonResStrs_SMustCallNextFirst 64569
+#define Data_DBXCommonResStrs_SDbxDataType 64570
+#define Data_DBXCommonResStrs_SIsLong 64571
+#define Data_DBXCommonResStrs_SPrimaryTableName 64572
+#define Data_DBXCommonResStrs_SMaxInline 64573
+#define Data_DBXCommonResStrs_STableName 64574
+#define Data_DBXCommonResStrs_SProcedureName 64575
+#define Data_DBXCommonResStrs_SUserName 64576
+#define Data_DBXCommonResStrs_SExternalDefinition 64577
+#define Data_DBXCommonResStrs_STypeName 64578
+#define Data_DBXCommonResStrs_SIsNullable 64579
+#define Data_DBXCommonResStrs_SProviderDbType 64580
+#define Data_DBXCommonResStrs_SIsFixedLength 64581
+#define Data_DBXCommonResStrs_SIsSearchable 64582
+#define Data_DBXCommonResStrs_SConstraintName 64583
+#define Data_DBXCommonResStrs_SParameterName 64584
+#define Data_DBXCommonResStrs_STableType 64585
+#define Data_DBXCommonResStrs_SViewName 64586
+#define Data_DBXCommonResStrs_SMinimumScale 64587
+#define Data_DBXCommonResStrs_SColumnSize 64588
+#define Data_DBXCommonResStrs_SIsUnicode 64589
+#define Data_DBXCommonResStrs_SIsFixedPrecisionScale 64590
+#define Data_DBXCommonResStrs_SUnexpectedSymbol 64591
+#define Data_DBXCommonResStrs_SMinimumVersion 64592
+#define Data_DBXCommonResStrs_SIsSearchableWithLike 64593
+#define Data_DBXCommonResStrs_SCreateParameters 64594
+#define Data_DBXCommonResStrs_SPackageName 64595
+#define Data_DBXCommonResStrs_SParameterMode 64596
+#define Data_DBXCommonResStrs_SPrecision 64597
+#define Data_DBXCommonResStrs_SIsBestMatch 64598
+#define Data_DBXCommonResStrs_SMissingImplementation 64599
+#define Data_DBXCommonResStrs_SMaximumVersion 64600
+#define Data_DBXCommonResStrs_SIsAutoIncrement 64601
+#define Data_DBXCommonResStrs_SLiteralSuffix 64602
+#define Data_DBXCommonResStrs_SCreateFormat 64603
+#define Data_DBXCommonResStrs_SSchemaName 64604
+#define Data_DBXCommonResStrs_SIsConcurrencyType 64605
+#define Data_DBXCommonResStrs_SReservedWord 64606
+#define Data_DBXCommonResStrs_SPrimaryCatalogName 64607
+#define Data_DBXCommonResStrs_SProcedureType 64608
+#define Data_DBXCommonResStrs_SUnclosedQuotes 64609
+#define Data_DBXCommonResStrs_SDefaultValue 64610
+#define Data_DBXCommonResStrs_SForeignKeyName 64611
+#define Data_DBXCommonResStrs_SIndexName 64612
+#define Data_DBXCommonResStrs_SIsUnsigned 64613
+#define Data_DBXCommonResStrs_SIsUnique 64614
+#define Data_DBXCommonResStrs_SPrimaryKeyName 64615
+#define Data_DBXCommonResStrs_SIsAscending 64616
+#define Data_DBXCommonResStrs_SOrdinalOutOfRange 64617
+#define Data_DBXCommonResStrs_SScale 64618
+#define Data_DBXCommonResStrs_SColumnName 64619
+#define Data_DBXCommonResStrs_STableSchemaName 64620
+#define Data_DBXCommonResStrs_SPrimaryColumnName 64621
+#define Data_DBXCommonResStrs_SOrdinal 64622
+#define Data_DBXCommonResStrs_SIsCaseSensitive 64623
+#define Data_DBXCommonResStrs_SDBXErrVendorError 64624
+#define Data_DBXCommonResStrs_SDBXErrUnrecognizedCommandType 64625
+#define Data_DBXCommonResStrs_SDBXErrSchemaNameUnspecified 64626
+#define Data_DBXCommonResStrs_SDBXErrDatabaseUnspecified 64627
+#define Data_DBXCommonResStrs_SDBXErrLibraryNameUnspecified 64628
+#define Data_DBXCommonResStrs_SDBXErrGetDriverFuncUnspecified 64629
+#define Data_DBXCommonResStrs_SDBXErrVendorLibUnspecified 64630
+#define Data_DBXCommonResStrs_SIllegalArgument 64631
+#define Data_DBXCommonResStrs_SUnsupportedOperation 64632
+#define Data_DBXCommonResStrs_SUnexpectedStringOverflow 64633
+#define Data_DBXCommonResStrs_SUTF8InvalidHeaderByte 64634
+#define Data_DBXCommonResStrs_SUTF8UnexpectedByte 64635
+#define Data_DBXCommonResStrs_SUTF8Start 64636
+#define Data_DBXCommonResStrs_SIsLiteralSupported 64637
+#define Data_DBXCommonResStrs_SDataType 64638
+#define Data_DBXCommonResStrs_SCatalogName 64639
+#define Data_DBXCommonResStrs_SDBXErrInvalidIsolationLevel 64640
+#define Data_DBXCommonResStrs_SDBXErrInvalidTransactionId 64641
+#define Data_DBXCommonResStrs_SDBXErrDuplicateTransactionId 64642
+#define Data_DBXCommonResStrs_SDBXErrDriverRestricted 64643
+#define Data_DBXCommonResStrs_SDBXErrTransactionActive 64644
+#define Data_DBXCommonResStrs_SDBXErrMultipleTransactionNotEnabled 64645
+#define Data_DBXCommonResStrs_SDBXErrConnectionFailed 64646
+#define Data_DBXCommonResStrs_SDBXErrDriverInitFailed 64647
+#define Data_DBXCommonResStrs_SDBXErrOptimisticLockFailed 64648
+#define Data_DBXCommonResStrs_SDBXErrInvalidReference 64649
+#define Data_DBXCommonResStrs_SDBXErrNoTable 64650
+#define Data_DBXCommonResStrs_SDBXErrMissingParameterMarker 64651
+#define Data_DBXCommonResStrs_SDBXErrNotImplemented 64652
+#define Data_DBXCommonResStrs_SDBXErrDriverIncompatible 64653
+#define Data_DBXCommonResStrs_SDBXErrInvalidArgument 64654
+#define Data_DBXCommonResStrs_SDBXErrNoData 64655
+#define Data_DBXCommonResStrs_SNotDefinedIn 64656
+#define Data_DBXCommonResStrs_SDBXErrNone 64657
+#define Data_DBXCommonResStrs_SDBXErrWarning 64658
+#define Data_DBXCommonResStrs_SDBXErrNoMemory 64659
+#define Data_DBXCommonResStrs_SDBXErrUnsupportedFieldType 64660
+#define Data_DBXCommonResStrs_SDBXErrInvalidHandle 64661
+#define Data_DBXCommonResStrs_SDBXErrNotSupported 64662
+#define Data_DBXCommonResStrs_SDBXErrInvalidTime 64663
+#define Data_DBXCommonResStrs_SDBXErrInvalidType 64664
+#define Data_DBXCommonResStrs_SDBXErrInvalidOrdinal 64665
+#define Data_DBXCommonResStrs_SDBXErrInvalidParameter 64666
+#define Data_DBXCommonResStrs_SDBXErrEOF 64667
+#define Data_DBXCommonResStrs_SDBXErrParameterNotSet 64668
+#define Data_DBXCommonResStrs_SDBXErrInvalidUserOrPassword 64669
+#define Data_DBXCommonResStrs_SDBXErrInvalidPrecision 64670
+#define Data_DBXCommonResStrs_SDBXErrInvalidLength 64671
+#define Data_DBXCommonResStrs_SCannotCreateObject 64672
+#define Data_DBXCommonResStrs_SObjectNotFound 64673
+#define Data_DBXCommonResStrs_SUnexpectedPairName 64674
+#define Data_DBXCommonResStrs_SInvalidJSONFieldType 64675
+#define Data_DBXCommonResStrs_SObjectExpectedInArray 64676
+#define Data_DBXCommonResStrs_SStringExpectedInArray 64677
+#define Data_DBXCommonResStrs_SArrayExpectedForField 64678
+#define Data_DBXCommonResStrs_SObjectExpectedForField 64679
+#define Data_DBXCommonResStrs_SUnknownDataType 64680
+#define Data_DBXCommonResStrs_SNoMetadataProvider 64681
+#define Data_DBXCommonResStrs_SUnexpectedMetaDataType 64682
+#define Data_DBXCommonResStrs_SInsertNotCalled 64683
+#define Data_DBXCommonResStrs_SPostNotCalled 64684
+#define Data_DBXCommonResStrs_SMustKeepOriginalColumnOrder 64685
+#define Data_DBXCommonResStrs_SUnexpectedDataType 64686
+#define Data_DBXCommonResStrs_SDriverAlreadyRegistered 64687
+#define Data_DBXCommonResStrs_SNoArray 64688
+#define Data_DBXCommonResStrs_STypeExpected 64689
+#define Data_DBXCommonResStrs_STypeFieldsPairExpected 64690
+#define Data_DBXCommonResStrs_SValueExpected 64691
+#define Data_DBXCommonResStrs_SInvalidContext 64692
+#define Data_DBXCommonResStrs_SObjectExpectedForPair 64693
+#define Data_DBXCommonResStrs_SInvalidContextForPair 64694
+#define Data_DBXCommonResStrs_STypeNotSupported 64695
+#define Data_DBXCommonResStrs_SNoTypeInterceptorExpected 64696
+#define Data_DBXCommonResStrs_SInconsistentConversion 64697
+#define Data_DBXCommonResStrs_SNoConversionForType 64698
+#define Data_DBXCommonResStrs_SNoFieldFoundForType 64699
+#define Data_DBXCommonResStrs_SNoValueConversionForField 64700
+#define Data_DBXCommonResStrs_SNoConversionAvailableForValue 64701
+#define Data_DBXCommonResStrs_SInvalidTypeForField 64702
+#define Data_DBXCommonResStrs_SCannotCreateType 64703
+#define Data_DBXCommonResStrs_SInvalidOrdinal 64704
+#define Data_DBXCommonResStrs_SDefaultErrorMessage 64705
+#define Data_DBXCommonResStrs_SErrorCode 64706
+#define Data_DBXCommonResStrs_SAlreadyPrepared 64707
+#define Data_DBXCommonResStrs_SInvalidTypeAccess 64708
+#define Data_DBXCommonResStrs_SConnectionClosed 64709
+#define Data_DBXCommonResStrs_SMetaDataLoadError 64710
+#define Data_DBXCommonResStrs_SJSONByteStream 64711
+#define Data_DBXCommonResStrs_SNoStatementToExecute 64712
+#define Data_DBXCommonResStrs_SAdditionalInfo 64713
+#define Data_DBXCommonResStrs_SInvalidDataType 64714
+#define Data_DBXCommonResStrs_SUnmatchedBrace 64715
+#define Data_DBXCommonResStrs_SParameterIndexOutOfRange 64716
+#define Data_DBXCommonResStrs_SFieldValueMissing 64717
+#define Data_DBXCommonResStrs_SFieldExpected 64718
+#define Data_DBXCommonResStrs_SArrayExpected 64719
+#define Data_DBXCommonResStrs_SNotRegistered 64720
+#define Data_DBXCommonResStrs_SInvalidClassRegister 64721
+#define Data_DBXCommonResStrs_SCannotFreeClassRegistry 64722
+#define Data_DBXCommonResStrs_SDllLoadError 64723
+#define Data_DBXCommonResStrs_SDllProcLoadError 64724
+#define Data_DBXCommonResStrs_SUnknownDriver 64725
+#define Data_DBXCommonResStrs_SInvalidArgument 64726
+#define Data_DBXCommonResStrs_SInvalidTransaction 64727
+#define Data_DBXCommonResStrs_SNotImplemented 64728
+#define Data_DBXCommonResStrs_SRequiredProperty 64729
+#define Data_DBXCommonResStrs_SReaderNew 64730
+#define Data_DBXCommonResStrs_SReaderClosed 64731
+#define Data_DBXCommonResStrs_SReadOnlyType 64732
+#define Data_DBXCommonResStrs_SSetSingletonOnce 64733
+#define Data_DBXCommonResStrs_SConnectionFactoryInitFailed 64734
+#define Data_DBXCommonResStrs_SInvalidDelegationDepth 64735
+#define Vcl_VDBConsts_SEditRecord 64736
+#define Vcl_VDBConsts_SPostEdit 64737
+#define Vcl_VDBConsts_SCancelEdit 64738
+#define Vcl_VDBConsts_SConfirmCaption 64739
+#define Vcl_VDBConsts_SRefreshRecord 64740
+#define Vcl_VDBConsts_SApplyUpdates 64741
+#define Vcl_VDBConsts_SCancelUpdates 64742
+#define Vcl_VDBConsts_SDeleteRecordQuestion 64743
+#define Vcl_VDBConsts_SDeleteMultipleRecordsQuestion 64744
+#define Vcl_VDBConsts_SDataSourceFixed 64745
+#define Vcl_VDBConsts_SNotReplicatable 64746
+#define Vcl_VDBConsts_SPropDefByLookup 64747
+#define Vcl_VDBConsts_STooManyColumns 64748
+#define Vcl_VDBConsts_SRemoteLogin 64749
+#define Data_DBXCommonResStrs_SBadVariantType 64750
+#define Data_DBXCommonResStrs_SAlreadyRegistered 64751
+#define uIdResourceStringsProtocols_RSOSSLConnectLoop 64752
+#define uIdResourceStringsProtocols_RSOSSLConnectError 64753
+#define uIdResourceStringsProtocols_RSOSSLConnectFailed 64754
+#define uIdResourceStringsProtocols_RSOSSLConnectExit 64755
+#define uIdResourceStringsProtocols_RSOSSLHandshakeStart 64756
+#define uIdResourceStringsProtocols_RSOSSLHandshakeDone 64757
+#define uIdResourceStringsProtocols_RSURINoProto 64758
+#define uIdResourceStringsProtocols_RSURINoHost 64759
+#define uniGUIServer_DEF_ExceptionTemplate 64760
+#define uniGUIServer_DEF_TerminateTemplate 64761
+#define Vcl_VDBConsts_SFirstRecord 64762
+#define Vcl_VDBConsts_SPriorRecord 64763
+#define Vcl_VDBConsts_SNextRecord 64764
+#define Vcl_VDBConsts_SLastRecord 64765
+#define Vcl_VDBConsts_SInsertRecord 64766
+#define Vcl_VDBConsts_SDeleteRecord 64767
+#define uIdResourceStringsProtocols_RSSSLLoadingKeyError 64768
+#define uIdResourceStringsProtocols_RSSSLLoadingDHParamsError 64769
+#define uIdResourceStringsProtocols_RSSSLGetMethodError 64770
+#define uIdResourceStringsProtocols_RSSSLFDSetError 64771
+#define uIdResourceStringsProtocols_RSSSLDataBindingError 64772
+#define uIdResourceStringsProtocols_RSSSLEOFViolation 64773
+#define uIdResourceStringsProtocols_RSOSSLModeNotSet 64774
+#define uIdResourceStringsProtocols_RSOSSLCouldNotLoadSSLLibrary 64775
+#define uIdResourceStringsProtocols_RSOSSLStatusString 64776
+#define uIdResourceStringsProtocols_RSOSSLAlert 64777
+#define uIdResourceStringsProtocols_RSOSSLReadAlert 64778
+#define uIdResourceStringsProtocols_RSOSSLWriteAlert 64779
+#define uIdResourceStringsProtocols_RSOSSLAcceptLoop 64780
+#define uIdResourceStringsProtocols_RSOSSLAcceptError 64781
+#define uIdResourceStringsProtocols_RSOSSLAcceptFailed 64782
+#define uIdResourceStringsProtocols_RSOSSLAcceptExit 64783
+#define uIdResourceStringsProtocols_RSHTTPServiceUnavailable 64784
+#define uIdResourceStringsProtocols_RSHTTPGatewayTimeout 64785
+#define uIdResourceStringsProtocols_RSHTTPHTTPVersionNotSupported 64786
+#define uIdResourceStringsProtocols_RSHTTPUnknownResponseCode 64787
+#define uIdResourceStringsProtocols_RSHTTPHeaderAlreadyWritten 64788
+#define uIdResourceStringsProtocols_RSHTTPErrorParsingCommand 64789
+#define uIdResourceStringsProtocols_RSHTTPUnsupportedAuthorisationScheme 64790
+#define uIdResourceStringsProtocols_RSHTTPCannotSwitchSessionStateWhenActive 64791
+#define uIdResourceStringsProtocols_RSHTTPCannotSwitchSessionListWhenActive 64792
+#define uIdResourceStringsProtocols_RSSSLAcceptError 64793
+#define uIdResourceStringsProtocols_RSSSLConnectError 64794
+#define uIdResourceStringsProtocols_RSSSLSettingCipherError 64795
+#define uIdResourceStringsProtocols_RSSSLCreatingSessionError 64796
+#define uIdResourceStringsProtocols_RSSSLCreatingContextError 64797
+#define uIdResourceStringsProtocols_RSSSLLoadingRootCertError 64798
+#define uIdResourceStringsProtocols_RSSSLLoadingCertError 64799
+#define uIdResourceStringsProtocols_RSHTTPNotFound 64800
+#define uIdResourceStringsProtocols_RSHTTPMethodNotAllowed 64801
+#define uIdResourceStringsProtocols_RSHTTPNotAcceptable 64802
+#define uIdResourceStringsProtocols_RSHTTPProxyAuthenticationRequired 64803
+#define uIdResourceStringsProtocols_RSHTTPRequestTimeout 64804
+#define uIdResourceStringsProtocols_RSHTTPConflict 64805
+#define uIdResourceStringsProtocols_RSHTTPGone 64806
+#define uIdResourceStringsProtocols_RSHTTPLengthRequired 64807
+#define uIdResourceStringsProtocols_RSHTTPPreconditionFailed 64808
+#define uIdResourceStringsProtocols_RSHTTPRequestEntityTooLong 64809
+#define uIdResourceStringsProtocols_RSHTTPRequestURITooLong 64810
+#define uIdResourceStringsProtocols_RSHTTPUnsupportedMediaType 64811
+#define uIdResourceStringsProtocols_RSHTTPExpectationFailed 64812
+#define uIdResourceStringsProtocols_RSHTTPInternalServerError 64813
+#define uIdResourceStringsProtocols_RSHTTPNotImplemented 64814
+#define uIdResourceStringsProtocols_RSHTTPBadGateway 64815
+#define uIdResourceStringsProtocols_RSHTTPContinue 64816
+#define uIdResourceStringsProtocols_RSHTTPOK 64817
+#define uIdResourceStringsProtocols_RSHTTPCreated 64818
+#define uIdResourceStringsProtocols_RSHTTPAccepted 64819
+#define uIdResourceStringsProtocols_RSHTTPNonAuthoritativeInformation 64820
+#define uIdResourceStringsProtocols_RSHTTPNoContent 64821
+#define uIdResourceStringsProtocols_RSHTTPResetContent 64822
+#define uIdResourceStringsProtocols_RSHTTPPartialContent 64823
+#define uIdResourceStringsProtocols_RSHTTPMovedPermanently 64824
+#define uIdResourceStringsProtocols_RSHTTPMovedTemporarily 64825
+#define uIdResourceStringsProtocols_RSHTTPSeeOther 64826
+#define uIdResourceStringsProtocols_RSHTTPNotModified 64827
+#define uIdResourceStringsProtocols_RSHTTPUseProxy 64828
+#define uIdResourceStringsProtocols_RSHTTPBadRequest 64829
+#define uIdResourceStringsProtocols_RSHTTPUnauthorized 64830
+#define uIdResourceStringsProtocols_RSHTTPForbidden 64831
+#define uIdResourceStringsCore_RSInterceptIsDifferent 64832
+#define uIdResourceStringsCore_RSchedMaxThreadEx 64833
+#define uIdResourceStringsCore_RSTransparentProxyCannotBind 64834
+#define uIdResourceStringsCore_RSTransparentProxyCanNotSupportUDP 64835
+#define uIdResourceStringsCore_RSBufferMissingTerminator 64836
+#define uIdResourceStringsCore_RSBufferInvalidStartPos 64837
+#define uIdResourceStringsCore_RSIOHandlerCannotChange 64838
+#define uIdResourceStringsCore_RSIOHandlerTypeNotInstalled 64839
+#define uIdResourceStringsCore_RSReplyInvalidCode 64840
+#define uIdResourceStringsCore_RSReplyCodeAlreadyExists 64841
+#define uIdResourceStringsCore_RSThreadSchedulerThreadRequired 64842
+#define uIdResourceStringsCore_RSTCPServerSchedulerAlreadyActive 64843
+#define uIdResourceStringsProtocols_RSFIPSAlgorithmNotAllowed 64844
+#define uIdResourceStringsProtocols_RSMIMEExtensionEmpty 64845
+#define uIdResourceStringsProtocols_RSMIMEMIMETypeEmpty 64846
+#define uIdResourceStringsProtocols_RSMIMEMIMEExtAlreadyExists 64847
+#define uIdResourceStringsCore_RSInterceptCircularLink 64848
+#define uIdResourceStringsCore_RSNotEnoughDataInBuffer 64849
+#define uIdResourceStringsCore_RSTooMuchDataInBuffer 64850
+#define uIdResourceStringsCore_RSFileNotFound 64851
+#define uIdResourceStringsCore_RSNotConnected 64852
+#define uIdResourceStringsCore_RSObjectTypeNotSupported 64853
+#define uIdResourceStringsCore_RSIdNoDataToRead 64854
+#define uIdResourceStringsCore_RSReadTimeout 64855
+#define uIdResourceStringsCore_RSReadLnWaitMaxAttemptsExceeded 64856
+#define uIdResourceStringsCore_RSReadLnMaxLineLengthExceeded 64857
+#define uIdResourceStringsCore_RSRequiresLargeStream 64858
+#define uIdResourceStringsCore_RSDataTooLarge 64859
+#define uIdResourceStringsCore_RSConnectTimeout 64860
+#define uIdResourceStringsCore_RSThreadTerminateAndWaitFor 64861
+#define uIdResourceStringsCore_RSAlreadyConnected 64862
+#define uIdResourceStringsCore_RSMaximumNumberOfCaptureLineExceeded 64863
+#define uIdResourceStringsCore_RSSocksUDPNotSupported 64864
+#define uIdResourceStringsCore_RSSocksRequestFailed 64865
+#define uIdResourceStringsCore_RSSocksRequestServerFailed 64866
+#define uIdResourceStringsCore_RSSocksRequestIdentFailed 64867
+#define uIdResourceStringsCore_RSSocksUnknownError 64868
+#define uIdResourceStringsCore_RSSocksServerRespondError 64869
+#define uIdResourceStringsCore_RSSocksAuthMethodError 64870
+#define uIdResourceStringsCore_RSSocksAuthError 64871
+#define uIdResourceStringsCore_RSSocksServerGeneralError 64872
+#define uIdResourceStringsCore_RSSocksServerPermissionError 64873
+#define uIdResourceStringsCore_RSSocksServerNetUnreachableError 64874
+#define uIdResourceStringsCore_RSSocksServerHostUnreachableError 64875
+#define uIdResourceStringsCore_RSSocksServerConnectionRefusedError 64876
+#define uIdResourceStringsCore_RSSocksServerTTLExpiredError 64877
+#define uIdResourceStringsCore_RSSocksServerCommandError 64878
+#define uIdResourceStringsCore_RSSocksServerAddressError 64879
+#define uIdResourceStrings_RSStackHOST_NOT_FOUND 64880
+#define uIdResourceStrings_RSStackClassUndefined 64881
+#define uIdResourceStrings_RSStackAlreadyCreated 64882
+#define uIdResourceStrings_RSAntiFreezeOnlyOne 64883
+#define uIdResourceStrings_RSCannotSetIPVersionWhenConnected 64884
+#define uIdResourceStrings_RSCannotBindRange 64885
+#define uIdResourceStrings_RSConnectionClosedGracefully 64886
+#define uIdResourceStrings_RSCouldNotBindSocket 64887
+#define uIdResourceStrings_RSInvalidPortRange 64888
+#define uIdResourceStrings_RSInvalidServiceName 64889
+#define uIdResourceStrings_RSIPv6Unavailable 64890
+#define uIdResourceStrings_RSInvalidIPv6Address 64891
+#define uIdResourceStrings_RSIPVersionUnsupported 64892
+#define uIdResourceStrings_RSNotAllBytesSent 64893
+#define uIdResourceStrings_RSPackageSizeTooBig 64894
+#define uIdResourceStrings_RSSetSizeExceeded 64895
+#define uIdResourceStrings_RSStackENETUNREACH 64896
+#define uIdResourceStrings_RSStackENETRESET 64897
+#define uIdResourceStrings_RSStackECONNABORTED 64898
+#define uIdResourceStrings_RSStackECONNRESET 64899
+#define uIdResourceStrings_RSStackENOBUFS 64900
+#define uIdResourceStrings_RSStackEISCONN 64901
+#define uIdResourceStrings_RSStackENOTCONN 64902
+#define uIdResourceStrings_RSStackESHUTDOWN 64903
+#define uIdResourceStrings_RSStackETOOMANYREFS 64904
+#define uIdResourceStrings_RSStackETIMEDOUT 64905
+#define uIdResourceStrings_RSStackECONNREFUSED 64906
+#define uIdResourceStrings_RSStackELOOP 64907
+#define uIdResourceStrings_RSStackENAMETOOLONG 64908
+#define uIdResourceStrings_RSStackEHOSTDOWN 64909
+#define uIdResourceStrings_RSStackEHOSTUNREACH 64910
+#define uIdResourceStrings_RSStackENOTEMPTY 64911
+#define uIdResourceStrings_RSStackEWOULDBLOCK 64912
+#define uIdResourceStrings_RSStackEINPROGRESS 64913
+#define uIdResourceStrings_RSStackEALREADY 64914
+#define uIdResourceStrings_RSStackENOTSOCK 64915
+#define uIdResourceStrings_RSStackEDESTADDRREQ 64916
+#define uIdResourceStrings_RSStackEMSGSIZE 64917
+#define uIdResourceStrings_RSStackEPROTOTYPE 64918
+#define uIdResourceStrings_RSStackENOPROTOOPT 64919
+#define uIdResourceStrings_RSStackEPROTONOSUPPORT 64920
+#define uIdResourceStrings_RSStackESOCKTNOSUPPORT 64921
+#define uIdResourceStrings_RSStackEOPNOTSUPP 64922
+#define uIdResourceStrings_RSStackEPFNOSUPPORT 64923
+#define uIdResourceStrings_RSStackEAFNOSUPPORT 64924
+#define uIdResourceStrings_RSStackEADDRINUSE 64925
+#define uIdResourceStrings_RSStackEADDRNOTAVAIL 64926
+#define uIdResourceStrings_RSStackENETDOWN 64927
+#define uIdResourceStrings_RSFailedTimeZoneInfo 64928
+#define uIdResourceStrings_RSWinsockCallError 64929
+#define uIdResourceStrings_RSWinsockLoadError 64930
+#define uIdResourceStrings_RSStatusResolving 64931
+#define uIdResourceStrings_RSStatusConnecting 64932
+#define uIdResourceStrings_RSStatusConnected 64933
+#define uIdResourceStrings_RSStatusDisconnecting 64934
+#define uIdResourceStrings_RSStatusDisconnected 64935
+#define uIdResourceStrings_RSStatusText 64936
+#define uIdResourceStrings_RSStackError 64937
+#define uIdResourceStrings_RSStackEINTR 64938
+#define uIdResourceStrings_RSStackEBADF 64939
+#define uIdResourceStrings_RSStackEACCES 64940
+#define uIdResourceStrings_RSStackEFAULT 64941
+#define uIdResourceStrings_RSStackEINVAL 64942
+#define uIdResourceStrings_RSStackEMFILE 64943
+#define Vcl_Imaging_GIFConsts_sBadDimension 64944
+#define Vcl_Imaging_GIFConsts_sNoDIB 64945
+#define Vcl_Imaging_GIFConsts_sInvalidStream 64946
+#define Vcl_Imaging_GIFConsts_sInvalidColor 64947
+#define Vcl_Imaging_GIFConsts_sInvalidBitSize 64948
+#define Vcl_Imaging_GIFConsts_sEmptyColorMap 64949
+#define Vcl_Imaging_GIFConsts_sEmptyImage 64950
+#define Vcl_Imaging_GIFConsts_sMultipleGCE 64951
+#define Vcl_Imaging_GIFConsts_sNoPalette 64952
+#define Vcl_Imaging_GIFConsts_sGIFImageFile 64953
+#define Vcl_Imaging_GIFConsts_sProgressLoading 64954
+#define Vcl_Imaging_GIFConsts_sProgressSaving 64955
+#define Vcl_Imaging_GIFConsts_sProgressConverting 64956
+#define Vcl_Imaging_GIFConsts_sProgressRendering 64957
+#define Vcl_Imaging_GIFConsts_sProgressCopying 64958
+#define Vcl_Imaging_GIFConsts_sProgressOptimizing 64959
+#define Vcl_Imaging_GIFConsts_sUnknownExtension 64960
+#define Vcl_Imaging_GIFConsts_sBadExtensionLabel 64961
+#define Vcl_Imaging_GIFConsts_sOutOfMemDIB 64962
+#define Vcl_Imaging_GIFConsts_sDecodeTooFewBits 64963
+#define Vcl_Imaging_GIFConsts_sDecodeCircular 64964
+#define Vcl_Imaging_GIFConsts_sBadTrailer 64965
+#define Vcl_Imaging_GIFConsts_sBadExtensionInstance 64966
+#define Vcl_Imaging_GIFConsts_sBadBlockSize 64967
+#define Vcl_Imaging_GIFConsts_sBadBlock 64968
+#define Vcl_Imaging_GIFConsts_sUnsupportedClass 64969
+#define Vcl_Imaging_GIFConsts_sInvalidData 64970
+#define Vcl_Imaging_GIFConsts_sBadSize 64971
+#define Vcl_Imaging_GIFConsts_sScreenSizeExceeded 64972
+#define Vcl_Imaging_GIFConsts_sNoColorTable 64973
+#define Vcl_Imaging_GIFConsts_sBadPixelCoordinates 64974
+#define Vcl_Imaging_GIFConsts_sInvalidPixelFormat 64975
+#define Vcl_Imaging_pnglang_EPNGOutMemoryText 64976
+#define Vcl_Imaging_pnglang_EPNGCannotChangeTransparentText 64977
+#define Vcl_Imaging_pnglang_EPNGHeaderNotPresentText 64978
+#define Vcl_Imaging_pnglang_EInvalidNewSize 64979
+#define Vcl_Imaging_pnglang_EInvalidSpec 64980
+#define Vcl_Imaging_JConsts_sChangeJPGSize 64981
+#define Vcl_Imaging_JConsts_sJPEGError 64982
+#define Vcl_Imaging_JConsts_sJPEGImageFile 64983
+#define Vcl_Imaging_GIFConsts_sOutOfData 64984
+#define Vcl_Imaging_GIFConsts_sTooManyColors 64985
+#define Vcl_Imaging_GIFConsts_sBadColorIndex 64986
+#define Vcl_Imaging_GIFConsts_sBadColorIndexFixed 64987
+#define Vcl_Imaging_GIFConsts_sGIFErrorSaveEmpty 64988
+#define Vcl_Imaging_GIFConsts_sBadSignature 64989
+#define Vcl_Imaging_GIFConsts_sScreenBadColorSize 64990
+#define Vcl_Imaging_GIFConsts_sImageBadColorSize 64991
+#define Vcl_Imaging_pnglang_EPNGMissingMultipleIDATText 64992
+#define Vcl_Imaging_pnglang_EPNGZLIBErrorText 64993
+#define Vcl_Imaging_pnglang_EPNGInvalidPaletteText 64994
+#define Vcl_Imaging_pnglang_EPNGInvalidFileHeaderText 64995
+#define Vcl_Imaging_pnglang_EPNGIHDRNotFirstText 64996
+#define Vcl_Imaging_pnglang_EPNGSizeExceedsText 64997
+#define Vcl_Imaging_pnglang_EPNGUnknownPalEntryText 64998
+#define Vcl_Imaging_pnglang_EPNGUnknownCriticalChunkText 64999
+#define Vcl_Imaging_pnglang_EPNGUnknownCompressionText 65000
+#define Vcl_Imaging_pnglang_EPNGUnknownInterlaceText 65001
+#define Vcl_Imaging_pnglang_EPNGCannotAssignChunkText 65002
+#define Vcl_Imaging_pnglang_EPNGUnexpectedEndText 65003
+#define Vcl_Imaging_pnglang_EPNGNoImageDataText 65004
+#define Vcl_Imaging_pnglang_EPNGCannotAddChunkText 65005
+#define Vcl_Imaging_pnglang_EPNGCannotAddInvalidImageText 65006
+#define Vcl_Imaging_pnglang_EPNGCouldNotLoadResourceText 65007
+#define Data_DBConsts_SAggActive 65008
+#define Data_DBConsts_SProviderSQLNotSupported 65009
+#define Data_DBConsts_SProviderExecuteNotSupported 65010
+#define Data_DBConsts_SExprNoAggOnCalcs 65011
+#define Data_DBConsts_SRecordChanged 65012
+#define Data_DBConsts_SDataSetUnidirectional 65013
+#define Data_DBConsts_SUnassignedVar 65014
+#define Data_DBConsts_SRecordNotFound 65015
+#define Data_DBConsts_SFileNameBlank 65016
+#define Data_DBConsts_SBcdOverflow 65017
+#define Data_DBConsts_SInvalidBcdValue 65018
+#define Data_DBConsts_SCouldNotParseTimeStamp 65019
+#define Data_DBConsts_SInvalidSqlTimeStamp 65020
+#define uniGUIConst_UNI_GUI_SERVER 65021
+#define Vcl_Imaging_pnglang_EPngInvalidCRCText 65022
+#define Vcl_Imaging_pnglang_EPNGInvalidIHDRText 65023
+#define Data_DBConsts_SExprRangeError 65024
+#define Data_DBConsts_SExprIncorrect 65025
+#define Data_DBConsts_SExprNothing 65026
+#define Data_DBConsts_SExprTypeMis 65027
+#define Data_DBConsts_SExprBadScope 65028
+#define Data_DBConsts_SExprNoArith 65029
+#define Data_DBConsts_SExprNotAgg 65030
+#define Data_DBConsts_SExprBadConst 65031
+#define Data_DBConsts_SExprNoAggFilter 65032
+#define Data_DBConsts_SExprEmptyInList 65033
+#define Data_DBConsts_SInvalidKeywordUse 65034
+#define Data_DBConsts_STextFalse 65035
+#define Data_DBConsts_STextTrue 65036
+#define Data_DBConsts_SParameterNotFound 65037
+#define Data_DBConsts_SInvalidVersion 65038
+#define Data_DBConsts_SBadFieldType 65039
+#define Data_DBConsts_SDataSetOpen 65040
+#define Data_DBConsts_SNotEditing 65041
+#define Data_DBConsts_SDataSetClosed 65042
+#define Data_DBConsts_SDataSetEmpty 65043
+#define Data_DBConsts_SDataSetReadOnly 65044
+#define Data_DBConsts_SNestedDataSetClass 65045
+#define Data_DBConsts_SExprTermination 65046
+#define Data_DBConsts_SExprNameError 65047
+#define Data_DBConsts_SExprStringError 65048
+#define Data_DBConsts_SExprInvalidChar 65049
+#define Data_DBConsts_SExprNoLParen 65050
+#define Data_DBConsts_SExprNoRParen 65051
+#define Data_DBConsts_SExprNoRParenOrComma 65052
+#define Data_DBConsts_SExprExpected 65053
+#define Data_DBConsts_SExprBadField 65054
+#define Data_DBConsts_SExprBadNullTest 65055
+#define Data_DBConsts_SFieldRequired 65056
+#define Data_DBConsts_SDataSetMissing 65057
+#define Data_DBConsts_SInvalidCalcType 65058
+#define Data_DBConsts_SFieldReadOnly 65059
+#define Data_DBConsts_SFieldIndexError 65060
+#define Data_DBConsts_SNoFieldIndexes 65061
+#define Data_DBConsts_SNotIndexField 65062
+#define Data_DBConsts_SIndexFieldMissing 65063
+#define Data_DBConsts_SDuplicateIndexName 65064
+#define Data_DBConsts_SNoIndexForFields 65065
+#define Data_DBConsts_SIndexNotFound 65066
+#define Data_DBConsts_SDBDuplicateName 65067
+#define Data_DBConsts_SCircularDataLink 65068
+#define Data_DBConsts_SLookupInfoError 65069
+#define Data_DBConsts_SDataSourceChange 65070
+#define Data_DBConsts_SNoNestedMasterSource 65071
+#define Data_DBConsts_SInvalidFieldKind 65072
+#define Data_DBConsts_SUnknownFieldType 65073
+#define Data_DBConsts_SFieldNameMissing 65074
+#define Data_DBConsts_SDuplicateFieldName 65075
+#define Data_DBConsts_SFieldNotFound 65076
+#define Data_DBConsts_SFieldAccessError 65077
+#define Data_DBConsts_SFieldValueError 65078
+#define Data_DBConsts_SFieldRangeError 65079
+#define Data_DBConsts_SBcdFieldRangeError 65080
+#define Data_DBConsts_SInvalidIntegerValue 65081
+#define Data_DBConsts_SInvalidBoolValue 65082
+#define Data_DBConsts_SInvalidFloatValue 65083
+#define Data_DBConsts_SFieldTypeMismatch 65084
+#define Data_DBConsts_SFieldSizeMismatch 65085
+#define Data_DBConsts_SInvalidVarByteArray 65086
+#define Data_DBConsts_SFieldOutOfRange 65087
+#define Vcl_ComStrs_sInsertError 65088
+#define Vcl_ComStrs_sInvalidOwner 65089
+#define Vcl_ComStrs_sRichEditInsertError 65090
+#define Vcl_ComStrs_sRichEditLoadFail 65091
+#define Vcl_ComStrs_sRichEditSaveFail 65092
+#define Vcl_ComStrs_sUDAssociated 65093
+#define Vcl_ComStrs_sPageIndexError 65094
+#define Vcl_ComStrs_sInvalidComCtl32 65095
+#define Vcl_ComStrs_sDateTimeMax 65096
+#define Vcl_ComStrs_sDateTimeMin 65097
+#define Vcl_ComStrs_sNeedAllowNone 65098
+#define Vcl_ComStrs_sFailSetCalDateTime 65099
+#define Vcl_ComStrs_sFailSetCalMaxSelRange 65100
+#define Vcl_ComStrs_sFailSetCalMinMaxRange 65101
+#define Vcl_ComStrs_sFailsetCalSelRange 65102
+#define Data_DBConsts_SInvalidFieldSize 65103
+#define System_Win_ComConst_STooManyParams 65104
+#define System_Win_ComConst_SDCOMNotInstalled 65105
+#define System_Win_ComConst_SDAXError 65106
+#define System_Win_ComConst_SAutomationWarning 65107
+#define System_Win_ComConst_SNoCloseActiveServer1 65108
+#define System_Win_ComConst_SNoCloseActiveServer2 65109
+#define Vcl_ComStrs_sTabFailClear 65110
+#define Vcl_ComStrs_sTabFailDelete 65111
+#define Vcl_ComStrs_sTabFailRetrieve 65112
+#define Vcl_ComStrs_sTabFailGetObject 65113
+#define Vcl_ComStrs_sTabFailSet 65114
+#define Vcl_ComStrs_sTabFailSetObject 65115
+#define Vcl_ComStrs_sTabMustBeMultiLine 65116
+#define Vcl_ComStrs_sInvalidLevel 65117
+#define Vcl_ComStrs_sInvalidLevelEx 65118
+#define Vcl_ComStrs_sInvalidIndex 65119
+#define Vcl_Consts_SStyleLoadErrors 65120
+#define Vcl_Consts_SStyleRegisterError 65121
+#define Vcl_Consts_SStyleClassRegisterError 65122
+#define Vcl_Consts_SStyleNotFound 65123
+#define Vcl_Consts_SStyleClassNotFound 65124
+#define Vcl_Consts_SStyleInvalidHandle 65125
+#define Vcl_Consts_SStyleFormatError 65126
+#define Vcl_Consts_SStyleHookClassRegistered 65127
+#define Vcl_Consts_SStyleHookClassNotRegistered 65128
+#define Vcl_Consts_SStyleInvalidParameter 65129
+#define Vcl_Consts_SStyleFeatureNotSupported 65130
+#define System_Win_ComConst_SCreateRegKeyError 65131
+#define System_Win_ComConst_SOleError 65132
+#define System_Win_ComConst_SObjectFactoryMissing 65133
+#define System_Win_ComConst_SNoMethod 65134
+#define System_Win_ComConst_SVarNotObject 65135
+#define Vcl_Consts_SListBoxMustBeVirtual 65136
+#define Vcl_Consts_SNoGetItemEventHandler 65137
+#define Vcl_Consts_SInvalidPath 65138
+#define Vcl_Consts_SANSIEncoding 65139
+#define Vcl_Consts_SASCIIEncoding 65140
+#define Vcl_Consts_SUnicodeEncoding 65141
+#define Vcl_Consts_SBigEndianEncoding 65142
+#define Vcl_Consts_SUTF8Encoding 65143
+#define Vcl_Consts_SUTF7Encoding 65144
+#define Vcl_Consts_STrayIconRemoveError 65145
+#define Vcl_Consts_SPageControlNotSet 65146
+#define Vcl_Consts_SWindowsVistaRequired 65147
+#define Vcl_Consts_STaskDlgButtonCaption 65148
+#define Vcl_Consts_STaskDlgRadioButtonCaption 65149
+#define Vcl_Consts_SInvalidTaskDlgButtonCaption 65150
+#define Vcl_Consts_SStyleLoadError 65151
+#define Vcl_Consts_SNoDefaultPrinter 65152
+#define Vcl_Consts_SDuplicateMenus 65153
+#define Vcl_Consts_SDockedCtlNeedsName 65154
+#define Vcl_Consts_SDockTreeRemoveError 65155
+#define Vcl_Consts_SDockZoneNotFound 65156
+#define Vcl_Consts_SDockZoneHasNoCtl 65157
+#define Vcl_Consts_SDockZoneVersionConflict 65158
+#define Vcl_Consts_SMultiSelectRequired 65159
+#define Vcl_Consts_SPromptArrayTooShort 65160
+#define Vcl_Consts_SPromptArrayEmpty 65161
+#define Vcl_Consts_SUsername 65162
+#define Vcl_Consts_SPassword 65163
+#define Vcl_Consts_SDomain 65164
+#define Vcl_Consts_SLogin 65165
+#define Vcl_Consts_SSeparator 65166
+#define Vcl_Consts_SErrorSettingCount 65167
+#define Vcl_Consts_SmkcRight 65168
+#define Vcl_Consts_SmkcDown 65169
+#define Vcl_Consts_SmkcIns 65170
+#define Vcl_Consts_SmkcDel 65171
+#define Vcl_Consts_SmkcShift 65172
+#define Vcl_Consts_SmkcCtrl 65173
+#define Vcl_Consts_SmkcAlt 65174
+#define Vcl_Consts_srNone 65175
+#define Vcl_Consts_SOutOfRange 65176
+#define Vcl_Consts_sAllFilter 65177
+#define Vcl_Consts_SInsertLineError 65178
+#define Vcl_Consts_SInvalidClipFmt 65179
+#define Vcl_Consts_SIconToClipboard 65180
+#define Vcl_Consts_SCannotOpenClipboard 65181
+#define Vcl_Consts_SInvalidMemoSize 65182
+#define Vcl_Consts_SInvalidPrinterOp 65183
+#define Vcl_Consts_SMsgDlgIgnore 65184
+#define Vcl_Consts_SMsgDlgAll 65185
+#define Vcl_Consts_SMsgDlgNoToAll 65186
+#define Vcl_Consts_SMsgDlgYesToAll 65187
+#define Vcl_Consts_SMsgDlgClose 65188
+#define Vcl_Consts_SmkcBkSp 65189
+#define Vcl_Consts_SmkcTab 65190
+#define Vcl_Consts_SmkcEsc 65191
+#define Vcl_Consts_SmkcEnter 65192
+#define Vcl_Consts_SmkcSpace 65193
+#define Vcl_Consts_SmkcPgUp 65194
+#define Vcl_Consts_SmkcPgDn 65195
+#define Vcl_Consts_SmkcEnd 65196
+#define Vcl_Consts_SmkcHome 65197
+#define Vcl_Consts_SmkcLeft 65198
+#define Vcl_Consts_SmkcUp 65199
 #define Vcl_Consts_SFixedColTooBig 65200
 #define Vcl_Consts_SFixedRowTooBig 65201
 #define Vcl_Consts_SMaskErr 65202
@@ -1115,9 +1118,9 @@
 #define Vcl_Consts_SMsgDlgOK 65210
 #define Vcl_Consts_SMsgDlgCancel 65211
 #define Vcl_Consts_SMsgDlgHelp 65212
-#define Vcl_Consts_SMsgDlgAbort 65213
-#define Vcl_Consts_SMsgDlgRetry 65214
-#define Vcl_Consts_SMsgDlgIgnore 65215
+#define Vcl_Consts_SMsgDlgHelpHelp 65213
+#define Vcl_Consts_SMsgDlgAbort 65214
+#define Vcl_Consts_SMsgDlgRetry 65215
 #define Vcl_Consts_SNoButton 65216
 #define Vcl_Consts_SHelpButton 65217
 #define Vcl_Consts_SCloseButton 65218
@@ -1440,12 +1443,18 @@
 #define System_SysConst_SIntOverflow 65535
 STRINGTABLE
 BEGIN
+	AbResString_AbLtStartS,	L" logging "
+	AbResString_AbGzipInvalidS,	L"Invalid Gzip"
+	AbResString_AbGzipBadCRCS,	L"Bad CRC"
 	AbResString_AbGzipBadFileSizeS,	L"Bad File Size"
 	AbResString_AbTarInvalidS,	L"Invalid Tar"
 	AbResString_AbTarBadFileNameS,	L"File name too long"
 	AbResString_AbTarBadLinkNameS,	L"Symbolic link path too long"
 	AbResString_AbTarBadOpS,	L"Unsupported Operation"
 	AbResString_AbUnhandledEntityS,	L"Unhandled Entity"
+	AbResString_AbVMSWriteTooManyBytesS,	L"VMS: request to write too many bytes [%d]"
+	AbResString_AbBBSReadTooManyBytesS,	L"BBS: request to read too many bytes [%d]"
+	AbResString_AbBBSSeekOutsideBufferS,	L"BBS: New position is outside the buffer"
 	AbResString_AbBBSInvalidOriginS,	L"BBS: Invalid Origin value"
 	AbResString_AbBBSWriteTooManyBytesS,	L"BBS: request to write too many bytes [%d]"
 	AbResString_AbSWSNotEndofStreamS,	L"TabSlidingWindowStream.Write: Not at end of stream"
@@ -1459,9 +1468,9 @@ BEGIN
 	AbResString_AbLtFreshenS,	L" freshened "
 	AbResString_AbLtMoveS,	L" moved "
 	AbResString_AbLtReplaceS,	L" replaced "
-	AbResString_AbLtStartS,	L" logging "
-	AbResString_AbGzipInvalidS,	L"Invalid Gzip"
-	AbResString_AbGzipBadCRCS,	L"Bad CRC"
+	AbResString_AbFCIFileSeekErrorS,	L"FCI file seek error"
+	AbResString_AbFCIFileDeleteErrorS,	L"FCI file delete error"
+	AbResString_AbFCIAddFileErrorS,	L"FCI cannot add file"
 	AbResString_AbFCICreateErrorS,	L"FCI cannot create context"
 	AbResString_AbFCIFlushCabinetErrorS,	L"FCI cannot flush cabinet"
 	AbResString_AbFCIFlushFolderErrorS,	L"FCI cannot flush folder"
@@ -1475,9 +1484,9 @@ BEGIN
 	AbResString_AbVMSSeekFailS,	L"VMS: Failed to seek in swap file %s"
 	AbResString_AbVMSReadFailS,	L"VMS: Failed to read %d bytes from swap file %s"
 	AbResString_AbVMSWriteFailS,	L"VMS: Failed to write %d bytes to swap file %s"
-	AbResString_AbVMSWriteTooManyBytesS,	L"VMS: request to write too many bytes [%d]"
-	AbResString_AbBBSReadTooManyBytesS,	L"BBS: request to read too many bytes [%d]"
-	AbResString_AbBBSSeekOutsideBufferS,	L"BBS: New position is outside the buffer"
+	AbResString_AbTruncateErrorS,	L"Error truncating Zip File"
+	AbResString_AbZipBadCRCS,	L"Failed CRC Check"
+	AbResString_AbZipBadStubS,	L"Stub must be an executable"
 	AbResString_AbFileNotFoundS,	L"File not found"
 	AbResString_AbInvalidLFHS,	L"Invalid Local File Header entry"
 	AbResString_AbNoArchiveS,	L"Archive does not exist - Filename is blank"
@@ -1491,9 +1500,9 @@ BEGIN
 	AbResString_AbFCIFileReadErrorS,	L"FCI cannot read file"
 	AbResString_AbFCIFileWriteErrorS,	L"FCI cannot write file"
 	AbResString_AbFCIFileCloseErrorS,	L"FCI close file error"
-	AbResString_AbFCIFileSeekErrorS,	L"FCI file seek error"
-	AbResString_AbFCIFileDeleteErrorS,	L"FCI file delete error"
-	AbResString_AbFCIAddFileErrorS,	L"FCI cannot add file"
+	AbResString_AbUnknownCompressionMethodS,	L"Cannot extract file - unsupported compression method"
+	AbResString_AbNoExtractionMethodS,	L"Cannot extract file - no extraction support provided"
+	AbResString_AbInvalidPasswordS,	L"Cannot extract file - invalid password"
 	AbResString_AbNoInsertionMethodS,	L"Cannot insert file - no insertion support provided"
 	AbResString_AbInvalidFactorS,	L"Invalid Reduce Factor"
 	AbResString_AbDuplicateNameS,	L"Cannot insert file - duplicates stored name"
@@ -1507,9 +1516,9 @@ BEGIN
 	AbResString_AbNoSuchDirectoryS,	L"Directory does not exist"
 	AbResString_AbInflateBlockErrorS,	L"Cannot inflate block"
 	AbResString_AbBadStreamTypeS,	L"Invalid Stream"
-	AbResString_AbTruncateErrorS,	L"Error truncating Zip File"
-	AbResString_AbZipBadCRCS,	L"Failed CRC Check"
-	AbResString_AbZipBadStubS,	L"Stub must be an executable"
+	IBCConstsUni_SVarIsNotArray,	L"Variant does not contain an array"
+	IBCConstsUni_SInvalidTable,	L"Invalid table name"
+	IBCConstsUni_SInvalidColumn,	L"Invalid column name"
 	IBCConstsUni_SCannotDisableArrayCache,	L"Can't disable array cache"
 	IBCConstsUni_SArrayDimensionError,	L"Arrays dimesions are different"
 	IBCConstsUni_SArrayLowBoundError,	L"Array low bound out of bounds (%d)"
@@ -1523,9 +1532,9 @@ BEGIN
 	zesavecommon_DefaultSheetName,	L"Sheet"
 	AbResString_AbErrZipInvalidS,	L"Invalid file - not a PKZip file"
 	AbResString_AbZipVersionNeededS,	L"Cannot extract file - newer version required"
-	AbResString_AbUnknownCompressionMethodS,	L"Cannot extract file - unsupported compression method"
-	AbResString_AbNoExtractionMethodS,	L"Cannot extract file - no extraction support provided"
-	AbResString_AbInvalidPasswordS,	L"Cannot extract file - invalid password"
+	IBCConstsUni_SCantSetReadPosition,	L"Can't set BLOB read position"
+	IBCConstsUni_SCannotChangeStreamed,	L"Can't change Streamed mode with non-cached BLOB"
+	IBCConstsUni_SCannotDisableBlobCache,	L"Can't disable BLOB cache"
 	IBCConstsUni_SParamIsNotStorable,	L"Parameter cannot be stored"
 	IBCConstsUni_SSQLInfoError,	L"SQL information exception"
 	IBCConstsUni_SWrongSQLType,	L"Unsupported SQL type"
@@ -1539,9 +1548,9 @@ BEGIN
 	IBCConstsUni_SConnClosedOnTrStart,	L"Can't start transaction with closed connection"
 	IBCConstsUni_SEventNameTooLong,	L"Event name is too long. Maximum event name length is %d"
 	IBCConstsUni_SSendEventNotSupported,	L"Sending events is supported starting with Firebird 2"
-	IBCConstsUni_SVarIsNotArray,	L"Variant does not contain an array"
-	IBCConstsUni_SInvalidTable,	L"Invalid table name"
-	IBCConstsUni_SInvalidColumn,	L"Invalid column name"
+	UniConsts_SInvalidBracketCount,	L"Invalid bracket count in function call"
+	UniConsts_SInvalidDate,	L"Invalid year-month-day string. The format is {date 'yyyy-mm-dd'}"
+	UniConsts_SInvalidTime,	L"Invalid hour-minute-second string. The format is {time 'hh:mm:ss'}"
 	UniConsts_SInvalidTimestamp,	L"Invalid timestamp string. The format is {timestamp 'yyyy-mm-dd hh:mm:ss'}"
 	UniConsts_SNotCompletedIF,	L"{if} statement not completed"
 	UniConsts_SUnexpectedChar,	L"Unexpected character"
@@ -1555,9 +1564,9 @@ BEGIN
 	IBCConstsUni_SCantExecuteNonSelectStatement,	L"Can't execute statement that doesn't return dataset"
 	IBCConstsUni_SBlobNotAllocatted,	L"BLOB is not allocated"
 	IBCConstsUni_SCantReadEmptyBlobID,	L"Invalid BLOB ID"
-	IBCConstsUni_SCantSetReadPosition,	L"Can't set BLOB read position"
-	IBCConstsUni_SCannotChangeStreamed,	L"Can't change Streamed mode with non-cached BLOB"
-	IBCConstsUni_SCannotDisableBlobCache,	L"Can't disable BLOB cache"
+	DAConsts_SConnectionInTransactionNotActive,	L"One of the connections in the transaction is not active"
+	DAConsts_SUnsupportedIsolationLevel,	L"Unsupported transaction isolation level"
+	DAConsts_SIsolationLevelNotSupportedWithMTS,	L"Transaction isolation level is not supported with MTS"
 	DAConsts_SOperationNotSupported,	L"Operation is not supported by the database"
 	DAConsts_SMultipleTransactionsNotSupported,	L"Multiple transactions are not supported by the database"
 	DAConsts_SInvalidParamsArray,	L"Invalid Params array. Valid format: <Name1>,<Value1>[,<Name2>,<Value2>[...]]"
@@ -1571,9 +1580,9 @@ BEGIN
 	UniConsts_SAlertsNotSupported,	L"Event notification is not supported by DBMS or provider"
 	UniConsts_SEmptyFunctionName,	L"Empty function name"
 	UniConsts_SEmptyMacroOrFunction,	L"Empty macro or function name"
-	UniConsts_SInvalidBracketCount,	L"Invalid bracket count in function call"
-	UniConsts_SInvalidDate,	L"Invalid year-month-day string. The format is {date 'yyyy-mm-dd'}"
-	UniConsts_SInvalidTime,	L"Invalid hour-minute-second string. The format is {time 'hh:mm:ss'}"
+	DAConsts_SCannotPerformIfPooling,	L"Operation is not allowed when Pooling is True"
+	DAConsts_SMaxConnectionsReached,	L"Maximum connections reached in pool"
+	DAConsts_SCannotChangeIsUnicode,	L"Cannot change IsUnicode if Size > 0"
 	DAConsts_SNoTimers,	L"Not enough timers available"
 	DAConsts_sBlobNotCompressed,	L"Blob is not compressed"
 	DAConsts_SCompressorNotLinked,	L"Compressor function is not linked"
@@ -1587,9 +1596,9 @@ BEGIN
 	DAConsts_SEmptySQLStatement,	L"No SQL statement provided"
 	DAConsts_SInvalidBlobPosition,	L"Invalid BLOB position"
 	DAConsts_SNoConnectionsInTransaction,	L"There are no connections in the transaction"
-	DAConsts_SConnectionInTransactionNotActive,	L"One of the connections in the transaction is not active"
-	DAConsts_SUnsupportedIsolationLevel,	L"Unsupported transaction isolation level"
-	DAConsts_SIsolationLevelNotSupportedWithMTS,	L"Transaction isolation level is not supported with MTS"
+	DAConsts_SConnectionNotConnected,	L"Connection is not connected"
+	DAConsts_SCannotConnect,	L"Cannot connect to database"
+	DAConsts_SMacroNotFound,	L"Macro %s not found"
 	DAConsts_SNotInTransaction,	L"Can't perform operation on inactive transaction"
 	DAConsts_SInTransaction,	L"Can't perform operation on active transaction"
 	DAConsts_STransactionNotAssigned,	L"Transaction not assigned"
@@ -1603,9 +1612,9 @@ BEGIN
 	DAConsts_STableNameNotDefined,	L"TableName must be defined"
 	DAConsts_SStoredProcNotDefined,	L"StoredProcName must be defined"
 	DAConsts_SConnectionIsClosed,	L"Operation is not allowed when the connection is closed"
-	DAConsts_SCannotPerformIfPooling,	L"Operation is not allowed when Pooling is True"
-	DAConsts_SMaxConnectionsReached,	L"Maximum connections reached in pool"
-	DAConsts_SCannotChangeIsUnicode,	L"Cannot change IsUnicode if Size > 0"
+	DAConsts_SBlobMustBeCached,	L"Blob must be in cached mode"
+	DAConsts_SKeyFieldsRequired,	L"Key fields required to call FindKey or FindNearest"
+	DAConsts_SKeyFieldsReq,	L"Unique keyfields required"
 	DAConsts_SNoKeyFields,	L"Key fields not found"
 	DAConsts_SBadTableInfoName,	L"TableInfo name must be provided"
 	DAConsts_SBadStatementType,	L"Bad statement type"
@@ -1619,9 +1628,9 @@ BEGIN
 	DAConsts_SNotCachedUpdate,	L"Not in cached update mode"
 	DAConsts_SUpdateWrongDB,	L"Cannot update, %s is not owned by %s"
 	DAConsts_SConnectionNotDefined,	L"Connection is not defined"
-	DAConsts_SConnectionNotConnected,	L"Connection is not connected"
-	DAConsts_SCannotConnect,	L"Cannot connect to database"
-	DAConsts_SMacroNotFound,	L"Macro %s not found"
+	IBSQLMonitor_StrCommitRetaining,	L": [Commit retaining (Soft commit)]"
+	IBSQLMonitor_StrRollback,	L": [Rollback]"
+	IBSQLMonitor_StrRollbackRetainin,	L": [Rollback retaining (Soft rollback)]"
 	IBSQLMonitor_StrStartTransaction,	L": [Start transaction]"
 	IBSQLMonitor_StrApplication,	L"[Application: "
 	System_ZLibConst_sTargetBufferTooSmall,	L"ZLib error: target buffer may be too small"
@@ -1635,9 +1644,9 @@ BEGIN
 	DAConsts_SNeedBlobType,	L"Field is not BLOB"
 	DAConsts_SInvalidSharedObject,	L"Invalid SharedObject"
 	DAConsts_SInvalidBlob,	L"Invalid BLOB"
-	DAConsts_SBlobMustBeCached,	L"Blob must be in cached mode"
-	DAConsts_SKeyFieldsRequired,	L"Key fields required to call FindKey or FindNearest"
-	DAConsts_SKeyFieldsReq,	L"Unique keyfields required"
+	IBXConst_SIBUnknownServerType,	L"%s is not a registered server type"
+	IBXConst_SInvalidLibraryType,	L"Invalid library type assigned.  Valid strings are %s"
+	IBSQLMonitor_StrMisc,	L"[Misc] "
 	IBSQLMonitor_StrError,	L"[Error] "
 	IBSQLMonitor_StrAttach,	L": [Attach]"
 	IBSQLMonitor_StrDetach,	L": [Detach]"
@@ -1651,9 +1660,9 @@ BEGIN
 	IBSQLMonitor_StrPlan,	L"  Plan: "
 	IBSQLMonitor_StrPlanCantRetrive,	L"  Plan: Can't retrieve plan - too large"
 	IBSQLMonitor_StrCommitHardComm,	L": [Commit (Hard commit)]"
-	IBSQLMonitor_StrCommitRetaining,	L": [Commit retaining (Soft commit)]"
-	IBSQLMonitor_StrRollback,	L": [Rollback]"
-	IBSQLMonitor_StrRollbackRetainin,	L": [Rollback retaining (Soft rollback)]"
+	IBXConst_SInvalidOnErrorResult,	L"Unexpected onError return value"
+	IBXConst_SInvalidOnStatusResult,	L"Unexpected onStatus return value"
+	IBXConst_SDPBConstantUnknownEx,	L"DPB Constant (%s) is unknown"
 	IBXConst_STPBConstantUnknownEx,	L"TPB Constant (%s) is unknown"
 	IBXConst_SUnknownPlan,	L"Unknown Error - Can't retrieve plan"
 	IBXConst_SFieldSizeMismatch,	L"Size Mismatch - Field %s size is too small for data"
@@ -1667,9 +1676,9 @@ BEGIN
 	IBXConst_SIB71feature,	L"%s is an InterBase 7.1 function. Please upgrade to InterBase 7.1 to use this functonality"
 	IBXConst_SIB80feature,	L"%s is an InterBase 2007 function. Please upgrade to InterBase 2007 to use this functonality"
 	IBXConst_SFileSizeDumpCountIncompatibility,	L"If you supply sizes you must supply 1 size for every file in the Files list (last size optional)"
-	IBXConst_SIBUnknownServerType,	L"%s is not a registered server type"
-	IBXConst_SInvalidLibraryType,	L"Invalid library type assigned.  Valid strings are %s"
-	IBSQLMonitor_StrMisc,	L"[Misc] "
+	IBXConst_SUseSpecificProcedures,	L"Generic ServiceStart not applicable: Use Specific Procedures to set configuration params"
+	IBXConst_SSQLMonitorAlreadyPresent,	L"SQL Monitor Instance is already present"
+	IBXConst_SCantPrintValue,	L"Cannot print value"
 	IBXConst_SEOFReached,	L"SEOFReached"
 	IBXConst_SEOFInComment,	L"EOF in comment detected"
 	IBXConst_SEOFInString,	L"EOF in string detected"
@@ -1683,9 +1692,9 @@ BEGIN
 	IBXConst_SOptionNeedsClient,	L"%s component requires Client to function properly"
 	IBXConst_SOptionNeedsServer,	L"%s component requires Server to function properly"
 	IBXConst_SInvalidOption,	L"Invalid option specified"
-	IBXConst_SInvalidOnErrorResult,	L"Unexpected onError return value"
-	IBXConst_SInvalidOnStatusResult,	L"Unexpected onStatus return value"
-	IBXConst_SDPBConstantUnknownEx,	L"DPB Constant (%s) is unknown"
+	IBXConst_SInvalidCancellation,	L"Cannot Cancel events while processing"
+	IBXConst_SInvalidEvent,	L"Invalid Event"
+	IBXConst_SMaximumEvents,	L"Exceded Maximum Event limits"
 	IBXConst_SNoEventsRegistered,	L"No Events Registered"
 	IBXConst_SInvalidQueueing,	L"Invalid Queueing"
 	IBXConst_SInvalidRegistration,	L"Invalid Registration"
@@ -1699,9 +1708,9 @@ BEGIN
 	IBXConst_SQueryParamsError,	L"Query Parameters missing or incorrect"
 	IBXConst_SStartParamsError,	L"start Parameters missing or incorrect"
 	IBXConst_SOutputParsingError,	L"Unexpected Output buffer value"
-	IBXConst_SUseSpecificProcedures,	L"Generic ServiceStart not applicable: Use Specific Procedures to set configuration params"
-	IBXConst_SSQLMonitorAlreadyPresent,	L"SQL Monitor Instance is already present"
-	IBXConst_SCantPrintValue,	L"Cannot print value"
+	IBXConst_SCircularDataLink,	L"Circular DataLink Reference"
+	IBXConst_SEmptySQLStatement,	L"Empty SQL Statement"
+	IBXConst_SIsASelectStatement,	L"use Open for a Select Statement"
 	IBXConst_SRequiredParamNotSet,	L"Required Param value not set"
 	IBXConst_SNoStoredProcName,	L"No Stored Procedure Name assigned"
 	IBXConst_SIsAExecuteProcedure,	L"use ExecProc for Procedure; use TQuery for Select procedures"
@@ -1715,9 +1724,9 @@ BEGIN
 	IBXConst_SCannotDropSystemIndex,	L"Cannot Drop System Index"
 	IBXConst_STableNameMismatch,	L"Table Name Mismatch"
 	IBXConst_SIndexFieldMissing,	L"Index Field Missing"
-	IBXConst_SInvalidCancellation,	L"Cannot Cancel events while processing"
-	IBXConst_SInvalidEvent,	L"Invalid Event"
-	IBXConst_SMaximumEvents,	L"Exceded Maximum Event limits"
+	IBXConst_SCannotInsert,	L"Cannot insert into dataset. (No insert query)"
+	IBXConst_SCannotPost,	L"Cannot post. (No update/insert query)"
+	IBXConst_SCannotUpdate,	L"Cannot update. (No update query)"
 	IBXConst_SCannotDelete,	L"Cannot delete from dataset. (No delete query)"
 	IBXConst_SCannotRefresh,	L"Cannot refresh row. (No refresh query)"
 	IBXConst_SBufferNotSet,	L"Buffer not set"
@@ -1731,9 +1740,9 @@ BEGIN
 	IBXConst_SColumnTypesDontMatch,	L"Column types don't match. (From index: %d; To index: %d)"
 	IBXConst_SCantEndSharedTransaction,	L"Can't end a shared transaction unless it is forced and equal to the transaction's TimeoutAction"
 	IBXConst_SFieldUnsupportedType,	L"Unsupported Field Type"
-	IBXConst_SCircularDataLink,	L"Circular DataLink Reference"
-	IBXConst_SEmptySQLStatement,	L"Empty SQL Statement"
-	IBXConst_SIsASelectStatement,	L"use Open for a Select Statement"
+	IBXConst_SSQLClosed,	L"IBSQL Closed"
+	IBXConst_SDatasetOpen,	L"Dataset open"
+	IBXConst_SDatasetClosed,	L"Dataset closed"
 	IBXConst_SUnknownSQLDataType,	L"Unknown SQL Data type (%d)"
 	IBXConst_SInvalidColumnIndex,	L"Invalid column index (index exceeds permitted range)"
 	IBXConst_SInvalidParamColumnIndex,	L"Invalid parameter index (index exceeds permitted range)"
@@ -1747,9 +1756,9 @@ BEGIN
 	IBXConst_SFieldReadOnly,	L"Field \"%s\" is read-only"
 	IBXConst_SFieldNotFound,	L"Field \"%s\" not found"
 	IBXConst_SNotEditing,	L"Not in edit mode"
-	IBXConst_SCannotInsert,	L"Cannot insert into dataset. (No insert query)"
-	IBXConst_SCannotPost,	L"Cannot post. (No update/insert query)"
-	IBXConst_SCannotUpdate,	L"Cannot update. (No update query)"
+	IBXConst_SDatabaseOpen,	L"Cannot perform operation -- DB is currently open"
+	IBXConst_SDatabaseNameMissing,	L"Database name is missing"
+	IBXConst_SNotInTransaction,	L"Transaction is not active"
 	IBXConst_SInTransaction,	L"Transaction is active"
 	IBXConst_STimeoutNegative,	L"Timeout values cannot be negative"
 	IBXConst_SNoDatabasesInTransaction,	L"No databases are listed in transaction component"
@@ -1763,9 +1772,9 @@ BEGIN
 	IBXConst_SBOF,	L"Beginning of file"
 	IBXConst_SInvalidStatementHandle,	L"Invalid statement handle"
 	IBXConst_SSQLOpen,	L"IBSQL Open"
-	IBXConst_SSQLClosed,	L"IBSQL Closed"
-	IBXConst_SDatasetOpen,	L"Dataset open"
-	IBXConst_SDatasetClosed,	L"Dataset closed"
+	IBXConst_SUnknownError,	L"Unknown error"
+	IBXConst_SInterBaseMissing,	L"InterBase library %s not found in the path. Please install InterBase to use this functionality"
+	IBXConst_SInterBaseInstallMissing,	L"InterBase Install DLL ibinstall.dll not found in the path. Please install InterBase 6 to use this functionality"
 	IBXConst_SIB60feature,	L"%s is an InterBase 6 function. Please upgrade to InterBase 6 to use this functonality"
 	IBXConst_SNotSupported,	L"Unsupported feature"
 	IBXConst_SNotPermitted,	L"Not permitted"
@@ -1779,9 +1788,9 @@ BEGIN
 	IBXConst_STPBConstantNotSupported,	L"TPB Constant (isc_tpb_%s) is unsupported"
 	IBXConst_STPBConstantUnknown,	L"TPB Constant (%d) is unknown"
 	IBXConst_SDatabaseClosed,	L"Cannot perform operation -- DB is not open"
-	IBXConst_SDatabaseOpen,	L"Cannot perform operation -- DB is currently open"
-	IBXConst_SDatabaseNameMissing,	L"Database name is missing"
-	IBXConst_SNotInTransaction,	L"Transaction is not active"
+	uniFileUpload_Uploading_str,	L"Uploading..."
+	uniFileUpload_Browse_Text,	L"Browse..."
+	uniFileUpload_Please_Wait_str,	L"Please Wait"
 	uniFileUpload_Cancel_str,	L"Cancel"
 	uniFileUpload_Processing_str,	L"Processing..."
 	uniFileUpload_Upload_Error,	L"Upload Error"
@@ -1795,9 +1804,9 @@ BEGIN
 	Vcl_OleConst_SPropDlgCaption,	L"%s Properties"
 	Vcl_OleConst_SInvalidStreamFormat,	L"Invalid stream format"
 	Vcl_OleConst_sNoRunningObject,	L"Unable to retrieve a pointer to a running object registered with OLE for %s/%s"
-	IBXConst_SUnknownError,	L"Unknown error"
-	IBXConst_SInterBaseMissing,	L"InterBase library %s not found in the path. Please install InterBase to use this functionality"
-	IBXConst_SInterBaseInstallMissing,	L"InterBase Install DLL ibinstall.dll not found in the path. Please install InterBase 6 to use this functionality"
+	Data_SqlConst_SINVALIDTXNID,	L"[0x0010]: Invalid Transaction ID"
+	Data_SqlConst_SDUPLICATETXNID,	L"[0x0011]: Duplicate Transaction ID"
+	Data_SqlConst_SDRIVERRESTRICTED,	L"[0x0012]: Application is not licensed to use this feature"
 	Data_SqlConst_SLOCALTRANSACTIVE,	L"[0x0013]: Local Transaction already active"
 	Data_SqlConst_SMULTIPLETRANSNOTENABLED,	L"[0x0014]: Multiple Transactions not Enabled"
 	Data_SqlConst_SCONNECTIONFAILED,	L"[0x0015]: Connection failed"
@@ -1811,9 +1820,9 @@ BEGIN
 	Data_SqlConst_SObjectTypenameRequired,	L"Object type name required as parameter value"
 	Data_SqlConst_SCannotCreateFile,	L"Cannot create file %s"
 	uniFileUpload_Upload_str,	L"Upload"
-	uniFileUpload_Uploading_str,	L"Uploading..."
-	uniFileUpload_Browse_Text,	L"Browse..."
-	uniFileUpload_Please_Wait_str,	L"Please Wait"
+	Data_SqlConst_SNOERROR,	L""
+	Data_SqlConst_SWARNING,	L"[0x0001]: Warning"
+	Data_SqlConst_SNOMEMORY,	L"[0x0002]: Insufficient Memory for Operation"
 	Data_SqlConst_SINVALIDFLDTYPE,	L"[0x0003]: Invalid Field Type"
 	Data_SqlConst_SINVALIDHNDL,	L"[0x0004]: Invalid Handle"
 	Data_SqlConst_SNOTSUPPORTED,	L"[0x0005]: Operation Not Supported"
@@ -1827,9 +1836,9 @@ BEGIN
 	Data_SqlConst_SINVALIDPRECISION,	L"[0x000D]: Invalid Precision"
 	Data_SqlConst_SINVALIDLEN,	L"[0x000E]: Invalid Length"
 	Data_SqlConst_SINVALIDXISOLEVEL,	L"[0x000F]: Invalid Transaction Isolation Level"
-	Data_SqlConst_SINVALIDTXNID,	L"[0x0010]: Invalid Transaction ID"
-	Data_SqlConst_SDUPLICATETXNID,	L"[0x0011]: Duplicate Transaction ID"
-	Data_SqlConst_SDRIVERRESTRICTED,	L"[0x0012]: Application is not licensed to use this feature"
+	Data_SqlConst_SMissingSQLConnection,	L"SQLConnection property required for this operation"
+	Data_SqlConst_SConnectionNameMissing,	L"Connection name missing"
+	Data_SqlConst_SEmptySQLStatement,	L"No SQL statement available"
 	Data_SqlConst_SNoParameterValue,	L"No value for parameter '%s'"
 	Data_SqlConst_SNoTableName,	L"Missing TableName property"
 	Data_SqlConst_SNoSqlStatement,	L"Missing query, table name or procedure name"
@@ -1843,9 +1852,9 @@ BEGIN
 	Data_SqlConst_SNoCursor,	L"Cursor not returned from Query"
 	Data_SqlConst_SErrorMappingError,	L"SQL Error: Error mapping failed"
 	Data_SqlConst_STooManyActualParam,	L"%s: Actual number of parameters (%d) exceeds the current number of stored procedure parameters (%d). Either uncheck the ParamCheck component property or review the parameter list content"
-	Data_SqlConst_SNOERROR,	L""
-	Data_SqlConst_SWARNING,	L"[0x0001]: Warning"
-	Data_SqlConst_SNOMEMORY,	L"[0x0002]: Insufficient Memory for Operation"
+	Datasnap_MidConst_SNoDataSets,	L"Cannot resolve to dataset when using nested datasets or references"
+	Datasnap_MidConst_SRecConstFail,	L"Preparation of record constraint failed with error \"%s\""
+	Datasnap_MidConst_SFieldConstFail,	L"Preparation of field constraint failed with error \"%s\""
 	Datasnap_MidConst_SDefExprFail,	L"Preparation of default expression failed with error \"%s\""
 	Datasnap_MidConst_SArrayElementError,	L"Array elements of type %s are not supported"
 	Datasnap_MidConst_SNoTableName,	L"Unable to resolve records.  Table name not found."
@@ -1859,9 +1868,9 @@ BEGIN
 	Data_SqlConst_SMonitorActive,	L"Cannot change connection on Active Monitor"
 	Data_SqlConst_SDatabaseOpen,	L"Cannot perform this operation on an open connection"
 	Data_SqlConst_SDatabaseClosed,	L"Cannot perform this operation on a closed connection"
-	Data_SqlConst_SMissingSQLConnection,	L"SQLConnection property required for this operation"
-	Data_SqlConst_SConnectionNameMissing,	L"Connection name missing"
-	Data_SqlConst_SEmptySQLStatement,	L"No SQL statement available"
+	Datasnap_MidConst_SInvalidDataPacket,	L"Invalid data packet"
+	Datasnap_MidConst_SRefreshError,	L"Must apply updates before refreshing data"
+	Datasnap_MidConst_SAggsNoSuchLevel,	L"Grouping level not defined"
 	Datasnap_MidConst_SNoCircularReference,	L"Circular provider references not allowed"
 	Datasnap_MidConst_SErrorLoadingMidas,	L"Error loading MIDAS.DLL"
 	Datasnap_MidConst_SCannotCreateDataSet,	L"No fields defined.  Cannot create dataset"
@@ -1875,9 +1884,9 @@ BEGIN
 	Datasnap_MidConst_SField,	L"Field"
 	Datasnap_MidConst_SReadOnlyProvider,	L"Cannot apply updates to a ReadOnly provider"
 	Datasnap_MidConst_SNoKeySpecified,	L"Unable to find record.  No key specified"
-	Datasnap_MidConst_SNoDataSets,	L"Cannot resolve to dataset when using nested datasets or references"
-	Datasnap_MidConst_SRecConstFail,	L"Preparation of record constraint failed with error \"%s\""
-	Datasnap_MidConst_SFieldConstFail,	L"Preparation of field constraint failed with error \"%s\""
+	Data_DBXCommonResStrs_SIsAutoIncrementable,	L"AutoIncrementable"
+	Data_DBXCommonResStrs_SPastEndOfCursor,	L"No more data."
+	Data_DBXCommonResStrs_SDefinition,	L"Definition"
 	Data_DBXCommonResStrs_SNoTypeWithEnoughPrecision,	L"The best type match in %s for the column: %s is %s. But it is does not have sufficient precision."
 	Data_DBXCommonResStrs_SCannotBeUsedForAutoIncrement,	L"The best type match in %s for the column: %s is %s. But is cannot be used for an auto increment column."
 	Data_DBXCommonResStrs_SNoBlobTypeFound,	L"No long %2:s type found for the column: %1:s in %0:s."
@@ -1891,9 +1900,9 @@ BEGIN
 	Data_DBXCommonResStrs_SCannotRecreateConstraint,	L"The constraint: %s could not be recreated, because the column: %s was dropped."
 	Data_DBXCommonResStrs_SUnknownColumnName,	L"The Data type: %s requires a column: %s, which does not exist on the Column collection."
 	Datasnap_MidConst_SNoDataProvider,	L"Missing data provider or data packet"
-	Datasnap_MidConst_SInvalidDataPacket,	L"Invalid data packet"
-	Datasnap_MidConst_SRefreshError,	L"Must apply updates before refreshing data"
-	Datasnap_MidConst_SAggsNoSuchLevel,	L"Grouping level not defined"
+	Data_DBXCommonResStrs_SUnknownTableType,	L"Unknown table type specified:"
+	Data_DBXCommonResStrs_SMetaDataCommandExpected,	L"A MetaData command was expected here e.g. GetTables."
+	Data_DBXCommonResStrs_SLiteralPrefix,	L"Literal Prefix"
 	Data_DBXCommonResStrs_SIsPrimary,	L"Primary"
 	Data_DBXCommonResStrs_SSynonymName,	L"Synonym Name"
 	Data_DBXCommonResStrs_SRoleName,	L"Role Name"
@@ -1907,9 +1916,9 @@ BEGIN
 	Data_DBXCommonResStrs_SMaxInline,	L"Max Inline"
 	Data_DBXCommonResStrs_STableName,	L"Table Name"
 	Data_DBXCommonResStrs_SProcedureName,	L"Procedure Name"
-	Data_DBXCommonResStrs_SIsAutoIncrementable,	L"AutoIncrementable"
-	Data_DBXCommonResStrs_SPastEndOfCursor,	L"No more data."
-	Data_DBXCommonResStrs_SDefinition,	L"Definition"
+	Data_DBXCommonResStrs_SUserName,	L"User Name"
+	Data_DBXCommonResStrs_SExternalDefinition,	L"External Definition"
+	Data_DBXCommonResStrs_STypeName,	L"Type Name"
 	Data_DBXCommonResStrs_SIsNullable,	L"Nullable"
 	Data_DBXCommonResStrs_SProviderDbType,	L"Provider Type"
 	Data_DBXCommonResStrs_SIsFixedLength,	L"Fixed Length"
@@ -1923,9 +1932,9 @@ BEGIN
 	Data_DBXCommonResStrs_SIsUnicode,	L"Unicode"
 	Data_DBXCommonResStrs_SIsFixedPrecisionScale,	L"Fixed Precision"
 	Data_DBXCommonResStrs_SUnexpectedSymbol,	L"Could not parse the %1:s metadata command. Problem found near: %0:s. Original query: %2:s."
-	Data_DBXCommonResStrs_SUnknownTableType,	L"Unknown table type specified:"
-	Data_DBXCommonResStrs_SMetaDataCommandExpected,	L"A MetaData command was expected here e.g. GetTables."
-	Data_DBXCommonResStrs_SLiteralPrefix,	L"Literal Prefix"
+	Data_DBXCommonResStrs_SMinimumVersion,	L"Minimum Version"
+	Data_DBXCommonResStrs_SIsSearchableWithLike,	L"Searchable With Like"
+	Data_DBXCommonResStrs_SCreateParameters,	L"Create Parameters"
 	Data_DBXCommonResStrs_SPackageName,	L"Package Name"
 	Data_DBXCommonResStrs_SParameterMode,	L"Parameter Mode"
 	Data_DBXCommonResStrs_SPrecision,	L"Precision"
@@ -1939,9 +1948,9 @@ BEGIN
 	Data_DBXCommonResStrs_SIsConcurrencyType,	L"Concurrency"
 	Data_DBXCommonResStrs_SReservedWord,	L"Reserved Word"
 	Data_DBXCommonResStrs_SPrimaryCatalogName,	L"Primary Catalog Name"
-	Data_DBXCommonResStrs_SUserName,	L"User Name"
-	Data_DBXCommonResStrs_SExternalDefinition,	L"External Definition"
-	Data_DBXCommonResStrs_STypeName,	L"Type Name"
+	Data_DBXCommonResStrs_SProcedureType,	L"Procedure Type"
+	Data_DBXCommonResStrs_SUnclosedQuotes,	L"Unclosed quotes were found in the metadata query: %s."
+	Data_DBXCommonResStrs_SDefaultValue,	L"Default Value"
 	Data_DBXCommonResStrs_SForeignKeyName,	L"Foreign Key Name"
 	Data_DBXCommonResStrs_SIndexName,	L"Index Name"
 	Data_DBXCommonResStrs_SIsUnsigned,	L"Unsigned"
@@ -1955,9 +1964,9 @@ BEGIN
 	Data_DBXCommonResStrs_SPrimaryColumnName,	L"Primary Column Name"
 	Data_DBXCommonResStrs_SOrdinal,	L"Ordinal"
 	Data_DBXCommonResStrs_SIsCaseSensitive,	L"Case Sensitive"
-	Data_DBXCommonResStrs_SMinimumVersion,	L"Minimum Version"
-	Data_DBXCommonResStrs_SIsSearchableWithLike,	L"Searchable With Like"
-	Data_DBXCommonResStrs_SCreateParameters,	L"Create Parameters"
+	Data_DBXCommonResStrs_SDBXErrVendorError,	L"Vendor error"
+	Data_DBXCommonResStrs_SDBXErrUnrecognizedCommandType,	L"Unrecognized command type."
+	Data_DBXCommonResStrs_SDBXErrSchemaNameUnspecified,	L"Schema or user name separated by a '.' must be specified."
 	Data_DBXCommonResStrs_SDBXErrDatabaseUnspecified,	L"Database must be specified."
 	Data_DBXCommonResStrs_SDBXErrLibraryNameUnspecified,	L"LibraryName must be specified."
 	Data_DBXCommonResStrs_SDBXErrGetDriverFuncUnspecified,	L"GetDriverFunc must be specified."
@@ -1971,9 +1980,9 @@ BEGIN
 	Data_DBXCommonResStrs_SIsLiteralSupported,	L"Literal Supported"
 	Data_DBXCommonResStrs_SDataType,	L"Platform Type Name"
 	Data_DBXCommonResStrs_SCatalogName,	L"Catalog Name"
-	Data_DBXCommonResStrs_SProcedureType,	L"Procedure Type"
-	Data_DBXCommonResStrs_SUnclosedQuotes,	L"Unclosed quotes were found in the metadata query: %s."
-	Data_DBXCommonResStrs_SDefaultValue,	L"Default Value"
+	Data_DBXCommonResStrs_SDBXErrInvalidIsolationLevel,	L"Invalid isolation level"
+	Data_DBXCommonResStrs_SDBXErrInvalidTransactionId,	L"Invalid transaction id"
+	Data_DBXCommonResStrs_SDBXErrDuplicateTransactionId,	L"Duplicate transaction id"
 	Data_DBXCommonResStrs_SDBXErrDriverRestricted,	L"Driver restricted"
 	Data_DBXCommonResStrs_SDBXErrTransactionActive,	L"Transaction active"
 	Data_DBXCommonResStrs_SDBXErrMultipleTransactionNotEnabled,	L"Multiple transaction not enabled"
@@ -1987,9 +1996,9 @@ BEGIN
 	Data_DBXCommonResStrs_SDBXErrDriverIncompatible,	L"Driver incompatible"
 	Data_DBXCommonResStrs_SDBXErrInvalidArgument,	L"Invalid argument"
 	Data_DBXCommonResStrs_SDBXErrNoData,	L"No data"
-	Data_DBXCommonResStrs_SDBXErrVendorError,	L"Vendor error"
-	Data_DBXCommonResStrs_SDBXErrUnrecognizedCommandType,	L"Unrecognized command type."
-	Data_DBXCommonResStrs_SDBXErrSchemaNameUnspecified,	L"Schema or user name separated by a '.' must be specified."
+	Data_DBXCommonResStrs_SNotDefinedIn,	L"No \"%s\" defined in %s"
+	Data_DBXCommonResStrs_SDBXErrNone,	L"None"
+	Data_DBXCommonResStrs_SDBXErrWarning,	L"Warning"
 	Data_DBXCommonResStrs_SDBXErrNoMemory,	L"Insufficient memory to complete the operation"
 	Data_DBXCommonResStrs_SDBXErrUnsupportedFieldType,	L"Unsupported field type"
 	Data_DBXCommonResStrs_SDBXErrInvalidHandle,	L"Unexpected internal error. DBX Object such as a connection, command, or reader may already be closed."
@@ -2003,9 +2012,9 @@ BEGIN
 	Data_DBXCommonResStrs_SDBXErrInvalidUserOrPassword,	L"Invalid username or password"
 	Data_DBXCommonResStrs_SDBXErrInvalidPrecision,	L"Invalid precision"
 	Data_DBXCommonResStrs_SDBXErrInvalidLength,	L"Invalid length"
-	Data_DBXCommonResStrs_SDBXErrInvalidIsolationLevel,	L"Invalid isolation level"
-	Data_DBXCommonResStrs_SDBXErrInvalidTransactionId,	L"Invalid transaction id"
-	Data_DBXCommonResStrs_SDBXErrDuplicateTransactionId,	L"Duplicate transaction id"
+	Data_DBXCommonResStrs_SCannotCreateObject,	L"The input value is not a valid Object"
+	Data_DBXCommonResStrs_SObjectNotFound,	L"Internal: Object type %s not found for id: %s"
+	Data_DBXCommonResStrs_SUnexpectedPairName,	L"Internal: Invalid pair name %s: expected %s or %s"
 	Data_DBXCommonResStrs_SInvalidJSONFieldType,	L"Un-marshaled array cannot be set as a field value. A reverter may be missing for field %s of %s"
 	Data_DBXCommonResStrs_SObjectExpectedInArray,	L"Object expected at position %d in JSON array %s"
 	Data_DBXCommonResStrs_SStringExpectedInArray,	L"String expected at position %d in JSON array %s"
@@ -2019,9 +2028,9 @@ BEGIN
 	Data_DBXCommonResStrs_SMustKeepOriginalColumnOrder,	L"Additional columns must be added after the prescribed columns."
 	Data_DBXCommonResStrs_SUnexpectedDataType,	L"Unexpected data type %s"
 	Data_DBXCommonResStrs_SDriverAlreadyRegistered,	L"Driver already registered:  "
-	Data_DBXCommonResStrs_SNotDefinedIn,	L"No \"%s\" defined in %s"
-	Data_DBXCommonResStrs_SDBXErrNone,	L"None"
-	Data_DBXCommonResStrs_SDBXErrWarning,	L"Warning"
+	Data_DBXCommonResStrs_SNoArray,	L"Internal: Array expected instead of nil"
+	Data_DBXCommonResStrs_STypeExpected,	L"Internal: Type expected"
+	Data_DBXCommonResStrs_STypeFieldsPairExpected,	L"Internal: Type fields pair expected"
 	Data_DBXCommonResStrs_SValueExpected,	L"Internal: JSON value expected instead of %s"
 	Data_DBXCommonResStrs_SInvalidContext,	L"Internal: Current context cannot accept a value"
 	Data_DBXCommonResStrs_SObjectExpectedForPair,	L"Internal: Object context expected when processing a pair"
@@ -2035,9 +2044,9 @@ BEGIN
 	Data_DBXCommonResStrs_SNoConversionAvailableForValue,	L"Value %s cannot be converted into %s. You may use a user-defined reverter"
 	Data_DBXCommonResStrs_SInvalidTypeForField,	L"Cannot set value for field %s as it is expected to be an array instead of %s"
 	Data_DBXCommonResStrs_SCannotCreateType,	L"Internal: Cannot instantiate type %s"
-	Data_DBXCommonResStrs_SCannotCreateObject,	L"The input value is not a valid Object"
-	Data_DBXCommonResStrs_SObjectNotFound,	L"Internal: Object type %s not found for id: %s"
-	Data_DBXCommonResStrs_SUnexpectedPairName,	L"Internal: Invalid pair name %s: expected %s or %s"
+	Data_DBXCommonResStrs_SInvalidOrdinal,	L"Invalid Ordinal:  %d"
+	Data_DBXCommonResStrs_SDefaultErrorMessage,	L"DBX Error:  %s"
+	Data_DBXCommonResStrs_SErrorCode,	L"Error Code:  "
 	Data_DBXCommonResStrs_SAlreadyPrepared,	L"Command can only be prepared once"
 	Data_DBXCommonResStrs_SInvalidTypeAccess,	L"%s value type cannot be accessed as %s value type"
 	Data_DBXCommonResStrs_SConnectionClosed,	L"Operation failed.  Connection was closed"
@@ -2051,9 +2060,9 @@ BEGIN
 	Data_DBXCommonResStrs_SFieldValueMissing,	L"Internal: Field %s has no serialized value"
 	Data_DBXCommonResStrs_SFieldExpected,	L"Internal: Field %s conversion is incomplete"
 	Data_DBXCommonResStrs_SArrayExpected,	L"Internal: Array expected instead of %s"
-	Data_DBXCommonResStrs_SNoArray,	L"Internal: Array expected instead of nil"
-	Data_DBXCommonResStrs_STypeExpected,	L"Internal: Type expected"
-	Data_DBXCommonResStrs_STypeFieldsPairExpected,	L"Internal: Type fields pair expected"
+	Data_DBXCommonResStrs_SNotRegistered,	L"%s class is not registered"
+	Data_DBXCommonResStrs_SInvalidClassRegister,	L"%s class registered with a nil class reference"
+	Data_DBXCommonResStrs_SCannotFreeClassRegistry,	L"Cannot free TClassRegistry.ClassRegistry"
 	Data_DBXCommonResStrs_SDllLoadError,	L"Unable to load %s (ErrorCode %d).  It may be missing from the system path."
 	Data_DBXCommonResStrs_SDllProcLoadError,	L"Unable to find procedure %s"
 	Data_DBXCommonResStrs_SUnknownDriver,	L"Unknown driver:  %s"
@@ -2067,25 +2076,23 @@ BEGIN
 	Data_DBXCommonResStrs_SSetSingletonOnce,	L"Cannot set this singleton instance more than once or after it has been retrieved one or more times"
 	Data_DBXCommonResStrs_SConnectionFactoryInitFailed,	L"Cannot find connection files from application directory (%s) or the system registry (%s)."
 	Data_DBXCommonResStrs_SInvalidDelegationDepth,	L"Cannot delegate a connection more than 16 times:  %s"
-	Data_DBXCommonResStrs_SInvalidOrdinal,	L"Invalid Ordinal:  %d"
-	Data_DBXCommonResStrs_SDefaultErrorMessage,	L"DBX Error:  %s"
-	Data_DBXCommonResStrs_SErrorCode,	L"Error Code:  "
+	Vcl_VDBConsts_SEditRecord,	L"Edit record"
 	Vcl_VDBConsts_SPostEdit,	L"Post edit"
 	Vcl_VDBConsts_SCancelEdit,	L"Cancel edit"
+	Vcl_VDBConsts_SConfirmCaption,	L"Confirm"
 	Vcl_VDBConsts_SRefreshRecord,	L"Refresh data"
 	Vcl_VDBConsts_SApplyUpdates,	L"Apply updates"
 	Vcl_VDBConsts_SCancelUpdates,	L"Cancel updates"
 	Vcl_VDBConsts_SDeleteRecordQuestion,	L"Delete record?"
 	Vcl_VDBConsts_SDeleteMultipleRecordsQuestion,	L"Delete all selected records?"
 	Vcl_VDBConsts_SDataSourceFixed,	L"Operation not allowed in a DBCtrlGrid"
+	Vcl_VDBConsts_SNotReplicatable,	L"Control cannot be used in a DBCtrlGrid"
 	Vcl_VDBConsts_SPropDefByLookup,	L"Property already defined by lookup field"
 	Vcl_VDBConsts_STooManyColumns,	L"Grid requested to display more than 256 columns"
 	Vcl_VDBConsts_SRemoteLogin,	L"Remote Login"
 	Data_DBXCommonResStrs_SBadVariantType,	L"Unsupported variant type: %s"
 	Data_DBXCommonResStrs_SAlreadyRegistered,	L"%s class already registered"
-	Data_DBXCommonResStrs_SNotRegistered,	L"%s class is not registered"
-	Data_DBXCommonResStrs_SInvalidClassRegister,	L"%s class registered with a nil class reference"
-	Data_DBXCommonResStrs_SCannotFreeClassRegistry,	L"Cannot free TClassRegistry.ClassRegistry"
+	uIdResourceStringsProtocols_RSOSSLConnectLoop,	L"Connect Loop"
 	uIdResourceStringsProtocols_RSOSSLConnectError,	L"Connect Error"
 	uIdResourceStringsProtocols_RSOSSLConnectFailed,	L"Connect Failed"
 	uIdResourceStringsProtocols_RSOSSLConnectExit,	L"Connect Exit"
@@ -2101,7 +2108,7 @@ BEGIN
 	Vcl_VDBConsts_SLastRecord,	L"Last record"
 	Vcl_VDBConsts_SInsertRecord,	L"Insert record"
 	Vcl_VDBConsts_SDeleteRecord,	L"Delete record"
-	Vcl_VDBConsts_SEditRecord,	L"Edit record"
+	uIdResourceStringsProtocols_RSSSLLoadingKeyError,	L"Could not load key, check password."
 	uIdResourceStringsProtocols_RSSSLLoadingDHParamsError,	L"Could not load DH Parameters."
 	uIdResourceStringsProtocols_RSSSLGetMethodError,	L"Error geting SSL method."
 	uIdResourceStringsProtocols_RSSSLFDSetError,	L"Error setting File Descriptor for SSL"
@@ -2117,7 +2124,7 @@ BEGIN
 	uIdResourceStringsProtocols_RSOSSLAcceptError,	L"Accept Error"
 	uIdResourceStringsProtocols_RSOSSLAcceptFailed,	L"Accept Failed"
 	uIdResourceStringsProtocols_RSOSSLAcceptExit,	L"Accept Exit"
-	uIdResourceStringsProtocols_RSOSSLConnectLoop,	L"Connect Loop"
+	uIdResourceStringsProtocols_RSHTTPServiceUnavailable,	L"Service Unavailable"
 	uIdResourceStringsProtocols_RSHTTPGatewayTimeout,	L"Gateway timeout"
 	uIdResourceStringsProtocols_RSHTTPHTTPVersionNotSupported,	L"HTTP version not supported"
 	uIdResourceStringsProtocols_RSHTTPUnknownResponseCode,	L"Unknown Response Code"
@@ -2133,7 +2140,7 @@ BEGIN
 	uIdResourceStringsProtocols_RSSSLCreatingContextError,	L"Error creating SSL context."
 	uIdResourceStringsProtocols_RSSSLLoadingRootCertError,	L"Could not load root certificate."
 	uIdResourceStringsProtocols_RSSSLLoadingCertError,	L"Could not load certificate."
-	uIdResourceStringsProtocols_RSSSLLoadingKeyError,	L"Could not load key, check password."
+	uIdResourceStringsProtocols_RSHTTPNotFound,	L"Not Found"
 	uIdResourceStringsProtocols_RSHTTPMethodNotAllowed,	L"Method not allowed"
 	uIdResourceStringsProtocols_RSHTTPNotAcceptable,	L"Not Acceptable"
 	uIdResourceStringsProtocols_RSHTTPProxyAuthenticationRequired,	L"Proxy Authentication Required"
@@ -2149,7 +2156,7 @@ BEGIN
 	uIdResourceStringsProtocols_RSHTTPInternalServerError,	L"Internal Server Error"
 	uIdResourceStringsProtocols_RSHTTPNotImplemented,	L"Not Implemented"
 	uIdResourceStringsProtocols_RSHTTPBadGateway,	L"Bad Gateway"
-	uIdResourceStringsProtocols_RSHTTPServiceUnavailable,	L"Service Unavailable"
+	uIdResourceStringsProtocols_RSHTTPContinue,	L"Continue"
 	uIdResourceStringsProtocols_RSHTTPOK,	L"OK"
 	uIdResourceStringsProtocols_RSHTTPCreated,	L"Created"
 	uIdResourceStringsProtocols_RSHTTPAccepted,	L"Accepted"
@@ -2165,7 +2172,7 @@ BEGIN
 	uIdResourceStringsProtocols_RSHTTPBadRequest,	L"Bad Request"
 	uIdResourceStringsProtocols_RSHTTPUnauthorized,	L"Unauthorized"
 	uIdResourceStringsProtocols_RSHTTPForbidden,	L"Forbidden"
-	uIdResourceStringsProtocols_RSHTTPNotFound,	L"Not Found"
+	uIdResourceStringsCore_RSInterceptIsDifferent,	L"The IOHandler already has a different Intercept assigned"
 	uIdResourceStringsCore_RSchedMaxThreadEx,	L"The maximum number of threads for this scheduler is exceeded."
 	uIdResourceStringsCore_RSTransparentProxyCannotBind,	L"Transparent proxy cannot bind."
 	uIdResourceStringsCore_RSTransparentProxyCanNotSupportUDP,	L"UDP Not supported by this proxy."
@@ -2181,7 +2188,7 @@ BEGIN
 	uIdResourceStringsProtocols_RSMIMEExtensionEmpty,	L"Extension is empty"
 	uIdResourceStringsProtocols_RSMIMEMIMETypeEmpty,	L"Mimetype is empty"
 	uIdResourceStringsProtocols_RSMIMEMIMEExtAlreadyExists,	L"Extension already exits"
-	uIdResourceStringsProtocols_RSHTTPContinue,	L"Continue"
+	uIdResourceStringsCore_RSInterceptCircularLink,	L"%d: Circular links are not allowed"
 	uIdResourceStringsCore_RSNotEnoughDataInBuffer,	L"Not enough data in buffer. (%d/%d)"
 	uIdResourceStringsCore_RSTooMuchDataInBuffer,	L"Too much data in buffer."
 	uIdResourceStringsCore_RSFileNotFound,	L"File \"%s\" not found"
@@ -2197,7 +2204,7 @@ BEGIN
 	uIdResourceStringsCore_RSThreadTerminateAndWaitFor,	L"Cannot call TerminateAndWaitFor on FreeAndTerminate threads"
 	uIdResourceStringsCore_RSAlreadyConnected,	L"Already connected."
 	uIdResourceStringsCore_RSMaximumNumberOfCaptureLineExceeded,	L"Maximum number of line allowed exceeded"
-	uIdResourceStringsCore_RSInterceptIsDifferent,	L"The IOHandler already has a different Intercept assigned"
+	uIdResourceStringsCore_RSSocksUDPNotSupported,	L"UDP is not support in this SOCKS version."
 	uIdResourceStringsCore_RSSocksRequestFailed,	L"Request rejected or failed."
 	uIdResourceStringsCore_RSSocksRequestServerFailed,	L"Request rejected because SOCKS server cannot connect."
 	uIdResourceStringsCore_RSSocksRequestIdentFailed,	L"Request rejected because the client program and identd report different user-ids."
@@ -2213,7 +2220,7 @@ BEGIN
 	uIdResourceStringsCore_RSSocksServerTTLExpiredError,	L"TTL expired."
 	uIdResourceStringsCore_RSSocksServerCommandError,	L"Command not supported."
 	uIdResourceStringsCore_RSSocksServerAddressError,	L"Address type not supported."
-	uIdResourceStringsCore_RSInterceptCircularLink,	L"%d: Circular links are not allowed"
+	uIdResourceStrings_RSStackHOST_NOT_FOUND,	L"Host not found."
 	uIdResourceStrings_RSStackClassUndefined,	L"Stack Class is undefined."
 	uIdResourceStrings_RSStackAlreadyCreated,	L"Stack already created."
 	uIdResourceStrings_RSAntiFreezeOnlyOne,	L"Only one TIdAntiFreeze can exist per application."
@@ -2229,7 +2236,7 @@ BEGIN
 	uIdResourceStrings_RSNotAllBytesSent,	L"Not all bytes sent."
 	uIdResourceStrings_RSPackageSizeTooBig,	L"Package Size Too Big."
 	uIdResourceStrings_RSSetSizeExceeded,	L"Set Size Exceeded."
-	uIdResourceStringsCore_RSSocksUDPNotSupported,	L"UDP is not support in this SOCKS version."
+	uIdResourceStrings_RSStackENETUNREACH,	L"Network is unreachable."
 	uIdResourceStrings_RSStackENETRESET,	L"Net dropped connection or reset."
 	uIdResourceStrings_RSStackECONNABORTED,	L"Software caused connection abort."
 	uIdResourceStrings_RSStackECONNRESET,	L"Connection reset by peer."
@@ -2245,7 +2252,7 @@ BEGIN
 	uIdResourceStrings_RSStackEHOSTDOWN,	L"Host is down."
 	uIdResourceStrings_RSStackEHOSTUNREACH,	L"No route to host."
 	uIdResourceStrings_RSStackENOTEMPTY,	L"Directory not empty"
-	uIdResourceStrings_RSStackHOST_NOT_FOUND,	L"Host not found."
+	uIdResourceStrings_RSStackEWOULDBLOCK,	L"Operation would block."
 	uIdResourceStrings_RSStackEINPROGRESS,	L"Operation now in progress."
 	uIdResourceStrings_RSStackEALREADY,	L"Operation already in progress."
 	uIdResourceStrings_RSStackENOTSOCK,	L"Socket operation on non-socket."
@@ -2261,7 +2268,7 @@ BEGIN
 	uIdResourceStrings_RSStackEADDRINUSE,	L"Address already in use."
 	uIdResourceStrings_RSStackEADDRNOTAVAIL,	L"Cannot assign requested address."
 	uIdResourceStrings_RSStackENETDOWN,	L"Network is down."
-	uIdResourceStrings_RSStackENETUNREACH,	L"Network is unreachable."
+	uIdResourceStrings_RSFailedTimeZoneInfo,	L"Failed attempting to retrieve time zone information."
 	uIdResourceStrings_RSWinsockCallError,	L"Error on call to Winsock2 library function %s"
 	uIdResourceStrings_RSWinsockLoadError,	L"Error on loading Winsock2 library (%s)"
 	uIdResourceStrings_RSStatusResolving,	L"Resolving hostname %s."
@@ -2277,7 +2284,7 @@ BEGIN
 	uIdResourceStrings_RSStackEFAULT,	L"Buffer fault."
 	uIdResourceStrings_RSStackEINVAL,	L"Invalid argument."
 	uIdResourceStrings_RSStackEMFILE,	L"Too many open files."
-	uIdResourceStrings_RSStackEWOULDBLOCK,	L"Operation would block."
+	Vcl_Imaging_GIFConsts_sBadDimension,	L"Invalid image dimensions"
 	Vcl_Imaging_GIFConsts_sNoDIB,	L"Image has no DIB"
 	Vcl_Imaging_GIFConsts_sInvalidStream,	L"Invalid stream operation"
 	Vcl_Imaging_GIFConsts_sInvalidColor,	L"Color not in color table"
@@ -2293,7 +2300,7 @@ BEGIN
 	Vcl_Imaging_GIFConsts_sProgressRendering,	L"Rendering"
 	Vcl_Imaging_GIFConsts_sProgressCopying,	L"Copying"
 	Vcl_Imaging_GIFConsts_sProgressOptimizing,	L"Optimizing"
-	uIdResourceStrings_RSFailedTimeZoneInfo,	L"Failed attempting to retrieve time zone information."
+	Vcl_Imaging_GIFConsts_sUnknownExtension,	L"Unknown extension type"
 	Vcl_Imaging_GIFConsts_sBadExtensionLabel,	L"Invalid extension introducer"
 	Vcl_Imaging_GIFConsts_sOutOfMemDIB,	L"Failed to allocate memory for GIF DIB"
 	Vcl_Imaging_GIFConsts_sDecodeTooFewBits,	L"Decoder bit buffer under-run"
@@ -2309,7 +2316,7 @@ BEGIN
 	Vcl_Imaging_GIFConsts_sNoColorTable,	L"No global or local color table defined"
 	Vcl_Imaging_GIFConsts_sBadPixelCoordinates,	L"Invalid pixel coordinates"
 	Vcl_Imaging_GIFConsts_sInvalidPixelFormat,	L"Unsupported PixelFormat"
-	Vcl_Imaging_GIFConsts_sBadDimension,	L"Invalid image dimensions"
+	Vcl_Imaging_pnglang_EPNGOutMemoryText,	L"Some operation could not be performed because the system is out of resources. Close some windows and try again."
 	Vcl_Imaging_pnglang_EPNGCannotChangeTransparentText,	L"Setting bit transparency color is not allowed for png images containing alpha value for each pixel (COLOR_RGBALPHA and COLOR_GRAYSCALEALPHA)"
 	Vcl_Imaging_pnglang_EPNGHeaderNotPresentText,	L"This operation is not valid because the current image contains no valid header."
 	Vcl_Imaging_pnglang_EInvalidNewSize,	L"The new size provided for image resizing is invalid."
@@ -2325,7 +2332,7 @@ BEGIN
 	Vcl_Imaging_GIFConsts_sBadSignature,	L"Invalid GIF signature"
 	Vcl_Imaging_GIFConsts_sScreenBadColorSize,	L"Invalid number of colors specified in Screen Descriptor"
 	Vcl_Imaging_GIFConsts_sImageBadColorSize,	L"Invalid number of colors specified in Image Descriptor"
-	Vcl_Imaging_GIFConsts_sUnknownExtension,	L"Unknown extension type"
+	Vcl_Imaging_pnglang_EPNGMissingMultipleIDATText,	L"This \"Portable Network Graphics\" image is invalid because it has missing image parts."
 	Vcl_Imaging_pnglang_EPNGZLIBErrorText,	L"Could not decompress the image because it contains invalid compressed data.\r\n Description: "
 	Vcl_Imaging_pnglang_EPNGInvalidPaletteText,	L"The \"Portable Network Graphics\" image contains an invalid palette."
 	Vcl_Imaging_pnglang_EPNGInvalidFileHeaderText,	L"The file being read is not a valid \"Portable Network Graphics\" image because it contains an invalid header. This file may be corrupted, try obtaining it again"
@@ -2341,7 +2348,7 @@ BEGIN
 	Vcl_Imaging_pnglang_EPNGCannotAddChunkText,	L"The program tried to add a existent critical chunk to the current image which is not allowed."
 	Vcl_Imaging_pnglang_EPNGCannotAddInvalidImageText,	L"It's not allowed to add a new chunk because the current image is invalid."
 	Vcl_Imaging_pnglang_EPNGCouldNotLoadResourceText,	L"The png image could not be loaded from the resource ID."
-	Vcl_Imaging_pnglang_EPNGOutMemoryText,	L"Some operation could not be performed because the system is out of resources. Close some windows and try again."
+	Data_DBConsts_SAggActive,	L"Property may not be modified while aggregate is active"
 	Data_DBConsts_SProviderSQLNotSupported,	L"SQL not supported"
 	Data_DBConsts_SProviderExecuteNotSupported,	L"Execute not supported"
 	Data_DBConsts_SExprNoAggOnCalcs,	L"Field '%s' is not the correct type of calculated field to be used in an aggregate, use an internalcalc"
@@ -2357,7 +2364,7 @@ BEGIN
 	uniGUIConst_UNI_GUI_SERVER,	L"UniGUI Server"
 	Vcl_Imaging_pnglang_EPngInvalidCRCText,	L"This \"Portable Network Graphics\" image is not valid because it contains invalid pieces of data (crc error)"
 	Vcl_Imaging_pnglang_EPNGInvalidIHDRText,	L"The \"Portable Network Graphics\" image could not be loaded because one of its main piece of data (ihdr) might be corrupted"
-	Vcl_Imaging_pnglang_EPNGMissingMultipleIDATText,	L"This \"Portable Network Graphics\" image is invalid because it has missing image parts."
+	Data_DBConsts_SExprRangeError,	L"Constant out of range"
 	Data_DBConsts_SExprIncorrect,	L"Incorrectly formed filter expression"
 	Data_DBConsts_SExprNothing,	L"nothing"
 	Data_DBConsts_SExprTypeMis,	L"Type mismatch in expression"
@@ -2373,7 +2380,7 @@ BEGIN
 	Data_DBConsts_SParameterNotFound,	L"Parameter '%s' not found"
 	Data_DBConsts_SInvalidVersion,	L"Unable to load bind parameters"
 	Data_DBConsts_SBadFieldType,	L"Field '%s' is of an unsupported type"
-	Data_DBConsts_SAggActive,	L"Property may not be modified while aggregate is active"
+	Data_DBConsts_SDataSetOpen,	L"Cannot perform this operation on an open dataset"
 	Data_DBConsts_SNotEditing,	L"Dataset not in edit or insert mode"
 	Data_DBConsts_SDataSetClosed,	L"Cannot perform this operation on a closed dataset"
 	Data_DBConsts_SDataSetEmpty,	L"Cannot perform this operation on an empty dataset"
@@ -2389,7 +2396,7 @@ BEGIN
 	Data_DBConsts_SExprExpected,	L"Expression expected but %s found"
 	Data_DBConsts_SExprBadField,	L"Field '%s' cannot be used in a filter expression"
 	Data_DBConsts_SExprBadNullTest,	L"NULL only allowed with '=' and '<>'"
-	Data_DBConsts_SExprRangeError,	L"Constant out of range"
+	Data_DBConsts_SFieldRequired,	L"Field '%s' must have a value"
 	Data_DBConsts_SDataSetMissing,	L"Field '%s' has no dataset"
 	Data_DBConsts_SInvalidCalcType,	L"Field '%s' cannot be a calculated or lookup field"
 	Data_DBConsts_SFieldReadOnly,	L"Field '%s' cannot be modified"
@@ -2405,7 +2412,7 @@ BEGIN
 	Data_DBConsts_SLookupInfoError,	L"Lookup information for field '%s' is incomplete"
 	Data_DBConsts_SDataSourceChange,	L"DataSource cannot be changed"
 	Data_DBConsts_SNoNestedMasterSource,	L"Nested datasets cannot have a MasterSource"
-	Data_DBConsts_SDataSetOpen,	L"Cannot perform this operation on an open dataset"
+	Data_DBConsts_SInvalidFieldKind,	L"Invalid FieldKind"
 	Data_DBConsts_SUnknownFieldType,	L"Field '%s' is of an unknown type"
 	Data_DBConsts_SFieldNameMissing,	L"Field name missing"
 	Data_DBConsts_SDuplicateFieldName,	L"Duplicate field name '%s'"
@@ -2421,7 +2428,7 @@ BEGIN
 	Data_DBConsts_SFieldSizeMismatch,	L"Size mismatch for field '%s', expecting: %d actual: %d"
 	Data_DBConsts_SInvalidVarByteArray,	L"Invalid variant type or size for field '%s'"
 	Data_DBConsts_SFieldOutOfRange,	L"Value of field '%s' is out of range"
-	Data_DBConsts_SFieldRequired,	L"Field '%s' must have a value"
+	Vcl_ComStrs_sInsertError,	L"Unable to insert an item"
 	Vcl_ComStrs_sInvalidOwner,	L"Invalid owner"
 	Vcl_ComStrs_sRichEditInsertError,	L"RichEdit line insertion error"
 	Vcl_ComStrs_sRichEditLoadFail,	L"Failed to Load Stream"
@@ -2437,7 +2444,7 @@ BEGIN
 	Vcl_ComStrs_sFailSetCalMinMaxRange,	L"Failed to set calendar min/max range"
 	Vcl_ComStrs_sFailsetCalSelRange,	L"Failed to set calendar selected range"
 	Data_DBConsts_SInvalidFieldSize,	L"Invalid field size"
-	Data_DBConsts_SInvalidFieldKind,	L"Invalid FieldKind"
+	System_Win_ComConst_STooManyParams,	L"Dispatch methods do not support more than 64 parameters"
 	System_Win_ComConst_SDCOMNotInstalled,	L"DCOM not installed"
 	System_Win_ComConst_SDAXError,	L"DAX Error"
 	System_Win_ComConst_SAutomationWarning,	L"COM Server Warning"
@@ -2453,7 +2460,7 @@ BEGIN
 	Vcl_ComStrs_sInvalidLevel,	L"Invalid item level assignment"
 	Vcl_ComStrs_sInvalidLevelEx,	L"Invalid level (%d) for item \"%s\""
 	Vcl_ComStrs_sInvalidIndex,	L"Invalid index"
-	Vcl_ComStrs_sInsertError,	L"Unable to insert an item"
+	Vcl_Consts_SStyleLoadErrors,	L"Unable to load styles: %s"
 	Vcl_Consts_SStyleRegisterError,	L"Style '%s' already registered"
 	Vcl_Consts_SStyleClassRegisterError,	L"Style class '%s' already registered"
 	Vcl_Consts_SStyleNotFound,	L"Style '%s' not found"
@@ -2469,7 +2476,7 @@ BEGIN
 	System_Win_ComConst_SObjectFactoryMissing,	L"Object factory for class %s missing"
 	System_Win_ComConst_SNoMethod,	L"Method '%s' not supported by automation object"
 	System_Win_ComConst_SVarNotObject,	L"Variant does not reference an automation object"
-	System_Win_ComConst_STooManyParams,	L"Dispatch methods do not support more than 64 parameters"
+	Vcl_Consts_SListBoxMustBeVirtual,	L"Listbox (%s) style must be virtual in order to set Count"
 	Vcl_Consts_SNoGetItemEventHandler,	L"No OnGetItem event handler assigned"
 	Vcl_Consts_SInvalidPath,	L"\"%s\" is an invalid path"
 	Vcl_Consts_SANSIEncoding,	L"ANSI"
@@ -2485,7 +2492,7 @@ BEGIN
 	Vcl_Consts_STaskDlgRadioButtonCaption,	L"RadioButton%d"
 	Vcl_Consts_SInvalidTaskDlgButtonCaption,	L"Caption cannot be empty"
 	Vcl_Consts_SStyleLoadError,	L"Unable to load style '%s'"
-	Vcl_Consts_SStyleLoadErrors,	L"Unable to load styles: %s"
+	Vcl_Consts_SNoDefaultPrinter,	L"There is no default printer currently selected"
 	Vcl_Consts_SDuplicateMenus,	L"Menu '%s' is already being used by another form"
 	Vcl_Consts_SDockedCtlNeedsName,	L"Docked control must have a name"
 	Vcl_Consts_SDockTreeRemoveError,	L"Error removing control from dock tree"
@@ -2501,7 +2508,7 @@ BEGIN
 	Vcl_Consts_SLogin,	L"Login"
 	Vcl_Consts_SSeparator,	L"Separator"
 	Vcl_Consts_SErrorSettingCount,	L"Error setting %s.Count"
-	Vcl_Consts_SListBoxMustBeVirtual,	L"Listbox (%s) style must be virtual in order to set Count"
+	Vcl_Consts_SmkcRight,	L"Right"
 	Vcl_Consts_SmkcDown,	L"Down"
 	Vcl_Consts_SmkcIns,	L"Ins"
 	Vcl_Consts_SmkcDel,	L"Del"
@@ -2517,7 +2524,7 @@ BEGIN
 	Vcl_Consts_SCannotOpenClipboard,	L"Cannot open clipboard: %s"
 	Vcl_Consts_SInvalidMemoSize,	L"Text exceeds memo capacity"
 	Vcl_Consts_SInvalidPrinterOp,	L"Operation not supported on selected printer"
-	Vcl_Consts_SNoDefaultPrinter,	L"There is no default printer currently selected"
+	Vcl_Consts_SMsgDlgIgnore,	L"&Ignore"
 	Vcl_Consts_SMsgDlgAll,	L"&All"
 	Vcl_Consts_SMsgDlgNoToAll,	L"N&o to All"
 	Vcl_Consts_SMsgDlgYesToAll,	L"Yes to &All"
@@ -2533,7 +2540,6 @@ BEGIN
 	Vcl_Consts_SmkcHome,	L"Home"
 	Vcl_Consts_SmkcLeft,	L"Left"
 	Vcl_Consts_SmkcUp,	L"Up"
-	Vcl_Consts_SmkcRight,	L"Right"
 	Vcl_Consts_SFixedColTooBig,	L"Fixed column count must be less than column count"
 	Vcl_Consts_SFixedRowTooBig,	L"Fixed row count must be less than row count"
 	Vcl_Consts_SMaskErr,	L"Invalid input value"
@@ -2547,9 +2553,9 @@ BEGIN
 	Vcl_Consts_SMsgDlgOK,	L"OK"
 	Vcl_Consts_SMsgDlgCancel,	L"Cancel"
 	Vcl_Consts_SMsgDlgHelp,	L"&Help"
+	Vcl_Consts_SMsgDlgHelpHelp,	L"Help"
 	Vcl_Consts_SMsgDlgAbort,	L"&Abort"
 	Vcl_Consts_SMsgDlgRetry,	L"&Retry"
-	Vcl_Consts_SMsgDlgIgnore,	L"&Ignore"
 	Vcl_Consts_SNoButton,	L"&No"
 	Vcl_Consts_SHelpButton,	L"&Help"
 	Vcl_Consts_SCloseButton,	L"&Close"
