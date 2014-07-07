@@ -2,42 +2,88 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
   ClientHeight = 679
   ClientWidth = 995
   Caption = 'Documentos Digitalizados'
-  ExplicitTop = -151
   ExplicitWidth = 1011
   ExplicitHeight = 718
   PixelsPerInch = 96
   TextHeight = 13
   inherited PanelTituloModeloCadastro: TUniPanel
     Width = 995
-    ExplicitWidth = 124
+    ExplicitWidth = 995
     inherited UniImage1: TUniImage
       Width = 993
-      ExplicitWidth = 122
+      ExplicitWidth = 993
     end
   end
   inherited PanelBotoes: TUniPanel
     Height = 612
+    ExplicitHeight = 612
+    inherited Salvar: TUniBitBtn
+      Caption = 'Confirma'
+    end
+    inherited Cancelar: TUniBitBtn
+      Caption = 'Voltar'
+    end
+    inherited Editar: TUniBitBtn
+      Glyph.Data = {
+        BE020000424DBE02000000000000BE0100002800000010000000100000000100
+        08000000000000010000120B0000120B0000620000006200000000000000FFFF
+        FF005C5B6300605C6400918F9300B2B0B400FF00FF0035323400655A5F006D65
+        68006D64670069595D005B565700777273006C6465008A808100635B5B005D5B
+        5B00811E00005D59570075685C00BA987500A59789005A555000575655005B55
+        4E00E5983000DDBB8F00C9AD8A00FF990300FF9A0C00EF971900FFA11F00FFA3
+        1F00E2901F00E0962D00E3B46E0050402A004C4131005B575100FFA71F00FFA9
+        1F00FFA92300FEB53D00E0A54300FEBC55004B402F00FFAF2500FFB52D00FFB6
+        3A00DE9F3300FFBD4B00FFBF4C00DCA44400FFC05100E5C2870049413300FFC9
+        5C00E0AF5200FFC14200FFC54500FFCF6500FFD06900FFD16C00E1B86000FFD4
+        7200C4AC7800AF9F7E00FFCC5600DDB75F00FFDC7E00FEDE8300FFD55C00FEE1
+        8800FFDA5E00C5BA8900FFF29000FFFCA9007B7B7A0038393900313234003336
+        3E006D707A0064666D003E3F4300414246003C3E47000F0F9000545457002D2D
+        2E003A3A3B0039393A00FBFBFB00B8B8B8006868680055555500414141003535
+        350006065B605A5A5A5B0606060606060606065B5E05040D100E5B0606060606
+        0606064F5D4E0A090C0E5A0606060606060611535202080B0759060606060606
+        0606131B371C160F0356510606060606060619221D2A312D2415146106060606
+        060617231E20212828291A26060606060606272C303336342B2F1F2506060606
+        06065F3A3C3D3F3E393B322E0606060606065F40484649474144353806060606
+        06065F454A4C4D57575757575757575757061843424B575C5C5C5C5C5C5C5C5C
+        5C5706555458575C125C5C5C5C5C5C5C5C5706060650575C125C5C5C5C5C5C5C
+        5C5706060606575C5C5C5C5C5C5C5C5C5C570606060606575757575757575757
+        5706}
+      Caption = 'Abrir'
+    end
     inherited UniDBImage1: TUniDBImage
       Top = 455
+      ExplicitTop = 455
     end
   end
   inherited PanelModeloCadastro: TUniPanel
     Width = 890
     Height = 612
+    ExplicitWidth = 890
+    ExplicitHeight = 612
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 888
       Height = 610
+      ExplicitWidth = 888
+      ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
         ExplicitLeft = 0
         ExplicitTop = 0
+        ExplicitWidth = 880
+        ExplicitHeight = 582
         inherited PanelCadastro: TUniPanel
           Width = 880
           Height = 582
+          ExplicitWidth = 880
+          ExplicitHeight = 582
           inherited PageControlInterno: TUniPageControl
             Width = 878
             Height = 580
             ActivePage = UniTabSheet1
+            ExplicitWidth = 878
+            ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited Label2: TUniLabel
                 Enabled = False
               end
@@ -256,6 +302,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited Label11: TUniLabel
                 Enabled = False
               end
@@ -426,6 +474,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
                 Columns = <
                   item
@@ -444,7 +494,13 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   end>
               end
             end
+            inherited TabSheetEndereco: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
+            end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
                 Width = 859
                 Columns = <
@@ -473,15 +529,22 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               inherited DBMemo1: TUniDBMemo
                 Width = 859
                 Height = 248
+                ExplicitWidth = 859
+                ExplicitHeight = 248
               end
               inherited MemoDescricao: TUniMemo
                 Width = 759
+                ExplicitWidth = 759
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
                 Top = 405
                 Width = 870
+                ExplicitTop = 405
+                ExplicitWidth = 870
                 inherited DBGrid4: TUniDBGrid
                   Columns = <
                     item
@@ -502,15 +565,21 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
                 Width = 870
                 Height = 552
+                ExplicitWidth = 870
+                ExplicitHeight = 552
               end
+            end
+            inherited TabSheetMapa: TUniTabSheet
+              ExplicitWidth = 870
+              ExplicitHeight = 552
             end
             object UniTabSheet1: TUniTabSheet
               Caption = 'Digitalizados'
-              ExplicitWidth = 767
-              ExplicitHeight = 480
               object UniPanel10: TUniPanel
                 Left = 0
                 Top = 0
@@ -664,9 +733,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                 TabOrder = 1
                 ParentColor = False
                 Color = clBtnFace
-                ExplicitLeft = 288
-                ExplicitWidth = 479
-                ExplicitHeight = 402
               end
               object UniPanel11: TUniPanel
                 Left = 0
@@ -677,9 +743,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                 Align = alLeft
                 Anchors = [akLeft, akTop, akBottom]
                 TabOrder = 2
-                ExplicitLeft = 192
-                ExplicitTop = 280
-                ExplicitHeight = 128
                 DesignSize = (
                   256
                   474)
@@ -718,6 +781,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Top = 431
                   Width = 173
                   Height = 25
+                  Visible = False
                   Caption = 'Desassociar'
                   Anchors = [akLeft, akBottom]
                   TabOrder = 2
@@ -729,14 +793,15 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitWidth = 9
+        ExplicitWidth = 880
+        ExplicitHeight = 582
         inherited PanelLocalizaConsulta: TUniPanel
           Width = 880
-          ExplicitWidth = 9
+          ExplicitWidth = 880
         end
         inherited DBGridConsulta: TUniDBGrid
           Width = 880
-          Height = 526
+          Height = 522
           Columns = <
             item
               FieldName = 'NOME_INTERNO'
@@ -783,8 +848,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
   inherited StatusBar1: TUniStatusBar
     Top = 656
     Width = 989
-    ExplicitTop = -23
-    ExplicitWidth = 118
+    ExplicitTop = 656
+    ExplicitWidth = 989
   end
   object SqlDocumentoProcessos: TSQLQuery
     MaxBlobSize = -1

@@ -31,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, DmPrincipal;
+  MainModule, uniGUIApplication, DmPrincipal, Lib;
 
 function FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio;
 begin
@@ -40,6 +40,16 @@ end;
 
 procedure TFrmModeloFiltroRelatorio.UniFormShow(Sender: TObject);
 begin
+
+  if Dm.GLOBAL_IDCONEXAO > 0 then
+  begin
+    try
+      DM.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(Self.Caption)
+        + ' where idconexao=' + IntToStr(Dm.GLOBAL_IDCONEXAO));
+    except
+    end;
+  end;
+
   PanelTituloModeloCadastro.caption := Self.caption;
   LabelTitulo.caption := Self.caption;
 

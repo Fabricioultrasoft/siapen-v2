@@ -34,43 +34,14 @@ type
     Label121: TUniLabel;
     UniLabel6: TUniLabel;
     UniLabel7: TUniLabel;
-    UniLabel9: TUniLabel;
-    UniLabel10: TUniLabel;
     UniLabel11: TUniLabel;
-    UniLabel12: TUniLabel;
-    UniLabel13: TUniLabel;
-    UniLabel14: TUniLabel;
-    UniLabel15: TUniLabel;
-    UniLabel16: TUniLabel;
-    Label122: TUniLabel;
-    UniLabel17: TUniLabel;
-    UniLabel18: TUniLabel;
-    UniLabel19: TUniLabel;
-    UniLabel20: TUniLabel;
     UniLabel21: TUniLabel;
     DBLookupComboBoxfaltadisciplinar: TUniDBLookupComboBox;
     Editpdi: TUniEdit;
     ComboBoxconclusao: TUniComboBox;
-    ComboBoxresultado: TUniComboBox;
-    ComboBoxtipoprocedimento: TUniComboBox;
-    Editnprocedimento: TUniEdit;
-    Memoobs: TUniMemo;
     BitBtnIncluir: TUniBitBtn;
     DBGridFaltas: TUniDBGrid;
-    GroupBox1: TUniGroupBox;
-    UniLabel22: TUniLabel;
-    UniLabel23: TUniLabel;
-    UniLabel24: TUniLabel;
-    EditqtdediasPrev: TUniEdit;
-    RadioGroupPreventivo: TUniRadioGroup;
-    ComboBoxTipoSancao: TUniComboBox;
-    EditQtdeDiasIsolamento: TUniEdit;
-    GroupBox2: TUniGroupBox;
-    Label59: TUniLabel;
-    RadioGroupRecurso: TUniRadioGroup;
-    ComboBoxDecisaoRecurso: TUniComboBox;
     ComboBoxClasConduta: TUniComboBox;
-    RadioGroupHomologado: TUniRadioGroup;
     EditNatureza: TUniEdit;
     Memo1: TUniMemo;
     PopupMenuIsolamento: TUniPopupMenu;
@@ -80,20 +51,64 @@ type
     N2: TUniMenuItem;
     Excluir1: TUniMenuItem;
     UniMenuButton1: TUniMenuButton;
-    EditinicioisolamentoPrev: TUniDateTimePicker;
     Editdtincidencia: TUniDateTimePicker;
     Sqlvincfaltadisciplinar: TSQLQuery;
     BtnBuscar: TUniBitBtn;
     EditDataInstPortaria: TUniDateTimePicker;
-    EditfimisolamentoPrev: TUniDateTimePicker;
-    Editresultado: TUniDateTimePicker;
-    EditFimIsolamento: TUniDateTimePicker;
-    Editreabilitacao: TUniDateTimePicker;
-    Editcondenacao: TUniDateTimePicker;
-    Editprocedimento: TUniDateTimePicker;
-    EditInicioIsolamento: TUniDateTimePicker;
     N3: TUniMenuItem;
     ImprimirOficio1: TUniMenuItem;
+    UniPageControlFaltaDisciplinar: TUniPageControl;
+    UniTabSheetResultado: TUniTabSheet;
+    UniLabel12: TUniLabel;
+    Editresultado: TUniDateTimePicker;
+    ComboBoxresultado: TUniComboBox;
+    UniLabel13: TUniLabel;
+    ComboBoxTipoSancao: TUniComboBox;
+    UniLabel17: TUniLabel;
+    EditInicioIsolamento: TUniDateTimePicker;
+    UniLabel18: TUniLabel;
+    EditQtdeDiasIsolamento: TUniEdit;
+    UniLabel20: TUniLabel;
+    EditFimIsolamento: TUniDateTimePicker;
+    UniLabel19: TUniLabel;
+    UniTabSheetRecurso: TUniTabSheet;
+    RadioGroupRecurso: TUniRadioGroup;
+    UniTabSheetProcedimento: TUniTabSheet;
+    UniLabel14: TUniLabel;
+    UniLabel15: TUniLabel;
+    UniLabel16: TUniLabel;
+    UniLabel9: TUniLabel;
+    UniLabel10: TUniLabel;
+    RadioGroupHomologado: TUniRadioGroup;
+    Editcondenacao: TUniDateTimePicker;
+    Editreabilitacao: TUniDateTimePicker;
+    Editprocedimento: TUniDateTimePicker;
+    Editnprocedimento: TUniEdit;
+    ComboBoxtipoprocedimento: TUniComboBox;
+    RadioGroupPreventivo: TUniRadioGroup;
+    EditinicioisolamentoPrev: TUniDateTimePicker;
+    UniLabel22: TUniLabel;
+    EditqtdediasPrev: TUniEdit;
+    UniLabel23: TUniLabel;
+    EditfimisolamentoPrev: TUniDateTimePicker;
+    UniLabel24: TUniLabel;
+    Memoobs: TUniMemo;
+    Label122: TUniLabel;
+    UniEditLocalArquivo: TUniEdit;
+    UniLabel25: TUniLabel;
+    UniLabel26: TUniLabel;
+    UniBitBtnUPOrigemProcesso: TUniBitBtn;
+    UniLabelUPOrigemProcesso: TUniLabel;
+    UniEditUPOrigemProcesso: TUniEdit;
+    UniPanelRecurso: TUniPanel;
+    ComboBoxDecisaoRecurso: TUniComboBox;
+    Label59: TUniLabel;
+    UniDateTimePickerRetornoRecurso: TUniDateTimePicker;
+    UniLabel28: TUniLabel;
+    UniDateTimePickerEnvioRecurso: TUniDateTimePicker;
+    UniLabel27: TUniLabel;
+    UniDateTimePickerTomouCiencia: TUniDateTimePicker;
+    UniLabel29: TUniLabel;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -106,7 +121,6 @@ type
     procedure EditarFalta1Click(Sender: TObject);
     procedure EditDataInstPortariaKeyPress(Sender: TObject; var Key: Char);
     procedure EditQtdeDiasIsolamentoClick(Sender: TObject);
-    procedure EditQtdeDiasIsolamentoExit(Sender: TObject);
     procedure EditqtdediasPrevClick(Sender: TObject);
     procedure EditqtdediasPrevExit(Sender: TObject);
     procedure Excluir1Click(Sender: TObject);
@@ -119,6 +133,10 @@ type
     procedure UniFormShow(Sender: TObject);
     procedure EditdtincidenciaExit(Sender: TObject);
     procedure ImprimirOficio1Click(Sender: TObject);
+    procedure UniBitBtnUPOrigemProcessoClick(Sender: TObject);
+    procedure UniEditUPOrigemProcessoExit(Sender: TObject);
+    procedure EditInicioIsolamentoChange(Sender: TObject);
+    procedure EditQtdeDiasIsolamentoChange(Sender: TObject);
   private
     procedure Limpa;
     { Private declarations }
@@ -251,6 +269,19 @@ begin
   Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString :=
     homologado;
 
+  // NOVO EM 07/07/2014
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString :=
+    UniEditLocalArquivo.Text;
+
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime :=
+    UniDateTimePickerEnvioRecurso.datetime;
+
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO').Asdatetime
+    := UniDateTimePickerRetornoRecurso.datetime;
+
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime
+    := UniDateTimePickerTomouCiencia.datetime;
+
   Dsvincfaltadisciplinar.DataSet.Post;
   Cdsvincfaltadisciplinar.ApplyUpdates(-1);
 
@@ -278,7 +309,6 @@ end;
 procedure TFrmConselhoDisciplinar.EditarClick(Sender: TObject);
 begin
   inherited;
-  PageControlInterno.ActivePageIndex := 0;
   Limpa;
 end;
 
@@ -286,7 +316,7 @@ procedure TFrmConselhoDisciplinar.btnBuscarClick(Sender: TObject);
 begin
   inherited;
 
-  FrmConsulta.SqlCadastro.SQL.Text :=
+  FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
     'SELECT ID_FALTA_DISCIPLINAR as "Codigo", FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO as "Descrição" FROM FALTA_DISCIPLINAR ORDER BY FALTA_DISCIPLINAR ';
   FrmConsulta.Width := Self.Width;
   FrmConsulta.CampoWhereSql :=
@@ -294,8 +324,8 @@ begin
   FrmConsulta.Coluna := 1;
   FrmConsulta.Top := Self.Top;
   FrmConsulta.Left := Self.Left;
-  FrmConsulta.DsCadastro.DataSet.close;
-  FrmConsulta.DsCadastro.DataSet.Open;
+  FrmConsulta.DsConsultaObjetiva.DataSet.close;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
   FrmConsulta.EditLocalizar.SetFocus;
   FrmConsulta.ShowModal(
     procedure(Result: Integer)
@@ -303,7 +333,8 @@ begin
       if Result = mrOK then
       begin
         DBLookupComboBoxfaltadisciplinar.KeyValue :=
-          FrmConsulta.DsCadastro.DataSet.fieldbyname('Codigo').AsInteger;
+          FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('Codigo')
+          .AsInteger;
         Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
         EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
           ('TIPOFALTA').AsString;
@@ -326,6 +357,15 @@ begin
     Dsfaltadisciplinar.DataSet.fieldbyname('TEMPOREABILITACAO').AsInteger;
 end;
 
+procedure TFrmConselhoDisciplinar.EditInicioIsolamentoChange(Sender: TObject);
+begin
+  inherited;
+
+  EditQtdeDiasIsolamento.Text := '';
+  EditFimIsolamento.Text := '';
+
+end;
+
 procedure TFrmConselhoDisciplinar.EditarFalta1Click(Sender: TObject);
 begin
   { // inherited;
@@ -344,6 +384,25 @@ begin
   DBLookupComboBoxfaltadisciplinar.KeyValue :=
     Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar')
     .AsInteger;
+
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString = 'S'
+  then
+    RadioGroupPreventivo.ItemIndex := 0
+  else
+    RadioGroupPreventivo.ItemIndex := 1;
+
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('recurso').AsString = 'S' then
+    RadioGroupRecurso.ItemIndex := 0
+  else
+    RadioGroupRecurso.ItemIndex := 1;
+
+  RadioGroupRecurso.OnClick(nil);
+
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString = 'S'
+  then
+    RadioGroupHomologado.ItemIndex := 0
+  else
+    RadioGroupHomologado.ItemIndex := 1;
 
   Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
   EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
@@ -408,25 +467,29 @@ begin
 
   ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('decisao_recurso').AsString;
+
   ComboBoxClasConduta.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('classificacao_conduta').AsString;
 
-  if Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString = 'S'
-  then
-    RadioGroupPreventivo.ItemIndex := 0
-  else
-    RadioGroupPreventivo.ItemIndex := 1;
+  // novo 07/07/2014
+  UniEditLocalArquivo.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
+    ('LOCAL_ARQUIVO').AsString;
 
-  if Dsvincfaltadisciplinar.DataSet.fieldbyname('recurso').AsString = 'S' then
-    RadioGroupRecurso.ItemIndex := 0
-  else
-    RadioGroupRecurso.ItemIndex := 1;
+  UniDateTimePickerEnvioRecurso.datetime :=
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime;
 
-  if Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString = 'S'
-  then
-    RadioGroupHomologado.ItemIndex := 0
-  else
-    RadioGroupHomologado.ItemIndex := 1;
+  UniDateTimePickerRetornoRecurso.datetime :=
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO')
+    .Asdatetime;
+
+  UniDateTimePickerTomouCiencia.datetime :=
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO')
+    .Asdatetime;
+
+  UniEditUPOrigemProcesso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
+    ('ID_UP').AsString;
+
+  UniEditUPOrigemProcesso.onexit(nil);
 
 end;
 
@@ -490,10 +553,10 @@ procedure TFrmConselhoDisciplinar.RadioGroupRecursoClick(Sender: TObject);
 begin
   inherited;
   if RadioGroupRecurso.ItemIndex = 0 then
-    ComboBoxDecisaoRecurso.Enabled := true
+    UniPanelRecurso.Enabled := true
   else
   begin
-    ComboBoxDecisaoRecurso.Enabled := false;
+    UniPanelRecurso.Enabled := false;
     ComboBoxDecisaoRecurso.ItemIndex := 0;
   end;
 end;
@@ -529,10 +592,12 @@ begin
   { Limpar todos os componentes da aba conselho disciplinar }
   DBLookupComboBoxfaltadisciplinar.KeyValue := null;
   Editreabilitacao.Text := '';
+  Editdtincidencia.Text := '';
   Editcondenacao.Text := '';
   Memoobs.Text := '';
   Editcondenacao.Text := '';
   Editpdi.Text := '';
+  UniPageControlFaltaDisciplinar.ActivePageIndex := 0;
   ComboBoxresultado.ItemIndex := 0;
   ComboBoxconclusao.ItemIndex := 0;
   Editdtincidencia.Text := datetostr(Date);
@@ -544,8 +609,10 @@ begin
   EditInicioIsolamento.Text := '';
   EditFimIsolamento.Text := '';
   EditQtdeDiasIsolamento.Text := '';
-  RadioGroupPreventivo.ItemIndex := 0;
-  RadioGroupRecurso.ItemIndex := 0;
+  RadioGroupPreventivo.ItemIndex := 1;
+  RadioGroupPreventivo.OnClick(nil);
+  RadioGroupRecurso.ItemIndex := 1;
+  RadioGroupRecurso.OnClick(nil);
   RadioGroupHomologado.ItemIndex := 0;
   ComboBoxconclusao.ItemIndex := 0;
   Editresultado.Text := '';
@@ -557,6 +624,12 @@ begin
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';
   EditNatureza.Text := '';
+
+  // novo 07/07/2014
+  UniEditLocalArquivo.Text := '';
+  UniDateTimePickerTomouCiencia.Text := '';
+  UniDateTimePickerEnvioRecurso.Text := '';
+  UniDateTimePickerRetornoRecurso.Text := '';
 
   { Abrir e fechar as tabelas para atualizar o grid }
 
@@ -571,16 +644,27 @@ begin
 
 end;
 
+procedure TFrmConselhoDisciplinar.UniBitBtnUPOrigemProcessoClick
+  (Sender: TObject);
+begin
+  inherited;
+  ConsultaTabelaUniEdit(Self,
+    'select ID_UP codigo, NOME_UP nome, sigla from UNIDADE_PENAL order by NOME_UP',
+    'NOME_UP||sigla', 'codigo', 'nome', UniEditUPOrigemProcesso,
+    UniLabelUPOrigemProcesso);
+
+end;
+
+procedure TFrmConselhoDisciplinar.UniEditUPOrigemProcessoExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select NOME_UP from UNIDADE_PENAL where ID_UP=',
+    UniEditUPOrigemProcesso, UniLabelUPOrigemProcesso);
+end;
+
 procedure TFrmConselhoDisciplinar.UniFormShow(Sender: TObject);
 begin
   inherited;
-  TabSheetAdvogados.TabVisible := false;
-  TabSheetEndereco.TabVisible := false;
-  TabSheetHistorico.TabVisible := false;
-  TabSheetFotos.TabVisible := false;
-  TabSheetMovAnterior.TabVisible := false;
-  TabSheetMapa.TabVisible := false;
-
   Dsvincfaltadisciplinar.DataSet.close;
   Dsvincfaltadisciplinar.DataSet.Open;
 
@@ -597,7 +681,7 @@ begin
   EditqtdediasPrev.Enabled := false;
 
   RadioGroupRecurso.ItemIndex := 1;
-  ComboBoxDecisaoRecurso.Enabled := false;
+  UniPanelRecurso.Enabled := false;
 
   RadioGroupHomologado.ItemIndex := 1;
 
@@ -618,10 +702,9 @@ begin
     Obs: atentar para mudar a permissão referente à tela nas verificações abaixo.
     Ex. ContemValor('I', Dm.PERMISSAO_CONFERE). }
 
-
-  Novo.Visible := True;
-  Editar.Visible := True;
-  Salvar.Visible := True;
+  Novo.Visible := true;
+  Editar.Visible := true;
+  Salvar.Visible := true;
 
   if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
@@ -849,6 +932,21 @@ begin
       Trunc(StrToDateTime(EditinicioisolamentoPrev.Text)));
 end;
 
+procedure TFrmConselhoDisciplinar.EditQtdeDiasIsolamentoChange(Sender: TObject);
+var
+  DataInicial: TDateTime;
+  Dias: Integer;
+begin
+  inherited;
+  if StrToIntDef(EditQtdeDiasIsolamento.Text,0) >0 then
+  begin
+    DataInicial := EditInicioIsolamento.datetime;
+    Dias := StrToInt(EditQtdeDiasIsolamento.Text);
+    EditFimIsolamento.datetime := IncDay(DataInicial, Dias) - 1;
+  end;
+
+end;
+
 procedure TFrmConselhoDisciplinar.EditQtdeDiasIsolamentoClick(Sender: TObject);
 begin
   inherited;
@@ -882,28 +980,6 @@ begin
   Dsfaltadisciplinar.DataSet.Last;
 end;
 
-procedure TFrmConselhoDisciplinar.EditQtdeDiasIsolamentoExit(Sender: TObject);
-var
-  DataInicial: TDateTime;
-  Dias: Integer;
-begin
-  inherited;
-  if EditQtdeDiasIsolamento.Text <> '' then
-  begin
-    DataInicial := StrToDate(EditInicioIsolamento.Text);
-    Dias := StrToInt(EditQtdeDiasIsolamento.Text);
-    EditFimIsolamento.Text := datetostr(IncDay(DataInicial, Dias) - 1);
-  end;
-  { ValidaDataExit(Sender);
-    if (EditfimisolamentoPrev.Text <> '') and (EditinicioisolamentoPrev.Text <> '') then
-    EditqtdediasPrev.Text := IntToStr(Trunc(StrToDateTime(EditfimisolamentoPrev.Text)) -
-    Trunc(StrToDateTime(EditinicioisolamentoPrev.Text))+1);
-
-    if (EditFimIsolamento.Text <> '') and (EditInicioIsolamento.Text <> '') then
-    Editqtdediasisolamento.Text := IntToStr(Trunc(StrToDateTime(Editfimisolamento.Text)) -
-    Trunc(StrToDateTime(Editinicioisolamento.Text))+1); }
-end;
-
 procedure TFrmConselhoDisciplinar.EditqtdediasPrevExit(Sender: TObject);
 var
   DataInicial: TDateTime;
@@ -933,8 +1009,11 @@ end;
 procedure TFrmConselhoDisciplinar.Limpa;
 begin
 
+  UniPageControlFaltaDisciplinar.ActivePageIndex := 0;
   DBLookupComboBoxfaltadisciplinar.KeyValue := null;
   Memo1.Text := '';
+  UniEditUPOrigemProcesso.Text := '';
+  UniEditUPOrigemProcesso.onexit(nil);
   EditNatureza.Text := '';
   Editpdi.Text := '';
   Editdtincidencia.datetime := now;
@@ -950,7 +1029,10 @@ begin
   EditInicioIsolamento.Text := '';
   EditQtdeDiasIsolamento.Text := '';
   EditFimIsolamento.Text := '';
-  RadioGroupRecurso.ItemIndex := -1;
+  RadioGroupPreventivo.ItemIndex := 1;
+  RadioGroupPreventivo.OnClick(nil);
+  RadioGroupRecurso.ItemIndex := 1;
+  RadioGroupRecurso.OnClick(nil);
   ComboBoxDecisaoRecurso.ItemIndex := -1;
   RadioGroupHomologado.ItemIndex := -1;
   ComboBoxClasConduta.ItemIndex := -1;
@@ -960,6 +1042,11 @@ begin
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';
   Memoobs.Text := '';
+  UniEditLocalArquivo.Text := '';
+  UniDateTimePickerTomouCiencia.Text := '';
+  UniDateTimePickerEnvioRecurso.Text := '';
+  UniDateTimePickerRetornoRecurso.Text := '';
+  Editdtincidencia.Text := '';
 
 end;
 

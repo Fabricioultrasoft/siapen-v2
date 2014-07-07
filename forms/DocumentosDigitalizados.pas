@@ -193,8 +193,7 @@ begin
   if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
     dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
   begin
-    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/pdf/web/viewer.html?file=' +
-      '../..///img_doc//' + dscadastro.DataSet.FieldByName('id_interno')
+    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' + dscadastro.DataSet.FieldByName('id_interno')
       .AsString + '.pdf' + '#page=1&zoom=100&time=' +
       FormatDateTime('yyyymmdhhnnsszzz', Now);
   end;
@@ -210,8 +209,7 @@ begin
   // or (Dm.GLOBAL_HTTP_PDF <> '')
   then
   begin
-    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/pdf/web/viewer.html?file=' +
-      '../..///img_doc//' + DsDocumentoProcessos.DataSet.FieldByName
+    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' + DsDocumentoProcessos.DataSet.FieldByName
       ('CAMINHO_DOC').AsString + '#page=1&zoom=100&time=' +
       FormatDateTime('yyyymmdhhnnsszzz', Now);
   end

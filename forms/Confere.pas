@@ -1453,7 +1453,7 @@ begin
   if dscadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
       + ' order by proedencia';
 
@@ -1462,8 +1462,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.dscadastro.DataSet.Close;
-    FrmConsulta.dscadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.setfocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1471,11 +1471,11 @@ begin
         if Result = mrOk then
         begin
           UniDBEditProcedencia.Field.AsInteger :=
-            FrmConsulta.dscadastro.DataSet.FieldByName('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName('CODIGO').AsInteger;
           UniLabelProcedencia.Caption :=
-            FrmConsulta.dscadastro.DataSet.FieldByName('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.dscadastro.DataSet.Close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.Close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditProcedencia.Focused then

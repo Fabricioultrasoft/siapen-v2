@@ -549,8 +549,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
     Anchors = [akLeft, akRight, akBottom]
     ParentColor = False
     Color = clBtnFace
-    ExplicitLeft = 8
-    ExplicitTop = 370
   end
   object SqlCadastro: TSQLQuery
     MaxBlobSize = -1

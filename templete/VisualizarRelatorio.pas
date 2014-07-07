@@ -150,7 +150,7 @@ begin
   try
 
     sFoto := UniServerModule.LocalCachePath +
-      FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now)+LimpaTexto(FNome);
+      FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + LimpaTexto(FNome);
 
     Result := sFoto + '.1.jpg';
 
@@ -308,7 +308,8 @@ begin
     Qs(Dm.GLOBAL_ID_FALTA_DISCIPLINAR));
 
   Dm.frxReport1.Variables.DeleteVariable('GLOBAL_IDFUNCIONARIO');
-  Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_IDFUNCIONARIO',Dm.GLOBAL_IDFUNCIONARIO_FILTRO);
+  Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_IDFUNCIONARIO',
+    Dm.GLOBAL_IDFUNCIONARIO_FILTRO);
 
 end;
 
@@ -361,7 +362,6 @@ begin
       begin
 
         Dm.frxReport1.LoadFromFile(FCaminhoFR3);
-        FCaminhoFR3 := '';
 
         InsereVariaveis;
 
@@ -374,6 +374,18 @@ begin
         UniURLFrame1.Refresh;
         UniURLFrame1.Repaint;
         UniURLFrame1.Update;
+
+        if Dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+              Qs(FCaminhoFR3) + ' where idconexao=' +
+              inttostr(Dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+        FCaminhoFR3 := '';
+
       end
       else
       begin
@@ -388,6 +400,7 @@ begin
     end;
 
   finally
+
     FCaminhoFR3 := '';
   end;
 

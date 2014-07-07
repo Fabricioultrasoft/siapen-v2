@@ -69,7 +69,7 @@ uses Forms,
   zeSaveXLSX,
   zeSaveEXML,
   Vcl.Imaging.jpeg,
-  ComObj, ActiveX;
+  ComObj, ActiveX, uniLabel;
 
 type
   TChars = set of Char;
@@ -126,6 +126,14 @@ procedure ListarDiretorios(Folder: string; lista: TStrings);
 function LimpaChar(sValor: string): string;
 function LimpaTexto(sString: string): string;
 function MeuGuidCreate: string;
+function ConsultaTabela(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
+  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel): Boolean;
+function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
+  UniEditRetorno: TUniEdit; UniLabelRetorno: TUniLabel): Boolean;
+function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
+UniLabelRetorno: TUniLabel): Boolean;
 
 const
   QBtn1 = 1;
@@ -150,7 +158,7 @@ implementation
 uses Main,
   humanejs,
   DmPrincipal,
-  ServerModule;
+  ServerModule, Consulta;
 
 { TLibVars }
 
@@ -1463,5 +1471,85 @@ begin
     Result := TRIM(LimpaChar(GUIDToString(ID)));
   end;
 end;
+
+function ConsultaTabela(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
+  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel): Boolean;
+begin
+  Result := false;
+  FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
+  FrmConsulta.Width := fUniFormRetorno.Width;
+  FrmConsulta.CampoWhereSql := sCampoWhereSql;
+  FrmConsulta.Coluna := 1;
+  FrmConsulta.Top := fUniFormRetorno.Top;
+  FrmConsulta.Left := fUniFormRetorno.Left;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
+  FrmConsulta.EditLocalizar.SetFocus;
+  FrmConsulta.ShowModal(
+    procedure(iResult: Integer)
+    begin
+      if iResult = mrOK then
+      begin
+        UniDBEditRetorno.Field.AsInteger :=
+          FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName(sID).AsInteger;
+        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
+          (sDescricao).AsString;
+      end;
+    end);
+end;
+
+function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
+  UniEditRetorno: TUniEdit; UniLabelRetorno: TUniLabel): Boolean;
+begin
+  Result := false;
+  FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
+  FrmConsulta.Width := fUniFormRetorno.Width;
+  FrmConsulta.CampoWhereSql := sCampoWhereSql;
+  FrmConsulta.Coluna := 1;
+  FrmConsulta.Top := fUniFormRetorno.Top;
+  FrmConsulta.Left := fUniFormRetorno.Left;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
+  FrmConsulta.EditLocalizar.SetFocus;
+  FrmConsulta.ShowModal(
+    procedure(iResult: Integer)
+    begin
+      if iResult = mrOK then
+      begin
+        UniEditRetorno.Text :=
+          FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName(sID).AsString;
+        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
+          (sDescricao).AsString;
+      end;
+    end);
+end;
+
+function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
+UniLabelRetorno: TUniLabel): Boolean;
+begin
+  UniLabelRetorno.Caption := 'Informe o código ou pesquise';
+  if StrToIntDef(UniDBEditRetorno.Text, 0) > 0 then
+  begin
+    DM.SqlConsultaUnica.SQL.Text := sSqlBusca + UniDBEditRetorno.Text;
+    DM.SqlConsultaUnica.Close;
+    DM.SqlConsultaUnica.Open;
+    if not DM.SqlConsultaUnica.IsEmpty then
+    begin
+      UniLabelRetorno.Caption := DM.SqlConsultaUnica.Fields[0].AsString;
+    end
+    else
+    begin
+      if UniDBEditRetorno.canfocus then
+      begin
+        UniDBEditRetorno.SetFocus;
+        ShowMessage('Código inválido!');
+      end;
+    end;
+    DM.SqlConsultaUnica.Close;
+  end;
+end;
+
 
 end.

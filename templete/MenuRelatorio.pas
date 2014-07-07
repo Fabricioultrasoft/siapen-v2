@@ -80,7 +80,7 @@ begin
       begin
         if AResult = mrOK then
         begin
-          FrmConsulta.SqlCadastro.SQL.Text := SqlConsultaBackup.SQL.Text +
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text +
             ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) +
             ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
             ' order by interno.nome_interno ';
@@ -93,7 +93,7 @@ begin
             begin
               if Result = mrOK then
               begin
-                id_interno := FrmConsulta.DsCadastro.DataSet.fieldbyname('ID')
+                id_interno := FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('ID')
                   .AsInteger;
                 dm.GLOBAL_ID_INTERNO := id_interno;
                 FrmVisualizarRelatorio.Nome := UniComboBoxRelatorios.Text;

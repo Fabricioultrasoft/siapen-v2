@@ -57,6 +57,8 @@ inherited FrmInterno: TFrmInterno
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 1067
         ExplicitHeight = 503
         inherited PanelCadastro: TUniPanel
@@ -69,7 +71,7 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetFotos
+            ActivePage = TabSheetMapa
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -2942,50 +2944,55 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel
           Width = 777
-          Height = 56
+          Height = 60
           ExplicitWidth = 777
-          ExplicitHeight = 56
-          object UniRadioGroupStatus: TUniRadioGroup [0]
-            Left = 16
-            Top = 1
-            Width = 81
+          ExplicitHeight = 60
+          inherited UniLabel2: TUniLabel
+            Left = 114
+            Top = 31
+            ExplicitLeft = 114
+            ExplicitTop = 31
+          end
+          inherited EditLocalizar: TUniEdit
+            Left = 165
+            Top = 25
+            Width = 435
+            ExplicitLeft = 165
+            ExplicitTop = 25
+            ExplicitWidth = 435
+          end
+          inherited UniBtnFiltrar: TUniBitBtn
+            Left = 601
+            Top = 25
+            Height = 22
+            ExplicitLeft = 601
+            ExplicitTop = 25
+            ExplicitHeight = 22
+          end
+          object UniRadioGroupStatus: TUniRadioGroup
+            AlignWithMargins = True
+            Left = 3
+            Top = 4
+            Width = 105
             Height = 48
+            ParentRTL = False
             Items.Strings = (
               'Ativo'
               'Inativo')
             ItemIndex = 0
-            TabOrder = 3
-          end
-          inherited UniLabel2: TUniLabel
-            Left = 103
-            Top = 35
-            ExplicitLeft = 103
-            ExplicitTop = 35
-          end
-          inherited EditLocalizar: TUniEdit
-            Left = 154
-            Top = 29
-            Width = 439
-            ExplicitLeft = 154
-            ExplicitTop = 29
-            ExplicitWidth = 439
-          end
-          inherited UniBtnFiltrar: TUniBitBtn
-            Left = 599
-            Top = 26
             TabOrder = 4
-            ExplicitLeft = 599
-            ExplicitTop = 26
           end
         end
         inherited DBGridConsulta: TUniDBGrid
-          Top = 56
+          Top = 60
           Width = 777
-          Height = 454
+          Height = 450
           DataSource = DsConsulta
           Columns = <
             item
@@ -3419,12 +3426,12 @@ inherited FrmInterno: TFrmInterno
   end
   object dsdataservidor: TDataSource
     DataSet = cdsdataservidor
-    Left = 744
+    Left = 504
     Top = 72
   end
   object dstdataservidor: TDataSetProvider
     DataSet = SQLdataservidor
-    Left = 696
+    Left = 456
     Top = 72
   end
   object SQLdataservidor: TSQLQuery
@@ -3433,14 +3440,14 @@ inherited FrmInterno: TFrmInterno
     SQL.Strings = (
       'Select current_date as data from rdb$database')
     SQLConnection = Dm.Conexao
-    Left = 672
+    Left = 432
     Top = 72
   end
   object cdsdataservidor: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dstdataservidor'
-    Left = 718
+    Left = 478
     Top = 72
   end
 end

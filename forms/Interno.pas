@@ -224,7 +224,6 @@ type
     UniDBCheckBoxStatus: TUniDBCheckBox;
     UniLabel3: TUniLabel;
     UniDBComboBox2: TUniDBComboBox;
-    UniRadioGroupStatus: TUniRadioGroup;
     UniPanelFoto: TUniPanel;
     Label17: TUniLabel;
     UniDBDateTimePicker1: TUniDBDateTimePicker;
@@ -311,6 +310,7 @@ type
     UniDBDateTimePicker5: TUniDBDateTimePicker;
     UniDBDateTimePicker6: TUniDBDateTimePicker;
     UniDBDateTimePicker7: TUniDBDateTimePicker;
+    UniRadioGroupStatus: TUniRadioGroup;
     procedure EditLocalizarChange(Sender: TObject);
     procedure UniBtnFiltrarClick(Sender: TObject);
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
@@ -678,7 +678,12 @@ end;
 
 procedure TFrmInterno.EditarClick(Sender: TObject);
 begin
-  PageControlInterno.ActivePageIndex := 0;
+
+  if Self.Name = 'FrmInterno' then
+    PageControlInterno.ActivePageIndex := 0
+  else
+    PageControlInterno.ActivePageIndex := TabSheetMapa.PageIndex + 1;
+
   AbrirTabelas;
   if CdsConsulta.Active then
   begin
@@ -723,7 +728,12 @@ begin
   UniDBEditPaisExit(nil);
   DBEdit2.SetFocus;
 
-  StatusBar1.Panels[1].Text := CdsCADASTRO.fieldbyname('NOME_INTERNO').AsString;
+  StatusBar1.Panels[1].Text := CdsCadastro.fieldbyname('NOME_INTERNO').AsString;
+
+  if Self.Name = 'FrmInterno' then
+    PageControlInterno.ActivePageIndex := 0
+  else
+    PageControlInterno.ActivePageIndex := TabSheetMapa.PageIndex + 1;
 
 end;
 
@@ -799,7 +809,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_Advogado codigo, Advogado descricao from Advogado ' +
       ' order by Advogado ';
 
@@ -808,8 +818,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -817,11 +827,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditAdvogado.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelAdvogado.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelAdvogado.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditAdvogado.Focused then
@@ -838,7 +849,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
       ' order by cidade, uf';
 
@@ -847,8 +858,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -856,13 +867,14 @@ begin
         if Result = mrOk then
         begin
           UniDBEditCidade.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelCidade.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          UniLabelCidade2.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelCidade.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          UniLabelCidade2.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditCidade.Focused then
@@ -882,7 +894,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select idcondicao_interno codigo, descricao from condicao_interno' +
       ' order by descricao';
 
@@ -891,8 +903,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -900,11 +912,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditCondicao.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelCondicao.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelCondicao.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditCondicao.Focused then
@@ -922,7 +935,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_Escolaridade CODIGO, Escolaridade DESCRICAO from Escolaridade '
       + ' order by Escolaridade ';
 
@@ -931,8 +944,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -940,13 +953,16 @@ begin
         if Result = mrOk then
         begin
           UniDBEditEscolaridade.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
           UniLabelEscolaridade.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
           UniLabelEscolaridade2.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditEscolaridade.Focused then
@@ -964,7 +980,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_faccao CODIGO, faccao descricao from faccao' +
       ' order by faccao';
 
@@ -973,8 +989,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -982,11 +998,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditFaccao.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelFaccao.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelFaccao.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditFaccao.Focused then
@@ -1005,7 +1022,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade '
       + ' order by nacionalidade ';
 
@@ -1014,8 +1031,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1023,11 +1040,13 @@ begin
         if Result = mrOk then
         begin
           UniDBEditNacionalidade.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
           UniLabelNacionalidade.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditNacionalidade.Focused then
@@ -1045,7 +1064,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
       ' order by cidade, uf';
 
@@ -1054,8 +1073,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1063,13 +1082,16 @@ begin
         if Result = mrOk then
         begin
           UniDBEditNaturalidade.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
           UniLabelNaturalidade.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
           UniLabelNaturalidade2.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditNaturalidade.Focused then
@@ -1089,7 +1111,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
       ' order by cidade, uf';
 
@@ -1098,8 +1120,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1107,14 +1129,15 @@ begin
         if Result = mrOk then
         begin
           UniDBEditOrigem.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
 
-          UniLabelOrigem.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          UniLabelOrigem2.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+          UniLabelOrigem.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          UniLabelOrigem2.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditOrigem.Focused then
@@ -1136,7 +1159,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade '
       + ' order by nacionalidade ';
 
@@ -1145,8 +1168,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1154,11 +1177,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditPais.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelPais.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelPais.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditPais.Focused then
@@ -1176,7 +1200,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
       + ' order by proedencia';
 
@@ -1185,8 +1209,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1194,11 +1218,13 @@ begin
         if Result = mrOk then
         begin
           UniDBEditPresidioOrigem.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
           UniLabelPresidioOrigem.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+            ('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditPresidioOrigem.Focused then
@@ -1216,7 +1242,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
       + ' order by proedencia';
 
@@ -1225,8 +1251,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1234,11 +1260,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditProcedencia.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelProcedencia.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelProcedencia.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditProcedencia.Focused then
@@ -1257,7 +1284,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_Profissao codigo, Profissao descricao from Profissao ' +
       ' order by Profissao ';
 
@@ -1266,8 +1293,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1275,11 +1302,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditProfissao.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelProfissao.Caption :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelProfissao.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditProfissao.Focused then
@@ -1296,7 +1324,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    FrmConsulta.SqlCadastro.SQL.Text :=
+    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
       'select id_raca CODIGO, raca DESCRICAO from raca ' + ' order by raca ';
 
     FrmConsulta.Coluna := 1;
@@ -1304,8 +1332,8 @@ begin
     FrmConsulta.Width := Self.Width;
     FrmConsulta.Top := Self.Top;
     FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsCadastro.DataSet.close;
-    FrmConsulta.DsCadastro.DataSet.Open;
+    FrmConsulta.DsConsultaObjetiva.DataSet.close;
+    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
     FrmConsulta.EditLocalizar.SetFocus;
     FrmConsulta.ShowModal(
       procedure(Result: Integer)
@@ -1313,11 +1341,12 @@ begin
         if Result = mrOk then
         begin
           UniDBEditRaca.Field.AsInteger :=
-            FrmConsulta.DsCadastro.DataSet.fieldbyname('CODIGO').AsInteger;
-          UniLabelRaca.Caption := FrmConsulta.DsCadastro.DataSet.fieldbyname
-            ('DESCRICAO').AsString;
-          FrmConsulta.SqlCadastro.SQL.Text := '';
-          FrmConsulta.DsCadastro.DataSet.close;
+            FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('CODIGO')
+            .AsInteger;
+          UniLabelRaca.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+            fieldbyname('DESCRICAO').AsString;
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
+          FrmConsulta.DsConsultaObjetiva.DataSet.close;
           FrmConsulta.DBGridConsulta.Columns.Clear;
           FrmConsulta.EditLocalizar.Text := '';
           if UniDBEditRaca.Focused then
@@ -1856,6 +1885,16 @@ begin
   END;
 
   Novo.Enabled := False;
+
+  if Self.Name <> 'FrmInterno' then
+  begin
+    TabSheetAdvogados.TabVisible := False;
+    TabSheetEndereco.TabVisible := False;
+    TabSheetHistorico.TabVisible := False;
+    TabSheetFotos.TabVisible := False;
+    TabSheetMovAnterior.TabVisible := False;
+    TabSheetMapa.TabVisible := False;
+  end;
 
 end;
 

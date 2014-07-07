@@ -28,7 +28,6 @@ object FrmLogin: TFrmLogin
     Font.Name = 'Lucida Console'
     Font.Style = [fsBold]
     TabOrder = 3
-    ExplicitWidth = 679
   end
   object UniGroupBox1: TUniGroupBox
     Left = 5
@@ -51,7 +50,6 @@ object FrmLogin: TFrmLogin
       Align = alTop
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
-      ExplicitWidth = 672
       object UniImage2: TUniImage
         Left = 1
         Top = 1
@@ -71,7 +69,6 @@ object FrmLogin: TFrmLogin
           0000FFDA000C03010002110311003F00DFD443700A9CB9FB720003FFD9}
         Align = alClient
         Anchors = [akLeft, akTop, akRight, akBottom]
-        ExplicitWidth = 670
       end
       object LabelTitulo: TUniLabel
         Left = 71

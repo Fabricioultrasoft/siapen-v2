@@ -2,7 +2,7 @@ object FrmConsulta: TFrmConsulta
   Left = 0
   Top = 0
   ClientHeight = 275
-  ClientWidth = 590
+  ClientWidth = 649
   Caption = 'Consulta'
   OnShow = UniFormShow
   Color = clBtnFace
@@ -19,13 +19,13 @@ object FrmConsulta: TFrmConsulta
   object PanelLocalizaConsulta: TUniPanel
     Left = 0
     Top = 0
-    Width = 590
+    Width = 649
     Height = 65
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
     DesignSize = (
-      590
+      649
       65)
     object UniLabel2: TUniLabel
       Left = 16
@@ -38,7 +38,7 @@ object FrmConsulta: TFrmConsulta
     object EditLocalizar: TUniEdit
       Left = 67
       Top = 13
-      Width = 502
+      Width = 561
       CharCase = ecUpperCase
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
@@ -48,7 +48,7 @@ object FrmConsulta: TFrmConsulta
       OnKeyDown = EditLocalizarKeyDown
     end
     object UniBitBtnConfirma: TUniBitBtn
-      Left = 488
+      Left = 547
       Top = 37
       Width = 81
       Height = 25
@@ -82,7 +82,7 @@ object FrmConsulta: TFrmConsulta
       OnClick = UniBitBtnConfirmaClick
     end
     object UniBtnFiltrar: TUniBitBtn
-      Left = 401
+      Left = 460
       Top = 37
       Width = 81
       Height = 25
@@ -128,9 +128,9 @@ object FrmConsulta: TFrmConsulta
   object DBGridConsulta: TUniDBGrid
     Left = 0
     Top = 65
-    Width = 590
+    Width = 649
     Height = 210
-    DataSource = DsCadastro
+    DataSource = DsConsultaObjetiva
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     WebOptions.Paged = False
@@ -141,25 +141,25 @@ object FrmConsulta: TFrmConsulta
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
   end
-  object DsCadastro: TDataSource
-    DataSet = CdsCadastro
+  object DsConsultaObjetiva: TDataSource
+    DataSet = CdsConsultaObjetiva
     Left = 596
     Top = 200
   end
-  object CdsCadastro: TClientDataSet
+  object CdsConsultaObjetiva: TClientDataSet
     Tag = -1
     Aggregates = <>
     Params = <>
-    ProviderName = 'DspCadastro'
+    ProviderName = 'DspConsultaObjetiva'
     Left = 568
     Top = 200
   end
-  object DspCadastro: TDataSetProvider
-    DataSet = SqlCadastro
+  object DspConsultaObjetiva: TDataSetProvider
+    DataSet = SqlConsultaObjetiva
     Left = 540
     Top = 200
   end
-  object SqlCadastro: TSQLQuery
+  object SqlConsultaObjetiva: TSQLQuery
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (

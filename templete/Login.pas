@@ -218,6 +218,25 @@ begin
         dm.GLOBAL_NOME_FUNCIONARIO_LOGADO := Dsservidor.DataSet.FieldByName
           ('NOME_FUNCIONARIO').Asstring;
         dm.liberado := true;
+
+        if dm.GLOBAL_ID_FUNCIONARIO > 0 then
+        begin
+          if dm.GLOBAL_IDCONEXAO <= 0 then
+          begin
+            try
+              dm.GLOBAL_IDCONEXAO := Generator('IDCONEXAO');
+              dm.Conexao.ExecuteDirect
+                ('insert into conexao (idconexao, id_funcioanrio, data_hora_entrada, tela_momento) '
+                + ' values (' + IntToStr(dm.GLOBAL_IDCONEXAO) + ', ' +
+                IntToStr(dm.GLOBAL_ID_FUNCIONARIO) + ', current_timestamp, ' +
+                Qs('Tela de Login') + ')');
+              dm.Conexao.ExecuteDirect('EXECUTE PROCEDURE SET_CONTEXT_CONEXAO('
+                + IntToStr(dm.GLOBAL_IDCONEXAO) + ')');
+            except
+            end;
+          end;
+        end;
+
         ModalResult := mrOK; // Login is valid so proceed to MainForm
 
       end
@@ -350,8 +369,8 @@ end;
 
 procedure TFrmLogin.UniTimer1Timer(Sender: TObject);
 begin
-    UniTimer1.enabled := false;
-    self.Close;
+  UniTimer1.enabled := false;
+  self.close;
 
 end;
 

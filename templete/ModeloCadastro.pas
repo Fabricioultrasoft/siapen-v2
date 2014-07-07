@@ -712,6 +712,16 @@ end;
 
 procedure TFrmModeloCadastro.UniFormShow(Sender: TObject);
 begin
+  if Dm.GLOBAL_IDCONEXAO > 0 then
+  begin
+    try
+      DM.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(Self.Caption)
+        + ' where idconexao=' + IntToStr(Dm.GLOBAL_IDCONEXAO));
+    except
+    end;
+  end;
+
+
   if FileExists(UniServerModule.StartPath + 'logo\logo_fundo.jpg') then
     UniImageLogoMarca.Picture.LoadFromFile(UniServerModule.StartPath +
       'logo\logo_fundo.jpg');

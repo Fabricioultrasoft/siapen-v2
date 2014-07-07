@@ -4,9 +4,9 @@ object FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio
   ClientHeight = 202
   ClientWidth = 445
   Caption = 'Modelo de Filtro'
+  OnShow = UniFormShow
   Color = clBtnFace
   OldCreateOrder = False
-  OnShow = UniFormShow
   MonitoredKeys.Keys = <>
   PixelsPerInch = 96
   TextHeight = 13
@@ -17,7 +17,6 @@ object FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio
     Height = 41
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
-    Color = clBtnFace
     TabOrder = 0
     object UniImage1: TUniImage
       Left = 1
@@ -61,7 +60,6 @@ object FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clWindow
     TabOrder = 1
-    ExplicitHeight = 135
   end
   object UniPanelConfirma: TUniPanel
     Left = 0
@@ -70,9 +68,7 @@ object FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio
     Height = 35
     Align = alBottom
     Anchors = [akLeft, akRight, akBottom]
-    Color = clBtnFace
     TabOrder = 2
-    ExplicitTop = 141
     DesignSize = (
       445
       35)
@@ -95,7 +91,6 @@ object FrmModeloFiltroRelatorio: TFrmModeloFiltroRelatorio
         0000FFDA000C03010002110311003F00DFD443700A9CB9FB720003FFD9}
       Align = alClient
       Anchors = [akLeft, akTop, akRight, akBottom]
-      ExplicitHeight = 35
     end
     object UniBitBtnAbrir: TUniBitBtn
       Left = 323

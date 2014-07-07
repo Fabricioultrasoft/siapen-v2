@@ -33,10 +33,10 @@ uses
 
 type
   TFrmConsulta = class(TUniForm)
-    DsCadastro: TDataSource;
-    CdsCadastro: TClientDataSet;
-    DspCadastro: TDataSetProvider;
-    SqlCadastro: TSQLQuery;
+    DsConsultaObjetiva: TDataSource;
+    CdsConsultaObjetiva: TClientDataSet;
+    DspConsultaObjetiva: TDataSetProvider;
+    SqlConsultaObjetiva: TSQLQuery;
     PanelLocalizaConsulta: TUniPanel;
     UniLabel2: TUniLabel;
     EditLocalizar: TUniEdit;
@@ -99,7 +99,7 @@ procedure TFrmConsulta.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
 begin
   if Key = VK_RETURN then
   begin
-    if not Self.DsCadastro.DataSet.IsEmpty then
+    if not Self.DsConsultaObjetiva.DataSet.IsEmpty then
     begin
       UniBitBtnConfirma.OnClick(nil);
     end;
@@ -129,7 +129,7 @@ procedure TFrmConsulta.UniBtnFiltrarClick(Sender: TObject);
 var
   sSql, sWhere: String;
 begin
-  sSql := SqlCadastro.SQL.Text;
+  sSql := SqlConsultaObjetiva.SQL.Text;
   if FCampoWhereSql = '' then
   begin
     if EditLocalizar.Text <> '' then
@@ -180,10 +180,10 @@ begin
         QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
     end;
 
-    AddWhere(SqlCadastro,sWhere);
+    AddWhere(SqlConsultaObjetiva,sWhere);
     TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
     TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
-    SqlCadastro.SQL.Text := sSql;
+    SqlConsultaObjetiva.SQL.Text := sSql;
 
   end;
 
@@ -221,8 +221,8 @@ begin
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter := '';
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
 
-  FrmConsulta.DsCadastro.DataSet.Close;
-  FrmConsulta.DsCadastro.DataSet.Open;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
 
   EditLocalizar.Text := FPreDescricao;
   EditLocalizar.SetFocus;
