@@ -421,7 +421,6 @@ type
     ImageListCorel1: TUniImageList;
     ImageListCorel2: TUniImageList;
     procedure UniGUIMainModuleCreate(Sender: TObject);
-    procedure UniGUIMainModuleDestroy(Sender: TObject);
   private
     FMeuPDF :TCPDFSplitMergeObj;
 
@@ -535,7 +534,13 @@ type
     FGLOBAL_IDFUNCIONARIO_FILTRO: Integer;
     FGLOBAL_HTTP_PDF: string;
     FGLOBAL_CAMINHO_PDF: string;
+    FGLOBAL_CENTRAL_DOCUMENTOS: string;
+    Fvar_disciplinar: string;
+    Fvar_data_disciplinar: TDateTime;
   public
+    property var_disciplinar: String read Fvar_disciplinar write Fvar_disciplinar;
+    property var_data_disciplinar: TDateTime read Fvar_data_disciplinar write Fvar_data_disciplinar;
+    property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS write FGLOBAL_CENTRAL_DOCUMENTOS;
     property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
     property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
     property MeuPDF :TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
@@ -841,13 +846,7 @@ end;
 
 procedure TDm.UniGUIMainModuleCreate(Sender: TObject);
 begin
-  FMeuPDF := TCPDFSplitMergeObj.Create(dm);
   ConectaSiapen;
-end;
-
-procedure TDm.UniGUIMainModuleDestroy(Sender: TObject);
-begin
-  Dm.MeuPDF.Free;
 end;
 
 function TDm.IniciaTransGeral: boolean;
