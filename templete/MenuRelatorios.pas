@@ -34,6 +34,8 @@ type
     procedure UniBitBtnVisualizarClick(Sender: TObject);
     procedure UniTreeView1Click(Sender: TObject);
     procedure UniListBox1DblClick(Sender: TObject);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     listtemp2: Tstrings;
     id_interno: integer;
@@ -83,7 +85,7 @@ begin
         if AResult = mrOK then
         begin
           FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text +
-            ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) +
+//            ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) +
             ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
             ' order by interno.nome_interno ';
           FrmConsulta.Coluna := 1;
@@ -214,6 +216,13 @@ begin
 
 end;
 
+procedure TFrmMenuRelatorios.UniFormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = vk_escape then
+    Self.Close;
+end;
+
 procedure TFrmMenuRelatorios.UniFormShow(Sender: TObject);
 begin
   {
@@ -309,6 +318,7 @@ begin
     end;
   end;
   AddLIstInOther(listatemp, listtemp2);
+{
   if recursive then
   begin
     ListarDiretorios(diretorioInicial, listatemp);
@@ -318,6 +328,7 @@ begin
         true, recursive, listatemp.Strings[i] + '\');
     end;
   end;
+  }
   listatemp.Free;
 end;
 

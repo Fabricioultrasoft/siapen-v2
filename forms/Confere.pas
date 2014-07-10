@@ -205,6 +205,7 @@ type
     UniDBEditProcedencia: TUniDBEdit;
     UniBitBtnProcedencia: TUniBitBtn;
     UniLabelProcedencia: TUniLabel;
+    SqlConsultaInternoUnidade: TSQLQuery;
     procedure UniFormCreate(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
@@ -1439,9 +1440,9 @@ begin
       if Result = mrOk then
       begin
         dscadastro.DataSet.FieldByName('DATA_ISOLAMENTO').AsDateTime :=
-          var_data_disciplinar;
+          Dm.var_data_disciplinar;
         dscadastro.DataSet.FieldByName('STATUS_ISOLAMENTO').AsString :=
-          var_disciplinar;
+          Dm.var_disciplinar;
       end;
     end);
 

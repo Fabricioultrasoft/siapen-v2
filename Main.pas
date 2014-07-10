@@ -262,7 +262,11 @@ type
     procedure UniFormCreate(Sender: TObject);
     procedure UniBitBtn5Click(Sender: TObject);
     procedure DocumentosDigitalizados1Click(Sender: TObject);
+    procedure UniBitBtn3Click(Sender: TObject);
+    procedure UniFormActivate(Sender: TObject);
   private
+    nome_agora, FArquivo, FCaminhoFR3, sFiltro: string;
+    sArquivo, sNomeJpeg: string;
     FNomeImagemUpload: String;
     FNomeCampoUpload: String;
     FDsUploadImagem: TDataSource;
@@ -296,7 +300,7 @@ uses
   Confere, ServerModule, Interno, EntradaVisitante, Lib, AlterarSenha,
   Sobre, Disciplina, ConselhoDisciplinar, Psicossocial, MenuRelatorios,
   CadastroFaltasDisciplinares, humanejs, ConsultaInterno,
-  DocumentosDigitalizados;
+  DocumentosDigitalizados, CentralDocumentosDigitalizados;
 
 function MainForm: TMainForm;
 begin
@@ -366,8 +370,6 @@ end;
 
 procedure TMainForm.UniFileUploadImagemCompleted(Sender: TObject;
   AStream: TFileStream);
-var
-  sArquivo, sNomeJpeg: string;
 begin
 
   if not DirectoryExists(UniServerModule.StartPath + 'FotosSistema\') then
@@ -388,6 +390,21 @@ begin
   MainForm.FNomeImagemUpload := '';
   MainForm.FNomeCampoUpload := '';
   MainForm.FDsUploadImagem := Nil;
+
+end;
+
+procedure TMainForm.UniFormActivate(Sender: TObject);
+var
+  sSaudacoes: string;
+begin
+  if (time >= strtotime('00:00:00')) and (time < strtotime('11:59:59')) then
+    sSaudacoes := 'Bom Dia';
+  if (time >= strtotime('12:00:00')) and (time < strtotime('17:59:59')) then
+    sSaudacoes := 'Boa Tarde';
+  if (time >= strtotime('18:00:00')) and (time < strtotime('23:59:59')) then
+    sSaudacoes := 'Boa Noite';
+
+  humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' + 'Seja bem vindo!');
 
 end;
 
@@ -491,6 +508,14 @@ begin
   FrmEntradaVisitante.ShowModal();
 end;
 
+procedure TMainForm.UniBitBtn3Click(Sender: TObject);
+begin
+//
+FrmDocumentosDigitalizados.ShowModal();
+//FrmCentralDocumentosDigitalizados.ShowModal();
+
+end;
+
 procedure TMainForm.UniBitBtn4Click(Sender: TObject);
 begin
   // FrmMenuRelatorio.ShowModal();
@@ -504,8 +529,6 @@ begin
 end;
 
 procedure TMainForm.MostraGrafico();
-var
-  nome_agora, FArquivo, FCaminhoFR3, sFiltro: string;
 begin
   // UniURLFrameDashBoard.Visible := false;
   try
@@ -626,8 +649,6 @@ begin
 end;
 
 procedure TMainForm.MostraAgenda();
-var
-  nome_agora, FArquivo, FCaminhoFR3, sFiltro: string;
 begin
   // UniURLFrameDashBoard.Visible := false;
   try

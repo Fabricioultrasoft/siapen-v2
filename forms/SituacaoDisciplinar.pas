@@ -28,7 +28,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, Lib;
+  MainModule, uniGUIApplication, Lib, DmPrincipal;
 
 function FrmSituacaoDisciplinar: TFrmSituacaoDisciplinar;
 begin
@@ -41,18 +41,18 @@ procedure TFrmSituacaoDisciplinar.UniFormClose(Sender: TObject;
 begin
 
   if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 0 then
-    var_disciplinar := '(1) SANCIONADO';
+    Dm.var_disciplinar := '(1) SANCIONADO';
 
   if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 1 then
-    var_disciplinar := '(2) SEGURO';
+    Dm.var_disciplinar := '(2) SEGURO';
 
   if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 2 then
-    var_disciplinar := '(3) OBSERVAÇÃO';
+    Dm.var_disciplinar := '(3) OBSERVAÇÃO';
 
   if FrmSituacaoDisciplinar.UniRadioGroup1.ItemIndex = 3 then
-    var_disciplinar := '(4) ISOLAMENTO PREVENTIVO';
+    Dm.var_disciplinar := '(4) ISOLAMENTO PREVENTIVO';
 
-  var_data_disciplinar := UniDateTimePicker1.DateTime;
+  Dm.var_data_disciplinar := UniDateTimePicker1.DateTime;
 
 end;
 

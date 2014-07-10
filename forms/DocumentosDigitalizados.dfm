@@ -66,8 +66,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
       ExplicitWidth = 888
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
-        ExplicitLeft = 0
-        ExplicitTop = 0
         ExplicitWidth = 880
         ExplicitHeight = 582
         inherited PanelCadastro: TUniPanel
@@ -82,6 +80,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
             ExplicitWidth = 878
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -302,6 +302,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -474,6 +476,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -495,10 +499,14 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -538,6 +546,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -565,6 +575,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -575,6 +587,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end
@@ -588,8 +602,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                 Align = alTop
                 Anchors = [akLeft, akTop, akRight]
                 TabOrder = 0
-                ExplicitLeft = 3
-                ExplicitWidth = 767
                 object UniBitBtnTodosDigitalizados: TUniBitBtn
                   Left = 3
                   Top = 47
@@ -652,9 +664,9 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                 end
                 object UniBitBtn3: TUniBitBtn
                   Left = 629
-                  Top = 13
+                  Top = 35
                   Width = 124
-                  Height = 61
+                  Height = 39
                   Glyph.Data = {
                     76060000424D7606000000000000360400002800000018000000180000000100
                     0800000000004002000000000000000000000001000000010000FF00FF009933
@@ -722,6 +734,15 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   ListFieldIndex = 0
                   TabOrder = 6
                 end
+                object UniCheckBoxComunicarCentral: TUniCheckBox
+                  Left = 629
+                  Top = 12
+                  Width = 126
+                  Height = 17
+                  Checked = False
+                  Caption = 'Comunicar central ?'
+                  TabOrder = 7
+                end
               end
               object UniURLFramePdf: TUniURLFrame
                 Left = 256
@@ -762,6 +783,13 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   TabOrder = 1
                   Columns = <
                     item
+                      FieldName = 'CENTRAL'
+                      Title.Caption = 'Aviso p/ Central'
+                      Width = 85
+                      Visible = True
+                      Expanded = False
+                    end
+                    item
                       FieldName = 'DESCRICAO'
                       Title.Caption = 'Descri'#231#227'o (Clique para visualizar)'
                       Width = 180
@@ -774,18 +802,24 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 80
                       Visible = True
                       Expanded = False
+                    end
+                    item
+                      FieldName = 'IDDOCUMENTOS_PROCESSO'
+                      Title.Caption = 'ID'
+                      Width = 64
+                      Visible = True
+                      Expanded = False
                     end>
                 end
-                object UniBitBtn4: TUniBitBtn
+                object UniBitBtnComunicarCentral: TUniBitBtn
                   Left = 26
                   Top = 431
                   Width = 173
                   Height = 25
-                  Visible = False
-                  Caption = 'Desassociar'
+                  Caption = 'Comunicar Central'
                   Anchors = [akLeft, akBottom]
                   TabOrder = 2
-                  OnClick = UniBitBtn4Click
+                  OnClick = UniBitBtnComunicarCentralClick
                 end
               end
             end
@@ -851,6 +885,22 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
     ExplicitTop = 656
     ExplicitWidth = 989
   end
+  inherited dsdataservidor: TDataSource
+    Left = 250
+    Top = 48
+  end
+  inherited dstdataservidor: TDataSetProvider
+    Left = 196
+    Top = 48
+  end
+  inherited SQLdataservidor: TSQLQuery
+    Left = 168
+    Top = 48
+  end
+  inherited cdsdataservidor: TClientDataSet
+    Left = 224
+    Top = 48
+  end
   object SqlDocumentoProcessos: TSQLQuery
     MaxBlobSize = -1
     Params = <>
@@ -880,20 +930,20 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
   end
   object DsTipoDocumento: TDataSource
     DataSet = CdsTipoDocumento
-    Left = 253
-    Top = 169
+    Left = 413
+    Top = 97
   end
   object CdsTipoDocumento: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspTipoDocumento'
-    Left = 225
-    Top = 169
+    Left = 385
+    Top = 97
   end
   object DspTipoDocumento: TDataSetProvider
     DataSet = SqlTipoDocumento
-    Left = 197
-    Top = 169
+    Left = 357
+    Top = 97
   end
   object SqlTipoDocumento: TSQLQuery
     MaxBlobSize = -1
@@ -902,7 +952,34 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
       'select * from TIPO_DOCUMENTO'
       '')
     SQLConnection = Dm.Conexao
+    Left = 329
+    Top = 97
+  end
+  object DsDocInsert: TDataSource
+    DataSet = CdsDocInsert
+    Left = 253
+    Top = 145
+  end
+  object CdsDocInsert: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspDocInsert'
+    Left = 225
+    Top = 145
+  end
+  object DspDocInsert: TDataSetProvider
+    DataSet = SqlDocInsert
+    Left = 197
+    Top = 145
+  end
+  object SqlDocInsert: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from DOCUMENTOS_PROCESSO'
+      '')
+    SQLConnection = Dm.Conexao
     Left = 169
-    Top = 169
+    Top = 145
   end
 end

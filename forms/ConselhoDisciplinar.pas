@@ -78,9 +78,7 @@ type
     UniLabel15: TUniLabel;
     UniLabel16: TUniLabel;
     UniLabel9: TUniLabel;
-    UniLabel10: TUniLabel;
     RadioGroupHomologado: TUniRadioGroup;
-    Editcondenacao: TUniDateTimePicker;
     Editreabilitacao: TUniDateTimePicker;
     Editprocedimento: TUniDateTimePicker;
     Editnprocedimento: TUniEdit;
@@ -221,8 +219,12 @@ begin
     Editdtincidencia.datetime;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').Asdatetime :=
     Editreabilitacao.datetime;
+//>>dois campos iguais
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').Asdatetime :=
+    Editresultado.datetime;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_condenacao').Asdatetime :=
-    Editcondenacao.datetime;
+    Editresultado.datetime;
+//<<dois campos iguais
   Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString := Memoobs.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString :=
     ComboBoxconclusao.Text;
@@ -230,8 +232,6 @@ begin
     Editpdi.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado').AsString :=
     ComboBoxresultado.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').Asdatetime :=
-    Editresultado.datetime;
   // data inicio, fim e quantidade do preventivo
   Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento').AsString :=
     EditinicioisolamentoPrev.Text;
@@ -414,9 +414,6 @@ begin
   Editreabilitacao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('data_reabilitacao').AsString;
 
-  Editcondenacao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_condenacao').AsString;
-
   Memoobs.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString;
 
   ComboBoxconclusao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
@@ -593,9 +590,7 @@ begin
   DBLookupComboBoxfaltadisciplinar.KeyValue := null;
   Editreabilitacao.Text := '';
   Editdtincidencia.Text := '';
-  Editcondenacao.Text := '';
   Memoobs.Text := '';
-  Editcondenacao.Text := '';
   Editpdi.Text := '';
   UniPageControlFaltaDisciplinar.ActivePageIndex := 0;
   ComboBoxresultado.ItemIndex := 0;
@@ -1038,7 +1033,6 @@ begin
   ComboBoxClasConduta.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
   Editreabilitacao.Text := '';
-  Editcondenacao.Text := '';
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';
   Memoobs.Text := '';

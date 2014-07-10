@@ -961,6 +961,7 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.Mode = sslmUnassigned
   SSL.SSLOptions.VerifyMode = []
   SSL.SSLOptions.VerifyDepth = 0
+  Options = []
   Height = 150
   Width = 215
 end

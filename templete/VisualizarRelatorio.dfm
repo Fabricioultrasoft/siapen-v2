@@ -10,6 +10,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
   WindowState = wsMaximized
   OldCreateOrder = False
   OnClose = UniFormClose
+  OnKeyDown = UniFormKeyDown
   MonitoredKeys.Keys = <>
   ScreenMask.Enabled = True
   ScreenMask.WaitData = True

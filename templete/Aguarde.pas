@@ -6,13 +6,13 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics,
   Controls, Forms, Dialogs, uniGUITypes, uniGUIAbstractClasses,
   uniGUIClasses, uniGUIForm, uniGUIBaseClasses, uniLabel, uniTimer, uniImage,
-  Vcl.Imaging.GIFImg;
+  Vcl.Imaging.GIFImg, uniPanel;
 
 type
   TFrmAguarde = class(TUniForm)
-    UniLabel1: TUniLabel;
     UniTimer1: TUniTimer;
     UniImageLogoMarca: TUniImage;
+    UniLabel1: TUniLabel;
     procedure UniTimer1Timer(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
   private

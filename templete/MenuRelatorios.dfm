@@ -7,6 +7,7 @@ object FrmMenuRelatorios: TFrmMenuRelatorios
   OnShow = UniFormShow
   Color = clBtnFace
   OldCreateOrder = False
+  OnKeyDown = UniFormKeyDown
   MonitoredKeys.Keys = <>
   PixelsPerInch = 96
   TextHeight = 13
@@ -48,9 +49,10 @@ object FrmMenuRelatorios: TFrmMenuRelatorios
     Params = <>
     SQL.Strings = (
       'select '
-      '    interno.id_interno Id,'
+      '   cast(substr(unidade_penal.sigla,1,8) as varchar(8)) UP,'
       '    interno.nome_interno NOME,'
       '    interno.rgi,'
+      '    interno.id_interno Id,'
       '    INTERNO.VULGO,'
       '    INTERNO.FACCAO,'
       '    unidade_penal.sigla,'

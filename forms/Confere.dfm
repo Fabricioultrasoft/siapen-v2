@@ -3,6 +3,7 @@ inherited FrmConfere: TFrmConfere
   ClientWidth = 1013
   Caption = 'Confere'
   WindowState = wsMaximized
+  ExplicitTop = -95
   ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -138,6 +139,8 @@ inherited FrmConfere: TFrmConfere
       ExplicitWidth = 1011
       ExplicitHeight = 177
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 1003
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
@@ -278,6 +281,8 @@ inherited FrmConfere: TFrmConfere
         ExplicitWidth = 977
         ExplicitHeight = 267
         inherited UniTabSheetPrincipalCadastro: TUniTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
           ExplicitWidth = 1001
           ExplicitHeight = 261
           object UniPageControlConfere: TUniPageControl
@@ -285,7 +290,7 @@ inherited FrmConfere: TFrmConfere
             Top = 56
             Width = 1001
             Height = 205
-            ActivePage = UniTabSheetCela
+            ActivePage = UniTabSheetDados
             TabOrder = 10
             Align = alBottom
             Anchors = [akLeft, akRight, akBottom]
@@ -293,6 +298,10 @@ inherited FrmConfere: TFrmConfere
             ExplicitWidth = 969
             object UniTabSheetDados: TUniTabSheet
               Caption = 'Dados'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               object UniLabel6: TUniLabel
                 Left = 3
                 Top = 1
@@ -376,7 +385,7 @@ inherited FrmConfere: TFrmConfere
                 TabOrder = 8
               end
               object UniDBLookupComboBox2: TUniDBLookupComboBox
-                Left = 289
+                Left = 287
                 Top = 107
                 Width = 280
                 ListField = 'DESCRICAO'
@@ -408,13 +417,14 @@ inherited FrmConfere: TFrmConfere
                   'Medida de Seguran'#231'a'
                   'Medida de Tratamento'
                   'Provis'#243'rio'
-                  'Semi-Aberto Sem Sa'#237'da'
-                  'Semi-Aberto Com Trabalho Externo'
-                  'Semi-Aberto Com Sa'#237'da'
-                  'Semi-Aberto Com Trabalho Concedido'
-                  'Semi-Aberto Com Trabalho Concedido e Sa'#237'da'
-                  'Semi-Aberto Com Trabalho e Sa'#237'da'
-                  'Tempor'#225'rio')
+                  'Semiaberto Sem Sa'#237'da'
+                  'Semiaberto Com Trabalho Externo'
+                  'Semiaberto Com Sa'#237'da'
+                  'Semiaberto Com Trabalho Concedido'
+                  'Semiaberto Com Trabalho Concedido e Sa'#237'da'
+                  'Semiaberto Com Trabalho e Sa'#237'da'
+                  'Tempor'#225'rio'
+                  'N'#227'o Informado')
                 ItemIndex = -1
                 TabOrder = 10
               end
@@ -437,7 +447,7 @@ inherited FrmConfere: TFrmConfere
                 Color = clWindow
               end
               object UniDBComboBox3: TUniDBComboBox
-                Left = 289
+                Left = 287
                 Top = 149
                 Width = 114
                 DataField = 'DADOS_OUTRO_BANCO'
@@ -449,7 +459,7 @@ inherited FrmConfere: TFrmConfere
                 TabOrder = 15
               end
               object UniLabel14: TUniLabel
-                Left = 289
+                Left = 287
                 Top = 135
                 Width = 114
                 Height = 13
@@ -556,6 +566,10 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetCela: TUniTabSheet
               Caption = 'Cela'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               object LabelPavilhao: TUniLabel
                 Left = 10
                 Top = 16
@@ -755,6 +769,10 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetSaida: TUniTabSheet
               Caption = 'Sa'#237'da'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               object Label9: TUniLabel
                 Left = 119
                 Top = 6
@@ -1985,5 +2003,36 @@ inherited FrmConfere: TFrmConfere
     SQLConnection = Dm.Conexao
     Left = 72
     Top = 80
+  end
+  object SqlConsultaInternoUnidade: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select first 50'
+      '    interno.nome_interno,'
+      '    interno.rgi,'
+      '    '#39#39' as  nome_interno_soundex,'
+      '    '#39#39' as sigla,'
+      '    '#39#39' as pavilhao,'
+      '    '#39#39' as galeria,'
+      '    '#39#39' as solario,'
+      '    '#39#39' as cela,'
+      '    interno.id_interno,'
+      '    interno.id_up,'
+      '    interno.idpavilhao,'
+      '    interno.idgaleria,'
+      '    interno.idsolario,'
+      '    interno.idcela,'
+      '    coalesce(interno.st,'#39'I'#39') as st,'
+      '    interno.numero_roupa,'
+      '    iif(coalesce(interno.st,'#39'I'#39')='#39'A'#39','#39'ATIVO'#39', '#39'INATIVO'#39') status,'
+      '    interno.em_transito,'
+      '    interno.id_me'
+      'from interno'
+      'where coalesce(interno.st,'#39'I'#39') <> '#39'A'#39
+      '')
+    SQLConnection = Dm.Conexao
+    Left = 208
+    Top = 160
   end
 end

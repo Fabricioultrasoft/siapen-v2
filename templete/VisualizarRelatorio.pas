@@ -47,6 +47,8 @@ type
     procedure UniBitBtn1Click(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     FArquivo: String;
     FCaminhoFR3: String;
@@ -109,6 +111,15 @@ procedure TFrmVisualizarRelatorio.UniFormCreate(Sender: TObject);
 begin
   FCaminhoFR3 := '';
   FFazExportacaoJPEG := false;
+end;
+
+procedure TFrmVisualizarRelatorio.UniFormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = vk_escape then
+    Self.Close;
+
+
 end;
 
 procedure TFrmVisualizarRelatorio.UniFormShow(Sender: TObject);

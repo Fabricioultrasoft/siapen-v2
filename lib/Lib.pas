@@ -128,12 +128,15 @@ function LimpaTexto(sString: string): string;
 function MeuGuidCreate: string;
 function ConsultaTabela(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel): Boolean;
+  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
+  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil)
+  : Boolean;
 function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
-  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniEditRetorno: TUniEdit; UniLabelRetorno: TUniLabel): Boolean;
+  sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
+  UniLabelRetorno: TUniLabel): Boolean;
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
-UniLabelRetorno: TUniLabel): Boolean;
+  UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
+  UniLabelRetorno3: TUniLabel = nil): Boolean;
 
 const
   QBtn1 = 1;
@@ -144,14 +147,8 @@ const
     'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
     'Novembro', 'Dezembro');
 
-Var
-  CorCompInativo: TColor = clBtnFace;
-  CorCompAtivo: TColor = ClWindow;
-  IndexCorFundo: Integer;
-  IndexCorFonte: Integer;
-  sIp, sBrowser, sVersao, sOSType: string;
-  var_disciplinar: string;
-  var_data_disciplinar: TDateTime;
+//  var_disciplinar: string;
+//  var_data_disciplinar: TDateTime;
 
 implementation
 
@@ -771,7 +768,7 @@ function RegistraEntradaConexao(sLogin, sSenha: string): Boolean;
 var
   C: TUniClientInfoRec;
 begin
-
+{
   sIp := UniApplication.RemoteAddress;
 
   C := UniApplication.ClientInfoRec;
@@ -785,12 +782,12 @@ begin
     + ' values (0, ' + Qs(sLogin) + ', ' + Qs(sSenha) + ', ''now'', ' + Qs(sIp)
     + ', ' + Qs('ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao +
     ' OSType:' + sOSType) + ')');
-
+}
 end;
 
 function RegistraSaidaConexao: Boolean;
 begin
-
+{
   Exit;
 
   if DM.Conexao.Connected then
@@ -801,7 +798,7 @@ begin
       ', ''now'', ' + Qs(sIp) + ', ' + Qs('SAIDA - Browser:' + sBrowser +
       ' Versao:' + sVersao + ' OSType:' + sOSType) + ')');
   END;
-
+ }
 end;
 
 function BuscaTroca(Text, Busca, Troca: string): string;
@@ -1441,7 +1438,7 @@ begin
       '*', '+', '-', '=', '&', '@', '!', '"', ':', '?', '$', '%', '_', '/',
       '\'])) then
     begin
-        sValor[X] := ' ';
+      sValor[X] := ' ';
     end;
   end;
   Result := sValor;
@@ -1468,13 +1465,15 @@ begin
   Result := '';
   if CoCreateGuid(ID) = S_OK then
   begin
-    Result := TRIM(LimpaChar(GUIDToString(ID)));
+    Result := Trim(LimpaChar(GUIDToString(ID)));
   end;
 end;
 
 function ConsultaTabela(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel): Boolean;
+  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
+  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil)
+  : Boolean;
 begin
   Result := false;
   FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
@@ -1493,15 +1492,20 @@ begin
       begin
         UniDBEditRetorno.Field.AsInteger :=
           FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName(sID).AsInteger;
-        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
-          (sDescricao).AsString;
+        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+          FieldByName(sDescricao).AsString;
+        if assigned(UniLabelRetorno2) then
+          UniLabelRetorno2.Caption := UniLabelRetorno.Caption;
+        if assigned(UniLabelRetorno3) then
+          UniLabelRetorno3.Caption := UniLabelRetorno.Caption;
+
       end;
     end);
 end;
 
 function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
-  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniEditRetorno: TUniEdit; UniLabelRetorno: TUniLabel): Boolean;
+sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
+UniLabelRetorno: TUniLabel): Boolean;
 begin
   Result := false;
   FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
@@ -1518,16 +1522,17 @@ begin
     begin
       if iResult = mrOK then
       begin
-        UniEditRetorno.Text :=
-          FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName(sID).AsString;
-        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
-          (sDescricao).AsString;
+        UniEditRetorno.Text := FrmConsulta.DsConsultaObjetiva.DataSet.
+          FieldByName(sID).AsString;
+        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
+          FieldByName(sDescricao).AsString;
       end;
     end);
 end;
 
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
-UniLabelRetorno: TUniLabel): Boolean;
+UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
+UniLabelRetorno3: TUniLabel = nil): Boolean;
 begin
   UniLabelRetorno.Caption := 'Informe o código ou pesquise';
   if StrToIntDef(UniDBEditRetorno.Text, 0) > 0 then
@@ -1538,6 +1543,10 @@ begin
     if not DM.SqlConsultaUnica.IsEmpty then
     begin
       UniLabelRetorno.Caption := DM.SqlConsultaUnica.Fields[0].AsString;
+      if assigned(UniLabelRetorno2) then
+        UniLabelRetorno2.Caption := UniLabelRetorno.Caption;
+      if assigned(UniLabelRetorno3) then
+        UniLabelRetorno3.Caption := UniLabelRetorno.Caption;
     end
     else
     begin
@@ -1548,8 +1557,12 @@ begin
       end;
     end;
     DM.SqlConsultaUnica.Close;
+  end
+  else
+  begin
+    UniDBEditRetorno.Text := '';
   end;
-end;
 
+end;
 
 end.

@@ -2,7 +2,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   ClientHeight = 679
   ClientWidth = 1060
   Caption = 'Conselho Disciplinar'
-  ExplicitTop = -130
+  ExplicitTop = -112
   ExplicitWidth = 1076
   ExplicitHeight = 718
   PixelsPerInch = 96
@@ -556,17 +556,17 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               object UniLabel5: TUniLabel
                 Left = 10
                 Top = 67
-                Width = 72
+                Width = 29
                 Height = 13
-                Caption = 'N'#186'  Documento'
+                Caption = 'N'#186'  CI'
                 TabOrder = 1
               end
               object Label121: TUniLabel
                 Left = 177
                 Top = 67
-                Width = 89
+                Width = 65
                 Height = 13
-                Caption = 'Data da Incid'#234'ncia'
+                Caption = 'Data da Falta'
                 TabOrder = 2
               end
               object UniLabel6: TUniLabel
@@ -919,17 +919,17 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   object UniLabel15: TUniLabel
                     Left = 337
                     Top = 78
-                    Width = 83
+                    Width = 49
                     Height = 13
-                    Caption = 'N'#186'  Procedimento'
+                    Caption = 'N'#186'  PADIC'
                     TabOrder = 1
                   end
                   object UniLabel16: TUniLabel
                     Left = 437
                     Top = 78
-                    Width = 91
+                    Width = 93
                     Height = 13
-                    Caption = 'Data Procedimento'
+                    Caption = 'Data Instala'#231#227'o CD'
                     TabOrder = 2
                   end
                   object UniLabel9: TUniLabel
@@ -940,14 +940,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Caption = 'Data Reabilita'#231#227'o'
                     TabOrder = 3
                   end
-                  object UniLabel10: TUniLabel
-                    Left = 664
-                    Top = 78
-                    Width = 101
-                    Height = 13
-                    Caption = 'Data da Condena'#231#227'o'
-                    TabOrder = 4
-                  end
                   object RadioGroupHomologado: TUniRadioGroup
                     Left = 12
                     Top = 76
@@ -957,17 +949,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       'Sim'
                       'N'#227'o')
                     Caption = 'Homologado'
-                    TabOrder = 5
-                  end
-                  object Editcondenacao: TUniDateTimePicker
-                    Left = 664
-                    Top = 99
-                    Width = 113
-                    Height = 22
-                    DateTime = 41816.000000000000000000
-                    DateFormat = 'dd/MM/yyyy'
-                    TimeFormat = 'HH:mm:ss'
-                    TabOrder = 6
+                    TabOrder = 4
                   end
                   object Editreabilitacao: TUniDateTimePicker
                     Left = 567
@@ -977,7 +959,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
-                    TabOrder = 7
+                    TabOrder = 5
                   end
                   object Editprocedimento: TUniDateTimePicker
                     Left = 437
@@ -987,14 +969,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
-                    TabOrder = 8
+                    TabOrder = 6
                   end
                   object Editnprocedimento: TUniEdit
                     Left = 338
                     Top = 99
                     Width = 90
                     Height = 21
-                    TabOrder = 9
+                    TabOrder = 7
                     Color = clWindow
                   end
                   object ComboBoxtipoprocedimento: TUniComboBox
@@ -1005,11 +987,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Style = csDropDownList
                     Items.Strings = (
                       ''
-                      'RELAT'#211'RIO DE REPREENS'#195'O'
-                      'INQU'#201'RITO DISCIPLINAR'
-                      'PROCESSO - PADIC'
-                      'AGUARDA RECURSO')
-                    TabOrder = 10
+                      'PROCESSO - PADIC')
+                    TabOrder = 8
                   end
                   object RadioGroupPreventivo: TUniRadioGroup
                     Left = 11
@@ -1024,7 +1003,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       'N'#227'o')
                     OnClick = RadioGroupPreventivoClick
                     Caption = 'Isolamento Preventivo:'
-                    TabOrder = 11
+                    TabOrder = 9
                   end
                   object EditinicioisolamentoPrev: TUniDateTimePicker
                     Left = 117
@@ -1034,7 +1013,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
-                    TabOrder = 12
+                    TabOrder = 10
                   end
                   object UniLabel22: TUniLabel
                     Left = 117
@@ -1044,7 +1023,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     Caption = 'Data In'#237'cio'
-                    TabOrder = 13
+                    TabOrder = 11
                   end
                   object EditqtdediasPrev: TUniEdit
                     Left = 220
@@ -1054,7 +1033,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Hint = 'Quantidade de dias de isolamento preventivo'
                     ShowHint = True
                     ParentShowHint = False
-                    TabOrder = 14
+                    TabOrder = 12
                     Color = clWindow
                     OnExit = EditqtdediasPrevExit
                   end
@@ -1064,7 +1043,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 47
                     Height = 13
                     Caption = 'Qtde Dias'
-                    TabOrder = 15
+                    TabOrder = 13
                   end
                   object EditfimisolamentoPrev: TUniDateTimePicker
                     Left = 284
@@ -1074,7 +1053,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
-                    TabOrder = 16
+                    TabOrder = 14
                   end
                   object UniLabel24: TUniLabel
                     Left = 284
@@ -1082,7 +1061,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 42
                     Height = 13
                     Caption = 'Data Fim'
-                    TabOrder = 17
+                    TabOrder = 15
                   end
                   object Memoobs: TUniMemo
                     Left = 12
@@ -1090,7 +1069,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 765
                     Height = 40
                     Color = clWindow
-                    TabOrder = 18
+                    TabOrder = 16
                   end
                   object Label122: TUniLabel
                     Left = 12
@@ -1098,7 +1077,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 58
                     Height = 13
                     Caption = 'Observa'#231#227'o'
-                    TabOrder = 19
+                    TabOrder = 17
                   end
                   object UniEditLocalArquivo: TUniEdit
                     Left = 384
@@ -1108,7 +1087,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Hint = 'Local do Arquivo / Num. da Caixa'
                     ShowHint = True
                     ParentShowHint = False
-                    TabOrder = 20
+                    TabOrder = 18
                     Color = clWindow
                   end
                   object UniLabel25: TUniLabel
@@ -1117,7 +1096,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 159
                     Height = 13
                     Caption = 'Local do Arquivo / Num. da Caixa'
-                    TabOrder = 21
+                    TabOrder = 19
                   end
                   object UniLabel26: TUniLabel
                     Left = 564
@@ -1126,7 +1105,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Height = 13
                     Enabled = False
                     Caption = 'Unidade de Origem do Processo'
-                    TabOrder = 22
+                    TabOrder = 20
                   end
                   object UniBitBtnUPOrigemProcesso: TUniBitBtn
                     Left = 616
@@ -1160,7 +1139,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                       86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                       A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                    TabOrder = 23
+                    TabOrder = 21
                     OnClick = UniBitBtnUPOrigemProcessoClick
                   end
                   object UniLabelUPOrigemProcesso: TUniLabel
@@ -1175,7 +1154,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ParentColor = False
                     Color = clWhite
                     Transparent = False
-                    TabOrder = 24
+                    TabOrder = 22
                   end
                   object UniEditUPOrigemProcesso: TUniEdit
                     Left = 564
@@ -1185,7 +1164,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Hint = 'Quantidade de dias de isolamento preventivo'
                     ShowHint = True
                     ParentShowHint = False
-                    TabOrder = 25
+                    TabOrder = 23
                     Color = clWindow
                     OnExit = UniEditUPOrigemProcessoExit
                   end

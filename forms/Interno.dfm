@@ -47,20 +47,17 @@ inherited FrmInterno: TFrmInterno
     Left = 105
     Width = 787
     Height = 540
-    ExplicitLeft = 96
-    ExplicitWidth = 449
-    ExplicitHeight = 588
+    ExplicitLeft = 105
+    ExplicitWidth = 787
+    ExplicitHeight = 540
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 785
       Height = 538
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
-        ExplicitWidth = 1067
-        ExplicitHeight = 503
+        ExplicitWidth = 777
+        ExplicitHeight = 510
         inherited PanelCadastro: TUniPanel
           Width = 777
           Height = 510
@@ -71,12 +68,10 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetMapa
+            ActivePage = TabSheetPrincipal
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
-            ExplicitWidth = 799
-            ExplicitHeight = 523
             object TabSheetPrincipal: TUniTabSheet
               Caption = 'Principal'
               object Label2: TUniLabel
@@ -256,7 +251,7 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 43
               end
               object Label82: TUniLabel
-                Left = 218
+                Left = 214
                 Top = 427
                 Width = 63
                 Height = 13
@@ -452,12 +447,18 @@ inherited FrmInterno: TFrmInterno
                 Items.Strings = (
                   'Aberto'
                   'Fechado'
-                  'Semi-Aberto Sem Sa'#237'da'
-                  'Semi-Aberto Com Trabalho Externo'
-                  'Semi-Aberto Com Trabalho Concedido'
-                  'Semi-Aberto Com Trabalho Concedido e Sa'#237'da'
-                  'Semi-Aberto Com Trabalho e Sa'#237'da'
-                  'Semi-Aberto Com Sa'#237'da')
+                  'Mandado de Pris'#227'o C'#237'vel'
+                  'Medida de Seguran'#231'a'
+                  'Medida de Tratamento'
+                  'Provis'#243'rio'
+                  'Semiaberto Sem Sa'#237'da'
+                  'Semiaberto Com Trabalho Externo'
+                  'Semiaberto Com Sa'#237'da'
+                  'Semiaberto Com Trabalho Concedido'
+                  'Semiaberto Com Trabalho Concedido e Sa'#237'da'
+                  'Semiaberto Com Trabalho e Sa'#237'da'
+                  'Tempor'#225'rio'
+                  'N'#227'o Informado')
                 ItemIndex = -1
                 TabOrder = 11
               end
@@ -502,9 +503,9 @@ inherited FrmInterno: TFrmInterno
                 Color = clWindow
               end
               object DBComboBox5: TUniDBComboBox
-                Left = 216
-                Top = 443
-                Width = 265
+                Left = 214
+                Top = 444
+                Width = 172
                 Height = 21
                 DataField = 'REGIME_ATUAL'
                 DataSource = DsCadastro
@@ -516,12 +517,12 @@ inherited FrmInterno: TFrmInterno
                   'Medida de Seguran'#231'a'
                   'Medida de Tratamento'
                   'Provis'#243'rio'
-                  'Semi-Aberto Sem Sa'#237'da'
-                  'Semi-Aberto Com Trabalho Externo'
-                  'Semi-Aberto Com Sa'#237'da'
-                  'Semi-Aberto Com Trabalho Concedido'
-                  'Semi-Aberto Com Trabalho Concedido e Sa'#237'da'
-                  'Semi-Aberto Com Trabalho e Sa'#237'da'
+                  'Semiaberto Sem Sa'#237'da'
+                  'Semiaberto Com Trabalho Externo'
+                  'Semiaberto Com Sa'#237'da'
+                  'Semiaberto Com Trabalho Concedido'
+                  'Semiaberto Com Trabalho Concedido e Sa'#237'da'
+                  'Semiaberto Com Trabalho e Sa'#237'da'
                   'Tempor'#225'rio'
                   'N'#227'o Informado')
                 ItemIndex = -1
@@ -994,6 +995,26 @@ inherited FrmInterno: TFrmInterno
                 TabOrder = 75
                 DataField = 'DATA_PERMANENCIA'
                 DataSource = DsCadastro
+              end
+              object UniDBDateTimePicker8: TUniDBDateTimePicker
+                Left = 392
+                Top = 446
+                Width = 95
+                Height = 22
+                DateTime = 41821.000000000000000000
+                DateFormat = 'dd/MM/yyyy'
+                TimeFormat = 'HH:mm:ss'
+                TabOrder = 76
+                DataField = 'DATA_REGIME_ATUAL'
+                DataSource = DsCadastro
+              end
+              object UniLabel30: TUniLabel
+                Left = 390
+                Top = 428
+                Width = 90
+                Height = 13
+                Caption = 'In'#237'cio neste regime'
+                TabOrder = 77
               end
             end
             object TabSheetDadosGerais: TUniTabSheet
@@ -2944,8 +2965,6 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel
@@ -3153,6 +3172,7 @@ inherited FrmInterno: TFrmInterno
   end
   object DsConsulta: TDataSource
     DataSet = CdsConsulta
+    OnDataChange = DsConsultaDataChange
     Left = 405
     Top = 287
   end
@@ -3426,13 +3446,13 @@ inherited FrmInterno: TFrmInterno
   end
   object dsdataservidor: TDataSource
     DataSet = cdsdataservidor
-    Left = 504
-    Top = 72
+    Left = 512
+    Top = 112
   end
   object dstdataservidor: TDataSetProvider
     DataSet = SQLdataservidor
-    Left = 456
-    Top = 72
+    Left = 464
+    Top = 112
   end
   object SQLdataservidor: TSQLQuery
     MaxBlobSize = -1
@@ -3440,14 +3460,14 @@ inherited FrmInterno: TFrmInterno
     SQL.Strings = (
       'Select current_date as data from rdb$database')
     SQLConnection = Dm.Conexao
-    Left = 432
-    Top = 72
+    Left = 440
+    Top = 112
   end
   object cdsdataservidor: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'dstdataservidor'
-    Left = 478
-    Top = 72
+    Left = 486
+    Top = 112
   end
 end
