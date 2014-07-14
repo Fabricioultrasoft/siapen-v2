@@ -26,7 +26,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   inherited PanelModeloCadastro: TUniPanel
     Width = 955
     Height = 612
-    ExplicitLeft = 105
     ExplicitWidth = 955
     ExplicitHeight = 612
     inherited PageControlModeloCadastro: TUniPageControl
@@ -49,6 +48,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -269,6 +270,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -438,6 +441,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -459,10 +464,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -500,6 +509,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -527,6 +538,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -537,11 +550,17 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 0
+              ExplicitTop = 0
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             object TabSheetConcelhoDisciplinar: TUniTabSheet
               Caption = 'Conselho Disciplinar'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               DesignSize = (
                 935
                 552)
@@ -905,6 +924,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
                   Caption = 'Procedimento'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   DesignSize = (
                     921
                     208)
@@ -1171,6 +1194,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetResultado: TUniTabSheet
                   Caption = 'Resultado'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   object UniLabel12: TUniLabel
                     Left = 12
                     Top = 13
@@ -1317,6 +1344,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetRecurso: TUniTabSheet
                   Caption = 'Recurso'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   object RadioGroupRecurso: TUniRadioGroup
                     Left = 3
                     Top = 11

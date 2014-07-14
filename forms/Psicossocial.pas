@@ -123,7 +123,6 @@ type
     DBEdit70: TUniDBEdit;
     DBEdit71: TUniDBEdit;
     DBEdit72: TUniDBEdit;
-    DBEdit73: TUniDBEdit;
     DBLookupComboBox8: TUniDBLookupComboBox;
     TabSheet2: TUniTabSheet;
     Label165: TUniLabel;
@@ -207,6 +206,7 @@ type
     UniLabel25: TUniLabel;
     BitBtn1: TUniBitBtn;
     UniDBEdit2: TUniDBEdit;
+    UniDBDateTimePicker9: TUniDBDateTimePicker;
     procedure EditarClick(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure Button3Click(Sender: TObject);

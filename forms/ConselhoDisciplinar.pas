@@ -219,12 +219,12 @@ begin
     Editdtincidencia.datetime;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').Asdatetime :=
     Editreabilitacao.datetime;
-//>>dois campos iguais
+  // >>dois campos iguais
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').Asdatetime :=
     Editresultado.datetime;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_condenacao').Asdatetime :=
     Editresultado.datetime;
-//<<dois campos iguais
+  // <<dois campos iguais
   Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString := Memoobs.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString :=
     ComboBoxconclusao.Text;
@@ -316,12 +316,26 @@ procedure TFrmConselhoDisciplinar.btnBuscarClick(Sender: TObject);
 begin
   inherited;
 
+  {
+
+    if ConsultaTabela(Self,
+    'SELECT ID_FALTA_DISCIPLINAR as "Codigo", FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO as "Descrição" FROM FALTA_DISCIPLINAR ORDER BY FALTA_DISCIPLINAR ',
+    'FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO',
+    'CODIGO', DBLookupComboBoxfaltadisciplinar.KeyValue) then
+    begin
+    Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
+    EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
+    ('TIPOFALTA').AsString;
+
+    end;
+  }
+
   FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
     'SELECT ID_FALTA_DISCIPLINAR as "Codigo", FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO as "Descrição" FROM FALTA_DISCIPLINAR ORDER BY FALTA_DISCIPLINAR ';
-  FrmConsulta.Width := Self.Width;
   FrmConsulta.CampoWhereSql :=
     'FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO';
   FrmConsulta.Coluna := 1;
+  FrmConsulta.Width := Self.Width;
   FrmConsulta.Top := Self.Top;
   FrmConsulta.Left := Self.Left;
   FrmConsulta.DsConsultaObjetiva.DataSet.close;
@@ -338,9 +352,9 @@ begin
         Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
         EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
           ('TIPOFALTA').AsString;
+        FrmConsulta.DsConsultaObjetiva.DataSet.close;
       end;
     end);
-
 end;
 
 procedure TFrmConselhoDisciplinar.EditDataInstPortariaKeyPress(Sender: TObject;
@@ -933,7 +947,7 @@ var
   Dias: Integer;
 begin
   inherited;
-  if StrToIntDef(EditQtdeDiasIsolamento.Text,0) >0 then
+  if StrToIntDef(EditQtdeDiasIsolamento.Text, 0) > 0 then
   begin
     DataInicial := EditInicioIsolamento.datetime;
     Dias := StrToInt(EditQtdeDiasIsolamento.Text);

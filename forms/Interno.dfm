@@ -2,7 +2,6 @@ inherited FrmInterno: TFrmInterno
   ClientHeight = 607
   ClientWidth = 892
   Caption = 'Cadastro do Interno'
-  WindowState = wsMaximized
   ExplicitWidth = 908
   ExplicitHeight = 646
   PixelsPerInch = 96
@@ -56,6 +55,8 @@ inherited FrmInterno: TFrmInterno
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelCadastro: TUniPanel
@@ -2127,7 +2128,7 @@ inherited FrmInterno: TFrmInterno
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                 WebOptions.LoadMaskMsg = 'Please wait...'
                 OnCellClick = DBGrid1CellClick
-                Anchors = [akLeft, akTop, akRight]
+                Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 3
                 Columns = <
                   item
@@ -2172,7 +2173,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 176
                 DataField = 'DESCRICAO'
                 DataSource = DSHISTORICO_interno
-                Anchors = [akLeft, akTop, akRight, akBottom]
+                Anchors = [akLeft, akRight, akBottom]
                 ReadOnly = True
                 TabOrder = 4
                 Color = clWindow
@@ -2965,6 +2966,8 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel

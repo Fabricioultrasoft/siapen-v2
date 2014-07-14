@@ -92,60 +92,7 @@ type
     SqlvincfaltadisciplinarDATA_INST_PORTARIA: TSQLTimeStampField;
     PageControlDisciplina: TUniPageControl;
     faltasdisciplinares: TUniTabSheet;
-    Label120: TUniLabel;
-    UniLabel5: TUniLabel;
-    Label121: TUniLabel;
-    UniLabel6: TUniLabel;
-    UniLabel7: TUniLabel;
-    UniLabel9: TUniLabel;
-    SpeedButton12: TUniSpeedButton;
-    UniLabel10: TUniLabel;
-    UniLabel11: TUniLabel;
-    UniLabel12: TUniLabel;
-    UniLabel13: TUniLabel;
-    Label122: TUniLabel;
-    UniLabel14: TUniLabel;
-    UniLabel15: TUniLabel;
-    UniLabel16: TUniLabel;
-    UniLabel17: TUniLabel;
-    UniLabel18: TUniLabel;
     UniLabel19: TUniLabel;
-    DBLookupComboBoxfaltadisciplinar: TUniDBLookupComboBox;
-    Memo1: TUniMemo;
-    Editpdi: TUniEdit;
-    DateTimePickerdataincidencia: TUniDateTimePicker;
-    ComboBoxconclusao: TUniComboBox;
-    Editcondenacao: TUniEdit;
-    Editreabilitacao: TUniEdit;
-    btnBuscar: TUniButton;
-    ComboBoxresultado: TUniComboBox;
-    Editresultado: TUniEdit;
-    Editqtdedias: TUniEdit;
-    Editinicioisolamento: TUniEdit;
-    Memoobs: TUniMemo;
-    BitBtn1: TUniBitBtn;
-    DBGrid6: TUniDBGrid;
-    ComboBoxtipoprocedimento: TUniComboBox;
-    Editprocedimento: TUniEdit;
-    Editnprocedimento: TUniEdit;
-    EditDataInstPortaria: TUniEdit;
-    ComboBoxNatureza: TUniComboBox;
-    RadioGroup1: TUniRadioGroup;
-    Editfimisolamento: TUniEdit;
-    TabSheet1: TUniTabSheet;
-    UniLabel21: TUniLabel;
-    Label59: TUniLabel;
-    UniLabel22: TUniLabel;
-    UniLabel23: TUniLabel;
-    UniDBComboBox3: TUniDBComboBox;
-    UniDBEdit1: TUniDBEdit;
-    UniDBEdit2: TUniDBEdit;
-    UniDBEdit3: TUniDBEdit;
-    TabSheet20: TUniTabSheet;
-    GroupBox1: TUniGroupBox;
-    UniLabel24: TUniLabel;
-    DBGrid5: TUniDBGrid;
-    DBLookupComboBoxartigoperfil: TUniDBLookupComboBox;
     PopupMenuIsolamento: TUniPopupMenu;
     Liberar1: TUniMenuItem;
     N1: TUniMenuItem;
@@ -154,7 +101,6 @@ type
     Excluir1: TUniMenuItem;
     SqlExecute: TSQLQuery;
     TabSheetElogio: TUniTabSheet;
-    UniMenuButton1: TUniMenuButton;
     UniDBMemo1: TUniDBMemo;
     DBGrid2: TUniDBGrid;
     BitBtn2: TUniBitBtn;
@@ -162,10 +108,14 @@ type
     DateTimePickerelogio: TUniDateTimePicker;
     UniLabel25: TUniLabel;
     UniLabel26: TUniLabel;
-    Label1: TUniLabel;
-    Label68: TUniLabel;
+    UniLabel5: TUniLabel;
+    UniLabel6: TUniLabel;
+    UniDateTimePickerHistDIsciplina: TUniDateTimePicker;
+    UniMemoHistDIsciplina: TUniMemo;
+    UniButtonHistDIsciplina: TUniButton;
+    UniDBGridHistDIsciplina: TUniDBGrid;
+    UniDBMemo2: TUniDBMemo;
     procedure UniFormShow(Sender: TObject);
-    procedure BitBtn1Click(Sender: TObject);
     procedure Liberar1Click(Sender: TObject);
     procedure EditarFalta1Click(Sender: TObject);
     procedure Excluir1Click(Sender: TObject);
@@ -173,6 +123,7 @@ type
     procedure UniFormCreate(Sender: TObject);
     procedure CancelarClick(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
+    procedure UniButtonHistDIsciplinaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -191,87 +142,6 @@ uses
 function FrmDisciplina: TFrmDisciplina;
 begin
   Result := TFrmDisciplina(UniMainModule.GetFormInstance(TFrmDisciplina));
-end;
-
-procedure TFrmDisciplina.BitBtn1Click(Sender: TObject);
-var
-  temporeabilitacao: Integer;
-begin
-
-  inherited;
-  if DBLookupComboBoxfaltadisciplinar.Text = '' then
-  begin
-    showmessage('Digite a Falta Disciplinar!');
-    exit;
-  end;
-
-  if Editpdi.Text = '' then
-  begin
-    showmessage('Digite o Número do Documento!');
-    exit;
-  end;
-
-  if not Dsvincfaltadisciplinar.DataSet.Active then
-    Dsvincfaltadisciplinar.DataSet.Open;
-
-  { Lancando na tabela de vinculo interno/faltadisciplinar }
-  Dsvincfaltadisciplinar.DataSet.Append;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_vinc_falta_disciplinar')
-    .AsInteger := 0;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_interno').AsInteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar').AsInteger
-    := DBLookupComboBoxfaltadisciplinar.KeyValue;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_incidencia').AsString :=
-    FormatDateTime('dd/mm/yyyy', DateTimePickerdataincidencia.DateTime);
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').AsString :=
-    Editreabilitacao.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_condenacao').AsString :=
-    Editcondenacao.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString := Memoobs.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString :=
-    ComboBoxconclusao.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero_pdi').AsString :=
-    Editpdi.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado').AsString :=
-    ComboBoxresultado.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').AsString :=
-    Editresultado.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento').AsString :=
-    Editinicioisolamento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_fim_isolamento').AsString :=
-    Editfimisolamento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('qtde_dias_isolamento').AsString :=
-    Editqtdedias.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger :=
-    Dm.GLOBAL_ID_UP;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('tipo').AsString :=
-    ComboBoxtipoprocedimento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_instauracao').AsString :=
-    Editprocedimento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero').AsString :=
-    Editnprocedimento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inst_portaria').AsString :=
-    EditDataInstPortaria.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('natureza').AsString :=
-    ComboBoxNatureza.Text;
-
-  Dsvincfaltadisciplinar.DataSet.Post;
-
-  DBLookupComboBoxfaltadisciplinar.KeyValue := null;
-  Editreabilitacao.Text := '';
-  Editcondenacao.Text := '';
-  Memoobs.Text := '';
-  Editcondenacao.Text := '';
-  Editpdi.Text := '';
-  ComboBoxresultado.Text := '';
-  ComboBoxconclusao.Text := '';
-  DateTimePickerdataincidencia.DateTime := Date;
-  Editinicioisolamento.Text := '';
-  Editqtdedias.Text := '';
-  Editfimisolamento.Text := '';
-  Memo1.Text := '';
-
 end;
 
 procedure TFrmDisciplina.BitBtn2Click(Sender: TObject);
@@ -401,6 +271,30 @@ begin
 
 end;
 
+procedure TFrmDisciplina.UniButtonHistDIsciplinaClick(Sender: TObject);
+begin
+  inherited;
+  DSHISTORICO_interno.DataSet.Append;
+  DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger :=
+    Generator('idhistorico_interno');
+  DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger :=
+    DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+  DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsString :=
+    FormatDateTime('dd/mm/yyyy', UniDateTimePickerHistDIsciplina.DateTime);
+  DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString :=
+    UniMemoHistDIsciplina.Lines.Text;
+  DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString := 'Disciplina';
+  DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
+    dm.GLOBAL_ID_FUNCIONARIO;
+  DSHISTORICO_interno.DataSet.Post;
+
+  TClientDataSet(DSHISTORICO_interno.DataSet).ApplyUpdates(0);
+
+  UniMemoHistDIsciplina.Lines.Clear;
+
+
+end;
+
 procedure TFrmDisciplina.UniFormCreate(Sender: TObject);
 begin
   inherited;
@@ -496,7 +390,8 @@ begin
   Dsvincfaltadisciplinar.DataSet.OPEN;
 
   PageControlDisciplina.ActivePageIndex := 0;
-  DateTimePickerdataincidencia.DateTime := Date;
+  UniDateTimePickerHistDIsciplina.DateTime := date;
+
 
   DSHISTORICO_interno.DataSet.Close;
   DSHISTORICO_interno.DataSet.OPEN;

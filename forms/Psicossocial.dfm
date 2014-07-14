@@ -2,7 +2,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
   ClientHeight = 591
   ClientWidth = 843
   Caption = 'Cadastro do Psicossocial'
-  ExplicitLeft = -70
+  ExplicitTop = 8
   ExplicitWidth = 859
   ExplicitHeight = 630
   PixelsPerInch = 96
@@ -59,6 +59,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
             ExplicitWidth = 901
             ExplicitHeight = 562
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited Label2: TUniLabel
@@ -279,6 +281,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited Label11: TUniLabel
@@ -448,6 +452,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited DBGrid3: TUniDBGrid
@@ -469,10 +475,14 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               DesignSize = (
@@ -504,6 +514,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited UniPanelFoto: TUniPanel
@@ -531,6 +543,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited DBMemo2: TUniDBMemo
@@ -541,6 +555,8 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
             end
@@ -1537,7 +1553,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 254
                     Height = 13
                     Caption = 'Recebe visitas de familiares ou outra pessoa? Quem?'
-                    TabOrder = 7
+                    TabOrder = 6
                   end
                   object Label129: TUniLabel
                     Left = 8
@@ -1545,7 +1561,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 255
                     Height = 13
                     Caption = 'Gostaris de estudar durante o cumprimento da pena?'
-                    TabOrder = 8
+                    TabOrder = 7
                   end
                   object Label130: TUniLabel
                     Left = 408
@@ -1554,7 +1570,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Height = 27
                     AutoSize = False
                     Caption = 'Gostaria de trabalhar durante o cumprimento da pena?'
-                    TabOrder = 9
+                    TabOrder = 8
                   end
                   object Label131: TUniLabel
                     Left = 8
@@ -1562,7 +1578,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 207
                     Height = 13
                     Caption = 'Gostaria de aprender uma profiss'#227'o? Qual?'
-                    TabOrder = 10
+                    TabOrder = 9
                   end
                   object Label132: TUniLabel
                     Left = 9
@@ -1570,7 +1586,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 58
                     Height = 13
                     Caption = 'Observa'#231#227'o'
-                    TabOrder = 11
+                    TabOrder = 10
                   end
                   object Label133: TUniLabel
                     Left = 9
@@ -1578,7 +1594,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 86
                     Height = 13
                     Caption = 'Data atendimento'
-                    TabOrder = 12
+                    TabOrder = 11
                   end
                   object Label134: TUniLabel
                     Left = 161
@@ -1586,7 +1602,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 208
                     Height = 13
                     Caption = 'T'#233'cnico(a) respons'#225'vel pelo preenchimento'
-                    TabOrder = 13
+                    TabOrder = 12
                   end
                   object DBEdit63: TUniDBEdit
                     Left = 8
@@ -1638,16 +1654,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     TabOrder = 4
                     Color = clWindow
                   end
-                  object DBEdit73: TUniDBEdit
-                    Left = 9
-                    Top = 215
-                    Width = 145
-                    Height = 21
-                    DataField = 'DATAPSICOSSOCIAL'
-                    DataSource = DsCadastro
-                    TabOrder = 5
-                    Color = clWindow
-                  end
                   object DBLookupComboBox8: TUniDBLookupComboBox
                     Left = 161
                     Top = 215
@@ -1659,7 +1665,19 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     ListFieldIndex = 0
                     DataField = 'IDTECNICO'
                     DataSource = DsCadastro
-                    TabOrder = 6
+                    TabOrder = 5
+                  end
+                  object UniDBDateTimePicker9: TUniDBDateTimePicker
+                    Left = 8
+                    Top = 215
+                    Width = 133
+                    Height = 22
+                    DateTime = 41830.000000000000000000
+                    DateFormat = 'dd/MM/yyyy'
+                    TimeFormat = 'HH:mm:ss'
+                    TabOrder = 13
+                    DataField = 'DATAPSICOSSOCIAL'
+                    DataSource = DsCadastro
                   end
                 end
                 object TabSheet2: TUniTabSheet
@@ -2376,7 +2394,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
         end
         inherited DBGridConsulta: TUniDBGrid
           Width = 728
-          Height = 438
+          Height = 434
           Columns = <
             item
               FieldName = 'NOME_INTERNO'

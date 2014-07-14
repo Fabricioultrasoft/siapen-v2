@@ -168,54 +168,57 @@ end;
 procedure TFrmDocumentosDigitalizados.UniBitBtnTodosDigitalizadosClick
   (Sender: TObject);
 begin
-
-  sArquivosPDFInterno := '';
-  sPdf := '';
-  DsDocumentoProcessos.DataSet.first;
-  while not DsDocumentoProcessos.DataSet.eof do
-  begin
-
-    sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-      DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
-
-    if FileExists(sPdf) then
+  try
+    sArquivosPDFInterno := '';
+    sPdf := '';
+    DsDocumentoProcessos.DataSet.first;
+    while not DsDocumentoProcessos.DataSet.eof do
     begin
-      if sArquivosPDFInterno = '' then
-        sArquivosPDFInterno := sPdf
-      else
-        sArquivosPDFInterno := sArquivosPDFInterno + '|' + sPdf;
+
+      sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+        DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
+
+      if FileExists(sPdf) then
+      begin
+        if sArquivosPDFInterno = '' then
+          sArquivosPDFInterno := sPdf
+        else
+          sArquivosPDFInterno := sArquivosPDFInterno + '|' + sPdf;
+      end;
+
+      DsDocumentoProcessos.DataSet.next;
+
     end;
 
-    DsDocumentoProcessos.DataSet.next;
+    if sArquivosPDFInterno <> '' then
+    begin
+      if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+        DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+          dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
 
-  end;
+      try
+        Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
+        Dm.MeuPDF.SetCode('Siapen - V2');
+        Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\'
+          + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
+      finally
+        Dm.MeuPDF.Free;
+      end;
 
-  if sArquivosPDFInterno <> '' then
-  begin
+    end;
+
+    UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
+
     if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
       dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
-      DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
-
-    try
-      Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
-      Dm.MeuPDF.SetCode('Siapen - V2');
-      Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
-    finally
-      Dm.MeuPDF.Free;
+    begin
+      UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
     end;
 
-  end;
-
-  UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
-
-  if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-    dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
-  begin
-    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
-      dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
-      '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+  except
   end;
 
 end;
@@ -224,18 +227,21 @@ procedure TFrmDocumentosDigitalizados.UniDBGrid1CellClick
   (Column: TUniDBGridColumn);
 begin
   inherited;
-  if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-    DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
-  // or (Dm.GLOBAL_HTTP_PDF <> '')
-  then
-  begin
-    UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
-      DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
-      '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
-  end
-  else
-  begin
-    showmessage('Não encontrou o arquivo!');
+  try
+    if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+      DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
+    // or (Dm.GLOBAL_HTTP_PDF <> '')
+    then
+    begin
+      UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+        DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+    end
+    else
+    begin
+      showmessage('Não encontrou o arquivo!');
+    end;
+  except
   end;
 
 end;
@@ -244,78 +250,83 @@ procedure TFrmDocumentosDigitalizados.UniFileUploadPdfCompleted(Sender: TObject;
 AStream: TFileStream);
 begin
 
-  FrmAguarde.showmodal;
+  try
+    FrmAguarde.showmodal;
 
-  if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\') then
-    ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\');
+    if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\') then
+      ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\');
 
-  sPastaDia := FormatDateTime('yyyy-mm-dd', Now);
+    sPastaDia := FormatDateTime('yyyy-mm-dd', Now);
 
-  if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia) then
-    ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia);
+    if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia) then
+      ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia);
 
-  sNomePDF := MeuGuidCreate;
+    sNomePDF := MeuGuidCreate;
 
-  if ContemValor('.PDF', UpperCase(AStream.FileName)) then
-  begin
-
-    sArquivo := sPastaDia + '\' + sNomePDF + ExtractFileExt(AStream.FileName);
-    sCaminhoArquivo := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sArquivo;
-    sArquivo := sPastaDia + '/' + sNomePDF + ExtractFileExt(AStream.FileName);
-
-    if CopyFile(PChar(AStream.FileName), PChar(sCaminhoArquivo), False) then
+    if ContemValor('.PDF', UpperCase(AStream.FileName)) then
     begin
 
-      CdsDocInsert.Append;
-      CdsDocInsert.FieldByName('IDDOCUMENTOS_PROCESSO').AsInteger :=
-        Generator('IDDOCUMENTOS_PROCESSO');
-      CdsDocInsert.FieldByName('DESCRICAO').AsString :=
-        UniEditDescricaoPDF.Text;
-      CdsDocInsert.FieldByName('ID_TIPO_DOCUMENTO').AsInteger :=
-        UniDBLookupComboBoxTipoDocumento.keyvalue;
-      CdsDocInsert.FieldByName('DATA').AsDateTime := Now;
-      CdsDocInsert.FieldByName('CAMINHO_DOC').AsString := sArquivo;
-      CdsDocInsert.FieldByName('IDFUNCIONARIO').AsInteger :=
-        Dm.GLOBAL_ID_FUNCIONARIO;
-      CdsDocInsert.FieldByName('ID_INTERNO').AsInteger :=
-        dscadastro.DataSet.FieldByName('id_interno').AsInteger;
-      CdsDocInsert.Post;
-      CdsDocInsert.ApplyUpdates(-1);
-      CdsDocInsert.close;
-      CdsDocInsert.open;
-      CdsDocumentoProcessos.close;
-      CdsDocumentoProcessos.open;
-      humane.clickToClose(true);
-      humane.success('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>'
-        + UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
+      sArquivo := sPastaDia + '\' + sNomePDF + ExtractFileExt(AStream.FileName);
+      sCaminhoArquivo := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sArquivo;
+      sArquivo := sPastaDia + '/' + sNomePDF + ExtractFileExt(AStream.FileName);
 
-      CdsDocumentoProcessos.Last;
-      if UniCheckBoxComunicarCentral.Checked then
+      if CopyFile(PChar(AStream.FileName), PChar(sCaminhoArquivo), False) then
       begin
-        UniBitBtnComunicarCentralClick(nil);
-        UniCheckBoxComunicarCentral.Checked := False;
+
+        CdsDocInsert.Append;
+        CdsDocInsert.FieldByName('IDDOCUMENTOS_PROCESSO').AsInteger :=
+          Generator('IDDOCUMENTOS_PROCESSO');
+        CdsDocInsert.FieldByName('DESCRICAO').AsString :=
+          UniEditDescricaoPDF.Text;
+        CdsDocInsert.FieldByName('ID_TIPO_DOCUMENTO').AsInteger :=
+          UniDBLookupComboBoxTipoDocumento.keyvalue;
+        CdsDocInsert.FieldByName('DATA').AsDateTime := Now;
+        CdsDocInsert.FieldByName('CAMINHO_DOC').AsString := sArquivo;
+        CdsDocInsert.FieldByName('IDFUNCIONARIO').AsInteger :=
+          Dm.GLOBAL_ID_FUNCIONARIO;
+        CdsDocInsert.FieldByName('ID_INTERNO').AsInteger :=
+          dscadastro.DataSet.FieldByName('id_interno').AsInteger;
+        CdsDocInsert.Post;
+        CdsDocInsert.ApplyUpdates(-1);
+        CdsDocInsert.close;
+        CdsDocInsert.open;
+        CdsDocumentoProcessos.close;
+        CdsDocumentoProcessos.open;
+        humane.clickToClose(true);
+        humane.success
+          ('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' +
+          UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
+
+        CdsDocumentoProcessos.Last;
+        if UniCheckBoxComunicarCentral.Checked then
+        begin
+          UniBitBtnComunicarCentralClick(nil);
+          UniCheckBoxComunicarCentral.Checked := False;
+        end;
+        UniDBGrid1CellClick(nil);
+
+        UniDBLookupComboBoxTipoDocumento.keyvalue := null;
+        UniEditDescricaoPDF.Text := '';
+
+      end
+      else
+      begin
+        showmessage('O documento, não foi salvo!');
+        humane.clickToClose(true);
+        humane.success
+          ('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>' +
+          UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
+
       end;
-      UniDBGrid1CellClick(nil);
-
-      UniDBLookupComboBoxTipoDocumento.keyvalue := null;
-      UniEditDescricaoPDF.Text := '';
-
     end
     else
     begin
-      showmessage('O documento, não foi salvo!');
-      humane.clickToClose(true);
-      humane.success
-        ('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>' +
-        UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
-
+      humane.log('<b><font Color=yellow>Não é PDF!</font></b><br>O arquivo <b>'
+        + UniEditDescricaoPDF.Text +
+        '</b> não foi salvo, tem que ser formato PDF!');
     end;
-  end
-  else
-  begin
-    humane.log('<b><font Color=yellow>Não é PDF!</font></b><br>O arquivo <b>' +
-      UniEditDescricaoPDF.Text +
-      '</b> não foi salvo, tem que ser formato PDF!');
+
+  except
   end;
 
 end;

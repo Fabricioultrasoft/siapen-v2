@@ -2,6 +2,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
   ClientHeight = 679
   ClientWidth = 995
   Caption = 'Documentos Digitalizados'
+  ExplicitTop = 8
   ExplicitWidth = 1011
   ExplicitHeight = 718
   PixelsPerInch = 96

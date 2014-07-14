@@ -151,7 +151,6 @@ type
     UniLabel10: TUniLabel;
     UniDBEdit4: TUniDBEdit;
     UniLabel11: TUniLabel;
-    UniDBLookupComboBox2: TUniDBLookupComboBox;
     UniLabel12: TUniLabel;
     UniDBComboBox2: TUniDBComboBox;
     UniLabel13: TUniLabel;
@@ -182,7 +181,6 @@ type
     DBEditID: TUniDBEdit;
     UniLabel15: TUniLabel;
     DBEditDataMudanca: TUniDBDateTimePicker;
-    UniDBImage1: TUniDBImage;
     PageControlDestino: TUniPageControl;
     TabSheetDestino: TUniTabSheet;
     TabSheetUnidade: TUniTabSheet;
@@ -206,6 +204,11 @@ type
     UniBitBtnProcedencia: TUniBitBtn;
     UniLabelProcedencia: TUniLabel;
     SqlConsultaInternoUnidade: TSQLQuery;
+    UniDBEditCondicao: TUniDBEdit;
+    UniBitBtnCondicao: TUniBitBtn;
+    UniLabelCondicao: TUniLabel;
+    UniPanel1: TUniPanel;
+    UniDBImage1: TUniDBImage;
     procedure UniFormCreate(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
@@ -216,13 +219,15 @@ type
     procedure DsCadastroDataChange(Sender: TObject; Field: TField);
     procedure SalvarClick(Sender: TObject);
     procedure UniBitBtn1Click(Sender: TObject);
-    procedure UniDBImage1Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure UniToolButton1Click(Sender: TObject);
     procedure DBComboBoxMotivoSelect(Sender: TObject);
     procedure UniBitBtnProcedenciaClick(Sender: TObject);
     procedure UniDBEditProcedenciaExit(Sender: TObject);
+    procedure UniBitBtnCondicaoClick(Sender: TObject);
+    procedure UniDBEditCondicaoExit(Sender: TObject);
+    procedure UniFormActivate(Sender: TObject);
   private
     statusold, em_transito_old: string;
     idcela_old, idsolario_old, idgaleria_old, idpavilhao_old: string;
@@ -544,6 +549,7 @@ begin
   DBEditMotivoMudancaCela.Enabled := true;
 
   UniDBEditProcedenciaExit(nil);
+  UniDBEditCondicaoExit(nil);
 
 end;
 
@@ -1448,42 +1454,28 @@ begin
 
 end;
 
+procedure TFrmConfere.UniBitBtnCondicaoClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+    ConsultaTabela(Self,
+      'select idcondicao_interno codigo, descricao from condicao_interno' +
+      ' order by descricao', 'descricao', 'CODIGO', 'descricao',
+      UniDBEditCondicao, UniLabelCondicao);
+  end;
+
+end;
+
 procedure TFrmConfere.UniBitBtnProcedenciaClick(Sender: TObject);
 begin
   inherited;
-  if dscadastro.DataSet.State in [dsedit, dsinsert] then
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-
-    FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
+    ConsultaTabela(Self,
       'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
-      + ' order by proedencia';
-
-    FrmConsulta.Coluna := 1;
-    FrmConsulta.Height := Self.Height;
-    FrmConsulta.Width := Self.Width;
-    FrmConsulta.Top := Self.Top;
-    FrmConsulta.Left := Self.Left;
-    FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-    FrmConsulta.DsConsultaObjetiva.DataSet.Open;
-    FrmConsulta.EditLocalizar.setfocus;
-    FrmConsulta.ShowModal(
-      procedure(Result: Integer)
-      begin
-        if Result = mrOk then
-        begin
-          UniDBEditProcedencia.Field.AsInteger :=
-            FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName('CODIGO').AsInteger;
-          UniLabelProcedencia.Caption :=
-            FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName('DESCRICAO').AsString;
-          FrmConsulta.SqlConsultaObjetiva.SQL.Text := '';
-          FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-          FrmConsulta.DBGridConsulta.Columns.Clear;
-          FrmConsulta.EditLocalizar.Text := '';
-          if UniDBEditProcedencia.Focused then
-            UniDBEditProcedencia.setfocus;
-        end;
-      end);
-
+      + ' order by proedencia', 'PROEDENCIA', 'CODIGO', 'DESCRICAO',
+      UniDBEditProcedencia, UniLabelProcedencia);
   end;
 
 end;
@@ -1524,6 +1516,14 @@ begin
 
 end;
 
+procedure TFrmConfere.UniDBEditCondicaoExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select descricao from condicao_interno ' +
+    ' WHERE idcondicao_interno=', UniDBEditCondicao, UniLabelCondicao);
+
+end;
+
 procedure TFrmConfere.UniDBEditProcedenciaExit(Sender: TObject);
 begin
   inherited;
@@ -1550,24 +1550,43 @@ begin
 
 end;
 
-procedure TFrmConfere.UniDBImage1Click(Sender: TObject);
+procedure TFrmConfere.UniFormActivate(Sender: TObject);
+var
+  iComp: integer;
 begin
-  inherited;
-  if dscadastro.DataSet.State in [dsedit, dsinsert] then
+
+  PageControlCadastro.ActivePageIndex := 0;
+  PanelCadastro.Enabled := false;
+
+  for iComp := 0 to Componentcount - 1 do
   begin
-    MainForm.NomeImagemUpload := 'FOTO-idinterno-' +
-      dscadastro.DataSet.FieldByName('ID_INTERNO').AsString;
-    MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
-    MainForm.DsUploadImagem := dscadastro;
-    MainForm.UniFileUploadImagem.Execute;
+
+    if (Components[iComp] is TClientDataSet) then
+    begin
+      TClientDataSet(Components[iComp]).OnReconcileError :=
+        ClientDataSetReconcileError;
+    end;
+
+    if (Components[iComp] is TSQLQuery) then
+    begin
+      TSQLQuery(Components[iComp]).SQLConnection := Dm.Conexao;
+      TSQLQuery(Components[iComp]).AfterOpen := SQLDataSetPadraoAfterOpen;
+    end;
+
   end;
+
+
 end;
 
 procedure TFrmConfere.UniFormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
-  DsConsulta.DataSet.Close;
-  MainForm.MostraGrafico;
+
+  if DsConsulta.DataSet.active then
+    DsConsulta.DataSet.Close;
+
+  MainForm.UniTimer2.Enabled := true;
+
 end;
 
 procedure TFrmConfere.UniFormCreate(Sender: TObject);

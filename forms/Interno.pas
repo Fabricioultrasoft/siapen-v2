@@ -674,7 +674,7 @@ begin
 
   if CdsConsulta.Active then
   begin
-    if CdsConsulta.IsEmpty then
+    if not CdsConsulta.IsEmpty then
     begin
       StatusBar1.Panels[1].Text := CdsConsulta.fieldbyname
         ('NOME_INTERNO').AsString;
@@ -770,7 +770,11 @@ begin
   inherited;
   if Key = VK_RETURN then
   begin
-    UniBtnFiltrarClick(nil);
+    FrmAguarde.ShowModal(
+      procedure(Res: Integer)
+      begin
+        UniBtnFiltrarClick(nil);
+      end);
   end;
 
 end;
@@ -1192,6 +1196,7 @@ end;
 procedure TFrmInterno.UniFormCreate(Sender: TObject);
 begin
   inherited;
+  Self.WindowState := wsMaximized;
   FID_INTERNO := 0;
   if not ContemValor('I', dm.PERMISSAO_CONFERE) and
     not ContemValor('E', dm.PERMISSAO_CONFERE) and
