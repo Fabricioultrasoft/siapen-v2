@@ -43,6 +43,7 @@ type
     UniBitBtnConfirma: TUniBitBtn;
     UniBtnFiltrar: TUniBitBtn;
     DBGridConsulta: TUniDBGrid;
+    Fechar: TUniBitBtn;
     procedure UniBtnFiltrarClick(Sender: TObject);
     procedure UniBitBtnConfirmaClick(Sender: TObject);
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
@@ -54,6 +55,8 @@ type
     procedure UniFormShow(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure UniFormCreate(Sender: TObject);
+    procedure UniFormDestroy(Sender: TObject);
+    procedure FecharClick(Sender: TObject);
   private
     FCOLUNA: Integer;
     FPreDescricao: string;
@@ -92,7 +95,7 @@ procedure TFrmConsulta.EditLocalizarChange(Sender: TObject);
 begin
   UniBtnFiltrar.OnClick(NIL);
 
-end;
+  end;
 
 procedure TFrmConsulta.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -119,10 +122,14 @@ begin
 
 end;
 
+procedure TFrmConsulta.FecharClick(Sender: TObject);
+begin
+close;
+end;
+
 procedure TFrmConsulta.UniBitBtnConfirmaClick(Sender: TObject);
 begin
   Self.ModalResult := mrOk;
-
 end;
 
 procedure TFrmConsulta.UniBtnFiltrarClick(Sender: TObject);
@@ -175,12 +182,11 @@ begin
     end
     else
     begin
-      sWhere :=
-        FCampoWhereSql+ ' LIKE ' +
+      sWhere := FCampoWhereSql + ' LIKE ' +
         QuotedStr('%' + BuscaTroca(EditLocalizar.Text, 'ç', 'Ç') + '%');
     end;
 
-    AddWhere(SqlConsultaObjetiva,sWhere);
+    AddWhere(SqlConsultaObjetiva, sWhere);
     TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
     TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
     SqlConsultaObjetiva.SQL.Text := sSql;
@@ -201,6 +207,11 @@ begin
   FCOLUNA := 1;
   FPreDescricao := '';
   FCampoWhereSql := '';
+end;
+
+procedure TFrmConsulta.UniFormDestroy(Sender: TObject);
+begin
+  DM.SqlConsultaUnica.Close;
 end;
 
 procedure TFrmConsulta.UniFormKeyDown(Sender: TObject; var Key: Word;

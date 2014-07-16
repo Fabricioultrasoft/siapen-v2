@@ -3,6 +3,7 @@ inherited FrmConfere: TFrmConfere
   ClientWidth = 1013
   Caption = 'Confere'
   WindowState = wsMaximized
+  ExplicitTop = -205
   ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -138,6 +139,8 @@ inherited FrmConfere: TFrmConfere
       ExplicitWidth = 1011
       ExplicitHeight = 177
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 1003
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
@@ -278,6 +281,8 @@ inherited FrmConfere: TFrmConfere
         ExplicitWidth = 977
         ExplicitHeight = 267
         inherited UniTabSheetPrincipalCadastro: TUniTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
           ExplicitWidth = 1001
           ExplicitHeight = 261
           object UniPageControlConfere: TUniPageControl
@@ -285,10 +290,10 @@ inherited FrmConfere: TFrmConfere
             Top = 56
             Width = 1001
             Height = 205
-            ActivePage = UniTabSheetDados
-            TabOrder = 10
-            Align = alBottom
-            Anchors = [akLeft, akRight, akBottom]
+            ActivePage = UniTabSheetCela
+            TabOrder = 0
+            Align = alClient
+            Anchors = [akLeft, akTop, akRight, akBottom]
             ExplicitTop = 55
             ExplicitWidth = 969
             object UniTabSheetDados: TUniTabSheet
@@ -961,103 +966,115 @@ inherited FrmConfere: TFrmConfere
               end
             end
           end
-          object UniDBEditNome: TUniDBEdit
-            Left = 11
-            Top = 28
-            Width = 382
-            Height = 22
-            DataField = 'NOME_INTERNO'
-            DataSource = DsCadastro
-            TabOrder = 4
-            Color = clWindow
-          end
-          object UniLabel1: TUniLabel
-            Left = 11
-            Top = 9
-            Width = 27
-            Height = 13
-            Caption = 'Nome'
-            TabOrder = 0
-          end
-          object UniDBEditNUMERO_ROUPA: TUniDBEdit
-            Left = 398
-            Top = 28
-            Width = 83
-            Height = 22
-            DataField = 'NUMERO_ROUPA'
-            DataSource = DsCadastro
-            TabOrder = 5
-            Color = clWindow
-          end
-          object UniLabel3: TUniLabel
-            Left = 398
-            Top = 9
-            Width = 71
-            Height = 13
-            Caption = 'Numero Roupa'
+          object UniPanel2: TUniPanel
+            Left = 0
+            Top = 0
+            Width = 1001
+            Height = 56
+            Align = alTop
+            Anchors = [akLeft, akTop, akRight]
             TabOrder = 1
-          end
-          object UniLabel4: TUniLabel
-            Left = 485
-            Top = 9
-            Width = 97
-            Height = 13
-            Caption = 'CI/OF. MOVIMENTO'
-            TabOrder = 2
-          end
-          object UniDBEditCI: TUniDBEdit
-            Left = 485
-            Top = 28
-            Width = 106
-            Height = 22
-            DataField = 'CI'
-            DataSource = DsCadastro
-            TabOrder = 6
-            Color = clWindow
-          end
-          object UniLabel5: TUniLabel
-            Left = 595
-            Top = 9
-            Width = 79
-            Height = 13
-            Caption = 'Data de Entrada'
-            TabOrder = 3
-          end
-          object UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker
-            Left = 596
-            Top = 28
-            Width = 94
-            Height = 22
-            DateTime = 41780.000000000000000000
-            DateFormat = 'dd/MM/yyyy'
-            TimeFormat = 'HH:mm:ss'
-            TabOrder = 7
-            DataField = 'DATA_ENTRADA'
-            DataSource = DsCadastro
-          end
-          object UniDBCheckBoxStatus: TUniDBCheckBox
-            Left = 700
-            Top = 32
-            Width = 61
-            Height = 17
-            DataField = 'ST'
-            DataSource = DsCadastro
-            ValueChecked = 'A'
-            ValueUnchecked = 'I'
-            Caption = 'ATIVO'
-            TabOrder = 8
-          end
-          object UniDBCheckBoxTransito: TUniDBCheckBox
-            Left = 767
-            Top = 32
-            Width = 98
-            Height = 17
-            DataField = 'EM_TRANSITO'
-            DataSource = DsCadastro
-            ValueChecked = 'A'
-            ValueUnchecked = 'I'
-            Caption = 'EM TRANSITO'
-            TabOrder = 9
+            ExplicitLeft = 224
+            ExplicitTop = 24
+            ExplicitWidth = 256
+            object UniDBEditNome: TUniDBEdit
+              Left = 11
+              Top = 28
+              Width = 382
+              Height = 22
+              DataField = 'NOME_INTERNO'
+              DataSource = DsCadastro
+              TabOrder = 1
+              Color = clWindow
+            end
+            object UniLabel1: TUniLabel
+              Left = 11
+              Top = 9
+              Width = 27
+              Height = 13
+              Caption = 'Nome'
+              TabOrder = 2
+            end
+            object UniDBEditNUMERO_ROUPA: TUniDBEdit
+              Left = 398
+              Top = 28
+              Width = 83
+              Height = 22
+              DataField = 'NUMERO_ROUPA'
+              DataSource = DsCadastro
+              TabOrder = 3
+              Color = clWindow
+            end
+            object UniLabel3: TUniLabel
+              Left = 398
+              Top = 9
+              Width = 71
+              Height = 13
+              Caption = 'Numero Roupa'
+              TabOrder = 4
+            end
+            object UniLabel4: TUniLabel
+              Left = 485
+              Top = 9
+              Width = 97
+              Height = 13
+              Caption = 'CI/OF. MOVIMENTO'
+              TabOrder = 5
+            end
+            object UniDBEditCI: TUniDBEdit
+              Left = 485
+              Top = 28
+              Width = 106
+              Height = 22
+              DataField = 'CI'
+              DataSource = DsCadastro
+              TabOrder = 6
+              Color = clWindow
+            end
+            object UniLabel5: TUniLabel
+              Left = 595
+              Top = 9
+              Width = 79
+              Height = 13
+              Caption = 'Data de Entrada'
+              TabOrder = 7
+            end
+            object UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker
+              Left = 596
+              Top = 28
+              Width = 94
+              Height = 22
+              DateTime = 41780.000000000000000000
+              DateFormat = 'dd/MM/yyyy'
+              TimeFormat = 'HH:mm:ss'
+              TabOrder = 8
+              DataField = 'DATA_ENTRADA'
+              DataSource = DsCadastro
+            end
+            object UniDBCheckBoxStatus: TUniDBCheckBox
+              Left = 700
+              Top = 32
+              Width = 61
+              Height = 17
+              DataField = 'ST'
+              DataSource = DsCadastro
+              ValueChecked = 'A'
+              ValueUnchecked = 'I'
+              Caption = 'ATIVO'
+              TabOrder = 9
+            end
+            object UniDBCheckBoxTransito: TUniDBCheckBox
+              Left = 767
+              Top = 32
+              Width = 98
+              Height = 17
+              DataField = 'EM_TRANSITO'
+              DataSource = DsCadastro
+              ValueChecked = 'A'
+              ValueUnchecked = 'I'
+              Caption = 'EM TRANSITO'
+              TabOrder = 10
+            end
           end
         end
       end

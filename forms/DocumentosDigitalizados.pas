@@ -171,41 +171,50 @@ begin
   try
     sArquivosPDFInterno := '';
     sPdf := '';
-    DsDocumentoProcessos.DataSet.first;
-    while not DsDocumentoProcessos.DataSet.eof do
+    if Dm.CONFIGURACAO = 'S' then
     begin
 
-      sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-        DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
-
-      if FileExists(sPdf) then
+      DsDocumentoProcessos.DataSet.first;
+      while not DsDocumentoProcessos.DataSet.eof do
       begin
-        if sArquivosPDFInterno = '' then
-          sArquivosPDFInterno := sPdf
-        else
-          sArquivosPDFInterno := sArquivosPDFInterno + '|' + sPdf;
+
+        sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+          DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
+
+        if FileExists(sPdf) then
+        begin
+          if sArquivosPDFInterno = '' then
+            sArquivosPDFInterno := sPdf
+          else
+            sArquivosPDFInterno := sArquivosPDFInterno + '|' + sPdf;
+        end;
+
+        DsDocumentoProcessos.DataSet.next;
+
       end;
 
-      DsDocumentoProcessos.DataSet.next;
+      if sArquivosPDFInterno <> '' then
+      begin
+        if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+          dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+          DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+            dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
 
-    end;
+        try
+          Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
+          Dm.MeuPDF.SetCode('Siapen - V2');
+          Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF +
+            'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString
+            + '.pdf');
+        finally
+          Dm.MeuPDF.Free;
+        end;
 
-    if sArquivosPDFInterno <> '' then
+      end;
+    end
+    else
     begin
-      if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
-        DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-          dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
-
-      try
-        Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
-        Dm.MeuPDF.SetCode('Siapen - V2');
-        Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\'
-          + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
-      finally
-        Dm.MeuPDF.Free;
-      end;
-
+      showmessage('Não tem acesso para gerar unificação!');
     end;
 
     UniURLFramePdf.URL := '/logo/logo_fundo.jpg';

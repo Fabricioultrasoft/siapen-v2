@@ -107,6 +107,10 @@ type
     UniLabel27: TUniLabel;
     UniDateTimePickerTomouCiencia: TUniDateTimePicker;
     UniLabel29: TUniLabel;
+    UniComboBoxResultadoCCT: TUniComboBox;
+    UniLabel10: TUniLabel;
+    ComunicaodeIsolamentoPreventivo1: TUniMenuItem;
+    CIdeEncaminhamentoparaCCT1: TUniMenuItem;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -130,11 +134,12 @@ type
     procedure SalvarClick(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure EditdtincidenciaExit(Sender: TObject);
-    procedure ImprimirOficio1Click(Sender: TObject);
     procedure UniBitBtnUPOrigemProcessoClick(Sender: TObject);
     procedure UniEditUPOrigemProcessoExit(Sender: TObject);
     procedure EditInicioIsolamentoChange(Sender: TObject);
     procedure EditQtdeDiasIsolamentoChange(Sender: TObject);
+    procedure ComunicaodeIsolamentoPreventivo1Click(Sender: TObject);
+    procedure CIdeEncaminhamentoparaCCT1Click(Sender: TObject);
   private
     procedure Limpa;
     { Private declarations }
@@ -242,6 +247,11 @@ begin
 
   Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger :=
     Dm.GLOBAL_ID_UP;
+
+  IF strtointdef(UniEditUPOrigemProcesso.Text, 0) > 0 then
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger :=
+      strtoint(UniEditUPOrigemProcesso.Text);
+
   Dsvincfaltadisciplinar.DataSet.fieldbyname('tipo').AsString :=
     ComboBoxtipoprocedimento.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('data_instauracao').Asdatetime :=
@@ -268,6 +278,8 @@ begin
     := ComboBoxClasConduta.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString :=
     homologado;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado_recurso_cct').AsString
+    := UniComboBoxResultadoCCT.Text;
 
   // NOVO EM 07/07/2014
   Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString :=
@@ -287,9 +299,6 @@ begin
 
   Cdsvincfaltadisciplinar.close;
   Cdsvincfaltadisciplinar.Open;
-
-  DBGridFaltas.Enabled := true;
-  DBGridFaltas.Refresh;
 
   { Limpar falta disciplinar e natureza da falta }
   Limpa;
@@ -478,6 +487,9 @@ begin
 
   ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('decisao_recurso').AsString;
+
+  UniComboBoxResultadoCCT.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
+    ('resultado_recurso_cct').AsString;
 
   ComboBoxClasConduta.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('classificacao_conduta').AsString;
@@ -788,46 +800,6 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.ImprimirOficio1Click(Sender: TObject);
-begin
-  inherited;
-  if Dsvincfaltadisciplinar.DataSet.IsEmpty then
-  begin
-    showmessage('Não tem falta.');
-    exit;
-  end;
-  //
-  Prompt('Informe o número do ofício:', '', mtInformation, mbOKCancel,
-    procedure(AResult: Integer; AText: string)
-    begin
-      if AResult = mrOK then
-      begin
-        Dm.GLOBAL_OFICIO := AText;
-        Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
-          Dsvincfaltadisciplinar.DataSet.fieldbyname
-          ('ID_VINC_FALTA_DISCIPLINAR').AsString;
-        FrmVisualizarRelatorio.FazExportacaoJPEG := true;
-        FrmVisualizarRelatorio.Nome := 'OF. Comunicação de Falta Disciplinar';
-
-        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-          'SYSTEM\OF. Comunicação de Falta Disciplinar.fr3';
-
-        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-          inttostr(Dm.GLOBAL_ID_UP) +
-          '\OF. Comunicação de Falta Disciplinar.fr3') then
-        begin
-          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-            'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
-            '\OF. Comunicação de Falta Disciplinar.fr3';
-        end;
-
-        FrmVisualizarRelatorio.ShowModal;
-
-      end;
-    end);
-
-end;
-
 procedure TFrmConselhoDisciplinar.DsCadastroDataChange(Sender: TObject;
 Field: TField);
 begin
@@ -920,6 +892,88 @@ begin
   DSHISTORICO_interno.DataSet.Open;
 end;
 
+procedure TFrmConselhoDisciplinar.CIdeEncaminhamentoparaCCT1Click(
+  Sender: TObject);
+begin
+  inherited;
+  if Dsvincfaltadisciplinar.DataSet.IsEmpty then
+  begin
+    showmessage('Não tem falta.');
+    exit;
+  end;
+  //
+  Prompt('Informe o número da CI:', '', mtInformation, mbOKCancel,
+    procedure(AResult: Integer; AText: string)
+    begin
+      if AResult = mrOK then
+      begin
+        Dm.GLOBAL_OFICIO := AText;
+        Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
+          Dsvincfaltadisciplinar.DataSet.fieldbyname
+          ('ID_VINC_FALTA_DISCIPLINAR').AsString;
+        FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        FrmVisualizarRelatorio.Nome := 'CI Encaminhamento CCT';
+
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+          'SYSTEM\CI Encaminhamento CCT.fr3';
+
+        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
+          inttostr(Dm.GLOBAL_ID_UP) +
+          '\CI Encaminhamento CCT.fr3') then
+        begin
+          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+            'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
+            '\CI Encaminhamento CCT.fr3';
+        end;
+
+        FrmVisualizarRelatorio.ShowModal;
+
+      end;
+    end);
+
+end;
+
+procedure TFrmConselhoDisciplinar.ComunicaodeIsolamentoPreventivo1Click(
+  Sender: TObject);
+begin
+  inherited;
+  if Dsvincfaltadisciplinar.DataSet.IsEmpty then
+  begin
+    showmessage('Não tem falta.');
+    exit;
+  end;
+  //
+  Prompt('Informe o número do ofício:', '', mtInformation, mbOKCancel,
+    procedure(AResult: Integer; AText: string)
+    begin
+      if AResult = mrOK then
+      begin
+        Dm.GLOBAL_OFICIO := AText;
+        Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
+          Dsvincfaltadisciplinar.DataSet.fieldbyname
+          ('ID_VINC_FALTA_DISCIPLINAR').AsString;
+        FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        FrmVisualizarRelatorio.Nome := 'OF. Comunicação de Falta Disciplinar';
+
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+          'SYSTEM\OF. Comunicação de Falta Disciplinar.fr3';
+
+        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
+          inttostr(Dm.GLOBAL_ID_UP) +
+          '\OF. Comunicação de Falta Disciplinar.fr3') then
+        begin
+          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+            'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
+            '\OF. Comunicação de Falta Disciplinar.fr3';
+        end;
+
+        FrmVisualizarRelatorio.ShowModal;
+
+      end;
+    end);
+
+end;
+
 procedure TFrmConselhoDisciplinar.PageControlModeloCadastroChange
   (Sender: TObject);
 begin
@@ -947,10 +1001,10 @@ var
   Dias: Integer;
 begin
   inherited;
-  if StrToIntDef(EditQtdeDiasIsolamento.Text, 0) > 0 then
+  if strtointdef(EditQtdeDiasIsolamento.Text, 0) > 0 then
   begin
     DataInicial := EditInicioIsolamento.datetime;
-    Dias := StrToInt(EditQtdeDiasIsolamento.Text);
+    Dias := strtoint(EditQtdeDiasIsolamento.Text);
     EditFimIsolamento.datetime := IncDay(DataInicial, Dias) - 1;
   end;
 
@@ -998,7 +1052,7 @@ begin
   if EditqtdediasPrev.Text <> '' then
   begin
     DataInicial := StrToDate(EditinicioisolamentoPrev.Text);
-    Dias := StrToInt(EditqtdediasPrev.Text);
+    Dias := strtoint(EditqtdediasPrev.Text);
     EditfimisolamentoPrev.Text := datetostr(IncDay(DataInicial, Dias) - 1);
   end;
 end;
@@ -1017,6 +1071,9 @@ end;
 
 procedure TFrmConselhoDisciplinar.Limpa;
 begin
+
+  DBGridFaltas.Enabled := true;
+  DBGridFaltas.Refresh;
 
   UniPageControlFaltaDisciplinar.ActivePageIndex := 0;
   DBLookupComboBoxfaltadisciplinar.KeyValue := null;
@@ -1046,6 +1103,7 @@ begin
   RadioGroupHomologado.ItemIndex := -1;
   ComboBoxClasConduta.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
+  UniComboBoxResultadoCCT.ItemIndex := -1;
   Editreabilitacao.Text := '';
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';

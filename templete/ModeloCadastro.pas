@@ -649,7 +649,7 @@ begin
 
   for iComp := 0 to Componentcount - 1 do
   begin
-
+{
     if (Components[iComp] is TUniDBEdit) then
     begin
       SetLength(CompDBEdit, High(CompDBEdit) + 2);
@@ -665,17 +665,17 @@ begin
       CompLookupComboBox[High(CompLookupComboBox)] :=
         (Components[iComp] as TUniDBLookupComboBox);
     end;
-
+}
     if (Components[iComp] is TClientDataSet) then
     begin
-
+{
       if TClientDataSet(Components[iComp]).Name <> CdsCadastro.Name then
       begin
         SetLength(CompClientDataSet, High(CompClientDataSet) + 2);
         CompClientDataSet[High(CompClientDataSet)] :=
           (Components[iComp] as TClientDataSet);
       end;
-
+}
       TClientDataSet(Components[iComp]).OnReconcileError :=
         ClientDataSetReconcileError;
 

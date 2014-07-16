@@ -13,9 +13,9 @@ object FrmAlterarSenha: TFrmAlterarSenha
   object UniLabel1: TUniLabel
     Left = 128
     Top = 22
-    Width = 61
+    Width = 71
     Height = 13
-    Caption = 'Senha Antes'
+    Caption = 'Senha anterior'
     TabOrder = 0
   end
   object Edit1: TUniEdit
@@ -114,9 +114,9 @@ object FrmAlterarSenha: TFrmAlterarSenha
   object UniLabel4: TUniLabel
     Left = 128
     Top = 70
-    Width = 58
+    Width = 57
     Height = 13
-    Caption = 'Nova Senha'
+    Caption = 'Nova senha'
     TabOrder = 2
   end
   object Edit2: TUniEdit

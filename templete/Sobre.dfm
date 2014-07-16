@@ -1,10 +1,12 @@
 object FrmSobre: TFrmSobre
+  AlignWithMargins = True
   Left = 0
   Top = 0
-  ClientHeight = 609
-  ClientWidth = 606
+  ClientHeight = 648
+  ClientWidth = 622
   Caption = 'Sobre o Siapen V2'
   Color = clBlack
+  BorderStyle = bsNone
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
   PixelsPerInch = 96
@@ -4867,7 +4869,7 @@ object FrmSobre: TFrmSobre
   end
   object Label7: TUniLabel
     Left = 86
-    Top = -4
+    Top = 1
     Width = 440
     Height = 15
     Caption = 
@@ -4884,12 +4886,12 @@ object FrmSobre: TFrmSobre
   object Label2: TUniLabel
     Left = 8
     Top = 510
-    Width = 688
+    Width = 616
     Height = 11
     TextConversion = txtHTML
-    Caption =
-      'Wagner Faria Fran'#231'a                <br>(67) 8404-8854' +
-      '   <br>wagff@hotmail.com'
+    Caption = 
+      'Wagner Faria Fran'#231'a                <br>(67) 8404-8854   <br>wagf' +
+      'f@hotmail.com'
     ParentFont = False
     Font.Color = clWhite
     Font.Name = 'Lucida Console'
@@ -4901,12 +4903,12 @@ object FrmSobre: TFrmSobre
   object Label3: TUniLabel
     Left = 7
     Top = 549
-    Width = 824
+    Width = 888
     Height = 11
     TextConversion = txtHTML
     Caption = 
-      'Alexandre Oliveira de Albuquerque<br> (67) 8401-2103                ' +
-      '     <br>alexandre@alexandresoftware.com.br'
+      'Alexandre Oliveira de Albuquerque<br> (67) 8401-2103            ' +
+      '         <br>alexandre@alexandresoftware.com.br'
     ParentFont = False
     Font.Color = clWhite
     Font.Name = 'Lucida Console'

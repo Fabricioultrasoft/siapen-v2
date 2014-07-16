@@ -47,7 +47,11 @@ uses
   ConsultaInterno in 'forms\ConsultaInterno.pas' {FrmConsultaInterno: TUniForm},
   DocumentosDigitalizados in 'forms\DocumentosDigitalizados.pas' {FrmDocumentosDigitalizados: TUniForm},
   uTraducao in 'lib\uTraducao.pas',
-  CentralDocumentosDigitalizados in 'forms\CentralDocumentosDigitalizados.pas' {FrmCentralDocumentosDigitalizados: TUniForm};
+  CentralDocumentosDigitalizados in 'forms\CentralDocumentosDigitalizados.pas' {FrmCentralDocumentosDigitalizados: TUniForm},
+  HistoricoInterno in 'forms\HistoricoInterno.pas' {FrmHistoricoInterno: TUniForm},
+  CadastroFuncionario in 'forms\CadastroFuncionario.pas' {FrmCadastroFuncionario: TUniForm},
+  Explore in 'templete\Explore.pas' {FrmExplore: TUniForm},
+  FileExplorer_Frame in 'templete\FileExplorer_Frame.pas' {frameFileExplorer: TUniFrame};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}

@@ -3,11 +3,14 @@ object FrmConsultaInterno: TFrmConsultaInterno
   Top = 0
   ClientHeight = 366
   ClientWidth = 1110
-  Caption = 'Consulta de Interno'
+  Caption = 'Consulta Geral de Interno'
   OnShow = UniFormShow
   Color = clBtnFace
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
+  ScreenMask.Enabled = True
+  ScreenMask.WaitData = True
+  ScreenMask.Message = 'Consultando base geral de internos(as)...'
   OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -19,7 +22,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Align = alLeft
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 0
-    ExplicitLeft = -2
     object DBImage1: TUniDBImage
       Left = 3
       Top = 101
@@ -43,8 +45,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
       object ToolButtonJuridico: TUniToolButton
         Left = 0
         Top = 0
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde...'
         ImageIndex = 23
-        Caption = 'Ficha do Interno.fr3'
+        Caption = 'Ficha do Interno'
+        OnClick = ToolButtonJuridicoClick
       end
     end
     object DBGrid1: TUniDBGrid
@@ -64,28 +70,24 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 973
     Height = 366
-    ActivePage = TabSheet1
+    ActivePage = TabSheet4
     TabOrder = 1
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     object TabSheet1: TUniTabSheet
       Caption = 'Nome'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 256
-      ExplicitHeight = 128
       object Label1: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
         Caption = 'Localizar:'
-        TabOrder = 5
+        TabOrder = 4
       end
       object RadioGroupStatus: TUniRadioGroup
-        Left = 575
+        Left = 554
         Top = -1
-        Width = 74
+        Width = 102
         Height = 61
         Items.Strings = (
           'Ativo'
@@ -188,19 +190,15 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Expanded = False
           end>
       end
-      object BitBtn1: TUniBitBtn
-        Left = 575
-        Top = 285
-        Width = 75
-        Height = 25
-        Caption = '&Sair'
-        TabOrder = 4
-      end
       object Editlocalizar: TUniEdit
-        Left = 159
+        Left = 200
         Top = 18
-        Width = 353
+        Width = 351
         Height = 32
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridConsulta
         CharCase = ecUpperCase
         ParentFont = False
         Font.Color = clLime
@@ -208,14 +206,14 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Font.Name = 'MS Sans Serif'
         TabOrder = 1
         Color = clBlack
-        CheckChangeDelay = 500
+        CheckChangeDelay = 1000
         OnChange = EditlocalizarChange
       end
       object RadioGroupTipoLocalizar: TUniRadioGroup
         Left = 56
-        Top = 2
-        Width = 97
-        Height = 56
+        Top = 4
+        Width = 138
+        Height = 53
         Items.Strings = (
           'Prontu'#225'rio'
           'Nome')
@@ -231,13 +229,17 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Width = 45
         Height = 13
         Caption = 'Localizar:'
-        TabOrder = 3
+        TabOrder = 2
       end
       object Editlocalizarvulgo: TUniEdit
         Left = 60
         Top = 15
         Width = 500
         Height = 32
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridVulgo
         CharCase = ecUpperCase
         ParentFont = False
         Font.Color = clLime
@@ -245,7 +247,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Font.Name = 'MS Sans Serif'
         TabOrder = 0
         Color = clNone
-        CheckChangeDelay = 500
+        CheckChangeDelay = 1000
         OnChange = EditlocalizarvulgoChange
       end
       object DBGridVulgo: TUniDBGrid
@@ -334,14 +336,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Expanded = False
           end>
       end
-      object BitBtn3: TUniBitBtn
-        Left = 680
-        Top = 275
-        Width = 75
-        Height = 25
-        Caption = '&Sair'
-        TabOrder = 2
-      end
     end
     object TabSheet3: TUniTabSheet
       Caption = 'Outro Nome'
@@ -354,13 +348,17 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Width = 45
         Height = 13
         Caption = 'Localizar:'
-        TabOrder = 3
+        TabOrder = 2
       end
       object Editlocalizaoutronome: TUniEdit
         Left = 61
         Top = 15
         Width = 689
         Height = 32
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridOutroNome
         CharCase = ecUpperCase
         ParentFont = False
         Font.Color = clLime
@@ -369,7 +367,8 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Anchors = [akLeft, akTop, akRight]
         TabOrder = 0
         Color = clBlack
-        CheckChangeDelay = 500
+        CheckChangeDelay = 1000
+        OnChange = EditlocalizaoutronomeChange
       end
       object DBGridOutroNome: TUniDBGrid
         Left = 10
@@ -457,28 +456,16 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Expanded = False
           end>
       end
-      object BitBtn2: TUniBitBtn
-        Left = 680
-        Top = 275
-        Width = 75
-        Height = 25
-        Caption = '&Sair'
-        TabOrder = 2
-      end
     end
     object TabSheet4: TUniTabSheet
       Caption = 'Filia'#231#227'o'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 256
-      ExplicitHeight = 128
       object Label4: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
         Caption = 'Localizar:'
-        TabOrder = 4
+        TabOrder = 3
       end
       object DBGridFiliacao: TUniDBGrid
         Left = 10
@@ -575,19 +562,15 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Expanded = False
           end>
       end
-      object BitBtn4: TUniBitBtn
-        Left = 680
-        Top = 275
-        Width = 75
-        Height = 25
-        Caption = '&Sair'
-        TabOrder = 3
-      end
       object Editfiliacao: TUniEdit
         Left = 60
         Top = 15
         Width = 500
         Height = 32
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridFiliacao
         CharCase = ecUpperCase
         ParentFont = False
         Font.Color = clLime
@@ -595,7 +578,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Font.Name = 'MS Sans Serif'
         TabOrder = 0
         Color = clBlack
-        CheckChangeDelay = 500
+        CheckChangeDelay = 1000
         OnChange = EditfiliacaoChange
       end
       object RadioGroupfiliacao: TUniRadioGroup
@@ -610,6 +593,57 @@ object FrmConsultaInterno: TFrmConsultaInterno
         TabOrder = 1
       end
     end
+  end
+  object Fechar: TUniBitBtn
+    AlignWithMargins = True
+    Left = 988
+    Top = 317
+    Width = 114
+    Height = 41
+    Hint = 'Fechar tela.'
+    ShowHint = True
+    ParentShowHint = False
+    Glyph.Data = {
+      36040000424D3604000000000000360000002800000010000000100000000100
+      2000000000000004000000000000000000000000000000000000FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00993232FF653232FFFF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00993232FF993232FF993232FF996565FF653232FFFF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00
+      FF00993232FF993232FFCC6565FFCC6565FFCC6565FF996565FF653232FF9932
+      32FF993232FF993232FF993232FF993232FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFCC6565FFCC6565FFCC6565FFCC6565FFCC6565FF653232FFFF99
+      99FFFF9999FFFF9999FFF0CAA6FFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFCC6565FFCC6565FFCC6565FFCC6565FFCC6565FF653232FF32CC
+      32FF00CC32FF00CC32FF00CC32FFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFCC6565FFCC6565FFCC6565FFCC6565FFCC6565FF653232FF32CC
+      65FF32CC32FF32CC32FF00CC32FFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFCC6565FFCC6565FFCC6565FFCC6565FFCC6565FF653232FF3299
+      32FF00CC32FF32CC32FF00CC32FFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF6565FFCC6565FFFF6565FFFFCCCCFFCC6565FF653232FF99CC
+      99FF65CC65FF32CC65FF32CC65FFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF6565FFFF6565FFFF9999FFFFCCCCFFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF6565FFFF6565FFFF6565FFFF6565FFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF6599FFFF6565FFFF6565FFFF6565FFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF9999FFFF6599FFFF6565FFFF6599FFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FFFF9999FFFF9999FFFF9999FFFF9999FFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00993232FF993232FFCC6565FFFF9999FFFF9999FFCC6565FF653232FFFFEC
+      CCFFFFFFCCFFFFFFCCFFFFFFCCFFF0CAA6FF993232FFFF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00993232FF996565FFCC6565FFCC6565FF653232FF9932
+      32FF993232FF993232FF993232FF993232FF993232FFFF00FF00FF00FF00FF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00993232FF993232FF653232FFFF00
+      FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
+    Caption = 'Fechar'
+    ParentFont = False
+    Font.Color = clNavy
+    Font.Style = [fsBold]
+    TabOrder = 2
+    OnClick = FecharClick
   end
   object DSOUTRONOEM: TDataSource
     DataSet = CDSOUTRONOME
@@ -726,25 +760,25 @@ object FrmConsultaInterno: TFrmConsultaInterno
       ' left join galeria on (interno.idgaleria = galeria.id_galeria)'
       'WHERE ID_INTERNO = -1'
       ' order by nome_interno ')
-    Left = 641
-    Top = 46
+    Left = 449
+    Top = 65534
   end
   object Dspconsulta: TDataSetProvider
     DataSet = SqlConsulta
-    Left = 685
-    Top = 46
+    Left = 477
+    Top = 65534
   end
   object CdsConsulta: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'Dspconsulta'
-    Left = 713
-    Top = 46
+    Left = 505
+    Top = 65534
   end
   object DsConsulta: TDataSource
     DataSet = CdsConsulta
-    Left = 741
-    Top = 46
+    Left = 533
+    Top = 65534
   end
   object Dsfiliacao: TDataSource
     DataSet = Cdsfiliacao
@@ -797,7 +831,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
   object SqlSelectInterno: TSQLQuery
     Params = <>
     SQL.Strings = (
-      'select first 50'
+      'select first 20'
       '    interno.nome_interno,'
       '    interno.mae,'
       '    interno.pai,'

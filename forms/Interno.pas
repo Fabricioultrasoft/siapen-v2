@@ -313,6 +313,7 @@ type
     UniRadioGroupStatus: TUniRadioGroup;
     UniDBDateTimePicker8: TUniDBDateTimePicker;
     UniLabel30: TUniLabel;
+    UniBitBtnFichaDisciplinarInterno: TUniBitBtn;
     procedure EditLocalizarChange(Sender: TObject);
     procedure UniBtnFiltrarClick(Sender: TObject);
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
@@ -368,6 +369,7 @@ type
     procedure UniBitBtnPaisClick(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure DsConsultaDataChange(Sender: TObject; Field: TField);
+    procedure UniBitBtnFichaDisciplinarInternoClick(Sender: TObject);
   private
     sNomeCampoFoto: string;
     FID_INTERNO: Integer;
@@ -387,7 +389,7 @@ implementation
 
 uses
   MainModule, uniGUIApplication, DmPrincipal, Lib, ServerModule, Main,
-  UniEditFormat, Aguarde, Consulta;
+  UniEditFormat, Aguarde, Consulta, VisualizarRelatorio;
 
 function FrmInterno: TFrmInterno;
 begin
@@ -897,6 +899,24 @@ begin
       UniLabelFaccao);
 
   end;
+
+end;
+
+procedure TFrmInterno.UniBitBtnFichaDisciplinarInternoClick(Sender: TObject);
+begin
+  inherited;
+  if CdsConsulta.IsEmpty then
+  begin
+    ShowMessage('Selecione um registro.');
+    exit;
+  end;
+
+  FrmAguarde.ShowModal(
+    procedure(Res: Integer)
+    begin
+      FrmVisualizarRelatorio.CarregarFichaDisciplinar
+        (DsConsulta.DataSet.fieldbyname('ID_INTERNO').AsInteger);
+    end);
 
 end;
 

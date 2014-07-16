@@ -132,16 +132,6 @@ type
     UniTabSheetDados: TUniTabSheet;
     UniTabSheetCela: TUniTabSheet;
     UniTabSheetSaida: TUniTabSheet;
-    UniDBEditNome: TUniDBEdit;
-    UniLabel1: TUniLabel;
-    UniDBEditNUMERO_ROUPA: TUniDBEdit;
-    UniLabel3: TUniLabel;
-    UniLabel4: TUniLabel;
-    UniDBEditCI: TUniDBEdit;
-    UniLabel5: TUniLabel;
-    UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker;
-    UniDBCheckBoxStatus: TUniDBCheckBox;
-    UniDBCheckBoxTransito: TUniDBCheckBox;
     UniLabel6: TUniLabel;
     UniDBEditRGI: TUniDBEdit;
     UniDBComboBoxSexo: TUniDBComboBox;
@@ -209,6 +199,17 @@ type
     UniLabelCondicao: TUniLabel;
     UniPanel1: TUniPanel;
     UniDBImage1: TUniDBImage;
+    UniPanel2: TUniPanel;
+    UniDBEditNome: TUniDBEdit;
+    UniLabel1: TUniLabel;
+    UniDBEditNUMERO_ROUPA: TUniDBEdit;
+    UniLabel3: TUniLabel;
+    UniLabel4: TUniLabel;
+    UniDBEditCI: TUniDBEdit;
+    UniLabel5: TUniLabel;
+    UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker;
+    UniDBCheckBoxStatus: TUniDBCheckBox;
+    UniDBCheckBoxTransito: TUniDBCheckBox;
     procedure UniFormCreate(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
@@ -951,7 +952,7 @@ begin
         dshistorico_estudo.DataSet.Post;
         dshistorico_estudo.DataSet.Append;
         dshistorico_estudo.DataSet.FieldByName('id_historico_estudo').AsInteger
-          := Generator('id_historico_estudo');
+          := Generator('idhistorico_estudo');
         dshistorico_estudo.DataSet.FieldByName('id_interno').AsString :=
           dscadastro.DataSet.FieldByName('id_interno').AsString;
         dshistorico_estudo.DataSet.FieldByName('data_historico')

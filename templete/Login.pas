@@ -26,7 +26,7 @@ uses
   uniLabel,
   uniTimer, Data.FMTBcd, Data.DB, Datasnap.DBClient, Datasnap.Provider,
   Data.SqlExpr, uniPanel, uniGroupBox, uniMultiItem, uniComboBox, uniDBComboBox,
-  uniDBLookupComboBox, uniDBEdit;
+  uniDBLookupComboBox, uniDBEdit, DateUtils;
 
 type
   TFrmLogin = class(TUniLoginForm)
@@ -52,7 +52,6 @@ type
     UniDBEdit1: TUniDBEdit;
     procedure UniBitBtn2Click(Sender: TObject);
     procedure UniBitBtnEntrarClick(Sender: TObject);
-    procedure UniLabel1Click(Sender: TObject);
     procedure UniLoginFormCreate(Sender: TObject);
     procedure UniEdit1Exit(Sender: TObject);
     procedure UniEdit1KeyDown(Sender: TObject; var Key: Word;
@@ -62,6 +61,7 @@ type
     procedure UniLoginFormShow(Sender: TObject);
     procedure UniTimer1Timer(Sender: TObject);
   private
+    procedure Saldacoes;
     { Private declarations }
   public
     { Public declarations }
@@ -238,6 +238,7 @@ begin
         end;
 
         ModalResult := mrOK; // Login is valid so proceed to MainForm
+        Saldacoes();
 
       end
       else
@@ -339,15 +340,8 @@ begin
   end;
 end;
 
-procedure TFrmLogin.UniLabel1Click(Sender: TObject);
-begin
-  dm.liberado := true;
-  ModalResult := mrOK;
-end;
-
 procedure TFrmLogin.UniLoginFormCreate(Sender: TObject);
 begin
-
   UniGroupBox1.Caption := dm.GLOBAL_LOCAL;
   LabelTitulo.Caption := dm.GLOBAL_NOME;
 
@@ -371,6 +365,26 @@ procedure TFrmLogin.UniTimer1Timer(Sender: TObject);
 begin
   UniTimer1.enabled := false;
   self.close;
+
+end;
+
+procedure TFrmLogin.Saldacoes();
+var
+  sSaudacoes: string;
+begin
+  if (time >= strtotime('00:00:00')) and (time < strtotime('11:59:59')) then
+    sSaudacoes := 'Bom Dia';
+  if (time >= strtotime('12:00:00')) and (time < strtotime('17:59:59')) then
+    sSaudacoes := 'Boa Tarde';
+  if (time >= strtotime('18:00:00')) and (time < strtotime('23:59:59')) then
+    sSaudacoes := 'Boa Noite';
+
+  Dm.DATA_HORA_ENTRADA := NOW;
+  Dm.DATA_HORA_ENCERRAR := IncHour(Dm.DATA_HORA_ENTRADA,Dm.HORA_TIMEOUT);
+//  Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,10);
+
+  humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
+    'Seja bem vindo!');
 
 end;
 

@@ -43,29 +43,25 @@ type
     Label1: TUniLabel;
     RadioGroupStatus: TUniRadioGroup;
     DBGridConsulta: TUniDBGrid;
-    BitBtn1: TUniBitBtn;
     Editlocalizar: TUniEdit;
     RadioGroupTipoLocalizar: TUniRadioGroup;
     TabSheet2: TUniTabSheet;
     Label2: TUniLabel;
     Editlocalizarvulgo: TUniEdit;
     DBGridVulgo: TUniDBGrid;
-    BitBtn3: TUniBitBtn;
     TabSheet3: TUniTabSheet;
     Label3: TUniLabel;
     Editlocalizaoutronome: TUniEdit;
     DBGridOutroNome: TUniDBGrid;
-    BitBtn2: TUniBitBtn;
     TabSheet4: TUniTabSheet;
     Label4: TUniLabel;
     DBGridFiliacao: TUniDBGrid;
-    BitBtn4: TUniBitBtn;
     Editfiliacao: TUniEdit;
     RadioGroupfiliacao: TUniRadioGroup;
+    Fechar: TUniBitBtn;
     procedure EditLocalizarChange(Sender: TObject);
     procedure RadioGroupStatusClick(Sender: TObject);
     procedure EditlocalizarvulgoChange(Sender: TObject);
-    procedure Edit1Change(Sender: TObject);
     procedure EditfiliacaoChange(Sender: TObject);
     procedure RadioGroupfiliacaoClick(Sender: TObject);
     procedure TabSheet4Show(Sender: TObject);
@@ -75,6 +71,8 @@ type
     procedure RadioGroupTipoLocalizarClick(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
+    procedure EditlocalizaoutronomeChange(Sender: TObject);
+    procedure FecharClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -89,7 +87,7 @@ implementation
 
 uses
   MainModule, uniGUIApplication, DmPrincipal, VisualizarRelatorio, ServerModule,
-  Lib;
+  Lib, Aguarde;
 
 function FrmConsultaInterno: TFrmConsultaInterno;
 begin
@@ -98,44 +96,6 @@ begin
 end;
 
 procedure TFrmConsultaInterno.EditLocalizarChange(Sender: TObject);
-begin
-  // if length(TEdit(sender).Text)<3 then
-  // Exit;
-
-  SQLoutronome.sql.text := SqlSelectInterno.sql.text +
-    ' where upper(OUTRO_NOME) like upper(' +
-    qs(Editlocalizaoutronome.text + '%') + ') order by nome_interno';
-
-  DSOUTRONOEM.DataSet.Close;
-  DSOUTRONOEM.DataSet.Open;
-
-end;
-
-procedure TFrmConsultaInterno.RadioGroupStatusClick(Sender: TObject);
-begin
-
-  // O evendo onChange do editLocalizar está chamando o evento Edit1Change() ao inves do EditLocalizarChange()
-  Edit1Change(nil);
-  if Editlocalizar.CanFocus then
-    Editlocalizar.SetFocus;
-
-end;
-
-procedure TFrmConsultaInterno.EditlocalizarvulgoChange(Sender: TObject);
-begin
-  // if length(TEdit(sender).Text)<3 then
-  // Exit;
-
-  SQLvulgo.sql.text := SqlSelectInterno.sql.text +
-    ' where upper(vulgo) like upper(' + qs(Editlocalizarvulgo.text + '%') +
-    ') order by nome_interno';
-
-  dsvulgo.DataSet.Close;
-  dsvulgo.DataSet.Open;
-
-end;
-
-procedure TFrmConsultaInterno.Edit1Change(Sender: TObject);
 var
   status, Campo: string;
 begin
@@ -156,14 +116,16 @@ begin
 
   if RadioGroupTipoLocalizar.ItemIndex = 0 then
   begin
-    SqlConsulta.sql.text := SqlSelectInterno.sql.text + ' where ' + status +
+    SqlConsulta.sql.text := SqlSelectInterno.sql.text +
+      ' where strlen(coalesce(interno.nome_interno,''''))>5 and ' + status +
       ' and interno.' + Campo + ' = ' + qs(Editlocalizar.text) +
       ' order by interno.nome_interno ';
   end;
 
   if RadioGroupTipoLocalizar.ItemIndex = 1 then
   begin
-    SqlConsulta.sql.text := SqlSelectInterno.sql.text + ' where ' + status +
+    SqlConsulta.sql.text := SqlSelectInterno.sql.text +
+      ' where strlen(coalesce(interno.nome_interno,''''))>5 and ' + status +
       ' and interno.' + Campo + ' like ' + qs(Editlocalizar.text + '%') +
       ' order by interno.nome_interno ';
   end;
@@ -171,6 +133,35 @@ begin
   DsConsulta.DataSet.Close;
   DsConsulta.DataSet.Open;
 
+end;
+
+procedure TFrmConsultaInterno.RadioGroupStatusClick(Sender: TObject);
+begin
+
+  // O evendo onChange do editLocalizar está chamando o evento Edit1Change() ao inves do EditLocalizarChange()
+  EditLocalizarChange(nil);
+  if Editlocalizar.CanFocus then
+    Editlocalizar.SetFocus;
+
+end;
+
+procedure TFrmConsultaInterno.EditlocalizarvulgoChange(Sender: TObject);
+begin
+  // if length(TEdit(sender).Text)<3 then
+  // Exit;
+
+  SQLvulgo.sql.text := SqlSelectInterno.sql.text +
+    ' where strlen(coalesce(interno.nome_interno,''''))>5 and upper(vulgo) like upper('
+    + qs(Editlocalizarvulgo.text + '%') + ') order by nome_interno';
+
+  dsvulgo.DataSet.Close;
+  dsvulgo.DataSet.Open;
+
+end;
+
+procedure TFrmConsultaInterno.FecharClick(Sender: TObject);
+begin
+  Close;
 end;
 
 procedure TFrmConsultaInterno.EditfiliacaoChange(Sender: TObject);
@@ -191,18 +182,31 @@ begin
   if status = 'mae' then
   begin
     Sqlfiliacao.sql.text := SqlSelectInterno.sql.text +
-      ' where upper(interno.mae) like upper(' + qs(Editfiliacao.text + '%') +
+      ' where strlen(coalesce(interno.nome_interno,''''))>5 and upper(interno.mae) like upper('
+      + qs(Editfiliacao.text + '%') +
       ') order by interno.mae, interno.nome_interno ';
   end
   else
   begin
     Sqlfiliacao.sql.text := SqlSelectInterno.sql.text +
-      ' where upper(interno.pai) like upper(' + qs(Editfiliacao.text + '%') +
+      ' where strlen(coalesce(interno.nome_interno,''''))>5 and upper(interno.pai) like upper('
+      + qs(Editfiliacao.text + '%') +
       ') order by interno.pai, interno.nome_interno ';
   end;
 
   Dsfiliacao.DataSet.Close;
   Dsfiliacao.DataSet.Open;
+
+end;
+
+procedure TFrmConsultaInterno.EditlocalizaoutronomeChange(Sender: TObject);
+begin
+  SQLoutronome.sql.text := SqlSelectInterno.sql.text +
+    ' where upper(OUTRO_NOME) like upper(' +
+    qs(Editlocalizaoutronome.text + '%') + ') order by OUTRO_NOME';
+
+  DSOUTRONOEM.DataSet.Close;
+  DSOUTRONOEM.DataSet.Open;
 
 end;
 
@@ -221,23 +225,31 @@ end;
 
 procedure TFrmConsultaInterno.ToolButtonJuridicoClick(Sender: TObject);
 begin
-  FrmVisualizarRelatorio.Nome := 'OF. Comunicação de Falta Disciplinar';
-  FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-    'SYSTEM\Ficha Disciplinar.fr3';
-  if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-    inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3')
-  then
-  begin
-    FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
-      inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3';
-  end;
-  FrmVisualizarRelatorio.ShowModal;
+
+  FrmAguarde.ShowModal(
+    procedure(Res: integer)
+    begin
+      FrmVisualizarRelatorio.CarregarFichaDisciplinar
+        (DsCadastro.DataSet.FieldByname('ID_INTERNO').asinteger);
+      {
+        FrmVisualizarRelatorio.Nome := 'Ficha Disciplinar';
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+        'SYSTEM\Ficha Disciplinar.fr3';
+        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
+        inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3') then
+        begin
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
+        'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3';
+        end;
+        FrmVisualizarRelatorio.ShowModal;
+      }
+    end);
 
 end;
 
 procedure TFrmConsultaInterno.UniFormCreate(Sender: TObject);
 var
-  iComp: Integer;
+  iComp: integer;
 begin
 
   for iComp := 0 to Componentcount - 1 do
@@ -247,6 +259,10 @@ begin
       TSQLQuery(Components[iComp]).SQLConnection := Dm.Conexao;
     end;
   end;
+
+  EditLocalizarChange(nil);
+  DsCadastro.DataSet.Close;
+  DsCadastro.DataSet.Open;
 
 end;
 
@@ -273,11 +289,7 @@ begin
   DBGridFiliacao.Columns[9].Title.Caption := Dm.GLOBAL_NIVEL_4;
 
   PageControl1.ActivePageIndex := 0;
-  Edit1Change(nil);
-  DsCadastro.DataSet.Close;
-  DsCadastro.DataSet.Open;
   Editlocalizar.SetFocus;
-
 
 end;
 
@@ -297,7 +309,7 @@ begin
 end;
 
 procedure TFrmConsultaInterno.DsCadastroDataChange(Sender: TObject;
-  Field: TField);
+Field: TField);
 begin
 
   with DsCadastro.DataSet do
@@ -310,7 +322,7 @@ begin
     if isempty then
       exit;
 
-    Dm.GLOBAL_ID_INTERNO := fieldbyname('ID_INTERNO').AsInteger;
+    Dm.GLOBAL_ID_INTERNO := FieldByname('ID_INTERNO').asinteger;
 
   end;
 

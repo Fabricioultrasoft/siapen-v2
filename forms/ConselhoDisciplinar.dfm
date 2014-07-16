@@ -2,7 +2,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   ClientHeight = 679
   ClientWidth = 1060
   Caption = 'Conselho Disciplinar'
-  ExplicitTop = -112
+  ExplicitTop = 8
   ExplicitWidth = 1076
   ExplicitHeight = 718
   PixelsPerInch = 96
@@ -31,6 +31,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 953
       Height = 610
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 953
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -48,8 +49,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -270,8 +271,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -441,8 +442,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -464,14 +465,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -509,8 +510,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetFotos: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -538,8 +539,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -550,17 +551,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMapa: TUniTabSheet
-              ExplicitLeft = 0
-              ExplicitTop = 0
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             object TabSheetConcelhoDisciplinar: TUniTabSheet
               Caption = 'Conselho Disciplinar'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 256
-              ExplicitHeight = 128
               DesignSize = (
                 935
                 552)
@@ -847,8 +844,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 TabOrder = 14
               end
               object UniMenuButton1: TUniMenuButton
-                Left = 813
-                Top = 345
+                Left = 596
+                Top = 346
                 Width = 121
                 Height = 25
                 DropdownMenu = PopupMenuIsolamento
@@ -919,15 +916,11 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Top = 108
                 Width = 929
                 Height = 236
-                ActivePage = UniTabSheetProcedimento
+                ActivePage = UniTabSheetRecurso
                 TabOrder = 19
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
                   Caption = 'Procedimento'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   DesignSize = (
                     921
                     208)
@@ -1193,11 +1186,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   end
                 end
                 object UniTabSheetResultado: TUniTabSheet
-                  Caption = 'Resultado'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
+                  Caption = 'Resultado - 1'#176' Grau '
                   object UniLabel12: TUniLabel
                     Left = 12
                     Top = 13
@@ -1226,7 +1215,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       ''
                       'ARQUIVADO'
                       'ABSOLVIDO'
-                      'CONDENADO'
+                      'SANCIONADO'
                       'EXTINTO')
                     TabOrder = 2
                   end
@@ -1343,11 +1332,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   end
                 end
                 object UniTabSheetRecurso: TUniTabSheet
-                  Caption = 'Recurso'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
+                  Caption = 'Recurso - Na CCT'
                   object RadioGroupRecurso: TUniRadioGroup
                     Left = 3
                     Top = 11
@@ -1367,7 +1352,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 84
                     Top = 3
                     Width = 622
-                    Height = 111
+                    Height = 160
                     TabOrder = 1
                     object ComboBoxDecisaoRecurso: TUniComboBox
                       Left = 130
@@ -1433,6 +1418,28 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       ParentShowHint = False
                       Caption = 'Data do envio'
                       TabOrder = 6
+                    end
+                    object UniComboBoxResultadoCCT: TUniComboBox
+                      Left = 17
+                      Top = 117
+                      Width = 270
+                      Height = 21
+                      Style = csDropDownList
+                      Items.Strings = (
+                        ''
+                        'ARQUIVADO'
+                        'ABSOLVIDO'
+                        'SANCIONADO'
+                        'EXTINTO')
+                      TabOrder = 7
+                    end
+                    object UniLabel10: TUniLabel
+                      Left = 17
+                      Top = 101
+                      Width = 86
+                      Height = 13
+                      Caption = 'Resultado da CCT'
+                      TabOrder = 8
                     end
                   end
                 end
@@ -1665,8 +1672,15 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
       Caption = '-'
     end
     object ImprimirOficio1: TUniMenuItem
-      Caption = 'Imprimir Of'#237'cio'
-      OnClick = ImprimirOficio1Click
+      Caption = 'Imprimir'
+      object ComunicaodeIsolamentoPreventivo1: TUniMenuItem
+        Caption = 'Comunica'#231#227'o de Isolamento Preventivo'
+        OnClick = ComunicaodeIsolamentoPreventivo1Click
+      end
+      object CIdeEncaminhamentoparaCCT1: TUniMenuItem
+        Caption = 'C.I. de Encaminhamento para CCT'
+        OnClick = CIdeEncaminhamentoparaCCT1Click
+      end
     end
   end
   object Sqlvincfaltadisciplinar: TSQLQuery

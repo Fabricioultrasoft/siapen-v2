@@ -65,6 +65,9 @@
 			<DCC_RemoteDebug>true</DCC_RemoteDebug>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
+			<VerInfo_MajorVer>2</VerInfo_MajorVer>
+			<VerInfo_Keys>CompanyName=Siapen - Sistema Integrado de Administração Penitênciária;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=SIAPEN;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
 			<DCC_ExeOutput>.\$(Platform)\..\</DCC_ExeOutput>
 			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
 			<Icon_MainIcon>siapen_v2_Icon.ico</Icon_MainIcon>
@@ -236,6 +239,24 @@
 				<Form>FrmCentralDocumentosDigitalizados</Form>
 				<FormType>dfm</FormType>
 				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\HistoricoInterno.pas">
+				<Form>FrmHistoricoInterno</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroFuncionario.pas">
+				<Form>FrmCadastroFuncionario</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Explore.pas">
+				<Form>FrmExplore</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FileExplorer_Frame.pas">
+				<Form>frameFileExplorer</Form>
+				<DesignClass>TUniFrame</DesignClass>
 			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>

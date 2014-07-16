@@ -14,7 +14,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
   MonitoredKeys.Keys = <>
   ScreenMask.Enabled = True
   ScreenMask.WaitData = True
-  ScreenMask.Message = 'Por favor aguarde... preparando registros...'
+  ScreenMask.Message = 'Por favor aguarde... gerando base web...'
   ScreenMask.Target = Owner
   OnCreate = UniFormCreate
   PixelsPerInch = 96
@@ -24,6 +24,9 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     Top = 37
     Width = 771
     Height = 424
+    ScreenMask.Enabled = True
+    ScreenMask.WaitData = True
+    ScreenMask.Message = 'Aguarde, montando o HTML...'
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1
@@ -60,9 +63,9 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Anchors = [akLeft, akTop, akRight, akBottom]
     end
     object UniBitBtn1: TUniBitBtn
-      Left = 676
-      Top = 2
-      Width = 74
+      Left = 612
+      Top = 3
+      Width = 125
       Height = 25
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
@@ -106,7 +109,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     object LabelTitulo: TUniLabel
       Left = 85
       Top = 4
-      Width = 575
+      Width = 481
       Height = 23
       AutoSize = False
       Caption = 'Visualizar Impress'#227'o'
@@ -829,5 +832,110 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Proportional = True
       Transparent = True
     end
+    object UniBitBtnRecarregar: TUniBitBtn
+      Left = 504
+      Top = 3
+      Width = 102
+      Height = 25
+      ScreenMask.Enabled = True
+      ScreenMask.WaitData = True
+      ScreenMask.Message = 'Aguarde, recarregando...'
+      Glyph.Data = {
+        36050000424D3605000000000000360400002800000010000000100000000100
+        0800000000000001000000000000000000000001000000010000FF00FF00043E
+        9000003A990008479F000141A400094FAF00034BB4003D73B4000C5DCF00004B
+        DE00035BDE00045BDE000F6ADE001169DE00004BE000004EE0000051E0000055
+        E000025CE200045EE2000160E5000D67E2000F6AE0000A6AE6000F6AE5000F6E
+        E7001069E500166EE6001674E7001871E5001176EA00137AEA001878E900297F
+        E9005580B0005B89BC005E8CBF001582EF001A82EE001E87EF001C89F0001F90
+        F3002A8CEF003585EA003688EA00318BEE003688ED003B8AEB003990EE00208C
+        F2002092F4003298F2003599F300369CF4003AA0F6004586CF004787D1006392
+        C700459AEF00509CEE00599EEE00529EF4005CA0EF0041AFFC005EA3F0005DA5
+        F20045B4FE005EB8F80066A7EF0070A9E60064A6F20070AFF40077B1F00073B0
+        F40076B2F4007AB4F2007AB5F60075BBF70076BDF9007FC5FA00809EBC0082BC
+        F60087C0F60089C4F70081C7FA0088C5F8008EC7F8009ECAF6009ECAF800B5D0
+        EE00A4CCF700A5DDFD00B7D3F000DED9D500CFDAE600C1DDFA00C4DDF900C9E3
+        FB00CCE3FB00CAE5FB00CCE7FB00CBE6FC00C5EDFF00D9E6F000D9EAFC00DCED
+        FC00EEEAE700F8F4EF00E3EEF700E2F0FE00E6F2FC00E9F3FC00EAF5FE00EEF6
+        FE00F6F4F600F8FAF600F8FBFF00F9FDFF00FEFEFF0000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000000
+        0000000000000000000000000000000000000000000000000000000000000001
+        01010101010000000000000000060608373924070302010000000000060B4872
+        675C595E5D220401000000060B58763C1A12121A3E6B5004010000064C762109
+        1A2F2C120E2C732401000C0D763C0E2C6E5F68621A11466A05010C416E1C1968
+        3C1111575A111A6C38010C51621E2C701776111D4C11125F45010C5362262A6E
+        3076761D1111125F4C010C4E70332554767676763C111A703D010C33764F2931
+        4D7676571D0E44761501000D5B76433228763A14112C76470600000C3F667654
+        33311F204176580B060000000C425B767062626E76470B0600000000000C0D36
+        4E56524117060600000000000000000C0C0C0C0D0D0000000000}
+      Caption = 'Recarregar'
+      TabOrder = 5
+      OnClick = UniBitBtnRecarregarClick
+    end
+  end
+  object UniTimerVisualizar: TUniTimer
+    OnTimer = UniTimerVisualizarTimer
+    Interval = 100
+    Enabled = False
+    ClientEvent.Strings = (
+      'function(sender)'
+      '{'
+      '   '
+      '}')
+    Left = 344
+    Top = 8
+  end
+  object SqlConsultaBackup: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select '
+      '   cast(substr(unidade_penal.sigla,1,8) as varchar(8)) UP,'
+      '    interno.nome_interno NOME,'
+      '    interno.rgi,'
+      '    interno.id_interno Id,'
+      '    INTERNO.VULGO,'
+      '    INTERNO.FACCAO,'
+      '    unidade_penal.sigla,'
+      '    pavilhao.pavilhao,'
+      '    galeria.galeria,'
+      '    solario.solario,'
+      '    cela.cela,'
+      '    iif(coalesce(interno.st,'#39'I'#39')='#39'A'#39','#39'ATIVO'#39', '#39'INATIVO'#39') status,'
+      '    interno.em_transito,'
+      
+        '    PROCEDENCIA.PROEDENCIA||'#39'/'#39'||coalesce(PROCEDENCIA.UF,'#39'UF'#39') A' +
+        'S PROCEDENCIA'
+      'from interno'
+      '   left join cela on (cela.id_cela = interno.idcela)'
+      
+        '   left join pavilhao on (interno.idpavilhao = pavilhao.id_pavil' +
+        'hao)'
+      
+        '   left join unidade_penal on (pavilhao.id_up = unidade_penal.id' +
+        '_up)'
+      '   left join galeria on (interno.idgaleria = galeria.id_galeria)'
+      '   left join solario on (interno.idsolario = solario.id_solario)'
+      
+        '   LEFT JOIN PROCEDENCIA ON (INTERNO.ID_PROCEDENCIA = PROCEDENCI' +
+        'A.ID_PROCEDENCIA)'
+      'where coalesce(interno.nome_interno,'#39#39')<>'#39#39)
+    Left = 8
+    Top = 8
   end
 end

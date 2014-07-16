@@ -134,6 +134,8 @@ function ConsultaTabela(fUniFormRetorno: TUniForm;
 function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
   UniLabelRetorno: TUniLabel): Boolean;
+function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
   UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
   UniLabelRetorno3: TUniLabel = nil): Boolean;
@@ -147,8 +149,8 @@ const
     'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
     'Novembro', 'Dezembro');
 
-//  var_disciplinar: string;
-//  var_data_disciplinar: TDateTime;
+  // var_disciplinar: string;
+  // var_data_disciplinar: TDateTime;
 
 implementation
 
@@ -768,37 +770,37 @@ function RegistraEntradaConexao(sLogin, sSenha: string): Boolean;
 var
   C: TUniClientInfoRec;
 begin
-{
-  sIp := UniApplication.RemoteAddress;
+  {
+    sIp := UniApplication.RemoteAddress;
 
-  C := UniApplication.ClientInfoRec;
+    C := UniApplication.ClientInfoRec;
 
-  sBrowser := C.BrowserType;
-  sVersao := IntToStr(C.BrowserVersion);
-  sOSType := C.OSType;
+    sBrowser := C.BrowserType;
+    sVersao := IntToStr(C.BrowserVersion);
+    sOSType := C.OSType;
 
-  DM.Conexao.ExecuteDirect
+    DM.Conexao.ExecuteDirect
     ('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) '
     + ' values (0, ' + Qs(sLogin) + ', ' + Qs(sSenha) + ', ''now'', ' + Qs(sIp)
     + ', ' + Qs('ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao +
     ' OSType:' + sOSType) + ')');
-}
+  }
 end;
 
 function RegistraSaidaConexao: Boolean;
 begin
-{
-  Exit;
+  {
+    Exit;
 
-  if DM.Conexao.Connected then
-  BEGIN
+    if DM.Conexao.Connected then
+    BEGIN
     DM.Conexao.ExecuteDirect
-      ('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) '
-      + ' values (0, ' + Qs(DM.GLOBAL_NOME_FUNCIONARIO_LOGADO) + ', ' + Qs('') +
-      ', ''now'', ' + Qs(sIp) + ', ' + Qs('SAIDA - Browser:' + sBrowser +
-      ' Versao:' + sVersao + ' OSType:' + sOSType) + ')');
-  END;
- }
+    ('insert into log_conexao (idlog_conexao, login, senha, data_hora, ip_maquina, tipo) '
+    + ' values (0, ' + Qs(DM.GLOBAL_NOME_FUNCIONARIO_LOGADO) + ', ' + Qs('') +
+    ', ''now'', ' + Qs(sIp) + ', ' + Qs('SAIDA - Browser:' + sBrowser +
+    ' Versao:' + sVersao + ' OSType:' + sOSType) + ')');
+    END;
+  }
 end;
 
 function BuscaTroca(Text, Busca, Troca: string): string;
@@ -1478,10 +1480,10 @@ begin
   Result := false;
   FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
   FrmConsulta.Width := fUniFormRetorno.Width;
-  FrmConsulta.CampoWhereSql := sCampoWhereSql;
-  FrmConsulta.Coluna := 1;
   FrmConsulta.Top := fUniFormRetorno.Top;
   FrmConsulta.Left := fUniFormRetorno.Left;
+  FrmConsulta.Coluna := 1;
+  FrmConsulta.CampoWhereSql := sCampoWhereSql;
   FrmConsulta.DsConsultaObjetiva.DataSet.Close;
   FrmConsulta.DsConsultaObjetiva.DataSet.Open;
   FrmConsulta.EditLocalizar.SetFocus;
@@ -1498,7 +1500,7 @@ begin
           UniLabelRetorno2.Caption := UniLabelRetorno.Caption;
         if assigned(UniLabelRetorno3) then
           UniLabelRetorno3.Caption := UniLabelRetorno.Caption;
-
+        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
       end;
     end);
 end;
@@ -1526,6 +1528,32 @@ begin
           FieldByName(sID).AsString;
         UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
           FieldByName(sDescricao).AsString;
+        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+      end;
+    end);
+end;
+
+function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
+sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
+begin
+  Result := false;
+  FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
+  FrmConsulta.Width := fUniFormRetorno.Width;
+  FrmConsulta.CampoWhereSql := sCampoWhereSql;
+  FrmConsulta.Coluna := 1;
+  FrmConsulta.Top := fUniFormRetorno.Top;
+  FrmConsulta.Left := fUniFormRetorno.Left;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
+  FrmConsulta.EditLocalizar.SetFocus;
+  FrmConsulta.ShowModal(
+    procedure(iResult: Integer)
+    begin
+      if iResult = mrOK then
+      begin
+        VariantRetorno := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
+          (sID).AsVariant;
+        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
       end;
     end);
 end;

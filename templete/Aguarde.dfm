@@ -8,6 +8,9 @@ object FrmAguarde: TFrmAguarde
   BorderStyle = bsNone
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
+  ScreenMask.Enabled = True
+  ScreenMask.WaitData = True
+  ScreenMask.Message = 'Aguarde...'
   OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -913,9 +916,10 @@ object FrmAguarde: TFrmAguarde
   end
   object UniLabel1: TUniLabel
     Left = 92
-    Top = 30
+    Top = 27
     Width = 75
-    Height = 19
+    Height = 24
+    AutoSize = False
     Caption = 'Aguarde...'
     ParentFont = False
     Font.Color = clNavy

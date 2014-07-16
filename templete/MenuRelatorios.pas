@@ -30,12 +30,14 @@ type
     SqlConsultaBackup: TSQLQuery;
     UniTreeView1: TUniTreeView;
     UniListBox1: TUniListBox;
+    Fechar: TUniBitBtn;
     procedure UniFormShow(Sender: TObject);
     procedure UniBitBtnVisualizarClick(Sender: TObject);
     procedure UniTreeView1Click(Sender: TObject);
     procedure UniListBox1DblClick(Sender: TObject);
     procedure UniFormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure FecharClick(Sender: TObject);
   private
     listtemp2: Tstrings;
     id_interno: integer;
@@ -70,26 +72,25 @@ begin
 end;
 
 procedure TFrmMenuRelatorios.UniBitBtnVisualizarClick(Sender: TObject);
-var
-  sCaminhoRelatorio: string;
 begin
-  sCaminhoRelatorio := UniListBox1.Text;
+  Dm.CaminhoRelatorio := UniListBox1.Text;
   if UniTreeView1.Selected.Text <> '[ Relatórios ]' then
-    sCaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
+    Dm.CaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
 
-  if ContemValor('R1', 'xx' + sCaminhoRelatorio) then
+  if ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
   begin
     Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
       procedure(AResult: integer; AText: string)
       begin
         if AResult = mrOK then
         begin
-          FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text +
-//            ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) +
-            ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
+          FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text
+            + ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
             ' order by interno.nome_interno ';
           FrmConsulta.Coluna := 1;
           FrmConsulta.Width := Self.Width;
+          FrmConsulta.Top := Self.Top;
+          FrmConsulta.Left := Self.Left;
           FrmConsulta.PreDescricao := uppercase(AText);
           FrmConsulta.EditLocalizar.SetFocus;
           FrmConsulta.ShowModal(
@@ -97,17 +98,18 @@ begin
             begin
               if Result = mrOK then
               begin
-                id_interno := FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('ID')
-                  .AsInteger;
+                id_interno := FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
+                  ('ID').AsInteger;
                 dm.GLOBAL_ID_INTERNO := id_interno;
-                FrmVisualizarRelatorio.Nome := sCaminhoRelatorio;
+                FrmConsulta.DsConsultaObjetiva.DataSet.close;
+                //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
                 FrmVisualizarRelatorio.ShowModal;
               end;
             end);
         end;
       end);
   end
-  else if ContemValor('R2', 'xx' + sCaminhoRelatorio) then
+  else if ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmTipoProcesso.ShowModal(
       procedure(Result: integer)
@@ -115,13 +117,13 @@ begin
         if Result = mrOK then
         begin
 
-          FrmVisualizarRelatorio.Nome := sCaminhoRelatorio;
+          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
           FrmVisualizarRelatorio.ShowModal;
 
         end;
       end);
   end
-  else if ContemValor('R3', 'xx' + sCaminhoRelatorio) then
+  else if ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodo.ShowModal(
       procedure(Result: integer)
@@ -129,13 +131,13 @@ begin
         if Result = mrOK then
         begin
 
-          FrmVisualizarRelatorio.Nome := sCaminhoRelatorio;
+          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
           FrmVisualizarRelatorio.ShowModal;
 
         end;
       end);
   end
-  else if ContemValor('R4', 'xx' + sCaminhoRelatorio) then
+  else if ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodoServidor.ShowModal(
       procedure(Result: integer)
@@ -143,7 +145,7 @@ begin
         if Result = mrOK then
         begin
 
-          FrmVisualizarRelatorio.Nome := sCaminhoRelatorio;
+          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
           FrmVisualizarRelatorio.ShowModal;
 
         end;
@@ -151,9 +153,9 @@ begin
   end
   else
   begin
-    if trim(sCaminhoRelatorio) <> '' then
+    if trim(Dm.CaminhoRelatorio) <> '' then
     begin
-      FrmVisualizarRelatorio.Nome := sCaminhoRelatorio;
+      //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
       FrmVisualizarRelatorio.ShowModal;
     end
     else
@@ -192,7 +194,7 @@ var
   sNomePasta: string;
 begin
   UniTreeView1.Items.Clear;
-  UniTreeView1.Items.Add(NIL,'[ Relatórios ]');
+  UniTreeView1.Items.Add(NIL, '[ Relatórios ]');
   SelectedNode := UniTreeView1.Items.Item[0];
   if SelectedNode <> nil then
   begin
@@ -217,10 +219,10 @@ begin
 end;
 
 procedure TFrmMenuRelatorios.UniFormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+Shift: TShiftState);
 begin
   if Key = vk_escape then
-    Self.Close;
+    Self.close;
 end;
 
 procedure TFrmMenuRelatorios.UniFormShow(Sender: TObject);
@@ -233,11 +235,11 @@ begin
   }
   CriarMenu;
 
-  if Dm.GLOBAL_IDCONEXAO > 0 then
+  if dm.GLOBAL_IDCONEXAO > 0 then
   begin
     try
-      DM.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(Self.Caption)
-        + ' where idconexao=' + IntToStr(Dm.GLOBAL_IDCONEXAO));
+      dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+        qs(Self.Caption) + ' where idconexao=' + inttostr(dm.GLOBAL_IDCONEXAO));
     except
     end;
   end;
@@ -275,6 +277,11 @@ begin
     end;
   end;
 
+end;
+
+procedure TFrmMenuRelatorios.FecharClick(Sender: TObject);
+begin
+  self.close;
 end;
 
 procedure TFrmMenuRelatorios.ListarArquivos(diretorioInicial, mascara: string;
@@ -318,16 +325,16 @@ begin
     end;
   end;
   AddLIstInOther(listatemp, listtemp2);
-{
-  if recursive then
-  begin
+  {
+    if recursive then
+    begin
     ListarDiretorios(diretorioInicial, listatemp);
     for i := 0 to listatemp.Count - 1 do
     begin
-      ListarArquivos(diretorioInicial + listatemp.Strings[i] + '\', mascara,
-        true, recursive, listatemp.Strings[i] + '\');
+    ListarArquivos(diretorioInicial + listatemp.Strings[i] + '\', mascara,
+    true, recursive, listatemp.Strings[i] + '\');
     end;
-  end;
+    end;
   }
   listatemp.Free;
 end;

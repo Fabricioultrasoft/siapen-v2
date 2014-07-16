@@ -10,7 +10,7 @@ uses
   Datasnap.Provider, Data.SqlExpr, uniStatusBar, uniBasicGrid, uniDBGrid,
   uniEdit, uniPageControl, uniButton, uniBitBtn, uniLabel, Vcl.Imaging.jpeg,
   uniImage, uniPanel, uniCheckBox, uniGroupBox, uniDBComboBox, uniMultiItem,
-  uniComboBox, uniDBLookupComboBox, uniDBEdit, uniDBImage, uniSpeedButton;
+  uniComboBox, uniDBLookupComboBox, uniDBEdit, uniDBImage;
 
 type
   TFrmCadastroFuncionario = class(TFrmModeloCadastro)
@@ -32,25 +32,9 @@ type
     Label19: TUniLabel;
     Label14: TUniLabel;
     Label15: TUniLabel;
-    Label20: TUniLabel;
-    Label21: TUniLabel;
-    Label10: TUniLabel;
-    Label22: TUniLabel;
-    Label11: TUniLabel;
     Label18: TUniLabel;
-    Label31: TUniLabel;
     FOTO: TUniLabel;
-    Label32: TUniLabel;
-    Label33: TUniLabel;
-    Label34: TUniLabel;
-    Label35: TUniLabel;
-    SpeedButton3: TUniSpeedButton;
-    Label36: TUniLabel;
-    SpeedButton1: TUniSpeedButton;
     Label37: TUniLabel;
-    Label38: TUniLabel;
-    Label39: TUniLabel;
-    Label40: TUniLabel;
     DBImageFOTOFUNCIONARIO: TUniDBImage;
     DBEditcodigo: TUniDBEdit;
     DBEdit2: TUniDBEdit;
@@ -63,24 +47,8 @@ type
     DBEdit14: TUniDBEdit;
     DBEditadmissao: TUniDBEdit;
     DBEditnascimento: TUniDBEdit;
-    DBLookupComboBox1: TUniDBLookupComboBox;
-    DBComboBox2: TUniDBComboBox;
-    DBComboBox1: TUniDBComboBox;
-    DBComboBox3: TUniDBComboBox;
-    DBLookupComboBox2: TUniDBLookupComboBox;
-    DBRadioGroup1: TUniDBComboBox;
     DBEdit13: TUniDBEdit;
-    DBImagedIGITAL: TUniDBImage;
-    DBEditdtlotacao: TUniDBEdit;
-    DBComboBox4: TUniDBComboBox;
-    DBRadioGroup3: TUniDBComboBox;
-    DBComboBox5: TUniDBComboBox;
-    DBLookupComboBoxPostoTrabalho: TUniDBLookupComboBox;
-    DBLookupComboBox4: TUniDBLookupComboBox;
     DBEdit5: TUniDBEdit;
-    DBComboBox6: TUniDBComboBox;
-    DBEdit18: TUniDBEdit;
-    DBEdit9: TUniDBEdit;
     TabSheet2: TUniTabSheet;
     Label9: TUniLabel;
     Label23: TUniLabel;
@@ -99,7 +67,6 @@ type
     DBEditcelular: TUniDBEdit;
     DBEdit21: TUniDBEdit;
     DBEdit22: TUniDBEdit;
-    DBLookupComboBox3: TUniDBLookupComboBox;
     TabSheetPermissao: TUniTabSheet;
     Label8: TUniLabel;
     Label5: TUniLabel;
@@ -388,6 +355,28 @@ type
     UniLabel3: TUniLabel;
     UniLabel4: TUniLabel;
     UniLabel5: TUniLabel;
+    UniLabelUnidadePenal: TUniLabel;
+    UniBitBtnUnidadePenal: TUniBitBtn;
+    UniDBEditUnidadePenal: TUniDBEdit;
+    UniBitBtnNaturalidade: TUniBitBtn;
+    UniLabelNaturalidade: TUniLabel;
+    UniDBEditNaturalidade: TUniDBEdit;
+    UniLabel6: TUniLabel;
+    UniLabel7: TUniLabel;
+    UniLabelCurso: TUniLabel;
+    UniBitBtnCurso: TUniBitBtn;
+    UniDBEditCurso: TUniDBEdit;
+    UniLabelPosto: TUniLabel;
+    UniBitBtnPosto: TUniBitBtn;
+    UniDBEditPosto: TUniDBEdit;
+    UniLabel9: TUniLabel;
+    UniBitBtnCidade: TUniBitBtn;
+    UniLabelCidade: TUniLabel;
+    UniDBEditCidade: TUniDBEdit;
+    CdsConsultaNOME_FUNCIONARIO: TStringField;
+    CdsConsultaMATRICULA: TStringField;
+    CdsConsultaLOGIN: TStringField;
+    CdsConsultaID_FUNCIONARIO: TIntegerField;
     procedure chConsultaOcorrenciaClick(Sender: TObject);
     procedure ChConsultarAgenteEquipeClick(Sender: TObject);
     procedure chconsultararmasClick(Sender: TObject);
@@ -621,16 +610,13 @@ type
     procedure DBComboBox2KeyPress(Sender: TObject; var Key: Char);
     procedure DBComboBox3KeyPress(Sender: TObject; var Key: Char);
     procedure DBComboBox5KeyPress(Sender: TObject; var Key: Char);
-    procedure DBGridConsultaDblClick(Sender: TObject);
     procedure DBImagedIGITALClick(Sender: TObject);
     procedure DBImageFOTOFUNCIONARIOClick(Sender: TObject);
-    procedure DsCadastroDataChange(Sender: TObject; Field: TField);
     procedure EditarClick(Sender: TObject);
     procedure EditLocalizarChange(Sender: TObject);
     procedure PageControlModeloCadastroChange(Sender: TObject);
     procedure SalvarClick(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
-    procedure UniFormShow(Sender: TObject);
     procedure ValidaPermissao(chConsulta, chEditar, chDeletar, chInserir,
       chrelatorio, chTodas: TUniCheckBox; sNomeCampo: string);
     procedure ValidaPermissaoOcorrencia(chConsulta, chEditar, chDeletar,
@@ -641,7 +627,18 @@ type
     procedure ValidaPermissaoTodasOcorrencia(chConsulta, chEditar, chDeletar,
       chInserir, chrelatorio, chdespacho, chTodas: TUniCheckBox);
     procedure UniBtnFiltrarClick(Sender: TObject);
+    procedure UniDBEditUnidadePenalExit(Sender: TObject);
+    procedure UniBitBtnUnidadePenalClick(Sender: TObject);
+    procedure UniBitBtnNaturalidadeClick(Sender: TObject);
+    procedure UniDBEditNaturalidadeExit(Sender: TObject);
+    procedure UniDBEditCursoExit(Sender: TObject);
+    procedure UniBitBtnCursoClick(Sender: TObject);
+    procedure UniBitBtnPostoClick(Sender: TObject);
+    procedure UniDBEditPostoExit(Sender: TObject);
+    procedure UniBitBtnCidadeClick(Sender: TObject);
+    procedure UniDBEditCidadeExit(Sender: TObject);
   private
+    procedure ValidaCampos;
     { Private declarations }
   public
     { Public declarations }
@@ -662,6 +659,78 @@ begin
     (UniMainModule.GetFormInstance(TFrmCadastroFuncionario));
 end;
 
+procedure TFrmCadastroFuncionario.UniBitBtnCidadeClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+
+    ConsultaTabela(Self,
+      'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
+      ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO', 'descricao',
+      UniDBEditCidade, UniLabelCidade);
+
+  end;
+
+end;
+
+procedure TFrmCadastroFuncionario.UniBitBtnCursoClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+
+    ConsultaTabela(Self, 'select id_CURSO codigo, CURSO from CURSO ' +
+      ' order by CURSO', 'CURSO', 'CODIGO', 'CURSO', UniDBEditCurso,
+      UniLabelCurso);
+
+  end;
+
+end;
+
+procedure TFrmCadastroFuncionario.UniBitBtnNaturalidadeClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+
+    ConsultaTabela(Self,
+      'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
+      ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO', 'descricao',
+      UniDBEditNaturalidade, UniLabelNaturalidade);
+
+  end;
+
+end;
+
+procedure TFrmCadastroFuncionario.UniBitBtnPostoClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+
+    ConsultaTabela(Self,
+      'select idPOSTO_TRABALHO codigo, POSTO_TRABALHO from POSTO_TRABALHO ' +
+      ' order by POSTO_TRABALHO', 'POSTO_TRABALHO', 'CODIGO', 'POSTO_TRABALHO',
+      UniDBEditPosto, UniLabelPosto);
+
+  end;
+
+end;
+
+procedure TFrmCadastroFuncionario.UniBitBtnUnidadePenalClick(Sender: TObject);
+begin
+  inherited;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+
+    ConsultaTabela(Self,
+      'select ID_UP codigo, NOME_UP||'' - ''||sigla nome from UNIDADE_PENAL order by NOME_UP',
+      'NOME_UP||sigla', 'codigo', 'nome', UniDBEditUnidadePenal,
+      UniLabelUnidadePenal);
+  end;
+end;
+
 procedure TFrmCadastroFuncionario.UniBtnFiltrarClick(Sender: TObject);
 begin
   // inherited;
@@ -672,6 +741,46 @@ begin
 
   DsConsulta.DataSet.Close;
   DsConsulta.DataSet.Open;
+
+end;
+
+procedure TFrmCadastroFuncionario.UniDBEditCidadeExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' +
+    ' WHERE id_cidade=', UniDBEditCidade, UniLabelCidade);
+
+end;
+
+procedure TFrmCadastroFuncionario.UniDBEditCursoExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select CURSO from CURSO ' + ' WHERE id_CURSO=',
+    UniDBEditCurso, UniLabelCurso);
+
+end;
+
+procedure TFrmCadastroFuncionario.UniDBEditNaturalidadeExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' +
+    ' WHERE id_cidade=', UniDBEditNaturalidade, UniLabelNaturalidade);
+
+end;
+
+procedure TFrmCadastroFuncionario.UniDBEditPostoExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select POSTO_TRABALHO from POSTO_TRABALHO ' +
+    ' WHERE idPOSTO_TRABALHO=', UniDBEditCurso, UniLabelCurso);
+
+end;
+
+procedure TFrmCadastroFuncionario.UniDBEditUnidadePenalExit(Sender: TObject);
+begin
+  inherited;
+  RetornaRegistro('select NOME_UP from UNIDADE_PENAL where ID_UP=',
+    UniDBEditUnidadePenal, UniLabelUnidadePenal);
 
 end;
 
@@ -795,8 +904,8 @@ begin
   if chrelatorio.Checked then
     permissao := permissao + 'R';
 
-  if dsCadastro.DataSet.State in [dsEdit, dsInsert] then
-    dsCadastro.DataSet.FieldByName(sNomeCampo).AsString := permissao;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+    DsCadastro.DataSet.FieldByName(sNomeCampo).AsString := permissao;
 
 end;
 
@@ -832,8 +941,8 @@ begin
   if chdespacho.Checked then
     permissao := permissao + 'P';
 
-  if dsCadastro.DataSet.State in [dsEdit, dsInsert] then
-    dsCadastro.DataSet.FieldByName(sNomeCampo).AsString := permissao;
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+    DsCadastro.DataSet.FieldByName(sNomeCampo).AsString := permissao;
 
 end;
 
@@ -1058,8 +1167,7 @@ begin
   end;
 end;
 
-procedure TFrmCadastroFuncionario.DsCadastroDataChange(Sender: TObject;
-  Field: TField);
+procedure TFrmCadastroFuncionario.ValidaCampos;
 var
   CONFERE, VISITANTE, TRABALHO, CADASTRO, EDUCACAO, PSICOSSOCIAL, JURIDICA,
     DISCIPLINA, INTELIGENCIA: string;
@@ -1074,74 +1182,74 @@ var
     REGRAVISITACAO: string;
 begin
 
-  if dsCadastro.DataSet.State in [dsBrowse] then
+  if DsCadastro.DataSet.State in dseditmodes then
   begin
 
-    CONFERE := dsCadastro.DataSet.FieldByName('PERMISSAO_CONFERE').AsString;
-    VISITANTE := dsCadastro.DataSet.FieldByName('PERMISSAO_VISITANTE').AsString;
-    TRABALHO := dsCadastro.DataSet.FieldByName
+    CONFERE := DsCadastro.DataSet.FieldByName('PERMISSAO_CONFERE').AsString;
+    VISITANTE := DsCadastro.DataSet.FieldByName('PERMISSAO_VISITANTE').AsString;
+    TRABALHO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_SETORTRABALHO').AsString;
-    CADASTRO := dsCadastro.DataSet.FieldByName('PERMISSAO_CADASTRO').AsString;
-    EDUCACAO := dsCadastro.DataSet.FieldByName
+    CADASTRO := DsCadastro.DataSet.FieldByName('PERMISSAO_CADASTRO').AsString;
+    EDUCACAO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_SETOREDUCACAO').AsString;
-    PSICOSSOCIAL := dsCadastro.DataSet.FieldByName
+    PSICOSSOCIAL := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_PSICOSSOCIAL').AsString;
-    JURIDICA := dsCadastro.DataSet.FieldByName('PERMISSAO_JURIDICA').AsString;
-    DISCIPLINA := dsCadastro.DataSet.FieldByName
+    JURIDICA := DsCadastro.DataSet.FieldByName('PERMISSAO_JURIDICA').AsString;
+    DISCIPLINA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_DISCIPLINA').AsString;
-    INTELIGENCIA := dsCadastro.DataSet.FieldByName
+    INTELIGENCIA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_INTELIGENCIA').AsString;
-    ENFERMAGEM := dsCadastro.DataSet.FieldByName
+    ENFERMAGEM := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_ENFERMAGEM').AsString;
-    FARMACIA := dsCadastro.DataSet.FieldByName('PERMISSAO_FARMACIA').AsString;
-    CLINICAMEDICA := dsCadastro.DataSet.FieldByName
+    FARMACIA := DsCadastro.DataSet.FieldByName('PERMISSAO_FARMACIA').AsString;
+    CLINICAMEDICA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_CLINICAMEDICA').AsString;
-    PSICOLOGIA := dsCadastro.DataSet.FieldByName
+    PSICOLOGIA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_PSICOLOGIA').AsString;
-    PSIQUIATRIA := dsCadastro.DataSet.FieldByName
+    PSIQUIATRIA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_PSIQUIATRIA').AsString;
-    SAUDE := dsCadastro.DataSet.FieldByName('PERMISSAO_SAUDE').AsString;
-    TERAPIAOCUPACIONAL := dsCadastro.DataSet.FieldByName
+    SAUDE := DsCadastro.DataSet.FieldByName('PERMISSAO_SAUDE').AsString;
+    TERAPIAOCUPACIONAL := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_TERAPIAOCUPACIONAL').AsString;
-    ODONTOLOGIA := dsCadastro.DataSet.FieldByName
+    ODONTOLOGIA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_ODONTOLOGIA').AsString;
-    PEDAGOGIA := dsCadastro.DataSet.FieldByName('PERMISSAO_PEDAGOGIA').AsString;
-    SERVICOSOCIAL := dsCadastro.DataSet.FieldByName
+    PEDAGOGIA := DsCadastro.DataSet.FieldByName('PERMISSAO_PEDAGOGIA').AsString;
+    SERVICOSOCIAL := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_SERVICOSOCIAL').AsString;
-    ARMAS := dsCadastro.DataSet.FieldByName('PERMISSAO_ARMAS').AsString;
-    Monitoramento := dsCadastro.DataSet.FieldByName
+    ARMAS := DsCadastro.DataSet.FieldByName('PERMISSAO_ARMAS').AsString;
+    Monitoramento := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_MONITORAMENTO').AsString;
-    OCORRENCIA := dsCadastro.DataSet.FieldByName
+    OCORRENCIA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_OCORRENCIA').AsString;
-    CONSELHODISCIPLINAR := dsCadastro.DataSet.FieldByName
+    CONSELHODISCIPLINAR := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_CONSELHODISCIPLINAR').AsString;
-    TRANSFERENCIAINTERNO := dsCadastro.DataSet.FieldByName
+    TRANSFERENCIAINTERNO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_TRANSFERENCIAINTERNO').AsString;
-    MUDANCACELA := dsCadastro.DataSet.FieldByName
+    MUDANCACELA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_MUDANCACELA').AsString;
-    SAIDAO := dsCadastro.DataSet.FieldByName('PERMISSAO_SAIDAO').AsString;
-    SAIDAO_CADASTRO := dsCadastro.DataSet.FieldByName
+    SAIDAO := DsCadastro.DataSet.FieldByName('PERMISSAO_SAIDAO').AsString;
+    SAIDAO_CADASTRO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_SAIDAO_CADASTRO').AsString;
-    CIRCULACAOINTERNO := dsCadastro.DataSet.FieldByName
+    CIRCULACAOINTERNO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_CIRCULACAOINTERNO').AsString;
-    MOVIMENTOSEMIABERTO := dsCadastro.DataSet.FieldByName
+    MOVIMENTOSEMIABERTO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_MOVIMENTOSEMIABERTO').AsString;
-    FUNCIONARIO := dsCadastro.DataSet.FieldByName
+    FUNCIONARIO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_FUNCIONARIO').AsString;
-    FUNCAOFUNCIONARIO := dsCadastro.DataSet.FieldByName
+    FUNCAOFUNCIONARIO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_FUNCAOFUNCIONARIO').AsString;
-    UNIDADEPENAL := dsCadastro.DataSet.FieldByName
+    UNIDADEPENAL := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_UNIDADEPENAL').AsString;
-    HORARIOFUNCIONARIO := dsCadastro.DataSet.FieldByName
+    HORARIOFUNCIONARIO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_HORARIOFUNCIONARIO').AsString;
-    PADRAOSISTEMA := dsCadastro.DataSet.FieldByName
+    PADRAOSISTEMA := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_PADRAOSISTEMA').AsString;
-    EQUIPE := dsCadastro.DataSet.FieldByName('PERMISSAO_EQUIPE').AsString;
-    LOCALPOSTOTRABALHO := dsCadastro.DataSet.FieldByName
+    EQUIPE := DsCadastro.DataSet.FieldByName('PERMISSAO_EQUIPE').AsString;
+    LOCALPOSTOTRABALHO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_LOCALPOSTOTRABALHO').AsString;
-    AGENTEPOREQUIPE := dsCadastro.DataSet.FieldByName
+    AGENTEPOREQUIPE := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_AGENTEPOREQUIPE').AsString;
-    REGRAVISITACAO := dsCadastro.DataSet.FieldByName
+    REGRAVISITACAO := DsCadastro.DataSet.FieldByName
       ('PERMISSAO_REGRAVISITACAO').AsString;
 
     chconsultarcadastro.Checked := ContemValor('C', CADASTRO);
@@ -1522,73 +1630,11 @@ begin
 
 end;
 
-procedure TFrmCadastroFuncionario.DBGridConsultaDblClick(Sender: TObject);
-var
-  cod: integer;
-begin
-
-  cod := DsConsulta.DataSet.FieldByName('id_funcionario').AsInteger;
-
-  SqlCadastro.ParamByName('id_funcionario').AsInteger := cod;
-
-  dsCadastro.DataSet.Close;
-  dsCadastro.DataSet.Open;
-
-  if not dsCadastro.DataSet.IsEmpty then
-  begin
-    {
-      dspermissaointeligencia.DataSet.Close;
-      SQLpermissaointeligencia.Params[0].Value := cod;
-      dspermissaointeligencia.DataSet.Open;
-
-      if dspermissaointeligencia.DataSet.RecordCount > 0 then
-      GroupBoxinteligencia.Visible := True
-      else
-    }
-    GroupBoxinteligencia.Visible := False;
-
-    EditarClick(nil);
-
-  end;
-
-end;
-
 procedure TFrmCadastroFuncionario.DBImageFOTOFUNCIONARIOClick(Sender: TObject);
 var
   sOrigem, sDestino: string;
   jpeg: TJpegImage;
 begin
-end;
-
-procedure TFrmCadastroFuncionario.UniFormShow(Sender: TObject);
-begin
-  inherited;
-
-  { dspermissaointeligencia.DataSet.Close;
-    SQLpermissaointeligencia.Params[0].Value := DsCadastro.DataSet.fieldbyname('id_funcionario').AsInteger;
-    dspermissaointeligencia.DataSet.Open;
-
-    if dspermissaointeligencia.DataSet.RecordCount > 0 then
-    GroupBoxinteligencia.Visible := True
-    else
-  }
-  GroupBoxinteligencia.Visible := False;
-
-  Dm.DSCIDADE.DataSet.Close;
-  Dm.DSCIDADE.DataSet.Open;
-
-  Dm.dscurso.DataSet.Close;
-  Dm.dscurso.DataSet.Open;
-
-  DBEditadmissao.Field.EditMask := '99\/99\/9999;1;_';
-  DBEditnascimento.Field.EditMask := '99\/99\/9999;1;_';
-  DBEditCPF.Field.EditMask := '999\.999\.999-99;1;_';
-  DBEditcep.Field.EditMask := '99.999-999;1;_';
-  DBEditfone.Field.EditMask := '(99)9999-9999;1;_';
-  DBEditcelular.Field.EditMask := '(99)9999-9999;1;_';
-  DBEditdtlotacao.Field.EditMask := '99\/99\/9999;1;_';
-  PageControlpermissao.ActivePageIndex := 0;
-
 end;
 
 procedure TFrmCadastroFuncionario.DBImagedIGITALClick(Sender: TObject);
@@ -2394,23 +2440,23 @@ end;
 
 procedure TFrmCadastroFuncionario.SalvarClick(Sender: TObject);
 begin
-  dsCadastro.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString := 'S';
-  dsCadastro.DataSet.FieldByName('SENHA').AsString :=
-    Senha(dsCadastro.DataSet.FieldByName('SENHA').AsString);
+  DsCadastro.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString := 'S';
+  DsCadastro.DataSet.FieldByName('SENHA').AsString :=
+    Senha(DsCadastro.DataSet.FieldByName('SENHA').AsString);
 
   if DBRadioGroupVISUALIZA_OUTRAS_UP.ItemIndex = -1 then
-    dsCadastro.DataSet.FieldByName('VISUALIZA_OUTRAS_UP').AsString := 'N';
+    DsCadastro.DataSet.FieldByName('VISUALIZA_OUTRAS_UP').AsString := 'N';
 
   if DBRadioGroupAutorizadoWeb.ItemIndex = -1 then
-    dsCadastro.DataSet.FieldByName('AUTORIZADO_WEB').AsString := 'N';
+    DsCadastro.DataSet.FieldByName('AUTORIZADO_WEB').AsString := 'N';
 
   if DBrgEntradaVisitante.ItemIndex = -1 then
-    dsCadastro.DataSet.FieldByName('PERMISSAO_ENTRADAVISITANTE')
+    DsCadastro.DataSet.FieldByName('PERMISSAO_ENTRADAVISITANTE')
       .AsString := 'N';
 
   // Eliminando todos os usuarios com essa variavel que deixou de ser usada, agora tem especifica
   // para cada item do menu configuracoes
-  dsCadastro.DataSet.FieldByName('CONFIGURACOES').AsString := 'N';
+  DsCadastro.DataSet.FieldByName('CONFIGURACOES').AsString := 'N';
 
   inherited;
 
@@ -2418,22 +2464,29 @@ end;
 
 procedure TFrmCadastroFuncionario.EditarClick(Sender: TObject);
 begin
+
+  SqlCadastro.Sql.Text:= 'SELECT * FROM FUNCIONARIO WHERE ID_FUNCIONARIO = '+
+  DsConsulta.DataSet.FieldByName('id_funcionario').Asstring;
+
+  TabSheetPermissao.TabVisible :=  (dm.CONFIGURACAO = 'S');
+
+  DsCadastro.DataSet.Close;
+  DsCadastro.DataSet.Open;
+
   inherited;
-  Dm.DSFUNCAOFUNCIONARIO.DataSet.Close;
-  Dm.DSFUNCAOFUNCIONARIO.DataSet.Open;
-
-  Dm.DsUP.DataSet.Close;
-  Dm.DsUP.DataSet.Open;
-
-  Dm.DsPostoTrabalho.DataSet.Close;
-  Dm.DsPostoTrabalho.DataSet.Open;
 
   PageControlFuncionario.ActivePageIndex := 0;
+  PageControlpermissao.ActivePageIndex := 0;
 
-  if dsCadastro.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString <> '' then
-    dsCadastro.DataSet.FieldByName('SENHA').AsString :=
-      Senha(dsCadastro.DataSet.FieldByName('SENHA').AsString);
-
+  if DsCadastro.DataSet.FieldByName('AUTORIZADO_DELPHI').AsString <> '' then
+    DsCadastro.DataSet.FieldByName('SENHA').AsString :=
+      Senha(DsCadastro.DataSet.FieldByName('SENHA').AsString);
+  UniDBEditCursoExit(nil);
+  UniDBEditNaturalidadeExit(nil);
+  UniDBEditPostoExit(nil);
+  UniDBEditUnidadePenalExit(nil);
+  UniDBEditCidadeExit(nil);
+  ValidaCampos;
 end;
 
 procedure TFrmCadastroFuncionario.chconsultararmasClick(Sender: TObject);

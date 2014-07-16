@@ -3,7 +3,8 @@ unit ServerModule;
 interface
 
 uses
-  SysUtils, uniGUIServer, uniGUIMainModule, uniGUIApplication;
+  SysUtils, uniGUIServer, uniGUIMainModule, uniGUIApplication, System.Classes,
+  uniGUIBaseClasses, uniGUIClasses, uniTimer;
 
 type
   TUniServerModule = class(TUniGUIServerModule)
@@ -22,11 +23,11 @@ implementation
 {$R *.dfm}
 
 uses
-  UniGUIVars;
+  UniGUIVars, DmPrincipal;
 
 function UniServerModule: TUniServerModule;
 begin
-  Result:=TUniServerModule(UniGUIServerInstance);
+  Result := TUniServerModule(UniGUIServerInstance);
 end;
 
 procedure TUniServerModule.FirstInit;
@@ -35,5 +36,7 @@ begin
 end;
 
 initialization
-  RegisterServerModuleClass(TUniServerModule);
+
+RegisterServerModuleClass(TUniServerModule);
+
 end.

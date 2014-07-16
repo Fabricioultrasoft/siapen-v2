@@ -411,6 +411,10 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Anchors = [akLeft, akTop, akRight, akBottom]
       object TabSheetCadastro: TUniTabSheet
         Caption = 'Cadastro'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 256
+        ExplicitHeight = 128
         object PanelCadastro: TUniPanel
           Left = 0
           Top = 0
@@ -423,6 +427,10 @@ object FrmModeloCadastro: TFrmModeloCadastro
       end
       object TabSheetConsulta: TUniTabSheet
         Caption = 'Consulta'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 256
+        ExplicitHeight = 128
         object PanelLocalizaConsulta: TUniPanel
           Left = 0
           Top = 0

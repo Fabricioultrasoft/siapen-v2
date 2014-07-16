@@ -21,7 +21,9 @@ object FrmLogin: TFrmLogin
     Height = 13
     Alignment = taCenter
     AutoSize = False
-    Caption = 'Supote: (67) 3901-1330'
+    Caption = 
+      'Supote: (67) 3901-3450[Teixeira] / 8404-8854[Wagner] / 8401-2103' +
+      '[Albuquerque]'
     Align = alBottom
     Anchors = [akLeft, akRight, akBottom]
     ParentFont = False
@@ -198,7 +200,6 @@ object FrmLogin: TFrmLogin
       Alignment = taCenter
       Caption = 'Login'
       TabOrder = 1
-      OnClick = UniLabel1Click
     end
   end
   object UniGroupBox3: TUniGroupBox

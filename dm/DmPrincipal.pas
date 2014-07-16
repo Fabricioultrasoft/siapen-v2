@@ -60,15 +60,15 @@ uses
   Uni,
   InterBaseUniProvider,
   MemDS,
-  frxChart, uniFileUpload//, PDFSplitMerge_TLB//;
-  ,ComObj, ActiveX, Graphics, OleServer, StdVCL, Variants;
+  frxChart, uniFileUpload // , PDFSplitMerge_TLB//;
+    , ComObj, ActiveX, Graphics, OleServer, StdVCL, Variants;
 
 // *********************************************************************//
 // GUIDS declared in the TypeLibrary. Following prefixes are used:
-//   Type Libraries     : LIBID_xxxx
-//   CoClasses          : CLASS_xxxx
-//   DISPInterfaces     : DIID_xxxx
-//   Non-DISP interfaces: IID_xxxx
+// Type Libraries     : LIBID_xxxx
+// CoClasses          : CLASS_xxxx
+// DISPInterfaces     : DIID_xxxx
+// Non-DISP interfaces: IID_xxxx
 // *********************************************************************//
 const
   // TypeLibrary Major and minor versions
@@ -81,69 +81,71 @@ const
   CLASS_CPDFSplitMergeObj: TGUID = '{50D41702-B618-41BA-8153-7AD7E8535574}';
 
 type
-// *********************************************************************//
-// Forward declaration of types defined in TypeLibrary
-// *********************************************************************//
+  // *********************************************************************//
+  // Forward declaration of types defined in TypeLibrary
+  // *********************************************************************//
   IPDFSplitMerge = interface;
   IPDFSplitMergeDisp = dispinterface;
 
-// *********************************************************************//
-// Declaration of CoClasses defined in Type Library
-// (NOTE: Here we map each CoClass to its Default Interface)
-// *********************************************************************//
+  // *********************************************************************//
+  // Declaration of CoClasses defined in Type Library
+  // (NOTE: Here we map each CoClass to its Default Interface)
+  // *********************************************************************//
   CPDFSplitMergeObj = IPDFSplitMerge;
 
-
-// *********************************************************************//
-// Interface: IPDFSplitMerge
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}
-// *********************************************************************//
+  // *********************************************************************//
+  // Interface: IPDFSplitMerge
+  // Flags:     (4416) Dual OleAutomation Dispatchable
+  // GUID:      {49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}
+  // *********************************************************************//
   IPDFSplitMerge = interface(IDispatch)
     ['{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}']
     procedure Split(const strInPdf: WideString; const strSplit: WideString;
-                    const strOutPdf: WideString); safecall;
-    procedure Merge(const strInFiles: WideString; const strOutFile: WideString); safecall;
+      const strOutPdf: WideString); safecall;
+    procedure Merge(const strInFiles: WideString;
+      const strOutFile: WideString); safecall;
     procedure SetCode(const strCode: WideString); safecall;
-    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer; safecall;
+    function GetNumberOfPages(const strFile: WideString;
+      const strPasswd: WideString): Integer; safecall;
   end;
 
-// *********************************************************************//
-// DispIntf:  IPDFSplitMergeDisp
-// Flags:     (4416) Dual OleAutomation Dispatchable
-// GUID:      {49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}
-// *********************************************************************//
+  // *********************************************************************//
+  // DispIntf:  IPDFSplitMergeDisp
+  // Flags:     (4416) Dual OleAutomation Dispatchable
+  // GUID:      {49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}
+  // *********************************************************************//
   IPDFSplitMergeDisp = dispinterface
     ['{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}']
     procedure Split(const strInPdf: WideString; const strSplit: WideString;
-                    const strOutPdf: WideString); dispid 1;
-    procedure Merge(const strInFiles: WideString; const strOutFile: WideString); dispid 2;
+      const strOutPdf: WideString); dispid 1;
+    procedure Merge(const strInFiles: WideString;
+      const strOutFile: WideString); dispid 2;
     procedure SetCode(const strCode: WideString); dispid 19;
-    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer; dispid 20;
+    function GetNumberOfPages(const strFile: WideString;
+      const strPasswd: WideString): Integer; dispid 20;
   end;
 
-// *********************************************************************//
-// The Class CoCPDFSplitMergeObj provides a Create and CreateRemote method to
-// create instances of the default interface IPDFSplitMerge exposed by
-// the CoClass CPDFSplitMergeObj. The functions are intended to be used by
-// clients wishing to automate the CoClass objects exposed by the
-// server of this typelibrary.
-// *********************************************************************//
+  // *********************************************************************//
+  // The Class CoCPDFSplitMergeObj provides a Create and CreateRemote method to
+  // create instances of the default interface IPDFSplitMerge exposed by
+  // the CoClass CPDFSplitMergeObj. The functions are intended to be used by
+  // clients wishing to automate the CoClass objects exposed by the
+  // server of this typelibrary.
+  // *********************************************************************//
   CoCPDFSplitMergeObj = class
     class function Create: IPDFSplitMerge;
     class function CreateRemote(const MachineName: string): IPDFSplitMerge;
   end;
 
-
-// *********************************************************************//
-// OLE Server Proxy class declaration
-// Server Object    : TCPDFSplitMergeObj
-// Help String      : PDFSplitMerge Class
-// Default Interface: IPDFSplitMerge
-// Def. Intf. DISP? : No
-// Event   Interface:
-// TypeFlags        : (2) CanCreate
-// *********************************************************************//
+  // *********************************************************************//
+  // OLE Server Proxy class declaration
+  // Server Object    : TCPDFSplitMergeObj
+  // Help String      : PDFSplitMerge Class
+  // Default Interface: IPDFSplitMerge
+  // Def. Intf. DISP? : No
+  // Event   Interface:
+  // TypeFlags        : (2) CanCreate
+  // *********************************************************************//
   TCPDFSplitMergeObj = class(TOleServer)
   private
     FIntf: IPDFSplitMerge;
@@ -152,15 +154,16 @@ type
     procedure InitServerData; override;
   public
     constructor Create(AOwner: TComponent); override;
-    destructor  Destroy; override;
+    destructor Destroy; override;
     procedure Connect; override;
     procedure ConnectTo(svrIntf: IPDFSplitMerge);
     procedure Disconnect; override;
     procedure Split(const strInPdf: WideString; const strSplit: WideString;
-                    const strOutPdf: WideString);
+      const strOutPdf: WideString);
     procedure Merge(const strInFiles: WideString; const strOutFile: WideString);
     procedure SetCode(const strCode: WideString);
-    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer;
+    function GetNumberOfPages(const strFile: WideString;
+      const strPasswd: WideString): Integer;
     property DefaultInterface: IPDFSplitMerge read GetDefaultInterface;
   published
   end;
@@ -530,7 +533,7 @@ type
     ImageListCorel2: TUniImageList;
     procedure UniGUIMainModuleCreate(Sender: TObject);
   private
-    FMeuPDF :TCPDFSplitMergeObj;
+    FMeuPDF: TCPDFSplitMergeObj;
 
     FTD: TTransactionDesc; // Para os Lançamentos .
     FLiberado: boolean;
@@ -645,18 +648,38 @@ type
     FGLOBAL_CENTRAL_DOCUMENTOS: string;
     Fvar_disciplinar: string;
     Fvar_data_disciplinar: TDateTime;
+    FDATA_HORA_ENTRADA: TDateTime;
+    FDATA_HORA_ENCERRAR: TDateTime;
+    FHORA_TIMEOUT: Integer;
+    FCaminhoRelatorio:String;
   public
-    property var_disciplinar: String read Fvar_disciplinar write Fvar_disciplinar;
-    property var_data_disciplinar: TDateTime read Fvar_data_disciplinar write Fvar_data_disciplinar;
-    property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS write FGLOBAL_CENTRAL_DOCUMENTOS;
-    property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
-    property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
-    property MeuPDF :TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
-    property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
-    property GLOBAL_ID_FALTA_DISCIPLINAR: String read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
-    property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL write FGLOBAL_DATA_INICIAL;
-    property GLOBAL_DATA_FINAL: String read FGLOBAL_DATA_FINAL write FGLOBAL_DATA_FINAL;
-    property GLOBAL_TIPOPROCESSO: String read FGLOBAL_TIPOPROCESSO write FGLOBAL_TIPOPROCESSO;
+    property CaminhoRelatorio: String read FCaminhoRelatorio
+      write FCaminhoRelatorio;
+
+    property HORA_TIMEOUT: Integer read FHORA_TIMEOUT write FHORA_TIMEOUT;
+    property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR write FDATA_HORA_ENCERRAR;
+    property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA write FDATA_HORA_ENTRADA;
+    property var_disciplinar: String read Fvar_disciplinar
+      write Fvar_disciplinar;
+    property var_data_disciplinar: TDateTime read Fvar_data_disciplinar
+      write Fvar_data_disciplinar;
+    property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS
+      write FGLOBAL_CENTRAL_DOCUMENTOS;
+    property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF
+      write FGLOBAL_CAMINHO_PDF;
+    property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF
+      write FGLOBAL_HTTP_PDF;
+    property MeuPDF: TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
+    property GLOBAL_IDFUNCIONARIO_FILTRO: Integer
+      read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
+    property GLOBAL_ID_FALTA_DISCIPLINAR: String
+      read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
+    property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL
+      write FGLOBAL_DATA_INICIAL;
+    property GLOBAL_DATA_FINAL: String read FGLOBAL_DATA_FINAL
+      write FGLOBAL_DATA_FINAL;
+    property GLOBAL_TIPOPROCESSO: String read FGLOBAL_TIPOPROCESSO
+      write FGLOBAL_TIPOPROCESSO;
     property GLOBAL_DATA: TDateTime read FGLOBAL_DATA write FGLOBAL_DATA;
     property IDSENHA: Integer read FIDSENHA write FIDSENHA;
     property GLOBAL_ID_UP: Integer read FGLOBAL_ID_UP write FGLOBAL_ID_UP;
@@ -843,7 +866,6 @@ type
 
     property GLOBAL_OFICIO: String read FGLOBAL_OFICIO write FGLOBAL_OFICIO;
 
-
     function ConectaSiapen: boolean;
     function CancelaTransGeral: boolean;
     function FinalizaTransGeral: boolean;
@@ -896,15 +918,21 @@ begin
         (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
       senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
 
-      FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL', 'AGEPEN'));
+      FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL',
+        'AGEPEN'));
       FGLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
       FGLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
-      FGLOBAL_DEPARTAMENTO := UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
-      FGLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
-      FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER','http://spf.mj.gov.br');
+      FGLOBAL_DEPARTAMENTO :=
+        UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
+      FGLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN',
+        'DIRETORIA', ''));
+      FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER',
+        'http://spf.mj.gov.br');
       FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
       FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
-      FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF', UniServerModule.StartPath);
+      FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF',
+        UniServerModule.StartPath);
+      FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT',2);
 
     end
     else
@@ -1018,93 +1046,137 @@ end;
 { TCPDFSplitMergeObj }
 class function CoCPDFSplitMergeObj.Create: IPDFSplitMerge;
 begin
-  Result := CreateComObject(CLASS_CPDFSplitMergeObj) as IPDFSplitMerge;
+  try
+    Result := CreateComObject(CLASS_CPDFSplitMergeObj) as IPDFSplitMerge;
+  except
+  end;
 end;
 
-class function CoCPDFSplitMergeObj.CreateRemote(const MachineName: string): IPDFSplitMerge;
+class function CoCPDFSplitMergeObj.CreateRemote(const MachineName: string)
+  : IPDFSplitMerge;
 begin
-  Result := CreateRemoteComObject(MachineName, CLASS_CPDFSplitMergeObj) as IPDFSplitMerge;
+  try
+    Result := CreateRemoteComObject(MachineName, CLASS_CPDFSplitMergeObj)
+      as IPDFSplitMerge;
+  except
+  end;
 end;
 
 procedure TCPDFSplitMergeObj.InitServerData;
 const
-  CServerData: TServerData = (
-    ClassID:   '{50D41702-B618-41BA-8153-7AD7E8535574}';
-    IntfIID:   '{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}';
-    EventIID:  '';
-    LicenseKey: nil;
-    Version: 500);
+  CServerData: TServerData = (ClassID: '{50D41702-B618-41BA-8153-7AD7E8535574}';
+    IntfIID: '{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}'; EventIID: '';
+    LicenseKey: nil; Version: 500);
 begin
-  ServerData := @CServerData;
+  try
+    ServerData := @CServerData;
+  except
+  end;
 end;
 
 procedure TCPDFSplitMergeObj.Connect;
 var
   punk: IUnknown;
 begin
-  if FIntf = nil then
-  begin
-    punk := GetServer;
-    Fintf:= punk as IPDFSplitMerge;
+  try
+    if FIntf = nil then
+    begin
+      punk := GetServer;
+      FIntf := punk as IPDFSplitMerge;
+    end;
+  except
   end;
 end;
 
 procedure TCPDFSplitMergeObj.ConnectTo(svrIntf: IPDFSplitMerge);
 begin
-  Disconnect;
-  FIntf := svrIntf;
+  try
+    Disconnect;
+    FIntf := svrIntf;
+  except
+  end;
 end;
 
-procedure TCPDFSplitMergeObj.DisConnect;
+procedure TCPDFSplitMergeObj.Disconnect;
 begin
-  if Fintf <> nil then
-  begin
-    FIntf := nil;
+  try
+    if FIntf <> nil then
+    begin
+      FIntf := nil;
+    end;
+  except
   end;
 end;
 
 function TCPDFSplitMergeObj.GetDefaultInterface: IPDFSplitMerge;
 begin
-  if FIntf = nil then
-    Connect;
-  Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
-  Result := FIntf;
+  try
+    if FIntf = nil then
+      Connect;
+    Assert(FIntf <> nil,
+      'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+    Result := FIntf;
+  except
+  end;
 end;
 
 constructor TCPDFSplitMergeObj.Create(AOwner: TComponent);
 begin
-  inherited Create(AOwner);
+  try
+    inherited Create(AOwner);
+  except
+  end;
 end;
 
 destructor TCPDFSplitMergeObj.Destroy;
 begin
-  inherited Destroy;
+  try
+    inherited Destroy;
+  except
+  end;
 end;
 
-procedure TCPDFSplitMergeObj.Split(const strInPdf: WideString; const strSplit: WideString;
-                                   const strOutPdf: WideString);
+procedure TCPDFSplitMergeObj.Split(const strInPdf: WideString;
+  const strSplit: WideString; const strOutPdf: WideString);
 begin
-  DefaultInterface.Split(strInPdf, strSplit, strOutPdf);
+  try
+    DefaultInterface.Split(strInPdf, strSplit, strOutPdf);
+  except
+  end;
 end;
 
-procedure TCPDFSplitMergeObj.Merge(const strInFiles: WideString; const strOutFile: WideString);
+procedure TCPDFSplitMergeObj.Merge(const strInFiles: WideString;
+  const strOutFile: WideString);
 begin
-  DefaultInterface.Merge(strInFiles, strOutFile);
+  try
+    DefaultInterface.Merge(strInFiles, strOutFile);
+  except
+  end;
 end;
 
 procedure TCPDFSplitMergeObj.SetCode(const strCode: WideString);
 begin
-  DefaultInterface.SetCode(strCode);
+  try
+    DefaultInterface.SetCode(strCode);
+  except
+  end;
 end;
 
-function TCPDFSplitMergeObj.GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer;
+function TCPDFSplitMergeObj.GetNumberOfPages(const strFile: WideString;
+  const strPasswd: WideString): Integer;
 begin
-  Result := DefaultInterface.GetNumberOfPages(strFile, strPasswd);
+  try
+    Result := DefaultInterface.GetNumberOfPages(strFile, strPasswd);
+  except
+  end;
 end;
 
 procedure Register;
 begin
-  RegisterComponents(dtlServerPage, [TCPDFSplitMergeObj]);
+  try
+    RegisterComponents(dtlServerPage, [TCPDFSplitMergeObj]);
+  except
+  end;
 end;
 
 initialization

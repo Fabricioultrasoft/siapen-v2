@@ -8,7 +8,6 @@ object MainForm: TMainForm
   Color = clBtnFace
   WindowState = wsMaximized
   OldCreateOrder = False
-  OnActivate = UniFormActivate
   Menu = MainMenu1
   MonitoredKeys.Keys = <>
   ActiveControl = UniBitBtnConfere
@@ -19,7 +18,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 128
     Width = 1036
-    Height = 513
+    Height = 480
     ScreenMask.Enabled = True
     ScreenMask.WaitData = True
     ScreenMask.Message = 'Aguarde...'
@@ -27,6 +26,7 @@ object MainForm: TMainForm
     TabOrder = 0
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
+    ExplicitHeight = 513
     object UniTabSheetPrincipal: TUniTabSheet
       Caption = 'Principal'
       object UniBitBtnConfere: TUniBitBtn
@@ -34,7 +34,6 @@ object MainForm: TMainForm
         Top = 6
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
         ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
@@ -324,7 +323,6 @@ object MainForm: TMainForm
         Top = 185
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
         ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           52060000424D5206000000000000120400002800000018000000180000000100
@@ -818,6 +816,7 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 5
+        OnClick = UniBitBtn6Click
       end
       object UniImage2: TUniImage
         Left = 344
@@ -827,6 +826,7 @@ object MainForm: TMainForm
         Center = True
         Stretch = True
         Proportional = True
+        OnClick = UniImage2Click
       end
       object UniDBLookupComboBoxUP: TUniDBLookupComboBox
         Left = 344
@@ -874,8 +874,9 @@ object MainForm: TMainForm
       end
       object EditHora: TUniEdit
         Left = 344
-        Top = 369
-        Width = 320
+        Top = 381
+        Width = 289
+        Height = 35
         ScreenMask.Enabled = True
         ScreenMask.Message = 'Pesquisando registros... aguarde...'
         CharCase = ecUpperCase
@@ -887,10 +888,10 @@ object MainForm: TMainForm
         Color = clBlack
       end
       object UniImageLogoMarca: TUniImage
-        Left = 457
-        Top = 397
-        Width = 78
-        Height = 52
+        Left = 639
+        Top = 381
+        Width = 32
+        Height = 33
         Center = True
         Stretch = True
         Picture.Data = {
@@ -3203,6 +3204,53 @@ object MainForm: TMainForm
       Anchors = [akLeft, akTop, akBottom]
     end
   end
+  object UniStatusBar1: TUniStatusBar
+    AlignWithMargins = True
+    Left = 3
+    Top = 611
+    Width = 1030
+    Height = 27
+    Hint = 
+      'Ao garantir um tempo de expira'#231#227'o, o sistema visa aumentar a seg' +
+      'uran'#231'a do usu'#225'rio e do sistema de autentica'#231#227'o.'
+    ShowHint = True
+    ParentShowHint = False
+    Panels = <
+      item
+        Text = 'Usu'#225'rio:'
+        Width = 50
+      end
+      item
+        Width = 300
+      end
+      item
+        Text = 'Tempo de conex'#227'o:'
+        Width = 120
+      end
+      item
+        Text = '00:00:00 '
+        Width = 50
+      end
+      item
+        Text = 'A sess'#227'o expira em:'
+        Width = 120
+      end
+      item
+        Text = '00:00:00 '
+        Width = 50
+      end
+      item
+        Text = 
+          'Supote: (67) 3901-3450[Teixeira] / 8404-8854[Wagner] / 8401-2103' +
+          '[Albuquerque]'
+        Width = 300
+      end>
+    SizeGrip = True
+    Align = alBottom
+    Anchors = [akLeft, akRight, akBottom]
+    ParentColor = False
+    Color = clWindow
+  end
   object DsUP: TDataSource
     DataSet = CdsUP
     Left = 164
@@ -3246,7 +3294,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011E002200A80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011E002200D00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -4407,6 +4455,7 @@ object MainForm: TMainForm
     end
     object Movimentao1: TUniMenuItem
       Caption = '&Movimenta'#231#227'o'
+      ImageIndex = 27
       object ransfernciadeInterno1: TUniMenuItem
         Caption = 'Transfer'#234'ncia de Interno (Movimento Externo)'
         ImageIndex = 24
@@ -4690,6 +4739,7 @@ object MainForm: TMainForm
     end
     object Mdulos1: TUniMenuItem
       Caption = 'M'#243'&dulos'
+      ImageIndex = 27
       object Patrimnio1: TUniMenuItem
         Caption = 'Patrim'#244'nio'
         ImageIndex = 13
@@ -4787,6 +4837,7 @@ object MainForm: TMainForm
       object Funcionrio2: TUniMenuItem
         Caption = 'Funcion'#225'rio'
         ImageIndex = 22
+        OnClick = Funcionrio2Click
       end
       object FunoFuncionrio1: TUniMenuItem
         Caption = 'Fun'#231#227'o Funcion'#225'rio'
@@ -4863,6 +4914,11 @@ object MainForm: TMainForm
       object ConsultaPROCED1: TUniMenuItem
         Caption = 'Consulta PROCED'
         ImageIndex = 3
+      end
+      object ExploredoServidor1: TUniMenuItem
+        Caption = 'Explore do Servidor'
+        ImageIndex = 24
+        OnClick = ExploredoServidor1Click
       end
     end
     object Agendamento1: TUniMenuItem
@@ -4942,7 +4998,7 @@ object MainForm: TMainForm
     Left = 232
     Top = 56
     Bitmap = {
-      494C01011A006400AC0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011A006400D40020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8659,5 +8715,27 @@ object MainForm: TMainForm
     Messages.BrowseText = 'Selecionar'
     Left = 400
     Top = 8
+  end
+  object UniTimer2: TUniTimer
+    OnTimer = UniTimer2Timer
+    Enabled = False
+    ClientEvent.Strings = (
+      'function(sender)'
+      '{'
+      '   '
+      '}')
+    Left = 408
+    Top = 64
+  end
+  object TimerShowAcao: TUniTimer
+    OnTimer = TimerShowAcaoTimer
+    Enabled = False
+    ClientEvent.Strings = (
+      'function(sender)'
+      '{'
+      '   '
+      '}')
+    Left = 472
+    Top = 64
   end
 end
