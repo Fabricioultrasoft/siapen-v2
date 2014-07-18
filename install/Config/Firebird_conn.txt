@@ -1,0 +1,16 @@
+﻿DriverName=Firebird
+#Database=www.siapen.ddns.com.br:C:\SIAP-DATACENTER.FDB
+#Database=localhost:C:\apps\@Samsung\C\SIAPEN\SIAPEN.FDB
+Database=localhost:C:\apps\siapen-v2\database\siapen.fdb
+RoleName=RoleName
+User_Name=sysdba
+Password=masterkey
+ServerCharSet=win1252
+SQLDialect=3
+ErrorResourceFile=
+LocaleCode=0000
+BlobSize=-1
+CommitRetain=False
+WaitOnLocks=False
+IsolationLevel=ReadCommitted
+Trim Char=true

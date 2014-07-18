@@ -1,0 +1,20 @@
+.unigui_theme {
+		border-left-width: 6px;
+		border-bottom-width: 6px;
+		window-header-height: 37px;
+		tab-header-height: 38px;
+		form-show-icon: false;
+		panel-header-height: 38px;
+		menu-band-height: 37px;
+}
+
+
+.x-btn-default-small .x-btn-inner {
+  font:normal 11px tahoma, arial, helvetica, sans-serif;
+}
+.x-btn-default-medium .x-btn-inner {
+  font:normal 11px tahoma, arial, helvetica, sans-serif;
+}
+.x-btn-default-large .x-btn-inner {
+  font:normal 11px tahoma, arial, helvetica, sans-serif;
+}
