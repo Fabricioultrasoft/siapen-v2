@@ -649,7 +649,14 @@ begin
 
   for iComp := 0 to Componentcount - 1 do
   begin
-
+    {
+      if (Components[iComp] is TUniTabSheet) then
+      begin
+      TUniTabSheet(Components[iComp]).Caption :=
+      '<a class="sexybutton sexymedium" href="#"><span><span>' +
+      TUniTabSheet(Components[iComp]).Caption + '</span></span></a>';
+      end;
+    }
     if (Components[iComp] is TUniDBEdit) then
     begin
       SetLength(CompDBEdit, High(CompDBEdit) + 2);
@@ -712,15 +719,15 @@ end;
 
 procedure TFrmModeloCadastro.UniFormShow(Sender: TObject);
 begin
+
   if Dm.GLOBAL_IDCONEXAO > 0 then
   begin
     try
-      DM.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(Self.Caption)
-        + ' where idconexao=' + IntToStr(Dm.GLOBAL_IDCONEXAO));
+      Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+        qs(Self.Caption) + ' where idconexao=' + IntToStr(Dm.GLOBAL_IDCONEXAO));
     except
     end;
   end;
-
 
   if FileExists(UniServerModule.StartPath + 'logo\logo_fundo.jpg') then
     UniImageLogoMarca.Picture.LoadFromFile(UniServerModule.StartPath +
@@ -739,8 +746,8 @@ begin
   if EditLocalizar.CanFocus then
     EditLocalizar.SetFocus;
 
-  PanelTituloModeloCadastro.caption := Self.caption;
-  LabelTitulo.caption := Self.caption;
+  PanelTituloModeloCadastro.Caption := Self.Caption;
+  LabelTitulo.Caption := Self.Caption;
 
 end;
 

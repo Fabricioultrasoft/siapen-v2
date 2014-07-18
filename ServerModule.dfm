@@ -724,7 +724,8 @@ object UniServerModule: TUniServerModule
     'assets/js/humane.min.js'
     'js/jquery.min.js'
     'js/jquery.maskedinput-1.3.min.js'
-    'js/jquery.numberMask.js')
+    'js/jquery.numberMask.js'
+    'css/sexybuttons.css')
   CustomCSS.Strings = (
     'html,'
     'body {'
