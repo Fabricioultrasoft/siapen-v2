@@ -1,7 +1,7 @@
 ﻿DriverName=Firebird
-#Database=www.siapen.com.br:siapen
+Database=www.siapen.com.br:siapen
 #Database=localhost:C:\apps\@Samsung\C\SIAPEN\SIAPEN.FDB
-Database=localhost:C:\apps\siapen-v2\database\siapen.fdb
+#Database=localhost:C:\apps\siapen-v2\database\siapen.fdb
 RoleName=RoleName
 User_Name=sysdba
 Password=masterkey

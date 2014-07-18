@@ -54,7 +54,6 @@ type
       Shift: TShiftState);
     procedure UniFormShow(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
-    procedure UniFormCreate(Sender: TObject);
     procedure UniFormDestroy(Sender: TObject);
     procedure FecharClick(Sender: TObject);
   private
@@ -93,9 +92,9 @@ end;
 
 procedure TFrmConsulta.EditLocalizarChange(Sender: TObject);
 begin
-  UniBtnFiltrar.OnClick(NIL);
-
-  end;
+  if EditLocalizar.canfocus then
+    UniBtnFiltrar.OnClick(NIL);
+end;
 
 procedure TFrmConsulta.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -124,11 +123,25 @@ end;
 
 procedure TFrmConsulta.FecharClick(Sender: TObject);
 begin
-close;
+  close;
 end;
 
 procedure TFrmConsulta.UniBitBtnConfirmaClick(Sender: TObject);
 begin
+
+  if Dm.ID_RETORNO_FORM <> '' then
+    Dm.ID_RETORNO_CONSULTAOBJETIVA := DsConsultaObjetiva.DataSet.FieldByName
+      (Dm.ID_RETORNO_FORM).AsInteger;
+
+  if Dm.DESC_RETORNO_FORM <> '' then
+    Dm.DESC_RETORNO_CONSULTAOBJETIVA := DsConsultaObjetiva.DataSet.FieldByName
+      (Dm.DESC_RETORNO_FORM).AsString;
+
+  Dm.ID_RETORNO_FORM := '';
+  Dm.DESC_RETORNO_FORM := '';
+  Dm.CampoWhereSqlConsulta := '';
+  Dm.PreDescricaoConsulta := '';
+
   Self.ModalResult := mrOk;
 end;
 
@@ -187,7 +200,7 @@ begin
     end;
 
     AddWhere(SqlConsultaObjetiva, sWhere);
-    TClientDataSet(DBGridConsulta.DataSource.DataSet).Close;
+    TClientDataSet(DBGridConsulta.DataSource.DataSet).close;
     TClientDataSet(DBGridConsulta.DataSource.DataSet).Open;
     SqlConsultaObjetiva.SQL.Text := sSql;
 
@@ -202,23 +215,17 @@ begin
   FCampoWhereSql := '';
 end;
 
-procedure TFrmConsulta.UniFormCreate(Sender: TObject);
-begin
-  FCOLUNA := 1;
-  FPreDescricao := '';
-  FCampoWhereSql := '';
-end;
-
 procedure TFrmConsulta.UniFormDestroy(Sender: TObject);
 begin
-  DM.SqlConsultaUnica.Close;
+  CdsConsultaObjetiva.close;
+  Dm.SqlConsultaUnica.close;
 end;
 
 procedure TFrmConsulta.UniFormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if Key = vk_escape then
-    Self.Close;
+    Self.close;
 
   if Key = VK_F10 then
   begin
@@ -229,14 +236,27 @@ end;
 
 procedure TFrmConsulta.UniFormShow(Sender: TObject);
 begin
+  FCOLUNA := 1;
+
+  Self.Width := Dm.UniFormRetornoConsulta.Width;
+  Self.Top := Dm.UniFormRetornoConsulta.Top;
+  Self.Left := Dm.UniFormRetornoConsulta.Left;
+  SqlConsultaObjetiva.SQL.Text := Dm.SqlConsultaObjetiva;
+
+  FCampoWhereSql := Dm.CampoWhereSqlConsulta;
+  FPreDescricao := Dm.PreDescricaoConsulta;
+
+  Self.DsConsultaObjetiva.DataSet.close;
+  Self.DsConsultaObjetiva.DataSet.Open;
+
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filter := '';
   TClientDataSet(DBGridConsulta.DataSource.DataSet).Filtered := false;
 
-  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
-
   EditLocalizar.Text := FPreDescricao;
   EditLocalizar.SetFocus;
+  EditLocalizar.SelectAll;
+  if FPreDescricao <> '' then
+    Self.Caption := 'Consulta iniciada com as letras: '+FPreDescricao;
 
 end;
 

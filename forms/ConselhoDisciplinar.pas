@@ -338,30 +338,22 @@ begin
 
     end;
   }
-
-  FrmConsulta.SqlConsultaObjetiva.SQL.Text :=
+  Dm.UniFormRetornoConsulta := self;
+  Dm.SqlConsultaObjetiva :=
     'SELECT ID_FALTA_DISCIPLINAR as "Codigo", FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO as "Descrição" FROM FALTA_DISCIPLINAR ORDER BY FALTA_DISCIPLINAR ';
-  FrmConsulta.CampoWhereSql :=
+  Dm.CampoWhereSqlConsulta :=
     'FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO';
-  FrmConsulta.Coluna := 1;
-  FrmConsulta.Width := Self.Width;
-  FrmConsulta.Top := Self.Top;
-  FrmConsulta.Left := Self.Left;
-  FrmConsulta.DsConsultaObjetiva.DataSet.close;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
-  FrmConsulta.EditLocalizar.SetFocus;
+  Dm.ID_RETORNO_FORM := 'Codigo';
+
   FrmConsulta.ShowModal(
     procedure(Result: Integer)
     begin
       if Result = mrOK then
       begin
-        DBLookupComboBoxfaltadisciplinar.KeyValue :=
-          FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname('Codigo')
-          .AsInteger;
+        DBLookupComboBoxfaltadisciplinar.KeyValue := DM.ID_RETORNO_CONSULTAOBJETIVA;
         Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
         EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
           ('TIPOFALTA').AsString;
-        FrmConsulta.DsConsultaObjetiva.DataSet.close;
       end;
     end);
 end;
@@ -1060,13 +1052,14 @@ end;
 procedure TFrmConselhoDisciplinar.Excluir1Click(Sender: TObject);
 begin
   inherited;
-
+{
   if not Dsvincfaltadisciplinar.DataSet.Active then
     Dsvincfaltadisciplinar.DataSet.Open;
 
   Dsvincfaltadisciplinar.DataSet.delete;
-  showmessage
-    ('Clique no botão SALVAR para confirmar a exclusão da falta disciplinar.');
+}
+  showmessage('Por favor solicite a exclusão para o suporte.');
+
 end;
 
 procedure TFrmConselhoDisciplinar.Limpa;

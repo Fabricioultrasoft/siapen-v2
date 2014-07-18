@@ -916,7 +916,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Top = 108
                 Width = 929
                 Height = 236
-                ActivePage = UniTabSheetRecurso
+                ActivePage = UniTabSheetResultado
                 TabOrder = 19
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
@@ -1216,7 +1216,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       'ARQUIVADO'
                       'ABSOLVIDO'
                       'SANCIONADO'
-                      'EXTINTO')
+                      'EXTINTO'
+                      'REGREDIDO')
                     TabOrder = 2
                   end
                   object UniLabel13: TUniLabel

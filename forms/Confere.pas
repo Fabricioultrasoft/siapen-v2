@@ -132,8 +132,6 @@ type
     UniTabSheetDados: TUniTabSheet;
     UniTabSheetCela: TUniTabSheet;
     UniTabSheetSaida: TUniTabSheet;
-    UniLabel6: TUniLabel;
-    UniDBEditRGI: TUniDBEdit;
     UniDBComboBoxSexo: TUniDBComboBox;
     UniLabel8: TUniLabel;
     UniLabel9: TUniLabel;
@@ -202,14 +200,16 @@ type
     UniPanel2: TUniPanel;
     UniDBEditNome: TUniDBEdit;
     UniLabel1: TUniLabel;
-    UniDBEditNUMERO_ROUPA: TUniDBEdit;
-    UniLabel3: TUniLabel;
     UniLabel4: TUniLabel;
     UniDBEditCI: TUniDBEdit;
     UniLabel5: TUniLabel;
     UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker;
     UniDBCheckBoxStatus: TUniDBCheckBox;
     UniDBCheckBoxTransito: TUniDBCheckBox;
+    UniLabel3: TUniLabel;
+    UniDBEditNUMERO_ROUPA: TUniDBEdit;
+    UniLabel6: TUniLabel;
+    UniDBEditRGI: TUniDBEdit;
     procedure UniFormCreate(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
@@ -229,6 +229,7 @@ type
     procedure UniBitBtnCondicaoClick(Sender: TObject);
     procedure UniDBEditCondicaoExit(Sender: TObject);
     procedure UniFormActivate(Sender: TObject);
+    procedure DBEditDocSaidaChange(Sender: TObject);
   private
     statusold, em_transito_old: string;
     idcela_old, idsolario_old, idgaleria_old, idpavilhao_old: string;
@@ -257,6 +258,7 @@ end;
 procedure TFrmConfere.CancelarClick(Sender: TObject);
 begin
   inherited;
+  PanelLocalizaConsulta.Enabled := true;
   UniPageControlConfere.ActivePageIndex := 0;
   SqlCadastro.Tag := 0;
   CdsCadastro.Close;
@@ -293,6 +295,31 @@ begin
       TabSheetDestino.TabVisible := true;
       TabSheetUnidade.TabVisible := false;
     end;
+
+  end;
+
+end;
+
+procedure TFrmConfere.DBEditDocSaidaChange(Sender: TObject);
+begin
+  inherited;
+  if UniDBCheckBoxStatus.checked then
+  begin
+    MessageDlg('Este interno está saindo?', mtWarning, mbYesNo,
+      procedure(Result: integer)
+      begin
+        if Result = mrYes then
+        begin
+          try
+            UniDBCheckBoxStatus.checked := false;
+            dscadastro.DataSet.FieldByName('ST').AsString := 'I';
+            ShowMessage
+              ('O status, foi alterado para inativo. Após digitação salve para confirmar.');
+          except
+          end;
+        end;
+
+      end);
 
   end;
 
@@ -401,6 +428,7 @@ end;
 
 procedure TFrmConfere.EditarClick(Sender: TObject);
 begin
+  PanelLocalizaConsulta.Enabled := false;
   UniPageControlConfere.ActivePageIndex := 0;
   AbrirTabelas;
 
@@ -555,14 +583,14 @@ begin
 end;
 
 procedure TFrmConfere.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+Shift: TShiftState);
 begin
   if Key = VK_RETURN then
   begin
     FrmAguarde.UniLabel1.Caption := 'Aguarde...';
     FrmAguarde.Width := 180;
     FrmAguarde.ShowModal(
-      procedure(Res: Integer)
+      procedure(Res: integer)
       begin
         UniBtnFiltrar.OnClick(nil);
       end);
@@ -574,6 +602,12 @@ procedure TFrmConfere.NovoClick(Sender: TObject);
 var
   sNovoNome: string;
 begin
+  PanelLocalizaConsulta.Enabled := false;
+
+  UniDBEditProcedenciaExit(nil);
+  UniDBEditCondicaoExit(nil);
+
+  statusold := 'X';
 
   AbrirTabelas;
 
@@ -629,6 +663,8 @@ begin
   Dsconspadrao.DataSet.Close;
   Dsconspadrao.DataSet.Open;
 
+  dscadastro.DataSet.FieldByName('id_up').AsInteger := dm.global_id_up;
+
   DBLookupComboBoxPavilhao.KeyValue := Dsconspadrao.DataSet.FieldByName
     ('id_pavilhao').AsVariant;
   dscadastro.DataSet.FieldByName('idpavilhao').AsInteger :=
@@ -649,6 +685,41 @@ begin
   dscadastro.DataSet.FieldByName('idcela').AsInteger :=
     Dsconspadrao.DataSet.FieldByName('id_cela').AsVariant;
 
+  if CdsCadastro.FieldByName('id_up').AsInteger > 0 then
+  begin
+    SqlPavilhao.SQL.Text :=
+      'select id_pavilhao, pavilhao from pavilhao where id_up = ' +
+      CdsCadastro.FieldByName('id_up').AsString + ' order by pavilhao';
+    DsPavilhao.DataSet.Close;
+    DsPavilhao.DataSet.Open;
+  end;
+
+  if CdsCadastro.FieldByName('idpavilhao').AsInteger > 0 then
+  begin
+    SqlGaleria.SQL.Text :=
+      'select id_galeria, galeria from galeria where idpavilhao = ' +
+      CdsCadastro.FieldByName('idpavilhao').AsString + ' order by galeria';
+    DsGaleria.DataSet.Close;
+    DsGaleria.DataSet.Open;
+  end;
+
+  if CdsCadastro.FieldByName('idgaleria').AsInteger > 0 then
+  begin
+    SqlSolario.SQL.Text :=
+      'select id_solario, solario from solario where idgaleria = ' +
+      CdsCadastro.FieldByName('idgaleria').AsString + ' order by solario';
+    DsSolario.DataSet.Close;
+    DsSolario.DataSet.Open;
+  end;
+
+  if CdsCadastro.FieldByName('idsolario').AsInteger > 0 then
+  begin
+    SqlCela.SQL.Text := 'select id_cela, cela from cela where idsolario = ' +
+      CdsCadastro.FieldByName('idsolario').AsString + ' order by cela';
+    DsCela.DataSet.Close;
+    DsCela.DataSet.Open;
+  end;
+
   DBEditDataMudanca.Enabled := false;
   DBEditDocumentoMudanca.Enabled := false;
   DBEditMotivoMudancaCela.Enabled := false;
@@ -658,7 +729,7 @@ end;
 procedure TFrmConfere.SalvarClick(Sender: TObject);
 var
   sMovimento, sSqlExecute, MotivoSaida: string;
-  iErro, LIMITE_POR_CELA: Integer;
+  iErro, LIMITE_POR_CELA: integer;
 begin
   UniDBCheckBoxStatus.Enabled := true;
   UniDBCheckBoxTransito.Enabled := true;
@@ -790,7 +861,7 @@ begin
 
   { Saída do interno }
   if ((dscadastro.DataSet.State in [dsedit]) and
-    (not UniDBCheckBoxStatus.Checked)) then
+    (not UniDBCheckBoxStatus.checked)) then
   begin
 
     if (dscadastro.DataSet.FieldByName('ST').AsString <> statusold) then
@@ -1010,73 +1081,73 @@ begin
         Dsvinc_transferencia_interno.DataSet.Post;
 
       end;
-
-      if UpperCase(DBComboBoxMotivo.Text)
+      (*
+        if UpperCase(DBComboBoxMotivo.Text)
         = UpperCase('Transferência de Presidio') then
-      // if TabSheetUnidade.TabVisible then
-      begin
+        // if TabSheetUnidade.TabVisible then
+        begin
         sSqlExecute := 'UPDATE INTERNO SET ' + 'st=' + qs('A') +
-          ',data_entrada=' + qs(formatdatetime('dd.mm.yyyy',
-          dscadastro.DataSet.FieldByName('data_saida').AsDateTime)) + ',ci=' +
-          qs(DBEditDocSaida.Text) + ',idpavilhao=' +
-          Dsconspadrao.DataSet.FieldByName('id_pavilhao').AsString +
-          ',idgaleria=' + Dsconspadrao.DataSet.FieldByName('id_galeria')
-          .AsString + ',idsolario=' + Dsconspadrao.DataSet.FieldByName
-          ('id_solario').AsString + ',idcela=' +
-          Dsconspadrao.DataSet.FieldByName('id_cela').AsString + ',id_up=' +
-          inttostr(DBLookupComboBoxUPDestino.KeyValue) + ',data_saida=null' +
-          ',iddestino=null' + ',motivo_saida=null' + ',cisaida=null' +
-          ' WHERE ID_INTERNO = ' + dscadastro.DataSet.FieldByName
-          ('id_interno').AsString;
+        ',data_entrada=' + qs(formatdatetime('dd.mm.yyyy',
+        dscadastro.DataSet.FieldByName('data_saida').AsDateTime)) + ',ci=' +
+        qs(DBEditDocSaida.Text) + ',idpavilhao=' +
+        Dsconspadrao.DataSet.FieldByName('id_pavilhao').AsString +
+        ',idgaleria=' + Dsconspadrao.DataSet.FieldByName('id_galeria')
+        .AsString + ',idsolario=' + Dsconspadrao.DataSet.FieldByName
+        ('id_solario').AsString + ',idcela=' +
+        Dsconspadrao.DataSet.FieldByName('id_cela').AsString + ',id_up=' +
+        inttostr(DBLookupComboBoxUPDestino.KeyValue) + ',data_saida=null' +
+        ',iddestino=null' + ',motivo_saida=null' + ',cisaida=null' +
+        ' WHERE ID_INTERNO = ' + dscadastro.DataSet.FieldByName
+        ('id_interno').AsString;
 
         DSHISTORICO_interno.DataSet.Append;
         DSHISTORICO_interno.DataSet.FieldByName('idhistorico_interno').AsInteger
-          := Generator('idhistorico_interno');
+        := Generator('idhistorico_interno');
         DSHISTORICO_interno.DataSet.FieldByName('idinterno').AsInteger :=
-          dscadastro.DataSet.FieldByName('id_interno').AsInteger;
+        dscadastro.DataSet.FieldByName('id_interno').AsInteger;
         DSHISTORICO_interno.DataSet.FieldByName('data_hora').AsString :=
-          formatdatetime('dd/mm/yyy',
-          dscadastro.DataSet.FieldByName('data_saida').AsDateTime);
+        formatdatetime('dd/mm/yyy',
+        dscadastro.DataSet.FieldByName('data_saida').AsDateTime);
         DSHISTORICO_interno.DataSet.FieldByName('descricao').AsString :=
-          'Entrada na Unidade Penal: ' + DBLookupComboBoxUPDestino.Text +
-          ', Procedente: ' + dm.GLOBAL_NOME_UP + ', Conforme ' +
-          ComboBoxTipoDocumento.Text + ': ' + DBEditDocSaida.Text + '.';
+        'Entrada na Unidade Penal: ' + DBLookupComboBoxUPDestino.Text +
+        ', Procedente: ' + dm.GLOBAL_NOME_UP + ', Conforme ' +
+        ComboBoxTipoDocumento.Text + ': ' + DBEditDocSaida.Text + '.';
         DSHISTORICO_interno.DataSet.FieldByName('status').AsString := 'E';
         DSHISTORICO_interno.DataSet.FieldByName('IDUP').AsInteger :=
-          DBLookupComboBoxUPDestino.KeyValue;
+        DBLookupComboBoxUPDestino.KeyValue;
         DSHISTORICO_interno.DataSet.Post;
 
-        { limpando os campos para saida do interno }
-        dscadastro.DataSet.FieldByName('idcondicao_interno').AsString := '';
-        dscadastro.DataSet.FieldByName('ci').AsString := '';
-        dscadastro.DataSet.FieldByName('data_entrada').AsString := '';
-        dscadastro.DataSet.FieldByName('id_procedencia').AsString := '';
-        { limpando os campos trabalho para saida do interno }
-        dscadastro.DataSet.FieldByName('DOC_TRABALHO').AsString := '';
-        dscadastro.DataSet.FieldByName('DATA_SETOR').AsString := '';
-        dscadastro.DataSet.FieldByName('ID_FUNCAOINTERNO').AsString := '';
-        dscadastro.DataSet.FieldByName('ID_LOCAL_TRABALHO').AsString := '';
-        dscadastro.DataSet.FieldByName('IDSETOR_TRABALHO').AsString := '';
-        dscadastro.DataSet.FieldByName('OBSTRABALHO').AsString := '';
-        { limpando os campos educacao para saida do interno }
-        dscadastro.DataSet.FieldByName('data_matricula').AsString := '';
-        dscadastro.DataSet.FieldByName('IDSERIEESTUDO').AsString := '';
-        dscadastro.DataSet.FieldByName('TURMA').AsString := '';
-        dscadastro.DataSet.FieldByName('deficiencia').AsString := '';
-        dscadastro.DataSet.FieldByName('PERIODO').AsString := '';
-        dscadastro.DataSet.FieldByName('OBSEDUCACAO').AsString := '';
+        end;
+      *)
 
-        dscadastro.DataSet.FieldByName('DATA_SAIDA').AsVariant := null;
-        dscadastro.DataSet.FieldByName('CISAIDA').AsVariant := null;
-        MotivoSaida := DBComboBoxMotivo.Text;
-        dscadastro.DataSet.FieldByName('MOTIVO_SAIDA').AsVariant := null;
-      end;
+      { limpando os campos para saida do interno }
+      dscadastro.DataSet.FieldByName('idcondicao_interno').AsString := '';
+      dscadastro.DataSet.FieldByName('CI').AsString := '';
+      dscadastro.DataSet.FieldByName('data_entrada').AsString := '';
+      dscadastro.DataSet.FieldByName('ID_PROCEDENCIA').AsString := '';
+      { limpando os campos trabalho para saida do interno }
+      dscadastro.DataSet.FieldByName('DOC_TRABALHO').AsString := '';
+      dscadastro.DataSet.FieldByName('DATA_SETOR').AsString := '';
+      dscadastro.DataSet.FieldByName('ID_FUNCAOINTERNO').AsString := '';
+      dscadastro.DataSet.FieldByName('ID_LOCAL_TRABALHO').AsString := '';
+      dscadastro.DataSet.FieldByName('IDSETOR_TRABALHO').AsString := '';
+      dscadastro.DataSet.FieldByName('OBSTRABALHO').AsString := '';
+      { limpando os campos educacao para saida do interno }
+      dscadastro.DataSet.FieldByName('DATA_MATRICULA').AsString := '';
+      dscadastro.DataSet.FieldByName('IDSERIEESTUDO').AsString := '';
+      dscadastro.DataSet.FieldByName('TURMA').AsString := '';
+      dscadastro.DataSet.FieldByName('deficiencia').AsString := '';
+      dscadastro.DataSet.FieldByName('PERIODO').AsString := '';
+      dscadastro.DataSet.FieldByName('OBSEDUCACAO').AsString := '';
 
-      SQLconspadrao.SQL.Text := 'select * from padrao where cod_up =' +
-        qs(inttostr(dm.global_id_up));
+      dscadastro.DataSet.FieldByName('DATA_SAIDA').AsVariant := null;
+      dscadastro.DataSet.FieldByName('CISAIDA').AsVariant := null;
+      MotivoSaida := DBComboBoxMotivo.Text;
+      dscadastro.DataSet.FieldByName('MOTIVO_SAIDA').AsVariant := null;
+
+      SQLconspadrao.SQL.Text := 'select * from padrao where cod_up =' +qs(inttostr(dm.global_id_up));
       Dsconspadrao.DataSet.Close;
       Dsconspadrao.DataSet.Open;
-
       // showmessage(SQLconspadrao.sql.text);
 
     end; // if (dscadastro.dataset.fieldbyname('ST').asstring <> statusold) then
@@ -1136,8 +1207,10 @@ begin
         if UpperCase(MotivoSaida) = UpperCase('Transferência de Presidio') then
         begin
 
+{
           dm.Conexao.ExecuteDirect(sSqlExecute);
           MotivoSaida := '';
+}
           iErro := iErro + TClientDataSet(DSHISTORICO_interno.DataSet)
             .ApplyUpdates(0);
 
@@ -1158,6 +1231,7 @@ begin
       StatusBar1.Panels[1].Text := '...';
       PanelCadastro.Enabled := false;
       TabSheetConsulta.Enabled := true;
+      PanelLocalizaConsulta.Enabled := true;
 
       if Salvar.Tag = 0 then
       begin
@@ -1220,7 +1294,7 @@ begin
       EXIT;
     end;
 
-    if ((dscadastro.DataSet.State in [dsedit]) and (UniDBCheckBoxStatus.Checked))
+    if ((dscadastro.DataSet.State in [dsedit]) and (UniDBCheckBoxStatus.checked))
     then
     begin
       if (dscadastro.DataSet.FieldByName('st').AsString = statusold) then
@@ -1280,8 +1354,7 @@ begin
       end;
     end;
 
-    if (dscadastro.DataSet.State in [dsinsert]) or
-      (dscadastro.DataSet.FieldByName('st').AsString <> statusold) then
+    if (dscadastro.DataSet.State in [dsinsert]) then
     begin
       if UniDBEditMae.Text = '' then
       begin
@@ -1350,7 +1423,7 @@ begin
       DSHISTORICO_interno.DataSet.Post;
     end;
 
-    if ((dscadastro.DataSet.State in [dsedit]) and (UniDBCheckBoxStatus.Checked))
+    if ((dscadastro.DataSet.State in [dsedit]) and (UniDBCheckBoxStatus.checked))
     then
     begin
       if (dscadastro.DataSet.FieldByName('st').AsString = statusold) then
@@ -1432,6 +1505,7 @@ begin
 
     inherited;
 
+    PanelLocalizaConsulta.Enabled := true;
     SqlCadastro.Tag := 0;
     CdsCadastro.Close;
   end;
@@ -1442,14 +1516,14 @@ procedure TFrmConfere.UniBitBtn1Click(Sender: TObject);
 begin
   inherited;
   FrmSituacaoDisciplinar.ShowModal(
-    procedure(Result: Integer)
+    procedure(Result: integer)
     begin
       if Result = mrOk then
       begin
         dscadastro.DataSet.FieldByName('DATA_ISOLAMENTO').AsDateTime :=
-          Dm.var_data_disciplinar;
+          dm.var_data_disciplinar;
         dscadastro.DataSet.FieldByName('STATUS_ISOLAMENTO').AsString :=
-          Dm.var_disciplinar;
+          dm.var_disciplinar;
       end;
     end);
 
@@ -1458,7 +1532,7 @@ end;
 procedure TFrmConfere.UniBitBtnCondicaoClick(Sender: TObject);
 begin
   inherited;
-  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  if dscadastro.DataSet.State in [dsedit, dsinsert] then
   begin
     ConsultaTabela(Self,
       'select idcondicao_interno codigo, descricao from condicao_interno' +
@@ -1471,7 +1545,7 @@ end;
 procedure TFrmConfere.UniBitBtnProcedenciaClick(Sender: TObject);
 begin
   inherited;
-  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  if dscadastro.DataSet.State in [dsedit, dsinsert] then
   begin
     ConsultaTabela(Self,
       'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
@@ -1570,12 +1644,11 @@ begin
 
     if (Components[iComp] is TSQLQuery) then
     begin
-      TSQLQuery(Components[iComp]).SQLConnection := Dm.Conexao;
+      TSQLQuery(Components[iComp]).SQLConnection := dm.Conexao;
       TSQLQuery(Components[iComp]).AfterOpen := SQLDataSetPadraoAfterOpen;
     end;
 
   end;
-
 
 end;
 
@@ -1583,7 +1656,7 @@ procedure TFrmConfere.UniFormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
 
-  if DsConsulta.DataSet.active then
+  if DsConsulta.DataSet.Active then
     DsConsulta.DataSet.Close;
 
   MainForm.UniTimer2.Enabled := true;

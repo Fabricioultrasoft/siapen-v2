@@ -28,7 +28,7 @@ uses
   uniMainMenu,
   IWSystem,
   Vcl.Imaging.jpeg,
-  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr;
+  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr, Vcl.Imaging.GIFImg;
 
 type
   TFrmVisualizarRelatorio = class(TUniForm)
@@ -41,6 +41,7 @@ type
     UniTimerVisualizar: TUniTimer;
     SqlConsultaBackup: TSQLQuery;
     UniBitBtnRecarregar: TUniBitBtn;
+    UniTimerFechar: TUniTimer;
     procedure Word1Click(Sender: TObject);
     procedure Excel1Click(Sender: TObject);
     procedure Fechar1Click(Sender: TObject);
@@ -54,6 +55,7 @@ type
     procedure UniTimerVisualizarTimer(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniBitBtnRecarregarClick(Sender: TObject);
+    procedure UniTimerFecharTimer(Sender: TObject);
   private
     FArquivo: String;
     FCaminhoFR3: String;
@@ -71,7 +73,10 @@ type
     procedure ExportarExcel;
     procedure ExportarPDF;
     function ExportarJPEG: string;
-    function AbreFiltros: Boolean;
+    function InicioRelatorio: Boolean;
+    procedure LimpaAcessoNegado(sNomePermissao: string);
+    function ValidaPermissao: Boolean;
+    function CarregaFiltros: Boolean;
     { Private declarations }
   public
     property Nome: String read FNome write FNome;
@@ -95,7 +100,7 @@ uses
   DmPrincipal,
   ServerModule,
   humanejs,
-  Lib, FiltroPeriodoServidor, FiltroPeriodo, Consulta;
+  Lib, FiltroPeriodoServidor, FiltroPeriodo, Consulta, TipoProcesso;
 // , DMSoftwareImobiliario;
 
 function FrmVisualizarRelatorio: TFrmVisualizarRelatorio;
@@ -112,12 +117,13 @@ end;
 
 procedure TFrmVisualizarRelatorio.UniBitBtnRecarregarClick(Sender: TObject);
 begin
-  AbreFiltros;
+  InicioRelatorio;
 end;
 
 procedure TFrmVisualizarRelatorio.UniFormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
+  Dm.CaminhoRelatorio := '';
   FCaminhoFR3 := '';
   FFazExportacaoJPEG := false;
 end;
@@ -133,7 +139,7 @@ begin
   if NomeTela <> '' then
     LabelTitulo.Caption := NomeTela;
 
-//  UniURLFrame1.Visible := false;
+  // UniURLFrame1.Visible := false;
 
 end;
 
@@ -147,7 +153,13 @@ end;
 
 procedure TFrmVisualizarRelatorio.UniFormShow(Sender: TObject);
 begin
-  AbreFiltros;
+  InicioRelatorio;
+end;
+
+procedure TFrmVisualizarRelatorio.UniTimerFecharTimer(Sender: TObject);
+begin
+  UniTimerFechar.Enabled := false;
+  self.Close;
 end;
 
 procedure TFrmVisualizarRelatorio.UniTimerVisualizarTimer(Sender: TObject);
@@ -157,7 +169,7 @@ begin
   begin
     FAguardeFiltro := true;
     CarregarRelatorio();
-//    UniURLFrame1.Visible := true;
+    // UniURLFrame1.Visible := true;
   end
   else
     UniTimerVisualizar.Enabled := true;
@@ -258,7 +270,392 @@ begin
   self.Close;
 end;
 
-function TFrmVisualizarRelatorio.AbreFiltros: Boolean;
+procedure TFrmVisualizarRelatorio.LimpaAcessoNegado(sNomePermissao: string);
+begin
+  ShowMessage('<b><font Color=red>Acesso negado!</font></b>' +
+    '<br>Para abrir este relatório, tem que<br>ativar sua senha para:<b><font Color=navy>'
+    + BuscaTroca(sNomePermissao, 'PERMISSAO_', ' ')
+
+    + '</font></b>.');
+  Dm.frxReport1.PreviewPages.Clear;
+  Dm.frxReport1.Terminated := true;
+  FCaminhoFR3 := '';
+  Dm.CaminhoRelatorio := '';
+  UniBitBtnRecarregar.Visible := false;
+end;
+
+function TFrmVisualizarRelatorio.ValidaPermissao: Boolean;
+begin
+
+  Result := false;
+
+  if ContemValor('PERMISSAO_CONFERE', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_CONFERE) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_CONFERE');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_VISITANTE', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_VISITANTE) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_VISITANTE');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_TRABALHO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_TRABALHO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_TRABALHO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_CADASTRO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_CADASTRO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_CADASTRO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_EDUCACAO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_EDUCACAO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_EDUCACAO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_PSICOSSOCIAL', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_PSICOSSOCIAL) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_PSICOSSOCIAL');
+      exit;
+    end;
+  end;
+  if ContemValor('PERMISSAO_DISCIPLINA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_DISCIPLINA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_DISCIPLINA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_INTELIGENCIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_INTELIGENCIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_INTELIGENCIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_ENFERMAGEM', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_ENFERMAGEM) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_ENFERMAGEM');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_FARMACIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_FARMACIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_FARMACIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_CLINICAMEDICA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_CLINICAMEDICA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_CLINICAMEDICA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_PSICOLOGIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_PSICOLOGIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_PSICOLOGIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_PSIQUIATRIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_PSIQUIATRIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_PSIQUIATRIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_SAUDE', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_SAUDE) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_SAUDE');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_TERAPIAOCUPACIONAL', 'xx' + FDescricaoRelatorio)
+  then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_TERAPIAOCUPACIONAL) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_TERAPIAOCUPACIONAL');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_ODONTOLOGIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_ODONTOLOGIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_ODONTOLOGIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_PEDAGOGIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_PEDAGOGIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_PEDAGOGIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_SERVICOSOCIAL', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_SERVICOSOCIAL) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_SERVICOSOCIAL');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_ARMAS', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_ARMAS) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_ARMAS');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_MONITORAMENTO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_MONITORAMENTO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_MONITORAMENTO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_OCORRENCIA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_OCORRENCIA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_OCORRENCIA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_CONSELHODISCIPLINAR', 'xx' + FDescricaoRelatorio)
+  then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_CONSELHODISCIPLINAR) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_CONSELHODISCIPLINAR');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_TRANSFERENCIAINTERNO', 'xx' + FDescricaoRelatorio)
+  then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_TRANSFERENCIAINTERNO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_TRANSFERENCIAINTERNO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_MUDANCACELA', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_MUDANCACELA) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_MUDANCACELA');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_MOVIMENTOSEMIABERTO', 'xx' + FDescricaoRelatorio)
+  then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_MOVIMENTOSEMIABERTO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_MOVIMENTOSEMIABERTO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_FUNCIONARIO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_FUNCIONARIO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_FUNCIONARIO');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_UNIDADEPENAL', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_UNIDADEPENAL) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_UNIDADEPENAL');
+      exit;
+    end;
+  end;
+
+  if ContemValor('PERMISSAO_REGRAVISITACAO', 'xx' + FDescricaoRelatorio) then
+  begin
+    if not ContemValor('R', 'xx' + Dm.PERMISSAO_REGRAVISITACAO) then
+    begin
+      LimpaAcessoNegado('PERMISSAO_REGRAVISITACAO');
+      exit;
+    end;
+  end;
+
+  Result := true;
+
+end;
+
+function TFrmVisualizarRelatorio.CarregaFiltros: Boolean;
+begin
+  if ContemValor('FILTRO_INTERNO', 'xx' + FDescricaoRelatorio) OR
+    ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
+      procedure(AResult: integer; AText: string)
+      begin
+        if AResult = mrOK then
+        begin
+          if length(trim(AText)) > 1 then
+          begin
+            Dm.UniFormRetornoConsulta := self;
+            Dm.PreDescricaoConsulta := uppercase(AText);
+            Dm.SqlConsultaObjetiva := SqlConsultaBackup.SQL.Text +
+              ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
+              ' order by interno.nome_interno ';
+            Dm.CampoWhereSqlConsulta := 'interno.nome_interno';
+            Dm.DESC_RETORNO_FORM := '';
+            Dm.ID_RETORNO_FORM := 'ID';
+            FrmConsulta.ShowModal(
+              procedure(Result: integer)
+              begin
+                if Result = mrOK then
+                begin
+                  Dm.GLOBAL_ID_INTERNO := Dm.ID_RETORNO_CONSULTAOBJETIVA;
+                  FAguardeFiltro := false;
+                end
+                else
+                begin
+                  FAguardeFiltro := false;
+                  FCancelaExecucao := true;
+                  UniTimerVisualizar.Enabled := false;
+                  UniTimerFechar.Enabled := true;
+                end;
+              end);
+          end
+          else
+          begin
+            ShowMessage('<b><font Color=red>Filtro não informado!</font></b>' +
+              '<br>Para abrir esta consulta, tem que digitar pelo menos duas letras.');
+            FAguardeFiltro := false;
+            FCancelaExecucao := true;
+            UniTimerVisualizar.Enabled := false;
+            UniTimerFechar.Enabled := true;
+          end;
+        end
+        else
+        begin
+          FAguardeFiltro := false;
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+      end);
+  end;
+
+  if ContemValor('FILTRO_PROCESSO', 'xx' + FDescricaoRelatorio) OR
+    ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    FrmTipoProcesso.ShowModal(
+      procedure(Result: integer)
+      begin
+        if Result <> mrOK then
+        begin
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+        FAguardeFiltro := false;
+      end);
+  end;
+
+  if ContemValor('FILTRO_DATA', 'xx' + FDescricaoRelatorio) OR
+    ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    FrmFiltroPeriodo.ShowModal(
+      procedure(Result: integer)
+      begin
+        if Result <> mrOK then
+        begin
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+        FAguardeFiltro := false;
+      end);
+  end;
+
+  if ContemValor('FILTRO_PERIODO_SERVIDOR', 'xx' + FDescricaoRelatorio) OR
+    ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    FrmFiltroPeriodoServidor.ShowModal(
+      procedure(Result: integer)
+      begin
+        if Result <> mrOK then
+        begin
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+        FAguardeFiltro := false;
+      end);
+  end;
+
+end;
+
+function TFrmVisualizarRelatorio.InicioRelatorio: Boolean;
 begin
 
   if FNome = '' then
@@ -288,68 +685,33 @@ begin
 
   FAguardeFiltro := true;
 
-  if not ContemValor('FILTRO', 'xx' + FDescricaoRelatorio) then
+  if ContemValor('PERMISSAO', 'xx' + FDescricaoRelatorio) then
   begin
-    //já abre relatório
+
+    if not ValidaPermissao then
+    begin
+      UniTimerFechar.Enabled := true;
+      exit;
+    end;
+
+  end;
+
+  if (ContemValor('FILTRO', 'xx' + FDescricaoRelatorio) OR ContemValor('R1',
+    'xx' + Dm.CaminhoRelatorio) OR ContemValor('R2', 'xx' + Dm.CaminhoRelatorio)
+    OR ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) OR ContemValor('R4',
+    'xx' + Dm.CaminhoRelatorio)) then
+  begin
+    // Só abre o relatório se liberar filtro
     FAguardeFiltro := true;
-    CarregarRelatorio();
-//    UniURLFrame1.Visible := true;
-    exit;
+    UniTimerVisualizar.Enabled := true;
+    CarregaFiltros;
   end
   else
   begin
-    //só abre o relatório se liberar filtro
-    UniTimerVisualizar.Enabled := true;
-  end;
-
-  if ContemValor('FILTRO_DATA', 'xx' + FDescricaoRelatorio) then
-  begin
-    FrmFiltroPeriodo.ShowModal(
-      procedure(Result: integer)
-      begin
-        if Result <> mrOK then
-        begin
-          FCancelaExecucao := true;
-          UniTimerVisualizar.Enabled := false;
-        end;
-        FAguardeFiltro := false;
-      end);
-  end;
-
-  if ContemValor('FILTRO_INTERNO', 'xx' + FDescricaoRelatorio) then
-  begin
-    Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
-      procedure(AResult: integer; AText: string)
-      begin
-        if AResult = mrOK then
-        begin
-          FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text
-            + ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
-            ' order by interno.nome_interno ';
-          FrmConsulta.Coluna := 1;
-          FrmConsulta.Width := self.Width;
-          FrmConsulta.Top := self.Top;
-          FrmConsulta.Left := self.Left;
-          FrmConsulta.PreDescricao := uppercase(AText);
-          FrmConsulta.EditLocalizar.SetFocus;
-          FrmConsulta.ShowModal(
-            procedure(Result: integer)
-            begin
-              if Result = mrOK then
-              begin
-                Dm.GLOBAL_ID_INTERNO := FrmConsulta.DsConsultaObjetiva.DataSet.
-                  fieldbyname('ID').AsInteger;
-                FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-              end
-              else
-              begin
-                FCancelaExecucao := true;
-                UniTimerVisualizar.Enabled := false;
-              end;
-              FAguardeFiltro := false;
-            end);
-        end;
-      end);
+    // já abre relatório
+    UniTimerVisualizar.Enabled := false;
+    CarregarRelatorio();
+    exit;
   end;
 
 end;
@@ -542,7 +904,7 @@ begin
           Dm.frxReport1.PreviewPages.Clear;
           Dm.frxReport1.Terminated := true;
           FCaminhoFR3 := '';
-          self.Close;
+          UniTimerFechar.Enabled := true;
         end;
 
         FCaminhoFR3 := '';

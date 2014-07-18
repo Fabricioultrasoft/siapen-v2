@@ -10,13 +10,10 @@ object FrmConsulta: TFrmConsulta
   OldCreateOrder = False
   OnClose = UniFormClose
   OnKeyDown = UniFormKeyDown
-  FreeOnClose = False
-  KeyPreview = True
   MonitoredKeys.Keys = <>
   ScreenMask.Enabled = True
   ScreenMask.WaitData = True
   ScreenMask.Message = 'Aguarde...'
-  OnCreate = UniFormCreate
   OnDestroy = UniFormDestroy
   PixelsPerInch = 96
   TextHeight = 13
@@ -183,6 +180,7 @@ object FrmConsulta: TFrmConsulta
         FF00FF00FF00FF00FF00FF00FF00FF00FF00993232FF993232FF653232FFFF00
         FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00FF00}
       Caption = 'Fechar'
+      Anchors = [akTop, akRight]
       ParentFont = False
       Font.Color = clNavy
       Font.Style = [fsBold]
@@ -230,9 +228,6 @@ object FrmConsulta: TFrmConsulta
   object SqlConsultaObjetiva: TSQLQuery
     MaxBlobSize = -1
     Params = <>
-    SQL.Strings = (
-      'SELECT * FROM PLANOCONTAS'
-      'ORDER BY DESCRICAO')
     SQLConnection = Dm.Conexao
     Left = 512
     Top = 200

@@ -61,7 +61,7 @@ uses
   InterBaseUniProvider,
   MemDS,
   frxChart, uniFileUpload // , PDFSplitMerge_TLB//;
-    , ComObj, ActiveX, Graphics, OleServer, StdVCL, Variants;
+    , ComObj, ActiveX, Graphics, OleServer, StdVCL, Variants, UniGUIForm;
 
 // *********************************************************************//
 // GUIDS declared in the TypeLibrary. Following prefixes are used:
@@ -652,10 +652,33 @@ type
     FDATA_HORA_ENCERRAR: TDateTime;
     FHORA_TIMEOUT: Integer;
     FCaminhoRelatorio:String;
+    FID_RETORNO_CONSULTAOBJETIVA:Integer;
+    FDESC_RETORNO_CONSULTAOBJETIVA:String;
+    FID_RETORNO_FORM: String;
+    FDESC_RETORNO_FORM: String;
+    FUniFormRetornoConsulta: TUniForm;
+    FSqlConsultaObjetiva: string;
+    FCampoWhereSqlConsulta: string;
+    FPreDescricaoConsulta: string;
   public
+    property PreDescricaoConsulta: String read FPreDescricaoConsulta
+      write FPreDescricaoConsulta;
+    property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta
+      write FCampoWhereSqlConsulta;
+    property SqlConsultaObjetiva: String read FSqlConsultaObjetiva
+      write FSqlConsultaObjetiva;
+    property UniFormRetornoConsulta: TUniForm read FUniFormRetornoConsulta
+      write FUniFormRetornoConsulta;
+    property ID_RETORNO_FORM: String read FID_RETORNO_FORM
+      write FID_RETORNO_FORM;
+    property DESC_RETORNO_FORM: String read FDESC_RETORNO_FORM
+      write FDESC_RETORNO_FORM;
+    property ID_RETORNO_CONSULTAOBJETIVA:Integer read FID_RETORNO_CONSULTAOBJETIVA
+      write FID_RETORNO_CONSULTAOBJETIVA;
+    property DESC_RETORNO_CONSULTAOBJETIVA: String read FDESC_RETORNO_CONSULTAOBJETIVA
+      write FDESC_RETORNO_CONSULTAOBJETIVA;
     property CaminhoRelatorio: String read FCaminhoRelatorio
       write FCaminhoRelatorio;
-
     property HORA_TIMEOUT: Integer read FHORA_TIMEOUT write FHORA_TIMEOUT;
     property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR write FDATA_HORA_ENCERRAR;
     property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA write FDATA_HORA_ENTRADA;

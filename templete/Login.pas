@@ -277,7 +277,9 @@ end;
 
 procedure TFrmLogin.UniEdit1Exit(Sender: TObject);
 begin
+
   dm.LOGIN_CONECTADO := UniEdit1.Text;
+
   if dm.LOGIN_CONECTADO <> '' then
   begin
     if (dm.LOGIN_CONECTADO = '99999') then
@@ -289,25 +291,38 @@ begin
     end;
 
     try
+
       dm.Dsup.DataSet.close;
       Sqlservidor.sql.Text :=
         'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA from funcionario where login='
         + Qs(dm.LOGIN_CONECTADO);
       Dsservidor.DataSet.close;
       Dsservidor.DataSet.open;
+
       if Dsservidor.DataSet.recordcount > 0 then
       begin
-        dm.SqlUP.sql.Text := 'SELECT * FROM UNIDADE_PENAL ' + ' where id_up = '
-          + Dsservidor.DataSet.FieldByName('ID_UP').Asstring +
-          ' order by nome_up';
-        dm.Dsup.DataSet.open;
 
-        dm.GLOBAL_ID_UP := Dsservidor.DataSet.FieldByName('ID_UP').AsInteger;
-        dm.GLOBAL_ID_FUNCIONARIO := Dsservidor.DataSet.FieldByName
-          ('ID_FUNCIONARIO').AsInteger;
-        dm.GLOBAL_IDPOSTO_TRABALHO := Dsservidor.DataSet.FieldByName
-          ('IDPOSTO_TRABALHO').AsInteger;
-        dm.GLOBAL_MEUS_DOCUMENTOS := GetEnvironmentVariable('USERPROFILE');
+        if Dsservidor.DataSet.FieldByName('ID_UP').AsInteger > 0 then
+        begin
+
+          dm.SqlUP.sql.Text := 'SELECT * FROM UNIDADE_PENAL ' +
+            ' where id_up = ' + Dsservidor.DataSet.FieldByName('ID_UP').Asstring
+            + ' order by nome_up';
+          dm.Dsup.DataSet.open;
+
+          dm.GLOBAL_ID_UP := Dsservidor.DataSet.FieldByName('ID_UP').AsInteger;
+          dm.GLOBAL_ID_FUNCIONARIO := Dsservidor.DataSet.FieldByName
+            ('ID_FUNCIONARIO').AsInteger;
+          dm.GLOBAL_IDPOSTO_TRABALHO := Dsservidor.DataSet.FieldByName
+            ('IDPOSTO_TRABALHO').AsInteger;
+          dm.GLOBAL_MEUS_DOCUMENTOS := GetEnvironmentVariable('USERPROFILE');
+
+        end
+        else
+        begin
+          showmessage('Usuário sem UP');
+        end;
+
       end;
 
     except
@@ -379,9 +394,9 @@ begin
   if (time >= strtotime('18:00:00')) and (time < strtotime('23:59:59')) then
     sSaudacoes := 'Boa Noite';
 
-  Dm.DATA_HORA_ENTRADA := NOW;
-  Dm.DATA_HORA_ENCERRAR := IncHour(Dm.DATA_HORA_ENTRADA,Dm.HORA_TIMEOUT);
-//  Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,10);
+  dm.DATA_HORA_ENTRADA := NOW;
+  dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
+  // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,10);
 
   humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
     'Seja bem vindo!');

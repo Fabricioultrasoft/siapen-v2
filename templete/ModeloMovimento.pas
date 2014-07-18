@@ -586,10 +586,41 @@ begin
   for iComp := 0 to Componentcount - 1 do
   begin
 
+    if (Components[iComp] is TUniDBEdit) then
+    begin
+      SetLength(CompDBEdit, High(CompDBEdit) + 2);
+      CompDBEdit[High(CompDBEdit)] := (Components[iComp] as TUniDBEdit);
+      if TUniDBEdit(Components[iComp]).Tag = 0 then
+        (Components[iComp] as TUniDBEdit).CharCase := ecUpperCase;
+
+    end;
+
     if (Components[iComp] is TClientDataSet) then
     begin
       TClientDataSet(Components[iComp]).OnReconcileError :=
         ClientDataSetReconcileError;
+    end;
+
+    if (Components[iComp] is TUniDBLookupComboBox) then
+    begin
+      SetLength(CompLookupComboBox, High(CompLookupComboBox) + 2);
+      CompLookupComboBox[High(CompLookupComboBox)] :=
+        (Components[iComp] as TUniDBLookupComboBox);
+    end;
+
+    if (Components[iComp] is TClientDataSet) then
+    begin
+
+      if TClientDataSet(Components[iComp]).Name <> CdsCadastro.Name then
+      begin
+        SetLength(CompClientDataSet, High(CompClientDataSet) + 2);
+        CompClientDataSet[High(CompClientDataSet)] :=
+          (Components[iComp] as TClientDataSet);
+      end;
+
+      TClientDataSet(Components[iComp]).OnReconcileError :=
+        ClientDataSetReconcileError;
+
     end;
 
     if (Components[iComp] is TSQLQuery) then

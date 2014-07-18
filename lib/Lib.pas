@@ -134,8 +134,10 @@ function ConsultaTabela(fUniFormRetorno: TUniForm;
 function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
   UniLabelRetorno: TUniLabel): Boolean;
-function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
+{
+  function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
+}
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
   UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
   UniLabelRetorno3: TUniLabel = nil): Boolean;
@@ -1478,29 +1480,23 @@ function ConsultaTabela(fUniFormRetorno: TUniForm;
   : Boolean;
 begin
   Result := false;
-  FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
-  FrmConsulta.Width := fUniFormRetorno.Width;
-  FrmConsulta.Top := fUniFormRetorno.Top;
-  FrmConsulta.Left := fUniFormRetorno.Left;
-  FrmConsulta.Coluna := 1;
-  FrmConsulta.CampoWhereSql := sCampoWhereSql;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
-  FrmConsulta.EditLocalizar.SetFocus;
+
+  DM.UniFormRetornoConsulta := fUniFormRetorno;
+  DM.SqlConsultaObjetiva := sSqlBusca;
+  DM.CampoWhereSqlConsulta := sCampoWhereSql;
+  DM.ID_RETORNO_FORM := sID;
+  DM.DESC_RETORNO_FORM := sDescricao;
   FrmConsulta.ShowModal(
     procedure(iResult: Integer)
     begin
       if iResult = mrOK then
       begin
-        UniDBEditRetorno.Field.AsInteger :=
-          FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName(sID).AsInteger;
-        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
-          FieldByName(sDescricao).AsString;
+        UniDBEditRetorno.Field.AsInteger := DM.ID_RETORNO_CONSULTAOBJETIVA;
+        UniLabelRetorno.Caption := DM.DESC_RETORNO_CONSULTAOBJETIVA;
         if assigned(UniLabelRetorno2) then
           UniLabelRetorno2.Caption := UniLabelRetorno.Caption;
         if assigned(UniLabelRetorno3) then
           UniLabelRetorno3.Caption := UniLabelRetorno.Caption;
-        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
       end;
     end);
 end;
@@ -1510,32 +1506,26 @@ sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
 UniLabelRetorno: TUniLabel): Boolean;
 begin
   Result := false;
-  FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
-  FrmConsulta.Width := fUniFormRetorno.Width;
-  FrmConsulta.CampoWhereSql := sCampoWhereSql;
-  FrmConsulta.Coluna := 1;
-  FrmConsulta.Top := fUniFormRetorno.Top;
-  FrmConsulta.Left := fUniFormRetorno.Left;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-  FrmConsulta.DsConsultaObjetiva.DataSet.Open;
-  FrmConsulta.EditLocalizar.SetFocus;
+
+  DM.UniFormRetornoConsulta := fUniFormRetorno;
+  DM.SqlConsultaObjetiva := sSqlBusca;
+  DM.CampoWhereSqlConsulta := sCampoWhereSql;
+  DM.ID_RETORNO_FORM := sID;
+  DM.DESC_RETORNO_FORM := sDescricao;
   FrmConsulta.ShowModal(
     procedure(iResult: Integer)
     begin
       if iResult = mrOK then
       begin
-        UniEditRetorno.Text := FrmConsulta.DsConsultaObjetiva.DataSet.
-          FieldByName(sID).AsString;
-        UniLabelRetorno.Caption := FrmConsulta.DsConsultaObjetiva.DataSet.
-          FieldByName(sDescricao).AsString;
-        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+        UniEditRetorno.Text := IntToStr(DM.ID_RETORNO_CONSULTAOBJETIVA);
+        UniLabelRetorno.Caption := DM.DESC_RETORNO_CONSULTAOBJETIVA;
       end;
     end);
 end;
-
-function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
-sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
-begin
+{
+  function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
+  sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
+  begin
   Result := false;
   FrmConsulta.SqlConsultaObjetiva.SQL.Text := sSqlBusca;
   FrmConsulta.Width := fUniFormRetorno.Width;
@@ -1547,16 +1537,17 @@ begin
   FrmConsulta.DsConsultaObjetiva.DataSet.Open;
   FrmConsulta.EditLocalizar.SetFocus;
   FrmConsulta.ShowModal(
-    procedure(iResult: Integer)
-    begin
-      if iResult = mrOK then
-      begin
-        VariantRetorno := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
-          (sID).AsVariant;
-        FrmConsulta.DsConsultaObjetiva.DataSet.Close;
-      end;
-    end);
-end;
+  procedure(iResult: Integer)
+  begin
+  if iResult = mrOK then
+  begin
+  VariantRetorno := FrmConsulta.DsConsultaObjetiva.DataSet.FieldByName
+  (sID).AsVariant;
+  FrmConsulta.DsConsultaObjetiva.DataSet.Close;
+  end;
+  end);
+  end;
+}
 
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
 UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;

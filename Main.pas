@@ -525,7 +525,7 @@ begin
   begin
     if FTempoParaFechar <= 0 then
     begin
-
+      FecharSistema;
     end;
 
     if FTempoParaFechar > 10 then
@@ -1214,11 +1214,16 @@ end;
 
 procedure TMainForm.FaltaDisciplinar1Click(Sender: TObject);
 begin
-  FrmAguarde.ShowModal(
-    procedure(Res: integer)
-    begin
-      FrmCadastroFaltasDisciplinares.ShowModal();
-    end);
+  if dm.configuracao = 'S' then
+  begin
+    FrmAguarde.ShowModal(
+      procedure(Res: integer)
+      begin
+        FrmCadastroFaltasDisciplinares.ShowModal();
+      end);
+  end
+  else
+    ShowMessage('Não tem acesso de configuração!');
 end;
 
 procedure TMainForm.Informaes1Click(Sender: TObject);

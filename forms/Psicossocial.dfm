@@ -2,7 +2,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
   ClientHeight = 591
   ClientWidth = 843
   Caption = 'Cadastro do Psicossocial'
-  ExplicitTop = 8
+  ExplicitTop = -213
   ExplicitWidth = 859
   ExplicitHeight = 630
   PixelsPerInch = 96
@@ -22,9 +22,12 @@ inherited FrmPsicossocial: TFrmPsicossocial
       Top = 367
       ExplicitTop = 367
     end
+    inherited UniBitBtnFichaDisciplinarInterno: TUniBitBtn
+      TabOrder = 9
+    end
     object BitBtn1: TUniBitBtn
       Left = 1
-      Top = 310
+      Top = 286
       Width = 104
       Height = 45
       Caption = 'Registrar Presen'#231'a'

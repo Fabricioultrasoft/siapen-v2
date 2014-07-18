@@ -3,7 +3,7 @@ inherited FrmConfere: TFrmConfere
   ClientWidth = 1013
   Caption = 'Confere'
   WindowState = wsMaximized
-  ExplicitTop = -205
+  ExplicitTop = -262
   ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -124,6 +124,30 @@ inherited FrmConfere: TFrmConfere
     inherited ToolBarModeloCadastro: TUniToolBar
       Width = 1007
       ExplicitWidth = 1007
+      inherited Novo: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Editar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited UniToolButton8: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Cancelar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Salvar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited UniToolButton7: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Excluir: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Fechar: TUniToolButton
+        ExplicitHeight = 43
+      end
     end
   end
   inherited PanelModeloCadastro: TUniPanel
@@ -139,8 +163,6 @@ inherited FrmConfere: TFrmConfere
       ExplicitWidth = 1011
       ExplicitHeight = 177
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 1003
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
@@ -281,8 +303,6 @@ inherited FrmConfere: TFrmConfere
         ExplicitWidth = 977
         ExplicitHeight = 267
         inherited UniTabSheetPrincipalCadastro: TUniTabSheet
-          ExplicitLeft = 4
-          ExplicitTop = 24
           ExplicitWidth = 1001
           ExplicitHeight = 261
           object UniPageControlConfere: TUniPageControl
@@ -290,7 +310,7 @@ inherited FrmConfere: TFrmConfere
             Top = 56
             Width = 1001
             Height = 205
-            ActivePage = UniTabSheetCela
+            ActivePage = UniTabSheetSaida
             TabOrder = 0
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -301,24 +321,6 @@ inherited FrmConfere: TFrmConfere
               DesignSize = (
                 993
                 177)
-              object UniLabel6: TUniLabel
-                Left = 3
-                Top = 1
-                Width = 79
-                Height = 13
-                Caption = 'RGI (Prontu'#225'rio)'
-                TabOrder = 0
-              end
-              object UniDBEditRGI: TUniDBEdit
-                Left = 3
-                Top = 20
-                Width = 83
-                Height = 22
-                DataField = 'RGI'
-                DataSource = DsCadastro
-                TabOrder = 2
-                Color = clWindow
-              end
               object UniDBComboBoxSexo: TUniDBComboBox
                 Left = 507
                 Top = 21
@@ -329,7 +331,7 @@ inherited FrmConfere: TFrmConfere
                   'M'
                   'F')
                 ItemIndex = -1
-                TabOrder = 3
+                TabOrder = 2
               end
               object UniLabel8: TUniLabel
                 Left = 507
@@ -337,15 +339,17 @@ inherited FrmConfere: TFrmConfere
                 Width = 24
                 Height = 13
                 Caption = 'Sexo'
-                TabOrder = 1
+                TabOrder = 9
               end
               object UniLabel9: TUniLabel
                 Left = 3
                 Top = 45
-                Width = 20
+                Width = 29
                 Height = 13
-                Caption = 'M'#227'e'
-                TabOrder = 4
+                Caption = 'M'#227'e *'
+                ParentFont = False
+                Font.Color = clMaroon
+                TabOrder = 10
               end
               object UniDBEditMae: TUniDBEdit
                 Left = 3
@@ -354,7 +358,7 @@ inherited FrmConfere: TFrmConfere
                 Height = 22
                 DataField = 'MAE'
                 DataSource = DsCadastro
-                TabOrder = 6
+                TabOrder = 3
                 Color = clWindow
               end
               object UniLabel10: TUniLabel
@@ -363,7 +367,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 14
                 Height = 13
                 Caption = 'Pai'
-                TabOrder = 5
+                TabOrder = 11
               end
               object UniDBEdit4: TUniDBEdit
                 Left = 287
@@ -372,7 +376,7 @@ inherited FrmConfere: TFrmConfere
                 Height = 22
                 DataField = 'PAI'
                 DataSource = DsCadastro
-                TabOrder = 7
+                TabOrder = 4
                 Color = clWindow
               end
               object UniLabel11: TUniLabel
@@ -381,7 +385,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 77
                 Height = 13
                 Caption = 'Regime Prisional'
-                TabOrder = 8
+                TabOrder = 12
               end
               object UniLabel12: TUniLabel
                 Left = 287
@@ -389,7 +393,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 98
                 Height = 13
                 Caption = 'Condi'#231#227'o do Interno'
-                TabOrder = 9
+                TabOrder = 13
               end
               object UniDBComboBox2: TUniDBComboBox
                 Left = 3
@@ -413,7 +417,7 @@ inherited FrmConfere: TFrmConfere
                   'Tempor'#225'rio'
                   'N'#227'o Informado')
                 ItemIndex = -1
-                TabOrder = 10
+                TabOrder = 5
               end
               object UniLabel13: TUniLabel
                 Left = 3
@@ -421,7 +425,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 26
                 Height = 13
                 Caption = 'Vulgo'
-                TabOrder = 11
+                TabOrder = 14
               end
               object UniDBEdit5: TUniDBEdit
                 Left = 3
@@ -430,7 +434,7 @@ inherited FrmConfere: TFrmConfere
                 Height = 22
                 DataField = 'VULGO'
                 DataSource = DsCadastro
-                TabOrder = 13
+                TabOrder = 7
                 Color = clWindow
               end
               object UniDBComboBox3: TUniDBComboBox
@@ -443,7 +447,7 @@ inherited FrmConfere: TFrmConfere
                   'SIM'
                   'N'#195'O')
                 ItemIndex = -1
-                TabOrder = 14
+                TabOrder = 8
               end
               object UniLabel14: TUniLabel
                 Left = 287
@@ -451,7 +455,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 114
                 Height = 13
                 Caption = 'Informa'#231#245'es Externas? '
-                TabOrder = 12
+                TabOrder = 15
               end
               object DBEditID: TUniDBEdit
                 Left = 486
@@ -461,7 +465,7 @@ inherited FrmConfere: TFrmConfere
                 Enabled = False
                 DataField = 'ID_INTERNO'
                 DataSource = DsCadastro
-                TabOrder = 15
+                TabOrder = 16
                 Color = clWindow
               end
               object UniLabel15: TUniLabel
@@ -470,29 +474,31 @@ inherited FrmConfere: TFrmConfere
                 Width = 11
                 Height = 13
                 Caption = 'ID'
-                TabOrder = 16
-              end
-              object Label12: TUniLabel
-                Left = 106
-                Top = 1
-                Width = 58
-                Height = 13
-                Caption = 'Proced'#234'ncia'
                 TabOrder = 17
               end
+              object Label12: TUniLabel
+                Left = 3
+                Top = 1
+                Width = 67
+                Height = 13
+                Caption = 'Proced'#234'ncia *'
+                ParentFont = False
+                Font.Color = clMaroon
+                TabOrder = 18
+              end
               object UniDBEditProcedencia: TUniDBEdit
-                Left = 107
+                Left = 3
                 Top = 20
                 Width = 60
                 Height = 22
                 DataField = 'ID_PROCEDENCIA'
                 DataSource = DsCadastro
-                TabOrder = 18
+                TabOrder = 0
                 Color = clWindow
                 OnExit = UniDBEditProcedenciaExit
               end
               object UniBitBtnProcedencia: TUniBitBtn
-                Left = 170
+                Left = 66
                 Top = 20
                 Width = 26
                 Height = 22
@@ -527,7 +533,7 @@ inherited FrmConfere: TFrmConfere
                 OnClick = UniBitBtnProcedenciaClick
               end
               object UniLabelProcedencia: TUniLabel
-                Left = 194
+                Left = 95
                 Top = 24
                 Width = 307
                 Height = 13
@@ -545,7 +551,7 @@ inherited FrmConfere: TFrmConfere
                 Height = 22
                 DataField = 'IDCONDICAO_INTERNO'
                 DataSource = DsCadastro
-                TabOrder = 21
+                TabOrder = 6
                 Color = clWindow
                 OnExit = UniDBEditCondicaoExit
               end
@@ -581,7 +587,7 @@ inherited FrmConfere: TFrmConfere
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 22
+                TabOrder = 21
                 OnClick = UniBitBtnCondicaoClick
               end
               object UniLabelCondicao: TUniLabel
@@ -594,7 +600,7 @@ inherited FrmConfere: TFrmConfere
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 23
+                TabOrder = 22
               end
               object UniPanel1: TUniPanel
                 Left = 590
@@ -602,7 +608,7 @@ inherited FrmConfere: TFrmConfere
                 Width = 187
                 Height = 171
                 Anchors = [akLeft, akTop, akBottom]
-                TabOrder = 24
+                TabOrder = 23
                 object UniDBImage1: TUniDBImage
                   Left = 1
                   Top = 1
@@ -616,6 +622,24 @@ inherited FrmConfere: TFrmConfere
                   Align = alClient
                   Anchors = [akLeft, akTop, akRight, akBottom]
                 end
+              end
+              object UniLabel3: TUniLabel
+                Left = 399
+                Top = 1
+                Width = 71
+                Height = 13
+                Caption = 'Numero Roupa'
+                TabOrder = 24
+              end
+              object UniDBEditNUMERO_ROUPA: TUniDBEdit
+                Left = 398
+                Top = 20
+                Width = 83
+                Height = 22
+                DataField = 'NUMERO_ROUPA'
+                DataSource = DsCadastro
+                TabOrder = 1
+                Color = clWindow
               end
             end
             object UniTabSheetCela: TUniTabSheet
@@ -858,8 +882,10 @@ inherited FrmConfere: TFrmConfere
                 Height = 21
                 DataField = 'CISAIDA'
                 DataSource = DsCadastro
+                CheckChangeDelay = 2000
                 TabOrder = 1
                 Color = clWindow
+                OnChange = DBEditDocSaidaChange
               end
               object ComboBoxTipoDocumento: TUniComboBox
                 Left = 287
@@ -887,11 +913,13 @@ inherited FrmConfere: TFrmConfere
                 Items.Strings = (
                   'Alvar'#225' de Soltura'
                   'Duplicidade de Registros'
+                  'Evas'#227'o'
                   'Fuga'
                   'Livramento Condicional'
                   #211'bito'
                   'Pedido Indeferido'
                   'Progress'#227'o de Regime'
+                  'Regress'#227'o de Regime'
                   'Sa'#237'da Tempor'#225'ria'
                   'Transfer'#234'ncia de Presidio'
                   'Transfer'#234'ncia de Comarca'
@@ -921,7 +949,7 @@ inherited FrmConfere: TFrmConfere
                 Top = 64
                 Width = 648
                 Height = 91
-                ActivePage = TabSheetUnidade
+                ActivePage = TabSheetDestino
                 TabOrder = 8
                 object TabSheetDestino: TUniTabSheet
                   Caption = 'Outros Destinos'
@@ -974,85 +1002,70 @@ inherited FrmConfere: TFrmConfere
             Align = alTop
             Anchors = [akLeft, akTop, akRight]
             TabOrder = 1
-            ExplicitLeft = 224
-            ExplicitTop = 24
-            ExplicitWidth = 256
             object UniDBEditNome: TUniDBEdit
-              Left = 11
+              Left = 9
               Top = 28
               Width = 382
               Height = 22
               DataField = 'NOME_INTERNO'
               DataSource = DsCadastro
-              TabOrder = 1
+              TabOrder = 0
               Color = clWindow
             end
             object UniLabel1: TUniLabel
               Left = 11
               Top = 9
-              Width = 27
+              Width = 36
               Height = 13
-              Caption = 'Nome'
-              TabOrder = 2
-            end
-            object UniDBEditNUMERO_ROUPA: TUniDBEdit
-              Left = 398
-              Top = 28
-              Width = 83
-              Height = 22
-              DataField = 'NUMERO_ROUPA'
-              DataSource = DsCadastro
-              TabOrder = 3
-              Color = clWindow
-            end
-            object UniLabel3: TUniLabel
-              Left = 398
-              Top = 9
-              Width = 71
-              Height = 13
-              Caption = 'Numero Roupa'
-              TabOrder = 4
+              Caption = 'Nome *'
+              ParentFont = False
+              Font.Color = clMaroon
+              TabOrder = 5
             end
             object UniLabel4: TUniLabel
-              Left = 485
+              Left = 491
               Top = 9
               Width = 97
               Height = 13
-              Caption = 'CI/OF. MOVIMENTO'
-              TabOrder = 5
+              Caption = 'CI/OF. Movimento *'
+              ParentFont = False
+              Font.Color = clMaroon
+              TabOrder = 6
             end
             object UniDBEditCI: TUniDBEdit
-              Left = 485
+              Left = 491
               Top = 28
-              Width = 106
+              Width = 111
               Height = 22
               DataField = 'CI'
               DataSource = DsCadastro
-              TabOrder = 6
+              TabOrder = 2
               Color = clWindow
             end
             object UniLabel5: TUniLabel
-              Left = 595
+              Left = 606
               Top = 9
-              Width = 79
+              Width = 88
               Height = 13
-              Caption = 'Data de Entrada'
+              Caption = 'Data de Entrada *'
+              ParentFont = False
+              Font.Color = clMaroon
               TabOrder = 7
             end
             object UniDBDateTimePickerDataEntrada: TUniDBDateTimePicker
-              Left = 596
+              Left = 606
               Top = 28
               Width = 94
               Height = 22
               DateTime = 41780.000000000000000000
               DateFormat = 'dd/MM/yyyy'
               TimeFormat = 'HH:mm:ss'
-              TabOrder = 8
+              TabOrder = 3
               DataField = 'DATA_ENTRADA'
               DataSource = DsCadastro
             end
             object UniDBCheckBoxStatus: TUniDBCheckBox
-              Left = 700
+              Left = 710
               Top = 32
               Width = 61
               Height = 17
@@ -1061,10 +1074,10 @@ inherited FrmConfere: TFrmConfere
               ValueChecked = 'A'
               ValueUnchecked = 'I'
               Caption = 'ATIVO'
-              TabOrder = 9
+              TabOrder = 8
             end
             object UniDBCheckBoxTransito: TUniDBCheckBox
-              Left = 767
+              Left = 777
               Top = 32
               Width = 98
               Height = 17
@@ -1073,7 +1086,27 @@ inherited FrmConfere: TFrmConfere
               ValueChecked = 'A'
               ValueUnchecked = 'I'
               Caption = 'EM TRANSITO'
+              TabOrder = 9
+            end
+            object UniLabel6: TUniLabel
+              Left = 397
+              Top = 9
+              Width = 88
+              Height = 13
+              Caption = 'RGI (Prontu'#225'rio) *'
+              ParentFont = False
+              Font.Color = clMaroon
               TabOrder = 10
+            end
+            object UniDBEditRGI: TUniDBEdit
+              Left = 397
+              Top = 28
+              Width = 83
+              Height = 22
+              DataField = 'RGI'
+              DataSource = DsCadastro
+              TabOrder = 1
+              Color = clWindow
             end
           end
         end

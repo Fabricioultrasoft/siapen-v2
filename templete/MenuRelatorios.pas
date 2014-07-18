@@ -77,97 +77,20 @@ begin
   if UniTreeView1.Selected.Text <> '[ Relatórios ]' then
     Dm.CaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
 
-  if ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
+  if trim(Dm.CaminhoRelatorio) <> '' then
   begin
-    Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
-      procedure(AResult: integer; AText: string)
-      begin
-        if AResult = mrOK then
-        begin
-          FrmConsulta.SqlConsultaObjetiva.SQL.Text := SqlConsultaBackup.SQL.Text
-            + ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
-            ' order by interno.nome_interno ';
-          FrmConsulta.Coluna := 1;
-          FrmConsulta.Width := Self.Width;
-          FrmConsulta.Top := Self.Top;
-          FrmConsulta.Left := Self.Left;
-          FrmConsulta.PreDescricao := uppercase(AText);
-          FrmConsulta.EditLocalizar.SetFocus;
-          FrmConsulta.ShowModal(
-            procedure(Result: integer)
-            begin
-              if Result = mrOK then
-              begin
-                id_interno := FrmConsulta.DsConsultaObjetiva.DataSet.fieldbyname
-                  ('ID').AsInteger;
-                dm.GLOBAL_ID_INTERNO := id_interno;
-                FrmConsulta.DsConsultaObjetiva.DataSet.close;
-                //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
-                FrmVisualizarRelatorio.ShowModal;
-              end;
-            end);
-        end;
-      end);
-  end
-  else if ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
-  begin
-    FrmTipoProcesso.ShowModal(
-      procedure(Result: integer)
-      begin
-        if Result = mrOK then
-        begin
-
-          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
-          FrmVisualizarRelatorio.ShowModal;
-
-        end;
-      end);
-  end
-  else if ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
-  begin
-    FrmFiltroPeriodo.ShowModal(
-      procedure(Result: integer)
-      begin
-        if Result = mrOK then
-        begin
-
-          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
-          FrmVisualizarRelatorio.ShowModal;
-
-        end;
-      end);
-  end
-  else if ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
-  begin
-    FrmFiltroPeriodoServidor.ShowModal(
-      procedure(Result: integer)
-      begin
-        if Result = mrOK then
-        begin
-
-          //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
-          FrmVisualizarRelatorio.ShowModal;
-
-        end;
-      end);
+    // FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
+    FrmVisualizarRelatorio.ShowModal;
   end
   else
   begin
-    if trim(Dm.CaminhoRelatorio) <> '' then
-    begin
-      //FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
-      FrmVisualizarRelatorio.ShowModal;
-    end
-    else
-    begin
-      ShowMessage('Selecione o relatório');
-    end;
+    ShowMessage('Selecione um relatório.');
   end;
 
 end;
 
 function TFrmMenuRelatorios.LocalizaTree(sDescricao: String;
-Deleta: boolean = false): integer;
+  Deleta: boolean = false): integer;
 var
   i: integer;
 begin
@@ -201,7 +124,7 @@ begin
     sListaDiretorios := TStringList.Create;
 
     ListarDiretorios(UniServerModule.StartPath + 'relatorios\' +
-      inttostr(dm.GLOBAL_ID_UP) + '\', sListaDiretorios);
+      inttostr(Dm.GLOBAL_ID_UP) + '\', sListaDiretorios);
 
     for i := 0 to sListaDiretorios.Count - 1 do
     begin
@@ -219,7 +142,7 @@ begin
 end;
 
 procedure TFrmMenuRelatorios.UniFormKeyDown(Sender: TObject; var Key: Word;
-Shift: TShiftState);
+  Shift: TShiftState);
 begin
   if Key = vk_escape then
     Self.close;
@@ -235,11 +158,11 @@ begin
   }
   CriarMenu;
 
-  if dm.GLOBAL_IDCONEXAO > 0 then
+  if Dm.GLOBAL_IDCONEXAO > 0 then
   begin
     try
-      dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-        qs(Self.Caption) + ' where idconexao=' + inttostr(dm.GLOBAL_IDCONEXAO));
+      Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+        qs(Self.Caption) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
     except
     end;
   end;
@@ -262,7 +185,7 @@ begin
     begin
       listtemp2 := TStringList.Create;
       ListarArquivos(UniServerModule.StartPath + 'relatorios\' +
-        inttostr(dm.GLOBAL_ID_UP) + '\' + UniTreeView1.Selected.Text + '\',
+        inttostr(Dm.GLOBAL_ID_UP) + '\' + UniTreeView1.Selected.Text + '\',
         '*.fr3', false, true);
       UniListBox1.Items := listtemp2;
       listtemp2.Free;
@@ -271,7 +194,7 @@ begin
     begin
       listtemp2 := TStringList.Create;
       ListarArquivos(UniServerModule.StartPath + 'relatorios\' +
-        inttostr(dm.GLOBAL_ID_UP) + '\', '*.fr3', false, true);
+        inttostr(Dm.GLOBAL_ID_UP) + '\', '*.fr3', false, true);
       UniListBox1.Items := listtemp2;
       listtemp2.Free;
     end;
@@ -281,11 +204,12 @@ end;
 
 procedure TFrmMenuRelatorios.FecharClick(Sender: TObject);
 begin
-  self.close;
+  Self.close;
 end;
 
 procedure TFrmMenuRelatorios.ListarArquivos(diretorioInicial, mascara: string;
-listtotaldir: boolean = false; recursive: boolean = true; apelido: string = '');
+  listtotaldir: boolean = false; recursive: boolean = true;
+  apelido: string = '');
 var
   i: integer;
   listatemp: Tstrings;
