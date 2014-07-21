@@ -2,7 +2,6 @@ inherited FrmInterno: TFrmInterno
   ClientHeight = 607
   ClientWidth = 892
   Caption = 'Cadastro do Interno'
-  ExplicitTop = -249
   ExplicitWidth = 908
   ExplicitHeight = 646
   PixelsPerInch = 96
@@ -109,7 +108,7 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetEndereco
+            ActivePage = TabSheetPrincipal
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -3044,7 +3043,7 @@ inherited FrmInterno: TFrmInterno
             ParentRTL = False
             Items.Strings = (
               'Ativo'
-              'Inativo')
+              'Todos')
             ItemIndex = 0
             TabOrder = 4
           end

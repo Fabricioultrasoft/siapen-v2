@@ -48,6 +48,7 @@ type
     procedure UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
     procedure UniBitBtn3Click(Sender: TObject);
     procedure UniBitBtnComunicarCentralClick(Sender: TObject);
+    procedure UniFormCreate(Sender: TObject);
   private
     sArquivosPDFInterno, sPdf: String;
     sCaminhoArquivo, sArquivo, sNomePDF, sPastaDia: string;
@@ -337,6 +338,15 @@ begin
 
   except
   end;
+
+end;
+
+procedure TFrmDocumentosDigitalizados.UniFormCreate(Sender: TObject);
+begin
+  inherited;
+
+  Editar.Visible := true;
+  Salvar.Visible := true;
 
 end;
 

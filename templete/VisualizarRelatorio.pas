@@ -661,6 +661,9 @@ begin
   if FNome = '' then
     FNome := Dm.CaminhoRelatorio;
 
+  self.Caption := FNome;
+  LabelTitulo.Caption := FNome;
+
   FAguardeFiltro := true;
   FCancelaExecucao := false;
   UniBitBtnRecarregar.Visible := (FCaminhoFR3 = '');
@@ -834,6 +837,11 @@ begin
     Dm.frxReport1.Variables.DeleteVariable('LOGO');
     Dm.frxReport1.Variables.AddVariable('SIAP', 'LOGO',
       qs(UniServerModule.StartPath + '\logo\BRASIL.jpg'));
+
+
+    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_SOLICITANTE');
+    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE',Dm.GLOBAL_SOLICITANTE);
+
 
     if not FCancelaExecucao then
       Result := true;

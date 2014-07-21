@@ -810,7 +810,7 @@ end;
 
 procedure TFrmInterno.SalvarClick(Sender: TObject);
 begin
-  DsCadastro.DataSet.fieldbyname('id_up').AsInteger := dm.GLOBAL_ID_UP;
+//  DsCadastro.DataSet.fieldbyname('id_up').AsInteger := dm.GLOBAL_ID_UP;
   DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
     dm.GLOBAL_ID_FUNCIONARIO;
 
@@ -1215,74 +1215,79 @@ end;
 
 procedure TFrmInterno.UniFormCreate(Sender: TObject);
 begin
-  inherited;
   Self.WindowState := wsMaximized;
+  inherited;
   FID_INTERNO := 0;
-  if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-    not ContemValor('E', dm.PERMISSAO_CONFERE) and
-    not ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Novo.Visible := False;
-    Editar.Visible := False;
-    Excluir.Visible := False;
-    Salvar.Visible := False;
-  end;
 
-  if ContemValor('I', dm.PERMISSAO_CONFERE) and
-    not ContemValor('E', dm.PERMISSAO_CONFERE) and
-    not ContemValor('D', dm.PERMISSAO_CONFERE) then
+  if Self.Name = 'FrmInterno' then
   begin
-    Editar.Visible := False;
-    Excluir.Visible := False;
-    if not Salvar.Visible then
-      Salvar.Visible := False;
-    if not Salvar.Enabled then
-      Salvar.Visible := False;
-  end;
 
-  if ContemValor('I', dm.PERMISSAO_CONFERE) and
-    ContemValor('E', dm.PERMISSAO_CONFERE) and
-    not ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Excluir.Visible := False;
-  end;
-
-  if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-    ContemValor('E', dm.PERMISSAO_CONFERE) and
-    ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Novo.Visible := False;
-  end;
-
-  if ContemValor('I', dm.PERMISSAO_CONFERE) and
-    not ContemValor('E', dm.PERMISSAO_CONFERE) and
-    ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Editar.Visible := False;
-    if not Salvar.Visible then
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
+      not ContemValor('E', dm.PERMISSAO_CONFERE) and
+      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Novo.Visible := False;
+      Editar.Visible := False;
+      Excluir.Visible := False;
       Salvar.Visible := False;
-    if not Salvar.Enabled then
-      Salvar.Visible := False;
-  end;
+    end;
 
-  if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-    not ContemValor('E', dm.PERMISSAO_CONFERE) and
-    ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Novo.Visible := False;
-    Editar.Visible := False;
-    if not Salvar.Visible then
-      Salvar.Visible := False;
-    if not Salvar.Enabled then
-      Salvar.Visible := False;
-  end;
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and
+      not ContemValor('E', dm.PERMISSAO_CONFERE) and
+      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Editar.Visible := False;
+      Excluir.Visible := False;
+      if not Salvar.Visible then
+        Salvar.Visible := False;
+      if not Salvar.Enabled then
+        Salvar.Visible := False;
+    end;
 
-  if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-    ContemValor('E', dm.PERMISSAO_CONFERE) and
-    not ContemValor('D', dm.PERMISSAO_CONFERE) then
-  begin
-    Novo.Visible := False;
-    Excluir.Visible := False;
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and
+      ContemValor('E', dm.PERMISSAO_CONFERE) and
+      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Excluir.Visible := False;
+    end;
+
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
+      ContemValor('E', dm.PERMISSAO_CONFERE) and
+      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Novo.Visible := False;
+    end;
+
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and
+      not ContemValor('E', dm.PERMISSAO_CONFERE) and
+      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Editar.Visible := False;
+      if not Salvar.Visible then
+        Salvar.Visible := False;
+      if not Salvar.Enabled then
+        Salvar.Visible := False;
+    end;
+
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
+      not ContemValor('E', dm.PERMISSAO_CONFERE) and
+      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Novo.Visible := False;
+      Editar.Visible := False;
+      if not Salvar.Visible then
+        Salvar.Visible := False;
+      if not Salvar.Enabled then
+        Salvar.Visible := False;
+    end;
+
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
+      ContemValor('E', dm.PERMISSAO_CONFERE) and
+      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    begin
+      Novo.Visible := False;
+      Excluir.Visible := False;
+    end;
   end;
 
 end;

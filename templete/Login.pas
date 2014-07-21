@@ -396,7 +396,7 @@ begin
 
   dm.DATA_HORA_ENTRADA := NOW;
   dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
-  // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,10);
+//   Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
 
   humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
     'Seja bem vindo!');

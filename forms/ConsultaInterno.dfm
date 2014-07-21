@@ -178,7 +178,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
           item
             FieldName = 'ST'
             Title.Caption = 'Status'
-            Width = 64
+            Width = 70
             Visible = True
             Expanded = False
           end
@@ -331,7 +331,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
           item
             FieldName = 'STATUS'
             Title.Caption = 'Status'
-            Width = 64
+            Width = 70
             Visible = True
             Expanded = False
           end>
@@ -371,7 +371,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         OnChange = EditlocalizaoutronomeChange
       end
       object DBGridOutroNome: TUniDBGrid
-        Left = 10
+        Left = 3
         Top = 65
         Width = 1000
         Height = 200
@@ -451,7 +451,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
           item
             FieldName = 'STATUS'
             Title.Caption = 'Status'
-            Width = 64
+            Width = 70
             Visible = True
             Expanded = False
           end>
@@ -557,7 +557,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
           item
             FieldName = 'STATUS'
             Title.Caption = 'Status'
-            Width = 64
+            Width = 70
             Visible = True
             Expanded = False
           end>

@@ -258,6 +258,11 @@
 				<Form>frameFileExplorer</Form>
 				<DesignClass>TUniFrame</DesignClass>
 			</DCCReference>
+			<DCCReference Include="templete\FiltroInformarDoc.pas">
+				<Form>FrmFiltroInformarDoc</Form>
+				<FormType>dfm</FormType>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

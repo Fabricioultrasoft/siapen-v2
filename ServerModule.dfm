@@ -3,7 +3,7 @@ object UniServerModule: TUniServerModule
   AutoCoInitialize = True
   FilesFolder = 'files\'
   TempFolder = 'temp\'
-  SessionTimeout = 86400000
+  SessionTimeout = 7200000
   Title = 'Siapen 2.0'
   BGColor = clBlack
   CharSet = 'utf-8'
@@ -715,7 +715,7 @@ object UniServerModule: TUniServerModule
   AjaxTimeout = 120000
   DefaultImageFormat = cfJpeg
   UseGlobalImageCache = True
-  SuppressErrors = []
+  SuppressErrors = [errObjectNotFound, errAjax]
   UnavailableErrMsg = 'Siapen 2.0 n'#227'o est'#225' dispon'#237'vel, por favor, tente mais tarde...'
   LoadingMessage = 'Siapen 2.0'
   Bindings = <>
@@ -962,7 +962,6 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.Mode = sslmUnassigned
   SSL.SSLOptions.VerifyMode = []
   SSL.SSLOptions.VerifyDepth = 0
-  Options = []
   Height = 150
   Width = 215
 end

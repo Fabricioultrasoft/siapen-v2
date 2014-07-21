@@ -2,7 +2,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
   ClientHeight = 679
   ClientWidth = 995
   Caption = 'Documentos Digitalizados'
-  ExplicitTop = 8
   ExplicitWidth = 1011
   ExplicitHeight = 718
   PixelsPerInch = 96
@@ -64,7 +63,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 888
       Height = 610
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 888
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -82,8 +80,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
             ExplicitWidth = 878
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -304,8 +300,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -478,8 +472,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -501,14 +493,10 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -548,8 +536,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetFotos: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -577,8 +563,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -589,8 +573,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMapa: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end

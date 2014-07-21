@@ -660,7 +660,10 @@ type
     FSqlConsultaObjetiva: string;
     FCampoWhereSqlConsulta: string;
     FPreDescricaoConsulta: string;
+    FGLOBAL_SOLICITANTE: string;
   public
+    property GLOBAL_SOLICITANTE: String read FGLOBAL_SOLICITANTE
+      write FGLOBAL_SOLICITANTE;
     property PreDescricaoConsulta: String read FPreDescricaoConsulta
       write FPreDescricaoConsulta;
     property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta
@@ -901,7 +904,6 @@ procedure Register;
 
 resourcestring
   dtlServerPage = 'ActiveX';
-
   dtlOcxPage = 'ActiveX';
 
 implementation

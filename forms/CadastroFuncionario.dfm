@@ -44,7 +44,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
             Top = 1
             Width = 877
             Height = 521
-            ActivePage = TabSheetPermissao
+            ActivePage = TabSheet1
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -61,25 +61,25 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
               object Label3: TUniLabel
                 Left = 194
                 Top = 20
-                Width = 29
+                Width = 27
                 Height = 13
-                Caption = 'NOME'
+                Caption = 'Nome'
                 TabOrder = 25
               end
               object Label17: TUniLabel
                 Left = 263
                 Top = 63
-                Width = 21
+                Width = 20
                 Height = 13
-                Caption = 'M'#195'E'
+                Caption = 'M'#227'e'
                 TabOrder = 26
               end
               object Label4: TUniLabel
                 Left = 151
                 Top = 108
-                Width = 58
+                Width = 43
                 Height = 13
-                Caption = 'MATRICULA'
+                Caption = 'Matricula'
                 TabOrder = 27
               end
               object Label6: TUniLabel
@@ -99,35 +99,35 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 TabOrder = 29
               end
               object Label13: TUniLabel
-                Left = 514
-                Top = 107
-                Width = 85
+                Left = 510
+                Top = 106
+                Width = 69
                 Height = 13
-                Caption = 'ORG'#195'O EMISSOR'
+                Caption = 'Org'#227'o Emissor'
                 TabOrder = 30
               end
               object Label16: TUniLabel
                 Left = 619
                 Top = 106
-                Width = 37
+                Width = 31
                 Height = 13
-                Caption = 'CLASSE'
+                Caption = 'Classe'
                 TabOrder = 31
               end
               object Label19: TUniLabel
                 Left = 693
                 Top = 105
-                Width = 85
+                Width = 81
                 Height = 13
-                Caption = 'G.SANGUE /F. RH'
+                Caption = 'G.Sangue /F. RH'
                 TabOrder = 32
               end
               object Label14: TUniLabel
                 Left = 687
                 Top = 20
-                Width = 83
+                Width = 86
                 Height = 13
-                Caption = 'DATA ADMISS'#195'O'
+                Caption = 'Data de Admiss'#227'o'
                 TabOrder = 33
               end
               object Label15: TUniLabel
@@ -135,7 +135,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Top = 63
                 Width = 96
                 Height = 13
-                Caption = 'DATA NASCIMENTO'
+                Caption = 'Data de Nascimento'
                 TabOrder = 34
               end
               object Label20: TUniLabel
@@ -181,9 +181,9 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
               object Label18: TUniLabel
                 Left = 551
                 Top = 63
-                Width = 17
+                Width = 14
                 Height = 13
-                Caption = 'PAI'
+                Caption = 'Pai'
                 TabOrder = 40
               end
               object Label31: TUniLabel
@@ -272,16 +272,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Width = 24
                 Height = 13
                 Caption = 'Cutis'
-                TabOrder = 51
-              end
-              object DBImageFOTOFUNCIONARIO: TUniDBImage
-                Left = 13
-                Top = 22
-                Width = 127
-                Height = 127
-                DataField = 'FOTO'
-                DataSource = DsCadastro
-                Stretch = True
+                TabOrder = 50
               end
               object DBEditcodigo: TUniDBEdit
                 Left = 151
@@ -499,14 +490,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 TabOrder = 7
                 Color = clWindow
               end
-              object DBImagedIGITAL: TUniDBImage
-                Left = 648
-                Top = 185
-                Width = 127
-                Height = 127
-                DataField = 'DIGITAL'
-                DataSource = DsCadastro
-              end
               object DBEditdtlotacao: TUniDBEdit
                 Left = 13
                 Top = 420
@@ -617,11 +600,11 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Width = 522
                 Height = 13
                 AutoSize = False
-                Caption = '(Unidade Prisional)'
+                Caption = '(Unidade Padr'#227'o)'
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 53
+                TabOrder = 51
               end
               object UniBitBtnUnidadePenal: TUniBitBtn
                 Left = 171
@@ -655,7 +638,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 54
+                TabOrder = 52
                 OnClick = UniBitBtnUnidadePenalClick
               end
               object UniDBEditUnidadePenal: TUniDBEdit
@@ -665,7 +648,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Height = 22
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
-                TabOrder = 55
+                TabOrder = 53
                 Color = clWindow
                 OnExit = UniDBEditUnidadePenalExit
               end
@@ -701,7 +684,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 56
+                TabOrder = 54
                 OnClick = UniBitBtnNaturalidadeClick
               end
               object UniLabelNaturalidade: TUniLabel
@@ -714,7 +697,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 57
+                TabOrder = 55
               end
               object UniDBEditNaturalidade: TUniDBEdit
                 Left = 13
@@ -723,7 +706,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Height = 22
                 DataField = 'ID_NATURALIDADE'
                 DataSource = DsCadastro
-                TabOrder = 58
+                TabOrder = 56
                 Color = clWindow
                 OnExit = UniDBEditNaturalidadeExit
               end
@@ -733,7 +716,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Width = 24
                 Height = 13
                 Caption = 'Sexo'
-                TabOrder = 59
+                TabOrder = 57
               end
               object UniLabel7: TUniLabel
                 Left = 467
@@ -741,7 +724,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Width = 141
                 Height = 13
                 Caption = 'Imprimir Identidade Funcional'
-                TabOrder = 60
+                TabOrder = 58
               end
               object UniLabelCurso: TUniLabel
                 Left = 402
@@ -753,7 +736,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 61
+                TabOrder = 59
               end
               object UniBitBtnCurso: TUniBitBtn
                 Left = 372
@@ -787,7 +770,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 62
+                TabOrder = 60
                 OnClick = UniBitBtnCursoClick
               end
               object UniDBEditCurso: TUniDBEdit
@@ -797,7 +780,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Height = 22
                 DataField = 'ID_CURSO'
                 DataSource = DsCadastro
-                TabOrder = 63
+                TabOrder = 61
                 Color = clWindow
                 OnExit = UniDBEditCursoExit
               end
@@ -811,7 +794,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 ParentColor = False
                 Color = clWhite
                 Transparent = False
-                TabOrder = 64
+                TabOrder = 62
               end
               object UniBitBtnPosto: TUniBitBtn
                 Left = 519
@@ -845,7 +828,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                   EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                   86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
-                TabOrder = 65
+                TabOrder = 63
                 OnClick = UniBitBtnPostoClick
               end
               object UniDBEditPosto: TUniDBEdit
@@ -855,7 +838,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Height = 22
                 DataField = 'IDPOSTO_TRABALHO'
                 DataSource = DsCadastro
-                TabOrder = 67
+                TabOrder = 65
                 Color = clWindow
                 OnExit = UniDBEditPostoExit
               end
@@ -865,7 +848,42 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Width = 121
                 Height = 13
                 Caption = 'Posto / Local de Trabalho'
+                TabOrder = 64
+              end
+              object UniPanel1: TUniPanel
+                Left = 14
+                Top = 20
+                Width = 132
+                Height = 133
+                Caption = 'UniPanel1'
                 TabOrder = 66
+                object DBImageFOTOFUNCIONARIO: TUniDBImage
+                  Left = 3
+                  Top = 3
+                  Width = 127
+                  Height = 127
+                  DataField = 'FOTO'
+                  DataSource = DsCadastro
+                  Stretch = True
+                  OnClick = DBImageFOTOFUNCIONARIOClick
+                end
+              end
+              object UniPanel2: TUniPanel
+                Left = 642
+                Top = 181
+                Width = 132
+                Height = 133
+                Caption = 'UniPanel1'
+                TabOrder = 67
+                object DBImagedIGITAL: TUniDBImage
+                  Left = 3
+                  Top = 3
+                  Width = 127
+                  Height = 127
+                  DataField = 'DIGITAL'
+                  DataSource = DsCadastro
+                  OnClick = DBImagedIGITALClick
+                end
               end
             end
             object TabSheet2: TUniTabSheet
@@ -1110,7 +1128,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
               end
               object DBRadioGroup2: TUniDBComboBox
                 Left = 671
-                Top = 24
+                Top = 22
                 Width = 120
                 Height = 21
                 Hint = 'Configura'#231#245'es'
@@ -3360,7 +3378,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                     Top = 7
                     Width = 90
                     Height = 188
-                    Caption = 'Unidade Penal'
+                    Caption = 'Unidade Padr'#227'o'
                     TabOrder = 2
                     object ChConsultarUnidadePenal: TUniCheckBox
                       Left = 8
@@ -3836,17 +3854,17 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
               object UniLabel3: TUniLabel
                 Left = 372
                 Top = 7
-                Width = 154
+                Width = 120
                 Height = 13
-                Caption = 'Acessa outras Unidades Penais?'
+                Caption = 'Acessa outras Unidades?'
                 TabOrder = 10
               end
               object UniLabel4: TUniLabel
                 Left = 552
                 Top = 7
-                Width = 95
+                Width = 100
                 Height = 13
-                Caption = 'Liberar SiapenWeb?'
+                Caption = 'Liberar Acesso Web?'
                 TabOrder = 11
               end
               object UniLabel5: TUniLabel

@@ -51,7 +51,8 @@ uses
   HistoricoInterno in 'forms\HistoricoInterno.pas' {FrmHistoricoInterno: TUniForm},
   CadastroFuncionario in 'forms\CadastroFuncionario.pas' {FrmCadastroFuncionario: TUniForm},
   Explore in 'templete\Explore.pas' {FrmExplore: TUniForm},
-  FileExplorer_Frame in 'templete\FileExplorer_Frame.pas' {frameFileExplorer: TUniFrame};
+  FileExplorer_Frame in 'templete\FileExplorer_Frame.pas' {frameFileExplorer: TUniFrame},
+  FiltroInformarDoc in 'templete\FiltroInformarDoc.pas' {FrmFiltroInformarDoc: TUniForm};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}

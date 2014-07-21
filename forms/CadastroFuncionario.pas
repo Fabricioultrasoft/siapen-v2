@@ -35,7 +35,6 @@ type
     Label18: TUniLabel;
     FOTO: TUniLabel;
     Label37: TUniLabel;
-    DBImageFOTOFUNCIONARIO: TUniDBImage;
     DBEditcodigo: TUniDBEdit;
     DBEdit2: TUniDBEdit;
     DBEdit12: TUniDBEdit;
@@ -377,6 +376,10 @@ type
     CdsConsultaMATRICULA: TStringField;
     CdsConsultaLOGIN: TStringField;
     CdsConsultaID_FUNCIONARIO: TIntegerField;
+    UniPanel1: TUniPanel;
+    DBImageFOTOFUNCIONARIO: TUniDBImage;
+    UniPanel2: TUniPanel;
+    DBImagedIGITAL: TUniDBImage;
     procedure chConsultaOcorrenciaClick(Sender: TObject);
     procedure ChConsultarAgenteEquipeClick(Sender: TObject);
     procedure chconsultararmasClick(Sender: TObject);
@@ -651,7 +654,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MainModule, uniGUIApplication, DmPrincipal, Lib;
+  MainModule, uniGUIApplication, DmPrincipal, Lib, Main;
 
 function FrmCadastroFuncionario: TFrmCadastroFuncionario;
 begin
@@ -969,6 +972,12 @@ begin
     (chrelatorio.Checked := False);
     (chConsulta.Checked := False);
   end;
+
+  (chConsulta.Onclick(nil));
+  (chEditar.Onclick(nil));
+  (chDeletar.Onclick(nil));
+  (chInserir.Onclick(nil));
+  (chrelatorio.Onclick(nil));
 
 end;
 
@@ -1631,17 +1640,28 @@ begin
 end;
 
 procedure TFrmCadastroFuncionario.DBImageFOTOFUNCIONARIOClick(Sender: TObject);
-var
-  sOrigem, sDestino: string;
-  jpeg: TJpegImage;
 begin
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+    MainForm.NomeImagemUpload := 'FOTO-idfuncionario-' +
+      DsCadastro.DataSet.FieldByName('ID_FUNCIONARIO').AsString;
+    MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
+    MainForm.DsUploadImagem := DsCadastro;
+    MainForm.UniFileUploadImagem.Execute;
+  end;
 end;
 
 procedure TFrmCadastroFuncionario.DBImagedIGITALClick(Sender: TObject);
-var
-  sOrigem, sDestino: string;
-  jpeg: TJpegImage;
+
 begin
+  if DsCadastro.DataSet.State in [dsedit, dsinsert] then
+  begin
+    MainForm.NomeImagemUpload := 'DIGITAL-idfuncionario-' +
+      DsCadastro.DataSet.FieldByName('ID_FUNCIONARIO').AsString;
+    MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
+    MainForm.DsUploadImagem := DsCadastro;
+    MainForm.UniFileUploadImagem.Execute;
+  end;
 end;
 
 procedure TFrmCadastroFuncionario.chconsultarcadastroClick(Sender: TObject);
@@ -2465,10 +2485,10 @@ end;
 procedure TFrmCadastroFuncionario.EditarClick(Sender: TObject);
 begin
 
-  SqlCadastro.Sql.Text:= 'SELECT * FROM FUNCIONARIO WHERE ID_FUNCIONARIO = '+
-  DsConsulta.DataSet.FieldByName('id_funcionario').Asstring;
+  SqlCadastro.sql.text := 'SELECT * FROM FUNCIONARIO WHERE ID_FUNCIONARIO = ' +
+    DsConsulta.DataSet.FieldByName('id_funcionario').AsString;
 
-  TabSheetPermissao.TabVisible :=  (dm.CONFIGURACAO = 'S');
+//  TabSheetPermissao.TabVisible := (Dm.CONFIGURACAO = 'S');
 
   DsCadastro.DataSet.Close;
   DsCadastro.DataSet.Open;

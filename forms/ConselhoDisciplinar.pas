@@ -111,6 +111,10 @@ type
     UniLabel10: TUniLabel;
     ComunicaodeIsolamentoPreventivo1: TUniMenuItem;
     CIdeEncaminhamentoparaCCT1: TUniMenuItem;
+    UniLabel31: TUniLabel;
+    UniDateTimePickerCienciaCCT: TUniDateTimePicker;
+    UniComboBoxSolicitante: TUniComboBox;
+    UniLabel32: TUniLabel;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -155,7 +159,7 @@ implementation
 
 uses
   MainModule, uniGUIApplication, VincFaltaDisiciplinar, DmPrincipal, Lib,
-  Consulta, VisualizarRelatorio, ServerModule;
+  Consulta, VisualizarRelatorio, ServerModule, FiltroInformarDoc;
 
 function FrmConselhoDisciplinar: TFrmConselhoDisciplinar;
 begin
@@ -274,6 +278,10 @@ begin
     preventivo;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('decisao_recurso').AsString :=
     ComboBoxDecisaoRecurso.Text;
+  // NOVO EM 21/07/2014
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString :=
+    UniComboBoxSolicitante.Text;
+
   Dsvincfaltadisciplinar.DataSet.fieldbyname('classificacao_conduta').AsString
     := ComboBoxClasConduta.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString :=
@@ -285,6 +293,7 @@ begin
   Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString :=
     UniEditLocalArquivo.Text;
 
+
   Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime :=
     UniDateTimePickerEnvioRecurso.datetime;
 
@@ -293,6 +302,9 @@ begin
 
   Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime
     := UniDateTimePickerTomouCiencia.datetime;
+
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime
+    := UniDateTimePickerCienciaCCT.datetime;
 
   Dsvincfaltadisciplinar.DataSet.Post;
   Cdsvincfaltadisciplinar.ApplyUpdates(-1);
@@ -480,6 +492,10 @@ begin
   ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('decisao_recurso').AsString;
 
+  // NOVO EM 21/07/2014
+  UniComboBoxSolicitante.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
+    ('SOLICITANTE_CCT').AsString;
+
   UniComboBoxResultadoCCT.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('resultado_recurso_cct').AsString;
 
@@ -499,6 +515,10 @@ begin
 
   UniDateTimePickerTomouCiencia.datetime :=
     Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO')
+    .Asdatetime;
+
+  UniDateTimePickerCienciaCCT.datetime :=
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT')
     .Asdatetime;
 
   UniEditUPOrigemProcesso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
@@ -573,6 +593,9 @@ begin
   begin
     UniPanelRecurso.Enabled := false;
     ComboBoxDecisaoRecurso.ItemIndex := 0;
+  // NOVO EM 21/07/2014
+    UniComboBoxSolicitante.ItemIndex := 0;
+    UniComboBoxSolicitante.TEXT := '';
   end;
 end;
 
@@ -633,6 +656,8 @@ begin
   ComboBoxTipoSancao.ItemIndex := 0;
   ComboBoxClasConduta.ItemIndex := 0;
   ComboBoxDecisaoRecurso.ItemIndex := 0;
+  // NOVO EM 21/07/2014
+  UniComboBoxSolicitante.ItemIndex := 0;
   ComboBoxtipoprocedimento.ItemIndex := 0;
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';
@@ -643,6 +668,9 @@ begin
   UniDateTimePickerTomouCiencia.Text := '';
   UniDateTimePickerEnvioRecurso.Text := '';
   UniDateTimePickerRetornoRecurso.Text := '';
+
+  // novo 21/07/2014
+  UniDateTimePickerCienciaCCT.Text := '';
 
   { Abrir e fechar as tabelas para atualizar o grid }
 
@@ -893,16 +921,21 @@ begin
     showmessage('Não tem falta.');
     exit;
   end;
+
   //
-  Prompt('Informe o número da CI:', '', mtInformation, mbOKCancel,
-    procedure(AResult: Integer; AText: string)
+  FrmFiltroInformarDoc.Showmodal(
+    procedure(AResult: Integer)
     begin
       if AResult = mrOK then
       begin
-        Dm.GLOBAL_OFICIO := AText;
+
         Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
           Dsvincfaltadisciplinar.DataSet.fieldbyname
           ('ID_VINC_FALTA_DISCIPLINAR').AsString;
+
+        DM.GLOBAL_SOLICITANTE := Dsvincfaltadisciplinar.DataSet.fieldbyname
+          ('SOLICITANTE_CCT').AsString;
+
         FrmVisualizarRelatorio.FazExportacaoJPEG := true;
         FrmVisualizarRelatorio.Nome := 'CI Encaminhamento CCT';
 
@@ -1093,6 +1126,8 @@ begin
   RadioGroupRecurso.ItemIndex := 1;
   RadioGroupRecurso.OnClick(nil);
   ComboBoxDecisaoRecurso.ItemIndex := -1;
+  // NOVO EM 21/07/2014
+  UniComboBoxSolicitante.ItemIndex := -1;
   RadioGroupHomologado.ItemIndex := -1;
   ComboBoxClasConduta.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
@@ -1106,6 +1141,7 @@ begin
   UniDateTimePickerEnvioRecurso.Text := '';
   UniDateTimePickerRetornoRecurso.Text := '';
   Editdtincidencia.Text := '';
+  UniDateTimePickerCienciaCCT.Text := '';
 
 end;
 
