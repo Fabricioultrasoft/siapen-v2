@@ -93,9 +93,12 @@ inherited FrmInterno: TFrmInterno
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 785
       Height = 538
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelCadastro: TUniPanel
@@ -108,7 +111,7 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetPrincipal
+            ActivePage = TabSheetMapa
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -3005,6 +3008,8 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel

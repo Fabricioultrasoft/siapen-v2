@@ -838,10 +838,9 @@ begin
     Dm.frxReport1.Variables.AddVariable('SIAP', 'LOGO',
       qs(UniServerModule.StartPath + '\logo\BRASIL.jpg'));
 
-
     Dm.frxReport1.Variables.DeleteVariable('GLOBAL_SOLICITANTE');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE',Dm.GLOBAL_SOLICITANTE);
-
+    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE',
+      qs(Dm.GLOBAL_SOLICITANTE));
 
     if not FCancelaExecucao then
       Result := true;

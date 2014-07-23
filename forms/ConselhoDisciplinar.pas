@@ -35,13 +35,11 @@ type
     UniLabel6: TUniLabel;
     UniLabel7: TUniLabel;
     UniLabel11: TUniLabel;
-    UniLabel21: TUniLabel;
     DBLookupComboBoxfaltadisciplinar: TUniDBLookupComboBox;
     Editpdi: TUniEdit;
     ComboBoxconclusao: TUniComboBox;
     BitBtnIncluir: TUniBitBtn;
     DBGridFaltas: TUniDBGrid;
-    ComboBoxClasConduta: TUniComboBox;
     EditNatureza: TUniEdit;
     Memo1: TUniMemo;
     PopupMenuIsolamento: TUniPopupMenu;
@@ -282,8 +280,6 @@ begin
   Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString :=
     UniComboBoxSolicitante.Text;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('classificacao_conduta').AsString
-    := ComboBoxClasConduta.Text;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString :=
     homologado;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado_recurso_cct').AsString
@@ -499,9 +495,6 @@ begin
   UniComboBoxResultadoCCT.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('resultado_recurso_cct').AsString;
 
-  ComboBoxClasConduta.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('classificacao_conduta').AsString;
-
   // novo 07/07/2014
   UniEditLocalArquivo.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('LOCAL_ARQUIVO').AsString;
@@ -654,7 +647,6 @@ begin
   Editresultado.Text := '';
   ComboBoxresultado.ItemIndex := 0;
   ComboBoxTipoSancao.ItemIndex := 0;
-  ComboBoxClasConduta.ItemIndex := 0;
   ComboBoxDecisaoRecurso.ItemIndex := 0;
   // NOVO EM 21/07/2014
   UniComboBoxSolicitante.ItemIndex := 0;
@@ -1129,7 +1121,6 @@ begin
   // NOVO EM 21/07/2014
   UniComboBoxSolicitante.ItemIndex := -1;
   RadioGroupHomologado.ItemIndex := -1;
-  ComboBoxClasConduta.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
   UniComboBoxResultadoCCT.ItemIndex := -1;
   Editreabilitacao.Text := '';

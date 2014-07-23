@@ -2,6 +2,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   ClientHeight = 679
   ClientWidth = 1060
   Caption = 'Conselho Disciplinar'
+  ExplicitLeft = -287
   ExplicitWidth = 1076
   ExplicitHeight = 718
   PixelsPerInch = 96
@@ -30,7 +31,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 953
       Height = 610
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 953
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -48,6 +48,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -268,6 +270,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -437,6 +441,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -458,10 +464,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -499,6 +509,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -526,6 +538,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -536,11 +550,17 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             object TabSheetConcelhoDisciplinar: TUniTabSheet
               Caption = 'Conselho Disciplinar'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               DesignSize = (
                 935
                 552)
@@ -595,14 +615,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Caption = 'Situa'#231#227'o'
                 TabOrder = 5
               end
-              object UniLabel21: TUniLabel
-                Left = 634
-                Top = 67
-                Width = 120
-                Height = 13
-                Caption = 'Classifica'#231#227'o da Conduta'
-                TabOrder = 6
-              end
               object DBLookupComboBoxfaltadisciplinar: TUniDBLookupComboBox
                 Left = 9
                 Top = 21
@@ -616,7 +628,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 ParentFont = False
                 Font.Height = -9
                 Font.Name = 'MS Sans Serif'
-                TabOrder = 7
+                TabOrder = 6
                 OnCloseUp = DBLookupComboBoxfaltadisciplinarClick
                 OnExit = DBLookupComboBoxfaltadisciplinarExit
                 OnEnter = DBLookupComboBoxfaltadisciplinarEnter
@@ -629,13 +641,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Hint = 'N'#250'mero do PDI / Documento'
                 ShowHint = True
                 ParentShowHint = False
-                TabOrder = 8
+                TabOrder = 7
                 Color = clWindow
               end
               object ComboBoxconclusao: TUniComboBox
                 Left = 492
                 Top = 83
-                Width = 136
+                Width = 341
                 Height = 21
                 Hint = 
                   'Situa'#231#227'o do PDI (Andamento, Concluido/Arquivado, Conclu'#237'do, Recu' +
@@ -648,8 +660,9 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   'ANDAMENTO'
                   'CONCLUIDO/ARQUIVADO'
                   'CONCLUIDO'
-                  'RECURSO')
-                TabOrder = 9
+                  'RECURSO'
+                  'REGREDIDO')
+                TabOrder = 8
               end
               object BitBtnIncluir: TUniBitBtn
                 Left = 300
@@ -678,7 +691,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Font.Height = -13
                 Font.Name = 'MS Sans Serif'
                 Font.Style = [fsBold]
-                TabOrder = 10
+                TabOrder = 9
                 Default = True
                 OnClick = BitBtnIncluirClick
               end
@@ -694,7 +707,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 WebOptions.Paged = False
                 WebOptions.LoadMaskMsg = 'Please wait...'
                 Anchors = [akLeft, akTop, akRight, akBottom]
-                TabOrder = 11
+                TabOrder = 10
                 Columns = <
                   item
                     FieldName = 'SIGLA'
@@ -788,32 +801,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Expanded = False
                   end>
               end
-              object ComboBoxClasConduta: TUniComboBox
-                Left = 634
-                Top = 83
-                Width = 130
-                Height = 21
-                Hint = 'Classifica'#231#227'o da conduta efetuada pelo interno'
-                Enabled = False
-                ShowHint = True
-                ParentShowHint = False
-                Style = csDropDownList
-                Items.Strings = (
-                  ''
-                  #211'TIMA'
-                  'BOA'
-                  'REGULAR'
-                  'M'#193
-                  '')
-                TabOrder = 12
-              end
               object EditNatureza: TUniEdit
                 Left = 382
                 Top = 83
                 Width = 105
                 Height = 21
                 Enabled = False
-                TabOrder = 13
+                TabOrder = 11
                 Color = clWindow
               end
               object Memo1: TUniMemo
@@ -824,7 +818,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Anchors = [akLeft, akTop, akRight]
                 ReadOnly = True
                 Color = clWindow
-                TabOrder = 14
+                TabOrder = 12
               end
               object UniMenuButton1: TUniMenuButton
                 Left = 596
@@ -834,7 +828,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 DropdownMenu = PopupMenuIsolamento
                 Caption = 'Op'#231#245'es'
                 Anchors = [akTop, akRight]
-                TabOrder = 15
+                TabOrder = 13
               end
               object Editdtincidencia: TUniDateTimePicker
                 Left = 175
@@ -844,7 +838,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 DateTime = 41816.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
-                TabOrder = 16
+                TabOrder = 14
                 OnExit = EditdtincidenciaExit
               end
               object BtnBuscar: TUniBitBtn
@@ -881,7 +875,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
                 Caption = 'Buscar'
                 Anchors = [akTop, akRight]
-                TabOrder = 17
+                TabOrder = 15
                 OnClick = btnBuscarClick
               end
               object EditDataInstPortaria: TUniDateTimePicker
@@ -892,7 +886,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 DateTime = 41816.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
-                TabOrder = 18
+                TabOrder = 16
               end
               object UniPageControlFaltaDisciplinar: TUniPageControl
                 Left = 3
@@ -900,10 +894,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Width = 929
                 Height = 236
                 ActivePage = UniTabSheetRecurso
-                TabOrder = 19
+                TabOrder = 17
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
                   Caption = 'Procedimento'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   DesignSize = (
                     921
                     208)
@@ -1170,6 +1168,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetResultado: TUniTabSheet
                   Caption = 'Resultado - 1'#176' Grau '
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   object UniLabel12: TUniLabel
                     Left = 12
                     Top = 13
@@ -1199,8 +1201,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       'ARQUIVADO'
                       'ABSOLVIDO'
                       'SANCIONADO'
-                      'EXTINTO'
-                      'REGREDIDO')
+                      'EXTINTO')
                     TabOrder = 2
                   end
                   object UniLabel13: TUniLabel
@@ -1317,6 +1318,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetRecurso: TUniTabSheet
                   Caption = 'Recurso - No CCT'
+                  ExplicitLeft = 0
+                  ExplicitTop = 0
+                  ExplicitWidth = 256
+                  ExplicitHeight = 128
                   object RadioGroupRecurso: TUniRadioGroup
                     Left = 3
                     Top = 11
@@ -1451,8 +1456,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Style = csSimple
                       Items.Strings = (
                         ''
-                        'Defensoria Estadual'
-                        'Defensoria Federal'
+                        'Defensoria P'#250'blica Estadual'
+                        'Defensoria P'#250'blica Federal'
                         'Advogado Particular')
                       TabOrder = 11
                     end
@@ -1579,8 +1584,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   end
   object DsFaltaDelete: TDataSource
     DataSet = CdsFaltaDelete
-    Left = 510
-    Top = 136
+    Left = 390
+    Top = 96
   end
   object CdsFaltaDelete: TClientDataSet
     Aggregates = <>
@@ -1590,13 +1595,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     PacketRecords = 0
     Params = <>
     ProviderName = 'DspFaltaDelete'
-    Left = 482
-    Top = 136
+    Left = 362
+    Top = 96
   end
   object DspFaltaDelete: TDataSetProvider
     DataSet = SqlFaltaDelete
-    Left = 454
-    Top = 136
+    Left = 334
+    Top = 96
   end
   object SqlFaltaDelete: TSQLQuery
     MaxBlobSize = -1
@@ -1617,8 +1622,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
       ''
       ''
       '')
-    Left = 426
-    Top = 136
+    Left = 306
+    Top = 96
   end
   object Dsfaltadisciplinar: TDataSource
     DataSet = Cdsfaltadisciplinar

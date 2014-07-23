@@ -52,7 +52,8 @@ uses
   CadastroFuncionario in 'forms\CadastroFuncionario.pas' {FrmCadastroFuncionario: TUniForm},
   Explore in 'templete\Explore.pas' {FrmExplore: TUniForm},
   FileExplorer_Frame in 'templete\FileExplorer_Frame.pas' {frameFileExplorer: TUniFrame},
-  FiltroInformarDoc in 'templete\FiltroInformarDoc.pas' {FrmFiltroInformarDoc: TUniForm};
+  FiltroInformarDoc in 'templete\FiltroInformarDoc.pas' {FrmFiltroInformarDoc: TUniForm},
+  CadastroInternoTrabalho in 'forms\CadastroInternoTrabalho.pas' {FrmCadastroInternoTrabalho: TUniForm};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}
