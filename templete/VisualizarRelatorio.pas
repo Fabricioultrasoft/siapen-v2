@@ -28,7 +28,7 @@ uses
   uniMainMenu,
   IWSystem,
   Vcl.Imaging.jpeg,
-  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr, Vcl.Imaging.GIFImg;
+  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr, Vcl.Imaging.GIFImg, frxClass;
 
 type
   TFrmVisualizarRelatorio = class(TUniForm)
@@ -244,6 +244,8 @@ begin
         Dm.frxReport1.LoadFromFile(FCaminhoFR3);
 
         InsereVariaveis;
+        Dm.frxReport1.EngineOptions.SilentMode := true;
+        Dm.frxReport1.EngineOptions.NewSilentMode := simSilent;
         Dm.frxReport1.PrepareReport();
 
         Dm.frxReport1.Export(Dm.frxJPEGExport1);

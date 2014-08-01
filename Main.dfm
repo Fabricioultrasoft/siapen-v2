@@ -22,7 +22,7 @@ object MainForm: TMainForm
     ScreenMask.Enabled = True
     ScreenMask.WaitData = True
     ScreenMask.Message = 'Aguarde...'
-    ActivePage = UniTabSheetPrincipal
+    ActivePage = UniTabSheetSetores
     TabOrder = 0
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -2743,6 +2743,7 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 13
+        OnClick = BitBtn5Click
       end
       object BitBtn9: TUniBitBtn
         Left = 656
@@ -3294,7 +3295,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011E002200D00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011E002200DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -4652,6 +4653,7 @@ object MainForm: TMainForm
         object Interno2: TUniMenuItem
           Caption = 'Trabalho'
           ImageIndex = 20
+          OnClick = Interno2Click
         end
         object SetorTrabalho2: TUniMenuItem
           Caption = 'Setor Trabalho'
@@ -4998,7 +5000,7 @@ object MainForm: TMainForm
     Left = 232
     Top = 56
     Bitmap = {
-      494C01011A006400D40020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011A006400E00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

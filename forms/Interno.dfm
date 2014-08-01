@@ -111,7 +111,7 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetMapa
+            ActivePage = TabSheetPrincipal
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]

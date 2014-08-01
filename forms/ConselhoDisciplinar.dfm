@@ -2,7 +2,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   ClientHeight = 679
   ClientWidth = 1060
   Caption = 'Conselho Disciplinar'
-  ExplicitLeft = -287
   ExplicitWidth = 1076
   ExplicitHeight = 718
   PixelsPerInch = 96
@@ -48,8 +47,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -270,8 +267,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -441,8 +436,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -464,14 +457,10 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -509,8 +498,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetFotos: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -538,8 +525,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -550,17 +535,11 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMapa: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             object TabSheetConcelhoDisciplinar: TUniTabSheet
               Caption = 'Conselho Disciplinar'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 256
-              ExplicitHeight = 128
               DesignSize = (
                 935
                 552)
@@ -893,15 +872,11 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Top = 108
                 Width = 929
                 Height = 236
-                ActivePage = UniTabSheetRecurso
+                ActivePage = UniTabSheetProcedimento
                 TabOrder = 17
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
                   Caption = 'Procedimento'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   DesignSize = (
                     921
                     208)
@@ -956,6 +931,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
+                    ReadOnly = True
                     TabOrder = 5
                   end
                   object Editprocedimento: TUniDateTimePicker
@@ -1168,10 +1144,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetResultado: TUniTabSheet
                   Caption = 'Resultado - 1'#176' Grau '
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   object UniLabel12: TUniLabel
                     Left = 12
                     Top = 13
@@ -1318,10 +1290,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 end
                 object UniTabSheetRecurso: TUniTabSheet
                   Caption = 'Recurso - No CCT'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   object RadioGroupRecurso: TUniRadioGroup
                     Left = 3
                     Top = 11

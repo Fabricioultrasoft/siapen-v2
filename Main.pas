@@ -276,6 +276,8 @@ type
     procedure TimerShowAcaoTimer(Sender: TObject);
     procedure Funcionrio2Click(Sender: TObject);
     procedure ExploredoServidor1Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure Interno2Click(Sender: TObject);
   private
     sArquivo, sNomeJpeg: string;
     FNomeImagemUpload: String;
@@ -314,7 +316,8 @@ uses
   Sobre, Disciplina, ConselhoDisciplinar, Psicossocial, MenuRelatorios,
   CadastroFaltasDisciplinares, humanejs, ConsultaInterno,
   DocumentosDigitalizados, CentralDocumentosDigitalizados, HistoricoInterno,
-  Aguarde, CadastroFuncionario, FileExplorer_Frame, Explore;
+  Aguarde, CadastroFuncionario, FileExplorer_Frame, Explore,
+  CadastroInternoTrabalho;
 
 function MainForm: TMainForm;
 begin
@@ -1160,6 +1163,15 @@ begin
     end);
 end;
 
+procedure TMainForm.BitBtn5Click(Sender: TObject);
+begin
+  FrmAguarde.ShowModal(
+    procedure(Res: integer)
+    begin
+      FrmCadastroInternoTrabalho.ShowModal();
+    end);
+end;
+
 procedure TMainForm.CadastrodeInternos2Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
@@ -1232,6 +1244,15 @@ begin
     procedure(Res: integer)
     begin
       FrmSobre.ShowModal();
+    end);
+end;
+
+procedure TMainForm.Interno2Click(Sender: TObject);
+begin
+  FrmAguarde.ShowModal(
+    procedure(Res: integer)
+    begin
+      FrmCadastroInternoTrabalho.ShowModal();
     end);
 end;
 

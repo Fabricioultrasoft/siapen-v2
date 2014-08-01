@@ -53,7 +53,8 @@ uses
   Explore in 'templete\Explore.pas' {FrmExplore: TUniForm},
   FileExplorer_Frame in 'templete\FileExplorer_Frame.pas' {frameFileExplorer: TUniFrame},
   FiltroInformarDoc in 'templete\FiltroInformarDoc.pas' {FrmFiltroInformarDoc: TUniForm},
-  CadastroInternoTrabalho in 'forms\CadastroInternoTrabalho.pas' {FrmCadastroInternoTrabalho: TUniForm};
+  CadastroInternoTrabalho in 'forms\CadastroInternoTrabalho.pas' {FrmCadastroInternoTrabalho: TUniForm},
+  MotivoDispensaTrabalho in 'forms\MotivoDispensaTrabalho.pas' {FrmMotivoDispensaTrabalho: TUniForm};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}

@@ -33,9 +33,9 @@ object FrmConsultaInterno: TFrmConsultaInterno
     end
     object ToolBarSetores: TUniToolBar
       Left = 1
-      Top = 344
+      Top = 336
       Width = 135
-      Height = 22
+      Height = 30
       ButtonWidth = 119
       BorderWidth = 0
       ShowCaptions = True
@@ -70,7 +70,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 973
     Height = 366
-    ActivePage = TabSheet4
+    ActivePage = TabSheet1
     TabOrder = 1
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -82,17 +82,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Width = 45
         Height = 13
         Caption = 'Localizar:'
-        TabOrder = 4
-      end
-      object RadioGroupStatus: TUniRadioGroup
-        Left = 554
-        Top = -1
-        Width = 102
-        Height = 61
-        Items.Strings = (
-          'Ativo'
-          'Todos')
-        ItemIndex = 0
+        ParentFont = False
         TabOrder = 2
       end
       object DBGridConsulta: TUniDBGrid
@@ -107,7 +97,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         ReadOnly = True
         WebOptions.LoadMaskMsg = 'Please wait...'
         Align = alCustom
-        TabOrder = 3
+        TabOrder = 1
         Columns = <
           item
             FieldName = 'NOME_INTERNO'
@@ -191,10 +181,10 @@ object FrmConsultaInterno: TFrmConsultaInterno
           end>
       end
       object Editlocalizar: TUniEdit
-        Left = 200
-        Top = 18
-        Width = 351
-        Height = 32
+        Left = 167
+        Top = 15
+        Width = 381
+        Height = 30
         ScreenMask.Enabled = True
         ScreenMask.WaitData = True
         ScreenMask.Message = 'Pesquisando...'
@@ -202,23 +192,40 @@ object FrmConsultaInterno: TFrmConsultaInterno
         CharCase = ecUpperCase
         ParentFont = False
         Font.Color = clLime
-        Font.Height = -19
+        Font.Height = -16
         Font.Name = 'MS Sans Serif'
-        TabOrder = 1
+        TabOrder = 0
         Color = clBlack
         CheckChangeDelay = 1000
         OnChange = EditlocalizarChange
       end
-      object RadioGroupTipoLocalizar: TUniRadioGroup
+      object RadioGroupTipoLocalizar: TUniComboBox
         Left = 56
-        Top = 4
-        Width = 138
-        Height = 53
+        Top = 15
+        Width = 105
+        Height = 27
+        Text = 'Nome'
         Items.Strings = (
-          'Prontu'#225'rio'
+          'RGI'
           'Nome')
         ItemIndex = 1
-        TabOrder = 0
+        ParentFont = False
+        Font.Height = -13
+        TabOrder = 3
+      end
+      object RadioGroupStatus: TUniComboBox
+        Left = 554
+        Top = 15
+        Width = 105
+        Height = 27
+        Text = 'Ativo'
+        Items.Strings = (
+          'Ativo'
+          'Todos')
+        ItemIndex = 0
+        ParentFont = False
+        Font.Height = -13
+        TabOrder = 4
       end
     end
     object TabSheet2: TUniTabSheet
@@ -783,7 +790,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
   object Dsfiliacao: TDataSource
     DataSet = Cdsfiliacao
     Left = 741
-    Top = 6
+    Top = 65518
   end
   object Cdsfiliacao: TClientDataSet
     Aggregates = <>
@@ -791,12 +798,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Params = <>
     ProviderName = 'Dspfiliacao'
     Left = 713
-    Top = 6
+    Top = 65518
   end
   object Dspfiliacao: TDataSetProvider
     DataSet = Sqlfiliacao
     Left = 685
-    Top = 6
+    Top = 65518
   end
   object Sqlfiliacao: TSQLQuery
     MaxBlobSize = -1
@@ -826,7 +833,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
       'WHERE ID_INTERNO = -1'
       'order by nome_interno ')
     Left = 657
-    Top = 6
+    Top = 65518
   end
   object SqlSelectInterno: TSQLQuery
     Params = <>

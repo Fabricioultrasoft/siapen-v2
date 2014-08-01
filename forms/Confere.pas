@@ -210,6 +210,7 @@ type
     UniDBEditNUMERO_ROUPA: TUniDBEdit;
     UniLabel6: TUniLabel;
     UniDBEditRGI: TUniDBEdit;
+    RadioGroupTipoLocalizar: TUniRadioGroup;
     procedure UniFormCreate(Sender: TObject);
     procedure EditarClick(Sender: TObject);
     procedure NovoClick(Sender: TObject);
@@ -1568,7 +1569,12 @@ begin
       Status := ' ';
   end;
 
-  Campo := 'NOME_INTERNO';
+  case RadioGroupTipoLocalizar.ItemIndex of
+    0:
+      Campo := 'RGI';
+    1:
+      Campo := 'NOME_INTERNO';
+  end;
 
   if UniRadioGroupStatus.ItemIndex = 1 then
   begin

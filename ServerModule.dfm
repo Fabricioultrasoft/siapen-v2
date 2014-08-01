@@ -1,5 +1,5 @@
 object UniServerModule: TUniServerModule
-  OldCreateOrder = False
+  OldCreateOrder = True
   AutoCoInitialize = True
   FilesFolder = 'files\'
   TempFolder = 'temp\'
@@ -715,7 +715,7 @@ object UniServerModule: TUniServerModule
   AjaxTimeout = 120000
   DefaultImageFormat = cfJpeg
   UseGlobalImageCache = True
-  SuppressErrors = [errObjectNotFound, errAjax]
+  SuppressErrors = []
   UnavailableErrMsg = 'Siapen 2.0 n'#227'o est'#225' dispon'#237'vel, por favor, tente mais tarde...'
   LoadingMessage = 'Siapen 2.0'
   Bindings = <>

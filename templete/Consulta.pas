@@ -29,7 +29,7 @@ uses
   uniPanel,
   uniPageControl,
   uniGUIBaseClasses,
-  uniBitBtn;
+  uniBitBtn, uniTimer;
 
 type
   TFrmConsulta = class(TUniForm)
@@ -44,6 +44,7 @@ type
     UniBtnFiltrar: TUniBitBtn;
     DBGridConsulta: TUniDBGrid;
     Fechar: TUniBitBtn;
+    UniTimerConfirma: TUniTimer;
     procedure UniBtnFiltrarClick(Sender: TObject);
     procedure UniBitBtnConfirmaClick(Sender: TObject);
     procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
@@ -56,6 +57,7 @@ type
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure UniFormDestroy(Sender: TObject);
     procedure FecharClick(Sender: TObject);
+    procedure UniTimerConfirmaTimer(Sender: TObject);
   private
     FCOLUNA: Integer;
     FPreDescricao: string;
@@ -256,7 +258,18 @@ begin
   EditLocalizar.SetFocus;
   EditLocalizar.SelectAll;
   if FPreDescricao <> '' then
-    Self.Caption := 'Consulta iniciada com as letras: '+FPreDescricao;
+    Self.Caption := 'Consulta iniciada com as letras: ' + FPreDescricao;
+  UniTimerConfirma.Enabled:=true;
+
+end;
+
+procedure TFrmConsulta.UniTimerConfirmaTimer(Sender: TObject);
+begin
+  UniTimerConfirma.Enabled:=false;
+  if Self.DsConsultaObjetiva.DataSet.recordcount = 1 then
+  begin
+    UniBitBtnConfirmaClick(nil);
+  end;
 
 end;
 

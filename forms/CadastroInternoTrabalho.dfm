@@ -12,23 +12,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
         inherited PanelCadastro: TUniPanel
           inherited PageControlInterno: TUniPageControl
             ActivePage = UniTabSheetTrabalho
-            inherited TabSheetPrincipal: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
-            end
-            inherited TabSheetDadosGerais: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
-            end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
               inherited DBGrid3: TUniDBGrid
                 Columns = <
                   item
@@ -47,17 +31,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                   end>
               end
             end
-            inherited TabSheetEndereco: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
-            end
             inherited TabSheetHistorico: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
               inherited DBGrid1: TUniDBGrid
                 Columns = <
                   item
@@ -84,10 +58,6 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               end
             end
             inherited TabSheetFotos: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
               inherited UniPanelFoto: TUniPanel
                 inherited DBGrid4: TUniDBGrid
                   Columns = <
@@ -108,25 +78,9 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                 end
               end
             end
-            inherited TabSheetMovAnterior: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
-            end
-            inherited TabSheetMapa: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
-              ExplicitWidth = 767
-              ExplicitHeight = 480
-            end
             object UniTabSheetTrabalho: TUniTabSheet
               Caption = 'Trabalho'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 775
-              ExplicitHeight = 508
-              object PageControl2: TUniPageControl
+              object PageControlTrabalho: TUniPageControl
                 Left = 0
                 Top = 0
                 Width = 767
@@ -139,10 +93,6 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                 ExplicitHeight = 464
                 object TabSheet5: TUniTabSheet
                   Caption = 'Lan'#231'amento'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   object UniLabel5: TUniLabel
                     Left = 152
                     Top = 16
@@ -225,21 +175,21 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Expanded = False
                       end
                       item
-                        FieldName = 'Local Trabalho'
+                        FieldName = 'local_trabalho'
                         Title.Caption = 'Local Trabalho'
                         Width = 139
                         Visible = True
                         Expanded = False
                       end
                       item
-                        FieldName = 'Setor Trabalho'
+                        FieldName = 'setor_trabalho'
                         Title.Caption = 'Setor Trabalho'
                         Width = 118
                         Visible = True
                         Expanded = False
                       end
                       item
-                        FieldName = 'Fun'#231#227'o'
+                        FieldName = 'funcao_interno'
                         Title.Caption = 'Fun'#231#227'o'
                         Width = 101
                         Visible = True
@@ -310,13 +260,192 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     ItemIndex = -1
                     TabOrder = 2
                   end
+                  object UniDBEditFuncaoInterno: TUniDBEdit
+                    Left = 278
+                    Top = 32
+                    Width = 60
+                    Height = 22
+                    DataField = 'ID_FUNCAOINTERNO'
+                    DataSource = DsCadastro
+                    TabOrder = 12
+                    Color = clWindow
+                    OnExit = UniDBEditFuncaoInternoExit
+                  end
+                  object UniBitBtnFuncaoInterno: TUniBitBtn
+                    Left = 338
+                    Top = 32
+                    Width = 26
+                    Height = 22
+                    Glyph.Data = {
+                      36030000424D3603000000000000360000002800000010000000100000000100
+                      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                      B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                      83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                      D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                      3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                      97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                      DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                      B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                      99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                      978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                      BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                      A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                      EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                      CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                      B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                      F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                      DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                      C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                      9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                      E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                      70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                      FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                      EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                      86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                      A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    TabOrder = 13
+                    OnClick = UniBitBtnFuncaoInternoClick
+                  end
+                  object UniLabelFuncaoInterno: TUniLabel
+                    Left = 366
+                    Top = 36
+                    Width = 275
+                    Height = 13
+                    AutoSize = False
+                    Caption = '(Fun'#231#227'o do Interno)'
+                    ParentColor = False
+                    Color = clWhite
+                    Transparent = False
+                    TabOrder = 14
+                  end
+                  object UniLabelLocalTrabalho: TUniLabel
+                    Left = 105
+                    Top = 83
+                    Width = 225
+                    Height = 13
+                    AutoSize = False
+                    Caption = '(Local de Trabalho)'
+                    ParentColor = False
+                    Color = clWhite
+                    Transparent = False
+                    TabOrder = 15
+                  end
+                  object UniBitBtnLocalTrabalho: TUniBitBtn
+                    Left = 76
+                    Top = 79
+                    Width = 26
+                    Height = 22
+                    Glyph.Data = {
+                      36030000424D3603000000000000360000002800000010000000100000000100
+                      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                      B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                      83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                      D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                      3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                      97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                      DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                      B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                      99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                      978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                      BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                      A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                      EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                      CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                      B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                      F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                      DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                      C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                      9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                      E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                      70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                      FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                      EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                      86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                      A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    TabOrder = 16
+                    OnClick = UniBitBtnLocalTrabalhoClick
+                  end
+                  object UniDBEditLocalTrabalho: TUniDBEdit
+                    Left = 16
+                    Top = 79
+                    Width = 60
+                    Height = 22
+                    DataField = 'ID_LOCAL_TRABALHO'
+                    DataSource = DsCadastro
+                    TabOrder = 17
+                    Color = clWindow
+                    OnExit = UniDBEditLocalTrabalhoExit
+                  end
+                  object UniLabelSetorTrabalho: TUniLabel
+                    Left = 425
+                    Top = 83
+                    Width = 222
+                    Height = 13
+                    AutoSize = False
+                    Caption = '(Setor de Trabalho)'
+                    ParentColor = False
+                    Color = clWhite
+                    Transparent = False
+                    TabOrder = 18
+                  end
+                  object UniBitBtnSetorTrabalho: TUniBitBtn
+                    Left = 396
+                    Top = 79
+                    Width = 26
+                    Height = 22
+                    Glyph.Data = {
+                      36030000424D3603000000000000360000002800000010000000100000000100
+                      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                      B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                      83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                      D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                      3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                      97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                      DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                      B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                      99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                      978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                      BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                      A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                      EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                      CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                      B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                      F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                      DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                      C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                      9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                      E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                      70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                      FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                      EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                      86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                      A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    TabOrder = 19
+                    OnClick = UniBitBtnSetorTrabalhoClick
+                  end
+                  object UniDBEditSetorTrabalho: TUniDBEdit
+                    Left = 336
+                    Top = 79
+                    Width = 60
+                    Height = 22
+                    DataField = 'IDSETOR_TRABALHO'
+                    DataSource = DsCadastro
+                    TabOrder = 20
+                    Color = clWindow
+                    OnExit = UniDBEditSetorTrabalhoExit
+                  end
+                  object UniMenuButtonOpcoesTrabalho: TUniMenuButton
+                    Left = 537
+                    Top = 164
+                    Width = 104
+                    Height = 25
+                    DropdownMenu = PopupMenuTrabalho
+                    Caption = 'Op'#231#245'es'
+                    TabOrder = 21
+                  end
                 end
                 object TabSheet8: TUniTabSheet
                   Caption = 'Hor'#225'rios'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 256
-                  ExplicitHeight = 128
                   object UniLabel12: TUniLabel
                     Left = 152
                     Top = 72
@@ -702,6 +831,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Height = 25
                     Caption = 'Copiar para todos'
                     TabOrder = 11
+                    OnClick = BtnCopiarClick
                   end
                   object UniDBMemo1: TUniDBMemo
                     Left = 296
@@ -712,6 +842,501 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     DataSource = DsCadastro
                     TabOrder = 12
                     Color = clWindow
+                  end
+                end
+              end
+            end
+            object UniTabSheet1: TUniTabSheet
+              Caption = 'Remi'#231#227'o'
+              object PageControlRemicao: TUniPageControl
+                Left = 0
+                Top = 0
+                Width = 767
+                Height = 480
+                ActivePage = TabSheet7
+                TabOrder = 0
+                Align = alClient
+                Anchors = [akLeft, akTop, akRight, akBottom]
+                ExplicitWidth = 724
+                ExplicitHeight = 464
+                object TabSheet4: TUniTabSheet
+                  Caption = 'Dados'
+                  object UniLabel28: TUniLabel
+                    Left = 8
+                    Top = 15
+                    Width = 53
+                    Height = 13
+                    Caption = 'Data Inicial'
+                    TabOrder = 7
+                  end
+                  object UniLabel29: TUniLabel
+                    Left = 112
+                    Top = 15
+                    Width = 48
+                    Height = 13
+                    Caption = 'Data Final'
+                    TabOrder = 8
+                  end
+                  object UniLabel31: TUniLabel
+                    Left = 8
+                    Top = 62
+                    Width = 65
+                    Height = 13
+                    Caption = 'Dias Trabalho'
+                    TabOrder = 9
+                  end
+                  object GroupBox1: TUniGroupBox
+                    Left = 226
+                    Top = 17
+                    Width = 156
+                    Height = 49
+                    Caption = 'N'#227'o Remir'
+                    TabOrder = 2
+                    object CHDomingo: TUniCheckBox
+                      Left = 82
+                      Top = 17
+                      Width = 63
+                      Height = 17
+                      Checked = False
+                      Caption = 'Domingo'
+                      TabOrder = 1
+                    end
+                    object CHsabado: TUniCheckBox
+                      Left = 13
+                      Top = 18
+                      Width = 60
+                      Height = 17
+                      Checked = False
+                      Caption = 'S'#225'bado'
+                      TabOrder = 0
+                    end
+                  end
+                  object UniButton1: TUniButton
+                    Left = 152
+                    Top = 80
+                    Width = 105
+                    Height = 25
+                    Caption = 'Inserir'
+                    ParentFont = False
+                    Font.Height = -13
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    TabOrder = 5
+                    OnClick = Button3Click
+                  end
+                  object PageControl3: TUniPageControl
+                    Left = 8
+                    Top = 112
+                    Width = 625
+                    Height = 196
+                    ActivePage = TabSheet6
+                    TabOrder = 6
+                    object TabSheet6: TUniTabSheet
+                      Caption = 'Remi'#231#245'es'
+                      object DBGrid2: TUniDBGrid
+                        Left = 16
+                        Top = 24
+                        Width = 585
+                        Height = 120
+                        TitleFont.Name = 'MS Sans Serif'
+                        DataSource = dscalc_trabalho
+                        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+                        WebOptions.LoadMaskMsg = 'Please wait...'
+                        TabOrder = 0
+                        Columns = <
+                          item
+                            FieldName = 'DATA_INICIAL'
+                            Title.Caption = 'Data Inicial'
+                            Width = 80
+                            Visible = True
+                            Expanded = False
+                          end
+                          item
+                            FieldName = 'DATA_FINAL'
+                            Title.Caption = 'Data Final'
+                            Width = 102
+                            Visible = True
+                            Expanded = False
+                          end
+                          item
+                            FieldName = 'QTDEDIASTRABALHADO'
+                            Title.Caption = 'Dias Trabalhado'
+                            Width = 111
+                            Visible = True
+                            Expanded = False
+                          end>
+                      end
+                      object UniBitBtnExcluirRemicao: TUniBitBtn
+                        Left = 495
+                        Top = 145
+                        Width = 106
+                        Height = 23
+                        ShowHint = True
+                        ParentShowHint = False
+                        Glyph.Data = {
+                          36040000424D3604000000000000360000002800000010000000100000000100
+                          2000000000000004000000000000000000000000000000000000000000000000
+                          0000000000000000000000000000000000000000000000000000000000000000
+                          0000000000000000000000000000000000000000000000000000000000000000
+                          0000000000000000000000000000000000000000000000000000000000000000
+                          0000000000000000000000000000000000000000000000000000CB6601FFCB66
+                          01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB66
+                          01FFCB6601FFCB6601FFCB6601FF000000000000000000000000CB6601FFFDF4
+                          EBFFFFF6E9FFFFF1DFFFFFEED9FFFFEAD1FFFFE6CAFFFFE3C2FFFFE0BAFFFFDC
+                          B3FFFFD8ADFFFFE2B5FFCB6601FF000000000000000000000000CB6601FFFDF7
+                          F0FFFFF9EFFFFFF3E4FFFFF0DDFFFFECD6FFFFE9CEFFFFE5C7FFFFE2C0FFFFDE
+                          B8FFFFDAB0FFFFE1B5FFCB6601FF000000000000000000000000CB6601FFFDF8
+                          F4FFFFFAF3FFFFF4E8FFFFF1E2FFFFEEDAFFFFEAD3FFFEE6CBFFFEE3C4FFFEE0
+                          BDFFFEDCB5FFFFE1B6FFCB6601FF000000000000000000000000CB6601FFFDFA
+                          F9FFFFFDF8FFFFF7EEFFFFF4E7FFFFF0E0FFFFECD8FFFEE9D0FFFEE6C9FFFFE6
+                          C3FFFFE3BBFFFFE4BCFFCB6601FF000000000000000000000000CB6601FFFDFB
+                          FBFFFFFFFEFFFFFAF3FFFFF6ECFFFFF3E5FFFFEFDDFFFEEBD6FFFFEED0FFE6D0
+                          C2FFE6CCB9FFFFEEC3FFCB6601FF00000000160B890E0000A00BCB6601FFFDFB
+                          FBFFFFFFFFFFFFFFFDFFFFFBF6FFFFF8EFFFFFF4E7FFFFF5E0FFE2D0CFFF3238
+                          B8FF3235B3FFDFCABEFFCB6601FF53204EA1000BB9E40106A5ABCB6601FFF9F1
+                          E8FFFCF6EFFFFBF3EBFFFBF0E5FFFBEDDEFFFBE9D7FFFFEDD1FFCFB8BAFF1F27
+                          B6FF2246EFFF4144B9FF7F5C80FF141CAFFE0F38F0FF0108A8CCCB6601FFCB66
+                          01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFF3A651FFAC6F
+                          57FF333ABCFF2D4CE9FF192ECDFF2345EBFF070FACC90000961F00000000CB66
+                          01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB66
+                          01FF603D73FE2C46D9FF5680FFFF1E2DC1FF0000905200000000000000000000
+                          0000000000000000000000000000000000000000000000000000000000000000
+                          00003840BEFF4F67E7FF202EC0FB4461EDFF1620B5DE00009630000000000000
+                          000000000000000000000000000000000000000000000000000005008E2A2833
+                          C1F06A7FEDFF1014A6B8000090451923B6DB4966EEFF0E13AAD5000000000000
+                          000000000000000000000000000000000000000000000000000000009D0F1416
+                          A7BC1416A6C20000961400000000000096311016AADE0609A190000000000000
+                          0000000000000000000000000000000000000000000000000000000000000000
+                          0000000000000000000000000000000000000000000000000000}
+                        Caption = 'Excluir'
+                        TabOrder = 1
+                        OnClick = UniBitBtnExcluirRemicaoClick
+                      end
+                    end
+                  end
+                  object DateTimePickerdatainicial: TUniDateTimePicker
+                    Left = 9
+                    Top = 32
+                    Width = 97
+                    Height = 21
+                    DateTime = 41058.000000000000000000
+                    DateFormat = 'dd/MM/yyyy'
+                    TimeFormat = 'HH:mm:ss'
+                    TabOrder = 0
+                  end
+                  object DateTimePickerdatafinal: TUniDateTimePicker
+                    Left = 112
+                    Top = 32
+                    Width = 97
+                    Height = 21
+                    DateTime = 41058.000000000000000000
+                    DateFormat = 'dd/MM/yyyy'
+                    TimeFormat = 'HH:mm:ss'
+                    TabOrder = 1
+                  end
+                  object Editdiastrabalhado: TUniEdit
+                    Left = 9
+                    Top = 80
+                    Width = 102
+                    Height = 21
+                    TabOrder = 4
+                    Color = clWindow
+                  end
+                  object UniButton2: TUniButton
+                    Left = 400
+                    Top = 27
+                    Width = 75
+                    Height = 25
+                    Caption = 'Calcular'
+                    TabOrder = 3
+                    OnClick = Button2Click
+                  end
+                end
+                object TabSheet7: TUniTabSheet
+                  Caption = 'Certid'#227'o'
+                  object UniLabel32: TUniLabel
+                    Left = 32
+                    Top = 15
+                    Width = 53
+                    Height = 13
+                    Caption = 'Data Inicial'
+                    TabOrder = 9
+                  end
+                  object UniLabel33: TUniLabel
+                    Left = 160
+                    Top = 15
+                    Width = 48
+                    Height = 13
+                    Caption = 'Data Final'
+                    TabOrder = 10
+                  end
+                  object UniLabel34: TUniLabel
+                    Left = 128
+                    Top = 64
+                    Width = 82
+                    Height = 13
+                    Caption = 'Dias Trabalhados'
+                    TabOrder = 11
+                  end
+                  object UniLabel35: TUniLabel
+                    Left = 312
+                    Top = 64
+                    Width = 58
+                    Height = 13
+                    Caption = 'Dias Remido'
+                    TabOrder = 12
+                  end
+                  object UniLabel36: TUniLabel
+                    Left = 32
+                    Top = 64
+                    Width = 68
+                    Height = 13
+                    Caption = 'Saldo Anterior'
+                    TabOrder = 13
+                  end
+                  object Label59: TUniLabel
+                    Left = 384
+                    Top = 64
+                    Width = 67
+                    Height = 13
+                    Caption = 'Saldo Pr'#243'xima'
+                    TabOrder = 14
+                  end
+                  object UniLabel37: TUniLabel
+                    Left = 224
+                    Top = 64
+                    Width = 81
+                    Height = 13
+                    Caption = 'Total Trabalhado'
+                    TabOrder = 15
+                  end
+                  object DateTimePickerdtinicialcertidao: TUniDateTimePicker
+                    Left = 32
+                    Top = 32
+                    Width = 121
+                    Height = 21
+                    DateTime = 41058.000000000000000000
+                    DateFormat = 'dd/MM/yyyy'
+                    TimeFormat = 'HH:mm:ss'
+                    TabOrder = 0
+                  end
+                  object BitBtn1: TUniBitBtn
+                    Left = 303
+                    Top = 32
+                    Width = 106
+                    Height = 26
+                    Glyph.Data = {
+                      DE010000424DDE01000000000000760000002800000024000000120000000100
+                      0400000000006801000000000000000000001000000000000000000000000000
+                      80000080000000808000800000008000800080800000C0C0C000808080000000
+                      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333444444
+                      33333333333F8888883F33330000324334222222443333388F3833333388F333
+                      000032244222222222433338F8833FFFFF338F3300003222222AAAAA22243338
+                      F333F88888F338F30000322222A33333A2224338F33F8333338F338F00003222
+                      223333333A224338F33833333338F38F00003222222333333A444338FFFF8F33
+                      3338888300003AAAAAAA33333333333888888833333333330000333333333333
+                      333333333333333333FFFFFF000033333333333344444433FFFF333333888888
+                      00003A444333333A22222438888F333338F3333800003A2243333333A2222438
+                      F38F333333833338000033A224333334422224338338FFFFF8833338000033A2
+                      22444442222224338F3388888333FF380000333A2222222222AA243338FF3333
+                      33FF88F800003333AA222222AA33A3333388FFFFFF8833830000333333AAAAAA
+                      3333333333338888883333330000333333333333333333333333333333333333
+                      0000}
+                    Caption = 'Calcular'
+                    ParentFont = False
+                    Font.Height = -13
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    TabOrder = 1
+                    OnClick = BitBtn1Click
+                  end
+                  object Editdiastrabalhadocertidao: TUniEdit
+                    Left = 128
+                    Top = 80
+                    Width = 89
+                    Height = 21
+                    TabOrder = 3
+                    Color = clWindow
+                  end
+                  object Editdiasremidocertidao: TUniEdit
+                    Left = 312
+                    Top = 80
+                    Width = 65
+                    Height = 21
+                    TabOrder = 5
+                    Color = clWindow
+                  end
+                  object Editsaldoanterior: TUniEdit
+                    Left = 32
+                    Top = 80
+                    Width = 89
+                    Height = 21
+                    TabOrder = 2
+                    Color = clWindow
+                  end
+                  object Editsaldoproximo: TUniEdit
+                    Left = 384
+                    Top = 80
+                    Width = 81
+                    Height = 21
+                    TabOrder = 6
+                    Color = clWindow
+                  end
+                  object UniDBGrid2: TUniDBGrid
+                    Left = 32
+                    Top = 168
+                    Width = 561
+                    Height = 120
+                    TitleFont.Name = 'MS Sans Serif'
+                    DataSource = dscertidao_trabalho
+                    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+                    WebOptions.LoadMaskMsg = 'Please wait...'
+                    TabOrder = 8
+                    Columns = <
+                      item
+                        FieldName = 'DATA_INICIAL'
+                        Title.Caption = 'Data Inicial'
+                        Width = 68
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'DATA_FINAL'
+                        Title.Caption = 'Data Final'
+                        Width = 74
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'SALDO_ANTERIOR'
+                        Title.Caption = 'Saldo Anterior'
+                        Width = 71
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'DIAS_TRABALHADO'
+                        Title.Caption = 'Dias Trabalhado'
+                        Width = 89
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'total_dias'
+                        Title.Caption = 'Total Trabalho'
+                        Width = 77
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'DIAS_REMIDO'
+                        Title.Caption = 'Dias Remido'
+                        Width = 69
+                        Visible = True
+                        Expanded = False
+                      end
+                      item
+                        FieldName = 'SALDO_PROXIMA'
+                        Title.Caption = 'Saldo Pr'#243'xima'
+                        Width = 77
+                        Visible = True
+                        Expanded = False
+                      end>
+                  end
+                  object BitBtn2: TUniBitBtn
+                    Left = 212
+                    Top = 126
+                    Width = 97
+                    Height = 25
+                    Glyph.Data = {
+                      DE010000424DDE01000000000000760000002800000024000000120000000100
+                      0400000000006801000000000000000000001000000000000000000000000000
+                      80000080000000808000800000008000800080800000C0C0C000808080000000
+                      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+                      3333333333333333333333330000333333333333333333333333F33333333333
+                      00003333344333333333333333388F3333333333000033334224333333333333
+                      338338F3333333330000333422224333333333333833338F3333333300003342
+                      222224333333333383333338F3333333000034222A22224333333338F338F333
+                      8F33333300003222A3A2224333333338F3838F338F33333300003A2A333A2224
+                      33333338F83338F338F33333000033A33333A222433333338333338F338F3333
+                      0000333333333A222433333333333338F338F33300003333333333A222433333
+                      333333338F338F33000033333333333A222433333333333338F338F300003333
+                      33333333A222433333333333338F338F00003333333333333A22433333333333
+                      3338F38F000033333333333333A223333333333333338F830000333333333333
+                      333A333333333333333338330000333333333333333333333333333333333333
+                      0000}
+                    Caption = 'Inserir'
+                    ParentFont = False
+                    Font.Height = -13
+                    Font.Name = 'MS Sans Serif'
+                    Font.Style = [fsBold]
+                    TabOrder = 7
+                    Default = True
+                    OnClick = BitBtn2Click
+                  end
+                  object Edittotaltrabalhado: TUniEdit
+                    Left = 224
+                    Top = 80
+                    Width = 81
+                    Height = 21
+                    TabOrder = 4
+                    Color = clWindow
+                  end
+                  object UniBitBtnExcluirCertidao: TUniBitBtn
+                    Left = 486
+                    Top = 294
+                    Width = 106
+                    Height = 23
+                    ShowHint = True
+                    ParentShowHint = False
+                    Glyph.Data = {
+                      36040000424D3604000000000000360000002800000010000000100000000100
+                      2000000000000004000000000000000000000000000000000000000000000000
+                      0000000000000000000000000000000000000000000000000000000000000000
+                      0000000000000000000000000000000000000000000000000000000000000000
+                      0000000000000000000000000000000000000000000000000000000000000000
+                      0000000000000000000000000000000000000000000000000000CB6601FFCB66
+                      01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB66
+                      01FFCB6601FFCB6601FFCB6601FF000000000000000000000000CB6601FFFDF4
+                      EBFFFFF6E9FFFFF1DFFFFFEED9FFFFEAD1FFFFE6CAFFFFE3C2FFFFE0BAFFFFDC
+                      B3FFFFD8ADFFFFE2B5FFCB6601FF000000000000000000000000CB6601FFFDF7
+                      F0FFFFF9EFFFFFF3E4FFFFF0DDFFFFECD6FFFFE9CEFFFFE5C7FFFFE2C0FFFFDE
+                      B8FFFFDAB0FFFFE1B5FFCB6601FF000000000000000000000000CB6601FFFDF8
+                      F4FFFFFAF3FFFFF4E8FFFFF1E2FFFFEEDAFFFFEAD3FFFEE6CBFFFEE3C4FFFEE0
+                      BDFFFEDCB5FFFFE1B6FFCB6601FF000000000000000000000000CB6601FFFDFA
+                      F9FFFFFDF8FFFFF7EEFFFFF4E7FFFFF0E0FFFFECD8FFFEE9D0FFFEE6C9FFFFE6
+                      C3FFFFE3BBFFFFE4BCFFCB6601FF000000000000000000000000CB6601FFFDFB
+                      FBFFFFFFFEFFFFFAF3FFFFF6ECFFFFF3E5FFFFEFDDFFFEEBD6FFFFEED0FFE6D0
+                      C2FFE6CCB9FFFFEEC3FFCB6601FF00000000160B890E0000A00BCB6601FFFDFB
+                      FBFFFFFFFFFFFFFFFDFFFFFBF6FFFFF8EFFFFFF4E7FFFFF5E0FFE2D0CFFF3238
+                      B8FF3235B3FFDFCABEFFCB6601FF53204EA1000BB9E40106A5ABCB6601FFF9F1
+                      E8FFFCF6EFFFFBF3EBFFFBF0E5FFFBEDDEFFFBE9D7FFFFEDD1FFCFB8BAFF1F27
+                      B6FF2246EFFF4144B9FF7F5C80FF141CAFFE0F38F0FF0108A8CCCB6601FFCB66
+                      01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFF3A651FFAC6F
+                      57FF333ABCFF2D4CE9FF192ECDFF2345EBFF070FACC90000961F00000000CB66
+                      01FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB6601FFCB66
+                      01FF603D73FE2C46D9FF5680FFFF1E2DC1FF0000905200000000000000000000
+                      0000000000000000000000000000000000000000000000000000000000000000
+                      00003840BEFF4F67E7FF202EC0FB4461EDFF1620B5DE00009630000000000000
+                      000000000000000000000000000000000000000000000000000005008E2A2833
+                      C1F06A7FEDFF1014A6B8000090451923B6DB4966EEFF0E13AAD5000000000000
+                      000000000000000000000000000000000000000000000000000000009D0F1416
+                      A7BC1416A6C20000961400000000000096311016AADE0609A190000000000000
+                      0000000000000000000000000000000000000000000000000000000000000000
+                      0000000000000000000000000000000000000000000000000000}
+                    Caption = 'Excluir'
+                    TabOrder = 16
+                    OnClick = UniBitBtnExcluirCertidaoClick
+                  end
+                  object DateTimePickerdtfinalcertidao: TUniDateTimePicker
+                    Left = 159
+                    Top = 32
+                    Width = 121
+                    Height = 21
+                    DateTime = 41058.000000000000000000
+                    DateFormat = 'dd/MM/yyyy'
+                    TimeFormat = 'HH:mm:ss'
+                    TabOrder = 17
                   end
                 end
               end
@@ -765,20 +1390,20 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
     end
   end
   inherited dsdataservidor: TDataSource
-    Left = 552
-    Top = 72
+    Left = 760
+    Top = 48
   end
   inherited dstdataservidor: TDataSetProvider
-    Left = 504
-    Top = 72
+    Left = 712
+    Top = 48
   end
   inherited SQLdataservidor: TSQLQuery
-    Left = 480
-    Top = 72
+    Left = 688
+    Top = 48
   end
   inherited cdsdataservidor: TClientDataSet
-    Left = 526
-    Top = 72
+    Left = 734
+    Top = 48
   end
   object dscertidao_trabalho: TDataSource
     DataSet = cdscertidao_trabalho
@@ -824,8 +1449,20 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
         ParamType = ptInput
       end>
     SQL.Strings = (
-      'select *'
-      'from historico_trabalho'
+      'select h.*,'
+      'l.local_trabalho,'
+      's.setor_trabalho,'
+      'f.funcao_interno'
+      'from historico_trabalho h'
+      
+        'left join local_trabalho l on (h.id_local_trabalho=l.id_local_tr' +
+        'abalho)'
+      
+        'left join setor_trabalho s on (h.id_setor_trabalho=s.id_setor_tr' +
+        'abalho)'
+      
+        'left join funcao_interno f on (h.id_funcao_interno=f.id_funcao_i' +
+        'nterno)'
       'where id_interno=:id_interno '
       'order by data desc')
     Left = 679
@@ -846,81 +1483,6 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
     ProviderName = 'dsphistorico_trabalho'
     Left = 751
     Top = 208
-    object cdshistorico_trabalhoID_HISTORICO_TRABALHO: TIntegerField
-      FieldName = 'ID_HISTORICO_TRABALHO'
-      Required = True
-    end
-    object cdshistorico_trabalhoDESCRICAO: TStringField
-      FieldName = 'DESCRICAO'
-      Size = 8192
-    end
-    object cdshistorico_trabalhoDATA: TSQLTimeStampField
-      FieldName = 'DATA'
-    end
-    object cdshistorico_trabalhoID_FUNCIONARIO: TIntegerField
-      FieldName = 'ID_FUNCIONARIO'
-    end
-    object cdshistorico_trabalhoID_INTERNO: TIntegerField
-      FieldName = 'ID_INTERNO'
-    end
-    object cdshistorico_trabalhoID_SETOR_TRABALHO: TIntegerField
-      FieldName = 'ID_SETOR_TRABALHO'
-    end
-    object cdshistorico_trabalhoID_FUNCAO_INTERNO: TIntegerField
-      FieldName = 'ID_FUNCAO_INTERNO'
-    end
-    object cdshistorico_trabalhoOBS: TStringField
-      FieldName = 'OBS'
-      Size = 200
-    end
-    object cdshistorico_trabalhoDOCUMENTO: TStringField
-      FieldName = 'DOCUMENTO'
-      Size = 30
-    end
-    object cdshistorico_trabalhoID_LOCAL_TRABALHO: TIntegerField
-      FieldName = 'ID_LOCAL_TRABALHO'
-    end
-    object cdshistorico_trabalhoDATA_SAIDA: TSQLTimeStampField
-      FieldName = 'DATA_SAIDA'
-    end
-    object cdshistorico_trabalhoMOTIVO_SAIDA: TStringField
-      FieldName = 'MOTIVO_SAIDA'
-      Size = 100
-    end
-    object cdshistorico_trabalhoSetorTrabalho: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Setor Trabalho'
-      LookupDataSet = Dm.CdsSetorTrabalho
-      LookupKeyFields = 'ID_SETOR_TRABALHO'
-      LookupResultField = 'SETOR_TRABALHO'
-      KeyFields = 'ID_SETOR_TRABALHO'
-      Size = 50
-      Lookup = True
-    end
-    object cdshistorico_trabalhoLocalTrabalho: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Local Trabalho'
-      LookupDataSet = Dm.cdslocaltrabalho
-      LookupKeyFields = 'ID_LOCAL_TRABALHO'
-      LookupResultField = 'LOCAL_TRABALHO'
-      KeyFields = 'ID_LOCAL_TRABALHO'
-      Size = 50
-      Lookup = True
-    end
-    object cdshistorico_trabalhoFuno: TStringField
-      FieldKind = fkLookup
-      FieldName = 'Fun'#231#227'o'
-      LookupDataSet = Dm.CDSFUNCAOINTERNO
-      LookupKeyFields = 'ID_FUNCAO_INTERNO'
-      LookupResultField = 'FUNCAO_INTERNO'
-      KeyFields = 'ID_FUNCAO_INTERNO'
-      Size = 50
-      Lookup = True
-    end
-    object cdshistorico_trabalhoDOCUMENTO_DESCLASSIFICACAO: TStringField
-      FieldName = 'DOCUMENTO_DESCLASSIFICACAO'
-      Size = 50
-    end
   end
   object dshistorico_trabalho: TDataSource
     DataSet = cdshistorico_trabalho
@@ -964,5 +1526,17 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
       'order by data_inicial desc')
     Left = 684
     Top = 113
+  end
+  object PopupMenuTrabalho: TUniPopupMenu
+    Left = 788
+    Top = 265
+    object Liberar1: TUniMenuItem
+      Caption = 'Liberar Setor de Trabalho'
+      OnClick = Liberar1Click
+    end
+    object EditarTrabalho1: TUniMenuItem
+      Caption = 'Editar Trabalho'
+      OnClick = EditarTrabalho1Click
+    end
   end
 end

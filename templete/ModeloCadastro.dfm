@@ -194,6 +194,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Salvar registro no banco de dados.'
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Salvando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -245,6 +247,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Cancelar intera'#231#245'es atuais.'
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Cancelando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -296,6 +300,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Alterar o registro selecionado.'
+      ScreenMask.Message = 'Aguarde...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -347,6 +352,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Cadastrar um registro novo.'
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Aguarde, preparando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {

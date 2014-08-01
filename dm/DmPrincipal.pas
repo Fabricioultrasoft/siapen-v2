@@ -651,9 +651,9 @@ type
     FDATA_HORA_ENTRADA: TDateTime;
     FDATA_HORA_ENCERRAR: TDateTime;
     FHORA_TIMEOUT: Integer;
-    FCaminhoRelatorio:String;
-    FID_RETORNO_CONSULTAOBJETIVA:Integer;
-    FDESC_RETORNO_CONSULTAOBJETIVA:String;
+    FCaminhoRelatorio: String;
+    FID_RETORNO_CONSULTAOBJETIVA: Integer;
+    FDESC_RETORNO_CONSULTAOBJETIVA: String;
     FID_RETORNO_FORM: String;
     FDESC_RETORNO_FORM: String;
     FUniFormRetornoConsulta: TUniForm;
@@ -676,15 +676,17 @@ type
       write FID_RETORNO_FORM;
     property DESC_RETORNO_FORM: String read FDESC_RETORNO_FORM
       write FDESC_RETORNO_FORM;
-    property ID_RETORNO_CONSULTAOBJETIVA:Integer read FID_RETORNO_CONSULTAOBJETIVA
-      write FID_RETORNO_CONSULTAOBJETIVA;
-    property DESC_RETORNO_CONSULTAOBJETIVA: String read FDESC_RETORNO_CONSULTAOBJETIVA
-      write FDESC_RETORNO_CONSULTAOBJETIVA;
+    property ID_RETORNO_CONSULTAOBJETIVA: Integer
+      read FID_RETORNO_CONSULTAOBJETIVA write FID_RETORNO_CONSULTAOBJETIVA;
+    property DESC_RETORNO_CONSULTAOBJETIVA: String
+      read FDESC_RETORNO_CONSULTAOBJETIVA write FDESC_RETORNO_CONSULTAOBJETIVA;
     property CaminhoRelatorio: String read FCaminhoRelatorio
       write FCaminhoRelatorio;
     property HORA_TIMEOUT: Integer read FHORA_TIMEOUT write FHORA_TIMEOUT;
-    property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR write FDATA_HORA_ENCERRAR;
-    property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA write FDATA_HORA_ENTRADA;
+    property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR
+      write FDATA_HORA_ENCERRAR;
+    property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA
+      write FDATA_HORA_ENTRADA;
     property var_disciplinar: String read Fvar_disciplinar
       write Fvar_disciplinar;
     property var_data_disciplinar: TDateTime read Fvar_data_disciplinar
@@ -928,75 +930,69 @@ var
   ini: TIniFile;
   SUBPASTA: boolean;
 begin
-
-  Parametros := TStringList.Create;
-  Conexao.Connected := False;
-  FLiberado := False;
-  FMaquinaDesenvolvimento := False;
   try
-    if FileExists(UniServerModule.StartPath + 'Config\Conexao.ini') then
+    Parametros := TStringList.Create;
+    Conexao.Connected := False;
+    FLiberado := False;
+    FMaquinaDesenvolvimento := False;
+    try
+      if FileExists(UniServerModule.StartPath + 'Config\Conexao.ini') then
+      begin
+
+        ini := TIniFile.Create(UniServerModule.StartPath +
+          'Config\Conexao.ini');
+        SUBPASTA := (ini.ReadString('SGBD', 'ACESSA', '-') = 'SUBPASTA');
+        FMaquinaDesenvolvimento :=
+          (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
+        senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
+
+        FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL',
+          'AGEPEN'));
+        FGLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
+        FGLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
+        FGLOBAL_DEPARTAMENTO :=
+          UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
+        FGLOBAL_DIRETORIA :=
+          UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
+        FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER',
+          'http://spf.mj.gov.br');
+        FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
+        FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
+        FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF',
+          UniServerModule.StartPath);
+        FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 2);
+
+      end;
+
+    finally
+      ini.Free;
+    end;
+
+    if FileExists(UniServerModule.StartPath + 'Config\Firebird_conn.txt') then
     begin
+      Arquivo := UniServerModule.StartPath + 'Config\Firebird_conn.txt';
+      Conexao.DriverName := 'Firebird';
+      Conexao.ConnectionName := 'FBConnection';
+      Conexao.GetDriverFunc := 'getSQLDriverINTERBASE';
+      Conexao.LibraryName := 'dbxfb.dll';
+      Conexao.VendorLib := 'fbclient.dll';
+    end;
 
-      ini := TIniFile.Create(UniServerModule.StartPath + 'Config\Conexao.ini');
-      SUBPASTA := (ini.ReadString('SGBD', 'ACESSA', '-') = 'SUBPASTA');
-      FMaquinaDesenvolvimento :=
-        (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
-      senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
+    Parametros.LoadFromFile(Arquivo);
+    // if SUBPASTA then
+    // Parametros.Values['Database'] := 'localhost:' + gsAppPath + 'database\' + UniServerModule.Title + '.fdb';
 
-      FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL',
-        'AGEPEN'));
-      FGLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
-      FGLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
-      FGLOBAL_DEPARTAMENTO :=
-        UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
-      FGLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN',
-        'DIRETORIA', ''));
-      FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER',
-        'http://spf.mj.gov.br');
-      FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
-      FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
-      FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF',
-        UniServerModule.StartPath);
-      FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT',2);
+    UniConnetion.Connected := False;
+    UniConnetion.Server := copy(Parametros.Values['Database'], 1,
+      pos(':', Parametros.Values['Database']) - 1);
+    UniConnetion.Database := copy(Parametros.Values['Database'],
+      pos(':', Parametros.Values['Database']) + 1,
+      length(Parametros.Values['Database']));
+    UniConnetion.Username := Parametros.Values['User_Name'];
+    UniConnetion.Password := Parametros.Values['Password'];
 
-    end
-    else
-      showmessage('Arquivo de inicialização não encontrado: ' +
-        UniServerModule.StartPath + 'Config\Conexao.ini');
+    Conexao.Params := Parametros;
 
-  finally
-    ini.Free;
-  end;
-
-  if FileExists(UniServerModule.StartPath + 'Config\Firebird_conn.txt') then
-  begin
-    Arquivo := UniServerModule.StartPath + 'Config\Firebird_conn.txt';
-    Conexao.DriverName := 'Firebird';
-    Conexao.ConnectionName := 'FBConnection';
-    Conexao.GetDriverFunc := 'getSQLDriverINTERBASE';
-    Conexao.LibraryName := 'dbxfb.dll';
-    Conexao.VendorLib := 'fbclient.dll';
-  end
-  else
-    showmessage('Arquivo de configuração do banco não encontrado: ' +
-      UniServerModule.StartPath + 'Config\Firebird_conn.txt');
-
-  Parametros.LoadFromFile(Arquivo);
-  // if SUBPASTA then
-  // Parametros.Values['Database'] := 'localhost:' + gsAppPath + 'database\' + UniServerModule.Title + '.fdb';
-
-  UniConnetion.Connected := False;
-  UniConnetion.Server := copy(Parametros.Values['Database'], 1,
-    pos(':', Parametros.Values['Database']) - 1);
-  UniConnetion.Database := copy(Parametros.Values['Database'],
-    pos(':', Parametros.Values['Database']) + 1,
-    length(Parametros.Values['Database']));
-  UniConnetion.Username := Parametros.Values['User_Name'];
-  UniConnetion.Password := Parametros.Values['Password'];
-
-  Conexao.Params := Parametros;
-
-  try
     Conexao.Connected := True;
     UniConnetion.Connected := True;
     Result := True;
@@ -1004,7 +1000,7 @@ begin
   except
     on e: exception do
     begin
-      showmessage('Hum... problema na conexão: ' + e.Message);
+//      showmessage('Hum... problema na conexão: ' + e.Message);
       Result := False;
     end;
   end;

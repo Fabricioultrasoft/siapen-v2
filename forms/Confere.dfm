@@ -3,7 +3,7 @@ inherited FrmConfere: TFrmConfere
   ClientWidth = 1013
   Caption = 'Confere'
   WindowState = wsMaximized
-  ExplicitTop = -262
+  ExplicitLeft = -240
   ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -15,9 +15,9 @@ inherited FrmConfere: TFrmConfere
     ExplicitHeight = 52
     inherited UniImageLogoMarca: TUniImage
       AlignWithMargins = True
-      Left = 3
+      Left = 944
       Top = 3
-      Width = 58
+      Width = 66
       Height = 46
       Picture.Data = {
         0A544A504547496D616765BF050000FFD8FFE000104A46494600010100000100
@@ -67,52 +67,65 @@ inherited FrmConfere: TFrmConfere
         FA98D210B4A8205C1B8B9070E204A75A8EEA1E62ECEAD6B6C1075A88F5EF617B
         FD2DC898300B6509325C51E10422FB2136000ED8E1E11FF83EE3060C0778519E
         4CC6C946DBF51D8E0C18301FFFD9}
+      Align = alRight
+      Anchors = [akTop, akRight, akBottom]
       Transparent = False
-      ExplicitLeft = 3
+      ExplicitLeft = 944
       ExplicitTop = 3
-      ExplicitWidth = 58
+      ExplicitWidth = 66
       ExplicitHeight = 46
     end
     inherited PanelLocalizaConsulta: TUniPanel
-      Left = 64
-      Width = 949
+      Left = 1
+      Width = 941
       Height = 50
       TabOrder = 1
-      ExplicitLeft = 64
-      ExplicitWidth = 949
+      ExplicitLeft = 3
+      ExplicitWidth = 1010
       ExplicitHeight = 50
       inherited UniLabel2: TUniLabel
-        Left = 128
-        Top = 20
-        ExplicitLeft = 128
-        ExplicitTop = 20
+        Left = 206
+        ExplicitLeft = 206
       end
       inherited EditLocalizar: TUniEdit
-        Left = 179
-        Top = 14
+        Left = 257
+        Top = 6
+        Width = 490
         ScreenMask.Message = 'Pesquisando registros... aguarde...'
         ScreenMask.Target = DBGridConsulta
         CheckChangeDelay = 50
         OnChange = nil
-        ExplicitLeft = 179
-        ExplicitTop = 14
+        ExplicitLeft = 257
+        ExplicitTop = 6
+        ExplicitWidth = 490
       end
       inherited UniBtnFiltrar: TUniBitBtn
         Left = 753
-        Top = 20
+        Top = 10
         ExplicitLeft = 753
-        ExplicitTop = 20
+        ExplicitTop = 10
       end
       object UniRadioGroupStatus: TUniRadioGroup
-        Left = 16
+        Left = 103
         Top = 1
         Width = 97
-        Height = 44
+        Height = 48
         Items.Strings = (
           'Ativo'
           'Inativo')
         ItemIndex = 0
         TabOrder = 4
+      end
+      object RadioGroupTipoLocalizar: TUniRadioGroup
+        Left = 7
+        Top = 1
+        Width = 90
+        Height = 48
+        Items.Strings = (
+          'RGI'
+          'Nome')
+        ItemIndex = 1
+        TabOrder = 5
       end
     end
   end
@@ -124,30 +137,6 @@ inherited FrmConfere: TFrmConfere
     inherited ToolBarModeloCadastro: TUniToolBar
       Width = 1007
       ExplicitWidth = 1007
-      inherited Novo: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited Editar: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited UniToolButton8: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited Cancelar: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited Salvar: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited UniToolButton7: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited Excluir: TUniToolButton
-        ExplicitHeight = 43
-      end
-      inherited Fechar: TUniToolButton
-        ExplicitHeight = 43
-      end
     end
   end
   inherited PanelModeloCadastro: TUniPanel
@@ -163,6 +152,8 @@ inherited FrmConfere: TFrmConfere
       ExplicitWidth = 1011
       ExplicitHeight = 177
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 1003
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
@@ -303,6 +294,8 @@ inherited FrmConfere: TFrmConfere
         ExplicitWidth = 977
         ExplicitHeight = 267
         inherited UniTabSheetPrincipalCadastro: TUniTabSheet
+          ExplicitLeft = 4
+          ExplicitTop = 24
           ExplicitWidth = 1001
           ExplicitHeight = 261
           object UniPageControlConfere: TUniPageControl
@@ -1639,15 +1632,15 @@ inherited FrmConfere: TFrmConfere
   end
   object DsMovimentacaoExterna: TDataSource
     DataSet = CdsMovimentacaoExterna
-    Left = 836
-    Top = 8
+    Left = 820
+    Top = 64
   end
   object CdsMovimentacaoExterna: TClientDataSet
     Aggregates = <>
     Params = <>
     ProviderName = 'DspMovimentacaoExterna'
-    Left = 808
-    Top = 8
+    Left = 792
+    Top = 64
   end
   object DspMovimentacaoExterna: TDataSetProvider
     DataSet = SqlMovimentacaoExterna
@@ -1768,8 +1761,8 @@ inherited FrmConfere: TFrmConfere
       '  left join solario on (interno.idsolario = solario.id_solario)'
       'where interno.nome_interno is not null')
     SQLConnection = Dm.Conexao
-    Left = 16
-    Top = 4
+    Left = 24
+    Top = 68
   end
   object DsDocumentos: TDataSource
     DataSet = CdsDocumentos

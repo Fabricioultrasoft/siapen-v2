@@ -199,8 +199,10 @@ object FrmConsulta: TFrmConsulta
     DataSource = DsConsultaObjetiva
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
-    WebOptions.Paged = False
-    WebOptions.LoadMaskMsg = 'Please wait...'
+    WebOptions.LoadMask = True
+    WebOptions.LoadMaskMsg = 'Por favor aguarde...'
+    WebOptions.CustomizableCells = False
+    WebOptions.UseRecNo = False
     OnDblClick = DBGridConsultaDblClick
     StripeRows = True
     Align = alClient
@@ -231,5 +233,18 @@ object FrmConsulta: TFrmConsulta
     SQLConnection = Dm.Conexao
     Left = 512
     Top = 200
+  end
+  object UniTimerConfirma: TUniTimer
+    OnTimer = UniTimerConfirmaTimer
+    Interval = 100
+    Enabled = False
+    RunOnce = True
+    ClientEvent.Strings = (
+      'function(sender)'
+      '{'
+      '   '
+      '}')
+    Left = 312
+    Top = 136
   end
 end

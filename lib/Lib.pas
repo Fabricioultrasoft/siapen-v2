@@ -141,6 +141,7 @@ function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
 function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
   UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
   UniLabelRetorno3: TUniLabel = nil): Boolean;
+function DiasUteis(DataIni, DataFim: TDateTime; sIgnorar: string): Integer;
 
 const
   QBtn1 = 1;
@@ -1323,7 +1324,7 @@ begin
           Width := cWidth;
           Height := cHeight;
           Canvas.StretchDraw(Rect(0, 0, MyBMP.Width, MyBMP.Height), MyJPEG);
-          Result := 'conversor_siap.Bmp';
+          Result := UniServerModule.CacheFolderPath+'conversor_siapen.Bmp';
           SaveToFile(Result);
           Free;
         end;
@@ -1553,7 +1554,10 @@ function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
 UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
 UniLabelRetorno3: TUniLabel = nil): Boolean;
 begin
-  UniLabelRetorno.Caption := 'Informe o código ou pesquise';
+
+  UniLabelRetorno.Caption := 'Informe o código ou pesquise' ;
+  UniDBEditRetorno.ReadOnly := True ;
+
   if StrToIntDef(UniDBEditRetorno.Text, 0) > 0 then
   begin
     DM.SqlConsultaUnica.SQL.Text := sSqlBusca + UniDBEditRetorno.Text;
@@ -1583,5 +1587,22 @@ begin
   end;
 
 end;
+
+function DiasUteis(DataIni, DataFim: TDateTime; sIgnorar: string): Integer;
+var
+  sDataIni, sDataFim: string;
+begin
+  sDataIni := FormatDateTime('dd.mm.yyyy', DataIni);
+  sDataFim := FormatDateTime('dd.mm.yyyy', DataFim);
+  dm.SqlExecute.SQL.Text := 'select uteis from CALCULA_DIAS_UTEIS('
+    + qs(sDataIni) + ',' + qs(sDataFim) + ',' + qs(sIgnorar) + ')';
+  dm.DsExecute.DataSet.Close;
+  dm.DsExecute.DataSet.Open;
+
+  Result := dm.DsExecute.DataSet.FieldByName('uteis').AsInteger;
+
+  dm.DsExecute.DataSet.Close;
+end;
+
 
 end.

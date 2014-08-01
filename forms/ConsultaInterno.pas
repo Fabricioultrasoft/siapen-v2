@@ -8,7 +8,7 @@ uses
   uniGUIClasses, uniGUIForm, Data.FMTBcd, Data.DB, Data.SqlExpr,
   Datasnap.Provider, Datasnap.DBClient, uniEdit, uniButton, uniBitBtn,
   uniRadioGroup, uniLabel, uniPageControl, uniBasicGrid, uniDBGrid, uniToolBar,
-  uniImage, uniDBImage, uniGUIBaseClasses, uniPanel;
+  uniImage, uniDBImage, uniGUIBaseClasses, uniPanel, uniMultiItem, uniComboBox;
 
 type
   TFrmConsultaInterno = class(TUniForm)
@@ -41,10 +41,8 @@ type
     PageControl1: TUniPageControl;
     TabSheet1: TUniTabSheet;
     Label1: TUniLabel;
-    RadioGroupStatus: TUniRadioGroup;
     DBGridConsulta: TUniDBGrid;
     Editlocalizar: TUniEdit;
-    RadioGroupTipoLocalizar: TUniRadioGroup;
     TabSheet2: TUniTabSheet;
     Label2: TUniLabel;
     Editlocalizarvulgo: TUniEdit;
@@ -59,6 +57,8 @@ type
     Editfiliacao: TUniEdit;
     RadioGroupfiliacao: TUniRadioGroup;
     Fechar: TUniBitBtn;
+    RadioGroupTipoLocalizar: TUniComboBox;
+    RadioGroupStatus: TUniComboBox;
     procedure EditLocalizarChange(Sender: TObject);
     procedure RadioGroupStatusClick(Sender: TObject);
     procedure EditlocalizarvulgoChange(Sender: TObject);
@@ -114,21 +114,10 @@ begin
       Campo := 'NOME_INTERNO';
   end;
 
-  if RadioGroupTipoLocalizar.ItemIndex = 0 then
-  begin
-    SqlConsulta.sql.text := SqlSelectInterno.sql.text +
-      ' where strlen(coalesce(interno.nome_interno,''''))>5 and ' + status +
-      ' and interno.' + Campo + ' = ' + qs(Editlocalizar.text) +
-      ' order by interno.nome_interno ';
-  end;
-
-  if RadioGroupTipoLocalizar.ItemIndex = 1 then
-  begin
-    SqlConsulta.sql.text := SqlSelectInterno.sql.text +
-      ' where strlen(coalesce(interno.nome_interno,''''))>5 and ' + status +
-      ' and interno.' + Campo + ' like ' + qs(Editlocalizar.text + '%') +
-      ' order by interno.nome_interno ';
-  end;
+  SqlConsulta.sql.text := SqlSelectInterno.sql.text +
+    ' where strlen(coalesce(interno.nome_interno,''''))>5 and ' + status +
+    ' and interno.' + Campo + ' like ' + qs(Editlocalizar.text + '%') +
+    ' order by interno.nome_interno ';
 
   DsConsulta.DataSet.Close;
   DsConsulta.DataSet.Open;
