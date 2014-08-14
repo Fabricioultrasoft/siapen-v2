@@ -1324,7 +1324,8 @@ begin
           Width := cWidth;
           Height := cHeight;
           Canvas.StretchDraw(Rect(0, 0, MyBMP.Width, MyBMP.Height), MyJPEG);
-          Result := UniServerModule.CacheFolderPath+'conversor_siapen.Bmp';
+          Result := UniServerModule.LocalCachePath + 'conversor_siapen' +
+            FormatDateTime('yyyy-mm-dd-hh-mm-zzz', now) + '.bmp';
           SaveToFile(Result);
           Free;
         end;
@@ -1555,8 +1556,8 @@ UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
 UniLabelRetorno3: TUniLabel = nil): Boolean;
 begin
 
-  UniLabelRetorno.Caption := 'Informe o código ou pesquise' ;
-  UniDBEditRetorno.ReadOnly := True ;
+  UniLabelRetorno.Caption := 'Informe o código ou pesquise';
+  UniDBEditRetorno.ReadOnly := True;
 
   if StrToIntDef(UniDBEditRetorno.Text, 0) > 0 then
   begin
@@ -1594,15 +1595,14 @@ var
 begin
   sDataIni := FormatDateTime('dd.mm.yyyy', DataIni);
   sDataFim := FormatDateTime('dd.mm.yyyy', DataFim);
-  dm.SqlExecute.SQL.Text := 'select uteis from CALCULA_DIAS_UTEIS('
-    + qs(sDataIni) + ',' + qs(sDataFim) + ',' + qs(sIgnorar) + ')';
-  dm.DsExecute.DataSet.Close;
-  dm.DsExecute.DataSet.Open;
+  DM.SqlExecute.SQL.Text := 'select uteis from CALCULA_DIAS_UTEIS(' +
+    Qs(sDataIni) + ',' + Qs(sDataFim) + ',' + Qs(sIgnorar) + ')';
+  DM.DsExecute.DataSet.Close;
+  DM.DsExecute.DataSet.Open;
 
-  Result := dm.DsExecute.DataSet.FieldByName('uteis').AsInteger;
+  Result := DM.DsExecute.DataSet.FieldByName('uteis').AsInteger;
 
-  dm.DsExecute.DataSet.Close;
+  DM.DsExecute.DataSet.Close;
 end;
-
 
 end.

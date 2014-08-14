@@ -1,9 +1,10 @@
 object UniServerModule: TUniServerModule
-  OldCreateOrder = True
+  OldCreateOrder = False
+  OnCreate = UniGUIServerModuleCreate
   AutoCoInitialize = True
   FilesFolder = 'files\'
   TempFolder = 'temp\'
-  SessionTimeout = 7200000
+  SessionTimeout = 2400000
   Title = 'Siapen 2.0'
   BGColor = clBlack
   CharSet = 'utf-8'

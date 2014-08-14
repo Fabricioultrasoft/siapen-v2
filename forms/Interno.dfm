@@ -93,12 +93,10 @@ inherited FrmInterno: TFrmInterno
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 785
       Height = 538
-      ActivePage = TabSheetCadastro
+      ActivePage = TabSheetConsulta
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelCadastro: TUniPanel
@@ -3008,8 +3006,6 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
-        ExplicitLeft = 4
-        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel
@@ -3096,6 +3092,16 @@ inherited FrmInterno: TFrmInterno
               Width = 56
               Visible = True
               Expanded = False
+            end
+            item
+              FieldName = 'FOTO'
+              Title.Caption = 'Foto'
+              Width = 35
+              Visible = True
+              Expanded = False
+              ImageOptions.Visible = True
+              ImageOptions.Width = 25
+              ImageOptions.Height = 20
             end>
         end
       end

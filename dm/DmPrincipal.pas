@@ -960,7 +960,7 @@ begin
         FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
         FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF',
           UniServerModule.StartPath);
-        FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 2);
+        FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 1);
 
       end;
 

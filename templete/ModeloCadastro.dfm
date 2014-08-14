@@ -412,7 +412,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Top = 1
       Width = 741
       Height = 322
-      ActivePage = TabSheetConsulta
+      ActivePage = TabSheetCadastro
       TabOrder = 1
       Align = alClient
       Anchors = [akLeft, akTop, akRight, akBottom]

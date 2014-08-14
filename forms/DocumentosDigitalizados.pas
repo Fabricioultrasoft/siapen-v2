@@ -196,6 +196,18 @@ begin
 
       if sArquivosPDFInterno <> '' then
       begin
+        if Dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+              qs('UNIFICANDO PDFS: ' + dscadastro.DataSet.FieldByName
+              ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
+              ('NOME_INTERNO').AsString + ' PDF:' + sArquivosPDFInterno) +
+              ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+
         if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
           dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
           DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
@@ -215,7 +227,9 @@ begin
     end
     else
     begin
-      showmessage('Não tem acesso para gerar unificação!');
+      if not FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
+        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+        showmessage('Não tem acesso para gerar unificação!');
     end;
 
     UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
@@ -226,6 +240,19 @@ begin
       UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
         dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
         '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+
+      if Dm.GLOBAL_IDCONEXAO > 0 then
+      begin
+        try
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+            qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName
+            ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
+            ('NOME_INTERNO').AsString + ' ARQUIVO:' +dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') +
+            ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+        except
+        end;
+      end;
+
     end;
 
   except
@@ -246,6 +273,20 @@ begin
       UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
         DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
         '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+
+      if Dm.GLOBAL_IDCONEXAO > 0 then
+      begin
+        try
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+            qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName
+            ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
+            ('NOME_INTERNO').AsString + ' ARQUIVO:' +
+            DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString) +
+            ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+        except
+        end;
+      end;
+
     end
     else
     begin
@@ -303,6 +344,19 @@ begin
         CdsDocumentoProcessos.close;
         CdsDocumentoProcessos.open;
         humane.clickToClose(true);
+
+        if Dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+              qs('ANEXO DOC: ' + dscadastro.DataSet.FieldByName('id_interno')
+              .AsString + '-' + dscadastro.DataSet.FieldByName('NOME_INTERNO')
+              .AsString + ' ARQUIVO:' + sArquivo) + ' where idconexao=' +
+              inttostr(Dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+
         humane.success
           ('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' +
           UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');

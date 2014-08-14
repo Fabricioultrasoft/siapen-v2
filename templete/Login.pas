@@ -26,7 +26,7 @@ uses
   uniLabel,
   uniTimer, Data.FMTBcd, Data.DB, Datasnap.DBClient, Datasnap.Provider,
   Data.SqlExpr, uniPanel, uniGroupBox, uniMultiItem, uniComboBox, uniDBComboBox,
-  uniDBLookupComboBox, uniDBEdit, DateUtils;
+  uniDBLookupComboBox, uniDBEdit, DateUtils, Vcl.Imaging.pngimage;
 
 type
   TFrmLogin = class(TUniLoginForm)
@@ -91,7 +91,18 @@ end;
 procedure TFrmLogin.UniBitBtnEntrarClick(Sender: TObject);
 var
   sdia: string;
+  C: TUniClientInfoRec;
+  sIp, sBrowser, sVersao, sOSType: string;
 begin
+
+  sIp := UniApplication.RemoteAddress;
+
+  C := UniApplication.ClientInfoRec;
+
+  sBrowser := C.BrowserType;
+  sVersao := IntToStr(C.BrowserVersion);
+  sOSType := C.OSType;
+
   UniBitBtnEntrar.Visible := false;
   if not dm.Dsup.DataSet.Active then
   begin
@@ -273,14 +284,21 @@ begin
           if dm.GLOBAL_IDCONEXAO <= 0 then
           begin
             try
+
               dm.GLOBAL_IDCONEXAO := Generator('IDCONEXAO');
               dm.Conexao.ExecuteDirect
                 ('insert into conexao (idconexao, id_funcioanrio, data_hora_entrada, tela_momento) '
                 + ' values (' + IntToStr(dm.GLOBAL_IDCONEXAO) + ', ' +
                 IntToStr(dm.GLOBAL_ID_FUNCIONARIO) + ', current_timestamp, ' +
-                Qs('Tela de Login') + ')');
+                Qs('Tela de Login') + ' Login:' + dm.LOGIN_CONECTADO +
+                ', Senha:' + dm.GLOBAL_SENHA_USUARIO + ', UP:' +
+                IntToStr(dm.GLOBAL_ID_UP) + ', IP:' + sIp + ', ' +
+                'ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao +
+                ' OSType:' + sOSType + ')');
+
               dm.Conexao.ExecuteDirect('EXECUTE PROCEDURE SET_CONTEXT_CONEXAO('
                 + IntToStr(dm.GLOBAL_IDCONEXAO) + ')');
+
             except
             end;
           end;

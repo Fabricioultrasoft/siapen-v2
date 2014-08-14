@@ -1545,10 +1545,12 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     Top = 97
   end
   inherited dstdataservidor: TDataSetProvider
-    Left = 693
+    Left = 701
+    Top = 40
   end
   inherited SQLdataservidor: TSQLQuery
-    Left = 665
+    Left = 673
+    Top = 40
   end
   object DsFaltaDelete: TDataSource
     DataSet = CdsFaltaDelete
@@ -1626,8 +1628,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   end
   object Dspvincfaltadisciplinar: TDataSetProvider
     DataSet = Sqlvincfaltadisciplinar
-    Left = 692
-    Top = 120
+    Left = 700
+    Top = 64
   end
   object Cdsvincfaltadisciplinar: TClientDataSet
     Aggregates = <>
@@ -1637,13 +1639,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     PacketRecords = 0
     Params = <>
     ProviderName = 'Dspvincfaltadisciplinar'
-    Left = 720
-    Top = 120
+    Left = 728
+    Top = 64
   end
   object Dsvincfaltadisciplinar: TDataSource
     DataSet = Cdsvincfaltadisciplinar
-    Left = 749
-    Top = 120
+    Left = 757
+    Top = 64
   end
   object PopupMenuIsolamento: TUniPopupMenu
     Left = 564
@@ -1698,7 +1700,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
       'inner join unidade_penal u on (vf.id_up = u.id_up)'
       'where vf.id_interno = :id_interno'
       'order by data_incidencia desc')
-    Left = 663
-    Top = 120
+    Left = 671
+    Top = 64
   end
 end

@@ -62,6 +62,7 @@ type
     CdsUP: TClientDataSet;
     DspUP: TDataSetProvider;
     SqlUP: TSQLQuery;
+    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -161,8 +162,8 @@ procedure TFrmMenuRelatorio.FormCreate(Sender: TObject);
 begin
   AbreConexao;
 
-  DsUP.DataSet.Close;
-  DsUP.DataSet.Open;
+//  DsUP.DataSet.Close;
+//  DsUP.DataSet.Open;
 
   SetCurrentDir(gsAppPath);
 
@@ -173,7 +174,7 @@ begin
 
   if not DirectoryExists(PATH_MOMENTO) then
   begin
-    ShowMessage('Não existe a pasta: ' + PATH_MOMENTO);
+//    ShowMessage('Não existe a pasta: ' + PATH_MOMENTO);
     DirectoryListBox1.Directory := gsAppPath;
     DirectoryListBoxTeste.Directory := gsAppPath;
   end
@@ -194,18 +195,6 @@ begin
   begin
     ShowMessage('Não existe a pasta: ' + PATH_MOMENTO);
     Exit;
-  end;
-
-  if GLOBAL_IDCONEXAO > 0 then
-  begin
-    IniciaTransMovimento;
-    try
-      Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-        qs(copy(FileListBox2.FileName, 1, 99)) + ' where idconexao=' +
-        IntToStr(GLOBAL_IDCONEXAO));
-    except
-    end;
-    FinalizaTransMovimento;
   end;
 
   frxReport1.LoadFromFile(FileListBox2.FileName);
@@ -521,94 +510,110 @@ begin
 end;
 
 procedure TFrmMenuRelatorio.Designer1Click(Sender: TObject);
+var
+  sSenhaDIA, sDigitada: string;
 begin
-  if not DirectoryExists(PATH_MOMENTO) then
+
+  sSenhaDIA := ConvSenhaLetra(FormatDateTime('DD', Date));
+  sDigitada := inputbox('Senha de acesso:', 'Senha:', '************');
+
+  if ContemValor(sSenhaDIA, sDigitada) then
   begin
-    ShowMessage('Não existe a pasta: ' + PATH_MOMENTO);
-    Exit;
+
+    if not DirectoryExists(PATH_MOMENTO) then
+    begin
+      ShowMessage('Não existe a pasta: ' + PATH_MOMENTO);
+      Exit;
+    end;
+
+    frxReport1.LoadFromFile(FileListBox2.FileName);
+
+    frxReport1.Variables.DeleteVariable('ID_UP');
+    frxReport1.Variables.AddVariable('GLOBAL', 'ID_UP', GLOBAL_ID_UP);
+    frxReport1.Variables.AddVariable('SIAP', 'ID_UP', GLOBAL_ID_UP);
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_ID_FUNCIONARIO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_FUNCIONARIO',
+      GLOBAL_ID_FUNCIONARIO);
+
+    frxReport1.Variables.DeleteVariable('ID_INTERNO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'ID_INTERNO', GLOBAL_ID_INTERNO);
+    frxReport1.Variables.AddVariable('SIAP', 'ID_INTERNO', GLOBAL_ID_INTERNO);
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_ORGAO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ORGAO',
+      qs(GLOBAL_ORGAO));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ORGAO', qs(GLOBAL_ORGAO));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_DEPARTAMENTO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DEPARTAMENTO',
+      qs(GLOBAL_DEPARTAMENTO));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DEPARTAMENTO',
+      qs(GLOBAL_DEPARTAMENTO));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_DIRETORIA');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DIRETORIA',
+      qs(GLOBAL_DIRETORIA));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DIRETORIA',
+      qs(GLOBAL_DIRETORIA));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_IDAGENDA_ATENDIMENTO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_IDAGENDA_ATENDIMENTO',
+      qs(GLOBAL_IDAGENDA_ATENDIMENTO));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_PADRAO_SISTEMA');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_PADRAO_SISTEMA',
+      qs(GLOBAL_PADRAO_SISTEMA));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_1');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_1',
+      qs(GLOBAL_NIVEL_1));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_1',
+      qs(GLOBAL_NIVEL_1));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_2');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_2',
+      qs(GLOBAL_NIVEL_2));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_2',
+      qs(GLOBAL_NIVEL_2));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_3');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_3',
+      qs(GLOBAL_NIVEL_3));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_3',
+      qs(GLOBAL_NIVEL_3));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_4');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_4',
+      qs(GLOBAL_NIVEL_4));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_4',
+      qs(GLOBAL_NIVEL_4));
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_ID_TRANSFERENCIA_INTERNO');
+    frxReport1.Variables.AddVariable('GLOBAL',
+      'GLOBAL_ID_TRANSFERENCIA_INTERNO', GLOBAL_ID_TRANSFERENCIA_INTERNO);
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ID_TRANSFERENCIA_INTERNO',
+      GLOBAL_ID_TRANSFERENCIA_INTERNO);
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_ID_MUDANCA_CELA');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_MUDANCA_CELA',
+      GLOBAL_ID_MUDANCA_CELA);
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ID_MUDANCA_CELA',
+      GLOBAL_ID_MUDANCA_CELA);
+
+    frxReport1.Variables.DeleteVariable('GLOBAL_TIPOPROCESSO');
+    frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_TIPOPROCESSO',
+      qs('Condenado'));
+    frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_TIPOPROCESSO',
+      qs('Condenado'));
+
+    frxReport1.DesignReport;
+
+  end
+  else
+  begin
+    showmessage('Informe a senha de acesso, ou ligue:');
   end;
-
-  frxReport1.LoadFromFile(FileListBox2.FileName);
-
-  frxReport1.Variables.DeleteVariable('ID_UP');
-  frxReport1.Variables.AddVariable('GLOBAL', 'ID_UP', GLOBAL_ID_UP);
-  frxReport1.Variables.AddVariable('SIAP', 'ID_UP', GLOBAL_ID_UP);
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_ID_FUNCIONARIO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_FUNCIONARIO',
-    GLOBAL_ID_FUNCIONARIO);
-
-  frxReport1.Variables.DeleteVariable('ID_INTERNO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'ID_INTERNO', GLOBAL_ID_INTERNO);
-  frxReport1.Variables.AddVariable('SIAP', 'ID_INTERNO', GLOBAL_ID_INTERNO);
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_ORGAO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ORGAO', qs(GLOBAL_ORGAO));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ORGAO', qs(GLOBAL_ORGAO));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_DEPARTAMENTO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DEPARTAMENTO',
-    qs(GLOBAL_DEPARTAMENTO));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DEPARTAMENTO',
-    qs(GLOBAL_DEPARTAMENTO));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_DIRETORIA');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DIRETORIA',
-    qs(GLOBAL_DIRETORIA));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DIRETORIA',
-    qs(GLOBAL_DIRETORIA));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_IDAGENDA_ATENDIMENTO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_IDAGENDA_ATENDIMENTO',
-    qs(GLOBAL_IDAGENDA_ATENDIMENTO));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_PADRAO_SISTEMA');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_PADRAO_SISTEMA',
-    qs(GLOBAL_PADRAO_SISTEMA));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_1');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_1',
-    qs(GLOBAL_NIVEL_1));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_1',
-    qs(GLOBAL_NIVEL_1));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_2');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_2',
-    qs(GLOBAL_NIVEL_2));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_2',
-    qs(GLOBAL_NIVEL_2));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_3');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_3',
-    qs(GLOBAL_NIVEL_3));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_3',
-    qs(GLOBAL_NIVEL_3));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_4');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_4',
-    qs(GLOBAL_NIVEL_4));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_4',
-    qs(GLOBAL_NIVEL_4));
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_ID_TRANSFERENCIA_INTERNO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_TRANSFERENCIA_INTERNO',
-    GLOBAL_ID_TRANSFERENCIA_INTERNO);
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ID_TRANSFERENCIA_INTERNO',
-    GLOBAL_ID_TRANSFERENCIA_INTERNO);
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_ID_MUDANCA_CELA');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_MUDANCA_CELA',
-    GLOBAL_ID_MUDANCA_CELA);
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ID_MUDANCA_CELA',
-    GLOBAL_ID_MUDANCA_CELA);
-
-  frxReport1.Variables.DeleteVariable('GLOBAL_TIPOPROCESSO');
-  frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_TIPOPROCESSO',
-    qs('Condenado'));
-  frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_TIPOPROCESSO',
-    qs('Condenado'));
-
-  frxReport1.DesignReport;
 
 end;
 

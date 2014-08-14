@@ -729,6 +729,17 @@ begin
         SqlFoto.ParamByName('id_interno').AsInteger :=
           DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
 
+        if dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
+              qs('EDIÇÃO INTERNO: ' + DsCadastro.DataSet.fieldbyname('id_interno')
+              .AsString + '-' + DsCadastro.DataSet.fieldbyname('NOME_INTERNO')
+              .AsString) + ' where idconexao=' + inttostr(dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+
         DsFoto.DataSet.close;
         DsFoto.DataSet.Open;
 
@@ -810,7 +821,7 @@ end;
 
 procedure TFrmInterno.SalvarClick(Sender: TObject);
 begin
-//  DsCadastro.DataSet.fieldbyname('id_up').AsInteger := dm.GLOBAL_ID_UP;
+  // DsCadastro.DataSet.fieldbyname('id_up').AsInteger := dm.GLOBAL_ID_UP;
   DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
     dm.GLOBAL_ID_FUNCIONARIO;
 

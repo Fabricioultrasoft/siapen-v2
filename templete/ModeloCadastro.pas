@@ -17,6 +17,7 @@ uses
   uniGUIAbstractClasses,
   uniGUIClasses,
   uniGUIForm,
+  UniGUIApplication,
   Vcl.Imaging.jpeg,
   uniImage,
   uniGUIBaseClasses,
@@ -814,20 +815,34 @@ var Action: TReconcileAction);
 var
   arquivo: TextFile;
   NomeArquivo: string;
+  C: TUniClientInfoRec;
+  sIp, sBrowser, sVersao, sOSType: string;
 begin
+
+  sIp := UniApplication.RemoteAddress;
+
+  C := UniApplication.ClientInfoRec;
+
+  sBrowser := C.BrowserType;
+  sVersao := IntToStr(C.BrowserVersion);
+  sOSType := C.OSType;
 
   try
 
     if not DirectoryExists('../log') then
       CreateDir('../log');
 
-    NomeArquivo := '../log/' + UniServerModule.Title + '_Erro.txt';
+    NomeArquivo := '../log/' + UniServerModule.Title +
+      FormatDateTime('yyyy-mm-dd-hh-mm-zzz', now) + '_Erro.txt';
 
     AssignFile(arquivo, NomeArquivo);
     Rewrite(arquivo);
 
     Writeln(arquivo, DateTimeToStr(now) + #13#10 + 'cds: ' + DataSet.Name +
-      ' - ' + E.Message);
+      ' - ' + E.Message + ' Login:'+ Dm.LOGIN_CONECTADO + ', Senha:' +
+      Dm.GLOBAL_SENHA_USUARIO + ', UP:' +inttostr( Dm.GLOBAL_ID_UP) + ', Funcionário:' +
+      inttostr( Dm.GLOBAL_ID_FUNCIONARIO) + ', IP:' + sIp + ', ' + 'ENTRADA - Browser:' +
+      sBrowser + ' Versao:' + sVersao + ' OSType:' + sOSType);
 
     CloseFile(arquivo);
 

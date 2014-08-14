@@ -1,8 +1,8 @@
 object FrmMenuRelatorio: TFrmMenuRelatorio
   Left = 187
   Top = 123
-  Caption = 'Menu de Relat'#243'rios'
-  ClientHeight = 404
+  Caption = 'Menu de Relat'#243'rios - Supote: (67) 8401-2103 - Contato: Alexandre'
+  ClientHeight = 402
   ClientWidth = 639
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -17,15 +17,15 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
   OnShow = FormShow
   DesignSize = (
     639
-    404)
+    402)
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 8
     Top = 13
-    Width = 168
+    Width = 108
     Height = 13
-    Caption = 'C:\apps\siapen-v2\MenuRelatorios'
+    Caption = 'C:\Windows\system32'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -33,11 +33,18 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     Font.Style = []
     ParentFont = False
   end
+  object Label2: TLabel
+    Left = 399
+    Top = 355
+    Width = 211
+    Height = 13
+    Caption = 'Supote: (67) 8401-2103 - Contato: Alexandre'
+  end
   object Button1: TButton
-    Left = 353
-    Top = 357
-    Width = 97
-    Height = 25
+    Left = 249
+    Top = 355
+    Width = 144
+    Height = 39
     Anchors = [akBottom]
     Caption = 'Visualizar'
     TabOrder = 5
@@ -47,7 +54,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     Left = 568
     Top = 368
     Width = 49
-    Height = 25
+    Height = 23
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clBtnFace
     Font.Charset = DEFAULT_CHARSET
@@ -82,7 +89,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     Height = 21
     Ctl3D = False
     FileList = FileListBox2
-    Filter = 'Relat'#243'rios SIAP (*.fr3)|*.fr3'
+    Filter = 'Relat'#243'rios  (*.fr3)|*.fr3'
     ParentCtl3D = False
     TabOrder = 4
   end
@@ -90,7 +97,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     Left = 216
     Top = 28
     Width = 417
-    Height = 323
+    Height = 321
     Anchors = [akLeft, akTop, akRight, akBottom]
     Color = clWhite
     Ctl3D = False
@@ -133,7 +140,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
   object DBLookupComboBoxUP: TDBLookupComboBox
     Left = 8
     Top = 358
-    Width = 310
+    Width = 217
     Height = 21
     Color = clMenuText
     DataField = 'ID_UP'
@@ -147,6 +154,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
     ListSource = DsUP
     ParentFont = False
     TabOrder = 7
+    Visible = False
     OnClick = DBLookupComboBoxUPClick
   end
   object frxBMPExport1: TfrxBMPExport

@@ -1731,7 +1731,7 @@ object UniMainModule: TUniMainModule
     A3FE15F68FFF003F7AA7FDFEB3FF00E41A00F21AFA1BE127FC8B97FF00F61CB9
     FF00D37E995CBFFC2BED1FFE7EF54FFBFD67FF00C835F43FC22F879A3B7872FF
     00FD335618D76E07135973FF0012ED2CE4EEB03CF38E38C01C673900FFD9}
-  Background.Url = 'www.siapen.ddns.com.br'
+  Background.Url = 'www.siapen.com.br'
   BrowserOptions = [boDisableMouseRightClick]
   NavigateKeys.Enabled = True
   NavigateKeys.Next.Key = 13
