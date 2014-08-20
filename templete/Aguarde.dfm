@@ -8,7 +8,6 @@ object FrmAguarde: TFrmAguarde
   BorderStyle = bsNone
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
-  ScreenMask.Enabled = True
   ScreenMask.WaitData = True
   ScreenMask.Message = 'Aguarde...'
   OnCreate = UniFormCreate
@@ -928,8 +927,9 @@ object FrmAguarde: TFrmAguarde
   end
   object UniTimer1: TUniTimer
     OnTimer = UniTimer1Timer
-    Interval = 1
+    Interval = 500
     Enabled = False
+    RunOnce = True
     ClientEvent.Strings = (
       'function(sender)'
       '{'

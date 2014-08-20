@@ -5,7 +5,6 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
   ClientWidth = 800
   Caption = 'Hist'#243'ricos Interno'
   OnShow = UniFormShow
-  Color = clBtnFace
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
   ActiveControl = Editlocalizar
@@ -17,17 +16,20 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
     Top = 0
     Width = 800
     Height = 351
+    Hint = ''
     ActivePage = TabSheet1
     TabOrder = 0
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     object TabSheet1: TUniTabSheet
+      Hint = ''
       Caption = 'Internos (as)'
       object Label1: TUniLabel
         Left = 0
         Top = 0
         Width = 45
         Height = 13
+        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 3
       end
@@ -36,6 +38,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
         Top = 0
         Width = 160
         Height = 62
+        Hint = ''
         Items.Strings = (
           'Ativo'
           'Inativo')
@@ -49,13 +52,14 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
         Top = 68
         Width = 788
         Height = 253
+        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = DsConsulta
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         ReadOnly = True
         WebOptions.Paged = False
-        WebOptions.LoadMaskMsg = 'Please wait...'
+        LoadMask.Message = 'Loading data...'
         Align = alCustom
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 2
@@ -66,6 +70,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 422
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SIGLA'
@@ -73,6 +78,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 77
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAVILHAO'
@@ -80,6 +86,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 78
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'GALERIA'
@@ -87,6 +94,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 70
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SOLARIO'
@@ -94,6 +102,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 61
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'CELA'
@@ -101,6 +110,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
             Width = 59
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end>
       end
       object Editlocalizar: TUniEdit
@@ -108,7 +118,9 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
         Top = 0
         Width = 500
         Height = 32
+        Hint = ''
         CharCase = ecUpperCase
+        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -125,6 +137,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
     Top = 351
     Width = 800
     Height = 106
+    Hint = ''
     Enabled = False
     Caption = 'PanelPrincipal'
     Align = alBottom
@@ -138,6 +151,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 1
       Width = 63
       Height = 13
+      Hint = ''
       Caption = 'Data do Fato'
       TabOrder = 5
     end
@@ -146,6 +160,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 1
       Width = 208
       Height = 13
+      Hint = ''
       Caption = 'Descri'#231#227'o do Hist'#243'rico para Ficha Disciplinar'
       TabOrder = 6
     end
@@ -154,6 +169,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 18
       Width = 100
       Height = 21
+      Hint = ''
       DateTime = 41831.000000000000000000
       DateFormat = 'dd/MM/yyyy'
       TimeFormat = 'HH:mm:ss'
@@ -164,6 +180,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 19
       Width = 690
       Height = 83
+      Hint = ''
       Anchors = [akLeft, akTop, akRight, akBottom]
       Color = clWindow
       TabOrder = 1
@@ -173,6 +190,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 79
       Width = 100
       Height = 25
+      Hint = ''
       Caption = 'Incluir'
       ParentFont = False
       Font.Height = -13
@@ -186,6 +204,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 315
       Width = 744
       Height = 121
+      Hint = ''
       Enabled = False
       DataField = 'DESCRICAO'
       DataSource = DSHISTORICO_interno
@@ -196,6 +215,8 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Left = 9
       Top = 55
       Width = 100
+      Hint = ''
+      Text = ''
       Items.Strings = (
         'Disciplina'
         'Jurid'#237'co'
@@ -211,6 +232,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 41
       Width = 26
       Height = 13
+      Hint = ''
       Caption = 'Setor'
       TabOrder = 8
     end
@@ -220,6 +242,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
     Top = 457
     Width = 800
     Height = 143
+    Hint = ''
     Caption = 'UniPanel1'
     Align = alBottom
     Anchors = [akLeft, akRight, akBottom]
@@ -229,11 +252,12 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
       Top = 1
       Width = 798
       Height = 141
+      Hint = ''
       DataSource = DSHISTORICO_interno
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
       ReadOnly = True
       WebOptions.Paged = False
-      WebOptions.LoadMaskMsg = 'Please wait...'
+      LoadMask.Message = 'Loading data...'
       Align = alClient
       Anchors = [akLeft, akTop, akRight, akBottom]
       TabOrder = 1
@@ -244,6 +268,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
           Width = 60
           Visible = True
           Expanded = False
+          CheckBoxField.FieldValues = 'true;false'
         end
         item
           FieldName = 'SETOR'
@@ -251,6 +276,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
           Width = 50
           Visible = True
           Expanded = False
+          CheckBoxField.FieldValues = 'true;false'
         end
         item
           FieldName = 'DESCRICAO'
@@ -258,6 +284,7 @@ object FrmHistoricoInterno: TFrmHistoricoInterno
           Width = 64
           Visible = True
           Expanded = False
+          CheckBoxField.FieldValues = 'true;false'
         end>
     end
   end

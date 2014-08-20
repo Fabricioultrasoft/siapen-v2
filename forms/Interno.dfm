@@ -29,7 +29,7 @@ inherited FrmInterno: TFrmInterno
       Enabled = False
       OnClick = nil
     end
-    object UniDBImage1: TUniDBImage
+    object UniDBImageInterno: TUniDBImage
       Left = 1
       Top = 383
       Width = 103
@@ -93,7 +93,7 @@ inherited FrmInterno: TFrmInterno
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 785
       Height = 538
-      ActivePage = TabSheetConsulta
+      OnChange = PageControlModeloCadastroChange
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
@@ -1787,7 +1787,7 @@ inherited FrmInterno: TFrmInterno
                 DataSource = dsADVOGADO_INTERNO
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                 ReadOnly = True
-                WebOptions.LoadMaskMsg = 'Please wait...'
+                LoadMask.Message = 'Loading data...'
                 TabOrder = 2
                 Columns = <
                   item
@@ -1796,6 +1796,7 @@ inherited FrmInterno: TFrmInterno
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -1803,6 +1804,7 @@ inherited FrmInterno: TFrmInterno
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               object Button3: TUniButton
@@ -2166,7 +2168,7 @@ inherited FrmInterno: TFrmInterno
                 Height = 136
                 DataSource = DSHISTORICO_interno
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                WebOptions.LoadMaskMsg = 'Please wait...'
+                LoadMask.Message = 'Loading data...'
                 OnCellClick = DBGrid1CellClick
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 3
@@ -2177,6 +2179,7 @@ inherited FrmInterno: TFrmInterno
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -2184,6 +2187,7 @@ inherited FrmInterno: TFrmInterno
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -2191,6 +2195,7 @@ inherited FrmInterno: TFrmInterno
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               object Button1: TUniButton
@@ -2377,7 +2382,7 @@ inherited FrmInterno: TFrmInterno
                   DataSource = DsFoto
                   Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                   ReadOnly = True
-                  WebOptions.LoadMaskMsg = 'Please wait...'
+                  LoadMask.Message = 'Loading data...'
                   TabOrder = 5
                   Columns = <
                     item
@@ -2386,6 +2391,7 @@ inherited FrmInterno: TFrmInterno
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -2393,6 +2399,7 @@ inherited FrmInterno: TFrmInterno
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
                 object UniLabel4: TUniLabel
@@ -3064,6 +3071,7 @@ inherited FrmInterno: TFrmInterno
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -3071,6 +3079,7 @@ inherited FrmInterno: TFrmInterno
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -3078,6 +3087,7 @@ inherited FrmInterno: TFrmInterno
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -3085,6 +3095,7 @@ inherited FrmInterno: TFrmInterno
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -3092,6 +3103,7 @@ inherited FrmInterno: TFrmInterno
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'FOTO'
@@ -3099,6 +3111,7 @@ inherited FrmInterno: TFrmInterno
               Width = 35
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
               ImageOptions.Visible = True
               ImageOptions.Width = 25
               ImageOptions.Height = 20

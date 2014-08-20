@@ -5,7 +5,6 @@ object MainForm: TMainForm
   ClientWidth = 1036
   Caption = 'Siapen Vers'#227'o 2.0 - Sistema Web: JavaScript, Ajax, Firebird 2.5'
   OnShow = UniFormShow
-  Color = clBtnFace
   WindowState = wsMaximized
   OldCreateOrder = False
   Menu = MainMenu1
@@ -19,13 +18,13 @@ object MainForm: TMainForm
     Top = 128
     Width = 1036
     Height = 480
-    ScreenMask.Enabled = True
-    ScreenMask.WaitData = True
-    ScreenMask.Message = 'Aguarde...'
     ActivePage = UniTabSheetSetores
     TabOrder = 0
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
+    ScreenMask.Enabled = True
+    ScreenMask.WaitData = True
+    ScreenMask.Message = 'Aguarde...'
     ExplicitHeight = 513
     object UniTabSheetPrincipal: TUniTabSheet
       Caption = 'Principal'
@@ -34,7 +33,6 @@ object MainForm: TMainForm
         Top = 6
         Width = 290
         Height = 70
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -171,6 +169,7 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 0
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtnConfereClick
       end
       object UniBitBtn2: TUniBitBtn
@@ -178,8 +177,6 @@ object MainForm: TMainForm
         Top = 94
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -316,6 +313,8 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 1
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtn2Click
       end
       object UniBitBtn3: TUniBitBtn
@@ -323,7 +322,6 @@ object MainForm: TMainForm
         Top = 185
         Width = 290
         Height = 70
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           52060000424D5206000000000000120400002800000018000000180000000100
           08000000000040020000120B0000120B0000F7000000F700000000000000FFFF
@@ -381,6 +379,7 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 2
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtn3Click
       end
       object UniBitBtn4: TUniBitBtn
@@ -388,8 +387,6 @@ object MainForm: TMainForm
         Top = 6
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -526,6 +523,8 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 3
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtn4Click
       end
       object UniBitBtn5: TUniBitBtn
@@ -533,8 +532,6 @@ object MainForm: TMainForm
         Top = 94
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -671,6 +668,8 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 4
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtn5Click
       end
       object UniBitBtn6: TUniBitBtn
@@ -678,8 +677,6 @@ object MainForm: TMainForm
         Top = 185
         Width = 290
         Height = 70
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -816,6 +813,8 @@ object MainForm: TMainForm
         Font.Color = clNavy
         Font.Height = -19
         TabOrder = 5
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Aguarde... abrindo a tela...'
         OnClick = UniBitBtn6Click
       end
       object UniImage2: TUniImage
@@ -877,8 +876,6 @@ object MainForm: TMainForm
         Top = 381
         Width = 289
         Height = 35
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Pesquisando registros... aguarde...'
         CharCase = ecUpperCase
         BorderStyle = ubsInset
         Alignment = taCenter
@@ -886,6 +883,8 @@ object MainForm: TMainForm
         Font.Color = clLime
         TabOrder = 10
         Color = clBlack
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Pesquisando registros... aguarde...'
       end
       object UniImageLogoMarca: TUniImage
         Left = 639
@@ -997,9 +996,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1136,6 +1132,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 0
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn1: TUniBitBtn
         Left = 32
@@ -1143,9 +1142,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1282,6 +1278,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 1
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         OnClick = BitBtn1Click
       end
       object BitBtn2: TUniBitBtn
@@ -1290,9 +1289,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1429,6 +1425,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 2
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn14: TUniBitBtn
         Left = 32
@@ -1436,9 +1435,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1575,6 +1571,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 3
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn12: TUniBitBtn
         Left = 344
@@ -1582,9 +1581,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1721,6 +1717,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 8
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn6: TUniBitBtn
         Left = 344
@@ -1728,9 +1727,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -1867,6 +1863,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 7
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn11: TUniBitBtn
         Left = 344
@@ -1874,9 +1873,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2013,6 +2009,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 6
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn3: TUniBitBtn
         Left = 344
@@ -2020,9 +2019,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2159,6 +2155,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 5
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn13: TUniBitBtn
         Left = 657
@@ -2166,9 +2165,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2305,6 +2301,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 10
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn16: TUniBitBtn
         Left = 656
@@ -2312,9 +2311,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2451,6 +2447,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 11
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn8: TUniBitBtn
         Left = 656
@@ -2458,9 +2457,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2597,6 +2593,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 12
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn5: TUniBitBtn
         Left = 656
@@ -2604,9 +2603,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2743,6 +2739,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 13
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         OnClick = BitBtn5Click
       end
       object BitBtn9: TUniBitBtn
@@ -2751,9 +2750,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -2890,6 +2886,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 14
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
       object BitBtn4: TUniBitBtn
         Left = 344
@@ -2897,9 +2896,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -3036,6 +3032,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 9
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         OnClick = BitBtn4Click
       end
       object BitBtn10: TUniBitBtn
@@ -3044,9 +3043,6 @@ object MainForm: TMainForm
         Width = 289
         Height = 60
         ParentRTL = False
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
         Glyph.Data = {
           36100000424D3610000000000000360000002800000020000000200000000100
           2000000000000010000000000000000000000000000000000000FF00FF00FF00
@@ -3183,6 +3179,9 @@ object MainForm: TMainForm
         Font.Height = -21
         TabStop = False
         TabOrder = 4
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Aguarde, abrindo as tabelas.'
       end
     end
   end
@@ -3279,8 +3278,8 @@ object MainForm: TMainForm
     Left = 80
     Top = 24
   end
-  object UniTimer1: TUniTimer
-    OnTimer = UniTimer1Timer
+  object UniTimerHoraSistema: TUniTimer
+    OnTimer = UniTimerHoraSistemaTimer
     ClientEvent.Strings = (
       'function(sender)'
       '{'
@@ -3295,7 +3294,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011E002200DC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011E002200EC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -5000,7 +4999,7 @@ object MainForm: TMainForm
     Left = 232
     Top = 56
     Bitmap = {
-      494C01011A006400E00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011A006400F00020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -8704,7 +8703,6 @@ object MainForm: TMainForm
       000000000000}
   end
   object UniFileUploadPdf: TUniFileUpload
-    MaxAllowedSize = 0
     Filter = '.PDF, .pdf'
     Title = 'Enviar um arquivo em PDF'
     Messages.Uploading = 'Enviando PDF...'
@@ -8718,8 +8716,8 @@ object MainForm: TMainForm
     Left = 400
     Top = 8
   end
-  object UniTimer2: TUniTimer
-    OnTimer = UniTimer2Timer
+  object UniTimerMostrarGrafico: TUniTimer
+    OnTimer = UniTimerMostrarGraficoTimer
     Enabled = False
     ClientEvent.Strings = (
       'function(sender)'

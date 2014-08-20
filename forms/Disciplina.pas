@@ -225,7 +225,7 @@ begin
 
   MessageDlg('Deseja excluir PDI Nº: ' + Dsvincfaltadisciplinar.DataSet.
     fieldbyname('numero_pdi').AsString + '?', mtConfirmation, mbYesNo,
-    procedure(iRet: Integer)
+    procedure(Sender: TComponent;iRet: Integer)
     begin
       if iRet = mrYes then
       begin
@@ -243,7 +243,7 @@ begin
 
     MessageDlg('Confirma que o Isolamento Foi Cumprido?',
       mtConfirmation, mbYesNo,
-      procedure(iRet: Integer)
+      procedure(Sender: TComponent;iRet: Integer)
       begin
         if iRet = mrYes then
         begin
@@ -258,7 +258,7 @@ begin
   else
   begin
     MessageDlg('Confirma Liberação da Pena?', mtConfirmation, mbYesNo,
-      procedure(iRet: Integer)
+      procedure(Sender: TComponent;iRet: Integer)
       begin
         if iRet = mrYes then
         begin

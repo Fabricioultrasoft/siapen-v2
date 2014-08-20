@@ -5,7 +5,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
   ClientWidth = 1110
   Caption = 'Consulta Geral de Interno'
   OnShow = UniFormShow
-  Color = clBtnFace
   OldCreateOrder = False
   MonitoredKeys.Keys = <>
   ScreenMask.Enabled = True
@@ -19,6 +18,8 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 137
     Height = 366
+    Hint = ''
+    Caption = ''
     Align = alLeft
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 0
@@ -27,6 +28,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 101
       Width = 129
       Height = 137
+      Hint = ''
       DataField = 'FOTO'
       DataSource = DsCadastro
       Stretch = True
@@ -36,6 +38,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 336
       Width = 135
       Height = 30
+      Hint = ''
       ButtonWidth = 119
       BorderWidth = 0
       ShowCaptions = True
@@ -45,11 +48,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
       object ToolButtonJuridico: TUniToolButton
         Left = 0
         Top = 0
+        Hint = ''
+        ImageIndex = 23
+        Caption = 'Ficha do Interno'
         ScreenMask.Enabled = True
         ScreenMask.WaitData = True
         ScreenMask.Message = 'Aguarde...'
-        ImageIndex = 23
-        Caption = 'Ficha do Interno'
         OnClick = ToolButtonJuridicoClick
       end
     end
@@ -58,10 +62,11 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 256
       Width = 129
       Height = 78
+      Hint = ''
       Visible = False
       TitleFont.Name = 'MS Sans Serif'
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-      WebOptions.LoadMaskMsg = 'Please wait...'
+      LoadMask.Message = 'Loading data...'
       TabOrder = 1
     end
   end
@@ -70,17 +75,20 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 973
     Height = 366
+    Hint = ''
     ActivePage = TabSheet1
     TabOrder = 1
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     object TabSheet1: TUniTabSheet
+      Hint = ''
       Caption = 'Nome'
       object Label1: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
+        Hint = ''
         Caption = 'Localizar:'
         ParentFont = False
         TabOrder = 2
@@ -90,12 +98,13 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
+        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = DsConsulta
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         ReadOnly = True
-        WebOptions.LoadMaskMsg = 'Please wait...'
+        LoadMask.Message = 'Loading data...'
         Align = alCustom
         TabOrder = 1
         Columns = <
@@ -108,6 +117,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Font.Name = 'Lucida Console'
             Font.Style = [fsBold]
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'RGI'
@@ -115,6 +125,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'MAE'
@@ -122,6 +133,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 144
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NUMERO_ROUPA'
@@ -129,6 +141,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 80
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SIGLA'
@@ -136,6 +149,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAVILHAO'
@@ -143,6 +157,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'GALERIA'
@@ -150,6 +165,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SOLARIO'
@@ -157,6 +173,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'CELA'
@@ -164,6 +181,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'ST'
@@ -171,6 +189,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 70
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'EM_TRANSITO'
@@ -178,6 +197,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 76
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end>
       end
       object Editlocalizar: TUniEdit
@@ -185,11 +205,9 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 381
         Height = 30
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Pesquisando...'
-        ScreenMask.Target = DBGridConsulta
+        Hint = ''
         CharCase = ecUpperCase
+        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -16
@@ -197,6 +215,10 @@ object FrmConsultaInterno: TFrmConsultaInterno
         TabOrder = 0
         Color = clBlack
         CheckChangeDelay = 1000
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridConsulta
         OnChange = EditlocalizarChange
       end
       object RadioGroupTipoLocalizar: TUniComboBox
@@ -204,6 +226,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 105
         Height = 27
+        Hint = ''
         Text = 'Nome'
         Items.Strings = (
           'RGI'
@@ -218,6 +241,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 105
         Height = 27
+        Hint = ''
         Text = 'Ativo'
         Items.Strings = (
           'Ativo'
@@ -229,12 +253,14 @@ object FrmConsultaInterno: TFrmConsultaInterno
       end
     end
     object TabSheet2: TUniTabSheet
+      Hint = ''
       Caption = 'Vulgo'
       object Label2: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
+        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 2
       end
@@ -243,11 +269,9 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 500
         Height = 32
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Pesquisando...'
-        ScreenMask.Target = DBGridVulgo
+        Hint = ''
         CharCase = ecUpperCase
+        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -255,6 +279,10 @@ object FrmConsultaInterno: TFrmConsultaInterno
         TabOrder = 0
         Color = clNone
         CheckChangeDelay = 1000
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridVulgo
         OnChange = EditlocalizarvulgoChange
       end
       object DBGridVulgo: TUniDBGrid
@@ -262,11 +290,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
+        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = dsvulgo
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-        WebOptions.LoadMaskMsg = 'Please wait...'
+        LoadMask.Message = 'Loading data...'
         TabOrder = 1
         Columns = <
           item
@@ -275,6 +304,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 158
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NOME_INTERNO'
@@ -285,6 +315,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Font.Name = 'Lucida Console'
             Font.Style = [fsBold]
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'RGI'
@@ -292,6 +323,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NUMERO_ROUPA'
@@ -299,6 +331,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 64
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SIGLA'
@@ -306,6 +339,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAVILHAO'
@@ -313,6 +347,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'GALERIA'
@@ -320,6 +355,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SOLARIO'
@@ -327,6 +363,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'CELA'
@@ -334,6 +371,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'STATUS'
@@ -341,10 +379,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 70
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end>
       end
     end
     object TabSheet3: TUniTabSheet
+      Hint = ''
       Caption = 'Outro Nome'
       DesignSize = (
         965
@@ -354,6 +394,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 45
         Height = 13
+        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 2
       end
@@ -362,11 +403,9 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 689
         Height = 32
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Pesquisando...'
-        ScreenMask.Target = DBGridOutroNome
+        Hint = ''
         CharCase = ecUpperCase
+        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -375,6 +414,10 @@ object FrmConsultaInterno: TFrmConsultaInterno
         TabOrder = 0
         Color = clBlack
         CheckChangeDelay = 1000
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridOutroNome
         OnChange = EditlocalizaoutronomeChange
       end
       object DBGridOutroNome: TUniDBGrid
@@ -382,11 +425,12 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
+        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = DSOUTRONOEM
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-        WebOptions.LoadMaskMsg = 'Please wait...'
+        LoadMask.Message = 'Loading data...'
         TabOrder = 1
         Columns = <
           item
@@ -395,6 +439,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 297
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NOME_INTERNO'
@@ -405,6 +450,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Font.Name = 'Lucida Console'
             Font.Style = [fsBold]
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'RGI'
@@ -412,6 +458,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NUMERO_ROUPA'
@@ -419,6 +466,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 40
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SIGLA'
@@ -426,6 +474,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAVILHAO'
@@ -433,6 +482,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'GALERIA'
@@ -440,6 +490,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SOLARIO'
@@ -447,6 +498,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'CELA'
@@ -454,6 +506,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'STATUS'
@@ -461,16 +514,19 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 70
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end>
       end
     end
     object TabSheet4: TUniTabSheet
+      Hint = ''
       Caption = 'Filia'#231#227'o'
       object Label4: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
+        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 3
       end
@@ -479,12 +535,13 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 66
         Width = 1000
         Height = 200
+        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = Dsfiliacao
         Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
         ReadOnly = True
-        WebOptions.LoadMaskMsg = 'Please wait...'
+        LoadMask.Message = 'Loading data...'
         Align = alCustom
         TabOrder = 2
         Columns = <
@@ -497,6 +554,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Font.Name = 'Lucida Console'
             Font.Style = [fsBold]
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'MAE'
@@ -504,6 +562,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 218
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAI'
@@ -511,6 +570,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 214
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'RGI'
@@ -518,6 +578,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'NUMERO_ROUPA'
@@ -525,6 +586,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 40
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SIGLA'
@@ -532,6 +594,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'PAVILHAO'
@@ -539,6 +602,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'GALERIA'
@@ -546,6 +610,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'SOLARIO'
@@ -553,6 +618,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'CELA'
@@ -560,6 +626,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 60
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end
           item
             FieldName = 'STATUS'
@@ -567,6 +634,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
             Width = 70
             Visible = True
             Expanded = False
+            CheckBoxField.FieldValues = 'true;false'
           end>
       end
       object Editfiliacao: TUniEdit
@@ -574,11 +642,9 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 500
         Height = 32
-        ScreenMask.Enabled = True
-        ScreenMask.WaitData = True
-        ScreenMask.Message = 'Pesquisando...'
-        ScreenMask.Target = DBGridFiliacao
+        Hint = ''
         CharCase = ecUpperCase
+        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -586,6 +652,10 @@ object FrmConsultaInterno: TFrmConsultaInterno
         TabOrder = 0
         Color = clBlack
         CheckChangeDelay = 1000
+        ScreenMask.Enabled = True
+        ScreenMask.WaitData = True
+        ScreenMask.Message = 'Pesquisando...'
+        ScreenMask.Target = DBGridFiliacao
         OnChange = EditfiliacaoChange
       end
       object RadioGroupfiliacao: TUniRadioGroup
@@ -593,6 +663,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = -2
         Width = 160
         Height = 61
+        Hint = ''
         Items.Strings = (
           'M'#227'e'
           'Pai')

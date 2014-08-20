@@ -1,4 +1,4 @@
-{$DEFINE UNIGUI_VCL} // Comment out this line to turn this project into an ISAPI module'
+//{$DEFINE UNIGUI_VCL} // Comment out this line to turn this project into an ISAPI module'
 
 {$IFNDEF UNIGUI_VCL}
 library

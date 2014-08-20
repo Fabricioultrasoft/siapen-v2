@@ -480,12 +480,12 @@ begin
   end;
 
   MessageDlg('Confirma liberação de Trabalho?', mtConfirmation, mbYesNo,
-    procedure(iRet: integer)
+    procedure(Sender: TComponent; iRet: integer)
     begin
       if iRet = mrYes then
       begin
         FrmMotivoDispensaTrabalho.ShowModal(
-          procedure(iRet: integer)
+          procedure(Sender: TComponent; iRet: integer)
           begin
             if iRet = mrOk then
             begin
@@ -601,7 +601,7 @@ begin
   end;
 
   MessageDlg('Deseja excluir Horas Cadastradas ?', mtConfirmation, mbYesNo,
-    procedure(iRet: integer)
+    procedure(Sender: TComponent; iRet: integer)
     begin
       if iRet = mrYes then
       begin
@@ -629,7 +629,7 @@ begin
   end;
 
   MessageDlg('Deseja excluir Dias Cadastrados?', mtConfirmation, mbYesNo,
-    procedure(iRet: integer)
+    procedure(Sender: TComponent; iRet: integer)
     begin
       if iRet = mrYes then
       begin

@@ -5,7 +5,6 @@ object FrmLogin: TFrmLogin
   ClientWidth = 730
   Caption = 'Informe o login e a senha'
   OnShow = UniLoginFormShow
-  Color = clBtnFace
   OldCreateOrder = False
   NavigateKeys.Next.Key = 13
   MonitoredKeys.Keys = <>
@@ -173,14 +172,14 @@ object FrmLogin: TFrmLogin
       Top = 89
       Width = 116
       Hint = 'Informe sua senha.'
-      ScreenMask.Enabled = True
-      ScreenMask.Message = '( Criptografando sua senha )'
       ShowHint = True
       ParentShowHint = False
       PasswordChar = '*'
       CharCase = ecUpperCase
       TabOrder = 4
       Color = clWindow
+      ScreenMask.Enabled = True
+      ScreenMask.Message = '( Criptografando sua senha )'
       OnKeyDown = UniEdit2KeyDown
     end
     object UniLabel2: TUniLabel
@@ -278,10 +277,6 @@ object FrmLogin: TFrmLogin
       Top = 61
       Width = 140
       Height = 38
-      ScreenMask.Enabled = True
-      ScreenMask.WaitData = True
-      ScreenMask.Message = 'Validando login...'
-      ScreenMask.Target = Owner
       Glyph.Data = {
         76060000424D7606000000000000360400002800000018000000180000000100
         08000000000040020000120B0000120B0000000100000000000000000000FFFF
@@ -337,6 +332,10 @@ object FrmLogin: TFrmLogin
         17171717171717171717E8E8E8E8E8E8ECFBE817171717171717}
       Caption = 'Entrar'
       TabOrder = 1
+      ScreenMask.Enabled = True
+      ScreenMask.WaitData = True
+      ScreenMask.Message = 'Validando login...'
+      ScreenMask.Target = Owner
       OnClick = UniBitBtnEntrarClick
     end
   end
@@ -364,7 +363,7 @@ object FrmLogin: TFrmLogin
     Top = 88
   end
   object Sqlservidor: TSQLQuery
-    MaxBlobSize = -1
+    MaxBlobSize = 1
     Params = <>
     SQL.Strings = (
       'SELECT * '
@@ -382,6 +381,7 @@ object FrmLogin: TFrmLogin
     Aggregates = <>
     Params = <>
     ProviderName = 'Dspservidor'
+    OnReconcileError = CdsservidorReconcileError
     Left = 544
     Top = 16
   end

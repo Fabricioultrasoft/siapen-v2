@@ -7,12 +7,12 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
       inherited TabSheetCadastro: TUniTabSheet
         ExplicitLeft = 0
         ExplicitTop = 0
+        ExplicitWidth = 256
+        ExplicitHeight = 128
         inherited PanelCadastro: TUniPanel
           inherited PageControlInterno: TUniPageControl
             ActivePage = UniTabSheetPresencaLocal
             ExplicitTop = 4
-            ExplicitWidth = 775
-            ExplicitHeight = 508
             inherited TabSheetPrincipal: TUniTabSheet
               inherited Label2: TUniLabel
                 Enabled = False
@@ -398,6 +398,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -405,6 +406,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -417,6 +419,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -424,6 +427,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -431,6 +435,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -444,6 +449,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -451,22 +457,25 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
             end
             object UniTabSheetPresencaLocal: TUniTabSheet
+              Hint = ''
               Caption = 'Presen'#231'a Local'
               object UniDBGrid1: TUniDBGrid
                 Left = 3
                 Top = 64
                 Width = 761
                 Height = 385
+                Hint = ''
                 TitleFont.Name = 'MS Sans Serif'
                 DataSource = DsPresencaLocal
                 Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgCancelOnExit]
                 ReadOnly = True
-                WebOptions.LoadMaskMsg = 'Please wait...'
+                LoadMask.Message = 'Loading data...'
                 TabOrder = 0
                 Columns = <
                   item
@@ -475,6 +484,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 90
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'HORA_PRESENCA'
@@ -482,6 +492,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 70
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBS'
@@ -489,6 +500,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 200
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'JUSTIFICA_FALTA'
@@ -496,6 +508,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 100
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'REGISTRO_JUDICIARIO'
@@ -503,6 +516,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 48
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -510,6 +524,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 124
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'TIPO_TRABALHO'
@@ -517,6 +532,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                     Width = 70
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               object BtnPresenca: TUniButton
@@ -524,6 +540,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                 Top = 24
                 Width = 145
                 Height = 25
+                Hint = ''
                 Caption = 'Registrar Presen'#231'a'
                 TabOrder = 1
                 OnClick = BtnPresencaClick
@@ -533,6 +550,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                 Top = 24
                 Width = 145
                 Height = 25
+                Hint = ''
                 Caption = 'Alterar Registro'
                 TabOrder = 2
                 OnClick = Button1Click
@@ -542,6 +560,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
                 Top = 24
                 Width = 145
                 Height = 25
+                Hint = ''
                 Caption = 'Deletar Registro'
                 TabOrder = 3
                 OnClick = Button2Click
@@ -562,6 +581,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -569,6 +589,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -576,6 +597,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -583,6 +605,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -590,6 +613,7 @@ inherited FrmPresencaLocal: TFrmPresencaLocal
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end

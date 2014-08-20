@@ -3,7 +3,6 @@ inherited FrmConfere: TFrmConfere
   ClientWidth = 1013
   Caption = 'Confere'
   WindowState = wsMaximized
-  ExplicitLeft = -240
   ExplicitWidth = 1029
   ExplicitHeight = 640
   PixelsPerInch = 96
@@ -80,8 +79,8 @@ inherited FrmConfere: TFrmConfere
       Width = 941
       Height = 50
       TabOrder = 1
-      ExplicitLeft = 3
-      ExplicitWidth = 1010
+      ExplicitLeft = 1
+      ExplicitWidth = 941
       ExplicitHeight = 50
       inherited UniLabel2: TUniLabel
         Left = 206
@@ -91,9 +90,9 @@ inherited FrmConfere: TFrmConfere
         Left = 257
         Top = 6
         Width = 490
+        CheckChangeDelay = 50
         ScreenMask.Message = 'Pesquisando registros... aguarde...'
         ScreenMask.Target = DBGridConsulta
-        CheckChangeDelay = 50
         OnChange = nil
         ExplicitLeft = 257
         ExplicitTop = 6
@@ -170,6 +169,7 @@ inherited FrmConfere: TFrmConfere
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -177,6 +177,7 @@ inherited FrmConfere: TFrmConfere
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -184,6 +185,7 @@ inherited FrmConfere: TFrmConfere
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'PAVILHAO'
@@ -191,6 +193,7 @@ inherited FrmConfere: TFrmConfere
               Width = 80
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'GALERIA'
@@ -198,6 +201,7 @@ inherited FrmConfere: TFrmConfere
               Width = 80
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SOLARIO'
@@ -205,6 +209,7 @@ inherited FrmConfere: TFrmConfere
               Width = 80
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'CELA'
@@ -212,6 +217,7 @@ inherited FrmConfere: TFrmConfere
               Width = 120
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -219,6 +225,7 @@ inherited FrmConfere: TFrmConfere
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -226,6 +233,7 @@ inherited FrmConfere: TFrmConfere
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'EM_TRANSITO'
@@ -233,6 +241,7 @@ inherited FrmConfere: TFrmConfere
               Width = 43
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'id_me'
@@ -240,6 +249,7 @@ inherited FrmConfere: TFrmConfere
               Width = 63
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
         object UniToolBarSetores: TUniToolBar
@@ -260,11 +270,11 @@ inherited FrmConfere: TFrmConfere
             Left = 66
             Top = 0
             Hint = 'Cadastro de Identifica'#231#227'o do Interno(a)'
-            ScreenMask.Enabled = True
-            ScreenMask.Message = 'Aguarde, abrindo o cadastro...'
             ShowHint = True
             ImageIndex = 23
             Caption = 'Interno'
+            ScreenMask.Enabled = True
+            ScreenMask.Message = 'Aguarde, abrindo o cadastro...'
             OnClick = UniToolButton1Click
           end
           object UniLabel18: TUniLabel
@@ -311,6 +321,10 @@ inherited FrmConfere: TFrmConfere
             ExplicitWidth = 969
             object UniTabSheetDados: TUniTabSheet
               Caption = 'Dados'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               DesignSize = (
                 993
                 177)
@@ -637,6 +651,10 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetCela: TUniTabSheet
               Caption = 'Cela'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               object LabelPavilhao: TUniLabel
                 Left = 10
                 Top = 16
@@ -698,9 +716,6 @@ inherited FrmConfere: TFrmConfere
                 Top = 32
                 Width = 300
                 Height = 21
-                ScreenMask.Enabled = True
-                ScreenMask.Message = 'Aguarde... preparando dados...'
-                ScreenMask.Target = DBLookupComboBoxGaleria
                 ListField = 'pavilhao'
                 ListSource = DsPavilhao
                 KeyField = 'id_pavilhao'
@@ -708,15 +723,15 @@ inherited FrmConfere: TFrmConfere
                 DataField = 'IDPAVILHAO'
                 DataSource = DsCadastro
                 TabOrder = 0
+                ScreenMask.Enabled = True
+                ScreenMask.Message = 'Aguarde... preparando dados...'
+                ScreenMask.Target = DBLookupComboBoxGaleria
               end
               object DBLookupComboBoxGaleria: TUniDBLookupComboBox
                 Left = 10
                 Top = 80
                 Width = 300
                 Height = 21
-                ScreenMask.Enabled = True
-                ScreenMask.Message = 'Aguarde... preparando dados...'
-                ScreenMask.Target = DBLookupComboBoxSolario
                 ListField = 'GALERIA'
                 ListSource = DsGaleria
                 KeyField = 'ID_GALERIA'
@@ -724,15 +739,15 @@ inherited FrmConfere: TFrmConfere
                 DataField = 'IDGALERIA'
                 DataSource = DsCadastro
                 TabOrder = 1
+                ScreenMask.Enabled = True
+                ScreenMask.Message = 'Aguarde... preparando dados...'
+                ScreenMask.Target = DBLookupComboBoxSolario
               end
               object DBLookupComboBoxSolario: TUniDBLookupComboBox
                 Left = 10
                 Top = 124
                 Width = 300
                 Height = 21
-                ScreenMask.Enabled = True
-                ScreenMask.Message = 'Aguarde... preparando dados...'
-                ScreenMask.Target = DBLookupComboBoxCela
                 ListField = 'SOLARIO'
                 ListSource = DsSolario
                 KeyField = 'ID_SOLARIO'
@@ -740,6 +755,9 @@ inherited FrmConfere: TFrmConfere
                 DataField = 'IDSOLARIO'
                 DataSource = DsCadastro
                 TabOrder = 2
+                ScreenMask.Enabled = True
+                ScreenMask.Message = 'Aguarde... preparando dados...'
+                ScreenMask.Target = DBLookupComboBoxCela
               end
               object DBEditMotivoMudancaCela: TUniDBEdit
                 Left = 318
@@ -836,6 +854,10 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetSaida: TUniTabSheet
               Caption = 'Sa'#237'da'
+              ExplicitLeft = 0
+              ExplicitTop = 0
+              ExplicitWidth = 256
+              ExplicitHeight = 128
               object Label9: TUniLabel
                 Left = 119
                 Top = 6

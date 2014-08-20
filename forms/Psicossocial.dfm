@@ -2,7 +2,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
   ClientHeight = 591
   ClientWidth = 843
   Caption = 'Cadastro do Psicossocial'
-  ExplicitTop = -213
   ExplicitWidth = 859
   ExplicitHeight = 630
   PixelsPerInch = 96
@@ -18,7 +17,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
   inherited PanelBotoes: TUniPanel
     Height = 524
     ExplicitHeight = 524
-    inherited UniDBImage1: TUniDBImage
+    inherited UniDBImageInterno: TUniDBImage
       Top = 367
       ExplicitTop = 367
     end
@@ -62,8 +61,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
             ExplicitWidth = 901
             ExplicitHeight = 562
             inherited TabSheetPrincipal: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited Label2: TUniLabel
@@ -284,8 +281,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited Label11: TUniLabel
@@ -455,8 +450,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited DBGrid3: TUniDBGrid
@@ -467,6 +460,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -474,18 +468,15 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
             end
             inherited TabSheetHistorico: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               DesignSize = (
@@ -499,6 +490,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -506,6 +498,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -513,12 +506,11 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
             inherited TabSheetFotos: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited UniPanelFoto: TUniPanel
@@ -534,6 +526,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -541,13 +534,12 @@ inherited FrmPsicossocial: TFrmPsicossocial
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
               inherited DBMemo2: TUniDBMemo
@@ -558,8 +550,6 @@ inherited FrmPsicossocial: TFrmPsicossocial
               end
             end
             inherited TabSheetMapa: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 718
               ExplicitHeight = 464
             end
@@ -2298,7 +2288,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                     DataSource = DSATENDIMENTO
                     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                     ReadOnly = True
-                    WebOptions.LoadMaskMsg = 'Please wait...'
+                    LoadMask.Message = 'Loading data...'
                     OnCellClick = UniDBGrid1CellClick
                     Anchors = [akLeft, akTop, akRight]
                     TabOrder = 3
@@ -2309,6 +2299,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                         Width = 117
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DESCRICAO_ATENDIMENTO'
@@ -2316,6 +2307,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                         Width = 505
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'T'#201'CNICO(A)'
@@ -2323,6 +2315,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
                         Width = 300
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end>
                   end
                   object DBMemo3: TUniDBMemo
@@ -2408,6 +2401,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -2415,6 +2409,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -2422,6 +2417,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -2429,6 +2425,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -2436,6 +2433,7 @@ inherited FrmPsicossocial: TFrmPsicossocial
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end

@@ -556,7 +556,7 @@ begin
     ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
   begin
     Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
-      procedure(AResult: integer; AText: string)
+      procedure(Sender: TComponent; AResult: integer; AText: string)
       begin
         if AResult = mrOK then
         begin
@@ -571,7 +571,7 @@ begin
             Dm.DESC_RETORNO_FORM := '';
             Dm.ID_RETORNO_FORM := 'ID';
             FrmConsulta.ShowModal(
-              procedure(Result: integer)
+              procedure(Sender: TComponent; Result: integer)
               begin
                 if Result = mrOK then
                 begin
@@ -611,7 +611,7 @@ begin
     ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmTipoProcesso.ShowModal(
-      procedure(Result: integer)
+      procedure(Sender: TComponent; Result: integer)
       begin
         if Result <> mrOK then
         begin
@@ -627,7 +627,7 @@ begin
     ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodo.ShowModal(
-      procedure(Result: integer)
+      procedure(Sender: TComponent; Result: integer)
       begin
         if Result <> mrOK then
         begin
@@ -643,7 +643,7 @@ begin
     ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodoServidor.ShowModal(
-      procedure(Result: integer)
+      procedure(Sender: TComponent; Result: integer)
       begin
         if Result <> mrOK then
         begin

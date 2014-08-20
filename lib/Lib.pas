@@ -43,6 +43,7 @@ uses Forms,
   uniGUIRegClasses,
   UniGUIVars,
   UniGUIApplication,
+//  JSON, >>xe6
   DBXJSON,
   DBXJSONReflect,
   DBXCommon,
@@ -1489,7 +1490,7 @@ begin
   DM.ID_RETORNO_FORM := sID;
   DM.DESC_RETORNO_FORM := sDescricao;
   FrmConsulta.ShowModal(
-    procedure(iResult: Integer)
+    procedure(Sender: TComponent; iResult: Integer)
     begin
       if iResult = mrOK then
       begin
@@ -1515,7 +1516,7 @@ begin
   DM.ID_RETORNO_FORM := sID;
   DM.DESC_RETORNO_FORM := sDescricao;
   FrmConsulta.ShowModal(
-    procedure(iResult: Integer)
+    procedure(Sender: TComponent; iResult: Integer)
     begin
       if iResult = mrOK then
       begin
@@ -1539,7 +1540,7 @@ end;
   FrmConsulta.DsConsultaObjetiva.DataSet.Open;
   FrmConsulta.EditLocalizar.SetFocus;
   FrmConsulta.ShowModal(
-  procedure(iResult: Integer)
+  procedure(Sender: TComponent; iResult: Integer)
   begin
   if iResult = mrOK then
   begin

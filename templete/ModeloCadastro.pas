@@ -241,7 +241,7 @@ begin
   StatusBar1.Panels[0].Text := 'EXCLUINDO';
 
   MessageDlg('Excluir este registro?', mtWarning, mbYesNo,
-    procedure(Result: Integer)
+    procedure(Sender: TComponent; Result: Integer)
     begin
       if Result = mrYes then
       begin
@@ -709,7 +709,7 @@ begin
   if Key = VK_F10 then
   begin
     Self.MessageDlg('Confirma salvar?', mtConfirmation, mbYesNoCancel, (
-      procedure(Result: Integer)
+      procedure(Sender: TComponent; Result: Integer)
       begin
         if Result = mrYes then
           Salvar.OnClick(nil);

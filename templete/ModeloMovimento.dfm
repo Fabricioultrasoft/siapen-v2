@@ -5,11 +5,9 @@ object FrmModeloMovimento: TFrmModeloMovimento
   ClientWidth = 849
   Caption = 'Modelo de Movimento'
   OnShow = UniFormShow
-  Color = clBtnFace
   OldCreateOrder = False
   OnClose = UniFormClose
   OnKeyDown = UniFormKeyDown
-  FreeOnClose = False
   Visible = True
   KeyPreview = True
   NavigateKeys.Enabled = True
@@ -23,6 +21,7 @@ object FrmModeloMovimento: TFrmModeloMovimento
   MonitoredKeys.Enabled = True
   MonitoredKeys.KeyEnableAll = True
   MonitoredKeys.Keys = <>
+  FreeOnClose = False
   OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -786,9 +785,6 @@ object FrmModeloMovimento: TFrmModeloMovimento
         Top = 9
         Width = 97
         Height = 25
-        ScreenMask.Enabled = True
-        ScreenMask.Message = 'Pesquisando registros... aguarde...'
-        ScreenMask.Target = DBGridConsulta
         Glyph.Data = {
           36050000424D3605000000000000360400002800000010000000100000000100
           0800000000000001000000000000000000000001000000010000FF00FF00005F
@@ -834,6 +830,9 @@ object FrmModeloMovimento: TFrmModeloMovimento
           000000000000513D3A0000000000000000000000000000510000}
         Caption = 'Filtrar'
         TabOrder = 3
+        ScreenMask.Enabled = True
+        ScreenMask.Message = 'Pesquisando registros... aguarde...'
+        ScreenMask.Target = DBGridConsulta
         OnClick = UniBtnFiltrarClick
       end
     end
@@ -973,11 +972,10 @@ object FrmModeloMovimento: TFrmModeloMovimento
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ReadOnly = True
           WebOptions.PageSize = 50
-          WebOptions.LoadMaskMsg = 'Aguarde...'
+          LoadMask.Message = 'Carrgando dados...'
           OnTitleClick = DBGridConsultaTitleClick
           OnDblClick = DBGridConsultaDblClick
           OnKeyDown = DBGridConsultaKeyDown
-          StripeRows = True
           Align = alClient
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 0

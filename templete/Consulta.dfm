@@ -5,7 +5,6 @@ object FrmConsulta: TFrmConsulta
   ClientWidth = 649
   Caption = 'Consulta'
   OnShow = UniFormShow
-  Color = clBtnFace
   BorderStyle = bsDialog
   OldCreateOrder = False
   OnClose = UniFormClose
@@ -22,6 +21,8 @@ object FrmConsulta: TFrmConsulta
     Top = 0
     Width = 649
     Height = 91
+    Hint = ''
+    Caption = ''
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
@@ -33,6 +34,7 @@ object FrmConsulta: TFrmConsulta
       Top = 37
       Width = 45
       Height = 13
+      Hint = ''
       Caption = 'Localizar:'
       TabOrder = 2
     end
@@ -40,7 +42,9 @@ object FrmConsulta: TFrmConsulta
       Left = 67
       Top = 34
       Width = 561
+      Hint = ''
       CharCase = ecUpperCase
+      Text = ''
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 1
       Color = clWindow
@@ -53,9 +57,7 @@ object FrmConsulta: TFrmConsulta
       Top = 59
       Width = 90
       Height = 25
-      ScreenMask.Enabled = True
-      ScreenMask.WaitData = True
-      ScreenMask.Message = 'Aguarde...'
+      Hint = ''
       Glyph.Data = {
         C6020000424DC602000000000000C60100002800000010000000100000000100
         08000000000000010000120B0000120B00006400000064000000FF00FF00FEFB
@@ -85,6 +87,9 @@ object FrmConsulta: TFrmConsulta
       ParentFont = False
       Font.Style = [fsBold]
       TabOrder = 4
+      ScreenMask.Enabled = True
+      ScreenMask.WaitData = True
+      ScreenMask.Message = 'Aguarde...'
       OnClick = UniBitBtnConfirmaClick
     end
     object UniBtnFiltrar: TUniBitBtn
@@ -92,9 +97,7 @@ object FrmConsulta: TFrmConsulta
       Top = 59
       Width = 90
       Height = 25
-      ScreenMask.Enabled = True
-      ScreenMask.WaitData = True
-      ScreenMask.Message = 'Aguarde'
+      Hint = ''
       Glyph.Data = {
         F2030000424DF203000000000000F20200002800000010000000100000000100
         08000000000000010000120B0000120B0000AF000000AF00000000000000FFFF
@@ -133,6 +136,9 @@ object FrmConsulta: TFrmConsulta
       ParentFont = False
       Font.Style = [fsBold]
       TabOrder = 3
+      ScreenMask.Enabled = True
+      ScreenMask.WaitData = True
+      ScreenMask.Message = 'Aguarde'
       OnClick = UniBtnFiltrarClick
     end
     object Fechar: TUniBitBtn
@@ -193,18 +199,13 @@ object FrmConsulta: TFrmConsulta
     Top = 91
     Width = 649
     Height = 184
-    ScreenMask.Enabled = True
-    ScreenMask.WaitData = True
-    ScreenMask.Message = 'Aguarde...'
+    Hint = ''
     DataSource = DsConsultaObjetiva
     Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
-    WebOptions.LoadMask = True
-    WebOptions.LoadMaskMsg = 'Por favor aguarde...'
     WebOptions.CustomizableCells = False
-    WebOptions.UseRecNo = False
+    LoadMask.Message = 'Loading data...'
     OnDblClick = DBGridConsultaDblClick
-    StripeRows = True
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 1

@@ -296,7 +296,7 @@ type
     UniLabelNaturalidade2: TUniLabel;
     UniLabelCidade2: TUniLabel;
     UniLabelEscolaridade2: TUniLabel;
-    UniDBImage1: TUniDBImage;
+    UniDBImageInterno: TUniDBImage;
     UniLabelOrigem2: TUniLabel;
     UniBitBtn1: TUniBitBtn;
     UniDBEditOrigem2: TUniDBEdit;
@@ -316,8 +316,7 @@ type
     UniBitBtnFichaDisciplinarInterno: TUniBitBtn;
     procedure EditLocalizarChange(Sender: TObject);
     procedure UniBtnFiltrarClick(Sender: TObject);
-    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure EditLocalizarKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure EditarClick(Sender: TObject);
     procedure DBImageFOTOInternoClick(Sender: TObject);
     procedure DsFotoDataChange(Sender: TObject; Field: TField);
@@ -327,8 +326,7 @@ type
     procedure DBImageFOTO_SINAIS2Click(Sender: TObject);
     procedure DBImageFOTO_SINAIS3Click(Sender: TObject);
     procedure DBImageFOTO_SINAIS4Click(Sender: TObject);
-    procedure UniFileUploadOutrasFotosCompleted(Sender: TObject;
-      AStream: TFileStream);
+    procedure UniFileUploadOutrasFotosCompleted(Sender: TObject; AStream: TFileStream);
     procedure DBImageOutrasClick(Sender: TObject);
     procedure CdsFotoAfterInsert(DataSet: TDataSet);
     procedure NovoClick(Sender: TObject);
@@ -370,6 +368,7 @@ type
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
     procedure DsConsultaDataChange(Sender: TObject; Field: TField);
     procedure UniBitBtnFichaDisciplinarInternoClick(Sender: TObject);
+    procedure PageControlModeloCadastroChange(Sender: TObject);
   private
     sNomeCampoFoto: string;
     FID_INTERNO: Integer;
@@ -401,17 +400,12 @@ begin
   inherited;
 
   DSHISTORICO_interno.DataSet.Append;
-  DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger :=
-    Generator('idhistorico_interno');
-  DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
-  DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsString :=
-    FormatDateTime('dd/mm/yyyy', DateTimePickerHistorico.DateTime);
-  DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString :=
-    MemoDescricao.Lines.Text;
+  DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger := Generator('idhistorico_interno');
+  DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+  DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsString := FormatDateTime('dd/mm/yyyy', DateTimePickerHistorico.DateTime);
+  DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString := MemoDescricao.Lines.Text;
   DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString := 'Inclusão';
-  DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
-    dm.GLOBAL_ID_FUNCIONARIO;
+  DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger := dm.GLOBAL_ID_FUNCIONARIO;
   DSHISTORICO_interno.DataSet.Post;
 
   TClientDataSet(DSHISTORICO_interno.DataSet).ApplyUpdates(0);
@@ -431,7 +425,7 @@ begin
   end;
 
   MessageDlg('Contituir este Advogado/Escritório?', mtConfirmation, mbYesNo,
-    procedure(Res: Integer)
+    procedure(Sender: TComponent; Res: Integer)
     begin
       if Res = mrYes then
       begin
@@ -439,28 +433,20 @@ begin
         dsADVOGADO_INTERNO.DataSet.Open;
 
         dsADVOGADO_INTERNO.DataSet.Append;
-        dsADVOGADO_INTERNO.DataSet.fieldbyname('id_ADVOGADOs_INTERNOs')
-          .AsInteger := 0;
-        dsADVOGADO_INTERNO.DataSet.fieldbyname('id_interno').AsInteger :=
-          DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
-        dsADVOGADO_INTERNO.DataSet.fieldbyname('OBSadvogado_interno').AsString
-          := Memoobsadvogado.Lines.Text;
-        dsADVOGADO_INTERNO.DataSet.fieldbyname('ID_ADVOGADO').AsInteger :=
-          UniDBEditAdvogado.Field.AsInteger;
+        dsADVOGADO_INTERNO.DataSet.fieldbyname('id_ADVOGADOs_INTERNOs').AsInteger := 0;
+        dsADVOGADO_INTERNO.DataSet.fieldbyname('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+        dsADVOGADO_INTERNO.DataSet.fieldbyname('OBSadvogado_interno').AsString := Memoobsadvogado.Lines.Text;
+        dsADVOGADO_INTERNO.DataSet.fieldbyname('ID_ADVOGADO').AsInteger := UniDBEditAdvogado.Field.AsInteger;
         dsADVOGADO_INTERNO.DataSet.Post;
 
         DSHISTORICO_interno.DataSet.Append;
-        DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno')
-          .AsInteger := 0;
-        DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger :=
-          DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+        DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger := 0;
+        DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
         DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime := Date;
-        DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString :=
-          'Constituiu o Advogado/Escritório: ' + UniLabelAdvogado.Caption +
-          ', Obs: ' + Memoobsadvogado.Lines.Text;
+        DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString := 'Constituiu o Advogado/Escritório: ' + UniLabelAdvogado.Caption + ', Obs: ' +
+          Memoobsadvogado.Lines.Text;
         DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString := 'Jurídico';
-        DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
-          dm.GLOBAL_ID_FUNCIONARIO;
+        DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger := dm.GLOBAL_ID_FUNCIONARIO;
         DSHISTORICO_interno.DataSet.Post;
 
         Memoobsadvogado.Lines.Clear;
@@ -479,23 +465,18 @@ begin
     exit;
 
   MessageDlg('Descontituir o Advogado/Escritório?', mtConfirmation, mbYesNo,
-    procedure(Res: Integer)
+    procedure(Sender: TComponent; Res: Integer)
     begin
       if Res = mrYes then
       begin
         DSHISTORICO_interno.DataSet.Append;
-        DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno')
-          .AsInteger := 0;
-        DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger :=
-          DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+        DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger := 0;
+        DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
         DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime := Date;
-        DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString :=
-          'Desconstituiu o Advogado/Escritório: ' +
-          dsADVOGADO_INTERNO.DataSet.fieldbyname('ADVOGADO/ESCRITÓRIO')
-          .AsString + '.';
+        DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString := 'Desconstituiu o Advogado/Escritório: ' +
+          dsADVOGADO_INTERNO.DataSet.fieldbyname('ADVOGADO/ESCRITÓRIO').AsString + '.';
         DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString := 'Jurídico';
-        DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
-          dm.GLOBAL_ID_FUNCIONARIO;
+        DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger := dm.GLOBAL_ID_FUNCIONARIO;
         DSHISTORICO_interno.DataSet.Post;
 
         dsADVOGADO_INTERNO.DataSet.Delete;
@@ -509,8 +490,7 @@ begin
   inherited;
   DataSet.fieldbyname('IDFOTO_INTERNO').AsInteger := 0;
   DataSet.fieldbyname('DESCRICAO').AsString := 'FOTO';
-  DataSet.fieldbyname('ID_INTERNO').AsInteger := DsCadastro.DataSet.fieldbyname
-    ('id_interno').AsInteger;
+  DataSet.fieldbyname('ID_INTERNO').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
   DataSet.fieldbyname('DATA').AsDateTime := Date;
 
 end;
@@ -527,9 +507,8 @@ begin
   ontem := data_servidor - 1;
   amanha := data_servidor + 1;
 
-  if (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime > ontem)
-    and (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime <
-    amanha) then
+  if (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime > ontem) and (DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsDateTime < amanha)
+  then
   begin
     DBMemo1.ReadOnly := False;
   end
@@ -550,8 +529,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -563,8 +541,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTOPERFIL-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTOPERFIL-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -577,8 +554,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_SINAIS1-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_SINAIS1-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -591,8 +567,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_SINAIS2-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_SINAIS2-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -605,8 +580,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_SINAIS3-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_SINAIS3-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -619,8 +593,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_SINAIS4-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_SINAIS4-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -632,8 +605,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_SINAIS-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_SINAIS-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -646,9 +618,7 @@ begin
   inherited;
   if DsFoto.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'OUTRAS_FOTOS-idinterno-' +
-      FormatDateTime('DDMMYYYYMMSSZZZ', now) + DsCadastro.DataSet.fieldbyname
-      ('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'OUTRAS_FOTOS-idinterno-' + FormatDateTime('DDMMYYYYMMSSZZZ', now) + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsFoto;
     MainForm.UniFileUploadImagem.Execute;
@@ -661,8 +631,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    MainForm.NomeImagemUpload := 'FOTO_TATUAGEM-idinterno-' +
-      DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
+    MainForm.NomeImagemUpload := 'FOTO_TATUAGEM-idinterno-' + DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsString;
     MainForm.NomeCampoUpload := TUniDBImage(Sender).DataField;
     MainForm.DsUploadImagem := DsCadastro;
     MainForm.UniFileUploadImagem.Execute;
@@ -678,8 +647,7 @@ begin
   begin
     if not CdsConsulta.IsEmpty then
     begin
-      StatusBar1.Panels[1].Text := CdsConsulta.fieldbyname
-        ('NOME_INTERNO').AsString;
+      StatusBar1.Panels[1].Text := CdsConsulta.fieldbyname('NOME_INTERNO').AsString;
     end;
   end;
 
@@ -718,24 +686,22 @@ begin
       begin
         SqlCadastro.Tag := CdsConsulta.fieldbyname('ID_INTERNO').AsInteger;
 
-        SqlCadastro.SQL.Text := SqlConstanteInterno +
-          ' FROM INTERNO WHERE INTERNO.ID_INTERNO=' + CdsConsulta.fieldbyname
-          ('ID_INTERNO').AsString;
+        SqlCadastro.SQL.Text := SqlConstanteInterno + ' FROM INTERNO WHERE INTERNO.ID_INTERNO=' + CdsConsulta.fieldbyname('ID_INTERNO').AsString;
 
         CdsCadastro.close;
         CdsCadastro.Open;
+
+        StatusBar1.Panels[1].Text := CdsCadastro.fieldbyname('NOME_INTERNO').AsString;
+
         PageControlModeloCadastro.ActivePageIndex := 0;
 
-        SqlFoto.ParamByName('id_interno').AsInteger :=
-          DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+        SqlFoto.ParamByName('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
 
         if dm.GLOBAL_IDCONEXAO > 0 then
         begin
           try
-            dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-              qs('EDIÇÃO INTERNO: ' + DsCadastro.DataSet.fieldbyname('id_interno')
-              .AsString + '-' + DsCadastro.DataSet.fieldbyname('NOME_INTERNO')
-              .AsString) + ' where idconexao=' + inttostr(dm.GLOBAL_IDCONEXAO));
+            dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('EDIÇÃO INTERNO: ' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '-'
+              + DsCadastro.DataSet.fieldbyname('NOME_INTERNO').AsString) + ' where idconexao=' + inttostr(dm.GLOBAL_IDCONEXAO));
           except
           end;
         end;
@@ -777,17 +743,28 @@ begin
 
 end;
 
-procedure TFrmInterno.EditLocalizarKeyDown(Sender: TObject; var Key: Word;
-Shift: TShiftState);
+procedure TFrmInterno.EditLocalizarKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-  inherited;
   if Key = VK_RETURN then
   begin
     FrmAguarde.ShowModal(
-      procedure(Res: Integer)
+      procedure(Sender: TComponent; Res: Integer)
       begin
-        UniBtnFiltrarClick(nil);
+        CdsCadastro.close;
+        UniBtnFiltrar.onClick(nil);
       end);
+  end;
+// inherited;
+  if Key = VK_DOWN then
+  begin
+    if not DBGridConsulta.DataSource.DataSet.Eof then
+      DBGridConsulta.DataSource.DataSet.Next;
+  end;
+
+  if Key = VK_UP then
+  begin
+    if not DBGridConsulta.DataSource.DataSet.Bof then
+      DBGridConsulta.DataSource.DataSet.Prior;
   end;
 
 end;
@@ -795,12 +772,10 @@ end;
 procedure TFrmInterno.NovoClick(Sender: TObject);
 begin
   inherited;
-  dm.SqlExecute.SQL.Text :=
-    'select gen_id (cod_up, 0) || gen_id (ID_INTERNO, 1) as ID from rdb$database';
+  dm.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id (ID_INTERNO, 1) as ID from rdb$database';
   dm.DsExecute.DataSet.close;
   dm.DsExecute.DataSet.Open;
-  DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsInteger :=
-    dm.DsExecute.DataSet.fieldbyname('ID').AsInteger;
+  DsCadastro.DataSet.fieldbyname('ID_INTERNO').AsInteger := dm.DsExecute.DataSet.fieldbyname('ID').AsInteger;
   dm.DsExecute.DataSet.close;
 
   PageControlInterno.ActivePageIndex := 0;
@@ -809,8 +784,7 @@ begin
   DsCadastro.DataSet.fieldbyname('SEXO').AsString := 'M';
   DsCadastro.DataSet.fieldbyname('ST').AsString := 'A';
 
-  SqlFoto.ParamByName('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname
-    ('id_interno').AsInteger;
+  SqlFoto.ParamByName('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
 
   DsFoto.DataSet.close;
   DsFoto.DataSet.Open;
@@ -822,16 +796,13 @@ end;
 procedure TFrmInterno.SalvarClick(Sender: TObject);
 begin
   // DsCadastro.DataSet.fieldbyname('id_up').AsInteger := dm.GLOBAL_ID_UP;
-  DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
-    dm.GLOBAL_ID_FUNCIONARIO;
+  DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger := dm.GLOBAL_ID_FUNCIONARIO;
 
   if DsCadastro.DataSet.State in [dsinsert] then
   begin
-    if VerificaInternoExiste(DsCadastro.DataSet.fieldbyname('nome_interno')
-      .AsString, DsCadastro.DataSet.fieldbyname('mae').AsString) then
+    if VerificaInternoExiste(DsCadastro.DataSet.fieldbyname('nome_interno').AsString, DsCadastro.DataSet.fieldbyname('mae').AsString) then
     begin
-      ShowMessage
-        ('Nome de interno com este Nome de Mãe, já existe no confere!');
+      ShowMessage('Nome de interno com este Nome de Mãe, já existe no confere!');
       exit;
     end;
   end;
@@ -847,9 +818,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_Advogado codigo, Advogado descricao from Advogado ' +
-      ' order by Advogado ', 'Advogado', 'CODIGO', 'descricao',
+    ConsultaTabela(Self, 'select id_Advogado codigo, Advogado descricao from Advogado ' + ' order by Advogado ', 'Advogado', 'CODIGO', 'descricao',
       UniDBEditAdvogado, UniLabelAdvogado);
 
   end;
@@ -862,10 +831,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
-      ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO', 'descricao',
-      UniDBEditCidade, UniLabelCidade, UniLabelCidade2);
+    ConsultaTabela(Self, 'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' + ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO',
+      'descricao', UniDBEditCidade, UniLabelCidade, UniLabelCidade2);
 
   end;
 
@@ -876,9 +843,7 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    ConsultaTabela(Self,
-      'select idcondicao_interno codigo, descricao from condicao_interno' +
-      ' order by descricao', 'descricao', 'CODIGO', 'descricao',
+    ConsultaTabela(Self, 'select idcondicao_interno codigo, descricao from condicao_interno' + ' order by descricao', 'descricao', 'CODIGO', 'descricao',
       UniDBEditCondicao, UniLabelCondicao);
   end;
 
@@ -890,10 +855,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_Escolaridade CODIGO, Escolaridade DESCRICAO from Escolaridade '
-      + ' order by Escolaridade ', 'Escolaridade', 'CODIGO', 'descricao',
-      UniDBEditEscolaridade, UniLabelEscolaridade, UniLabelEscolaridade2);
+    ConsultaTabela(Self, 'select id_Escolaridade CODIGO, Escolaridade DESCRICAO from Escolaridade ' + ' order by Escolaridade ', 'Escolaridade', 'CODIGO',
+      'descricao', UniDBEditEscolaridade, UniLabelEscolaridade, UniLabelEscolaridade2);
 
   end;
 
@@ -905,8 +868,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self, 'select id_faccao CODIGO, faccao descricao from faccao'
-      + ' order by faccao', 'faccao', 'CODIGO', 'DESCRICAO', UniDBEditFaccao,
+    ConsultaTabela(Self, 'select id_faccao CODIGO, faccao descricao from faccao' + ' order by faccao', 'faccao', 'CODIGO', 'DESCRICAO', UniDBEditFaccao,
       UniLabelFaccao);
 
   end;
@@ -923,10 +885,9 @@ begin
   end;
 
   FrmAguarde.ShowModal(
-    procedure(Res: Integer)
+    procedure(Sender: TComponent; Res: Integer)
     begin
-      FrmVisualizarRelatorio.CarregarFichaDisciplinar
-        (DsConsulta.DataSet.fieldbyname('ID_INTERNO').AsInteger);
+      FrmVisualizarRelatorio.CarregarFichaDisciplinar(DsConsulta.DataSet.fieldbyname('ID_INTERNO').AsInteger);
     end);
 
 end;
@@ -938,10 +899,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade '
-      + ' order by nacionalidade ', 'nacionalidade', 'CODIGO', 'descricao',
-      UniDBEditNacionalidade, UniLabelNacionalidade);
+    ConsultaTabela(Self, 'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade ' + ' order by nacionalidade ', 'nacionalidade', 'CODIGO',
+      'descricao', UniDBEditNacionalidade, UniLabelNacionalidade);
 
   end;
 
@@ -953,10 +912,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
-      ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO', 'descricao',
-      UniDBEditNaturalidade, UniLabelNaturalidade, UniLabelNaturalidade2);
+    ConsultaTabela(Self, 'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' + ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO',
+      'descricao', UniDBEditNaturalidade, UniLabelNaturalidade, UniLabelNaturalidade2);
 
   end;
 
@@ -967,10 +924,8 @@ begin
   inherited;
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
-    ConsultaTabela(Self,
-      'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' +
-      ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO', 'descricao',
-      UniDBEditOrigem, UniLabelOrigem, UniLabelOrigem2);
+    ConsultaTabela(Self, 'select id_cidade codigo, cidade||''/''||uf descricao from cidade ' + ' order by cidade, uf', 'cidade||''/''||uf', 'CODIGO',
+      'descricao', UniDBEditOrigem, UniLabelOrigem, UniLabelOrigem2);
 
   end;
 
@@ -983,10 +938,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade '
-      + ' order by nacionalidade ', 'nacionalidade', 'CODIGO', 'descricao',
-      UniDBEditPais, UniLabelPais);
+    ConsultaTabela(Self, 'select id_nacionalidade codigo, nacionalidade descricao from nacionalidade ' + ' order by nacionalidade ', 'nacionalidade', 'CODIGO',
+      'descricao', UniDBEditPais, UniLabelPais);
 
   end;
 
@@ -999,9 +952,8 @@ begin
   begin
 
     ConsultaTabela(Self,
-      'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
-      + ' order by proedencia', 'proedencia', 'CODIGO', 'descricao',
-      UniDBEditPresidioOrigem, UniLabelPresidioOrigem);
+      'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA' +
+      ' order by proedencia', 'proedencia', 'CODIGO', 'descricao', UniDBEditPresidioOrigem, UniLabelPresidioOrigem);
 
   end;
 
@@ -1013,9 +965,8 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
     ConsultaTabela(Self,
-      'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA'
-      + ' order by proedencia', 'PROEDENCIA', 'CODIGO', 'DESCRICAO',
-      UniDBEditProcedencia, UniLabelProcedencia);
+      'SELECT ID_PROCEDENCIA CODIGO, IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO  FROM PROCEDENCIA' +
+      ' order by proedencia', 'PROEDENCIA', 'CODIGO', 'DESCRICAO', UniDBEditProcedencia, UniLabelProcedencia);
   end;
 
 end;
@@ -1027,9 +978,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_Profissao codigo, Profissao descricao from Profissao ' +
-      ' order by Profissao ', 'Profissao', 'CODIGO', 'DESCRICAO',
+    ConsultaTabela(Self, 'select id_Profissao codigo, Profissao descricao from Profissao ' + ' order by Profissao ', 'Profissao', 'CODIGO', 'DESCRICAO',
       UniDBEditProfissao, UniLabelProfissao);
   end;
 end;
@@ -1041,9 +990,7 @@ begin
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self, 'select id_raca CODIGO, raca DESCRICAO from raca ' +
-      ' order by raca ', 'raca', 'CODIGO', 'DESCRICAO', UniDBEditRaca,
-      UniLabelRaca);
+    ConsultaTabela(Self, 'select id_raca CODIGO, raca DESCRICAO from raca ' + ' order by raca ', 'raca', 'CODIGO', 'DESCRICAO', UniDBEditRaca, UniLabelRaca);
 
   end;
 
@@ -1066,130 +1013,112 @@ begin
 
   if FID_INTERNO > 0 then
   begin
-    SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text +
-      ' and INTERNO.ID_INTERNO=' + inttostr(FID_INTERNO) +
-      ' order by interno.nome_interno ';
+    SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + ' and INTERNO.ID_INTERNO=' + inttostr(FID_INTERNO) + ' order by interno.nome_interno ';
   end
   else
   begin
     if UniRadioGroupStatus.ItemIndex = 1 then
     begin
-      SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + ' and interno.' +
-        Campo + ' like ' + qs(EditLocalizar.Text + '%') +
+      SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + ' and interno.' + Campo + ' like ' + qs(EditLocalizar.Text + '%') +
         ' order by interno.nome_interno ';
     end
     else
     begin
-      SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + Status +
-        ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) + ' and interno.' +
-        Campo + ' like ' + qs(EditLocalizar.Text + '%') +
-        ' order by interno.nome_interno ';
+      SqlConsulta.SQL.Text := SqlConsultaBackup.SQL.Text + Status + ' and interno.id_up=' + inttostr(dm.GLOBAL_ID_UP) + ' and interno.' + Campo + ' like ' +
+        qs(EditLocalizar.Text + '%') + ' order by interno.nome_interno ';
     end;
   end;
 
   DsConsulta.DataSet.close;
   DsConsulta.DataSet.Open;
 
+  SqlCadastro.Tag := 0;
+  CdsCadastro.close;
+
 end;
 
 procedure TFrmInterno.UniDBEditAdvogadoExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select id_Advogado codigo, Advogado descricao from Advogado'
-    + ' WHERE id_Advogado=', UniDBEditAdvogado, UniLabelAdvogado);
+  RetornaRegistro('select id_Advogado codigo, Advogado descricao from Advogado' + ' WHERE id_Advogado=', UniDBEditAdvogado, UniLabelAdvogado);
 end;
 
 procedure TFrmInterno.UniDBEditCidadeExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' +
-    ' WHERE id_cidade=', UniDBEditCidade, UniLabelCidade, UniLabelCidade2);
+  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' + ' WHERE id_cidade=', UniDBEditCidade, UniLabelCidade, UniLabelCidade2);
 end;
 
 procedure TFrmInterno.UniDBEditCondicaoExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select descricao from condicao_interno ' +
-    ' WHERE idcondicao_interno=', UniDBEditCondicao, UniLabelCondicao);
+  RetornaRegistro('select descricao from condicao_interno ' + ' WHERE idcondicao_interno=', UniDBEditCondicao, UniLabelCondicao);
 end;
 
 procedure TFrmInterno.UniDBEditEscolaridadeExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select Escolaridade DESCRICAO from Escolaridade' +
-    ' WHERE id_Escolaridade=', UniDBEditEscolaridade, UniLabelEscolaridade,
+  RetornaRegistro('select Escolaridade DESCRICAO from Escolaridade' + ' WHERE id_Escolaridade=', UniDBEditEscolaridade, UniLabelEscolaridade,
     UniLabelEscolaridade2);
 end;
 
 procedure TFrmInterno.UniDBEditFaccaoExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select faccao descricao from faccao ' + ' WHERE id_faccao=',
-    UniDBEditFaccao, UniLabelFaccao);
+  RetornaRegistro('select faccao descricao from faccao ' + ' WHERE id_faccao=', UniDBEditFaccao, UniLabelFaccao);
 end;
 
 procedure TFrmInterno.UniDBEditNacionalidadeExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select nacionalidade descricao from nacionalidade' +
-    ' WHERE id_nacionalidade=', UniDBEditNacionalidade, UniLabelNacionalidade);
+  RetornaRegistro('select nacionalidade descricao from nacionalidade' + ' WHERE id_nacionalidade=', UniDBEditNacionalidade, UniLabelNacionalidade);
 end;
 
 procedure TFrmInterno.UniDBEditNaturalidadeExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' +
-    ' WHERE id_cidade=', UniDBEditNaturalidade, UniLabelNaturalidade,
-    UniLabelNaturalidade2);
+  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' + ' WHERE id_cidade=', UniDBEditNaturalidade, UniLabelNaturalidade, UniLabelNaturalidade2);
 end;
 
 procedure TFrmInterno.UniDBEditOrigemExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' +
-    ' WHERE id_cidade=', UniDBEditOrigem, UniLabelOrigem, UniLabelOrigem2);
+  RetornaRegistro('select cidade||''/''||uf descricao from cidade ' + ' WHERE id_cidade=', UniDBEditOrigem, UniLabelOrigem, UniLabelOrigem2);
 end;
 
 procedure TFrmInterno.UniDBEditPaisExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select nacionalidade descricao from nacionalidade' +
-    ' WHERE id_nacionalidade=', UniDBEditPais, UniLabelPais);
+  RetornaRegistro('select nacionalidade descricao from nacionalidade' + ' WHERE id_nacionalidade=', UniDBEditPais, UniLabelPais);
 end;
 
 procedure TFrmInterno.UniDBEditPresidioOrigemExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro
-    ('select IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO FROM PROCEDENCIA '
-    + ' WHERE ID_PROCEDENCIA=', UniDBEditPresidioOrigem,
-    UniLabelPresidioOrigem);
+  RetornaRegistro('select IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO FROM PROCEDENCIA ' + ' WHERE ID_PROCEDENCIA=',
+    UniDBEditPresidioOrigem, UniLabelPresidioOrigem);
 end;
 
 procedure TFrmInterno.UniDBEditProcedenciaExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro
-    ('select IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO FROM PROCEDENCIA '
-    + ' WHERE ID_PROCEDENCIA=', UniDBEditProcedencia, UniLabelProcedencia);
+  RetornaRegistro('select IIF(CAPITAL=''S'',PROEDENCIA||'' - CAPITAL'',PROEDENCIA||'' - INTERIOR'') AS DESCRICAO FROM PROCEDENCIA ' + ' WHERE ID_PROCEDENCIA=',
+    UniDBEditProcedencia, UniLabelProcedencia);
 end;
 
 procedure TFrmInterno.UniDBEditProfissaoExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select Profissao descricao from Profissao' +
-    ' WHERE id_Profissao=', UniDBEditProfissao, UniLabelProfissao);
+  RetornaRegistro('select Profissao descricao from Profissao' + ' WHERE id_Profissao=', UniDBEditProfissao, UniLabelProfissao);
 end;
 
 procedure TFrmInterno.UniDBEditRacaExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select raca DESCRICAO from raca WHERE id_raca=',
-    UniDBEditRaca, UniLabelRaca);
+  RetornaRegistro('select raca DESCRICAO from raca WHERE id_raca=', UniDBEditRaca, UniLabelRaca);
 end;
 
-procedure TFrmInterno.UniFileUploadOutrasFotosCompleted(Sender: TObject;
-AStream: TFileStream);
+procedure TFrmInterno.UniFileUploadOutrasFotosCompleted(Sender: TObject; AStream: TFileStream);
 var
   sArquivo, sNomeJpeg: string;
 begin
@@ -1197,10 +1126,8 @@ begin
   if not DirectoryExists(UniServerModule.StartPath + 'FotosSistema\') then
     ForceDirectories(UniServerModule.StartPath + 'FotosSistema\');
 
-  sArquivo := UniServerModule.StartPath + 'FotosSistema\OUTRAS-FOTOS-' +
-    FormatDateTime('yyyymmddhhmmsszzz', now) + '-idinterno-' +
-    CdsCadastro.fieldbyname('ID_INTERNO').AsString +
-    ExtractFileExt(AStream.FileName);
+  sArquivo := UniServerModule.StartPath + 'FotosSistema\OUTRAS-FOTOS-' + FormatDateTime('yyyymmddhhmmsszzz', now) + '-idinterno-' +
+    CdsCadastro.fieldbyname('ID_INTERNO').AsString + ExtractFileExt(AStream.FileName);
 
   CopyFile(PChar(AStream.FileName), PChar(sArquivo), False);
 
@@ -1233,9 +1160,7 @@ begin
   if Self.Name = 'FrmInterno' then
   begin
 
-    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-      not ContemValor('E', dm.PERMISSAO_CONFERE) and
-      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and not ContemValor('E', dm.PERMISSAO_CONFERE) and not ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Novo.Visible := False;
       Editar.Visible := False;
@@ -1243,9 +1168,7 @@ begin
       Salvar.Visible := False;
     end;
 
-    if ContemValor('I', dm.PERMISSAO_CONFERE) and
-      not ContemValor('E', dm.PERMISSAO_CONFERE) and
-      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and not ContemValor('E', dm.PERMISSAO_CONFERE) and not ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Editar.Visible := False;
       Excluir.Visible := False;
@@ -1255,23 +1178,17 @@ begin
         Salvar.Visible := False;
     end;
 
-    if ContemValor('I', dm.PERMISSAO_CONFERE) and
-      ContemValor('E', dm.PERMISSAO_CONFERE) and
-      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and ContemValor('E', dm.PERMISSAO_CONFERE) and not ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Excluir.Visible := False;
     end;
 
-    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-      ContemValor('E', dm.PERMISSAO_CONFERE) and
-      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and ContemValor('E', dm.PERMISSAO_CONFERE) and ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Novo.Visible := False;
     end;
 
-    if ContemValor('I', dm.PERMISSAO_CONFERE) and
-      not ContemValor('E', dm.PERMISSAO_CONFERE) and
-      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if ContemValor('I', dm.PERMISSAO_CONFERE) and not ContemValor('E', dm.PERMISSAO_CONFERE) and ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Editar.Visible := False;
       if not Salvar.Visible then
@@ -1280,9 +1197,7 @@ begin
         Salvar.Visible := False;
     end;
 
-    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-      not ContemValor('E', dm.PERMISSAO_CONFERE) and
-      ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and not ContemValor('E', dm.PERMISSAO_CONFERE) and ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Novo.Visible := False;
       Editar.Visible := False;
@@ -1292,9 +1207,7 @@ begin
         Salvar.Visible := False;
     end;
 
-    if not ContemValor('I', dm.PERMISSAO_CONFERE) and
-      ContemValor('E', dm.PERMISSAO_CONFERE) and
-      not ContemValor('D', dm.PERMISSAO_CONFERE) then
+    if not ContemValor('I', dm.PERMISSAO_CONFERE) and ContemValor('E', dm.PERMISSAO_CONFERE) and not ContemValor('D', dm.PERMISSAO_CONFERE) then
     begin
       Novo.Visible := False;
       Excluir.Visible := False;
@@ -1357,6 +1270,15 @@ begin
     dsADVOGADO_INTERNO.DataSet.Open;
 
   // end);
+
+end;
+
+procedure TFrmInterno.PageControlModeloCadastroChange(Sender: TObject);
+begin
+  inherited;
+  UniDBImageInterno.datasource := DsConsulta;
+  if PageControlModeloCadastro.ActivePageIndex = 0 then
+    UniDBImageInterno.datasource := DsCadastro;
 
 end;
 

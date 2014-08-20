@@ -5,7 +5,6 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
   ClientWidth = 771
   Caption = 'Visualizar Relat'#243'rios'
   OnShow = UniFormShow
-  Color = clBtnFace
   BorderStyle = bsSingle
   WindowState = wsMaximized
   OldCreateOrder = False
@@ -24,6 +23,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     Top = 37
     Width = 771
     Height = 424
+    Hint = ''
     ScreenMask.Enabled = True
     ScreenMask.WaitData = True
     ScreenMask.Message = 'Aguarde, montando o HTML...'
@@ -39,6 +39,8 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
     Top = 3
     Width = 765
     Height = 31
+    Hint = ''
+    Caption = ''
     Align = alTop
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
@@ -47,6 +49,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Top = 1
       Width = 763
       Height = 29
+      Hint = ''
       Stretch = True
       Picture.Data = {
         0A544A504547496D6167652E010000FFD8FFE000104A46494600010101004800
@@ -67,6 +70,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Top = 3
       Width = 125
       Height = 25
+      Hint = ''
       Glyph.Data = {
         36040000424D3604000000000000360000002800000010000000100000000100
         20000000000000040000000000000000000000000000000000000F68CC6A0E63
@@ -111,6 +115,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Top = 4
       Width = 481
       Height = 23
+      Hint = ''
       AutoSize = False
       Caption = 'Visualizar Impress'#227'o'
       ParentFont = False
@@ -123,6 +128,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Top = 1
       Width = 40
       Height = 29
+      Hint = ''
       Center = True
       Stretch = True
       Picture.Data = {
@@ -184,9 +190,7 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
       Top = 3
       Width = 102
       Height = 25
-      ScreenMask.Enabled = True
-      ScreenMask.WaitData = True
-      ScreenMask.Message = 'Aguarde, recarregando...'
+      Hint = ''
       Glyph.Data = {
         36050000424D3605000000000000360400002800000010000000100000000100
         0800000000000001000000000000000000000001000000010000FF00FF00043E
@@ -232,6 +236,9 @@ object FrmVisualizarRelatorio: TFrmVisualizarRelatorio
         4E56524117060600000000000000000C0C0C0C0D0D0000000000}
       Caption = 'Recarregar'
       TabOrder = 5
+      ScreenMask.Enabled = True
+      ScreenMask.WaitData = True
+      ScreenMask.Message = 'Aguarde, recarregando...'
       OnClick = UniBitBtnRecarregarClick
     end
   end

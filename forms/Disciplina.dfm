@@ -1,7 +1,6 @@
 inherited FrmDisciplina: TFrmDisciplina
   ClientWidth = 944
   Caption = 'Cadastro de Disciplina'
-  ExplicitTop = -139
   ExplicitWidth = 960
   PixelsPerInch = 96
   TextHeight = 13
@@ -393,6 +392,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -400,6 +400,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -418,6 +419,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -425,6 +427,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -432,6 +435,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -449,6 +453,7 @@ inherited FrmDisciplina: TFrmDisciplina
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -456,6 +461,7 @@ inherited FrmDisciplina: TFrmDisciplina
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
@@ -473,17 +479,20 @@ inherited FrmDisciplina: TFrmDisciplina
               ExplicitWidth = 819
             end
             object TabSheetDisciplina: TUniTabSheet
+              Hint = ''
               Caption = 'Disciplina'
               object PageControlDisciplina: TUniPageControl
                 Left = 0
                 Top = 0
                 Width = 819
                 Height = 480
+                Hint = ''
                 ActivePage = faltasdisciplinares
                 TabOrder = 0
                 Align = alClient
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 object faltasdisciplinares: TUniTabSheet
+                  Hint = ''
                   Caption = 'Hist'#243'rico'
                   DesignSize = (
                     811
@@ -493,6 +502,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 98
                     Width = 98
                     Height = 13
+                    Hint = ''
                     Visible = False
                     Caption = 'Data Fim Isolamento'
                     TabOrder = 0
@@ -502,6 +512,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 16
                     Width = 208
                     Height = 13
+                    Hint = ''
                     Caption = 'Descri'#231#227'o do Hist'#243'rico para Ficha Disciplinar'
                     TabOrder = 1
                   end
@@ -510,6 +521,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 16
                     Width = 63
                     Height = 13
+                    Hint = ''
                     Caption = 'Data do Fato'
                     TabOrder = 2
                   end
@@ -518,6 +530,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 33
                     Width = 100
                     Height = 21
+                    Hint = ''
                     DateTime = 41785.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -528,6 +541,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 33
                     Width = 698
                     Height = 117
+                    Hint = ''
                     Anchors = [akLeft, akTop, akRight]
                     Color = clWindow
                     TabOrder = 4
@@ -537,6 +551,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 124
                     Width = 100
                     Height = 25
+                    Hint = ''
                     Caption = 'Incluir'
                     ParentFont = False
                     Font.Height = -13
@@ -550,9 +565,10 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 163
                     Width = 811
                     Height = 125
+                    Hint = ''
                     DataSource = DSHISTORICO_interno
                     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                    WebOptions.LoadMaskMsg = 'Please wait...'
+                    LoadMask.Message = 'Loading data...'
                     OnCellClick = DBGrid1CellClick
                     Anchors = [akLeft, akTop, akRight, akBottom]
                     TabOrder = 6
@@ -563,6 +579,7 @@ inherited FrmDisciplina: TFrmDisciplina
                         Width = 80
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'SETOR'
@@ -570,6 +587,7 @@ inherited FrmDisciplina: TFrmDisciplina
                         Width = 80
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DESCRICAO'
@@ -577,6 +595,7 @@ inherited FrmDisciplina: TFrmDisciplina
                         Width = 400
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end>
                   end
                   object UniDBMemo2: TUniDBMemo
@@ -584,6 +603,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Top = 288
                     Width = 811
                     Height = 164
+                    Hint = ''
                     DataField = 'DESCRICAO'
                     DataSource = DSHISTORICO_interno
                     Anchors = [akLeft, akTop, akBottom]
@@ -595,6 +615,7 @@ inherited FrmDisciplina: TFrmDisciplina
               end
             end
             object TabSheetElogio: TUniTabSheet
+              Hint = ''
               Caption = 'Elogio'
               DesignSize = (
                 819
@@ -604,6 +625,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 301
                 Width = 813
                 Height = 164
+                Hint = ''
                 DataField = 'DESCRICAO'
                 DataSource = dshistoricoelogio
                 TabOrder = 0
@@ -614,10 +636,11 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 155
                 Width = 813
                 Height = 140
+                Hint = ''
                 TitleFont.Name = 'MS Sans Serif'
                 DataSource = dshistoricoelogio
                 Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                WebOptions.LoadMaskMsg = 'Please wait...'
+                LoadMask.Message = 'Loading data...'
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 1
                 Columns = <
@@ -627,6 +650,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 74
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -634,6 +658,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 66
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -641,6 +666,7 @@ inherited FrmDisciplina: TFrmDisciplina
                     Width = 445
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               object BitBtn2: TUniBitBtn
@@ -648,6 +674,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 120
                 Width = 100
                 Height = 25
+                Hint = ''
                 Glyph.Data = {
                   DE010000424DDE01000000000000760000002800000024000000120000000100
                   0400000000006801000000000000000000001000000000000000000000000000
@@ -679,6 +706,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 33
                 Width = 705
                 Height = 113
+                Hint = ''
                 Anchors = [akLeft, akTop, akRight]
                 Color = clWindow
                 TabOrder = 3
@@ -688,6 +716,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 33
                 Width = 100
                 Height = 21
+                Hint = ''
                 DateTime = 41805.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -698,6 +727,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 16
                 Width = 23
                 Height = 13
+                Hint = ''
                 Caption = 'Data'
                 TabOrder = 5
               end
@@ -706,6 +736,7 @@ inherited FrmDisciplina: TFrmDisciplina
                 Top = 16
                 Width = 92
                 Height = 13
+                Hint = ''
                 Caption = 'Descri'#231#227'o do Elogio'
                 TabOrder = 6
               end
@@ -731,6 +762,7 @@ inherited FrmDisciplina: TFrmDisciplina
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -738,6 +770,7 @@ inherited FrmDisciplina: TFrmDisciplina
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -745,6 +778,7 @@ inherited FrmDisciplina: TFrmDisciplina
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -752,6 +786,7 @@ inherited FrmDisciplina: TFrmDisciplina
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -759,6 +794,7 @@ inherited FrmDisciplina: TFrmDisciplina
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end

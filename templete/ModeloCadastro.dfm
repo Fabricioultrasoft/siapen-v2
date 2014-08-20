@@ -5,11 +5,9 @@ object FrmModeloCadastro: TFrmModeloCadastro
   ClientWidth = 849
   Caption = 'Modelo de Cadastro'
   OnShow = UniFormShow
-  Color = clBtnFace
   OldCreateOrder = False
   OnClose = UniFormClose
   OnKeyDown = UniFormKeyDown
-  FreeOnClose = False
   Visible = True
   KeyPreview = True
   NavigateKeys.Enabled = True
@@ -23,6 +21,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
   MonitoredKeys.Enabled = True
   MonitoredKeys.KeyEnableAll = True
   MonitoredKeys.Keys = <>
+  FreeOnClose = False
   OnCreate = UniFormCreate
   PixelsPerInch = 96
   TextHeight = 13
@@ -194,8 +193,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Salvar registro no banco de dados.'
-      ScreenMask.Enabled = True
-      ScreenMask.Message = 'Salvando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -238,6 +235,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Font.Color = clNavy
       Font.Style = [fsBold]
       TabOrder = 3
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Salvando...'
       OnClick = SalvarClick
     end
     object Cancelar: TUniBitBtn
@@ -247,8 +246,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Cancelar intera'#231#245'es atuais.'
-      ScreenMask.Enabled = True
-      ScreenMask.Message = 'Cancelando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -291,6 +288,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Font.Color = clNavy
       Font.Style = [fsBold]
       TabOrder = 4
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Cancelando...'
       OnClick = CancelarClick
     end
     object Editar: TUniBitBtn
@@ -300,7 +299,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Alterar o registro selecionado.'
-      ScreenMask.Message = 'Aguarde...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -343,6 +341,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Font.Color = clNavy
       Font.Style = [fsBold]
       TabOrder = 5
+      ScreenMask.Message = 'Aguarde...'
       OnClick = EditarClick
     end
     object Novo: TUniBitBtn
@@ -352,8 +351,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Width = 100
       Height = 40
       Hint = 'Cadastrar um registro novo.'
-      ScreenMask.Enabled = True
-      ScreenMask.Message = 'Aguarde, preparando...'
       ShowHint = True
       ParentShowHint = False
       Glyph.Data = {
@@ -396,6 +393,8 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Font.Color = clNavy
       Font.Style = [fsBold]
       TabOrder = 6
+      ScreenMask.Enabled = True
+      ScreenMask.Message = 'Aguarde, preparando...'
       OnClick = NovoClick
     end
   end
@@ -412,7 +411,7 @@ object FrmModeloCadastro: TFrmModeloCadastro
       Top = 1
       Width = 741
       Height = 322
-      ActivePage = TabSheetCadastro
+      ActivePage = TabSheetConsulta
       TabOrder = 1
       Align = alClient
       Anchors = [akLeft, akTop, akRight, akBottom]
@@ -462,9 +461,6 @@ object FrmModeloCadastro: TFrmModeloCadastro
             Top = 12
             Width = 97
             Height = 25
-            ScreenMask.Enabled = True
-            ScreenMask.Message = 'Pesquisando registros... aguarde...'
-            ScreenMask.Target = DBGridConsulta
             Glyph.Data = {
               36050000424D3605000000000000360400002800000010000000100000000100
               0800000000000001000000000000000000000001000000010000FF00FF00005F
@@ -510,6 +506,9 @@ object FrmModeloCadastro: TFrmModeloCadastro
               000000000000513D3A0000000000000000000000000000510000}
             Caption = 'Filtrar'
             TabOrder = 3
+            ScreenMask.Enabled = True
+            ScreenMask.Message = 'Pesquisando registros... aguarde...'
+            ScreenMask.Target = DBGridConsulta
             OnClick = UniBtnFiltrarClick
           end
         end
@@ -522,11 +521,10 @@ object FrmModeloCadastro: TFrmModeloCadastro
           Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
           ReadOnly = True
           WebOptions.PageSize = 50
-          WebOptions.LoadMaskMsg = 'Aguarde...'
+          LoadMask.Message = 'Carregando dados...'
           OnTitleClick = DBGridConsultaTitleClick
           OnDblClick = DBGridConsultaDblClick
           OnKeyDown = DBGridConsultaKeyDown
-          StripeRows = True
           Align = alClient
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1

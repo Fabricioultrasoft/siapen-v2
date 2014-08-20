@@ -21,6 +21,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -28,6 +29,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -40,6 +42,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -47,6 +50,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -54,6 +58,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -67,6 +72,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -74,17 +80,20 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
             end
             object UniTabSheetTrabalho: TUniTabSheet
+              Hint = ''
               Caption = 'Trabalho'
               object PageControlTrabalho: TUniPageControl
                 Left = 0
                 Top = 0
                 Width = 767
                 Height = 480
+                Hint = ''
                 ActivePage = TabSheet5
                 TabOrder = 0
                 Align = alClient
@@ -92,12 +101,14 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                 ExplicitWidth = 724
                 ExplicitHeight = 464
                 object TabSheet5: TUniTabSheet
+                  Hint = ''
                   Caption = 'Lan'#231'amento'
                   object UniLabel5: TUniLabel
                     Left = 152
                     Top = 16
                     Width = 23
                     Height = 13
+                    Hint = ''
                     Caption = 'Data'
                     TabOrder = 5
                   end
@@ -106,6 +117,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 16
                     Width = 74
                     Height = 13
+                    Hint = ''
                     Caption = 'Fun'#231#227'o Interno'
                     TabOrder = 6
                   end
@@ -114,6 +126,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 112
                     Width = 20
                     Height = 13
+                    Hint = ''
                     Caption = 'OBS'
                     TabOrder = 7
                   end
@@ -122,6 +135,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 71
                     Height = 13
+                    Hint = ''
                     Caption = 'Setor Trabalho'
                     TabOrder = 8
                   end
@@ -130,6 +144,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 16
                     Width = 94
                     Height = 13
+                    Hint = ''
                     Caption = 'N'#250'mero Documento'
                     TabOrder = 9
                   end
@@ -138,6 +153,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 69
                     Height = 13
+                    Hint = ''
                     Caption = 'Local Trabalho'
                     TabOrder = 10
                   end
@@ -146,6 +162,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 112
                     Width = 83
                     Height = 13
+                    Hint = ''
                     Caption = 'Tipo de Atividade'
                     TabOrder = 11
                   end
@@ -154,10 +171,11 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 192
                     Width = 625
                     Height = 169
+                    Hint = ''
                     TitleFont.Name = 'MS Sans Serif'
                     DataSource = dshistorico_trabalho
                     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                    WebOptions.LoadMaskMsg = 'Please wait...'
+                    LoadMask.Message = 'Loading data...'
                     TabOrder = 4
                     Columns = <
                       item
@@ -166,6 +184,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 71
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DATA'
@@ -173,6 +192,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 87
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'local_trabalho'
@@ -180,6 +200,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 139
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'setor_trabalho'
@@ -187,6 +208,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 118
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'funcao_interno'
@@ -194,6 +216,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 101
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'OBS'
@@ -201,6 +224,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 257
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DATA_SAIDA'
@@ -208,6 +232,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 92
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'MOTIVO_SAIDA'
@@ -215,6 +240,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 141
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end>
                   end
                   object DBEditdtsetor: TUniDBEdit
@@ -222,6 +248,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 121
                     Height = 21
+                    Hint = ''
                     DataField = 'DATA_SETOR'
                     DataSource = DsCadastro
                     TabOrder = 1
@@ -232,6 +259,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 128
                     Width = 401
                     Height = 21
+                    Hint = ''
                     DataField = 'OBSTRABALHO'
                     DataSource = DsCadastro
                     TabOrder = 3
@@ -242,6 +270,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 129
                     Height = 21
+                    Hint = ''
                     DataField = 'DOC_TRABALHO'
                     DataSource = DsCadastro
                     TabOrder = 0
@@ -252,6 +281,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 128
                     Width = 182
                     Height = 21
+                    Hint = ''
                     DataField = 'TIPO_ATIVIDADE'
                     DataSource = DsCadastro
                     Items.Strings = (
@@ -265,6 +295,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 60
                     Height = 22
+                    Hint = ''
                     DataField = 'ID_FUNCAOINTERNO'
                     DataSource = DsCadastro
                     TabOrder = 12
@@ -276,6 +307,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 26
                     Height = 22
+                    Hint = ''
                     Glyph.Data = {
                       36030000424D3603000000000000360000002800000010000000100000000100
                       18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -303,6 +335,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                       86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                       A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    Caption = ''
                     TabOrder = 13
                     OnClick = UniBitBtnFuncaoInternoClick
                   end
@@ -311,6 +344,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 36
                     Width = 275
                     Height = 13
+                    Hint = ''
                     AutoSize = False
                     Caption = '(Fun'#231#227'o do Interno)'
                     ParentColor = False
@@ -323,6 +357,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 83
                     Width = 225
                     Height = 13
+                    Hint = ''
                     AutoSize = False
                     Caption = '(Local de Trabalho)'
                     ParentColor = False
@@ -335,6 +370,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 79
                     Width = 26
                     Height = 22
+                    Hint = ''
                     Glyph.Data = {
                       36030000424D3603000000000000360000002800000010000000100000000100
                       18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -362,6 +398,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                       86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                       A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    Caption = ''
                     TabOrder = 16
                     OnClick = UniBitBtnLocalTrabalhoClick
                   end
@@ -370,6 +407,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 79
                     Width = 60
                     Height = 22
+                    Hint = ''
                     DataField = 'ID_LOCAL_TRABALHO'
                     DataSource = DsCadastro
                     TabOrder = 17
@@ -381,6 +419,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 83
                     Width = 222
                     Height = 13
+                    Hint = ''
                     AutoSize = False
                     Caption = '(Setor de Trabalho)'
                     ParentColor = False
@@ -393,6 +432,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 79
                     Width = 26
                     Height = 22
+                    Hint = ''
                     Glyph.Data = {
                       36030000424D3603000000000000360000002800000010000000100000000100
                       18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
@@ -420,6 +460,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
                       86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
                       A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    Caption = ''
                     TabOrder = 19
                     OnClick = UniBitBtnSetorTrabalhoClick
                   end
@@ -428,6 +469,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 79
                     Width = 60
                     Height = 22
+                    Hint = ''
                     DataField = 'IDSETOR_TRABALHO'
                     DataSource = DsCadastro
                     TabOrder = 20
@@ -439,18 +481,21 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 164
                     Width = 104
                     Height = 25
+                    Hint = ''
                     DropdownMenu = PopupMenuTrabalho
                     Caption = 'Op'#231#245'es'
                     TabOrder = 21
                   end
                 end
                 object TabSheet8: TUniTabSheet
+                  Hint = ''
                   Caption = 'Hor'#225'rios'
                   object UniLabel12: TUniLabel
                     Left = 152
                     Top = 72
                     Width = 119
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Entrada Semanal'
                     TabOrder = 13
                   end
@@ -459,6 +504,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 72
                     Width = 107
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Sa'#237'da Semanal'
                     TabOrder = 14
                   end
@@ -467,6 +513,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 24
                     Width = 65
                     Height = 13
+                    Hint = ''
                     Caption = 'Turma Said'#227'o'
                     TabOrder = 15
                   end
@@ -475,6 +522,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 24
                     Width = 111
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Entrada Said'#227'o'
                     TabOrder = 16
                   end
@@ -483,6 +531,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 24
                     Width = 99
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Saida Said'#227'o'
                     TabOrder = 17
                   end
@@ -491,6 +540,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 121
                     Width = 115
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Entrada Sabado'
                     TabOrder = 18
                   end
@@ -499,6 +549,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 121
                     Width = 103
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Sa'#237'da Sabado'
                     TabOrder = 19
                   end
@@ -507,6 +558,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 169
                     Width = 120
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Entrada Domingo'
                     TabOrder = 20
                   end
@@ -515,6 +567,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 169
                     Width = 108
                     Height = 13
+                    Hint = ''
                     Caption = 'Hor'#225'rio Sa'#237'da Domingo'
                     TabOrder = 21
                   end
@@ -523,6 +576,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 24
                     Width = 27
                     Height = 13
+                    Hint = ''
                     Caption = 'Corte'
                     TabOrder = 22
                   end
@@ -531,6 +585,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 216
                     Width = 341
                     Height = 13
+                    Hint = ''
                     Caption = 
                       'Bloqueio, digite qualquer motivo que automaticamente ser'#225' bloque' +
                       'ado!'
@@ -541,6 +596,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 88
                     Width = 137
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_ENTRADA_SEMANAL'
                     DataSource = DsCadastro
                     TabOrder = 5
@@ -551,6 +607,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 88
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_SAIDA_SEMANAL'
                     DataSource = DsCadastro
                     TabOrder = 4
@@ -561,6 +618,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 40
                     Width = 73
                     Height = 21
+                    Hint = ''
                     DataField = 'TURMA_SAIDAO'
                     DataSource = DsCadastro
                     TabOrder = 2
@@ -571,6 +629,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 40
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_ENTRADA_SAIDAO'
                     DataSource = DsCadastro
                     TabOrder = 1
@@ -581,6 +640,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 40
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_SAIDA_SAIDAO'
                     DataSource = DsCadastro
                     TabOrder = 0
@@ -591,6 +651,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 137
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_ENTRADA_SABADO'
                     DataSource = DsCadastro
                     TabOrder = 7
@@ -601,6 +662,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 137
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_SAIDA_SABADO'
                     DataSource = DsCadastro
                     TabOrder = 6
@@ -611,6 +673,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 185
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_ENTRADA_DOMINGO'
                     DataSource = DsCadastro
                     TabOrder = 9
@@ -621,6 +684,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 185
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'HORARIO_SAIDA_DOMINGO'
                     DataSource = DsCadastro
                     TabOrder = 8
@@ -631,6 +695,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 40
                     Width = 134
                     Height = 21
+                    Hint = ''
                     DataField = 'CORTE'
                     DataSource = DsCadastro
                     TabOrder = 3
@@ -641,6 +706,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 114
                     Width = 285
                     Height = 241
+                    Hint = ''
                     Caption = 'Para dias de folga deixe em branco:'
                     TabOrder = 10
                     object Label76: TUniLabel
@@ -648,6 +714,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 24
                       Width = 109
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Sa'#237'da Segunda'
                       TabOrder = 11
                     end
@@ -656,6 +723,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 24
                       Width = 121
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Entrada Segunda'
                       TabOrder = 12
                     end
@@ -664,6 +732,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 66
                       Width = 94
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Sa'#237'da Ter'#231'a'
                       TabOrder = 13
                     end
@@ -672,6 +741,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 66
                       Width = 106
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Entrada Ter'#231'a'
                       TabOrder = 14
                     end
@@ -680,6 +750,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 108
                       Width = 101
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Sa'#237'da Quarta'
                       TabOrder = 15
                     end
@@ -688,6 +759,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 108
                       Width = 113
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Entrada Quarta'
                       TabOrder = 16
                     end
@@ -696,6 +768,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 150
                       Width = 99
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Sa'#237'da Quinta'
                       TabOrder = 17
                     end
@@ -704,6 +777,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 150
                       Width = 111
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Entrada Quinta'
                       TabOrder = 18
                     end
@@ -712,6 +786,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 192
                       Width = 95
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Sa'#237'da Sexta'
                       TabOrder = 19
                     end
@@ -720,6 +795,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 192
                       Width = 107
                       Height = 13
+                      Hint = ''
                       Caption = 'Hor'#225'rio Entrada Sexta'
                       TabOrder = 20
                     end
@@ -728,6 +804,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 40
                       Width = 134
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_SAIDA_SEG'
                       DataSource = DsCadastro
                       TabOrder = 0
@@ -738,6 +815,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 40
                       Width = 137
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_ENTRADA_SEG'
                       DataSource = DsCadastro
                       TabOrder = 1
@@ -748,6 +826,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 82
                       Width = 134
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_SAIDA_TER'
                       DataSource = DsCadastro
                       TabOrder = 2
@@ -758,6 +837,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 82
                       Width = 137
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_ENTRADA_TER'
                       DataSource = DsCadastro
                       TabOrder = 3
@@ -768,6 +848,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 124
                       Width = 134
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_SAIDA_QUA'
                       DataSource = DsCadastro
                       TabOrder = 4
@@ -778,6 +859,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 124
                       Width = 137
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_ENTRADA_QUA'
                       DataSource = DsCadastro
                       TabOrder = 5
@@ -788,6 +870,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 166
                       Width = 134
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_SAIDA_QUI'
                       DataSource = DsCadastro
                       TabOrder = 6
@@ -798,6 +881,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 166
                       Width = 137
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_ENTRADA_QUI'
                       DataSource = DsCadastro
                       TabOrder = 7
@@ -808,6 +892,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 208
                       Width = 134
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_SAIDA_SEX'
                       DataSource = DsCadastro
                       TabOrder = 8
@@ -818,6 +903,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 208
                       Width = 137
                       Height = 21
+                      Hint = ''
                       DataField = 'HORARIO_ENTRADA_SEX'
                       DataSource = DsCadastro
                       TabOrder = 9
@@ -829,6 +915,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 82
                     Width = 125
                     Height = 25
+                    Hint = ''
                     Caption = 'Copiar para todos'
                     TabOrder = 11
                     OnClick = BtnCopiarClick
@@ -838,6 +925,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 232
                     Width = 345
                     Height = 121
+                    Hint = ''
                     DataField = 'BLOQUEIO_TRABALHO'
                     DataSource = DsCadastro
                     TabOrder = 12
@@ -847,12 +935,14 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               end
             end
             object UniTabSheet1: TUniTabSheet
+              Hint = ''
               Caption = 'Remi'#231#227'o'
               object PageControlRemicao: TUniPageControl
                 Left = 0
                 Top = 0
                 Width = 767
                 Height = 480
+                Hint = ''
                 ActivePage = TabSheet7
                 TabOrder = 0
                 Align = alClient
@@ -860,12 +950,14 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                 ExplicitWidth = 724
                 ExplicitHeight = 464
                 object TabSheet4: TUniTabSheet
+                  Hint = ''
                   Caption = 'Dados'
                   object UniLabel28: TUniLabel
                     Left = 8
                     Top = 15
                     Width = 53
                     Height = 13
+                    Hint = ''
                     Caption = 'Data Inicial'
                     TabOrder = 7
                   end
@@ -874,6 +966,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 15
                     Width = 48
                     Height = 13
+                    Hint = ''
                     Caption = 'Data Final'
                     TabOrder = 8
                   end
@@ -882,6 +975,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 62
                     Width = 65
                     Height = 13
+                    Hint = ''
                     Caption = 'Dias Trabalho'
                     TabOrder = 9
                   end
@@ -890,6 +984,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 17
                     Width = 156
                     Height = 49
+                    Hint = ''
                     Caption = 'N'#227'o Remir'
                     TabOrder = 2
                     object CHDomingo: TUniCheckBox
@@ -897,7 +992,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 17
                       Width = 63
                       Height = 17
-                      Checked = False
+                      Hint = ''
                       Caption = 'Domingo'
                       TabOrder = 1
                     end
@@ -906,7 +1001,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                       Top = 18
                       Width = 60
                       Height = 17
-                      Checked = False
+                      Hint = ''
                       Caption = 'S'#225'bado'
                       TabOrder = 0
                     end
@@ -916,6 +1011,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 105
                     Height = 25
+                    Hint = ''
                     Caption = 'Inserir'
                     ParentFont = False
                     Font.Height = -13
@@ -929,19 +1025,22 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 112
                     Width = 625
                     Height = 196
+                    Hint = ''
                     ActivePage = TabSheet6
                     TabOrder = 6
                     object TabSheet6: TUniTabSheet
+                      Hint = ''
                       Caption = 'Remi'#231#245'es'
                       object DBGrid2: TUniDBGrid
                         Left = 16
                         Top = 24
                         Width = 585
                         Height = 120
+                        Hint = ''
                         TitleFont.Name = 'MS Sans Serif'
                         DataSource = dscalc_trabalho
                         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                        WebOptions.LoadMaskMsg = 'Please wait...'
+                        LoadMask.Message = 'Loading data...'
                         TabOrder = 0
                         Columns = <
                           item
@@ -950,6 +1049,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                             Width = 80
                             Visible = True
                             Expanded = False
+                            CheckBoxField.FieldValues = 'true;false'
                           end
                           item
                             FieldName = 'DATA_FINAL'
@@ -957,6 +1057,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                             Width = 102
                             Visible = True
                             Expanded = False
+                            CheckBoxField.FieldValues = 'true;false'
                           end
                           item
                             FieldName = 'QTDEDIASTRABALHADO'
@@ -964,6 +1065,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                             Width = 111
                             Visible = True
                             Expanded = False
+                            CheckBoxField.FieldValues = 'true;false'
                           end>
                       end
                       object UniBitBtnExcluirRemicao: TUniBitBtn
@@ -971,6 +1073,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Top = 145
                         Width = 106
                         Height = 23
+                        Hint = ''
                         ShowHint = True
                         ParentShowHint = False
                         Glyph.Data = {
@@ -1019,6 +1122,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 97
                     Height = 21
+                    Hint = ''
                     DateTime = 41058.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1029,6 +1133,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 97
                     Height = 21
+                    Hint = ''
                     DateTime = 41058.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1039,6 +1144,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 102
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 4
                     Color = clWindow
                   end
@@ -1047,18 +1154,21 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 27
                     Width = 75
                     Height = 25
+                    Hint = ''
                     Caption = 'Calcular'
                     TabOrder = 3
                     OnClick = Button2Click
                   end
                 end
                 object TabSheet7: TUniTabSheet
+                  Hint = ''
                   Caption = 'Certid'#227'o'
                   object UniLabel32: TUniLabel
                     Left = 32
                     Top = 15
                     Width = 53
                     Height = 13
+                    Hint = ''
                     Caption = 'Data Inicial'
                     TabOrder = 9
                   end
@@ -1067,6 +1177,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 15
                     Width = 48
                     Height = 13
+                    Hint = ''
                     Caption = 'Data Final'
                     TabOrder = 10
                   end
@@ -1075,6 +1186,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 82
                     Height = 13
+                    Hint = ''
                     Caption = 'Dias Trabalhados'
                     TabOrder = 11
                   end
@@ -1083,6 +1195,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 58
                     Height = 13
+                    Hint = ''
                     Caption = 'Dias Remido'
                     TabOrder = 12
                   end
@@ -1091,6 +1204,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 68
                     Height = 13
+                    Hint = ''
                     Caption = 'Saldo Anterior'
                     TabOrder = 13
                   end
@@ -1099,6 +1213,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 67
                     Height = 13
+                    Hint = ''
                     Caption = 'Saldo Pr'#243'xima'
                     TabOrder = 14
                   end
@@ -1107,6 +1222,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 64
                     Width = 81
                     Height = 13
+                    Hint = ''
                     Caption = 'Total Trabalhado'
                     TabOrder = 15
                   end
@@ -1115,6 +1231,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 121
                     Height = 21
+                    Hint = ''
                     DateTime = 41058.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1125,6 +1242,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 106
                     Height = 26
+                    Hint = ''
                     Glyph.Data = {
                       DE010000424DDE01000000000000760000002800000024000000120000000100
                       0400000000006801000000000000000000001000000000000000000000000000
@@ -1155,6 +1273,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 89
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 3
                     Color = clWindow
                   end
@@ -1163,6 +1283,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 65
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 5
                     Color = clWindow
                   end
@@ -1171,6 +1293,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 89
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 2
                     Color = clWindow
                   end
@@ -1179,6 +1303,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 81
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 6
                     Color = clWindow
                   end
@@ -1187,10 +1313,11 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 168
                     Width = 561
                     Height = 120
+                    Hint = ''
                     TitleFont.Name = 'MS Sans Serif'
                     DataSource = dscertidao_trabalho
                     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                    WebOptions.LoadMaskMsg = 'Please wait...'
+                    LoadMask.Message = 'Loading data...'
                     TabOrder = 8
                     Columns = <
                       item
@@ -1199,6 +1326,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 68
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DATA_FINAL'
@@ -1206,6 +1334,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 74
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'SALDO_ANTERIOR'
@@ -1213,6 +1342,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 71
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DIAS_TRABALHADO'
@@ -1220,6 +1350,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 89
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'total_dias'
@@ -1227,6 +1358,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 77
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'DIAS_REMIDO'
@@ -1234,6 +1366,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 69
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end
                       item
                         FieldName = 'SALDO_PROXIMA'
@@ -1241,6 +1374,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                         Width = 77
                         Visible = True
                         Expanded = False
+                        CheckBoxField.FieldValues = 'true;false'
                       end>
                   end
                   object BitBtn2: TUniBitBtn
@@ -1248,6 +1382,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 126
                     Width = 97
                     Height = 25
+                    Hint = ''
                     Glyph.Data = {
                       DE010000424DDE01000000000000760000002800000024000000120000000100
                       0400000000006801000000000000000000001000000000000000000000000000
@@ -1279,6 +1414,8 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 80
                     Width = 81
                     Height = 21
+                    Hint = ''
+                    Text = ''
                     TabOrder = 4
                     Color = clWindow
                   end
@@ -1287,6 +1424,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 294
                     Width = 106
                     Height = 23
+                    Hint = ''
                     ShowHint = True
                     ParentShowHint = False
                     Glyph.Data = {
@@ -1333,6 +1471,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
                     Top = 32
                     Width = 121
                     Height = 21
+                    Hint = ''
                     DateTime = 41058.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1356,6 +1495,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -1363,6 +1503,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -1370,6 +1511,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -1377,6 +1519,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -1384,6 +1527,7 @@ inherited FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end

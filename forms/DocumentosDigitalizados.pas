@@ -155,7 +155,7 @@ begin
     MessageDlg('Comunicar central deste documento:' +
       CdsDocumentoProcessos.FieldByName('DESCRICAO').AsString + '?',
       mtWarning, mbYesNo,
-      procedure(Result: Integer)
+      procedure(Sender: TComponent; Result: Integer)
       begin
         if Result = mrYes then
         begin

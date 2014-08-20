@@ -50,9 +50,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
         5706}
       Caption = 'Abrir'
     end
-    inherited UniDBImage1: TUniDBImage
+    inherited UniDBImageInterno: TUniDBImage
       Top = 455
-      ExplicitTop = 455
     end
   end
   inherited PanelModeloCadastro: TUniPanel
@@ -483,6 +482,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -490,6 +490,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -500,6 +501,9 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
             inherited TabSheetHistorico: TUniTabSheet
               ExplicitWidth = 870
               ExplicitHeight = 552
+              DesignSize = (
+                870
+                552)
               inherited DBGrid1: TUniDBGrid
                 Width = 859
                 Columns = <
@@ -509,6 +513,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -516,6 +521,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -523,6 +529,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               inherited DBMemo1: TUniDBMemo
@@ -552,6 +559,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -559,6 +567,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
@@ -592,9 +601,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Top = 47
                   Width = 258
                   Height = 25
-                  ScreenMask.Enabled = True
-                  ScreenMask.WaitData = True
-                  ScreenMask.Message = 'Aguarde, unificando os arquivos  PDF...'
                   Glyph.Data = {
                     CE020000424DCE02000000000000CE0100002800000010000000100000000100
                     08000000000000010000120B0000120B0000660000006600000000000000FFFF
@@ -621,6 +627,9 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     020202020202020207070707020202020202}
                   Caption = 'Unificar / Visualizar Todos PDF'
                   TabOrder = 1
+                  ScreenMask.Enabled = True
+                  ScreenMask.WaitData = True
+                  ScreenMask.Message = 'Aguarde, unificando os arquivos  PDF...'
                   OnClick = UniBitBtnTodosDigitalizadosClick
                 end
                 object UniEditDescricaoPDF: TUniEdit
@@ -724,7 +733,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Top = 12
                   Width = 126
                   Height = 17
-                  Checked = False
                   Caption = 'Comunicar central ?'
                   TabOrder = 7
                 end
@@ -761,7 +769,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                   ReadOnly = True
                   WebOptions.Paged = False
-                  WebOptions.LoadMaskMsg = 'Please wait...'
+                  LoadMask.Message = 'Loading data...'
                   OnCellClick = UniDBGrid1CellClick
                   Align = alTop
                   Anchors = [akLeft, akTop, akRight, akBottom]
@@ -773,6 +781,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 85
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -780,6 +789,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 180
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DATA'
@@ -787,6 +797,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 80
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'IDDOCUMENTOS_PROCESSO'
@@ -794,6 +805,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                       Width = 64
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
                 object UniBitBtnComunicarCentral: TUniBitBtn
@@ -831,6 +843,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -838,6 +851,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -845,6 +859,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -852,6 +867,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -859,6 +875,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end

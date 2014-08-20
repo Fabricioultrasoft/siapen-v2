@@ -60,6 +60,8 @@ type
       Shift: TShiftState);
     procedure UniLoginFormShow(Sender: TObject);
     procedure UniTimer1Timer(Sender: TObject);
+    procedure CdsservidorReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError; UpdateKind: TUpdateKind;
+      var Action: TReconcileAction);
   private
     procedure Saldacoes;
     { Private declarations }
@@ -79,7 +81,7 @@ uses
   uniGUIApplication,
   DmPrincipal,
   Lib,
-  humanejs, Aguarde;
+  humanejs, Aguarde, ServerModule;
 
 function FrmLogin: TFrmLogin;
 begin
@@ -94,6 +96,7 @@ var
   C: TUniClientInfoRec;
   sIp, sBrowser, sVersao, sOSType: string;
 begin
+  Saldacoes;
 
   sIp := UniApplication.RemoteAddress;
 
@@ -290,11 +293,11 @@ begin
                 ('insert into conexao (idconexao, id_funcioanrio, data_hora_entrada, tela_momento) '
                 + ' values (' + IntToStr(dm.GLOBAL_IDCONEXAO) + ', ' +
                 IntToStr(dm.GLOBAL_ID_FUNCIONARIO) + ', current_timestamp, ' +
-                Qs('Tela de Login') + ' Login:' + dm.LOGIN_CONECTADO +
+                Qs('Tela de Login' + ' Login:' + dm.LOGIN_CONECTADO +
                 ', Senha:' + dm.GLOBAL_SENHA_USUARIO + ', UP:' +
                 IntToStr(dm.GLOBAL_ID_UP) + ', IP:' + sIp + ', ' +
                 'ENTRADA - Browser:' + sBrowser + ' Versao:' + sVersao +
-                ' OSType:' + sOSType + ')');
+                ' OSType:' + sOSType) + ')');
 
               dm.Conexao.ExecuteDirect('EXECUTE PROCEDURE SET_CONTEXT_CONEXAO('
                 + IntToStr(dm.GLOBAL_IDCONEXAO) + ')');
@@ -305,7 +308,6 @@ begin
         end;
 
         ModalResult := mrOK; // Login is valid so proceed to MainForm
-        Saldacoes();
 
       end
       else
@@ -425,7 +427,7 @@ begin
   if Key = VK_RETURN then
   begin
     FrmAguarde.ShowModal(
-      procedure(Res: Integer)
+      procedure(Sender: TComponent; Res: Integer)
       begin
         UniBitBtnEntrar.OnClick(nil);
       end);
@@ -460,6 +462,55 @@ begin
 
 end;
 
+procedure TFrmLogin.CdsservidorReconcileError(DataSet: TCustomClientDataSet; E: EReconcileError;
+  UpdateKind: TUpdateKind; var Action: TReconcileAction);
+var
+  arquivo: TextFile;
+  NomeArquivo: string;
+  C: TUniClientInfoRec;
+  sIp, sBrowser, sVersao, sOSType: string;
+begin
+
+  sIp := UniApplication.RemoteAddress;
+
+  C := UniApplication.ClientInfoRec;
+
+  sBrowser := C.BrowserType;
+  sVersao := IntToStr(C.BrowserVersion);
+  sOSType := C.OSType;
+
+  try
+
+    if not DirectoryExists('../log') then
+      CreateDir('../log');
+
+    NomeArquivo := '../log/' + UniServerModule.Title +
+      FormatDateTime('yyyy-mm-dd-hh-mm-zzz', now) + '_Erro.txt';
+
+    AssignFile(arquivo, NomeArquivo);
+    Rewrite(arquivo);
+
+    Writeln(arquivo, DateTimeToStr(now) + #13#10 + 'cds: ' + DataSet.Name +
+      ' - ' + E.Message + ' Login:'+ Dm.LOGIN_CONECTADO + ', Senha:' +
+      Dm.GLOBAL_SENHA_USUARIO + ', UP:' +inttostr( Dm.GLOBAL_ID_UP) + ', Funcionário:' +
+      inttostr( Dm.GLOBAL_ID_FUNCIONARIO) + ', IP:' + sIp + ', ' + 'ENTRADA - Browser:' +
+      sBrowser + ' Versao:' + sVersao + ' OSType:' + sOSType);
+
+    CloseFile(arquivo);
+
+    Action := raAbort;
+
+    ShowMessage('Inconsistência nos dados:' + (E.Message));
+
+  except
+    on E: Exception do
+    begin
+      ShowMessage('Sistema diz: ' + E.Message);
+    end;
+  end;
+
+end;
+
 procedure TFrmLogin.Saldacoes();
 var
   sSaudacoes: string;
@@ -475,6 +526,7 @@ begin
   dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
   // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
 
+  humane.timeout(10000);
   humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
     'Seja bem vindo!');
 

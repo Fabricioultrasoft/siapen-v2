@@ -75,7 +75,7 @@ type
     UniPanel1: TUniPanel;
     UniURLFrameAgenda: TUniURLFrame;
     EditHora: TUniEdit;
-    UniTimer1: TUniTimer;
+    UniTimerHoraSistema: TUniTimer;
     ImageList1: TUniImageList;
     MainMenu1: TUniMainMenu;
     Cadastro1: TUniMenuItem;
@@ -244,7 +244,7 @@ type
     UniImageLogoMarca: TUniImage;
     DocumentosDigitalizados1: TUniMenuItem;
     UniFileUploadPdf: TUniFileUpload;
-    UniTimer2: TUniTimer;
+    UniTimerMostrarGrafico: TUniTimer;
     UniStatusBar1: TUniStatusBar;
     TimerShowAcao: TUniTimer;
     ExploredoServidor1: TUniMenuItem;
@@ -252,7 +252,7 @@ type
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniDBLookupComboBoxUPCloseUp(Sender: TObject);
-    procedure UniTimer1Timer(Sender: TObject);
+    procedure UniTimerHoraSistemaTimer(Sender: TObject);
     procedure CadastrodeInternos2Click(Sender: TObject);
     procedure UniBitBtn2Click(Sender: TObject);
     procedure UniFileUploadImagemCompleted(Sender: TObject;
@@ -272,7 +272,7 @@ type
     procedure UniBitBtn3Click(Sender: TObject);
     procedure UniBitBtn6Click(Sender: TObject);
     procedure UniImage2Click(Sender: TObject);
-    procedure UniTimer2Timer(Sender: TObject);
+    procedure UniTimerMostrarGraficoTimer(Sender: TObject);
     procedure TimerShowAcaoTimer(Sender: TObject);
     procedure Funcionrio2Click(Sender: TObject);
     procedure ExploredoServidor1Click(Sender: TObject);
@@ -288,6 +288,7 @@ type
     FUltimoAvisoFechamento: Boolean;
     FAvisoSessao: Boolean;
     procedure FecharSistema;
+    procedure Saldacoes;
     { Private declarations }
   public
     property NomeImagemUpload: string read FNomeImagemUpload
@@ -327,7 +328,7 @@ end;
 procedure TMainForm.UniBitBtnConfereClick(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmConfere.ShowModal();
     end);
@@ -423,10 +424,31 @@ begin
 
 end;
 
+procedure TMainForm.Saldacoes();
+var
+  sSaudacoes: string;
+begin
+  if (time >= strtotime('00:00:00')) and (time < strtotime('11:59:59')) then
+    sSaudacoes := 'Bom Dia';
+  if (time >= strtotime('12:00:00')) and (time < strtotime('17:59:59')) then
+    sSaudacoes := 'Boa Tarde';
+  if (time >= strtotime('18:00:00')) and (time < strtotime('23:59:59')) then
+    sSaudacoes := 'Boa Noite';
+
+  dm.DATA_HORA_ENTRADA := NOW;
+  dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
+  // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
+
+  humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
+    'Seja bem vindo!');
+
+end;
+
 procedure TMainForm.UniFormShow(Sender: TObject);
 var
   i: integer;
 begin
+//  Saldacoes();
 
   UniPageControlPrincipal.ActivePageIndex := 0;
 
@@ -467,7 +489,7 @@ begin
   MostraGrafico;
 end;
 
-procedure TMainForm.UniTimer1Timer(Sender: TObject);
+procedure TMainForm.UniTimerHoraSistemaTimer(Sender: TObject);
 var
   sTempo, sTempo2: String;
   dHoraIni, dHoraAtual, dHoraFim: TDateTime;
@@ -476,9 +498,9 @@ var
 begin
   dHoraIni := dm.DATA_HORA_ENTRADA;
   dHoraFim := dm.DATA_HORA_ENCERRAR;
-  dHoraAtual := Now;
+  dHoraAtual := NOW;
 
-  if dm.DATA_HORA_ENCERRAR < IncMinute(Now) then
+  if dm.DATA_HORA_ENCERRAR < IncMinute(NOW) then
   begin
     if not FAvisoSessao then
     begin
@@ -489,9 +511,9 @@ begin
     end;
   end;
 
-  if dm.DATA_HORA_ENCERRAR < Now then
+  if dm.DATA_HORA_ENCERRAR < NOW then
   begin
-    UniTimer1.enabled := False;
+    UniTimerHoraSistema.enabled := False;
     FecharSistema;
     Exit;
   end;
@@ -523,7 +545,7 @@ begin
   // Application.
   // UniStatusBar1.Panels.Items[6].Text :=  ;
 
-  EditHora.Text := FormatDateTime('dd/mm/yyyy  -  hh:mm:ss', Now);
+  EditHora.Text := FormatDateTime('dd/mm/yyyy  -  hh:mm:ss', NOW);
   if FileExists('atualizar.txt') then
   begin
     if FTempoParaFechar <= 0 then
@@ -563,10 +585,10 @@ begin
 
 end;
 
-procedure TMainForm.UniTimer2Timer(Sender: TObject);
+procedure TMainForm.UniTimerMostrarGraficoTimer(Sender: TObject);
 begin
   //
-  UniTimer2.enabled := False;
+  UniTimerMostrarGrafico.enabled := False;
   MostraGrafico;
   MostraAgenda;
 
@@ -581,7 +603,7 @@ procedure TMainForm.UniBitBtn3Click(Sender: TObject);
 begin
   //
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmDocumentosDigitalizados.ShowModal();
     end);
@@ -593,7 +615,7 @@ procedure TMainForm.UniBitBtn4Click(Sender: TObject);
 begin
   // FrmMenuRelatorio.ShowModal();
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmMenuRelatorios.ShowModal();
     end);
@@ -603,7 +625,7 @@ procedure TMainForm.UniBitBtn5Click(Sender: TObject);
 begin
   //
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmConsultaInterno.ShowModal();
     end);
@@ -620,7 +642,7 @@ begin
   end;
 
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmHistoricoInterno.ShowModal;
     end);
@@ -635,7 +657,7 @@ begin
   try
     try
 
-      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', Now) +
+      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) +
         'relatorio_tela.html';
 
       FArquivo := UniServerModule.LocalCachePath + nome_agora;
@@ -698,7 +720,7 @@ end;
 procedure TMainForm.PSICOSSOCIAL1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmPsicossocial.ShowModal();
     end);
@@ -707,7 +729,7 @@ end;
 procedure TMainForm.rocarSenha1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmAlterarSenha.ShowModal();
     end);
@@ -717,7 +739,7 @@ procedure TMainForm.Sair1Click(Sender: TObject);
 begin
 
   MessageDlg('Sair do sistema?', mtWarning, mbYesNo,
-    procedure(Result: integer)
+    procedure(Sender: TComponent; Result: integer)
     begin
       if Result = mrYes then
       begin
@@ -1148,7 +1170,7 @@ end;
 procedure TMainForm.BitBtn1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmDisciplina.ShowModal();
     end);
@@ -1157,7 +1179,7 @@ end;
 procedure TMainForm.BitBtn4Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmPsicossocial.ShowModal();
     end);
@@ -1166,7 +1188,7 @@ end;
 procedure TMainForm.BitBtn5Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmCadastroInternoTrabalho.ShowModal();
     end);
@@ -1175,7 +1197,7 @@ end;
 procedure TMainForm.CadastrodeInternos2Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmInterno.ShowModal();
     end);
@@ -1184,7 +1206,7 @@ end;
 procedure TMainForm.ConselhoDi1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmConselhoDisciplinar.ShowModal;
     end);
@@ -1194,7 +1216,7 @@ procedure TMainForm.Disciplina2Click(Sender: TObject);
 begin
   //
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmDisciplina.ShowModal();
     end);
@@ -1203,7 +1225,7 @@ end;
 procedure TMainForm.DocumentosDigitalizados1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmDocumentosDigitalizados.ShowModal();
     end);
@@ -1214,7 +1236,7 @@ begin
   if dm.configuracao = 'S' then
   begin
     FrmAguarde.ShowModal(
-      procedure(Res: integer)
+      procedure(Sender: TComponent; Res: integer)
       begin
         FrmExplore.ShowModal();
       end);
@@ -1229,7 +1251,7 @@ begin
   if dm.configuracao = 'S' then
   begin
     FrmAguarde.ShowModal(
-      procedure(Res: integer)
+      procedure(Sender: TComponent; Res: integer)
       begin
         FrmCadastroFaltasDisciplinares.ShowModal();
       end);
@@ -1241,7 +1263,7 @@ end;
 procedure TMainForm.Informaes1Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmSobre.ShowModal();
     end);
@@ -1250,7 +1272,7 @@ end;
 procedure TMainForm.Interno2Click(Sender: TObject);
 begin
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmCadastroInternoTrabalho.ShowModal();
     end);
@@ -1264,7 +1286,7 @@ begin
   try
     try
 
-      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', Now) +
+      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) +
         'relatorio_tela2.html';
 
       FArquivo := UniServerModule.LocalCachePath + nome_agora;
@@ -1338,7 +1360,7 @@ procedure TMainForm.Funcionrio2Click(Sender: TObject);
 begin
   //
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       if ((dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R'))
       then

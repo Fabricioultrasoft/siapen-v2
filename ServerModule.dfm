@@ -715,208 +715,37 @@ object UniServerModule: TUniServerModule
   FaviconOptions = [foVisible, foLocalCache]
   AjaxTimeout = 120000
   DefaultImageFormat = cfJpeg
-  UseGlobalImageCache = True
   SuppressErrors = []
-  UnavailableErrMsg = 'Siapen 2.0 n'#227'o est'#225' dispon'#237'vel, por favor, tente mais tarde...'
+  UnavailableErrMsg = 
+    '<b><font Color=navy>Ops... pedimos desculpas!</font></b><br> O s' +
+    'istema est'#225' sem resposta a muito tempo... Provavelmente o seu na' +
+    'vegador perdeu contato com o servidor, ou houve alguma inconsist' +
+    #234'ncia. <b>Tente novamante ou reinicie o sistema pressionando a t' +
+    'ecla [F5]</b>. <br>Voc'#234' pode solicitar consulta aos logs, anote ' +
+    'o hor'#225'rio e descreva os seus passos para nossa simula'#231#227'o.'
   LoadingMessage = 'Siapen 2.0'
   Bindings = <>
   MainFormDisplayMode = mfPage
   CustomFiles.Strings = (
+    'assets/css/themes/libnotify.css'
     'assets/js/humane.min.js'
     'js/jquery.min.js'
     'js/jquery.maskedinput-1.3.min.js'
     'js/jquery.numberMask.js'
     'css/sexybuttons.css')
-  CustomCSS.Strings = (
-    'html,'
-    'body {'
-    '  height: 100%;'
-    '}'
-    '.humane {'
-    '  position: fixed;'
-    '  -moz-transition: all 0.3s ease-out;'
-    '  -webkit-transition: all 0.3s ease-out;'
-    '  -ms-transition: all 0.3s ease-out;'
-    '  -o-transition: all 0.3s ease-out;'
-    '  transition: all 0.3s ease-out;'
-    '  z-index: 100000;'
-    '  display: none;'
-    '}'
-    '.humane {'
-    '  font-family: Ubuntu, Verdana, sans-serif;'
-    '  line-height: 40px;'
-    '  font-size: 35px;'
-    '  top: 25%;'
-    '  left: 25%;'
-    '  opacity: 0;'
-    '  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);'
-    '  width: 50%;'
-    '  min-height: 40px;'
-    '  padding: 30px;'
-    '  text-align: center;'
+  CustomMeta.Strings = (
     
-      '  background-image: url('#39'data:image/png;base64,iVBORw0KGgoAAAANS' +
-      'UhEUgAAAAEAAADICAYAAAAp8ov1AAAABmJLR0QA/wD/AP+gvaeTAAAAc0lEQVQok' +
-      'b2RQQ6EMAwDx/7/n80BtIEC3RYhLlXrVLGTAYiBWBIGtkPSP01SfreTVoV5re9Rc' +
-      'ee1scwDk9NurbR62sZJcpzy9O+2X5KsXabyPaQFYNuvkqkRviDTp9Vs8opC0TpkH' +
-      'vJtVjeReW/5kEyX1gKeLEKE9peeWAAAAABJRU5ErkJggg=='#39');'
+      '<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js">' +
+      '</script>'
+    '<script type="text/javascript">'
+    'if (typeof jQuery != '#39'undefined'#39')'
     
-      '  background: -webkit-gradient(linear, left top, left bottom, co' +
-      'lor-stop(0, #000), color-stop(1, rgba(0,0,0,0.90))) no-repeat;'
+      '     {document.write(unescape("%3Cscript src='#39'http://cdn.bootcss' +
+      '.com/extjs/4.2.1/ext-all.js'#39'%3E%3C/script%3E")); }'
     
-      '  background: -moz-linear-gradient(top, #000 0%, rgba(0,0,0,0.90' +
-      ') 100%) no-repeat;'
-    
-      '  background: -webkit-linear-gradient(top, #000 0%, rgba(0,0,0,0' +
-      '.90) 100%) no-repeat;'
-    
-      '  background: -ms-linear-gradient(top, #000 0%, rgba(0,0,0,0.90)' +
-      ' 100%) no-repeat;'
-    
-      '  background: -o-linear-gradient(top, #000 0%, rgba(0,0,0,0.90) ' +
-      '100%) no-repeat;'
-    
-      '  background: linear-gradient(top, #000 0%, rgba(0,0,0,0.90) 100' +
-      '%) no-repeat;'
-    '  *background-color: #000;'
-    '  color: #fff;'
-    '  -moz-border-radius: 15px;'
-    '  -webkit-border-radius: 15px;'
-    '  -ms-border-radius: 15px;'
-    '  -o-border-radius: 15px;'
-    '  border-radius: 15px;'
-    '  text-shadow: 0 -1px 1px #ddd;'
-    '  -moz-box-shadow: 0 15px 15px -15px #000;'
-    '  -webkit-box-shadow: 0 15px 15px -15px #000;'
-    '  -ms-box-shadow: 0 15px 15px -15px #000;'
-    '  -o-box-shadow: 0 15px 15px -15px #000;'
-    '  box-shadow: 0 15px 15px -15px #000;'
-    '  -moz-transform: scale(0.1);'
-    '  -webkit-transform: scale(0.1);'
-    '  -ms-transform: scale(0.1);'
-    '  -o-transform: scale(0.1);'
-    '  transform: scale(0.1);'
-    '}'
-    '.humane p,'
-    '.humane ul {'
-    '  margin: 0;'
-    '  padding: 0;'
-    '}'
-    '.humane ul {'
-    '  list-style: none;'
-    '}'
-    '.humane.humane-info {'
-    
-      '  background-image: url('#39'data:image/png;base64,iVBORw0KGgoAAAANS' +
-      'UhEUgAAAAEAAADICAYAAAAp8ov1AAAABmJLR0QA/wD/AP+gvaeTAAAAQElEQVQok' +
-      'WNgYEj5z8TAwPCfiYGBgQGVIEKMTG2DTYwRVez/IHIaNcUGyBnYgpORel6gpvFEJ' +
-      'hBqpxIaG8/AAADsKDq/HhYQ2AAAAABJRU5ErkJggg=='#39');'
-    
-      '  background: -webkit-gradient(linear, left top, left bottom, co' +
-      'lor-stop(0, #000064), color-stop(1, rgba(0,0,100,0.90))) no-repe' +
-      'at;'
-    
-      '  background: -moz-linear-gradient(top, #000064 0%, rgba(0,0,100' +
-      ',0.90) 100%) no-repeat;'
-    
-      '  background: -webkit-linear-gradient(top, #000064 0%, rgba(0,0,' +
-      '100,0.90) 100%) no-repeat;'
-    
-      '  background: -ms-linear-gradient(top, #000064 0%, rgba(0,0,100,' +
-      '0.90) 100%) no-repeat;'
-    
-      '  background: -o-linear-gradient(top, #000064 0%, rgba(0,0,100,0' +
-      '.90) 100%) no-repeat;'
-    
-      '  background: linear-gradient(top, #000064 0%, rgba(0,0,100,0.90' +
-      ') 100%) no-repeat;'
-    '  *background-color: #030;'
-    '}'
-    '.humane.humane-success {'
-    
-      '  background-image: url('#39'data:image/png;base64,iVBORw0KGgoAAAANS' +
-      'UhEUgAAAAEAAADICAYAAAAp8ov1AAAABmJLR0QA/wD/AP+gvaeTAAAAPklEQVQok' +
-      'WNgSGH4z8TAACEYUAkixMjUNsjEGFHF/g8ip1FVbGCcgS04GannBaoaT1wCwWkvm' +
-      'XbQ2HgGBgYA8Yw6v+m4Kh8AAAAASUVORK5CYII='#39');'
-    
-      '  background: -webkit-gradient(linear, left top, left bottom, co' +
-      'lor-stop(0, #006400), color-stop(1, rgba(0,100,0,0.90))) no-repe' +
-      'at;'
-    
-      '  background: -moz-linear-gradient(top, #006400 0%, rgba(0,100,0' +
-      ',0.90) 100%) no-repeat;'
-    
-      '  background: -webkit-linear-gradient(top, #006400 0%, rgba(0,10' +
-      '0,0,0.90) 100%) no-repeat;'
-    
-      '  background: -ms-linear-gradient(top, #006400 0%, rgba(0,100,0,' +
-      '0.90) 100%) no-repeat;'
-    
-      '  background: -o-linear-gradient(top, #006400 0%, rgba(0,100,0,0' +
-      '.90) 100%) no-repeat;'
-    
-      '  background: linear-gradient(top, #006400 0%, rgba(0,100,0,0.90' +
-      ') 100%) no-repeat;'
-    '  *background-color: #030;'
-    '}'
-    '.humane.humane-error {'
-    
-      '  background-image: url('#39'data:image/png;base64,iVBORw0KGgoAAAANS' +
-      'UhEUgAAAAEAAADICAYAAAAp8ov1AAAABmJLR0QA/wD/AP+gvaeTAAAAPklEQVQok' +
-      'WNIYWD4z8QAJRhQCSLEyNQ2uMQYUcX+DyKnUVdsQJyBLTgZqecF6hpPVALBaS+Zd' +
-      'tDYeAYGBgYA9vA6v4OR3MkAAAAASUVORK5CYII='#39');'
-    
-      '  background: -webkit-gradient(linear, left top, left bottom, co' +
-      'lor-stop(0, #640000), color-stop(1, rgba(100,0,0,0.90))) no-repe' +
-      'at;'
-    
-      '  background: -moz-linear-gradient(top, #640000 0%, rgba(100,0,0' +
-      ',0.90) 100%) no-repeat;'
-    
-      '  background: -webkit-linear-gradient(top, #640000 0%, rgba(100,' +
-      '0,0,0.90) 100%) no-repeat;'
-    
-      '  background: -ms-linear-gradient(top, #640000 0%, rgba(100,0,0,' +
-      '0.90) 100%) no-repeat;'
-    
-      '  background: -o-linear-gradient(top, #640000 0%, rgba(100,0,0,0' +
-      '.90) 100%) no-repeat;'
-    
-      '  background: linear-gradient(top, #640000 0%, rgba(100,0,0,0.90' +
-      ') 100%) no-repeat;'
-    '  *background-color: #300;'
-    '}'
-    '.humane.humane-animate {'
-    '  opacity: 1;'
-    '  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);'
-    '  -moz-transform: scale(1);'
-    '  -webkit-transform: scale(1);'
-    '  -ms-transform: scale(1);'
-    '  -o-transform: scale(1);'
-    '  transform: scale(1);'
-    '}'
-    '.humane.humane-animate:hover {'
-    '  opacity: 0.6;'
-    '  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);'
-    '  -moz-transform: scale(0.8);'
-    '  -webkit-transform: scale(0.8);'
-    '  -ms-transform: scale(0.8);'
-    '  -o-transform: scale(0.8);'
-    '  transform: scale(0.8);'
-    '}'
-    '.humane.humane-js-animate {'
-    '  opacity: 1;'
-    '  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);'
-    '  -moz-transform: scale(1);'
-    '  -webkit-transform: scale(1);'
-    '  -ms-transform: scale(1);'
-    '  -o-transform: scale(1);'
-    '  transform: scale(1);'
-    '}'
-    '.humane.humane-js-animate:hover {'
-    '  opacity: 0.6;'
-    '  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);'
-    '}')
+      'else {document.write(unescape("%3Cscript src='#39'ext-4.2.1.883/ext-' +
+      'all-1.js'#39'%3E%3C/script%3E")); }'
+    '</script>')
   ServerMessages.ExceptionTemplate.Strings = (
     '<html>'
     '<body bgcolor="#dfe8f6">'

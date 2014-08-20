@@ -216,7 +216,7 @@ procedure TFrmConsultaInterno.ToolButtonJuridicoClick(Sender: TObject);
 begin
 
   FrmAguarde.ShowModal(
-    procedure(Res: integer)
+    procedure(Sender: TComponent; Res: integer)
     begin
       FrmVisualizarRelatorio.CarregarFichaDisciplinar
         (DsCadastro.DataSet.FieldByname('ID_INTERNO').asinteger);

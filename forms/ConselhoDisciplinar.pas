@@ -113,6 +113,8 @@ type
     UniDateTimePickerCienciaCCT: TUniDateTimePicker;
     UniComboBoxSolicitante: TUniComboBox;
     UniLabel32: TUniLabel;
+    UniLabel21: TUniLabel;
+    UniEditTOTAL_DIAS_SANCAO: TUniEdit;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -271,6 +273,10 @@ begin
     := EditFimIsolamento.datetime;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('quantidade_dias_isolamento')
     .AsString := EditQtdeDiasIsolamento.Text;
+  // UniEditTOTAL_DIAS_SANCAO
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('TOTAL_DIAS_SANCAO').AsString :=
+    UniEditTOTAL_DIAS_SANCAO.Text;
+
   Dsvincfaltadisciplinar.DataSet.fieldbyname('recurso').AsString := recurso;
   Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString :=
     preventivo;
@@ -289,7 +295,6 @@ begin
   Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString :=
     UniEditLocalArquivo.Text;
 
-
   Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime :=
     UniDateTimePickerEnvioRecurso.datetime;
 
@@ -299,8 +304,8 @@ begin
   Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime
     := UniDateTimePickerTomouCiencia.datetime;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime
-    := UniDateTimePickerCienciaCCT.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime :=
+    UniDateTimePickerCienciaCCT.datetime;
 
   Dsvincfaltadisciplinar.DataSet.Post;
   Cdsvincfaltadisciplinar.ApplyUpdates(-1);
@@ -354,11 +359,12 @@ begin
   Dm.ID_RETORNO_FORM := 'Codigo';
 
   FrmConsulta.ShowModal(
-    procedure(Result: Integer)
+    procedure(Sender: TComponent; Result: Integer)
     begin
       if Result = mrOK then
       begin
-        DBLookupComboBoxfaltadisciplinar.KeyValue := DM.ID_RETORNO_CONSULTAOBJETIVA;
+        DBLookupComboBoxfaltadisciplinar.KeyValue :=
+          Dm.ID_RETORNO_CONSULTAOBJETIVA;
         Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
         EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
           ('TIPOFALTA').AsString;
@@ -386,6 +392,7 @@ begin
 
   EditQtdeDiasIsolamento.Text := '';
   EditFimIsolamento.Text := '';
+  UniEditTOTAL_DIAS_SANCAO.Text := '';
 
 end;
 
@@ -485,6 +492,9 @@ begin
   EditQtdeDiasIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('quantidade_dias_isolamento').AsString;
 
+  UniEditTOTAL_DIAS_SANCAO.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
+    ('TOTAL_DIAS_SANCAO').AsString;
+
   ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('decisao_recurso').AsString;
 
@@ -511,8 +521,7 @@ begin
     .Asdatetime;
 
   UniDateTimePickerCienciaCCT.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT')
-    .Asdatetime;
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime;
 
   UniEditUPOrigemProcesso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
     ('ID_UP').AsString;
@@ -529,7 +538,7 @@ begin
 
     MessageDlg('Confirma que o Isolamento Foi Cumprido?',
       mtConfirmation, mbYesNo,
-      procedure(iRet: Integer)
+      procedure(Sender: TComponent; iRet: Integer)
       begin
         if iRet = mrYes then
         begin
@@ -544,7 +553,7 @@ begin
   else
   begin
     MessageDlg('Confirma Liberação da Pena?', mtConfirmation, mbYesNo,
-      procedure(iRet: Integer)
+      procedure(Sender: TComponent; iRet: Integer)
       begin
         if iRet = mrYes then
         begin
@@ -586,9 +595,9 @@ begin
   begin
     UniPanelRecurso.Enabled := false;
     ComboBoxDecisaoRecurso.ItemIndex := 0;
-  // NOVO EM 21/07/2014
+    // NOVO EM 21/07/2014
     UniComboBoxSolicitante.ItemIndex := 0;
-    UniComboBoxSolicitante.TEXT := '';
+    UniComboBoxSolicitante.Text := '';
   end;
 end;
 
@@ -638,6 +647,7 @@ begin
   EditInicioIsolamento.Text := '';
   EditFimIsolamento.Text := '';
   EditQtdeDiasIsolamento.Text := '';
+  UniEditTOTAL_DIAS_SANCAO.Text := '';
   RadioGroupPreventivo.ItemIndex := 1;
   RadioGroupPreventivo.OnClick(nil);
   RadioGroupRecurso.ItemIndex := 1;
@@ -681,7 +691,7 @@ procedure TFrmConselhoDisciplinar.UniBitBtnUPOrigemProcessoClick
   (Sender: TObject);
 begin
   inherited;
-  ConsultaTabelaUniEdit(Self,
+  ConsultaTabelaUniEdit(self,
     'select ID_UP codigo, NOME_UP nome, sigla from UNIDADE_PENAL order by NOME_UP',
     'NOME_UP||sigla', 'codigo', 'nome', UniEditUPOrigemProcesso,
     UniLabelUPOrigemProcesso);
@@ -904,8 +914,8 @@ begin
   DSHISTORICO_interno.DataSet.Open;
 end;
 
-procedure TFrmConselhoDisciplinar.CIdeEncaminhamentoparaCCT1Click(
-  Sender: TObject);
+procedure TFrmConselhoDisciplinar.CIdeEncaminhamentoparaCCT1Click
+  (Sender: TObject);
 begin
   inherited;
   if Dsvincfaltadisciplinar.DataSet.IsEmpty then
@@ -915,8 +925,8 @@ begin
   end;
 
   //
-  FrmFiltroInformarDoc.Showmodal(
-    procedure(AResult: Integer)
+  FrmFiltroInformarDoc.ShowModal(
+    procedure(Sender: TComponent; AResult: Integer)
     begin
       if AResult = mrOK then
       begin
@@ -925,7 +935,7 @@ begin
           Dsvincfaltadisciplinar.DataSet.fieldbyname
           ('ID_VINC_FALTA_DISCIPLINAR').AsString;
 
-        DM.GLOBAL_SOLICITANTE := Dsvincfaltadisciplinar.DataSet.fieldbyname
+        Dm.GLOBAL_SOLICITANTE := Dsvincfaltadisciplinar.DataSet.fieldbyname
           ('SOLICITANTE_CCT').AsString;
 
         FrmVisualizarRelatorio.FazExportacaoJPEG := true;
@@ -935,8 +945,7 @@ begin
           'SYSTEM\CI Encaminhamento CCT.fr3';
 
         if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-          inttostr(Dm.GLOBAL_ID_UP) +
-          '\CI Encaminhamento CCT.fr3') then
+          inttostr(Dm.GLOBAL_ID_UP) + '\CI Encaminhamento CCT.fr3') then
         begin
           FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
             'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
@@ -950,8 +959,8 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.ComunicaodeIsolamentoPreventivo1Click(
-  Sender: TObject);
+procedure TFrmConselhoDisciplinar.ComunicaodeIsolamentoPreventivo1Click
+  (Sender: TObject);
 begin
   inherited;
   if Dsvincfaltadisciplinar.DataSet.IsEmpty then
@@ -961,7 +970,7 @@ begin
   end;
   //
   Prompt('Informe o número do ofício:', '', mtInformation, mbOKCancel,
-    procedure(AResult: Integer; AText: string)
+    procedure(Sender: TComponent; AResult: Integer; AText: string)
     begin
       if AResult = mrOK then
       begin
@@ -1077,12 +1086,12 @@ end;
 procedure TFrmConselhoDisciplinar.Excluir1Click(Sender: TObject);
 begin
   inherited;
-{
-  if not Dsvincfaltadisciplinar.DataSet.Active then
+  {
+    if not Dsvincfaltadisciplinar.DataSet.Active then
     Dsvincfaltadisciplinar.DataSet.Open;
 
-  Dsvincfaltadisciplinar.DataSet.delete;
-}
+    Dsvincfaltadisciplinar.DataSet.delete;
+  }
   showmessage('Por favor solicite a exclusão para o suporte.');
 
 end;
@@ -1112,6 +1121,7 @@ begin
   ComboBoxTipoSancao.ItemIndex := -1;
   EditInicioIsolamento.Text := '';
   EditQtdeDiasIsolamento.Text := '';
+  UniEditTOTAL_DIAS_SANCAO.Text := '';
   EditFimIsolamento.Text := '';
   RadioGroupPreventivo.ItemIndex := 1;
   RadioGroupPreventivo.OnClick(nil);
@@ -1135,5 +1145,7 @@ begin
   UniDateTimePickerCienciaCCT.Text := '';
 
 end;
+
+// TOTAL_DIAS_SANCAO
 
 end.

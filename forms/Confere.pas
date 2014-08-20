@@ -307,7 +307,7 @@ begin
   if UniDBCheckBoxStatus.checked then
   begin
     MessageDlg('Este interno está saindo?', mtWarning, mbYesNo,
-      procedure(Result: integer)
+      procedure(Sender: TComponent; Result: integer)
       begin
         if Result = mrYes then
         begin
@@ -591,7 +591,7 @@ begin
     FrmAguarde.UniLabel1.Caption := 'Aguarde...';
     FrmAguarde.Width := 180;
     FrmAguarde.ShowModal(
-      procedure(Res: integer)
+      procedure(Sender: TComponent; Res: integer)
       begin
         UniBtnFiltrar.OnClick(nil);
       end);
@@ -1517,7 +1517,7 @@ procedure TFrmConfere.UniBitBtn1Click(Sender: TObject);
 begin
   inherited;
   FrmSituacaoDisciplinar.ShowModal(
-    procedure(Result: integer)
+    procedure(Sender: TComponent; Result: integer)
     begin
       if Result = mrOk then
       begin
@@ -1665,7 +1665,7 @@ begin
   if DsConsulta.DataSet.Active then
     DsConsulta.DataSet.Close;
 
-  MainForm.UniTimer2.Enabled := true;
+  MainForm.UniTimerMostrarGrafico.Enabled := true;
 
 end;
 

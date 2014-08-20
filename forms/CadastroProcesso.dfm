@@ -8,27 +8,33 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
   TextHeight = 13
   inherited PanelTituloModeloCadastro: TUniPanel
     Width = 976
+    ExplicitWidth = 976
     inherited UniImage1: TUniImage
       Width = 974
+      ExplicitWidth = 974
     end
   end
   inherited PanelBotoes: TUniPanel
     Height = 604
+    ExplicitHeight = 604
   end
   inherited PanelModeloCadastro: TUniPanel
     Width = 870
     Height = 604
+    ExplicitWidth = 870
+    ExplicitHeight = 604
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 868
       Height = 602
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 868
-      ExplicitHeight = 515
+      ExplicitHeight = 602
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitWidth = 860
+        ExplicitHeight = 574
         inherited PanelCadastro: TUniPanel
           Width = 860
           Height = 574
-          ExplicitLeft = 1
-          ExplicitTop = 3
           ExplicitWidth = 860
           ExplicitHeight = 574
           object Label2: TUniLabel
@@ -105,12 +111,10 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
             Top = 91
             Width = 858
             Height = 483
-            ActivePage = TabSheetInquerito
+            ActivePage = TabSheet1
             TabOrder = 7
             Align = alBottom
             Anchors = [akLeft, akRight, akBottom]
-            ExplicitLeft = -3
-            ExplicitTop = 93
             object TabSheetInquerito: TUniTabSheet
               Caption = 'Inqu'#233'rito Policia'
               object BtnBuscarIP: TUniButton
@@ -384,8 +388,6 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
               end
               object UniTabSheet1: TUniTabSheet
                 Caption = 'Inqu'#233'rito Policia'
-                ExplicitWidth = 731
-                ExplicitHeight = 328
                 object UniButton1: TUniButton
                   Left = 18
                   Top = 6
@@ -841,355 +843,13 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
                 ParentColor = False
                 Color = clWindow
               end
-              object PageControlGeralProcessos: TPageControl
-                Left = 19
-                Top = 123
-                Width = 601
-                Height = 231
-                ActivePage = TabSheet3
-                TabOrder = 13
-                TabWidth = 120
-                object TabSheet2: TTabSheet
-                  Caption = 'Artigos'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 0
-                  ExplicitHeight = 0
-                  object Label3: TLabel
-                    Left = 8
-                    Top = 4
-                    Width = 29
-                    Height = 13
-                    Caption = 'Artigo'
-                  end
-                  object SpeedButton4: TSpeedButton
-                    Left = 445
-                    Top = 18
-                    Width = 23
-                    Height = 22
-                    Hint = 'Cadastrar Artigo'
-                    Caption = '...'
-                    Flat = True
-                    ParentShowHint = False
-                    ShowHint = True
-                  end
-                  object DBGridArtigos: TDBGrid
-                    Left = 0
-                    Top = 48
-                    Width = 593
-                    Height = 130
-                    Align = alBottom
-                    ReadOnly = True
-                    TabOrder = 3
-                    TitleFont.Charset = DEFAULT_CHARSET
-                    TitleFont.Color = clWindowText
-                    TitleFont.Height = -11
-                    TitleFont.Name = 'Tahoma'
-                    TitleFont.Style = []
-                    Columns = <
-                      item
-                        Expanded = False
-                        FieldName = 'Artigo(s)'
-                        Width = 450
-                        Visible = True
-                      end>
-                  end
-                  object DBLookupComboBoxartigo: TDBLookupComboBox
-                    Left = 8
-                    Top = 20
-                    Width = 385
-                    Height = 21
-                    Enabled = False
-                    KeyField = 'ID_ARTIGO'
-                    ListField = 'ARTIGO'
-                    ListSource = Dm.Dsartigo
-                    TabOrder = 0
-                  end
-                  object BitBtn1: TBitBtn
-                    Left = 480
-                    Top = 17
-                    Width = 75
-                    Height = 25
-                    Caption = 'Inserir'
-                    Glyph.Data = {
-                      76010000424D7601000000000000760000002800000020000000100000000100
-                      04000000000000010000120B0000120B00001000000010000000000000000000
-                      800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
-                      FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333303333
-                      333333333337F33333333333333033333333333333373F333333333333090333
-                      33333333337F7F33333333333309033333333333337373F33333333330999033
-                      3333333337F337F33333333330999033333333333733373F3333333309999903
-                      333333337F33337F33333333099999033333333373333373F333333099999990
-                      33333337FFFF3FF7F33333300009000033333337777F77773333333333090333
-                      33333333337F7F33333333333309033333333333337F7F333333333333090333
-                      33333333337F7F33333333333309033333333333337F7F333333333333090333
-                      33333333337F7F33333333333300033333333333337773333333}
-                    NumGlyphs = 2
-                    TabOrder = 2
-                  end
-                  object DBNavigator2: TDBNavigator
-                    Left = 0
-                    Top = 178
-                    Width = 593
-                    Height = 25
-                    Align = alBottom
-                    Kind = dbnHorizontal
-                    TabOrder = 4
-                  end
-                  object Button4: TButton
-                    Left = 394
-                    Top = 21
-                    Width = 45
-                    Height = 20
-                    Caption = 'Busca'
-                    TabOrder = 1
-                  end
-                end
-                object TabSheet5: TTabSheet
-                  Caption = 'Eventos'
-                  ImageIndex = 2
-                  object PanelEventos: TPanel
-                    Left = 0
-                    Top = 0
-                    Width = 593
-                    Height = 41
-                    Align = alTop
-                    TabOrder = 0
-                    object BtnEventos: TButton
-                      Left = 16
-                      Top = 8
-                      Width = 129
-                      Height = 25
-                      Caption = 'Cadastro de Eventos'
-                      TabOrder = 0
-                    end
-                  end
-                  object DBGridEventos: TDBGrid
-                    Left = 0
-                    Top = 41
-                    Width = 593
-                    Height = 162
-                    Align = alClient
-                    ReadOnly = True
-                    TabOrder = 1
-                    TitleFont.Charset = DEFAULT_CHARSET
-                    TitleFont.Color = clWindowText
-                    TitleFont.Height = -11
-                    TitleFont.Name = 'Tahoma'
-                    TitleFont.Style = []
-                    Columns = <
-                      item
-                        Expanded = False
-                        FieldName = 'DATA'
-                        Title.Caption = 'Data'
-                        Width = 75
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'TIPO_EVENTO'
-                        Title.Caption = 'Descri'#231#227'o do Tipo de Evento'
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'MOTIVO'
-                        Title.Caption = 'Motivo'
-                        Width = 115
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'EXPEDIDO_POR'
-                        Title.Caption = 'Expedido por'
-                        Width = 115
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'CUMPRIDO'
-                        Title.Caption = 'Cumprido'
-                        Width = 40
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'ARQUIVADO'
-                        Title.Caption = 'Arquivado'
-                        Width = 40
-                        Visible = True
-                      end>
-                  end
-                end
-                object TabSheet3: TTabSheet
-                  Caption = 'Documentos'
-                  ImageIndex = 1
-                  object DBGridDocumentos: TDBGrid
-                    Left = 0
-                    Top = 40
-                    Width = 593
-                    Height = 163
-                    Cursor = crHandPoint
-                    Align = alBottom
-                    BorderStyle = bsNone
-                    Options = [dgTitles, dgIndicator, dgColumnResize, dgTabs, dgConfirmDelete, dgCancelOnExit]
-                    ReadOnly = True
-                    TabOrder = 2
-                    TitleFont.Charset = DEFAULT_CHARSET
-                    TitleFont.Color = clWindowText
-                    TitleFont.Height = -11
-                    TitleFont.Name = 'Tahoma'
-                    TitleFont.Style = []
-                    Columns = <
-                      item
-                        Expanded = False
-                        FieldName = 'DESCRICAO'
-                        Font.Charset = DEFAULT_CHARSET
-                        Font.Color = clNavy
-                        Font.Height = -11
-                        Font.Name = 'MS Sans Serif'
-                        Font.Style = [fsBold, fsUnderline]
-                        Title.Caption = 'Documentos Digitalizados'
-                        Width = 550
-                        Visible = True
-                      end>
-                  end
-                  object BtnIncluirDocDigitalizado: TBitBtn
-                    Left = 4
-                    Top = 5
-                    Width = 200
-                    Height = 30
-                    Caption = 'Incluir Documentos'
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clBlack
-                    Font.Height = -13
-                    Font.Name = 'Times New Roman'
-                    Font.Style = []
-                    Glyph.Data = {
-                      36020000424D3602000000000000360100002800000010000000100000000100
-                      08000000000000010000120B0000120B0000400000004000000000000000FFFF
-                      FF00FF00FF00A4676900A56B5F00A7756B00BC826800F2E7E100D1926D00C078
-                      4900DA9D7500E7AB7900EDC79500FFEFD700FBE6C000F8E0AD00FFFCEE00D1E9
-                      F000A4D7E600ADDCEB00B0DDEB005CAAC60083C1D800ACDAEA00B2DCEA00BDE1
-                      ED00CAE5EE00395662004E687200A6D4E700096B99000D6F9D00167DAD00155F
-                      81003596C1005DA9CB00162830007FBBD7009DCFE600A9D3E600E7F7FE000066
-                      980000649700015F90000160900002699C000262900005699A00056797000566
-                      95001075A500359FD5001B44580045A0CC0049A1CB005FB5E0002C4F600073C2
-                      EB0073C0E7009FD4EE00B6DDF000BDE1F300A1D1EB00ACD8F000020202020202
-                      020202020202020202023131020202020231313131313131020231331F022402
-                      24213B3E2E233F310202313A221C1B3438203C3D2B2528310202312731240224
-                      022F37312E3139310202312C0202020232363102020231353102020202020231
-                      1D3102020202023126310202020202311A3102030303022A1131020202020231
-                      183102030C0302291931020202020231123102030F0302291731020202020231
-                      133102050E0302291431020202020231153102060D03022D1631020202020202
-                      31310208100302301E020202020202020202020A070402020202020202020202
-                      0202020B09020202020202020202020202020208020202020202}
-                    ParentFont = False
-                    Style = bsWin31
-                    TabOrder = 0
-                    TabStop = False
-                  end
-                  object BtnVisuzalizarDocDigitalizador: TBitBtn
-                    Left = 212
-                    Top = 4
-                    Width = 200
-                    Height = 30
-                    Caption = 'Visualizar Documento'
-                    Font.Charset = DEFAULT_CHARSET
-                    Font.Color = clBlack
-                    Font.Height = -13
-                    Font.Name = 'Times New Roman'
-                    Font.Style = []
-                    Glyph.Data = {
-                      5E020000424D5E020000000000005E0100002800000010000000100000000100
-                      08000000000000010000120B0000120B00004A0000004A00000000000000FFFF
-                      FF00FF00FF00FCFCFC00F6F6F600F3F3F300F0F0F000ECECEC00EBEBEB00EAEA
-                      EA00E8E8E800E4E4E400E2E2E200E1E1E100E0E0E000DFDFDF00DEDEDE00D9D9
-                      D900D6D6D600D5D5D500D3D3D300D2D2D200D1D1D100D0D0D000CECECE00CCCC
-                      CC00C9C9C900C6C6C600C5C5C500C4C4C400C3C3C300C2C2C200C1C1C100BFBF
-                      BF00BEBEBE00BCBCBC00B8B8B800B7B7B700B6B6B600B5B5B500B2B2B200B0B0
-                      B000AEAEAE00ADADAD00ACACAC00ABABAB00AAAAAA00A9A9A900A8A8A800A7A7
-                      A700A6A6A600A5A5A500A4A4A400A3A3A300A2A2A2009E9E9E009D9D9D009C9C
-                      9C009898980097979700929292008E8E8E008484840083838300828282008181
-                      8100808080007F7F7F007E7E7E007878780077777700767676006A6A6A006363
-                      630002492F020202020202020202020202023B3F462B02020202020202020202
-                      020234303E472C020202020202020202020202313041462A0202020202020202
-                      02020202313240453202020202020202020202020230334248023D2A22250202
-                      0202020202022E163A381108090812240202020202020220210E09192D0E0406
-                      370202020202022E13140B25440D03011802020202020220133228394329220B
-                      0D2A02020202021A163C4343434444190A2902020202021D11282436421F140A
-                      0B290202020202290F0F183543150A0717020202020202021C010523391E110C
-                      3202020202020202021B0910131113260202020202020202020229271E1F0202
-                      0202}
-                    ParentFont = False
-                    Style = bsWin31
-                    TabOrder = 1
-                    TabStop = False
-                  end
-                end
-                object TabSheet6: TTabSheet
-                  Caption = 'Comuta'#231#227'o de Pena'
-                  ImageIndex = 3
-                  object Panel1: TPanel
-                    Left = 0
-                    Top = 0
-                    Width = 593
-                    Height = 41
-                    Align = alTop
-                    TabOrder = 0
-                    object BtnComutacao: TButton
-                      Left = 16
-                      Top = 8
-                      Width = 129
-                      Height = 25
-                      Caption = 'Cadastro de Comuta'#231#227'o'
-                      TabOrder = 0
-                    end
-                  end
-                  object DBGrid1: TDBGrid
-                    Left = 0
-                    Top = 41
-                    Width = 593
-                    Height = 162
-                    Align = alClient
-                    TabOrder = 1
-                    TitleFont.Charset = DEFAULT_CHARSET
-                    TitleFont.Color = clWindowText
-                    TitleFont.Height = -11
-                    TitleFont.Name = 'Tahoma'
-                    TitleFont.Style = []
-                    Columns = <
-                      item
-                        Expanded = False
-                        FieldName = 'DATA_LIBERACAO'
-                        Title.Caption = 'Libera'#231#227'o'
-                        Width = 100
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'TIPO_COMUTACAO'
-                        Title.Caption = 'Tipo'
-                        Width = 200
-                        Visible = True
-                      end
-                      item
-                        Expanded = False
-                        FieldName = 'VARA'
-                        Title.Caption = 'Vara'
-                        Width = 200
-                        Visible = True
-                      end>
-                  end
-                end
-              end
               object Label150: TUniLabel
                 Left = 618
                 Top = 82
                 Width = 86
                 Height = 13
                 Caption = 'Descri'#231#227'o da Vara'
-                TabOrder = 14
+                TabOrder = 13
               end
               object DBEdit1: TUniDBEdit
                 Left = 618
@@ -1198,7 +858,7 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
                 Height = 21
                 DataField = 'VARA'
                 DataSource = DsCadastro
-                TabOrder = 15
+                TabOrder = 14
                 Color = clWindow
               end
             end
@@ -1774,8 +1434,11 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitWidth = 860
+        ExplicitHeight = 574
         inherited PanelLocalizaConsulta: TUniPanel
           Width = 860
+          ExplicitWidth = 860
         end
         inherited DBGridConsulta: TUniDBGrid
           Width = 860
@@ -1788,7 +1451,6 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
   inherited StatusBar1: TUniStatusBar
     Top = 648
     Width = 970
-    ExplicitLeft = -2
     ExplicitTop = 648
     ExplicitWidth = 970
   end

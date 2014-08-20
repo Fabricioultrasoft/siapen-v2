@@ -55,7 +55,6 @@ uses
   uniGUIClasses,
   uniImageList,
   frxDBXComponents,
-  uniTimer,
   DBAccess,
   Uni,
   InterBaseUniProvider,
@@ -100,13 +99,10 @@ type
   // *********************************************************************//
   IPDFSplitMerge = interface(IDispatch)
     ['{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}']
-    procedure Split(const strInPdf: WideString; const strSplit: WideString;
-      const strOutPdf: WideString); safecall;
-    procedure Merge(const strInFiles: WideString;
-      const strOutFile: WideString); safecall;
+    procedure Split(const strInPdf: WideString; const strSplit: WideString; const strOutPdf: WideString); safecall;
+    procedure Merge(const strInFiles: WideString; const strOutFile: WideString); safecall;
     procedure SetCode(const strCode: WideString); safecall;
-    function GetNumberOfPages(const strFile: WideString;
-      const strPasswd: WideString): Integer; safecall;
+    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer; safecall;
   end;
 
   // *********************************************************************//
@@ -116,13 +112,10 @@ type
   // *********************************************************************//
   IPDFSplitMergeDisp = dispinterface
     ['{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}']
-    procedure Split(const strInPdf: WideString; const strSplit: WideString;
-      const strOutPdf: WideString); dispid 1;
-    procedure Merge(const strInFiles: WideString;
-      const strOutFile: WideString); dispid 2;
+    procedure Split(const strInPdf: WideString; const strSplit: WideString; const strOutPdf: WideString); dispid 1;
+    procedure Merge(const strInFiles: WideString; const strOutFile: WideString); dispid 2;
     procedure SetCode(const strCode: WideString); dispid 19;
-    function GetNumberOfPages(const strFile: WideString;
-      const strPasswd: WideString): Integer; dispid 20;
+    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer; dispid 20;
   end;
 
   // *********************************************************************//
@@ -158,12 +151,10 @@ type
     procedure Connect; override;
     procedure ConnectTo(svrIntf: IPDFSplitMerge);
     procedure Disconnect; override;
-    procedure Split(const strInPdf: WideString; const strSplit: WideString;
-      const strOutPdf: WideString);
+    procedure Split(const strInPdf: WideString; const strSplit: WideString; const strOutPdf: WideString);
     procedure Merge(const strInFiles: WideString; const strOutFile: WideString);
     procedure SetCode(const strCode: WideString);
-    function GetNumberOfPages(const strFile: WideString;
-      const strPasswd: WideString): Integer;
+    function GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer;
     property DefaultInterface: IPDFSplitMerge read GetDefaultInterface;
   published
   end;
@@ -532,6 +523,9 @@ type
     ImageListCorel1: TUniImageList;
     ImageListCorel2: TUniImageList;
     procedure UniGUIMainModuleCreate(Sender: TObject);
+    procedure UniGUIMainModuleSessionTimeout(ASession: TObject; var ExtendTimeOut: Integer);
+    procedure UniGUIMainModuleDestroy(Sender: TObject);
+    procedure UniGUIMainModuleBrowserClose(Sender: TObject);
   private
     FMeuPDF: TCPDFSplitMergeObj;
 
@@ -662,235 +656,130 @@ type
     FPreDescricaoConsulta: string;
     FGLOBAL_SOLICITANTE: string;
   public
-    property GLOBAL_SOLICITANTE: String read FGLOBAL_SOLICITANTE
-      write FGLOBAL_SOLICITANTE;
-    property PreDescricaoConsulta: String read FPreDescricaoConsulta
-      write FPreDescricaoConsulta;
-    property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta
-      write FCampoWhereSqlConsulta;
-    property SqlConsultaObjetiva: String read FSqlConsultaObjetiva
-      write FSqlConsultaObjetiva;
-    property UniFormRetornoConsulta: TUniForm read FUniFormRetornoConsulta
-      write FUniFormRetornoConsulta;
-    property ID_RETORNO_FORM: String read FID_RETORNO_FORM
-      write FID_RETORNO_FORM;
-    property DESC_RETORNO_FORM: String read FDESC_RETORNO_FORM
-      write FDESC_RETORNO_FORM;
-    property ID_RETORNO_CONSULTAOBJETIVA: Integer
-      read FID_RETORNO_CONSULTAOBJETIVA write FID_RETORNO_CONSULTAOBJETIVA;
-    property DESC_RETORNO_CONSULTAOBJETIVA: String
-      read FDESC_RETORNO_CONSULTAOBJETIVA write FDESC_RETORNO_CONSULTAOBJETIVA;
-    property CaminhoRelatorio: String read FCaminhoRelatorio
-      write FCaminhoRelatorio;
+    property GLOBAL_SOLICITANTE: String read FGLOBAL_SOLICITANTE write FGLOBAL_SOLICITANTE;
+    property PreDescricaoConsulta: String read FPreDescricaoConsulta write FPreDescricaoConsulta;
+    property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta write FCampoWhereSqlConsulta;
+    property SqlConsultaObjetiva: String read FSqlConsultaObjetiva write FSqlConsultaObjetiva;
+    property UniFormRetornoConsulta: TUniForm read FUniFormRetornoConsulta write FUniFormRetornoConsulta;
+    property ID_RETORNO_FORM: String read FID_RETORNO_FORM write FID_RETORNO_FORM;
+    property DESC_RETORNO_FORM: String read FDESC_RETORNO_FORM write FDESC_RETORNO_FORM;
+    property ID_RETORNO_CONSULTAOBJETIVA: Integer read FID_RETORNO_CONSULTAOBJETIVA write FID_RETORNO_CONSULTAOBJETIVA;
+    property DESC_RETORNO_CONSULTAOBJETIVA: String read FDESC_RETORNO_CONSULTAOBJETIVA write FDESC_RETORNO_CONSULTAOBJETIVA;
+    property CaminhoRelatorio: String read FCaminhoRelatorio write FCaminhoRelatorio;
     property HORA_TIMEOUT: Integer read FHORA_TIMEOUT write FHORA_TIMEOUT;
-    property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR
-      write FDATA_HORA_ENCERRAR;
-    property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA
-      write FDATA_HORA_ENTRADA;
-    property var_disciplinar: String read Fvar_disciplinar
-      write Fvar_disciplinar;
-    property var_data_disciplinar: TDateTime read Fvar_data_disciplinar
-      write Fvar_data_disciplinar;
-    property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS
-      write FGLOBAL_CENTRAL_DOCUMENTOS;
-    property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF
-      write FGLOBAL_CAMINHO_PDF;
-    property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF
-      write FGLOBAL_HTTP_PDF;
+    property DATA_HORA_ENCERRAR: TDateTime read FDATA_HORA_ENCERRAR write FDATA_HORA_ENCERRAR;
+    property DATA_HORA_ENTRADA: TDateTime read FDATA_HORA_ENTRADA write FDATA_HORA_ENTRADA;
+    property var_disciplinar: String read Fvar_disciplinar write Fvar_disciplinar;
+    property var_data_disciplinar: TDateTime read Fvar_data_disciplinar write Fvar_data_disciplinar;
+    property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS write FGLOBAL_CENTRAL_DOCUMENTOS;
+    property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
+    property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
     property MeuPDF: TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
-    property GLOBAL_IDFUNCIONARIO_FILTRO: Integer
-      read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
-    property GLOBAL_ID_FALTA_DISCIPLINAR: String
-      read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
-    property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL
-      write FGLOBAL_DATA_INICIAL;
-    property GLOBAL_DATA_FINAL: String read FGLOBAL_DATA_FINAL
-      write FGLOBAL_DATA_FINAL;
-    property GLOBAL_TIPOPROCESSO: String read FGLOBAL_TIPOPROCESSO
-      write FGLOBAL_TIPOPROCESSO;
+    property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
+    property GLOBAL_ID_FALTA_DISCIPLINAR: String read FGLOBAL_ID_FALTA_DISCIPLINAR write FGLOBAL_ID_FALTA_DISCIPLINAR;
+    property GLOBAL_DATA_INICIAL: String read FGLOBAL_DATA_INICIAL write FGLOBAL_DATA_INICIAL;
+    property GLOBAL_DATA_FINAL: String read FGLOBAL_DATA_FINAL write FGLOBAL_DATA_FINAL;
+    property GLOBAL_TIPOPROCESSO: String read FGLOBAL_TIPOPROCESSO write FGLOBAL_TIPOPROCESSO;
     property GLOBAL_DATA: TDateTime read FGLOBAL_DATA write FGLOBAL_DATA;
     property IDSENHA: Integer read FIDSENHA write FIDSENHA;
     property GLOBAL_ID_UP: Integer read FGLOBAL_ID_UP write FGLOBAL_ID_UP;
-    property filtropostotrabalho: Integer read Ffiltropostotrabalho
-      write Ffiltropostotrabalho;
-    property GLOBAL_INDEX_DO_GRID: Integer read FGLOBAL_INDEX_DO_GRID
-      write FGLOBAL_INDEX_DO_GRID;
-    property GLOBAL_ID_INTERNO: Integer read FGLOBAL_ID_INTERNO
-      write FGLOBAL_ID_INTERNO;
-    property GLOBAL_ID_MOV_DIARIO_VISITANTES: Integer
-      read FGLOBAL_ID_MOV_DIARIO_VISITANTES
-      write FGLOBAL_ID_MOV_DIARIO_VISITANTES;
-    property GLOBAL_ID_FUNCIONARIO: Integer read FGLOBAL_ID_FUNCIONARIO
-      write FGLOBAL_ID_FUNCIONARIO;
-    property GLOBAL_IDPOSTO_TRABALHO: Integer read FGLOBAL_IDPOSTO_TRABALHO
-      write FGLOBAL_IDPOSTO_TRABALHO;
-    property GLOBAL_IDCONEXAO: Integer read FGLOBAL_IDCONEXAO
-      write FGLOBAL_IDCONEXAO;
-    property PERMISSAO_CONFERE: String read FPERMISSAO_CONFERE
-      write FPERMISSAO_CONFERE;
-    property PERMISSAO_VISITANTE: String read FPERMISSAO_VISITANTE
-      write FPERMISSAO_VISITANTE;
-    property PERMISSAO_TRABALHO: String read FPERMISSAO_TRABALHO
-      write FPERMISSAO_TRABALHO;
-    property PERMISSAO_CADASTRO: String read FPERMISSAO_CADASTRO
-      write FPERMISSAO_CADASTRO;
-    property PERMISSAO_EDUCACAO: String read FPERMISSAO_EDUCACAO
-      write FPERMISSAO_EDUCACAO;
-    property PERMISSAO_PSICOSSOCIAL: String read FPERMISSAO_PSICOSSOCIAL
-      write FPERMISSAO_PSICOSSOCIAL;
-    property PERMISSAO_JURIDICA: String read FPERMISSAO_JURIDICA
-      write FPERMISSAO_JURIDICA;
-    property PERMISSAO_DISCIPLINA: String read FPERMISSAO_DISCIPLINA
-      write FPERMISSAO_DISCIPLINA;
-    property PERMISSAO_INTELIGENCIA: String read FPERMISSAO_INTELIGENCIA
-      write FPERMISSAO_INTELIGENCIA;
-    property PERMISSAO_ENFERMAGEM: String read FPERMISSAO_ENFERMAGEM
-      write FPERMISSAO_ENFERMAGEM;
-    property PERMISSAO_FARMACIA: String read FPERMISSAO_FARMACIA
-      write FPERMISSAO_FARMACIA;
-    property PERMISSAO_CLINICAMEDICA: String read FPERMISSAO_CLINICAMEDICA
-      write FPERMISSAO_CLINICAMEDICA;
-    property PERMISSAO_PSICOLOGIA: String read FPERMISSAO_PSICOLOGIA
-      write FPERMISSAO_PSICOLOGIA;
-    property PERMISSAO_PSIQUIATRIA: String read FPERMISSAO_PSIQUIATRIA
-      write FPERMISSAO_PSIQUIATRIA;
-    property PERMISSAO_SAUDE: String read FPERMISSAO_SAUDE
-      write FPERMISSAO_SAUDE;
-    property PERMISSAO_TERAPIAOCUPACIONAL: String
-      read FPERMISSAO_TERAPIAOCUPACIONAL write FPERMISSAO_TERAPIAOCUPACIONAL;
-    property PERMISSAO_ODONTOLOGIA: String read FPERMISSAO_ODONTOLOGIA
-      write FPERMISSAO_ODONTOLOGIA;
-    property PERMISSAO_PEDAGOGIA: String read FPERMISSAO_PEDAGOGIA
-      write FPERMISSAO_PEDAGOGIA;
-    property PERMISSAO_SERVICOSOCIAL: String read FPERMISSAO_SERVICOSOCIAL
-      write FPERMISSAO_SERVICOSOCIAL;
-    property PERMISSAO_ARMAS: String read FPERMISSAO_ARMAS
-      write FPERMISSAO_ARMAS;
-    property PERMISSAO_MONITORAMENTO: String read FPERMISSAO_MONITORAMENTO
-      write FPERMISSAO_MONITORAMENTO;
-    property PERMISSAO_OCORRENCIA: String read FPERMISSAO_OCORRENCIA
-      write FPERMISSAO_OCORRENCIA;
-    property PERMISSAO_CONSELHODISCIPLINAR: String
-      read FPERMISSAO_CONSELHODISCIPLINAR write FPERMISSAO_CONSELHODISCIPLINAR;
-    property PERMISSAO_TRANSFERENCIAINTERNO: String
-      read FPERMISSAO_TRANSFERENCIAINTERNO
-      write FPERMISSAO_TRANSFERENCIAINTERNO;
-    property PERMISSAO_MUDANCACELA: String read FPERMISSAO_MUDANCACELA
-      write FPERMISSAO_MUDANCACELA;
-    property PERMISSAO_SAIDAO: String read FPERMISSAO_SAIDAO
-      write FPERMISSAO_SAIDAO;
-    property PERMISSAO_SAIDAO_CADASTRO: String read FPERMISSAO_SAIDAO_CADASTRO
-      write FPERMISSAO_SAIDAO_CADASTRO;
-    property PERMISSAO_CIRCULACAOINTERNO: String
-      read FPERMISSAO_CIRCULACAOINTERNO write FPERMISSAO_CIRCULACAOINTERNO;
-    property PERMISSAO_MOVIMENTOSEMIABERTO: String
-      read FPERMISSAO_MOVIMENTOSEMIABERTO write FPERMISSAO_MOVIMENTOSEMIABERTO;
-    property PERMISSAO_FUNCIONARIO: String read FPERMISSAO_FUNCIONARIO
-      write FPERMISSAO_FUNCIONARIO;
-    property PERMISSAO_FUNCAOFUNCIONARIO: String
-      read FPERMISSAO_FUNCAOFUNCIONARIO write FPERMISSAO_FUNCAOFUNCIONARIO;
-    property PERMISSAO_UNIDADEPENAL: String read FPERMISSAO_UNIDADEPENAL
-      write FPERMISSAO_UNIDADEPENAL;
-    property PERMISSAO_HORARIOFUNCIONARIO: String
-      read FPERMISSAO_HORARIOFUNCIONARIO write FPERMISSAO_HORARIOFUNCIONARIO;
-    property PERMISSAO_PADRAOSISTEMA: String read FPERMISSAO_PADRAOSISTEMA
-      write FPERMISSAO_PADRAOSISTEMA;
-    property PERMISSAO_EQUIPE: String read FPERMISSAO_EQUIPE
-      write FPERMISSAO_EQUIPE;
-    property PERMISSAO_LOCALPOSTOTRABALHO: String
-      read FPERMISSAO_LOCALPOSTOTRABALHO write FPERMISSAO_LOCALPOSTOTRABALHO;
-    property PERMISSAO_AGENTEPOREQUIPE: String read FPERMISSAO_AGENTEPOREQUIPE
-      write FPERMISSAO_AGENTEPOREQUIPE;
-    property PERMISSAO_REGRAVISITACAO: String read FPERMISSAO_REGRAVISITACAO
-      write FPERMISSAO_REGRAVISITACAO;
+    property filtropostotrabalho: Integer read Ffiltropostotrabalho write Ffiltropostotrabalho;
+    property GLOBAL_INDEX_DO_GRID: Integer read FGLOBAL_INDEX_DO_GRID write FGLOBAL_INDEX_DO_GRID;
+    property GLOBAL_ID_INTERNO: Integer read FGLOBAL_ID_INTERNO write FGLOBAL_ID_INTERNO;
+    property GLOBAL_ID_MOV_DIARIO_VISITANTES: Integer read FGLOBAL_ID_MOV_DIARIO_VISITANTES write FGLOBAL_ID_MOV_DIARIO_VISITANTES;
+    property GLOBAL_ID_FUNCIONARIO: Integer read FGLOBAL_ID_FUNCIONARIO write FGLOBAL_ID_FUNCIONARIO;
+    property GLOBAL_IDPOSTO_TRABALHO: Integer read FGLOBAL_IDPOSTO_TRABALHO write FGLOBAL_IDPOSTO_TRABALHO;
+    property GLOBAL_IDCONEXAO: Integer read FGLOBAL_IDCONEXAO write FGLOBAL_IDCONEXAO;
+    property PERMISSAO_CONFERE: String read FPERMISSAO_CONFERE write FPERMISSAO_CONFERE;
+    property PERMISSAO_VISITANTE: String read FPERMISSAO_VISITANTE write FPERMISSAO_VISITANTE;
+    property PERMISSAO_TRABALHO: String read FPERMISSAO_TRABALHO write FPERMISSAO_TRABALHO;
+    property PERMISSAO_CADASTRO: String read FPERMISSAO_CADASTRO write FPERMISSAO_CADASTRO;
+    property PERMISSAO_EDUCACAO: String read FPERMISSAO_EDUCACAO write FPERMISSAO_EDUCACAO;
+    property PERMISSAO_PSICOSSOCIAL: String read FPERMISSAO_PSICOSSOCIAL write FPERMISSAO_PSICOSSOCIAL;
+    property PERMISSAO_JURIDICA: String read FPERMISSAO_JURIDICA write FPERMISSAO_JURIDICA;
+    property PERMISSAO_DISCIPLINA: String read FPERMISSAO_DISCIPLINA write FPERMISSAO_DISCIPLINA;
+    property PERMISSAO_INTELIGENCIA: String read FPERMISSAO_INTELIGENCIA write FPERMISSAO_INTELIGENCIA;
+    property PERMISSAO_ENFERMAGEM: String read FPERMISSAO_ENFERMAGEM write FPERMISSAO_ENFERMAGEM;
+    property PERMISSAO_FARMACIA: String read FPERMISSAO_FARMACIA write FPERMISSAO_FARMACIA;
+    property PERMISSAO_CLINICAMEDICA: String read FPERMISSAO_CLINICAMEDICA write FPERMISSAO_CLINICAMEDICA;
+    property PERMISSAO_PSICOLOGIA: String read FPERMISSAO_PSICOLOGIA write FPERMISSAO_PSICOLOGIA;
+    property PERMISSAO_PSIQUIATRIA: String read FPERMISSAO_PSIQUIATRIA write FPERMISSAO_PSIQUIATRIA;
+    property PERMISSAO_SAUDE: String read FPERMISSAO_SAUDE write FPERMISSAO_SAUDE;
+    property PERMISSAO_TERAPIAOCUPACIONAL: String read FPERMISSAO_TERAPIAOCUPACIONAL write FPERMISSAO_TERAPIAOCUPACIONAL;
+    property PERMISSAO_ODONTOLOGIA: String read FPERMISSAO_ODONTOLOGIA write FPERMISSAO_ODONTOLOGIA;
+    property PERMISSAO_PEDAGOGIA: String read FPERMISSAO_PEDAGOGIA write FPERMISSAO_PEDAGOGIA;
+    property PERMISSAO_SERVICOSOCIAL: String read FPERMISSAO_SERVICOSOCIAL write FPERMISSAO_SERVICOSOCIAL;
+    property PERMISSAO_ARMAS: String read FPERMISSAO_ARMAS write FPERMISSAO_ARMAS;
+    property PERMISSAO_MONITORAMENTO: String read FPERMISSAO_MONITORAMENTO write FPERMISSAO_MONITORAMENTO;
+    property PERMISSAO_OCORRENCIA: String read FPERMISSAO_OCORRENCIA write FPERMISSAO_OCORRENCIA;
+    property PERMISSAO_CONSELHODISCIPLINAR: String read FPERMISSAO_CONSELHODISCIPLINAR write FPERMISSAO_CONSELHODISCIPLINAR;
+    property PERMISSAO_TRANSFERENCIAINTERNO: String read FPERMISSAO_TRANSFERENCIAINTERNO write FPERMISSAO_TRANSFERENCIAINTERNO;
+    property PERMISSAO_MUDANCACELA: String read FPERMISSAO_MUDANCACELA write FPERMISSAO_MUDANCACELA;
+    property PERMISSAO_SAIDAO: String read FPERMISSAO_SAIDAO write FPERMISSAO_SAIDAO;
+    property PERMISSAO_SAIDAO_CADASTRO: String read FPERMISSAO_SAIDAO_CADASTRO write FPERMISSAO_SAIDAO_CADASTRO;
+    property PERMISSAO_CIRCULACAOINTERNO: String read FPERMISSAO_CIRCULACAOINTERNO write FPERMISSAO_CIRCULACAOINTERNO;
+    property PERMISSAO_MOVIMENTOSEMIABERTO: String read FPERMISSAO_MOVIMENTOSEMIABERTO write FPERMISSAO_MOVIMENTOSEMIABERTO;
+    property PERMISSAO_FUNCIONARIO: String read FPERMISSAO_FUNCIONARIO write FPERMISSAO_FUNCIONARIO;
+    property PERMISSAO_FUNCAOFUNCIONARIO: String read FPERMISSAO_FUNCAOFUNCIONARIO write FPERMISSAO_FUNCAOFUNCIONARIO;
+    property PERMISSAO_UNIDADEPENAL: String read FPERMISSAO_UNIDADEPENAL write FPERMISSAO_UNIDADEPENAL;
+    property PERMISSAO_HORARIOFUNCIONARIO: String read FPERMISSAO_HORARIOFUNCIONARIO write FPERMISSAO_HORARIOFUNCIONARIO;
+    property PERMISSAO_PADRAOSISTEMA: String read FPERMISSAO_PADRAOSISTEMA write FPERMISSAO_PADRAOSISTEMA;
+    property PERMISSAO_EQUIPE: String read FPERMISSAO_EQUIPE write FPERMISSAO_EQUIPE;
+    property PERMISSAO_LOCALPOSTOTRABALHO: String read FPERMISSAO_LOCALPOSTOTRABALHO write FPERMISSAO_LOCALPOSTOTRABALHO;
+    property PERMISSAO_AGENTEPOREQUIPE: String read FPERMISSAO_AGENTEPOREQUIPE write FPERMISSAO_AGENTEPOREQUIPE;
+    property PERMISSAO_REGRAVISITACAO: String read FPERMISSAO_REGRAVISITACAO write FPERMISSAO_REGRAVISITACAO;
     property GLOBAL_NIVEL_1: String read FGLOBAL_NIVEL_1 write FGLOBAL_NIVEL_1;
     property GLOBAL_NIVEL_2: String read FGLOBAL_NIVEL_2 write FGLOBAL_NIVEL_2;
     property GLOBAL_NIVEL_3: String read FGLOBAL_NIVEL_3 write FGLOBAL_NIVEL_3;
     property GLOBAL_NIVEL_4: String read FGLOBAL_NIVEL_4 write FGLOBAL_NIVEL_4;
     property GLOBAL_RGI: String read FGLOBAL_RGI write FGLOBAL_RGI;
-    property GLOBAL_IDAGENDA_ATENDIMENTO: String
-      read FGLOBAL_IDAGENDA_ATENDIMENTO write FGLOBAL_IDAGENDA_ATENDIMENTO;
-    property GLOBAL_CONEXAO_PROCED: String read FGLOBAL_CONEXAO_PROCED
-      write FGLOBAL_CONEXAO_PROCED;
-    property GLOBAL_ACESSA_PROCED: String read FGLOBAL_ACESSA_PROCED
-      write FGLOBAL_ACESSA_PROCED;
-    property GLOBAL_ID_TRANSFERENCIA_INTERNO: String
-      read FGLOBAL_ID_TRANSFERENCIA_INTERNO
-      write FGLOBAL_ID_TRANSFERENCIA_INTERNO;
-    property GLOBAL_ID_MUDANCA_CELA: String read FGLOBAL_ID_MUDANCA_CELA
-      write FGLOBAL_ID_MUDANCA_CELA;
-    property GLOBAL_WEBBROWSER: String read FGLOBAL_WEBBROWSER
-      write FGLOBAL_WEBBROWSER;
-    property GLOBAL_SPACECOM: String read FGLOBAL_SPACECOM
-      write FGLOBAL_SPACECOM;
-    property AISSE3_PATH_EXE: String read FAISSE3_PATH_EXE
-      write FAISSE3_PATH_EXE;
+    property GLOBAL_IDAGENDA_ATENDIMENTO: String read FGLOBAL_IDAGENDA_ATENDIMENTO write FGLOBAL_IDAGENDA_ATENDIMENTO;
+    property GLOBAL_CONEXAO_PROCED: String read FGLOBAL_CONEXAO_PROCED write FGLOBAL_CONEXAO_PROCED;
+    property GLOBAL_ACESSA_PROCED: String read FGLOBAL_ACESSA_PROCED write FGLOBAL_ACESSA_PROCED;
+    property GLOBAL_ID_TRANSFERENCIA_INTERNO: String read FGLOBAL_ID_TRANSFERENCIA_INTERNO write FGLOBAL_ID_TRANSFERENCIA_INTERNO;
+    property GLOBAL_ID_MUDANCA_CELA: String read FGLOBAL_ID_MUDANCA_CELA write FGLOBAL_ID_MUDANCA_CELA;
+    property GLOBAL_WEBBROWSER: String read FGLOBAL_WEBBROWSER write FGLOBAL_WEBBROWSER;
+    property GLOBAL_SPACECOM: String read FGLOBAL_SPACECOM write FGLOBAL_SPACECOM;
+    property AISSE3_PATH_EXE: String read FAISSE3_PATH_EXE write FAISSE3_PATH_EXE;
     property PATH_MOMENTO: String read FPATH_MOMENTO write FPATH_MOMENTO;
     property StatusAgenda: String read FStatusAgenda write FStatusAgenda;
-    property statusfiltroagenda: String read Fstatusfiltroagenda
-      write Fstatusfiltroagenda;
+    property statusfiltroagenda: String read Fstatusfiltroagenda write Fstatusfiltroagenda;
     property UP_Logado: String read FUP_Logado write FUP_Logado;
     property GLOBAL_NOME_UP: String read FGLOBAL_NOME_UP write FGLOBAL_NOME_UP;
-    property GLOBAL_NOME_FUNCIONARIO_LOGADO: String
-      read FGLOBAL_NOME_FUNCIONARIO_LOGADO
-      write FGLOBAL_NOME_FUNCIONARIO_LOGADO;
-    property GLOBAL_PATCH_SISTEMA: String read FGLOBAL_PATCH_SISTEMA
-      write FGLOBAL_PATCH_SISTEMA;
-    property GLOBAL_MEUS_DOCUMENTOS: String read FGLOBAL_MEUS_DOCUMENTOS
-      write FGLOBAL_MEUS_DOCUMENTOS;
-    property GLOBAL_PATCH_RELATORIO: String read FGLOBAL_PATCH_RELATORIO
-      write FGLOBAL_PATCH_RELATORIO;
+    property GLOBAL_NOME_FUNCIONARIO_LOGADO: String read FGLOBAL_NOME_FUNCIONARIO_LOGADO write FGLOBAL_NOME_FUNCIONARIO_LOGADO;
+    property GLOBAL_PATCH_SISTEMA: String read FGLOBAL_PATCH_SISTEMA write FGLOBAL_PATCH_SISTEMA;
+    property GLOBAL_MEUS_DOCUMENTOS: String read FGLOBAL_MEUS_DOCUMENTOS write FGLOBAL_MEUS_DOCUMENTOS;
+    property GLOBAL_PATCH_RELATORIO: String read FGLOBAL_PATCH_RELATORIO write FGLOBAL_PATCH_RELATORIO;
     property GLOBAL_LOCAL: String read FGLOBAL_LOCAL write FGLOBAL_LOCAL;
     property GLOBAL_NOME: String read FGLOBAL_NOME write FGLOBAL_NOME;
-    property GLOBAL_ULTIMA_DATA_PROCEDIMENTO: String
-      read FGLOBAL_ULTIMA_DATA_PROCEDIMENTO
-      write FGLOBAL_ULTIMA_DATA_PROCEDIMENTO;
+    property GLOBAL_ULTIMA_DATA_PROCEDIMENTO: String read FGLOBAL_ULTIMA_DATA_PROCEDIMENTO write FGLOBAL_ULTIMA_DATA_PROCEDIMENTO;
     property GLOBAL_ORGAO: String read FGLOBAL_ORGAO write FGLOBAL_ORGAO;
-    property GLOBAL_DEPARTAMENTO: String read FGLOBAL_DEPARTAMENTO
-      write FGLOBAL_DEPARTAMENTO;
-    property GLOBAL_DIRETORIA: String read FGLOBAL_DIRETORIA
-      write FGLOBAL_DIRETORIA;
-    property GLOBAL_PADRAO_SISTEMA: String read FGLOBAL_PADRAO_SISTEMA
-      write FGLOBAL_PADRAO_SISTEMA;
+    property GLOBAL_DEPARTAMENTO: String read FGLOBAL_DEPARTAMENTO write FGLOBAL_DEPARTAMENTO;
+    property GLOBAL_DIRETORIA: String read FGLOBAL_DIRETORIA write FGLOBAL_DIRETORIA;
+    property GLOBAL_PADRAO_SISTEMA: String read FGLOBAL_PADRAO_SISTEMA write FGLOBAL_PADRAO_SISTEMA;
     property GLOBAL_UF: String read FGLOBAL_UF write FGLOBAL_UF;
-    property GLOBAL_ID_VISITANTE: String read FGLOBAL_ID_VISITANTE
-      write FGLOBAL_ID_VISITANTE;
-    property GLOBAL_PASTA_LOCAL: String read FGLOBAL_PASTA_LOCAL
-      write FGLOBAL_PASTA_LOCAL;
-    property GLOBAL_PASTA_DF: String read FGLOBAL_PASTA_DF
-      write FGLOBAL_PASTA_DF;
-    property GLOBAL_PASTA_MA: String read FGLOBAL_PASTA_MA
-      write FGLOBAL_PASTA_MA;
-    property GLOBAL_PASTA_MS: String read FGLOBAL_PASTA_MS
-      write FGLOBAL_PASTA_MS;
-    property GLOBAL_PASTA_MT: String read FGLOBAL_PASTA_MT
-      write FGLOBAL_PASTA_MT;
-    property CAMINHO_BIOMETRIA: String read FCAMINHO_BIOMETRIA
-      write FCAMINHO_BIOMETRIA;
-    property GLOBAL_PASTA_SPF: String read FGLOBAL_PASTA_SPF
-      write FGLOBAL_PASTA_SPF;
-    property GLOBAL_PASTA_PB: String read FGLOBAL_PASTA_PB
-      write FGLOBAL_PASTA_PB;
+    property GLOBAL_ID_VISITANTE: String read FGLOBAL_ID_VISITANTE write FGLOBAL_ID_VISITANTE;
+    property GLOBAL_PASTA_LOCAL: String read FGLOBAL_PASTA_LOCAL write FGLOBAL_PASTA_LOCAL;
+    property GLOBAL_PASTA_DF: String read FGLOBAL_PASTA_DF write FGLOBAL_PASTA_DF;
+    property GLOBAL_PASTA_MA: String read FGLOBAL_PASTA_MA write FGLOBAL_PASTA_MA;
+    property GLOBAL_PASTA_MS: String read FGLOBAL_PASTA_MS write FGLOBAL_PASTA_MS;
+    property GLOBAL_PASTA_MT: String read FGLOBAL_PASTA_MT write FGLOBAL_PASTA_MT;
+    property CAMINHO_BIOMETRIA: String read FCAMINHO_BIOMETRIA write FCAMINHO_BIOMETRIA;
+    property GLOBAL_PASTA_SPF: String read FGLOBAL_PASTA_SPF write FGLOBAL_PASTA_SPF;
+    property GLOBAL_PASTA_PB: String read FGLOBAL_PASTA_PB write FGLOBAL_PASTA_PB;
     property TIPOCAPTURA: String read FTIPOCAPTURA write FTIPOCAPTURA;
     property CONFIGURACAO: String read FCONFIGURACAO write FCONFIGURACAO;
-    property VISUALIZA_OUTRAS_UP: String read FVISUALIZA_OUTRAS_UP
-      write FVISUALIZA_OUTRAS_UP;
-    property PERMISSAO_ENTRADAVISITANTE: String read FPERMISSAO_ENTRADAVISITANTE
-      write FPERMISSAO_ENTRADAVISITANTE;
-    property LOGIN_CONECTADO: String read FLOGIN_CONECTADO
-      write FLOGIN_CONECTADO;
-    property GLOBAL_SENHA_USUARIO: String read FGLOBAL_SENHA_USUARIO
-      write FGLOBAL_SENHA_USUARIO;
+    property VISUALIZA_OUTRAS_UP: String read FVISUALIZA_OUTRAS_UP write FVISUALIZA_OUTRAS_UP;
+    property PERMISSAO_ENTRADAVISITANTE: String read FPERMISSAO_ENTRADAVISITANTE write FPERMISSAO_ENTRADAVISITANTE;
+    property LOGIN_CONECTADO: String read FLOGIN_CONECTADO write FLOGIN_CONECTADO;
+    property GLOBAL_SENHA_USUARIO: String read FGLOBAL_SENHA_USUARIO write FGLOBAL_SENHA_USUARIO;
     property TIPO_SENHA: String read FTIPO_SENHA write FTIPO_SENHA;
     property senha_padrao: String read Fsenha_padrao write Fsenha_padrao;
     property skin_padrao: String read Fskin_padrao write Fskin_padrao;
-    property url_imagem_empresa: String read Furl_imagem_empresa
-      write Furl_imagem_empresa;
-    property FECHA_AGENDA_ATENDIMENTO: boolean read FFECHA_AGENDA_ATENDIMENTO
-      write FFECHA_AGENDA_ATENDIMENTO;
+    property url_imagem_empresa: String read Furl_imagem_empresa write Furl_imagem_empresa;
+    property FECHA_AGENDA_ATENDIMENTO: boolean read FFECHA_AGENDA_ATENDIMENTO write FFECHA_AGENDA_ATENDIMENTO;
     property Liberado: boolean read FLiberado write FLiberado;
-    property MaquinaDesenvolvimento: boolean read FMaquinaDesenvolvimento
-      write FMaquinaDesenvolvimento;
+    property MaquinaDesenvolvimento: boolean read FMaquinaDesenvolvimento write FMaquinaDesenvolvimento;
 
     property GLOBAL_OFICIO: String read FGLOBAL_OFICIO write FGLOBAL_OFICIO;
 
@@ -939,27 +828,20 @@ begin
       if FileExists(UniServerModule.StartPath + 'Config\Conexao.ini') then
       begin
 
-        ini := TIniFile.Create(UniServerModule.StartPath +
-          'Config\Conexao.ini');
+        ini := TIniFile.Create(UniServerModule.StartPath + 'Config\Conexao.ini');
         SUBPASTA := (ini.ReadString('SGBD', 'ACESSA', '-') = 'SUBPASTA');
-        FMaquinaDesenvolvimento :=
-          (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
+        FMaquinaDesenvolvimento := (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
         senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
 
-        FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL',
-          'AGEPEN'));
+        FGLOBAL_LOCAL := UTF8ToString(ini.ReadString('SIAPEN', 'LOCAL', 'AGEPEN'));
         FGLOBAL_NOME := UTF8ToString(ini.ReadString('SIAPEN', 'NOME', ''));
         FGLOBAL_ORGAO := UTF8ToString(ini.ReadString('SIAPEN', 'ORGAO', ''));
-        FGLOBAL_DEPARTAMENTO :=
-          UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
-        FGLOBAL_DIRETORIA :=
-          UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
-        FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER',
-          'http://spf.mj.gov.br');
+        FGLOBAL_DEPARTAMENTO := UTF8ToString(ini.ReadString('SIAPEN', 'DEPARTAMENTO', ''));
+        FGLOBAL_DIRETORIA := UTF8ToString(ini.ReadString('SIAPEN', 'DIRETORIA', ''));
+        FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER', 'http://spf.mj.gov.br');
         FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
         FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
-        FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF',
-          UniServerModule.StartPath);
+        FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF', UniServerModule.StartPath);
         FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 1);
 
       end;
@@ -983,11 +865,8 @@ begin
     // Parametros.Values['Database'] := 'localhost:' + gsAppPath + 'database\' + UniServerModule.Title + '.fdb';
 
     UniConnetion.Connected := False;
-    UniConnetion.Server := copy(Parametros.Values['Database'], 1,
-      pos(':', Parametros.Values['Database']) - 1);
-    UniConnetion.Database := copy(Parametros.Values['Database'],
-      pos(':', Parametros.Values['Database']) + 1,
-      length(Parametros.Values['Database']));
+    UniConnetion.Server := copy(Parametros.Values['Database'], 1, pos(':', Parametros.Values['Database']) - 1);
+    UniConnetion.Database := copy(Parametros.Values['Database'], pos(':', Parametros.Values['Database']) + 1, length(Parametros.Values['Database']));
     UniConnetion.Username := Parametros.Values['User_Name'];
     UniConnetion.Password := Parametros.Values['Password'];
 
@@ -1000,10 +879,18 @@ begin
   except
     on e: exception do
     begin
-//      showmessage('Hum... problema na conexão: ' + e.Message);
+      // showmessage('Hum... problema na conexão: ' + e.Message);
       Result := False;
     end;
   end;
+
+end;
+
+procedure TDm.UniGUIMainModuleBrowserClose(Sender: TObject);
+begin
+
+  Conexao.Connected := False;
+  UniConnetion.Connected := False;
 
 end;
 
@@ -1012,11 +899,22 @@ begin
   ConectaSiapen;
 end;
 
+procedure TDm.UniGUIMainModuleDestroy(Sender: TObject);
+begin
+  Conexao.Connected := False;
+  UniConnetion.Connected := False;
+end;
+
+procedure TDm.UniGUIMainModuleSessionTimeout(ASession: TObject; var ExtendTimeOut: Integer);
+begin
+  Conexao.Connected := False;
+  UniConnetion.Connected := False;
+end;
+
 function TDm.IniciaTransGeral: boolean;
 begin
   try
-    FTD.TransactionID := trunc(StrToFloat(FormatDateTime('yyyymmddhhnnsszzz',
-      now)) / 2);
+    FTD.TransactionID := trunc(StrToFloat(FormatDateTime('yyyymmddhhnnsszzz', now)) / 2);
     FTD.IsolationLevel := xilREADCOMMITTED;
     Dm.Conexao.StartTransaction(FTD);
   except // se der erro para abrir uma TransGeral
@@ -1073,20 +971,17 @@ begin
   end;
 end;
 
-class function CoCPDFSplitMergeObj.CreateRemote(const MachineName: string)
-  : IPDFSplitMerge;
+class function CoCPDFSplitMergeObj.CreateRemote(const MachineName: string): IPDFSplitMerge;
 begin
   try
-    Result := CreateRemoteComObject(MachineName, CLASS_CPDFSplitMergeObj)
-      as IPDFSplitMerge;
+    Result := CreateRemoteComObject(MachineName, CLASS_CPDFSplitMergeObj) as IPDFSplitMerge;
   except
   end;
 end;
 
 procedure TCPDFSplitMergeObj.InitServerData;
 const
-  CServerData: TServerData = (ClassID: '{50D41702-B618-41BA-8153-7AD7E8535574}';
-    IntfIID: '{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}'; EventIID: '';
+  CServerData: TServerData = (ClassID: '{50D41702-B618-41BA-8153-7AD7E8535574}'; IntfIID: '{49E9FF30-6AB9-4B64-A345-CA4B8F3F255F}'; EventIID: '';
     LicenseKey: nil; Version: 500);
 begin
   try
@@ -1134,8 +1029,7 @@ begin
   try
     if FIntf = nil then
       Connect;
-    Assert(FIntf <> nil,
-      'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
+    Assert(FIntf <> nil, 'DefaultInterface is NULL. Component is not connected to Server. You must call "Connect" or "ConnectTo" before this operation');
     Result := FIntf;
   except
   end;
@@ -1157,8 +1051,7 @@ begin
   end;
 end;
 
-procedure TCPDFSplitMergeObj.Split(const strInPdf: WideString;
-  const strSplit: WideString; const strOutPdf: WideString);
+procedure TCPDFSplitMergeObj.Split(const strInPdf: WideString; const strSplit: WideString; const strOutPdf: WideString);
 begin
   try
     DefaultInterface.Split(strInPdf, strSplit, strOutPdf);
@@ -1166,8 +1059,7 @@ begin
   end;
 end;
 
-procedure TCPDFSplitMergeObj.Merge(const strInFiles: WideString;
-  const strOutFile: WideString);
+procedure TCPDFSplitMergeObj.Merge(const strInFiles: WideString; const strOutFile: WideString);
 begin
   try
     DefaultInterface.Merge(strInFiles, strOutFile);
@@ -1183,8 +1075,7 @@ begin
   end;
 end;
 
-function TCPDFSplitMergeObj.GetNumberOfPages(const strFile: WideString;
-  const strPasswd: WideString): Integer;
+function TCPDFSplitMergeObj.GetNumberOfPages(const strFile: WideString; const strPasswd: WideString): Integer;
 begin
   try
     Result := DefaultInterface.GetNumberOfPages(strFile, strPasswd);

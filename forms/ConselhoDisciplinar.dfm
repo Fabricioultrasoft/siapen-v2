@@ -17,7 +17,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   inherited PanelBotoes: TUniPanel
     Height = 612
     ExplicitHeight = 612
-    inherited UniDBImage1: TUniDBImage
+    inherited UniDBImageInterno: TUniDBImage
       Top = 455
       ExplicitTop = 455
     end
@@ -30,6 +30,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 953
       Height = 610
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 953
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -446,6 +447,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 370
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBSADVOGADO_INTERNO'
@@ -453,6 +455,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 279
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
             end
@@ -472,6 +475,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'SETOR'
@@ -479,6 +483,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 80
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DESCRICAO'
@@ -486,6 +491,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 400
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               inherited DBMemo1: TUniDBMemo
@@ -513,6 +519,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Width = 70
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end
                     item
                       FieldName = 'DESCRICAO'
@@ -520,6 +527,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Width = 200
                       Visible = True
                       Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
                     end>
                 end
               end
@@ -684,7 +692,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Options = [dgAlwaysShowEditor, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
                 ReadOnly = True
                 WebOptions.Paged = False
-                WebOptions.LoadMaskMsg = 'Please wait...'
+                LoadMask.Message = 'Loading data...'
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 10
                 Columns = <
@@ -694,6 +702,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 70
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'NUMERO'
@@ -701,6 +710,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 73
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'FALTA_DISCIPLINAR'
@@ -708,6 +718,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 243
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'TIPOFALTA'
@@ -715,6 +726,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 63
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DATA_INCIDENCIA'
@@ -722,6 +734,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 85
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DT_INICIO_ISOLAMENTO'
@@ -729,6 +742,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 101
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'STATUS'
@@ -736,6 +750,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 64
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DT_FIM_ISOLAMENTO'
@@ -743,6 +758,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 103
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'RESULTADO'
@@ -750,6 +766,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 112
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'PREVENTIVO'
@@ -757,6 +774,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 156
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'DATA_RESULTADO'
@@ -764,6 +782,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 91
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'OBS'
@@ -771,6 +790,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 276
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end
                   item
                     FieldName = 'ID_VINC_FALTA_DISCIPLINAR'
@@ -778,6 +798,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 64
                     Visible = True
                     Expanded = False
+                    CheckBoxField.FieldValues = 'true;false'
                   end>
               end
               object EditNatureza: TUniEdit
@@ -899,9 +920,9 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   object UniLabel16: TUniLabel
                     Left = 437
                     Top = 78
-                    Width = 93
+                    Width = 101
                     Height = 13
-                    Caption = 'Data Instala'#231#227'o CD'
+                    Caption = 'Data Instaura'#231#227'o CD'
                     TabOrder = 2
                   end
                   object UniLabel9: TUniLabel
@@ -1287,6 +1308,28 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Caption = 'Tomou ci'#234'ncia em:'
                     TabOrder = 13
                   end
+                  object UniLabel21: TUniLabel
+                    Left = 470
+                    Top = 11
+                    Width = 100
+                    Height = 13
+                    ShowHint = True
+                    ParentShowHint = False
+                    Caption = 'Total de Dias San'#231#227'o'
+                    TabOrder = 14
+                  end
+                  object UniEditTOTAL_DIAS_SANCAO: TUniEdit
+                    Left = 470
+                    Top = 29
+                    Width = 121
+                    Height = 21
+                    Hint = 'Quantidade de dias de isolamento do interno'
+                    ShowHint = True
+                    ParentShowHint = False
+                    TabOrder = 15
+                    Color = clWindow
+                    OnChange = EditQtdeDiasIsolamentoChange
+                  end
                 end
                 object UniTabSheetRecurso: TUniTabSheet
                   Caption = 'Recurso - No CCT'
@@ -1466,6 +1509,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'RGI'
@@ -1473,6 +1517,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'NUMERO_ROUPA'
@@ -1480,6 +1525,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               Width = 40
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'SIGLA'
@@ -1487,6 +1533,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               Width = 60
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end
             item
               FieldName = 'STATUS'
@@ -1494,6 +1541,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               Width = 56
               Visible = True
               Expanded = False
+              CheckBoxField.FieldValues = 'true;false'
             end>
         end
       end
