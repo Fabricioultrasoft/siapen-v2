@@ -25,7 +25,7 @@ implementation
 {$R *.dfm}
 
 uses
-  UniGUIVars, DmPrincipal;
+  UniGUIVars, DmPrincipal, Lib;
 
 function UniServerModule: TUniServerModule;
 begin
@@ -44,7 +44,7 @@ var
 begin
   if FileExists(UniServerModule.StartPath + 'Config\Conexao.ini') then
   begin
-    ini := TIniFile.Create(UniServerModule.StartPath + 'Config\Conexao.ini');
+    ini := TIniFile.Create(UniServerModule.StartPath+ 'Config\Conexao.ini');
     iPorta := ini.ReadInteger('SIAPEN', 'PORTA', Self.Port);
     Self.Port := iPorta;
   end;

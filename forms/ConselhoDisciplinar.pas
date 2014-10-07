@@ -115,6 +115,7 @@ type
     UniLabel32: TUniLabel;
     UniLabel21: TUniLabel;
     UniEditTOTAL_DIAS_SANCAO: TUniEdit;
+    UniCheckBoxABSOLVIDO_JUDICIALMENTE: TUniCheckBox;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -163,8 +164,7 @@ uses
 
 function FrmConselhoDisciplinar: TFrmConselhoDisciplinar;
 begin
-  Result := TFrmConselhoDisciplinar
-    (UniMainModule.GetFormInstance(TFrmConselhoDisciplinar));
+  Result := TFrmConselhoDisciplinar(UniMainModule.GetFormInstance(TFrmConselhoDisciplinar));
 end;
 
 procedure TFrmConselhoDisciplinar.BitBtnIncluirClick(Sender: TObject);
@@ -209,103 +209,73 @@ begin
   if not(Dsvincfaltadisciplinar.DataSet.State in dsEditModes) then
   begin
     Dsvincfaltadisciplinar.DataSet.Append;
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_VINC_FALTA_DISCIPLINAR')
-      .AsInteger := 0;
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_VINC_FALTA_DISCIPLINAR').AsInteger := 0;
   end
   else
   begin
     ItenRecord := Cdsvincfaltadisciplinar.GetBookmark;
   end;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_interno').AsInteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar').AsInteger
-    := DBLookupComboBoxfaltadisciplinar.KeyValue;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_interno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar').AsInteger := DBLookupComboBoxfaltadisciplinar.KeyValue;
 
   // Dsvincfaltadisciplinar.DataSet.fieldbyname('TIPOFALTA').AsString :=   EditNatureza.Text; // André Almeida
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_incidencia').Asdatetime :=
-    Editdtincidencia.datetime;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').Asdatetime :=
-    Editreabilitacao.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_incidencia').Asdatetime := Editdtincidencia.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').Asdatetime := Editreabilitacao.datetime;
   // >>dois campos iguais
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').Asdatetime :=
-    Editresultado.datetime;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_condenacao').Asdatetime :=
-    Editresultado.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').Asdatetime := Editresultado.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_condenacao').Asdatetime := Editresultado.datetime;
   // <<dois campos iguais
   Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString := Memoobs.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString :=
-    ComboBoxconclusao.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero_pdi').AsString :=
-    Editpdi.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado').AsString :=
-    ComboBoxresultado.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString := ComboBoxconclusao.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero_pdi').AsString := Editpdi.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado').AsString := ComboBoxresultado.Text;
   // data inicio, fim e quantidade do preventivo
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento').AsString :=
-    EditinicioisolamentoPrev.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_fim_isolamento').AsString :=
-    EditfimisolamentoPrev.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('qtde_dias_isolamento').AsString :=
-    EditqtdediasPrev.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento').AsString := EditinicioisolamentoPrev.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_fim_isolamento').AsString := EditfimisolamentoPrev.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('qtde_dias_isolamento').AsString := EditqtdediasPrev.Text;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger :=
-    Dm.GLOBAL_ID_UP;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger := Dm.GLOBAL_ID_UP;
 
   IF strtointdef(UniEditUPOrigemProcesso.Text, 0) > 0 then
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger :=
-      strtoint(UniEditUPOrigemProcesso.Text);
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('id_up').AsInteger := strtoint(UniEditUPOrigemProcesso.Text);
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('tipo').AsString :=
-    ComboBoxtipoprocedimento.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_instauracao').Asdatetime :=
-    Editprocedimento.datetime;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero').AsString :=
-    Editnprocedimento.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('tipo').AsString := ComboBoxtipoprocedimento.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_instauracao').Asdatetime := Editprocedimento.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('numero').AsString := Editnprocedimento.Text;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inst_portaria').AsString :=
-    EditDataInstPortaria.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('TIPO_SANCAO').AsString :=
-    ComboBoxTipoSancao.Text;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inicio_isolamento')
-    .Asdatetime := EditInicioIsolamento.datetime;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_fim_isolamento').Asdatetime
-    := EditFimIsolamento.datetime;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('quantidade_dias_isolamento')
-    .AsString := EditQtdeDiasIsolamento.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inst_portaria').AsString := EditDataInstPortaria.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('TIPO_SANCAO').AsString := ComboBoxTipoSancao.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inicio_isolamento').Asdatetime := EditInicioIsolamento.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('data_fim_isolamento').Asdatetime := EditFimIsolamento.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('quantidade_dias_isolamento').AsString := EditQtdeDiasIsolamento.Text;
   // UniEditTOTAL_DIAS_SANCAO
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('TOTAL_DIAS_SANCAO').AsString :=
-    UniEditTOTAL_DIAS_SANCAO.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('TOTAL_DIAS_SANCAO').AsString := UniEditTOTAL_DIAS_SANCAO.Text;
 
   Dsvincfaltadisciplinar.DataSet.fieldbyname('recurso').AsString := recurso;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString :=
-    preventivo;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('decisao_recurso').AsString :=
-    ComboBoxDecisaoRecurso.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString := preventivo;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('decisao_recurso').AsString := ComboBoxDecisaoRecurso.Text;
   // NOVO EM 21/07/2014
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString :=
-    UniComboBoxSolicitante.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString := UniComboBoxSolicitante.Text;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString :=
-    homologado;
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado_recurso_cct').AsString
-    := UniComboBoxResultadoCCT.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString := homologado;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado_recurso_cct').AsString := UniComboBoxResultadoCCT.Text;
+
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('ABSOLVIDO_JUDICIALMENTE').AsString := 'N';
+  if UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked then
+    Dsvincfaltadisciplinar.DataSet.fieldbyname('ABSOLVIDO_JUDICIALMENTE').AsString := 'S';
 
   // NOVO EM 07/07/2014
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString :=
-    UniEditLocalArquivo.Text;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString := UniEditLocalArquivo.Text;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime :=
-    UniDateTimePickerEnvioRecurso.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime := UniDateTimePickerEnvioRecurso.datetime;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO').Asdatetime
-    := UniDateTimePickerRetornoRecurso.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO').Asdatetime := UniDateTimePickerRetornoRecurso.datetime;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime
-    := UniDateTimePickerTomouCiencia.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime := UniDateTimePickerTomouCiencia.datetime;
 
-  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime :=
-    UniDateTimePickerCienciaCCT.datetime;
+  Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime := UniDateTimePickerCienciaCCT.datetime;
 
   Dsvincfaltadisciplinar.DataSet.Post;
   Cdsvincfaltadisciplinar.ApplyUpdates(-1);
@@ -354,8 +324,7 @@ begin
   Dm.UniFormRetornoConsulta := self;
   Dm.SqlConsultaObjetiva :=
     'SELECT ID_FALTA_DISCIPLINAR as "Codigo", FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO as "Descrição" FROM FALTA_DISCIPLINAR ORDER BY FALTA_DISCIPLINAR ';
-  Dm.CampoWhereSqlConsulta :=
-    'FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO';
+  Dm.CampoWhereSqlConsulta := 'FALTA_DISCIPLINAR||'', Natureza:''||TIPOFALTA||'', Tempo de Reabilitação:''||TEMPOREABILITACAO';
   Dm.ID_RETORNO_FORM := 'Codigo';
 
   FrmConsulta.ShowModal(
@@ -363,17 +332,14 @@ begin
     begin
       if Result = mrOK then
       begin
-        DBLookupComboBoxfaltadisciplinar.KeyValue :=
-          Dm.ID_RETORNO_CONSULTAOBJETIVA;
+        DBLookupComboBoxfaltadisciplinar.KeyValue := Dm.ID_RETORNO_CONSULTAOBJETIVA;
         Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
-        EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
-          ('TIPOFALTA').AsString;
+        EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname('TIPOFALTA').AsString;
       end;
     end);
 end;
 
-procedure TFrmConselhoDisciplinar.EditDataInstPortariaKeyPress(Sender: TObject;
-var Key: Char);
+procedure TFrmConselhoDisciplinar.EditDataInstPortariaKeyPress(Sender: TObject; var Key: Char);
 begin
   inherited;
   // cria a mascara em tempo de execução está na lib
@@ -382,8 +348,7 @@ end;
 procedure TFrmConselhoDisciplinar.EditdtincidenciaExit(Sender: TObject);
 begin
   inherited;
-  Editreabilitacao.datetime := Editdtincidencia.datetime +
-    Dsfaltadisciplinar.DataSet.fieldbyname('TEMPOREABILITACAO').AsInteger;
+  Editreabilitacao.datetime := Editdtincidencia.datetime + Dsfaltadisciplinar.DataSet.fieldbyname('TEMPOREABILITACAO').AsInteger;
 end;
 
 procedure TFrmConselhoDisciplinar.EditInicioIsolamentoChange(Sender: TObject);
@@ -411,12 +376,9 @@ begin
   Dsvincfaltadisciplinar.DataSet.edit;
   DBGridFaltas.Enabled := false;
 
-  DBLookupComboBoxfaltadisciplinar.KeyValue :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar')
-    .AsInteger;
+  DBLookupComboBoxfaltadisciplinar.KeyValue := Dsvincfaltadisciplinar.DataSet.fieldbyname('id_falta_disciplinar').AsInteger;
 
-  if Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString = 'S'
-  then
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('preventivo').AsString = 'S' then
     RadioGroupPreventivo.ItemIndex := 0
   else
     RadioGroupPreventivo.ItemIndex := 1;
@@ -428,103 +390,75 @@ begin
 
   RadioGroupRecurso.OnClick(nil);
 
-  if Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString = 'S'
-  then
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('homologacao').AsString = 'S' then
     RadioGroupHomologado.ItemIndex := 0
   else
     RadioGroupHomologado.ItemIndex := 1;
 
   Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
-  EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
-    ('TIPOFALTA').AsString;
+  EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname('TIPOFALTA').AsString;
 
-  Editdtincidencia.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_incidencia').AsString;
+  Editdtincidencia.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_incidencia').AsString;
 
-  Editreabilitacao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_reabilitacao').AsString;
+  Editreabilitacao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_reabilitacao').AsString;
 
   Memoobs.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('obs').AsString;
 
-  ComboBoxconclusao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('conclusaocd').AsString;
+  ComboBoxconclusao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('conclusaocd').AsString;
 
-  Editpdi.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('numero_pdi').AsString;
+  Editpdi.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('numero_pdi').AsString;
 
-  ComboBoxresultado.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('resultado').AsString;
+  ComboBoxresultado.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado').AsString;
 
-  Editresultado.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_resultado').AsString;
+  Editresultado.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_resultado').AsString;
 
   // data inicio, fim e quantidade do preventivo
-  EditinicioisolamentoPrev.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento')
-    .Asdatetime;
+  EditinicioisolamentoPrev.datetime := Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_inicio_isolamento').Asdatetime;
 
-  EditfimisolamentoPrev.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('dt_fim_isolamento').AsString;
-  EditqtdediasPrev.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('qtde_dias_isolamento').AsString;
+  EditfimisolamentoPrev.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('dt_fim_isolamento').AsString;
+  EditqtdediasPrev.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('qtde_dias_isolamento').AsString;
 
-  ComboBoxtipoprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('tipo').AsString;
+  ComboBoxtipoprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('tipo').AsString;
 
-  Editprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_instauracao').AsString;
+  Editprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_instauracao').AsString;
 
-  Editnprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('numero').AsString;
+  Editnprocedimento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('numero').AsString;
 
-  EditDataInstPortaria.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_inst_portaria').AsString;
+  EditDataInstPortaria.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inst_portaria').AsString;
 
-  ComboBoxTipoSancao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('TIPO_SANCAO').AsString;
+  ComboBoxTipoSancao.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('TIPO_SANCAO').AsString;
 
-  EditInicioIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_inicio_isolamento').AsString;
+  EditInicioIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_inicio_isolamento').AsString;
 
-  EditFimIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('data_fim_isolamento').AsString;
+  EditFimIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('data_fim_isolamento').AsString;
 
-  EditQtdeDiasIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('quantidade_dias_isolamento').AsString;
+  EditQtdeDiasIsolamento.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('quantidade_dias_isolamento').AsString;
 
-  UniEditTOTAL_DIAS_SANCAO.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('TOTAL_DIAS_SANCAO').AsString;
+  UniEditTOTAL_DIAS_SANCAO.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('TOTAL_DIAS_SANCAO').AsString;
 
-  ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('decisao_recurso').AsString;
+  ComboBoxDecisaoRecurso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('decisao_recurso').AsString;
 
   // NOVO EM 21/07/2014
-  UniComboBoxSolicitante.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('SOLICITANTE_CCT').AsString;
+  UniComboBoxSolicitante.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString;
 
-  UniComboBoxResultadoCCT.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('resultado_recurso_cct').AsString;
+  UniComboBoxResultadoCCT.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('resultado_recurso_cct').AsString;
+
+  UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked := false;
+  if Dsvincfaltadisciplinar.DataSet.fieldbyname('ABSOLVIDO_JUDICIALMENTE').AsString = 'S' then
+    UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked := true;
 
   // novo 07/07/2014
-  UniEditLocalArquivo.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('LOCAL_ARQUIVO').AsString;
+  UniEditLocalArquivo.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('LOCAL_ARQUIVO').AsString;
 
-  UniDateTimePickerEnvioRecurso.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime;
+  UniDateTimePickerEnvioRecurso.datetime := Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_ENVIO_RECURSO').Asdatetime;
 
-  UniDateTimePickerRetornoRecurso.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO')
-    .Asdatetime;
+  UniDateTimePickerRetornoRecurso.datetime := Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_RETORNO_RECURSO').Asdatetime;
 
-  UniDateTimePickerTomouCiencia.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO')
-    .Asdatetime;
+  UniDateTimePickerTomouCiencia.datetime := Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_PROCESSO').Asdatetime;
 
-  UniDateTimePickerCienciaCCT.datetime :=
-    Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime;
+  UniDateTimePickerCienciaCCT.datetime := Dsvincfaltadisciplinar.DataSet.fieldbyname('DATA_CIENCIA_CCT').Asdatetime;
 
-  UniEditUPOrigemProcesso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname
-    ('ID_UP').AsString;
+  UniEditUPOrigemProcesso.Text := Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_UP').AsString;
 
   UniEditUPOrigemProcesso.onexit(nil);
 
@@ -536,16 +470,14 @@ begin
   if Dsvincfaltadisciplinar.DataSet.fieldbyname('status').AsString = '' then
   begin
 
-    MessageDlg('Confirma que o Isolamento Foi Cumprido?',
-      mtConfirmation, mbYesNo,
+    MessageDlg('Confirma que o Isolamento Foi Cumprido?', mtConfirmation, mbYesNo,
       procedure(Sender: TComponent; iRet: Integer)
       begin
         if iRet = mrYes then
         begin
 
           Dsvincfaltadisciplinar.DataSet.edit;
-          Dsvincfaltadisciplinar.DataSet.fieldbyname('status').AsString :=
-            'CUMPRIDO';
+          Dsvincfaltadisciplinar.DataSet.fieldbyname('status').AsString := 'CUMPRIDO';
           Dsvincfaltadisciplinar.DataSet.Post;
         end;
       end);
@@ -609,16 +541,11 @@ begin
 
   DSHISTORICO_interno.DataSet.Append;
   DSHISTORICO_interno.DataSet.fieldbyname('idhistorico_interno').AsInteger := 0;
-  DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
-  DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsString :=
-    FormatDateTime('dd/mm/yyyy', DateTimePickerHistorico.datetime);
-  DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString :=
-    MemoDescricao.Lines.Text;
-  DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString :=
-    'Conselho Disciplinar';
-  DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger :=
-    Dm.GLOBAL_ID_FUNCIONARIO;
+  DSHISTORICO_interno.DataSet.fieldbyname('idinterno').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+  DSHISTORICO_interno.DataSet.fieldbyname('data_hora').AsString := FormatDateTime('dd/mm/yyyy', DateTimePickerHistorico.datetime);
+  DSHISTORICO_interno.DataSet.fieldbyname('descricao').AsString := MemoDescricao.Lines.Text;
+  DSHISTORICO_interno.DataSet.fieldbyname('setor').AsString := 'Conselho Disciplinar';
+  DSHISTORICO_interno.DataSet.fieldbyname('ID_FUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
   DSHISTORICO_interno.DataSet.Post;
 
   MemoDescricao.Lines.Clear;
@@ -687,22 +614,18 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.UniBitBtnUPOrigemProcessoClick
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.UniBitBtnUPOrigemProcessoClick(Sender: TObject);
 begin
   inherited;
-  ConsultaTabelaUniEdit(self,
-    'select ID_UP codigo, NOME_UP nome, sigla from UNIDADE_PENAL order by NOME_UP',
-    'NOME_UP||sigla', 'codigo', 'nome', UniEditUPOrigemProcesso,
-    UniLabelUPOrigemProcesso);
+  ConsultaTabelaUniEdit(self, 'select ID_UP codigo, NOME_UP nome, sigla from UNIDADE_PENAL order by NOME_UP', 'NOME_UP||sigla', 'codigo', 'nome',
+    UniEditUPOrigemProcesso, UniLabelUPOrigemProcesso);
 
 end;
 
 procedure TFrmConselhoDisciplinar.UniEditUPOrigemProcessoExit(Sender: TObject);
 begin
   inherited;
-  RetornaRegistro('select NOME_UP from UNIDADE_PENAL where ID_UP=',
-    UniEditUPOrigemProcesso, UniLabelUPOrigemProcesso);
+  RetornaRegistro('select NOME_UP from UNIDADE_PENAL where ID_UP=', UniEditUPOrigemProcesso, UniLabelUPOrigemProcesso);
 end;
 
 procedure TFrmConselhoDisciplinar.UniFormShow(Sender: TObject);
@@ -749,8 +672,7 @@ begin
   Editar.Visible := true;
   Salvar.Visible := true;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -759,8 +681,7 @@ begin
     Salvar.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Editar.Visible := false;
@@ -771,22 +692,19 @@ begin
       Salvar.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Excluir.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Editar.Visible := false;
@@ -796,8 +714,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -808,8 +725,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -822,8 +738,7 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.DsCadastroDataChange(Sender: TObject;
-Field: TField);
+procedure TFrmConselhoDisciplinar.DsCadastroDataChange(Sender: TObject; Field: TField);
 begin
   inherited;
 
@@ -834,8 +749,7 @@ begin
     Obs: atentar para mudar a permissão referente à tela nas verificações abaixo.
     Ex. ContemValor('I', Dm.PERMISSAO_CONFERE). }
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -844,8 +758,7 @@ begin
     Salvar.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Editar.Visible := false;
@@ -856,22 +769,19 @@ begin
       Salvar.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Excluir.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
   end;
 
-  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Editar.Visible := false;
@@ -881,8 +791,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and not ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -893,8 +802,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
-    ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
+  if not ContemValor('I', Dm.PERMISSAO_CONSELHODISCIPLINAR) and ContemValor('E', Dm.PERMISSAO_CONSELHODISCIPLINAR) and
     not ContemValor('D', Dm.PERMISSAO_CONSELHODISCIPLINAR) then
   begin
     Novo.Visible := false;
@@ -914,8 +822,7 @@ begin
   DSHISTORICO_interno.DataSet.Open;
 end;
 
-procedure TFrmConselhoDisciplinar.CIdeEncaminhamentoparaCCT1Click
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.CIdeEncaminhamentoparaCCT1Click(Sender: TObject);
 begin
   inherited;
   if Dsvincfaltadisciplinar.DataSet.IsEmpty then
@@ -931,25 +838,19 @@ begin
       if AResult = mrOK then
       begin
 
-        Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
-          Dsvincfaltadisciplinar.DataSet.fieldbyname
-          ('ID_VINC_FALTA_DISCIPLINAR').AsString;
+        Dm.GLOBAL_ID_FALTA_DISCIPLINAR := Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_VINC_FALTA_DISCIPLINAR').AsString;
 
-        Dm.GLOBAL_SOLICITANTE := Dsvincfaltadisciplinar.DataSet.fieldbyname
-          ('SOLICITANTE_CCT').AsString;
+        Dm.GLOBAL_SOLICITANTE := Dsvincfaltadisciplinar.DataSet.fieldbyname('SOLICITANTE_CCT').AsString;
 
-        FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        // FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        FrmVisualizarRelatorio.FazExportacaoPDF := true;
         FrmVisualizarRelatorio.Nome := 'CI Encaminhamento CCT';
 
-        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-          'SYSTEM\CI Encaminhamento CCT.fr3';
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\CI Encaminhamento CCT.fr3';
 
-        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-          inttostr(Dm.GLOBAL_ID_UP) + '\CI Encaminhamento CCT.fr3') then
+        if FileExists(UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\CI Encaminhamento CCT.fr3') then
         begin
-          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-            'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
-            '\CI Encaminhamento CCT.fr3';
+          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\CI Encaminhamento CCT.fr3';
         end;
 
         FrmVisualizarRelatorio.ShowModal;
@@ -959,8 +860,7 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.ComunicaodeIsolamentoPreventivo1Click
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.ComunicaodeIsolamentoPreventivo1Click(Sender: TObject);
 begin
   inherited;
   if Dsvincfaltadisciplinar.DataSet.IsEmpty then
@@ -975,22 +875,16 @@ begin
       if AResult = mrOK then
       begin
         Dm.GLOBAL_OFICIO := AText;
-        Dm.GLOBAL_ID_FALTA_DISCIPLINAR :=
-          Dsvincfaltadisciplinar.DataSet.fieldbyname
-          ('ID_VINC_FALTA_DISCIPLINAR').AsString;
-        FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        Dm.GLOBAL_ID_FALTA_DISCIPLINAR := Dsvincfaltadisciplinar.DataSet.fieldbyname('ID_VINC_FALTA_DISCIPLINAR').AsString;
+        // FrmVisualizarRelatorio.FazExportacaoJPEG := true;
+        FrmVisualizarRelatorio.FazExportacaoPDF := true;
         FrmVisualizarRelatorio.Nome := 'OF. Comunicação de Falta Disciplinar';
 
-        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-          'SYSTEM\OF. Comunicação de Falta Disciplinar.fr3';
+        FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\OF. Comunicação de Falta Disciplinar.fr3';
 
-        if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-          inttostr(Dm.GLOBAL_ID_UP) +
-          '\OF. Comunicação de Falta Disciplinar.fr3') then
+        if FileExists(UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\OF. Comunicação de Falta Disciplinar.fr3') then
         begin
-          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath +
-            'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) +
-            '\OF. Comunicação de Falta Disciplinar.fr3';
+          FrmVisualizarRelatorio.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\OF. Comunicação de Falta Disciplinar.fr3';
         end;
 
         FrmVisualizarRelatorio.ShowModal;
@@ -1000,8 +894,7 @@ begin
 
 end;
 
-procedure TFrmConselhoDisciplinar.PageControlModeloCadastroChange
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.PageControlModeloCadastroChange(Sender: TObject);
 begin
   // inherited;
   if PageControlModeloCadastro.ActivePageIndex = 1 then
@@ -1014,11 +907,8 @@ procedure TFrmConselhoDisciplinar.EditqtdediasPrevClick(Sender: TObject);
 begin
   inherited;
   // Conta os dias de diferença entre as datas inseridas nos Edits.
-  if (EditfimisolamentoPrev.Text <> '') and (EditinicioisolamentoPrev.Text <> '')
-  then
-    EditqtdediasPrev.Text :=
-      inttostr(Trunc(StrToDateTime(EditfimisolamentoPrev.Text)) -
-      Trunc(StrToDateTime(EditinicioisolamentoPrev.Text)));
+  if (EditfimisolamentoPrev.Text <> '') and (EditinicioisolamentoPrev.Text <> '') then
+    EditqtdediasPrev.Text := inttostr(Trunc(StrToDateTime(EditfimisolamentoPrev.Text)) - Trunc(StrToDateTime(EditinicioisolamentoPrev.Text)));
 end;
 
 procedure TFrmConselhoDisciplinar.EditQtdeDiasIsolamentoChange(Sender: TObject);
@@ -1041,29 +931,23 @@ begin
   inherited;
   // Conta os dias de diferença entre as datas inseridas nos Edits.
   if (EditFimIsolamento.Text <> '') and (EditInicioIsolamento.Text <> '') then
-    EditQtdeDiasIsolamento.Text :=
-      inttostr(Trunc(StrToDateTime(EditFimIsolamento.Text)) -
-      Trunc(StrToDateTime(EditInicioIsolamento.Text)));
+    EditQtdeDiasIsolamento.Text := inttostr(Trunc(StrToDateTime(EditFimIsolamento.Text)) - Trunc(StrToDateTime(EditInicioIsolamento.Text)));
 end;
 
-procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarExit
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarExit(Sender: TObject);
 begin
   inherited;
   Memo1.Text := DBLookupComboBoxfaltadisciplinar.Text;
-  EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname
-    ('TIPOFALTA').AsString;
+  EditNatureza.Text := Dsfaltadisciplinar.DataSet.fieldbyname('TIPOFALTA').AsString;
 end;
 
-procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarEnter
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarEnter(Sender: TObject);
 begin
   inherited;
   Dsfaltadisciplinar.DataSet.Last;
 end;
 
-procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarClick
-  (Sender: TObject);
+procedure TFrmConselhoDisciplinar.DBLookupComboBoxfaltadisciplinarClick(Sender: TObject);
 begin
   inherited;
   Dsfaltadisciplinar.DataSet.Last;
@@ -1133,6 +1017,7 @@ begin
   RadioGroupHomologado.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
   UniComboBoxResultadoCCT.ItemIndex := -1;
+  UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked := false ;
   Editreabilitacao.Text := '';
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';

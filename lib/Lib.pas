@@ -43,7 +43,7 @@ uses Forms,
   uniGUIRegClasses,
   UniGUIVars,
   UniGUIApplication,
-//  JSON, >>xe6
+  // JSON, >>xe6
   DBXJSON,
   DBXJSONReflect,
   DBXCommon,
@@ -71,21 +71,20 @@ uses Forms,
   zeSaveEXML,
   Vcl.Imaging.jpeg,
   ComObj, ActiveX, uniLabel;
+//var
+//UniServerModule.StartPath:STRING;
 
 type
   TChars = set of Char;
 
-function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string;
-  OldCaracter2: string = ''; NewCaracter2: string = '';
-  OldCaracter3: string = ''; NewCaracter3: string = ''): string;
+function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string; OldCaracter2: string = ''; NewCaracter2: string = ''; OldCaracter3: string = '';
+  NewCaracter3: string = ''): string;
 function TrataExceptionErro(MsgErro: string): string;
 function Qs(sDescricao: string): string;
 function ApenasNumero(AValue: string): string;
-function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant)
-  : Variant;
+function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant): Variant;
 function ValidaCpfCnpj(Numero: string; Mensagem: Boolean = false): Boolean;
-function StrZero(const AValue: Variant; ALength: Integer;
-  ANotEmpty: Boolean = false): string;
+function StrZero(const AValue: Variant; ALength: Integer; ANotEmpty: Boolean = false): string;
 function UltimoDiaMes(Data: TDateTime): TDateTime;
 function VencimetoComDiaPadrao(dData: TDateTime; pDia: Integer): TDateTime;
 function VerificaDiasUteis(FormD: TUniForm; Data: TDateTime): TDateTime;
@@ -112,45 +111,41 @@ procedure GravaIniValor(Arquivo, Sessao, Campo, Valor: string);
 function LerIniValor(Arquivo, Sessao, Campo, Valor: string): string;
 function TemPacelaPaga(sIdMovfinan: String): Boolean;
 function VerificaInternoExiste(sNomeInterno, sNomeMae: string): Boolean;
-function ConsultaRapida(Tabela, CampoRetorno, Where,
-  CampoSelect: string): Variant;
+function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
 function VerificaRGIExiste(sRGI: string): Boolean;
 function VerificaVisitaExiste(scpf: string): Boolean;
-function ConverterBmpParaJPeg(Arquivo: string;
-  taxa_conv: Integer = 100): string;
-function JpgToBmp(cImageJpg: string; cWidth: Integer = 205;
-  cHeight: Integer = 154): string;
+function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
+function JpgToBmp(cImageJpg: string; cWidth: Integer = 205; cHeight: Integer = 154): string;
 // Requer a Jpeg declarada na clausua uses da unit
-procedure AddWhere(Query: TSQLQuery; WhereClause: string;
-  StrAndOr: string = ' AND ');
+procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
 procedure ListarDiretorios(Folder: string; lista: TStrings);
 function LimpaChar(sValor: string): string;
 function LimpaTexto(sString: string): string;
 function MeuGuidCreate: string;
-function ConsultaTabela(fUniFormRetorno: TUniForm;
-  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
-  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil)
-  : Boolean;
-function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
-  sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
+function ConsultaTabela(fUniFormRetorno: TUniForm; sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
+  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil): Boolean;
+function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm; sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
   UniLabelRetorno: TUniLabel): Boolean;
 {
   function ConsultaTabelaVariant(fUniFormRetorno: TUniForm;
   sSqlBusca, sCampoWhereSql, sID: String; VariantRetorno: Variant): Boolean;
 }
-function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
-  UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
+function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit; UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
   UniLabelRetorno3: TUniLabel = nil): Boolean;
 function DiasUteis(DataIni, DataFim: TDateTime; sIgnorar: string): Integer;
+function ExecucaoPenalProgressao(DataInicial: TDate; cAno, cMes, cDia: integer; Progressao: Integer; var vAno, vMes, vDia: integer): string;
+function ExecucaoPenalCondicional(DataInicial: TDate; cAno, cMes, cDia: integer; Condicional: Integer; var vAno, vMes, vDia: integer): string;
+function DataMaisAnoMesDia(DataInicial: TDate; vAno, vMes, vDia: double; var DataFinal: TDate): string;
+function SubtrairTempo(vAno, vMes, vDia, cAno, cMes, cDia: integer; var rAno, rMes, rDia: integer): string;
+function SomarTempo(vAno, vMes, vDia, cAno, cMes, cDia: integer; var rAno, rMes, rDia: integer): string;
+function CalcEntreDatas(DataInicial, DataFinal: TDate; var vAno, vMes, vDia: integer): string;
 
 const
   QBtn1 = 1;
   QBtn2 = 2;
   QBtn3 = 3;
 
-  PortuguesLongMonthNames: Array [1 .. 12] of String = ('Janeiro', 'Fevereiro',
-    'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
+  PortuguesLongMonthNames: Array [1 .. 12] of String = ('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro',
     'Novembro', 'Dezembro');
 
   // var_disciplinar: string;
@@ -165,9 +160,8 @@ uses Main,
 
 { TLibVars }
 
-function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string;
-  OldCaracter2: string = ''; NewCaracter2: string = '';
-  OldCaracter3: string = ''; NewCaracter3: string = ''): string;
+function SiapStringReplace(sString, OldCaracter1, NewCaracter1: string; OldCaracter2: string = ''; NewCaracter2: string = ''; OldCaracter3: string = '';
+  NewCaracter3: string = ''): string;
 begin
   Result := sString;
   Result := StringReplace(Result, OldCaracter1, NewCaracter1, [rfReplaceAll]);
@@ -182,20 +176,16 @@ begin
   Result := MsgErro;
   MsgErro := UpperCase(MsgErro);
   if Pos('MUST HAVE A VALUE', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'FIELD', 'O CAMPO',
-      'MUST HAVE A VALUE', 'PRECISA SER PREENCHIDO');
+    Result := SiapStringReplace(MsgErro, 'FIELD', 'O CAMPO', 'MUST HAVE A VALUE', 'PRECISA SER PREENCHIDO');
 
   if Pos('FIELD VALUE REQUIRED', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'FIELD', 'EXISTEM CAMPOS QUE ',
-      'VALUE REQUIRED', 'PRECISAM SER PREENCHIDOS');
+    Result := SiapStringReplace(MsgErro, 'FIELD', 'EXISTEM CAMPOS QUE ', 'VALUE REQUIRED', 'PRECISAM SER PREENCHIDOS');
 
   if Pos('CHANGED BY ANOTHER USER', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'RECORD NOT FOUND OR', '',
-      'CHANGED BY ANOTHER USER', 'O REGISTRO FOI ALTERADO POR OUTRO USUÁRIO');
+    Result := SiapStringReplace(MsgErro, 'RECORD NOT FOUND OR', '', 'CHANGED BY ANOTHER USER', 'O REGISTRO FOI ALTERADO POR OUTRO USUÁRIO');
 
   if Pos('VIOLATION OF FOREIGN KEY', MsgErro) > -1 then
-    Result := SiapStringReplace(MsgErro, 'VIOLATION OF FOREIGN KEY',
-      'VIOLAÇÃO DA CHAVE, EXISTE TABELA DEPENDENTE', 'ON TABLE', 'NA TABELA');
+    Result := SiapStringReplace(MsgErro, 'VIOLATION OF FOREIGN KEY', 'VIOLAÇÃO DA CHAVE, EXISTE TABELA DEPENDENTE', 'ON TABLE', 'NA TABELA');
 
 end;
 
@@ -214,8 +204,7 @@ begin
       Result := Result + AValue[I];
 end;
 
-function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant)
-  : Variant;
+function IIf(const condicao: Boolean; const Verdadeiro, Falso: Variant): Variant;
 begin
   if condicao then
     Result := Verdadeiro
@@ -247,8 +236,7 @@ begin
   else
     begin
       if Mensagem then
-        humane.error
-          ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número do documento incompleto. </br>');
+        humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número do documento incompleto. </br>');
       Result := false;
       Exit;
     end;
@@ -286,19 +274,16 @@ begin
   if (not CPFCNPJ) and Mensagem then
   begin
     if CNPJ then
-      humane.error
-        ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número CNPJ inválido.</br>')
+      humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Número CNPJ inválido.</br>')
     else
-      humane.error
-        ('<b><font Color=red> ATENÇÃO !!!</font></b><br>Numero do CPF inválido.</br>')
+      humane.error('<b><font Color=red> ATENÇÃO !!!</font></b><br>Numero do CPF inválido.</br>')
   end;
 
   Result := CPFCNPJ;
 
 end;
 
-function StrZero(const AValue: Variant; ALength: Integer;
-  ANotEmpty: Boolean = false): string;
+function StrZero(const AValue: Variant; ALength: Integer; ANotEmpty: Boolean = false): string;
 var
   strBase: string;
   int64Temp: Int64;
@@ -318,8 +303,7 @@ begin
       Result := AValue;
   end;
 
-  if (StrToInt64Def(Result, 0) = 0) and (Result <> '000') and (not ANotEmpty)
-  then
+  if (StrToInt64Def(Result, 0) = 0) and (Result <> '000') and (not ANotEmpty) then
     Result := EmptyStr;
 
 end;
@@ -418,20 +402,16 @@ begin
   end;
 
   CdsParcelas.First;
-  if (Valor_Digitado > Valor_Tot) or (Valor_Digitado < 0) or
-    (Valor_Digitado = 0) or ((Soma_Atual >= Valor_Tot) and (not(Parc = 0))) then
+  if (Valor_Digitado > Valor_Tot) or (Valor_Digitado < 0) or (Valor_Digitado = 0) or ((Soma_Atual >= Valor_Tot) and (not(Parc = 0))) then
   begin
-    humane.error('<b><font Color=red> ATENÇÃO !!!' +
-      '</font></b><br>O valor digitado é inválido!');
+    humane.error('<b><font Color=red> ATENÇÃO !!!' + '</font></b><br>O valor digitado é inválido!');
 
     CdsParcelas.First;
     while not CdsParcelas.Eof do
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('VALOR').AsFloat :=
-        CdsParcelas.FieldByName('VALOR').OldValue;
-      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
-        CdsParcelas.FieldByName('VALOR_ORIGINAL').OldValue;
+      CdsParcelas.FieldByName('VALOR').AsFloat := CdsParcelas.FieldByName('VALOR').OldValue;
+      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR_ORIGINAL').OldValue;
       CdsParcelas.Post;
       CdsParcelas.Next;
     end;
@@ -448,8 +428,7 @@ begin
     if CdsParcelas.FieldByName('NUM_PARCELA').AsInteger > Reg then
       CdsParcelas.FieldByName('VALOR').AsFloat := Round(Valor_Tot / Parc);
 
-    CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
-      CdsParcelas.FieldByName('VALOR').AsFloat;
+    CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat;
     CdsParcelas.Post;
     CdsParcelas.Next;
   end;
@@ -459,31 +438,23 @@ begin
   while not CdsParcelas.Eof do
   begin
     Soma_Atual := Round(Soma_Atual + CdsParcelas.FieldByName('VALOR').AsFloat);
-    if CdsParcelas.FieldByName('NUM_PARCELA')
-      .AsInteger = CdsParcelas.FieldByName('TOT_PARCELA').AsInteger then
+    if CdsParcelas.FieldByName('NUM_PARCELA').AsInteger = CdsParcelas.FieldByName('TOT_PARCELA').AsInteger then
     begin
       CdsParcelas.Edit;
       if Soma_Atual < ValorTotal then
-        CdsParcelas.FieldByName('VALOR').AsFloat :=
-          CdsParcelas.FieldByName('VALOR').AsFloat + (ValorTotal - Soma_Atual)
+        CdsParcelas.FieldByName('VALOR').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat + (ValorTotal - Soma_Atual)
       else if Soma_Atual > ValorTotal then
-        CdsParcelas.FieldByName('VALOR').AsFloat :=
-          (CdsParcelas.FieldByName('VALOR').AsFloat -
-          (Soma_Atual - ValorTotal));
+        CdsParcelas.FieldByName('VALOR').AsFloat := (CdsParcelas.FieldByName('VALOR').AsFloat - (Soma_Atual - ValorTotal));
 
-      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat :=
-        CdsParcelas.FieldByName('VALOR').AsFloat;
+      CdsParcelas.FieldByName('VALOR_ORIGINAL').AsFloat := CdsParcelas.FieldByName('VALOR').AsFloat;
       CdsParcelas.Post;
     end;
 
     if CdsParcelas.FieldByName('PRAZO').AsVariant <> Null then
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime :=
-        (CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime +
-        CdsParcelas.FieldByName('PRAZO').AsVariant);
-      CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime :=
-        CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime;
+      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime := (CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime + CdsParcelas.FieldByName('PRAZO').AsVariant);
+      CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime := CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime;
       CdsParcelas.FieldByName('IDCXBCO').AsVariant := Null;
       CdsParcelas.Post;
     end;
@@ -491,11 +462,8 @@ begin
     if CdsParcelas.FieldByName('DATAPRORROGACAO').AsVariant <> Null then
     begin
       CdsParcelas.Edit;
-      CdsParcelas.FieldByName('PRAZO').AsVariant :=
-        (CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime -
-        CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime);
-      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime :=
-        CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime;
+      CdsParcelas.FieldByName('PRAZO').AsVariant := (CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime - CdsParcelas.FieldByName('DATAEMISSAO').AsDateTime);
+      CdsParcelas.FieldByName('DATAVENCIMENTO').AsDateTime := CdsParcelas.FieldByName('DATAPRORROGACAO').AsDateTime;
       CdsParcelas.FieldByName('IDCXBCO').AsVariant := Null;
       CdsParcelas.Post;
     end;
@@ -624,30 +592,21 @@ begin
 
   TextoXml := TStringList.Create;
   TextoXml.Clear;
-  TextoXml.Add
-    ('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
+  TextoXml.Add('<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">');
   TextoXml.Add('<html xmlns="http://www.w3.org/1999/xhtml">');
   TextoXml.Add('<head>');
-  TextoXml.Add
-    ('	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">');
-  TextoXml.Add
-    ('    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">');
-  TextoXml.Add
-    ('    <meta name="description" content="Mapa - Alexandre Software - (67) 8401-2103">');
-  TextoXml.Add
-    ('    <meta name="author" content="Alexandre Albuquerque - (67) 8401-2103">');
-  TextoXml.Add
-    ('    <meta name="keywords" content="Alexandre Albuquerque, software, dados, administração">');
+  TextoXml.Add('	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">');
+  TextoXml.Add('    <meta name="viewport" content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1">');
+  TextoXml.Add('    <meta name="description" content="Mapa - Alexandre Software - (67) 8401-2103">');
+  TextoXml.Add('    <meta name="author" content="Alexandre Albuquerque - (67) 8401-2103">');
+  TextoXml.Add('    <meta name="keywords" content="Alexandre Albuquerque, software, dados, administração">');
   TextoXml.Add('');
   TextoXml.Add('    <title>Mapa - Alexandre Software - (67) 8401-2103</title>');
-  TextoXml.Add
-    ('	<script src="http://maps.google.com/maps?file=api&amp;v=2.97&amp;' +
+  TextoXml.Add('	<script src="http://maps.google.com/maps?file=api&amp;v=2.97&amp;' +
     'key=ABQIAAAARu-WvQs4VW3yzGxnE_3NoRQDdZrPOy0F7QWzA6b-sYNJPVMCpBSee5Cya72jl8QYHk2RSZkHBHDnxQ" charset="UTF-8" type="text/javascript"></script>');
   TextoXml.Add('');
-  TextoXml.Add
-    ('    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>');
-  TextoXml.Add
-    ('	<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>');
+  TextoXml.Add('    <script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>');
+  TextoXml.Add('	<script type="text/javascript" src="js/jquery-ui-1.7.2.custom.min.js"></script>');
   TextoXml.Add('');
   TextoXml.Add('	<script type="text/javascript">');
   TextoXml.Add('	// coloque seus arquivos dentro do array');
@@ -659,16 +618,12 @@ begin
   TextoXml.Add('		"js/padrao.js"');
   TextoXml.Add('		);// Daqui pra frente é só copiar');
   TextoXml.Add('');
-  TextoXml.Add
-    ('	function TagLinkStyle() {var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +'
-    + ' "t=" + Math.floor(Math.random() * 5000);document.write("<link href=\"" + sFile + "\" rel=\"stylesheet\" type=\"text/css\" \/>");}');
-  TextoXml.Add
-    ('	function TagScriptJavascript() { var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +'
-    + ' "t=" + Math.floor(Math.random() * 5000); document.write("<script type=\"text\/javascript\" src=\"" + sFile + "\" language=\"javascript\"><\/script>"); }');
-  TextoXml.Add
-    ('	for (i = 0; i < aCSFiles.length; i++) TagLinkStyle(aCSFiles[i]);');
-  TextoXml.Add
-    ('	for (i = 0; i < aJSFiles.length; i++) TagScriptJavascript(aJSFiles[i]);');
+  TextoXml.Add('	function TagLinkStyle() {var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +' +
+    ' "t=" + Math.floor(Math.random() * 5000);document.write("<link href=\"" + sFile + "\" rel=\"stylesheet\" type=\"text/css\" \/>");}');
+  TextoXml.Add('	function TagScriptJavascript() { var sFile = arguments[0] + (arguments[0].indexOf(''?'') >= 0 ? "&" : "?") +' +
+    ' "t=" + Math.floor(Math.random() * 5000); document.write("<script type=\"text\/javascript\" src=\"" + sFile + "\" language=\"javascript\"><\/script>"); }');
+  TextoXml.Add('	for (i = 0; i < aCSFiles.length; i++) TagLinkStyle(aCSFiles[i]);');
+  TextoXml.Add('	for (i = 0; i < aJSFiles.length; i++) TagScriptJavascript(aJSFiles[i]);');
   TextoXml.Add('	</script>');
   TextoXml.Add('');
   TextoXml.Add('');
@@ -686,8 +641,7 @@ begin
   TextoXml.Add('	</form>');
   TextoXml.Add('	<script type="text/javascript">');
   TextoXml.Add('    <!--');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//VARIAVEIS GLOBAIS');
   TextoXml.Add('	var n=0;');
   TextoXml.Add('	var map;');
@@ -695,8 +649,7 @@ begin
   TextoXml.Add('	var geocoder = null;');
   TextoXml.Add('	var addressMarker;');
   TextoXml.Add('	var saida = "";');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//CRIACAO DO MAPA');
   TextoXml.Add('	map = new GMap2(document.getElementById("map"));');
   TextoXml.Add('	map.addControl(new GLargeMapControl());');
@@ -707,34 +660,25 @@ begin
   TextoXml.Add('	map.addControl(new GOverviewMapControl());');
   TextoXml.Add('	map.enableScrollWheelZoom();');
   TextoXml.Add('	geocoder = new GClientGeocoder();');
-  TextoXml.Add
-    ('	gdir = new GDirections(map, document.getElementById("resultado"));');
+  TextoXml.Add('	gdir = new GDirections(map, document.getElementById("resultado"));');
   TextoXml.Add('');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	/** CRIACAO DOS ICONES');
   TextoXml.Add('	 * Função: createIcon();');
-  TextoXml.Add
-    ('	 * Parâmetros: (Url da imagem do icone),(Url da sombra do icone),(Tipo do icone: 1-Icone customizado / 2-Icone padrao do google maps)');
+  TextoXml.Add('	 * Parâmetros: (Url da imagem do icone),(Url da sombra do icone),(Tipo do icone: 1-Icone customizado / 2-Icone padrao do google maps)');
   TextoXml.Add('	 */');
-  TextoXml.Add
-    ('	var icoClientes	= createIcon(''ico/marcador-clientes.ico'','',1);');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	var icoClientes	= createIcon(''ico/marcador-clientes.ico'','',1);');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	//CRIACAO DOS GRUPOS markerGroups');
   TextoXml.Add('	var markericoClientes = new Array ();');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('	/** CRIACAO DE XML NO GOOGLE MAPS');
   TextoXml.Add('	 * Função: createXMLGoogleMaps();');
-  TextoXml.Add
-    ('	 * Parâmetros: (Url do XML),(Título do balão do google maps),(Nome do Ícone),(Variáveis que deseja apresentar nas informações do ponto)');
+  TextoXml.Add('	 * Parâmetros: (Url do XML),(Título do balão do google maps),(Nome do Ícone),(Variáveis que deseja apresentar nas informações do ponto)');
   TextoXml.Add('	 */');
-  TextoXml.Add
-    ('	createXMLGoogleMaps("xml/clientes.xml","Dados do Cliente","icoClientes","Nome,Fantasia,Endereco,Bairro");');
+  TextoXml.Add('	createXMLGoogleMaps("xml/clientes.xml","Dados do Cliente","icoClientes","Nome,Fantasia,Endereco,Bairro");');
   TextoXml.Add('');
-  TextoXml.Add
-    ('	//------------------------------------------------------------------------------------------');
+  TextoXml.Add('	//------------------------------------------------------------------------------------------');
   TextoXml.Add('    </script>');
   TextoXml.Add('</body>');
   TextoXml.Add('</html>');
@@ -826,18 +770,14 @@ end;
 function TrocaCaracterEspecial(aTexto: string; aLimExt: Boolean): string;
 const
   // Lista de caracteres especiais
-  xCarEsp: array [1 .. 38] of String = ('á', 'à', 'ã', 'â', 'ä', 'Á', 'À', 'Ã',
-    'Â', 'Ä', 'é', 'è', 'É', 'È', 'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'ö', 'õ', 'ô',
-    'Ó', 'Ò', 'Ö', 'Õ', 'Ô', 'ú', 'ù', 'ü', 'Ú', 'Ù', 'Ü', 'ç', 'Ç', 'ñ', 'Ñ');
+  xCarEsp: array [1 .. 38] of String = ('á', 'à', 'ã', 'â', 'ä', 'Á', 'À', 'Ã', 'Â', 'Ä', 'é', 'è', 'É', 'È', 'í', 'ì', 'Í', 'Ì', 'ó', 'ò', 'ö', 'õ', 'ô', 'Ó',
+    'Ò', 'Ö', 'Õ', 'Ô', 'ú', 'ù', 'ü', 'Ú', 'Ù', 'Ü', 'ç', 'Ç', 'ñ', 'Ñ');
   // Lista de caracteres para troca
-  xCarTro: array [1 .. 38] of String = ('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A',
-    'A', 'A', 'e', 'e', 'E', 'E', 'i', 'i', 'I', 'I', 'o', 'o', 'o', 'o', 'o',
-    'O', 'O', 'O', 'O', 'O', 'u', 'u', 'u', 'u', 'u', 'u', 'c', 'C', 'n', 'N');
+  xCarTro: array [1 .. 38] of String = ('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A', 'A', 'e', 'e', 'E', 'E', 'i', 'i', 'I', 'I', 'o', 'o', 'o', 'o', 'o', 'O',
+    'O', 'O', 'O', 'O', 'u', 'u', 'u', 'u', 'u', 'u', 'c', 'C', 'n', 'N');
   // Lista de Caracteres Extras
-  xCarExt: array [1 .. 48] of string = ('<', '>', '!', '@', '#', '$', '%', '¨',
-    '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']', '?', ';', ':', ',',
-    '|', '*', '"', '~', '^', '´', '`', '¨', 'æ', 'Æ', 'ø', '£', 'Ø', 'ƒ', 'ª',
-    'º', '¿', '®', '½', '¼', 'ß', 'µ', 'þ', 'ý', 'Ý');
+  xCarExt: array [1 .. 48] of string = ('<', '>', '!', '@', '#', '$', '%', '¨', '&', '*', '(', ')', '_', '+', '=', '{', '}', '[', ']', '?', ';', ':', ',', '|',
+    '*', '"', '~', '^', '´', '`', '¨', 'æ', 'Æ', 'ø', '£', 'Ø', 'ƒ', 'ª', 'º', '¿', '®', '½', '¼', 'ß', 'µ', 'þ', 'ý', 'Ý');
 var
   xTexto: string;
   I: Integer;
@@ -861,11 +801,9 @@ begin
   J := Count - 1;
   for K := 0 to Count - 1 do
   begin
-    if ((Points[K].Y <= Y) and (Y < Points[J].Y)) or
-      ((Points[J].Y <= Y) and (Y < Points[K].Y)) then
+    if ((Points[K].Y <= Y) and (Y < Points[J].Y)) or ((Points[J].Y <= Y) and (Y < Points[K].Y)) then
     begin
-      if (X < (Points[J].X - Points[K].X) * (Y - Points[K].Y) /
-        (Points[J].Y - Points[K].Y) + Points[K].X) then
+      if (X < (Points[J].X - Points[K].X) * (Y - Points[K].Y) / (Points[J].Y - Points[K].Y) + Points[K].X) then
         Result := not Result;
     end;
     J := K;
@@ -974,8 +912,7 @@ end;
 
 function MesExtenso(Mes: Word): string;
 const
-  meses: array [0 .. 11] of PChar = ('Janeiro', 'Fevereiro', 'Março', 'Abril',
-    'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
+  meses: array [0 .. 11] of PChar = ('Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro',
     'Dezembro');
 begin
   Result := meses[Mes - 1];
@@ -1077,32 +1014,27 @@ begin
       For XTitulo := 0 TO GridExport.Columns.Count - 1 do
       Begin
         XMLSS.Sheets[0].CELL[XTitulo, XLinha].CellStyle := 0;
-        XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns
-          [XTitulo].GroupHeader;
+        XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo].GroupHeader;
         if TituloAgrupadoAntes <> GridExport.Columns[XTitulo].GroupHeader then
         begin
           if ColunaAgrupadoInicial < (XTitulo - 1) then
-            XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha,
-              XTitulo - 1, XLinha);
+            XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha, XTitulo - 1, XLinha);
           ColunaAgrupadoInicial := XTitulo;
           TituloAgrupadoAntes := GridExport.Columns[XTitulo].GroupHeader;
         end;
       End;
       if ColunaAgrupadoInicial < (XTitulo - 1) then
-        XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha,
-          XTitulo - 1, XLinha);
+        XMLSS.Sheets[0].MergeCells.AddRectXY(ColunaAgrupadoInicial, XLinha, XTitulo - 1, XLinha);
       Inc(XLinha); // row. First row contain field
     end;
 
     // All Field Names
     For XTitulo := 0 TO GridExport.Columns.Count - 1 do
     Begin
-      XMLSS.Sheets[0].Columns[XTitulo].Width := GridExport.Columns
-        [XTitulo].Width;
+      XMLSS.Sheets[0].Columns[XTitulo].Width := GridExport.Columns[XTitulo].Width;
       XMLSS.Sheets[0].Columns[XTitulo].AutoFitWidth := True;
       XMLSS.Sheets[0].CELL[XTitulo, XLinha].CellStyle := 0;
-      XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo]
-        .Title.Caption;
+      XMLSS.Sheets[0].CELL[XTitulo, XLinha].Data := GridExport.Columns[XTitulo].Title.Caption;
     End;
 
     //
@@ -1116,8 +1048,7 @@ begin
       For XColuna := 0 TO GridExport.Columns.Count - 1 do
       Begin
 
-        if (GridExport.Columns[XColuna].Field.DataType in [ftFloat, ftCurrency])
-        then
+        if (GridExport.Columns[XColuna].Field.DataType in [ftFloat, ftCurrency]) then
         begin
 
           if TFloatField(GridExport.Columns[XColuna].Field).Currency then
@@ -1126,15 +1057,13 @@ begin
             XMLSS.Sheets[0].CELL[XColuna, XLinha].CellStyle := 1;
 
           XMLSS.Sheets[0].CELL[XColuna, XLinha].CellType := ZENumber;
-          XMLSS.Sheets[0].CELL[XColuna, XLinha].AsDouble :=
-            GridExport.Columns[XColuna].Field.AsFloat;
+          XMLSS.Sheets[0].CELL[XColuna, XLinha].AsDouble := GridExport.Columns[XColuna].Field.AsFloat;
 
         end
         else
         begin
           XMLSS.Sheets[0].CELL[XColuna, XLinha].CellStyle := 1;
-          XMLSS.Sheets[0].CELL[XColuna, XLinha].Data := GridExport.Columns
-            [XColuna].Field.AsString;
+          XMLSS.Sheets[0].CELL[XColuna, XLinha].Data := GridExport.Columns[XColuna].Field.AsString;
         end;
 
       End;
@@ -1154,8 +1083,7 @@ end;
 function Generator(sGenerator: string): Integer;
 begin
 
-  DM.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id(' + sGenerator
-    + ',1) as id from rdb$database';
+  DM.SqlExecute.SQL.Text := 'select gen_id (cod_up, 0) || gen_id(' + sGenerator + ',1) as id from rdb$database';
   DM.SqlExecute.Close;
   DM.SqlExecute.Open;
   Result := DM.SqlExecute.FieldByName('ID').AsInteger;
@@ -1168,8 +1096,7 @@ var
   ArqIni: TIniFile;
 begin
   try
-    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo
-      + '.ini');
+    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo + '.ini');
     try
       ArqIni.WriteString(Sessao, Campo, Valor);
     finally
@@ -1184,8 +1111,7 @@ var
   ArqIni: TIniFile;
 begin
   try
-    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo
-      + '.ini');
+    ArqIni := TIniFile.Create(UniServerModule.StartPath + 'Config/' + Arquivo + '.ini');
     try
       Result := ArqIni.ReadString(Sessao, Campo, Valor);
     finally
@@ -1198,9 +1124,7 @@ end;
 function TemPacelaPaga(sIdMovfinan: String): Boolean;
 begin
   Result := false;
-  DM.SqlExecute.SQL.Text :=
-    'select sum(VALOR_PAGO_RECEBIDO) pago from ctasrecpag where  idmovfinan=' +
-    sIdMovfinan;
+  DM.SqlExecute.SQL.Text := 'select sum(VALOR_PAGO_RECEBIDO) pago from ctasrecpag where  idmovfinan=' + sIdMovfinan;
   DM.SqlExecute.Close;
   DM.SqlExecute.Open;
   DM.SqlExecute.First;
@@ -1218,16 +1142,14 @@ begin
   if Trim(sNomeMae) = '' then
     Exit;
 
-  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'NOME_INTERNO',
-    'TRIM(UPPER(NOME_INTERNO)) = TRIM(UPPER(' + Qs(sNomeInterno) +
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'NOME_INTERNO', 'TRIM(UPPER(NOME_INTERNO)) = TRIM(UPPER(' + Qs(sNomeInterno) +
     ')) AND TRIM(UPPER(MAE)) = TRIM(UPPER(' + Qs(sNomeMae) + '))', ''), '');
 
   Result := (sNomeInterno = ret_Interno);
 
 end;
 
-function ConsultaRapida(Tabela, CampoRetorno, Where,
-  CampoSelect: string): Variant;
+function ConsultaRapida(Tabela, CampoRetorno, Where, CampoSelect: string): Variant;
 begin
   try
     if (Trim(Where) <> '') and (Pos('WHERE', UpperCase(Where)) = 0) then
@@ -1236,8 +1158,7 @@ begin
     if Trim(CampoSelect) = '' then
       CampoSelect := CampoRetorno;
 
-    DM.SqlExecute.SQL.Text := 'SELECT ' + CampoSelect + ' FROM ' + Tabela +
-      ' ' + Where;
+    DM.SqlExecute.SQL.Text := 'SELECT ' + CampoSelect + ' FROM ' + Tabela + ' ' + Where;
     DM.DsExecute.DataSet.Close;
     DM.DsExecute.DataSet.Open;
     Result := DM.DsExecute.DataSet.FieldByName(CampoRetorno).AsVariant;
@@ -1257,8 +1178,7 @@ begin
   if Trim(sRGI) = '' then
     Exit;
 
-  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'RGI',
-    'TRIM(UPPER(RGI)) = TRIM(UPPER(' + Qs(sRGI) + '))', ''), '');
+  ret_Interno := VarToStrDef(ConsultaRapida('INTERNO', 'RGI', 'TRIM(UPPER(RGI)) = TRIM(UPPER(' + Qs(sRGI) + '))', ''), '');
 
   Result := (sRGI = ret_Interno);
 
@@ -1274,15 +1194,13 @@ begin
   if Trim(scpf) = '' then
     Exit;
 
-  ret_VISITA := VarToStrDef(ConsultaRapida('VISITANTE', 'cpf',
-    'TRIM(UPPER(cpf)) = TRIM(UPPER(' + Qs(scpf) + '))', ''), '');
+  ret_VISITA := VarToStrDef(ConsultaRapida('VISITANTE', 'cpf', 'TRIM(UPPER(cpf)) = TRIM(UPPER(' + Qs(scpf) + '))', ''), '');
 
   Result := (scpf = ret_VISITA);
 
 end;
 
-function ConverterBmpParaJPeg(Arquivo: string;
-  taxa_conv: Integer = 100): string;
+function ConverterBmpParaJPeg(Arquivo: string; taxa_conv: Integer = 100): string;
 var
   Bmp: TBitmap;
   jpeg: TJPegImage;
@@ -1303,8 +1221,7 @@ begin
   end;
 end;
 
-function JpgToBmp(cImageJpg: string; cWidth: Integer = 205;
-  cHeight: Integer = 154): string;
+function JpgToBmp(cImageJpg: string; cWidth: Integer = 205; cHeight: Integer = 154): string;
 // Requer a Jpeg declarada na clausua uses da unit
 var
   MyJPEG: TJPegImage;
@@ -1325,8 +1242,7 @@ begin
           Width := cWidth;
           Height := cHeight;
           Canvas.StretchDraw(Rect(0, 0, MyBMP.Width, MyBMP.Height), MyJPEG);
-          Result := UniServerModule.LocalCachePath + 'conversor_siapen' +
-            FormatDateTime('yyyy-mm-dd-hh-mm-zzz', now) + '.bmp';
+          Result := UniServerModule.LocalCachePath + 'conversor_siapen' + FormatDateTime('yyyy-mm-dd-hh-mm-zzz', now) + '.bmp';
           SaveToFile(Result);
           Free;
         end;
@@ -1338,8 +1254,7 @@ begin
   end;
 end;
 
-procedure AddWhere(Query: TSQLQuery; WhereClause: string;
-  StrAndOr: string = ' AND ');
+procedure AddWhere(Query: TSQLQuery; WhereClause: string; StrAndOr: string = ' AND ');
 var
   sCmd, sOrder, sGroup: string;
   iPosOrderBy: Integer;
@@ -1363,16 +1278,13 @@ begin
       if iPosGroupBy = 0 then
       begin
         sCmd := Copy(Query.SQL.Text, 0, iPosOrderBy - 1);
-        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) -
-          iPosOrderBy);
+        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) - iPosOrderBy);
       end
       else
       begin
         sCmd := Copy(Query.SQL.Text, 0, iPosGroupBy - 1);
-        sGroup := Copy(Query.SQL.Text, iPosGroupBy, Length(Query.SQL.Text) -
-          iPosOrderBy);
-        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) -
-          iPosOrderBy);
+        sGroup := Copy(Query.SQL.Text, iPosGroupBy, Length(Query.SQL.Text) - iPosOrderBy);
+        sOrder := Copy(Query.SQL.Text, iPosOrderBy, Length(Query.SQL.Text) - iPosOrderBy);
       end;
     end;
     Query.SQL.Text := sCmd;
@@ -1441,9 +1353,7 @@ var
 begin
   for X := 1 to Length(sValor) do
   begin
-    if (not(sValor[X] in ['0' .. '9', 'A' .. 'Z', 'a' .. 'z', '.', ';', ',',
-      '*', '+', '-', '=', '&', '@', '!', '"', ':', '?', '$', '%', '_', '/',
-      '\'])) then
+    if (not(sValor[X] in ['0' .. '9', 'A' .. 'Z', 'a' .. 'z', '.', ';', ',', '*', '+', '-', '=', '&', '@', '!', '"', ':', '?', '$', '%', '_', '/', '\'])) then
     begin
       sValor[X] := ' ';
     end;
@@ -1476,11 +1386,8 @@ begin
   end;
 end;
 
-function ConsultaTabela(fUniFormRetorno: TUniForm;
-  sSqlBusca, sCampoWhereSql, sID, sDescricao: String;
-  UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
-  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil)
-  : Boolean;
+function ConsultaTabela(fUniFormRetorno: TUniForm; sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniDBEditRetorno: TUniDBEdit; UniLabelRetorno: TUniLabel;
+  UniLabelRetorno2: TUniLabel = nil; UniLabelRetorno3: TUniLabel = nil): Boolean;
 begin
   Result := false;
 
@@ -1504,8 +1411,7 @@ begin
     end);
 end;
 
-function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm;
-sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
+function ConsultaTabelaUniEdit(fUniFormRetorno: TUniForm; sSqlBusca, sCampoWhereSql, sID, sDescricao: String; UniEditRetorno: TUniEdit;
 UniLabelRetorno: TUniLabel): Boolean;
 begin
   Result := false;
@@ -1552,8 +1458,7 @@ end;
   end;
 }
 
-function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit;
-UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
+function RetornaRegistro(sSqlBusca: String; UniDBEditRetorno: TUniCustomEdit; UniLabelRetorno: TUniLabel; UniLabelRetorno2: TUniLabel = nil;
 UniLabelRetorno3: TUniLabel = nil): Boolean;
 begin
 
@@ -1596,8 +1501,7 @@ var
 begin
   sDataIni := FormatDateTime('dd.mm.yyyy', DataIni);
   sDataFim := FormatDateTime('dd.mm.yyyy', DataFim);
-  DM.SqlExecute.SQL.Text := 'select uteis from CALCULA_DIAS_UTEIS(' +
-    Qs(sDataIni) + ',' + Qs(sDataFim) + ',' + Qs(sIgnorar) + ')';
+  DM.SqlExecute.SQL.Text := 'select uteis from CALCULA_DIAS_UTEIS(' + Qs(sDataIni) + ',' + Qs(sDataFim) + ',' + Qs(sIgnorar) + ')';
   DM.DsExecute.DataSet.Close;
   DM.DsExecute.DataSet.Open;
 
@@ -1605,5 +1509,188 @@ begin
 
   DM.DsExecute.DataSet.Close;
 end;
+
+function ExecucaoPenalProgressao(DataInicial: TDate; cAno, cMes, cDia: integer; Progressao: Integer; var vAno, vMes, vDia: integer): string;
+var
+  fatorP, fatorC: double;
+  dias_corrido: integer;
+  DataFinal: TDate;
+  pAno, pMes, pDia: Double;
+begin
+
+  dm.SqlExecute.SQL.Text := 'select ano_progressao, mes_progressao, dia_progressao from sp_progressao_regime(' +
+    qs(formatdatetime('dd.mm.yyyy', DataInicial)) + ',' +
+    INTTOSTR(CANO) + ',' +
+    INTTOSTR(CMES) + ',' +
+    INTTOSTR(CDIA) + ',' +
+    QS(INTTOSTR(Progressao)) + ')';
+
+  with DM.DsExecute.DataSet do
+  begin
+
+    close;
+    open;
+
+    vAno := fieldbyname('ano_progressao').AsInteger;
+    vMes := fieldbyname('mes_progressao').AsInteger;
+    vDia := fieldbyname('dia_progressao').AsInteger;
+
+    close;
+  end;
+
+  result := 'Progressão: ' + inttostr(vAno) + 'a' + inttostr(vMes) + 'm' + inttostr(vDia) + 'd';
+
+end;
+
+function ExecucaoPenalCondicional(DataInicial: TDate; cAno, cMes, cDia: integer; Condicional: Integer; var vAno, vMes, vDia: integer): string;
+var
+  fatorC: double;
+  dias_corrido: integer;
+  DataFinal: TDate;
+  pAno, pMes, pDia: Double;
+begin
+
+  dm.SqlExecute.SQL.Text := 'select ano_condicional, mes_condicional, dia_condicional from SP_LIVRAMENTO_CONDICIONAL(' +
+    qs(formatdatetime('dd.mm.yyyy', DataInicial)) + ',' +
+    INTTOSTR(CANO) + ',' +
+    INTTOSTR(CMES) + ',' +
+    INTTOSTR(CDIA) + ',' +
+    QS(INTTOSTR(condicional)) + ')';
+
+  with DM.DsExecute.DataSet do
+  begin
+
+    close;
+    open;
+
+    vAno := fieldbyname('ano_condicional').AsInteger;
+    vMes := fieldbyname('mes_condicional').AsInteger;
+    vDia := fieldbyname('dia_condicional').AsInteger;
+
+    close;
+  end;
+  result := 'Condicional: ' + inttostr(vano) + 'a' + inttostr(vmes) + 'm' + inttostr(vdia) + 'd';
+
+end;
+
+function DataMaisAnoMesDia(DataInicial: TDate; vAno, vMes, vDia: double; var DataFinal: TDate): string;
+var
+  dAno, dMesAno, dMes, dDiaMes, dDia: double;
+  FatorDia: integer;
+  vtotal_em_dias: double;
+  resultado: integer;
+  TANOS: INTEGER;
+  TMESES: INTEGER;
+  TDIAS: INTEGER;
+begin
+  DataFinal := DataInicial;
+
+  VTOTAL_EM_DIAS := 360 * VANO;
+  VTOTAL_EM_DIAS := VTOTAL_EM_DIAS + (30 * VMES);
+  VTOTAL_EM_DIAS := VTOTAL_EM_DIAS + VDIA;
+
+  RESULTADO := TRUNC(VTOTAL_EM_DIAS - 0.5);
+
+  TANOS := 0;
+  if (RESULTADO > 0) then
+    TANOS := TRUNC(RESULTADO / 360);
+
+  RESULTADO := RESULTADO - (TANOS * 360);
+
+  TMESES := 0;
+  if (RESULTADO > 0) then
+    TMESES := TRUNC(RESULTADO / 30);
+
+  RESULTADO := RESULTADO - (TMESES * 30);
+
+  TDIAS := 0;
+  if (RESULTADO > 0) then
+    TDIAS := RESULTADO;
+
+  DataFinal := IncYear(DataFinal, trunc(vAno));
+  DataFinal := IncMonth(DataFinal, trunc(vMes));
+  DataFinal := IncDay(DataFinal, Round(vDia));
+
+end;
+
+function SubtrairTempo(vAno, vMes, vDia, cAno, cMes, cDia: integer; var rAno, rMes, rDia: integer): string;
+var
+  DataAux: TDate;
+begin
+  dm.SqlExecute.SQL.Text := 'select rano , rmes, rdia from subtrair_tempo(' +
+    inttostr(vAno) + ',' +
+    inttostr(vMes) + ',' +
+    inttostr(vDia) + ',' +
+    inttostr(cAno) + ',' +
+    inttostr(cMes) + ',' +
+    inttostr(cDia) + ')';
+
+  with DM.DsExecute.DataSet do
+  begin
+
+    close;
+    open;
+
+    rAno := fieldbyname('rano').AsInteger;
+    rMes := fieldbyname('rmes').AsInteger;
+    rDia := fieldbyname('rdia').AsInteger;
+
+    close;
+
+  end;
+
+end;
+
+function SomarTempo(vAno, vMes, vDia, cAno, cMes, cDia: integer; var rAno, rMes, rDia: integer): string;
+var
+  DataAux: TDate;
+begin
+  dm.SqlExecute.SQL.Text := 'select rano , rmes, rdia from somar_tempo(' +
+    inttostr(vAno) + ',' +
+    inttostr(vMes) + ',' +
+    inttostr(vDia) + ',' +
+    inttostr(cAno) + ',' +
+    inttostr(cMes) + ',' +
+    inttostr(cDia) + ')';
+
+  with DM.DsExecute.DataSet do
+  begin
+
+    close;
+    open;
+
+    rAno := fieldbyname('rano').AsInteger;
+    rMes := fieldbyname('rmes').AsInteger;
+    rDia := fieldbyname('rdia').AsInteger;
+
+    close;
+
+  end;
+
+end;
+
+function CalcEntreDatas(DataInicial, DataFinal: TDate; var vAno, vMes, vDia: integer): string;
+var
+  DataAux: TDate;
+begin
+  dm.SqlExecute.SQL.Text := 'select tanos , tmeses, tdias from tempo(' +
+    qs(formatdatetime('dd.mm.yyyy', DataInicial)) + ',' +
+    qs(formatdatetime('dd.mm.yyyy', DataFinal)) + ')';
+
+  with DM.DsExecute.DataSet do
+  begin
+
+    close;
+    open;
+
+    vAno := fieldbyname('tanos').AsInteger;
+    vMes := fieldbyname('tmeses').AsInteger;
+    vDia := fieldbyname('tdias').AsInteger;
+
+    close;
+  end;
+
+end;
+
 
 end.

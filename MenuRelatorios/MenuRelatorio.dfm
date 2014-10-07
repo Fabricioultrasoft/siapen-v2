@@ -23,9 +23,9 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
   object Label1: TLabel
     Left = 8
     Top = 13
-    Width = 108
+    Width = 156
     Height = 13
-    Caption = 'C:\Windows\system32'
+    Caption = 'C:\...\FastReport 4\Demos\Main'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
@@ -398,7 +398,7 @@ object FrmMenuRelatorio: TFrmMenuRelatorio
       Font.Height = -11
       Font.Name = 'Courier'
       Font.Style = []
-      PaperWidth = 70.099999999999990000
+      PaperWidth = 70.100000000000000000
       PaperHeight = 31.000000000000000000
       PaperSize = 256
       Columns = 1

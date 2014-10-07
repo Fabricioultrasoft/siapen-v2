@@ -1,4 +1,4 @@
-//{$DEFINE UNIGUI_VCL} // Comment out this line to turn this project into an ISAPI module'
+{$DEFINE UNIGUI_VCL} // Comment out this line to turn this project into an ISAPI module'
 
 {$IFNDEF UNIGUI_VCL}
 library
@@ -10,11 +10,12 @@ program
 uses
   uniGUIISAPI,
   Forms,
-  System.SysUtils,
   ComServ,
+  System.SysUtils,
   ServerModule in 'ServerModule.pas' {UniServerModule: TUniGUIServerModule},
   MainModule in 'MainModule.pas' {UniMainModule: TUniGUIMainModule},
   Main in 'Main.pas' {MainForm: TUniForm},
+  ServiceModule in 'dm\ServiceModule.pas' {UniServiceModule: TUniGUIService},
   DmPrincipal in 'dm\DmPrincipal.pas' {Dm: TUniGUIMainModule},
   humanejs in 'lib\humanejs.pas',
   Lib in 'lib\Lib.pas',
@@ -67,14 +68,21 @@ exports
 {$ENDIF}
 
 begin
+//  UniServerModule.StartPath := 'C:\siapen_v2';
+//  SiapenStartPath := UniServerModule.StartPath;//'C:\siapen_v2\';
+
   FormatSettings.DateSeparator := '/';
   FormatSettings.CurrencyFormat := 0;
   FormatSettings.CurrencyString := 'R$';
   TTraducao.ChangeValues;
+
 {$IFDEF UNIGUI_VCL}
   Application.Initialize;
   TUniServerModule.Create(Application);
+  Application.Initialize;
   Application.Run;
 {$ENDIF}
 
 end.
+
+

@@ -10,7 +10,7 @@ uses IWSystem,
   frxExportPDF, frxExportXML, frxExportXLS, frxExportHTML, frxExportText,
   frxExportRTF, frxChart, frxDBSet, frxIBXComponents, FMTBcd,
   SqlExpr, Provider, DB, DBClient, Menus, FileCtrl, frxDBXComponents, Mask,
-  Data.DBXFirebird, IniFiles, Vcl.DBCtrls;
+  Data.DBXFirebird, IniFiles, Vcl.DBCtrls, frx2xto30;
 
 type
   TFrmMenuRelatorio = class(TForm)
@@ -513,11 +513,12 @@ procedure TFrmMenuRelatorio.Designer1Click(Sender: TObject);
 var
   sSenhaDIA, sDigitada: string;
 begin
-
+{
   sSenhaDIA := ConvSenhaLetra(FormatDateTime('DD', Date));
   sDigitada := inputbox('Senha de acesso:', 'Senha:', '************');
 
   if ContemValor(sSenhaDIA, sDigitada) then
+}
   begin
 
     if not DirectoryExists(PATH_MOMENTO) then
@@ -608,11 +609,12 @@ begin
       qs('Condenado'));
 
     frxReport1.DesignReport;
-
+{
   end
   else
   begin
     showmessage('Informe a senha de acesso, ou ligue:');
+}
   end;
 
 end;

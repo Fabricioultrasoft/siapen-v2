@@ -1,0 +1,415 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2B2F25BA-F8A6-4C0C-B8A4-F1567BE33746}</ProjectGuid>
+			<ProjectVersion>15.4</ProjectVersion>
+			<FrameworkType>VCL</FrameworkType>
+			<MainSource>siapen_v2_service.dpr</MainSource>
+			<Base>True</Base>
+			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Platform Condition="'$(Platform)'==''">Win32</Platform>
+			<TargetedPlatforms>1</TargetedPlatforms>
+			<AppType>Application</AppType>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+			<Base_Win64>true</Base_Win64>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+			<Base_Win32>true</Base_Win32>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Debug' or '$(Cfg_1)'!=''">
+			<Cfg_1>true</Cfg_1>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win32)'!=''">
+			<Cfg_1_Win32>true</Cfg_1_Win32>
+			<CfgParent>Cfg_1</CfgParent>
+			<Cfg_1>true</Cfg_1>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
+			<Cfg_2>true</Cfg_2>
+			<CfgParent>Base</CfgParent>
+			<Base>true</Base>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base)'!=''">
+			<SanitizedProjectName>siapen_v2</SanitizedProjectName>
+			<DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+			<Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+			<DCC_UsePackage>fmx;IndySystem;DBXInterBaseDriver;DataSnapClient;DataSnapCommon;DataSnapServer;DataSnapProviderClient;DbxCommonDriver;dbxcds;DBXOracleDriver;CustomIPTransport;dsnap;IndyCore;fmxase;inetdbxpress;IPIndyImpl;bindcompfmx;rtl;dbrtl;DbxClientDriver;bindcomp;inetdb;xmlrtl;ibxpress;IndyProtocols;DBXMySQLDriver;soaprtl;bindengine;DBXInformixDriver;DBXFirebirdDriver;inet;fmxobj;DBXSybaseASADriver;fmxdae;dbexpress;DataSnapIndy10ServerTransport;$(DCC_UsePackage)</DCC_UsePackage>
+			<DCC_DcuOutput>.\$(Platform)\$(Config)</DCC_DcuOutput>
+			<DCC_ExeOutput>.\$(Platform)\$(Config)</DCC_ExeOutput>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win64)'!=''">
+			<DCC_UsePackage>SynEdit_R2012;TeeDB;vclib;uniGUI16;DBXSybaseASEDriver;vclimg;uniTools16;vcldb;vcldsnap;DBXDb2Driver;vcl;DBXMSSQLDriver;webdsnap;uniGUI16VCL;adortl;Tee;DBXOdbcDriver;vclactnband;TeeUI;bindcompvcl;vclie;vcltouch;websnap;VclSmp;DataSnapConnectors;uIndy16;dsnapcon;vclx;uniGUI16Core;$(DCC_UsePackage)</DCC_UsePackage>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Base_Win32)'!=''">
+			<DCC_UsePackage>JvGlobus;JvMM;zexmlsslib;ACBr_BoletoFC_Fortes;JvManagedThreads;SynEdit_R2012;AbbreviaVCL;ACBrDiversos;ACBrTCP;RLibWinDXE2;JvDlgs;JvCrypt;TeeDB;frxTee16;vclib;inetdbbde;Rave100VCL;dacfmx160;frxBDE16;JvNet;uniGUI16;JvDotNetCtrls;DBXSybaseASEDriver;vclimg;fmi;tsqInfoZIPpkg;JvXPCtrls;uniTools16;vcldb;vcldsnap;dac160;unidacvcl160;DBXDb2Driver;Intraweb_120_160;uniGUI16Chart;LabeledControls;JvCore;DTwain;vclribbon;frxe16;frxADO16;ACBr_SPED;ACBr_MDFe;vcl;CloudService;DBXMSSQLDriver;CodeSiteExpressPkg;FmxTeeUI;unidac160;ACBr_NFe2;ACBr_Boleto;fsTee16;ACBr_Sintegra;JvAppFrm;JvDB;JvRuntimeDesign;webdsnap;ACBr_NFSe;JclDeveloperTools;ACBr_LFD;uniGUI16VCL;JvDocking;adortl;JvWizards;JvHMI;RSP;frxDBX16;ACBrOpenSSL;ACBr_PAF;JvBands;vcldbx;rppack_del2009;ACBrCapicom;ACBr_BoletoFC_FR;frx16;ACBrSerial;JvPluginSystem;crcontrols160;Tee;JclContainers;DBXOdbcDriver;ACBr_CTe;JvCmp;JvSystem;svnui;JvTimeFramework;JvControls;ACBrNFSeDanfseRLpkg;intrawebdb_120_160;frxDB16;djsonrt;fs16;vclactnband;FMXTee;TeeUI;JvJans;bindcompvcl;JvStdCtrls;JvCustom;Jcl;vclie;JvPageComps;JvPrintPreview;RegEnterPAS;frxcs16;ACBrComum;vcltouch;dacvcl160;synapse;websnap;ExceptionExpert16;ACBrNFeDanfeRLpkg;ACBr_TEFD;ACBrNFSeDanfseFRpkg;Noty;VclSmp;fsDB16;DataSnapConnectors;uIndy16;unidacfmx160;dclfrxTee16;dsnapcon;Abbrevia;VDOPrint;PCN2;JclVcl;JvPascalInterpreter;ACBrNFeDanfeFRpkg;vclx;svn;uniGUI16Core;bdertl;frxIBX16;ACBrCTeDacteFRpkg;JvBDE;$(DCC_UsePackage)</DCC_UsePackage>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+			<VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1)'!=''">
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Optimize>false</DCC_Optimize>
+			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<DCC_RemoteDebug>true</DCC_RemoteDebug>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+			<Icon_MainIcon>siapen_v2_Icon1.ico</Icon_MainIcon>
+			<Debugger_CWD>C:\apps\siapen-v2\</Debugger_CWD>
+			<VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
+			<VerInfo_MajorVer>2</VerInfo_MajorVer>
+			<VerInfo_Keys>CompanyName=Siapen - Sistema Integrado de Administração Penitênciária;FileDescription=;FileVersion=2.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=SIAPEN;ProductVersion=2.0.0.0;Comments=</VerInfo_Keys>
+			<DCC_ExeOutput>C:\apps\siapen-v2\</DCC_ExeOutput>
+			<VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+			<VerInfo_Locale>1033</VerInfo_Locale>
+			<DCC_MapFile>3</DCC_MapFile>
+			<DCC_Define>EUREKALOG;EUREKALOG_VER6;$(DCC_Define)</DCC_Define>
+			<DCC_RemoteDebug>false</DCC_RemoteDebug>
+		</PropertyGroup>
+		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
+			<DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
+			<DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+			<DCC_DebugInformation>0</DCC_DebugInformation>
+		</PropertyGroup>
+		<ItemGroup>
+			<DelphiCompile Include="$(MainSource)">
+				<MainSource>MainSource</MainSource>
+			</DelphiCompile>
+			<DCCReference Include="ServerModule.pas">
+				<Form>UniServerModule</Form>
+				<DesignClass>TUniGUIServerModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="MainModule.pas">
+				<Form>UniMainModule</Form>
+				<DesignClass>TUniGUIMainModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="Main.pas">
+				<Form>MainForm</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="dm\ServiceModule.pas">
+				<Form>UniServiceModule</Form>
+				<DesignClass>TUniGUIService</DesignClass>
+			</DCCReference>
+			<DCCReference Include="dm\DmPrincipal.pas">
+				<Form>Dm</Form>
+				<DesignClass>TUniGUIMainModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="lib\humanejs.pas"/>
+			<DCCReference Include="lib\Lib.pas"/>
+			<DCCReference Include="templete\ConsultaDocReceitaFederal.pas">
+				<Form>FrmConsultaDocReceitaFederal</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Login.pas">
+				<Form>FrmLogin</Form>
+				<DesignClass>TUniLoginForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\ModeloMovimento.pas">
+				<Form>FrmModeloMovimento</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\ModeloFiltroRelatorio.pas">
+				<Form>FrmModeloFiltroRelatorio</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\VisualizarRelatorio.pas">
+				<Form>FrmVisualizarRelatorio</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="lib\UniEditFormat.pas"/>
+			<DCCReference Include="templete\ModeloCadastro.pas">
+				<Form>FrmModeloCadastro</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Confere.pas">
+				<Form>FrmConfere</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\MenuRelatorios.pas">
+				<Form>FrmMenuRelatorios</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\SituacaoDisciplinar.pas">
+				<Form>FrmSituacaoDisciplinar</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Interno.pas">
+				<Form>FrmInterno</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\EntradaVisitante.pas">
+				<Form>FrmEntradaVisitante</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Aguarde.pas">
+				<Form>FrmAguarde</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Consulta.pas">
+				<Form>FrmConsulta</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\AlterarSenha.pas">
+				<Form>FrmAlterarSenha</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Sobre.pas">
+				<Form>FrmSobre</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Disciplina.pas">
+				<Form>FrmDisciplina</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\VincFaltaDisiciplinar.pas">
+				<Form>FrmVincFaltaDisiciplinar</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\ConselhoDisciplinar.pas">
+				<Form>FrmConselhoDisciplinar</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\Psicossocial.pas">
+				<Form>FrmPsicossocial</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\PresencaLocal.pas">
+				<Form>FrmPresencaLocal</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\PresencaLocalRegistro.pas">
+				<Form>FrmPresencaLocalRegistro</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroFaltasDisciplinares.pas">
+				<Form>FrmCadastroFaltasDisciplinares</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\TipoProcesso.pas">
+				<Form>FrmTipoProcesso</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FiltroPeriodoServidor.pas">
+				<Form>frmFiltroPeriodoServidor</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FiltroPeriodo.pas">
+				<Form>FrmFiltroPeriodo</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\ConsultaInterno.pas">
+				<Form>FrmConsultaInterno</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\DocumentosDigitalizados.pas">
+				<Form>FrmDocumentosDigitalizados</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="lib\uTraducao.pas"/>
+			<DCCReference Include="forms\CentralDocumentosDigitalizados.pas">
+				<Form>FrmCentralDocumentosDigitalizados</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\HistoricoInterno.pas">
+				<Form>FrmHistoricoInterno</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroFuncionario.pas">
+				<Form>FrmCadastroFuncionario</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\Explore.pas">
+				<Form>FrmExplore</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FileExplorer_Frame.pas">
+				<Form>frameFileExplorer</Form>
+				<DesignClass>TUniFrame</DesignClass>
+			</DCCReference>
+			<DCCReference Include="templete\FiltroInformarDoc.pas">
+				<Form>FrmFiltroInformarDoc</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroInternoTrabalho.pas">
+				<Form>FrmCadastroInternoTrabalho</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\MotivoDispensaTrabalho.pas">
+				<Form>FrmMotivoDispensaTrabalho</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\CadastroProcesso.pas">
+				<Form>FrmCadastroProcesso</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<BuildConfiguration Include="Release">
+				<Key>Cfg_2</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Base">
+				<Key>Base</Key>
+			</BuildConfiguration>
+			<BuildConfiguration Include="Debug">
+				<Key>Cfg_1</Key>
+				<CfgParent>Base</CfgParent>
+			</BuildConfiguration>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Delphi.Personality>
+					<VersionInfo>
+						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
+						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
+						<VersionInfo Name="MajorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">0</VersionInfo>
+						<VersionInfo Name="Release">0</VersionInfo>
+						<VersionInfo Name="Build">0</VersionInfo>
+						<VersionInfo Name="Debug">False</VersionInfo>
+						<VersionInfo Name="PreRelease">False</VersionInfo>
+						<VersionInfo Name="Special">False</VersionInfo>
+						<VersionInfo Name="Private">False</VersionInfo>
+						<VersionInfo Name="DLL">False</VersionInfo>
+						<VersionInfo Name="Locale">1046</VersionInfo>
+						<VersionInfo Name="CodePage">1252</VersionInfo>
+					</VersionInfo>
+					<VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName"/>
+						<VersionInfoKeys Name="FileDescription"/>
+						<VersionInfoKeys Name="FileVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="InternalName"/>
+						<VersionInfoKeys Name="LegalCopyright"/>
+						<VersionInfoKeys Name="LegalTrademarks"/>
+						<VersionInfoKeys Name="OriginalFilename"/>
+						<VersionInfoKeys Name="ProductName"/>
+						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="Comments"/>
+					</VersionInfoKeys>
+					<Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dcloffice2k160.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+						<Excluded_Packages Name="$(BDSBIN)\dclofficexp160.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+					</Excluded_Packages>
+					<Source>
+						<Source Name="MainSource">siapen_v2_service.dpr</Source>
+					</Source>
+				</Delphi.Personality>
+				<Deployment>
+					<DeployFile Class="DebugSymbols" Configuration="Debug" LocalName="Apache2.2\htdocs\siapen_v2.rsm">
+						<Platform Name="Win32">
+							<RemoteName>siapen_v2.rsm</RemoteName>
+						</Platform>
+					</DeployFile>
+					<DeployFile Class="ProjectOutput" Configuration="Debug" LocalName="Apache2.2\htdocs\siapen_v2.exe">
+						<Platform Name="Win32"/>
+					</DeployFile>
+					<DeployClass Name="ProjectOutput" Required="true">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="DependencyPackage" Required="true">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+							<Extensions>.dylib</Extensions>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+							<Extensions>.bpl</Extensions>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="DependencyModule">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+							<Extensions>.dylib</Extensions>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+							<Extensions>.dll;.bpl</Extensions>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="ProjectOSXInfoPList">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents</RemoteDir>
+							<Operation>1</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="File">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>0</Operation>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="DebugSymbols">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="DependencyFramework">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+							<Extensions>.framework</Extensions>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="AdditionalDebugSymbols">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\MacOS</RemoteDir>
+							<Operation>1</Operation>
+						</Platform>
+						<Platform Name="Win32">
+							<Operation>0</Operation>
+						</Platform>
+					</DeployClass>
+					<DeployClass Name="ProjectOSXResource">
+						<Platform Name="OSX32">
+							<RemoteDir>Contents\Resources</RemoteDir>
+							<Operation>1</Operation>
+						</Platform>
+					</DeployClass>
+					<ProjectRoot Name="$(PROJECTNAME).app" Platform="OSX32"/>
+					<ProjectRoot Name="$(PROJECTNAME)" Platform="Win64"/>
+					<ProjectRoot Name="$(PROJECTNAME)" Platform="Win32"/>
+				</Deployment>
+				<Platforms>
+					<Platform value="OSX32">False</Platform>
+					<Platform value="Win64">False</Platform>
+					<Platform value="Win32">True</Platform>
+				</Platforms>
+			</BorlandProject>
+			<ProjectFileVersion>12</ProjectFileVersion>
+		</ProjectExtensions>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
+		<Import Condition="Exists('$(MSBuildProjectName).deployproj')" Project="$(MSBuildProjectName).deployproj"/>
+	</Project>

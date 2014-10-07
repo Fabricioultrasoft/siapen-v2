@@ -80,6 +80,8 @@ const
   CLASS_CPDFSplitMergeObj: TGUID = '{50D41702-B618-41BA-8153-7AD7E8535574}';
 
 type
+//  TArrayReport = array of TfrxReport;
+
   // *********************************************************************//
   // Forward declaration of types defined in TypeLibrary
   // *********************************************************************//
@@ -158,6 +160,7 @@ type
     property DefaultInterface: IPDFSplitMerge read GetDefaultInterface;
   published
   end;
+
 
   TDm = class(TUniGUIMainModule)
     Conexao: TSQLConnection;
@@ -528,7 +531,7 @@ type
     procedure UniGUIMainModuleBrowserClose(Sender: TObject);
   private
     FMeuPDF: TCPDFSplitMergeObj;
-
+    FJPEGExportDOC: TfrxJPEGExport;
     FTD: TTransactionDesc; // Para os Lançamentos .
     FLiberado: boolean;
     FMaquinaDesenvolvimento: boolean;
@@ -639,6 +642,7 @@ type
     FGLOBAL_IDFUNCIONARIO_FILTRO: Integer;
     FGLOBAL_HTTP_PDF: string;
     FGLOBAL_CAMINHO_PDF: string;
+    FGLOBAL_URL_HTML_LOGIN: string;
     FGLOBAL_CENTRAL_DOCUMENTOS: string;
     Fvar_disciplinar: string;
     Fvar_data_disciplinar: TDateTime;
@@ -655,7 +659,13 @@ type
     FCampoWhereSqlConsulta: string;
     FPreDescricaoConsulta: string;
     FGLOBAL_SOLICITANTE: string;
+    FPDFExportDOC: TfrxPDFExport;
   public
+    ArrayReportDOC: array of TfrxReport;
+    property PDFExportDOC: TfrxPDFExport read FPDFExportDOC write FPDFExportDOC;
+    property JPEGExportDOC: TfrxJPEGExport read FJPEGExportDOC write FJPEGExportDOC;
+//    Array
+//    property ArrayReportDOC: TArrayReport read FArrayReportDOC write FArrayReportDOC;
     property GLOBAL_SOLICITANTE: String read FGLOBAL_SOLICITANTE write FGLOBAL_SOLICITANTE;
     property PreDescricaoConsulta: String read FPreDescricaoConsulta write FPreDescricaoConsulta;
     property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta write FCampoWhereSqlConsulta;
@@ -673,6 +683,7 @@ type
     property var_data_disciplinar: TDateTime read Fvar_data_disciplinar write Fvar_data_disciplinar;
     property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS write FGLOBAL_CENTRAL_DOCUMENTOS;
     property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
+    property GLOBAL_URL_HTML_LOGIN: String read FGLOBAL_URL_HTML_LOGIN write FGLOBAL_URL_HTML_LOGIN;
     property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
     property MeuPDF: TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
     property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
@@ -829,6 +840,8 @@ begin
       begin
 
         ini := TIniFile.Create(UniServerModule.StartPath + 'Config\Conexao.ini');
+        //Siapen1StartPath := ini.ReadString('SIAPEN', 'UniServerModule.StartPath', UniServerModule.StartPath);
+
         SUBPASTA := (ini.ReadString('SGBD', 'ACESSA', '-') = 'SUBPASTA');
         FMaquinaDesenvolvimento := (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
         senha_padrao := ini.ReadString('SIAPEN', 'PADRAO', 'IPCG');
@@ -841,8 +854,10 @@ begin
         FGLOBAL_WEBBROWSER := ini.ReadString('SIAPEN', 'GLOBAL_WEBBROWSER', 'http://spf.mj.gov.br');
         FGLOBAL_UF := ini.ReadString('SIAPEN', 'GLOBAL_UF', '');
         FGLOBAL_HTTP_PDF := ini.ReadString('SIAPEN', 'GLOBAL_HTTP_PDF', '');
+
         FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF', UniServerModule.StartPath);
         FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 1);
+        FGLOBAL_URL_HTML_LOGIN:= ini.ReadString('SIAPEN', 'GLOBAL_URL_HTML_LOGIN', UniServerModule.StartPath);
 
       end;
 

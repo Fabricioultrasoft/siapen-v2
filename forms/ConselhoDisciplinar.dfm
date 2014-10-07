@@ -30,7 +30,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 953
       Height = 610
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 953
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -48,6 +47,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -268,6 +269,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -437,6 +440,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -460,10 +465,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid1: TUniDBGrid
@@ -504,6 +513,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -533,6 +544,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -543,6 +556,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
             end
@@ -834,7 +849,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Left = 175
                 Top = 83
                 Width = 100
-                Height = 22
                 DateTime = 41816.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -882,7 +896,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Left = 278
                 Top = 83
                 Width = 100
-                Height = 22
                 DateTime = 41816.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -893,7 +906,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Top = 108
                 Width = 929
                 Height = 236
-                ActivePage = UniTabSheetProcedimento
+                ActivePage = UniTabSheetRecurso
                 TabOrder = 17
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
@@ -948,7 +961,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 567
                     Top = 99
                     Width = 91
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -959,7 +971,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 437
                     Top = 99
                     Width = 113
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1003,7 +1014,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 117
                     Top = 32
                     Width = 97
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1043,7 +1053,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 284
                     Top = 32
                     Width = 90
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1177,7 +1186,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 12
                     Top = 29
                     Width = 100
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1231,7 +1239,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 12
                     Top = 123
                     Width = 100
-                    Height = 22
                     DateTime = 41814.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1274,7 +1281,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 179
                     Top = 123
                     Width = 95
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1294,7 +1300,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 12
                     Top = 76
                     Width = 100
-                    Height = 22
                     DateTime = 41816.000000000000000000
                     DateFormat = 'dd/MM/yyyy'
                     TimeFormat = 'HH:mm:ss'
@@ -1381,7 +1386,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Left = 17
                       Top = 68
                       Width = 100
-                      Height = 22
                       DateTime = 41816.000000000000000000
                       DateFormat = 'dd/MM/yyyy'
                       TimeFormat = 'HH:mm:ss'
@@ -1402,7 +1406,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Left = 17
                       Top = 22
                       Width = 100
-                      Height = 22
                       DateTime = 41816.000000000000000000
                       DateFormat = 'dd/MM/yyyy'
                       TimeFormat = 'HH:mm:ss'
@@ -1453,7 +1456,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Left = 293
                       Top = 117
                       Width = 100
-                      Height = 22
                       DateTime = 41816.000000000000000000
                       DateFormat = 'dd/MM/yyyy'
                       TimeFormat = 'HH:mm:ss'
@@ -1482,6 +1484,14 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Caption = 'Solicitante do documento:'
                       TabOrder = 12
                     end
+                  end
+                  object UniCheckBoxABSOLVIDO_JUDICIALMENTE: TUniCheckBox
+                    Left = 83
+                    Top = 165
+                    Width = 625
+                    Height = 17
+                    Caption = 'Absolvido em decis'#227'o judicial.'
+                    TabOrder = 2
                   end
                 end
               end

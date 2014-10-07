@@ -70,8 +70,7 @@ uses
 
 function FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados;
 begin
-  Result := TFrmDocumentosDigitalizados
-    (UniMainModule.GetFormInstance(TFrmDocumentosDigitalizados));
+  Result := TFrmDocumentosDigitalizados(UniMainModule.GetFormInstance(TFrmDocumentosDigitalizados));
 end;
 
 procedure TFrmDocumentosDigitalizados.EditarClick(Sender: TObject);
@@ -80,14 +79,12 @@ begin
 
   SqlDocumentoProcessos.SQL.Text :=
     'select d.*, iif(d.comunicar_central=''S'',iif(d.data_inicio_central is null,''Prioridade'',iif(d.data_fim_central is null, ''Em Andamento'', ''Finalizado'')),''Normal'') central from DOCUMENTOS_PROCESSO d where d.id_interno='
-    + dscadastro.DataSet.FieldByName('id_interno').AsString +
-    ' order by d.data ';
+    + dscadastro.DataSet.FieldByName('id_interno').AsString + ' order by d.data ';
   // + ' order by data ';
   CdsDocumentoProcessos.close;
   CdsDocumentoProcessos.open;
 
-  SqlDocInsert.SQL.Text :=
-    'select * from DOCUMENTOS_PROCESSO d where d.id_interno=-1';
+  SqlDocInsert.SQL.Text := 'select * from DOCUMENTOS_PROCESSO d where d.id_interno=-1';
   // + ' order by data ';
   CdsDocInsert.close;
   CdsDocInsert.open;
@@ -123,15 +120,13 @@ procedure TFrmDocumentosDigitalizados.Comunicar;
 begin
   try
     CdsDocumentoProcessos.Edit;
-    CdsDocumentoProcessos.FieldByName('IDFUNCIONARIO').AsInteger :=
-      Dm.GLOBAL_ID_FUNCIONARIO;
+    CdsDocumentoProcessos.FieldByName('IDFUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
     CdsDocumentoProcessos.FieldByName('COMUNICAR_CENTRAL').AsString := 'S';
     CdsDocumentoProcessos.Post;
     CdsDocumentoProcessos.ApplyUpdates(-1);
     CdsDocumentoProcessos.close;
     CdsDocumentoProcessos.open;
-    humane.success
-      ('<b><font Color=yellow>Comunicação em andamento.</font></b><br>A central será comunicada deste documento.');
+    humane.success('<b><font Color=yellow>Comunicação em andamento.</font></b><br>A central será comunicada deste documento.');
   except
     on E: Exception do
     begin
@@ -141,8 +136,7 @@ begin
 
 end;
 
-procedure TFrmDocumentosDigitalizados.UniBitBtnComunicarCentralClick
-  (Sender: TObject);
+procedure TFrmDocumentosDigitalizados.UniBitBtnComunicarCentralClick(Sender: TObject);
 begin
   inherited;
 
@@ -152,9 +146,7 @@ begin
   end
   else
   begin
-    MessageDlg('Comunicar central deste documento:' +
-      CdsDocumentoProcessos.FieldByName('DESCRICAO').AsString + '?',
-      mtWarning, mbYesNo,
+    MessageDlg('Comunicar central deste documento:' + CdsDocumentoProcessos.FieldByName('DESCRICAO').AsString + '?', mtWarning, mbYesNo,
       procedure(Sender: TComponent; Result: Integer)
       begin
         if Result = mrYes then
@@ -166,8 +158,7 @@ begin
 
 end;
 
-procedure TFrmDocumentosDigitalizados.UniBitBtnTodosDigitalizadosClick
-  (Sender: TObject);
+procedure TFrmDocumentosDigitalizados.UniBitBtnTodosDigitalizadosClick(Sender: TObject);
 begin
   try
     sArquivosPDFInterno := '';
@@ -179,8 +170,7 @@ begin
       while not DsDocumentoProcessos.DataSet.eof do
       begin
 
-        sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-          DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
+        sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString;
 
         if FileExists(sPdf) then
         begin
@@ -199,26 +189,19 @@ begin
         if Dm.GLOBAL_IDCONEXAO > 0 then
         begin
           try
-            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-              qs('UNIFICANDO PDFS: ' + dscadastro.DataSet.FieldByName
-              ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
-              ('NOME_INTERNO').AsString + ' PDF:' + sArquivosPDFInterno) +
-              ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('UNIFICANDO PDFS: ' + dscadastro.DataSet.FieldByName('id_interno').AsString + '-'
+              + dscadastro.DataSet.FieldByName('NOME_INTERNO').AsString + ' PDF:' + sArquivosPDFInterno) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
           except
           end;
         end;
 
-        if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-          dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
-          DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-            dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
+        if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+          DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
 
         try
           Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
           Dm.MeuPDF.SetCode('Siapen - V2');
-          Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF +
-            'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString
-            + '.pdf');
+          Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf');
         finally
           Dm.MeuPDF.Free;
         end;
@@ -227,27 +210,25 @@ begin
     end
     else
     begin
-      if not FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+      if not FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
         showmessage('Não tem acesso para gerar unificação!');
     end;
 
     UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
 
-    if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-      dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
+    if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') then
     begin
-      UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
-        dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
-        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+      // UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+      // dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
+      // '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+      UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../../files/img_doc/' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);
 
       if Dm.GLOBAL_IDCONEXAO > 0 then
       begin
         try
-          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-            qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName
-            ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
-            ('NOME_INTERNO').AsString + ' ARQUIVO:' +dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') +
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName('id_interno').AsString + '-'
+            + dscadastro.DataSet.FieldByName('NOME_INTERNO').AsString + ' ARQUIVO:' + dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf') +
             ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
         except
         end;
@@ -260,28 +241,27 @@ begin
 
 end;
 
-procedure TFrmDocumentosDigitalizados.UniDBGrid1CellClick
-  (Column: TUniDBGridColumn);
+procedure TFrmDocumentosDigitalizados.UniDBGrid1CellClick(Column: TUniDBGridColumn);
 begin
   inherited;
   try
-    if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' +
-      DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
+    if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
     // or (Dm.GLOBAL_HTTP_PDF <> '')
     then
     begin
-      UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
-        DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
-        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+
+      // UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+      // DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
+      // '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+
+      UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../../files/img_doc/' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);
 
       if Dm.GLOBAL_IDCONEXAO > 0 then
       begin
         try
-          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-            qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName
-            ('id_interno').AsString + '-' + dscadastro.DataSet.FieldByName
-            ('NOME_INTERNO').AsString + ' ARQUIVO:' +
-            DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString) +
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName('id_interno').AsString + '-'
+            + dscadastro.DataSet.FieldByName('NOME_INTERNO').AsString + ' ARQUIVO:' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString) +
             ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
         except
         end;
@@ -297,8 +277,7 @@ begin
 
 end;
 
-procedure TFrmDocumentosDigitalizados.UniFileUploadPdfCompleted(Sender: TObject;
-AStream: TFileStream);
+procedure TFrmDocumentosDigitalizados.UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
 begin
 
   try
@@ -307,7 +286,7 @@ begin
     if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\') then
       ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\');
 
-    sPastaDia := FormatDateTime('yyyy-mm-dd', Now);
+    sPastaDia := FormatDateTime('yyyy-mm-dd', now);
 
     if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia) then
       ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia);
@@ -325,18 +304,13 @@ begin
       begin
 
         CdsDocInsert.Append;
-        CdsDocInsert.FieldByName('IDDOCUMENTOS_PROCESSO').AsInteger :=
-          Generator('IDDOCUMENTOS_PROCESSO');
-        CdsDocInsert.FieldByName('DESCRICAO').AsString :=
-          UniEditDescricaoPDF.Text;
-        CdsDocInsert.FieldByName('ID_TIPO_DOCUMENTO').AsInteger :=
-          UniDBLookupComboBoxTipoDocumento.keyvalue;
-        CdsDocInsert.FieldByName('DATA').AsDateTime := Now;
+        CdsDocInsert.FieldByName('IDDOCUMENTOS_PROCESSO').AsInteger := Generator('IDDOCUMENTOS_PROCESSO');
+        CdsDocInsert.FieldByName('DESCRICAO').AsString := UniEditDescricaoPDF.Text;
+        CdsDocInsert.FieldByName('ID_TIPO_DOCUMENTO').AsInteger := UniDBLookupComboBoxTipoDocumento.keyvalue;
+        CdsDocInsert.FieldByName('DATA').AsDateTime := now;
         CdsDocInsert.FieldByName('CAMINHO_DOC').AsString := sArquivo;
-        CdsDocInsert.FieldByName('IDFUNCIONARIO').AsInteger :=
-          Dm.GLOBAL_ID_FUNCIONARIO;
-        CdsDocInsert.FieldByName('ID_INTERNO').AsInteger :=
-          dscadastro.DataSet.FieldByName('id_interno').AsInteger;
+        CdsDocInsert.FieldByName('IDFUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
+        CdsDocInsert.FieldByName('ID_INTERNO').AsInteger := dscadastro.DataSet.FieldByName('id_interno').AsInteger;
         CdsDocInsert.Post;
         CdsDocInsert.ApplyUpdates(-1);
         CdsDocInsert.close;
@@ -348,18 +322,13 @@ begin
         if Dm.GLOBAL_IDCONEXAO > 0 then
         begin
           try
-            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-              qs('ANEXO DOC: ' + dscadastro.DataSet.FieldByName('id_interno')
-              .AsString + '-' + dscadastro.DataSet.FieldByName('NOME_INTERNO')
-              .AsString + ' ARQUIVO:' + sArquivo) + ' where idconexao=' +
-              inttostr(Dm.GLOBAL_IDCONEXAO));
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('ANEXO DOC: ' + dscadastro.DataSet.FieldByName('id_interno').AsString + '-' +
+              dscadastro.DataSet.FieldByName('NOME_INTERNO').AsString + ' ARQUIVO:' + sArquivo) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
           except
           end;
         end;
 
-        humane.success
-          ('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' +
-          UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
+        humane.success('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
 
         CdsDocumentoProcessos.Last;
         if UniCheckBoxComunicarCentral.Checked then
@@ -377,17 +346,13 @@ begin
       begin
         showmessage('O documento, não foi salvo!');
         humane.clickToClose(true);
-        humane.success
-          ('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>' +
-          UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
+        humane.success('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
 
       end;
     end
     else
     begin
-      humane.log('<b><font Color=yellow>Não é PDF!</font></b><br>O arquivo <b>'
-        + UniEditDescricaoPDF.Text +
-        '</b> não foi salvo, tem que ser formato PDF!');
+      humane.log('<b><font Color=yellow>Não é PDF!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> não foi salvo, tem que ser formato PDF!');
     end;
 
   except

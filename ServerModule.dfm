@@ -4,7 +4,7 @@ object UniServerModule: TUniServerModule
   AutoCoInitialize = True
   FilesFolder = 'files\'
   TempFolder = 'temp\'
-  SessionTimeout = 2400000
+  SessionTimeout = 9600000
   Title = 'Siapen 2.0'
   BGColor = clBlack
   CharSet = 'utf-8'
@@ -720,9 +720,10 @@ object UniServerModule: TUniServerModule
     '<b><font Color=navy>Ops... pedimos desculpas!</font></b><br> O s' +
     'istema est'#225' sem resposta a muito tempo... Provavelmente o seu na' +
     'vegador perdeu contato com o servidor, ou houve alguma inconsist' +
-    #234'ncia. <b>Tente novamante ou reinicie o sistema pressionando a t' +
-    'ecla [F5]</b>. <br>Voc'#234' pode solicitar consulta aos logs, anote ' +
-    'o hor'#225'rio e descreva os seus passos para nossa simula'#231#227'o.'
+    #234'ncia. <b><a href="http://siapen.com.br">Tente novamante ou rein' +
+    'icie o sistema pressionando a tecla [F5]</a></b>. <br>Voc'#234' pode ' +
+    'solicitar consulta aos logs, anote o hor'#225'rio e descreva os seus ' +
+    'passos para nossa simula'#231#227'o. '
   LoadingMessage = 'Siapen 2.0'
   Bindings = <>
   MainFormDisplayMode = mfPage
@@ -733,19 +734,6 @@ object UniServerModule: TUniServerModule
     'js/jquery.maskedinput-1.3.min.js'
     'js/jquery.numberMask.js'
     'css/sexybuttons.css')
-  CustomMeta.Strings = (
-    
-      '<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js">' +
-      '</script>'
-    '<script type="text/javascript">'
-    'if (typeof jQuery != '#39'undefined'#39')'
-    
-      '     {document.write(unescape("%3Cscript src='#39'http://cdn.bootcss' +
-      '.com/extjs/4.2.1/ext-all.js'#39'%3E%3C/script%3E")); }'
-    
-      'else {document.write(unescape("%3Cscript src='#39'ext-4.2.1.883/ext-' +
-      'all-1.js'#39'%3E%3C/script%3E")); }'
-    '</script>')
   ServerMessages.ExceptionTemplate.Strings = (
     '<html>'
     '<body bgcolor="#dfe8f6">'
@@ -792,6 +780,7 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.Mode = sslmUnassigned
   SSL.SSLOptions.VerifyMode = []
   SSL.SSLOptions.VerifyDepth = 0
+  Options = []
   Height = 150
   Width = 215
 end

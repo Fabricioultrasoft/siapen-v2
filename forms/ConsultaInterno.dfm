@@ -18,8 +18,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 137
     Height = 366
-    Hint = ''
-    Caption = ''
     Align = alLeft
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 0
@@ -28,7 +26,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 101
       Width = 129
       Height = 137
-      Hint = ''
       DataField = 'FOTO'
       DataSource = DsCadastro
       Stretch = True
@@ -38,7 +35,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 336
       Width = 135
       Height = 30
-      Hint = ''
       ButtonWidth = 119
       BorderWidth = 0
       ShowCaptions = True
@@ -48,7 +44,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
       object ToolButtonJuridico: TUniToolButton
         Left = 0
         Top = 0
-        Hint = ''
         ImageIndex = 23
         Caption = 'Ficha do Interno'
         ScreenMask.Enabled = True
@@ -62,7 +57,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
       Top = 256
       Width = 129
       Height = 78
-      Hint = ''
       Visible = False
       TitleFont.Name = 'MS Sans Serif'
       Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
@@ -75,20 +69,21 @@ object FrmConsultaInterno: TFrmConsultaInterno
     Top = 0
     Width = 973
     Height = 366
-    Hint = ''
     ActivePage = TabSheet1
     TabOrder = 1
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
     object TabSheet1: TUniTabSheet
-      Hint = ''
       Caption = 'Nome'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
       object Label1: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
-        Hint = ''
         Caption = 'Localizar:'
         ParentFont = False
         TabOrder = 2
@@ -98,7 +93,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
-        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = DsConsulta
@@ -205,9 +199,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 381
         Height = 30
-        Hint = ''
         CharCase = ecUpperCase
-        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -16
@@ -226,7 +218,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 105
         Height = 27
-        Hint = ''
         Text = 'Nome'
         Items.Strings = (
           'RGI'
@@ -241,7 +232,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 105
         Height = 27
-        Hint = ''
         Text = 'Ativo'
         Items.Strings = (
           'Ativo'
@@ -253,14 +243,16 @@ object FrmConsultaInterno: TFrmConsultaInterno
       end
     end
     object TabSheet2: TUniTabSheet
-      Hint = ''
       Caption = 'Vulgo'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
       object Label2: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
-        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 2
       end
@@ -269,9 +261,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 500
         Height = 32
-        Hint = ''
         CharCase = ecUpperCase
-        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -290,7 +280,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
-        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = dsvulgo
@@ -384,8 +373,11 @@ object FrmConsultaInterno: TFrmConsultaInterno
       end
     end
     object TabSheet3: TUniTabSheet
-      Hint = ''
       Caption = 'Outro Nome'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
       DesignSize = (
         965
         338)
@@ -394,7 +386,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 45
         Height = 13
-        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 2
       end
@@ -403,9 +394,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 689
         Height = 32
-        Hint = ''
         CharCase = ecUpperCase
-        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -425,7 +414,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 65
         Width = 1000
         Height = 200
-        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = DSOUTRONOEM
@@ -519,14 +507,16 @@ object FrmConsultaInterno: TFrmConsultaInterno
       end
     end
     object TabSheet4: TUniTabSheet
-      Hint = ''
       Caption = 'Filia'#231#227'o'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 256
+      ExplicitHeight = 128
       object Label4: TUniLabel
         Left = 10
         Top = 15
         Width = 45
         Height = 13
-        Hint = ''
         Caption = 'Localizar:'
         TabOrder = 3
       end
@@ -535,7 +525,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 66
         Width = 1000
         Height = 200
-        Hint = ''
         TitleFont.Color = clBlack
         TitleFont.Name = 'MS Sans Serif'
         DataSource = Dsfiliacao
@@ -642,9 +631,7 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = 15
         Width = 500
         Height = 32
-        Hint = ''
         CharCase = ecUpperCase
-        Text = ''
         ParentFont = False
         Font.Color = clLime
         Font.Height = -19
@@ -663,7 +650,6 @@ object FrmConsultaInterno: TFrmConsultaInterno
         Top = -2
         Width = 160
         Height = 61
-        Hint = ''
         Items.Strings = (
           'M'#227'e'
           'Pai')

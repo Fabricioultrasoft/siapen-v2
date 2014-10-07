@@ -31,6 +31,7 @@ type
     UniTreeView1: TUniTreeView;
     UniListBox1: TUniListBox;
     Fechar: TUniBitBtn;
+    UniBitBtn1: TUniBitBtn;
     procedure UniFormShow(Sender: TObject);
     procedure UniBitBtnVisualizarClick(Sender: TObject);
     procedure UniTreeView1Click(Sender: TObject);
@@ -38,6 +39,7 @@ type
     procedure UniFormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FecharClick(Sender: TObject);
+    procedure UniBitBtn1Click(Sender: TObject);
   private
     listtemp2: Tstrings;
     id_interno: integer;
@@ -69,6 +71,26 @@ function FrmMenuRelatorios: TFrmMenuRelatorios;
 begin
   Result := TFrmMenuRelatorios(UniMainModule.GetFormInstance
     (TFrmMenuRelatorios));
+end;
+
+procedure TFrmMenuRelatorios.UniBitBtn1Click(Sender: TObject);
+begin
+  Dm.CaminhoRelatorio := UniListBox1.Text;
+  if UniTreeView1.Selected.Text <> '[ Relatórios ]' then
+    Dm.CaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
+
+  if trim(Dm.CaminhoRelatorio) <> '' then
+  begin
+    // FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
+    FrmVisualizarRelatorio.FazExportacaoPDF := true;
+    FrmVisualizarRelatorio.ShowModal;
+  end
+  else
+  begin
+    ShowMessage('Selecione um relatório.');
+  end;
+
+
 end;
 
 procedure TFrmMenuRelatorios.UniBitBtnVisualizarClick(Sender: TObject);

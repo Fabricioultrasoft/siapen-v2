@@ -77,7 +77,7 @@ implementation
 {$R *.dfm}
 
 uses
-  uniGUIVars, MainModule, uniGUIApplication, ServerModule;
+  uniGUIVars, MainModule, uniGUIApplication, ServerModule, Lib;
 
 const
   DUMMY = '([*...Loading...*])';
@@ -282,7 +282,7 @@ var
   sAjax: TStringList;
 begin
   sIconFolder := IncludeTrailingBackslash
-    (ServerModule.UniServerModule.StartPath) + 'Icons\';
+    (UniServerModule.StartPath) + 'Icons\';
 
   // Ajax script to enable callback on fADTree before expand callback
   sAjax := TStringList.Create;

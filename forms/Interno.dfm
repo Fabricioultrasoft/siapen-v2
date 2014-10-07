@@ -94,6 +94,7 @@ inherited FrmInterno: TFrmInterno
       Width = 785
       Height = 538
       OnChange = PageControlModeloCadastroChange
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
@@ -109,7 +110,7 @@ inherited FrmInterno: TFrmInterno
             Top = 1
             Width = 775
             Height = 508
-            ActivePage = TabSheetPrincipal
+            ActivePage = TabSheetEndereco
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -1005,7 +1006,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 248
                 Top = 152
                 Width = 92
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -1017,7 +1017,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 149
                 Top = 152
                 Width = 95
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -1029,7 +1028,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 346
                 Top = 151
                 Width = 92
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -1041,7 +1039,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 392
                 Top = 446
                 Width = 95
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -1730,7 +1727,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 24
                 Top = 31
                 Width = 102
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -2348,7 +2344,6 @@ inherited FrmInterno: TFrmInterno
                   Left = 10
                   Top = 66
                   Width = 120
-                  Height = 22
                   DateTime = 41785.000000000000000000
                   DateFormat = 'dd/MM/yyyy'
                   TimeFormat = 'HH:mm:ss'
@@ -2988,7 +2983,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 24
                 Top = 80
                 Width = 106
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -3000,7 +2994,6 @@ inherited FrmInterno: TFrmInterno
                 Left = 24
                 Top = 31
                 Width = 105
-                Height = 22
                 DateTime = 41821.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'

@@ -6,7 +6,8 @@ uses
   Vcl.Forms,
   DmPrincipal in 'DmPrincipal.pas' {DM: TDataModule},
   Lib in 'Lib.pas',
-  MenuRelatorio in 'MenuRelatorio.pas' {FrmMenuRelatorio};
+  MenuRelatorio in 'MenuRelatorio.pas' {FrmMenuRelatorio},
+  frx2xto30 in '..\lib\frx2xto30.pas';
 
 {$R *.res}
 

@@ -52,6 +52,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
     end
     inherited UniDBImageInterno: TUniDBImage
       Top = 455
+      ExplicitTop = 455
     end
   end
   inherited PanelModeloCadastro: TUniPanel
@@ -62,7 +63,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 888
       Height = 610
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 888
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet

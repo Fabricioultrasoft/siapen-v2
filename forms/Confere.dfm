@@ -136,6 +136,30 @@ inherited FrmConfere: TFrmConfere
     inherited ToolBarModeloCadastro: TUniToolBar
       Width = 1007
       ExplicitWidth = 1007
+      inherited Novo: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Editar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited UniToolButton8: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Cancelar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Salvar: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited UniToolButton7: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Excluir: TUniToolButton
+        ExplicitHeight = 43
+      end
+      inherited Fechar: TUniToolButton
+        ExplicitHeight = 43
+      end
     end
   end
   inherited PanelModeloCadastro: TUniPanel
@@ -157,8 +181,10 @@ inherited FrmConfere: TFrmConfere
         ExplicitHeight = 149
         inherited DBGridConsulta: TUniDBGrid
           Width = 1003
-          Height = 123
+          Height = 110
           DataSource = DsConsulta
+          WebOptions.Paged = False
+          LoadMask.Message = 'Carregando dados...'
           Columns = <
             item
               FieldName = 'NOME_INTERNO'
@@ -254,15 +280,16 @@ inherited FrmConfere: TFrmConfere
         end
         object UniToolBarSetores: TUniToolBar
           Left = 0
-          Top = 123
+          Top = 110
           Width = 1003
-          Height = 26
+          Height = 39
           ShowHint = True
           ParentShowHint = False
-          ButtonHeight = 20
-          ButtonWidth = 44
+          ButtonHeight = 35
+          ButtonWidth = 64
           Images = Dm.ImageListNetworkI
           BorderWidth = 0
+          ShowCaptions = True
           Anchors = [akLeft, akRight, akBottom]
           Align = alBottom
           TabOrder = 1
@@ -272,10 +299,19 @@ inherited FrmConfere: TFrmConfere
             Hint = 'Cadastro de Identifica'#231#227'o do Interno(a)'
             ShowHint = True
             ImageIndex = 23
-            Caption = 'Interno'
+            Caption = 'Interno(a)  '
             ScreenMask.Enabled = True
             ScreenMask.Message = 'Aguarde, abrindo o cadastro...'
             OnClick = UniToolButton1Click
+          end
+          object UniToolButton2: TUniToolButton
+            Left = 130
+            Top = 0
+            Hint = 'Cadastre os Inqu'#233'ritos / Processos / Condena'#231#245'es.'
+            ShowHint = True
+            ImageIndex = 122
+            Caption = 'I/P/C'
+            OnClick = UniToolButton2Click
           end
           object UniLabel18: TUniLabel
             Left = 0
@@ -318,13 +354,8 @@ inherited FrmConfere: TFrmConfere
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
             ExplicitTop = 55
-            ExplicitWidth = 969
             object UniTabSheetDados: TUniTabSheet
               Caption = 'Dados'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 256
-              ExplicitHeight = 128
               DesignSize = (
                 993
                 177)
@@ -651,10 +682,6 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetCela: TUniTabSheet
               Caption = 'Cela'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 256
-              ExplicitHeight = 128
               object LabelPavilhao: TUniLabel
                 Left = 10
                 Top = 16
@@ -796,7 +823,6 @@ inherited FrmConfere: TFrmConfere
                 Left = 318
                 Top = 79
                 Width = 101
-                Height = 22
                 DateTime = 41784.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -854,10 +880,6 @@ inherited FrmConfere: TFrmConfere
             end
             object UniTabSheetSaida: TUniTabSheet
               Caption = 'Sa'#237'da'
-              ExplicitLeft = 0
-              ExplicitTop = 0
-              ExplicitWidth = 256
-              ExplicitHeight = 128
               object Label9: TUniLabel
                 Left = 119
                 Top = 6
@@ -951,7 +973,6 @@ inherited FrmConfere: TFrmConfere
                 Left = 8
                 Top = 25
                 Width = 101
-                Height = 22
                 DateTime = 41784.000000000000000000
                 DateFormat = 'dd/MM/yyyy'
                 TimeFormat = 'HH:mm:ss'
@@ -968,42 +989,124 @@ inherited FrmConfere: TFrmConfere
                 TabOrder = 8
                 object TabSheetDestino: TUniTabSheet
                   Caption = 'Outros Destinos'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 648
-                  ExplicitHeight = 91
-                  object DBLookupComboBoxDestino: TUniDBLookupComboBox
-                    Left = 21
-                    Top = 9
-                    Width = 465
-                    Height = 21
-                    ListField = 'DESTINO'
-                    ListSource = Dm.DsDestino
-                    KeyField = 'ID_DESTINO'
-                    ListFieldIndex = 0
+                  object UniDBEditDestino: TUniDBEdit
+                    Left = 19
+                    Top = 19
+                    Width = 60
+                    Height = 22
                     DataField = 'IDDESTINO'
                     DataSource = DsCadastro
                     TabOrder = 0
+                    Color = clWindow
+                    OnExit = UniDBEditDestinoExit
+                  end
+                  object UniLabelDestino: TUniLabel
+                    Left = 109
+                    Top = 23
+                    Width = 519
+                    Height = 13
+                    AutoSize = False
+                    Caption = '(Destino)'
+                    ParentColor = False
+                    Color = clWhite
+                    Transparent = False
+                    TabOrder = 1
+                  end
+                  object UniBitBtnDestino: TUniBitBtn
+                    Left = 80
+                    Top = 19
+                    Width = 26
+                    Height = 22
+                    Glyph.Data = {
+                      36030000424D3603000000000000360000002800000010000000100000000100
+                      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                      B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                      83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                      D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                      3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                      97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                      DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                      B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                      99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                      978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                      BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                      A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                      EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                      CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                      B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                      F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                      DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                      C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                      9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                      E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                      70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                      FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                      EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                      86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                      A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    TabOrder = 2
+                    OnClick = UniBitBtnDestinoClick
                   end
                 end
                 object TabSheetUnidade: TUniTabSheet
                   Caption = 'Destino: Unidade Prisional'
-                  ExplicitLeft = 0
-                  ExplicitTop = 0
-                  ExplicitWidth = 648
-                  ExplicitHeight = 91
-                  object DBLookupComboBoxUPDestino: TUniDBLookupComboBox
-                    Left = 10
-                    Top = 13
-                    Width = 488
-                    Height = 21
-                    ListField = 'NOME_UP'
-                    ListSource = DsUP
-                    KeyField = 'ID_UP'
-                    ListFieldIndex = 0
+                  object UniLabelID_UP_DESTINO: TUniLabel
+                    Left = 106
+                    Top = 23
+                    Width = 519
+                    Height = 13
+                    AutoSize = False
+                    Caption = '(Unidade de Destino)'
+                    ParentColor = False
+                    Color = clWhite
+                    Transparent = False
+                    TabOrder = 0
+                  end
+                  object UniBitBtnID_UP_DESTINO: TUniBitBtn
+                    Left = 77
+                    Top = 19
+                    Width = 26
+                    Height = 22
+                    Glyph.Data = {
+                      36030000424D3603000000000000360000002800000010000000100000000100
+                      18000000000000030000120B0000120B00000000000000000000FF00FFFF00FF
+                      B78183B78183B78183B78183B78183B78183B78183B78183B78183B78183B781
+                      83B78183B78183FF00FFFF00FFFF00FF636E7BFEEED4F7E3C5F6DFBCF5DBB4F3
+                      D7ABF3D3A2F1CF9AF0CF97F0CF98F0CF98F5D49AB78183FF00FFFF00FF5E98C7
+                      3489D07F859DF6E3CBF5DFC2F4DBBAF2D7B2F1D4A9F1D0A2EECC99EECC97EECC
+                      97F3D199B78183FF00FFFF00FFFF00FF4BB6FF288BE0858498F5E3CBF5DFC3F3
+                      DBBBF2D7B2F1D4ABF0D0A3EECC9AEECC97F3D199B78183FF00FFFF00FFFF00FF
+                      B481764DB5FF278BDE79819AF6E3CAF5DFC2F4DBB9F2D7B2F1D4AAF0D0A1EFCD
+                      99F3D198B78183FF00FFFF00FFFF00FFBA8E85FFFCF44CB9FF5A91BFA48179BE
+                      978EAC7E79BE9589D6B49BF1D3AAF0D0A1F3D29BB78183FF00FFFF00FFFF00FF
+                      BA8E85FFFFFDFBF4ECBFA19FC7A59CE1C9B8F2DFC6E0C3ADC59F90D7B49BF0D4
+                      A9F5D5A3B78183FF00FFFF00FFFF00FFCB9A82FFFFFFFEF9F5C09C97E3CEC4F9
+                      EADAF8E7D2FFFFF7E0C2ADBE9589F2D8B2F6D9ACB78183FF00FFFF00FFFF00FF
+                      CB9A82FFFFFFFFFEFDAC7F7BF8EEE7F9EFE3F8EADAFFFFF0F3DEC7AC7E79F4DB
+                      B9F8DDB4B78183FF00FFFF00FFFF00FFDCA887FFFFFFFFFFFFC19F9CE6D6D1FB
+                      F3EBFAEFE2FFFFDEE2C8B8BE978DF7E1C2F0DAB7B78183FF00FFFF00FFFF00FF
+                      DCA887FFFFFFFFFFFFDFCDCBC9ACA9E6D6D1F8EEE6E3CEC4C7A59CC3A394E6D9
+                      C4C6BCA9B78183FF00FFFF00FFFF00FFE3B18EFFFFFFFFFFFFFFFFFFDFCDCBC1
+                      9F9CAC7F7BC09D97D6BAB1B8857AB8857AB8857AB78183FF00FFFF00FFFF00FF
+                      E3B18EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFCFFFEF9E3CFC9B8857AE8B2
+                      70ECA54AC58768FF00FFFF00FFFF00FFEDBD92FFFFFFFFFFFFFFFFFFFFFFFFFF
+                      FFFFFFFFFFFFFFFFE4D4D2B8857AFAC577CD9377FF00FFFF00FFFF00FFFF00FF
+                      EDBD92FCF7F4FCF7F3FBF6F3FBF6F3FAF5F3F9F5F3F9F5F3E1D0CEB8857ACF9B
+                      86FF00FFFF00FFFF00FFFF00FFFF00FFEDBD92DCA887DCA887DCA887DCA887DC
+                      A887DCA887DCA887DCA887B8857AFF00FFFF00FFFF00FFFF00FF}
+                    TabOrder = 1
+                    OnClick = UniBitBtnID_UP_DESTINOClick
+                  end
+                  object UniDBEditID_UP_DESTINO: TUniDBEdit
+                    Left = 16
+                    Top = 19
+                    Width = 60
+                    Height = 22
                     DataField = 'ID_UP_DESTINO'
                     DataSource = DsCadastro
-                    TabOrder = 0
+                    TabOrder = 2
+                    Color = clWindow
+                    OnExit = UniDBEditID_UP_DESTINOExit
                   end
                 end
               end
@@ -1071,7 +1174,6 @@ inherited FrmConfere: TFrmConfere
               Left = 606
               Top = 28
               Width = 94
-              Height = 22
               DateTime = 41780.000000000000000000
               DateFormat = 'dd/MM/yyyy'
               TimeFormat = 'HH:mm:ss'

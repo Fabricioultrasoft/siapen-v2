@@ -18,7 +18,6 @@ object frameFileExplorer: TframeFileExplorer
     Top = 0
     Width = 305
     Height = 508
-    Hint = ''
     BorderStyle = ubsNone
     Caption = 'UniPanel1'
     Align = alLeft
@@ -29,7 +28,6 @@ object frameFileExplorer: TframeFileExplorer
       Top = 0
       Width = 305
       Height = 508
-      Hint = ''
       Items.FontData = {0100000000}
       Images = UniImageList1
       Align = alClient
@@ -48,7 +46,6 @@ object frameFileExplorer: TframeFileExplorer
     Top = 0
     Width = 5
     Height = 508
-    Hint = ''
     Align = alLeft
     ParentColor = False
     Color = clBtnFace
@@ -58,7 +55,6 @@ object frameFileExplorer: TframeFileExplorer
     Top = 0
     Width = 593
     Height = 508
-    Hint = ''
     BorderStyle = ubsNone
     Caption = 'UniPanel2'
     Align = alClient
@@ -69,7 +65,6 @@ object frameFileExplorer: TframeFileExplorer
       Top = 0
       Width = 593
       Height = 30
-      Hint = ''
       Caption = 'UniPanel3'
       Align = alTop
       Anchors = [akLeft, akTop, akRight]
@@ -79,7 +74,6 @@ object frameFileExplorer: TframeFileExplorer
         Top = 1
         Width = 256
         Height = 28
-        Hint = ''
         BorderStyle = ubsNone
         Caption = 'UniPanel5'
         Align = alRight
@@ -93,8 +87,6 @@ object frameFileExplorer: TframeFileExplorer
           Top = 4
           Width = 227
           Height = 20
-          Hint = ''
-          Text = ''
           TabOrder = 1
           Color = clWindow
           ScreenMask.Enabled = True
@@ -108,7 +100,6 @@ object frameFileExplorer: TframeFileExplorer
           Top = 6
           Width = 16
           Height = 17
-          Hint = ''
           Picture.Data = {
             0954506E67496D61676589504E470D0A1A0A0000000D49484452000000100000
             001008060000001FF3FF610000002D744558744372656174696F6E2054696D65
@@ -140,7 +131,6 @@ object frameFileExplorer: TframeFileExplorer
         Top = 1
         Width = 337
         Height = 28
-        Hint = ''
         BorderStyle = ubsNone
         Caption = 'UniPanel6'
         Align = alClient
@@ -151,7 +141,6 @@ object frameFileExplorer: TframeFileExplorer
           Top = 0
           Width = 337
           Height = 29
-          Hint = ''
           ButtonHeight = 23
           ButtonWidth = 22
           Images = UniImageList1
@@ -191,7 +180,6 @@ object frameFileExplorer: TframeFileExplorer
       Top = 52
       Width = 593
       Height = 456
-      Hint = ''
       DataSource = DataSource1
       Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
       ReadOnly = True
@@ -206,7 +194,6 @@ object frameFileExplorer: TframeFileExplorer
       Top = 30
       Width = 593
       Height = 22
-      Hint = ''
       ShowCaption = False
       Caption = 'UniPanel4'
       Align = alTop
@@ -217,8 +204,6 @@ object frameFileExplorer: TframeFileExplorer
         Top = 1
         Width = 591
         Height = 20
-        Hint = ''
-        Text = ''
         Align = alClient
         Anchors = [akLeft, akTop, akRight, akBottom]
         TabOrder = 1
@@ -233,7 +218,7 @@ object frameFileExplorer: TframeFileExplorer
     Left = 496
     Top = 200
     Bitmap = {
-      494C010103000500140010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
+      494C0101030005001C0010001000FFFFFFFF2110FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000001000000001002000000000000010
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

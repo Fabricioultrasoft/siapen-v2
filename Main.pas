@@ -546,7 +546,7 @@ begin
   // UniStatusBar1.Panels.Items[6].Text :=  ;
 
   EditHora.Text := FormatDateTime('dd/mm/yyyy  -  hh:mm:ss', NOW);
-  if FileExists('atualizar.txt') then
+  if FileExists(UniServerModule.StartPath + 'atualizar.txt') then
   begin
     if FTempoParaFechar <= 0 then
     begin

@@ -39,7 +39,6 @@ type
     UniLabel11: TUniLabel;
     Label74: TUniLabel;
     UniDBGrid1: TUniDBGrid;
-    DBEditdtsetor: TUniDBEdit;
     DBEditobstrabalho: TUniDBEdit;
     DBEditdoctrabalho: TUniDBEdit;
     DBComboBoxtipoatividade: TUniDBComboBox;
@@ -138,6 +137,7 @@ type
     UniBitBtnExcluirCertidao: TUniBitBtn;
     UniBitBtnExcluirRemicao: TUniBitBtn;
     DateTimePickerdtfinalcertidao: TUniDateTimePicker;
+    DBEditdtsetor: TUniDBDateTimePicker;
     procedure UniDBEditFuncaoInternoExit(Sender: TObject);
     procedure UniBitBtnFuncaoInternoClick(Sender: TObject);
     procedure UniDBEditLocalTrabalhoExit(Sender: TObject);
@@ -174,22 +174,18 @@ uses
 
 function FrmCadastroInternoTrabalho: TFrmCadastroInternoTrabalho;
 begin
-  Result := TFrmCadastroInternoTrabalho
-    (UniMainModule.GetFormInstance(TFrmCadastroInternoTrabalho));
+  Result := TFrmCadastroInternoTrabalho(UniMainModule.GetFormInstance(TFrmCadastroInternoTrabalho));
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniBitBtnSetorTrabalhoClick
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniBitBtnSetorTrabalhoClick(Sender: TObject);
 begin
   inherited;
 
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_SETOR_TRABALHO CODIGO, SETOR_TRABALHO DESCRICAO from SETOR_TRABALHO '
-      + ' order by SETOR_TRABALHO ', 'SETOR_TRABALHO', 'CODIGO', 'DESCRICAO',
-      UniDBEditSetorTrabalho, UniLabelSetorTrabalho);
+    ConsultaTabela(Self, 'select id_SETOR_TRABALHO CODIGO, SETOR_TRABALHO DESCRICAO from SETOR_TRABALHO ' + ' order by SETOR_TRABALHO ', 'SETOR_TRABALHO',
+      'CODIGO', 'DESCRICAO', UniDBEditSetorTrabalho, UniLabelSetorTrabalho);
 
   end;
 
@@ -197,8 +193,7 @@ end;
 
 procedure TFrmCadastroInternoTrabalho.BitBtn1Click(Sender: TObject);
 var
-  diastrabalhado, saldoanterior, diastrabalhadoanterior,
-    diastrabalhadototal: integer;
+  diastrabalhado, saldoanterior, diastrabalhadoanterior, diastrabalhadototal: integer;
 begin
   inherited;
 
@@ -207,14 +202,9 @@ begin
   diastrabalhadoanterior := 0;
   diastrabalhadototal := 0;
 
-  dm.SqlExecute.SQL.Text :=
-    'select * from calc_setor_trabalho c where  c.id_interno = ' +
-    DsCadastro.DataSet.fieldbyname('id_interno').asstring +
-    ' and c.data_inicial >= ' +
-    qs(formatdatetime('mm/dd/yyyy', DateTimePickerdtinicialcertidao.Datetime)) +
-    ' and c.data_final <= ' +
-    qs(formatdatetime('mm/dd/yyyy',
-    DateTimePickerdtfinalcertidao.Datetime));
+  dm.SqlExecute.SQL.Text := 'select * from calc_setor_trabalho c where  c.id_interno = ' + DsCadastro.DataSet.fieldbyname('id_interno').asstring +
+    ' and c.data_inicial >= ' + qs(formatdatetime('mm/dd/yyyy', DateTimePickerdtinicialcertidao.Datetime)) + ' and c.data_final <= ' +
+    qs(formatdatetime('mm/dd/yyyy', DateTimePickerdtfinalcertidao.Datetime));
 
   dm.DsExecute.DataSet.close;
   dm.DsExecute.DataSet.Open;
@@ -224,19 +214,14 @@ begin
     dm.DsExecute.DataSet.First;
     while not dm.DsExecute.DataSet.eof do
     begin
-      diastrabalhado := diastrabalhado + dm.DsExecute.DataSet.fieldbyname
-        ('qtdediastrabalhado').asinteger;
+      diastrabalhado := diastrabalhado + dm.DsExecute.DataSet.fieldbyname('qtdediastrabalhado').asinteger;
 
       dm.DsExecute.DataSet.Next;
     end;
     dm.DsExecute.DataSet.close;
 
-    dm.SqlExecute.SQL.Text :=
-      'select * from calc_setor_trabalho c where  c.id_interno = ' +
-      DsCadastro.DataSet.fieldbyname('id_interno').asstring +
-      ' and c.data_inicial < ' +
-      qs(formatdatetime('mm/dd/yyyy',
-      DateTimePickerdtinicialcertidao.Datetime));
+    dm.SqlExecute.SQL.Text := 'select * from calc_setor_trabalho c where  c.id_interno = ' + DsCadastro.DataSet.fieldbyname('id_interno').asstring +
+      ' and c.data_inicial < ' + qs(formatdatetime('mm/dd/yyyy', DateTimePickerdtinicialcertidao.Datetime));
 
     dm.DsExecute.DataSet.close;
     dm.DsExecute.DataSet.Open;
@@ -247,8 +232,7 @@ begin
       while not dm.DsExecute.DataSet.eof do
       begin
 
-        diastrabalhadoanterior := diastrabalhadoanterior +
-          dm.DsExecute.DataSet.fieldbyname('qtdediastrabalhado').asinteger;
+        diastrabalhadoanterior := diastrabalhadoanterior + dm.DsExecute.DataSet.fieldbyname('qtdediastrabalhado').asinteger;
 
         dm.DsExecute.DataSet.Next;
       end;
@@ -257,8 +241,7 @@ begin
 
     Editsaldoanterior.Text := inttostr(diastrabalhadoanterior mod 3);
     if Editsaldoanterior.Text <> '' then
-      diastrabalhadototal :=
-        (diastrabalhado + (strtoint(Editsaldoanterior.Text)))
+      diastrabalhadototal := (diastrabalhado + (strtoint(Editsaldoanterior.Text)))
     else
       diastrabalhadototal := diastrabalhado;
     Editdiastrabalhadocertidao.Text := inttostr(diastrabalhado);
@@ -279,24 +262,15 @@ begin
   end;
 
   dscertidao_trabalho.DataSet.Append;
-  dscertidao_trabalho.DataSet.fieldbyname('id_atestado_trabalho')
-    .asinteger := 0;
-  dscertidao_trabalho.DataSet.fieldbyname('id_interno').asinteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
-  dscertidao_trabalho.DataSet.fieldbyname('data_inicial').asstring :=
-    formatdatetime('dd/mm/yyyy', DateTimePickerdtinicialcertidao.Datetime);
-  dscertidao_trabalho.DataSet.fieldbyname('data_final').asstring :=
-    formatdatetime('dd/mm/yyyy', DateTimePickerdtfinalcertidao.Datetime);
-  dscertidao_trabalho.DataSet.fieldbyname('dias_trabalhado').asstring :=
-    Editdiastrabalhadocertidao.Text;
-  dscertidao_trabalho.DataSet.fieldbyname('dias_remido').asstring :=
-    Editdiasremidocertidao.Text;
-  dscertidao_trabalho.DataSet.fieldbyname('saldo_anterior').asstring :=
-    Editsaldoanterior.Text;
-  dscertidao_trabalho.DataSet.fieldbyname('total_dias').asstring :=
-    Edittotaltrabalhado.Text;
-  dscertidao_trabalho.DataSet.fieldbyname('saldo_proxima').asstring :=
-    Editsaldoproximo.Text;
+  dscertidao_trabalho.DataSet.fieldbyname('id_atestado_trabalho').asinteger := 0;
+  dscertidao_trabalho.DataSet.fieldbyname('id_interno').asinteger := DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
+  dscertidao_trabalho.DataSet.fieldbyname('data_inicial').asstring := formatdatetime('dd/mm/yyyy', DateTimePickerdtinicialcertidao.Datetime);
+  dscertidao_trabalho.DataSet.fieldbyname('data_final').asstring := formatdatetime('dd/mm/yyyy', DateTimePickerdtfinalcertidao.Datetime);
+  dscertidao_trabalho.DataSet.fieldbyname('dias_trabalhado').asstring := Editdiastrabalhadocertidao.Text;
+  dscertidao_trabalho.DataSet.fieldbyname('dias_remido').asstring := Editdiasremidocertidao.Text;
+  dscertidao_trabalho.DataSet.fieldbyname('saldo_anterior').asstring := Editsaldoanterior.Text;
+  dscertidao_trabalho.DataSet.fieldbyname('total_dias').asstring := Edittotaltrabalhado.Text;
+  dscertidao_trabalho.DataSet.fieldbyname('saldo_proxima').asstring := Editsaldoproximo.Text;
   dscertidao_trabalho.DataSet.Post;
 
   Editdiastrabalhadocertidao.Text := '';
@@ -311,35 +285,21 @@ procedure TFrmCadastroInternoTrabalho.BtnCopiarClick(Sender: TObject);
 begin
   inherited;
 
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_DOMINGO').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEG').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_TER').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_QUA').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_QUI').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEX').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SABADO').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_DOMINGO').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEG').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_TER').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_QUA').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_QUI').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEX').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SABADO').Value := DsCadastro.DataSet.fieldbyname('HORARIO_SAIDA_SEMANAL').Value;
 
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_DOMINGO').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEG').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_TER').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_QUA').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_QUI').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEX').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
-  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SABADO').Value :=
-    DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_DOMINGO').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEG').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_TER').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_QUA').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_QUI').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEX').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
+  DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SABADO').Value := DsCadastro.DataSet.fieldbyname('HORARIO_ENTRADA_SEMANAL').Value;
 
 end;
 
@@ -356,9 +316,7 @@ begin
   if CHsabado.Checked = True then
     naoremir := naoremir + '6';
 
-  Editdiastrabalhado.Text :=
-    inttostr(DiasUteis(DateTimePickerdatainicial.Datetime,
-    DateTimePickerdatafinal.Datetime, naoremir));
+  Editdiastrabalhado.Text := inttostr(DiasUteis(DateTimePickerdatainicial.Datetime, DateTimePickerdatafinal.Datetime, naoremir));
 
 end;
 
@@ -372,14 +330,10 @@ begin
 
   dscalc_trabalho.DataSet.Append;
   dscalc_trabalho.DataSet.fieldbyname('idcalc_setor_trabalho').asinteger := 0;
-  dscalc_trabalho.DataSet.fieldbyname('id_interno').asinteger :=
-    DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
-  dscalc_trabalho.DataSet.fieldbyname('data_inicial').asstring :=
-    formatdatetime('dd/mm/yyyy', DateTimePickerdatainicial.Datetime);
-  dscalc_trabalho.DataSet.fieldbyname('data_final').asstring :=
-    formatdatetime('dd/mm/yyyy', DateTimePickerdatafinal.Datetime);
-  dscalc_trabalho.DataSet.fieldbyname('qtdediastrabalhado').asstring :=
-    Editdiastrabalhado.Text;
+  dscalc_trabalho.DataSet.fieldbyname('id_interno').asinteger := DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
+  dscalc_trabalho.DataSet.fieldbyname('data_inicial').asstring := formatdatetime('dd/mm/yyyy', DateTimePickerdatainicial.Datetime);
+  dscalc_trabalho.DataSet.fieldbyname('data_final').asstring := formatdatetime('dd/mm/yyyy', DateTimePickerdatafinal.Datetime);
+  dscalc_trabalho.DataSet.fieldbyname('qtdediastrabalhado').asstring := Editdiastrabalhado.Text;
   dscalc_trabalho.DataSet.Post;
 
   Editdiastrabalhado.Text := '';
@@ -491,25 +445,20 @@ begin
             begin
 
               dshistorico_trabalho.DataSet.Edit;
-              dshistorico_trabalho.DataSet.fieldbyname
-                ('DOCUMENTO_DESCLASSIFICACAO').asstring :=
-                FrmMotivoDispensaTrabalho.Editdocumento.Text;
-              dshistorico_trabalho.DataSet.fieldbyname('data_saida').asstring :=
-                formatdatetime('dd/mm/yyyy',
+              dshistorico_trabalho.DataSet.fieldbyname('DOCUMENTO_DESCLASSIFICACAO').asstring := FrmMotivoDispensaTrabalho.Editdocumento.Text;
+              dshistorico_trabalho.DataSet.fieldbyname('data_saida').asstring := formatdatetime('dd/mm/yyyy',
                 FrmMotivoDispensaTrabalho.adpDBDateTimePickerdtsaida.Datetime);
-              dshistorico_trabalho.DataSet.fieldbyname('motivo_saida').asstring
-                := FrmMotivoDispensaTrabalho.Memo1.Text;
+              dshistorico_trabalho.DataSet.fieldbyname('motivo_saida').asstring := FrmMotivoDispensaTrabalho.Memo1.Text;
               dshistorico_trabalho.DataSet.Post;
-
-              DsCadastro.DataSet.fieldbyname('DOC_TRABALHO').asstring := '';
-              DsCadastro.DataSet.fieldbyname('DATA_SETOR').asstring := '';
-              DsCadastro.DataSet.fieldbyname('ID_FUNCAOINTERNO').asstring := '';
-              DsCadastro.DataSet.fieldbyname('ID_LOCAL_TRABALHO')
-                .asstring := '';
-              DsCadastro.DataSet.fieldbyname('IDSETOR_TRABALHO').asstring := '';
-              DsCadastro.DataSet.fieldbyname('OBSTRABALHO').asstring := '';
-              DsCadastro.DataSet.fieldbyname('TIPO_ATIVIDADE').asstring := '';
-
+              {
+                DsCadastro.DataSet.fieldbyname('DOC_TRABALHO').asstring := '';
+                DsCadastro.DataSet.fieldbyname('DATA_SETOR').asstring := '';
+                DsCadastro.DataSet.fieldbyname('ID_FUNCAOINTERNO').asstring := '';
+                DsCadastro.DataSet.fieldbyname('ID_LOCAL_TRABALHO').asstring := '';
+                DsCadastro.DataSet.fieldbyname('IDSETOR_TRABALHO').asstring := '';
+                DsCadastro.DataSet.fieldbyname('OBSTRABALHO').asstring := '';
+                DsCadastro.DataSet.fieldbyname('TIPO_ATIVIDADE').asstring := '';
+              }
               DBEditdtsetor.Enabled := True;
               DBEditobstrabalho.Enabled := True;
               DBEditdoctrabalho.Enabled := True;
@@ -533,33 +482,22 @@ var
   iErro, ierro1: integer;
 begin
   iErro := 0;
-  DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').asinteger :=
-    dm.GLOBAL_ID_FUNCIONARIO;
+  DsCadastro.DataSet.fieldbyname('ID_FUNCIONARIO').asinteger := dm.GLOBAL_ID_FUNCIONARIO;
 
   { Inserir Historico Setor Trabalho }
-  if (sttrabalho <> UniDBEditSetorTrabalho.Text) and
-    (DsCadastro.DataSet.fieldbyname('idsetor_trabalho').asstring <> '') then
+  if (sttrabalho <> UniDBEditSetorTrabalho.Text) and (DsCadastro.DataSet.fieldbyname('idsetor_trabalho').asstring <> '') then
   begin
 
     dshistorico_trabalho.DataSet.Append;
-    dshistorico_trabalho.DataSet.fieldbyname('id_historico_trabalho')
-      .asinteger := 0;
-    dshistorico_trabalho.DataSet.fieldbyname('id_interno').asinteger :=
-      DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
-    dshistorico_trabalho.DataSet.fieldbyname('data').asstring :=
-      DsCadastro.DataSet.fieldbyname('data_setor').asstring;
-    dshistorico_trabalho.DataSet.fieldbyname('id_funcionario').asinteger :=
-      dm.GLOBAL_ID_FUNCIONARIO;
-    dshistorico_trabalho.DataSet.fieldbyname('id_setor_trabalho').asvariant :=
-      UniDBEditSetorTrabalho.field.asvariant;
-    dshistorico_trabalho.DataSet.fieldbyname('id_local_trabalho').asvariant :=
-      UniDBEditLocalTrabalho.field.asvariant;
-    dshistorico_trabalho.DataSet.fieldbyname('id_funcao_interno').asvariant :=
-      UniDBEditFuncaoInterno.field.asvariant;
-    dshistorico_trabalho.DataSet.fieldbyname('documento').asstring :=
-      DsCadastro.DataSet.fieldbyname('doc_trabalho').asstring;
-    dshistorico_trabalho.DataSet.fieldbyname('obs').asstring :=
-      DsCadastro.DataSet.fieldbyname('obstrabalho').asstring;
+    dshistorico_trabalho.DataSet.fieldbyname('id_historico_trabalho').asinteger := 0;
+    dshistorico_trabalho.DataSet.fieldbyname('id_interno').asinteger := DsCadastro.DataSet.fieldbyname('id_interno').asinteger;
+    dshistorico_trabalho.DataSet.fieldbyname('data').asstring := DsCadastro.DataSet.fieldbyname('data_setor').asstring;
+    dshistorico_trabalho.DataSet.fieldbyname('id_funcionario').asinteger := dm.GLOBAL_ID_FUNCIONARIO;
+    dshistorico_trabalho.DataSet.fieldbyname('id_setor_trabalho').asvariant := UniDBEditSetorTrabalho.field.asvariant;
+    dshistorico_trabalho.DataSet.fieldbyname('id_local_trabalho').asvariant := UniDBEditLocalTrabalho.field.asvariant;
+    dshistorico_trabalho.DataSet.fieldbyname('id_funcao_interno').asvariant := UniDBEditFuncaoInterno.field.asvariant;
+    dshistorico_trabalho.DataSet.fieldbyname('documento').asstring := DsCadastro.DataSet.fieldbyname('doc_trabalho').asstring;
+    dshistorico_trabalho.DataSet.fieldbyname('obs').asstring := DsCadastro.DataSet.fieldbyname('obstrabalho').asstring;
     dshistorico_trabalho.DataSet.Post;
 
     iErro := cdshistorico_trabalho.ApplyUpdates(-1);
@@ -583,8 +521,7 @@ begin
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniBitBtnExcluirCertidaoClick
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniBitBtnExcluirCertidaoClick(Sender: TObject);
 begin
   inherited;
 
@@ -611,8 +548,7 @@ begin
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniBitBtnExcluirRemicaoClick
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniBitBtnExcluirRemicaoClick(Sender: TObject);
 begin
   inherited;
 
@@ -639,79 +575,62 @@ begin
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniBitBtnFuncaoInternoClick
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniBitBtnFuncaoInternoClick(Sender: TObject);
 begin
   inherited;
 
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_FUNCAO_INTERNO CODIGO, FUNCAO_INTERNO DESCRICAO from FUNCAO_INTERNO '
-      + ' order by FUNCAO_INTERNO ', 'FUNCAO_INTERNO', 'CODIGO', 'DESCRICAO',
-      UniDBEditFuncaoInterno, UniLabelFuncaoInterno);
+    ConsultaTabela(Self, 'select id_FUNCAO_INTERNO CODIGO, FUNCAO_INTERNO DESCRICAO from FUNCAO_INTERNO ' + ' order by FUNCAO_INTERNO ', 'FUNCAO_INTERNO',
+      'CODIGO', 'DESCRICAO', UniDBEditFuncaoInterno, UniLabelFuncaoInterno);
 
   end;
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniBitBtnLocalTrabalhoClick
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniBitBtnLocalTrabalhoClick(Sender: TObject);
 begin
   inherited;
 
   if DsCadastro.DataSet.State in [dsedit, dsinsert] then
   begin
 
-    ConsultaTabela(Self,
-      'select id_LOCAL_TRABALHO CODIGO, LOCAL_TRABALHO DESCRICAO from LOCAL_TRABALHO '
-      + ' order by LOCAL_TRABALHO ', 'LOCAL_TRABALHO', 'CODIGO', 'DESCRICAO',
-      UniDBEditLocalTrabalho, UniLabelLocalTrabalho);
+    ConsultaTabela(Self, 'select id_LOCAL_TRABALHO CODIGO, LOCAL_TRABALHO DESCRICAO from LOCAL_TRABALHO ' + ' order by LOCAL_TRABALHO ', 'LOCAL_TRABALHO',
+      'CODIGO', 'DESCRICAO', UniDBEditLocalTrabalho, UniLabelLocalTrabalho);
 
   end;
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniDBEditFuncaoInternoExit
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniDBEditFuncaoInternoExit(Sender: TObject);
 begin
   inherited;
 
-  RetornaRegistro
-    ('select FUNCAO_INTERNO DESCRICAO from FUNCAO_INTERNO WHERE id_FUNCAO_INTERNO=',
-    UniDBEditFuncaoInterno, UniLabelFuncaoInterno);
+  RetornaRegistro('select FUNCAO_INTERNO DESCRICAO from FUNCAO_INTERNO WHERE id_FUNCAO_INTERNO=', UniDBEditFuncaoInterno, UniLabelFuncaoInterno);
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniDBEditLocalTrabalhoExit
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniDBEditLocalTrabalhoExit(Sender: TObject);
 begin
   inherited;
 
-  RetornaRegistro
-    ('select LOCAL_TRABALHO DESCRICAO from LOCAL_TRABALHO WHERE id_LOCAL_TRABALHO=',
-    UniDBEditLocalTrabalho, UniLabelLocalTrabalho);
+  RetornaRegistro('select LOCAL_TRABALHO DESCRICAO from LOCAL_TRABALHO WHERE id_LOCAL_TRABALHO=', UniDBEditLocalTrabalho, UniLabelLocalTrabalho);
 
 end;
 
-procedure TFrmCadastroInternoTrabalho.UniDBEditSetorTrabalhoExit
-  (Sender: TObject);
+procedure TFrmCadastroInternoTrabalho.UniDBEditSetorTrabalhoExit(Sender: TObject);
 begin
   inherited;
 
-  RetornaRegistro
-    ('select SETOR_TRABALHO DESCRICAO from SETOR_TRABALHO WHERE id_SETOR_TRABALHO=',
-    UniDBEditSetorTrabalho, UniLabelSetorTrabalho);
+  RetornaRegistro('select SETOR_TRABALHO DESCRICAO from SETOR_TRABALHO WHERE id_SETOR_TRABALHO=', UniDBEditSetorTrabalho, UniLabelSetorTrabalho);
 
 end;
 
 procedure TFrmCadastroInternoTrabalho.UniFormCreate(Sender: TObject);
 begin
   inherited;
-  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and not ContemValor('E', dm.PERMISSAO_TRABALHO) and not ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Novo.Visible := false;
     Editar.Visible := false;
@@ -719,9 +638,7 @@ begin
     Salvar.Visible := false;
   end;
 
-  if ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if ContemValor('I', dm.PERMISSAO_TRABALHO) and not ContemValor('E', dm.PERMISSAO_TRABALHO) and not ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Editar.Visible := false;
     Excluir.Visible := false;
@@ -731,23 +648,17 @@ begin
       Salvar.Visible := false;
   end;
 
-  if ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if ContemValor('I', dm.PERMISSAO_TRABALHO) and ContemValor('E', dm.PERMISSAO_TRABALHO) and not ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Excluir.Visible := false;
   end;
 
-  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and ContemValor('E', dm.PERMISSAO_TRABALHO) and ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Novo.Visible := false;
   end;
 
-  if ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if ContemValor('I', dm.PERMISSAO_TRABALHO) and not ContemValor('E', dm.PERMISSAO_TRABALHO) and ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Editar.Visible := false;
     if not Salvar.Visible then
@@ -756,9 +667,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and not ContemValor('E', dm.PERMISSAO_TRABALHO) and ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Novo.Visible := false;
     Editar.Visible := false;
@@ -768,9 +677,7 @@ begin
       Salvar.Visible := false;
   end;
 
-  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and
-    ContemValor('E', dm.PERMISSAO_TRABALHO) and
-    not ContemValor('D', dm.PERMISSAO_TRABALHO) then
+  if not ContemValor('I', dm.PERMISSAO_TRABALHO) and ContemValor('E', dm.PERMISSAO_TRABALHO) and not ContemValor('D', dm.PERMISSAO_TRABALHO) then
   begin
     Novo.Visible := false;
     Excluir.Visible := false;

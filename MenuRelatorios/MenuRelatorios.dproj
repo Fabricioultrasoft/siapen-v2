@@ -91,6 +91,7 @@
 			<DCCReference Include="MenuRelatorio.pas">
 				<Form>FrmMenuRelatorio</Form>
 			</DCCReference>
+			<DCCReference Include="..\lib\frx2xto30.pas"/>
 			<BuildConfiguration Include="Release">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

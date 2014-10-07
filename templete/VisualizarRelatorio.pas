@@ -12,6 +12,29 @@ uses
   Controls,
   Forms,
   Dialogs,
+  frxRich,
+  frxBarcode,
+  frxCross,
+  frxDMPExport,
+  frxDCtrl,
+  frxOLE,
+  frxChBox,
+  frxClass,
+  frxCrypt,
+  frxGZip,
+  frxExportMail,
+  frxExportImage,
+  frxExportCSV,
+  frxExportRTF,
+  frxExportText,
+  frxExportHTML,
+  frxExportXLS,
+  frxExportXML,
+  frxExportPDF,
+  frxExportODF,
+  frxDBSet,
+  frxIBXComponents,
+  frxDesgn,
   uniGUITypes,
   uniGUIAbstractClasses,
   uniGUIClasses,
@@ -28,7 +51,7 @@ uses
   uniMainMenu,
   IWSystem,
   Vcl.Imaging.jpeg,
-  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr, Vcl.Imaging.GIFImg, frxClass;
+  uniImage, uniTimer, Data.FMTBcd, Data.DB, Data.SqlExpr, Vcl.Imaging.GIFImg;
 
 type
   TFrmVisualizarRelatorio = class(TUniForm)
@@ -50,28 +73,30 @@ type
     procedure UniBitBtn1Click(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
     procedure UniFormClose(Sender: TObject; var Action: TCloseAction);
-    procedure UniFormKeyDown(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
+    procedure UniFormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure UniTimerVisualizarTimer(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
     procedure UniBitBtnRecarregarClick(Sender: TObject);
     procedure UniTimerFecharTimer(Sender: TObject);
   private
+    FfrxReportDOC: TfrxReport;
     FArquivo: String;
     FCaminhoFR3: String;
     FNome: String;
     FFiltro: String;
     FNomeTela: String;
     FFazExportacaoJPEG: Boolean;
+    FFazExportacaoPDF: Boolean;
     FCancelaExecucao: Boolean;
     FAguardeFiltro: Boolean;
     FNome_JPEG: string;
+    FNome_PDF: string;
     FDescricaoRelatorio: string;
     procedure CarregarRelatorio;
     function InsereVariaveis: Boolean;
     procedure ExportarWord;
     procedure ExportarExcel;
-    procedure ExportarPDF;
+    function ExportarPDF: string;
     function ExportarJPEG: string;
     function InicioRelatorio: Boolean;
     procedure LimpaAcessoNegado(sNomePermissao: string);
@@ -80,8 +105,8 @@ type
     { Private declarations }
   public
     property Nome: String read FNome write FNome;
-    property FazExportacaoJPEG: Boolean read FFazExportacaoJPEG
-      write FFazExportacaoJPEG;
+    property FazExportacaoJPEG: Boolean read FFazExportacaoJPEG write FFazExportacaoJPEG;
+    property FazExportacaoPDF: Boolean read FFazExportacaoPDF write FFazExportacaoPDF;
     property Filtro: String read FFiltro write FFiltro;
     property NomeTela: String read FNomeTela write FNomeTela;
     property CaminhoFR3: String read FCaminhoFR3 write FCaminhoFR3;
@@ -105,8 +130,7 @@ uses
 
 function FrmVisualizarRelatorio: TFrmVisualizarRelatorio;
 begin
-  Result := TFrmVisualizarRelatorio
-    (UniMainModule.GetFormInstance(TFrmVisualizarRelatorio));
+  Result := TFrmVisualizarRelatorio(UniMainModule.GetFormInstance(TFrmVisualizarRelatorio));
 end;
 
 procedure TFrmVisualizarRelatorio.UniBitBtn1Click(Sender: TObject);
@@ -120,8 +144,7 @@ begin
   InicioRelatorio;
 end;
 
-procedure TFrmVisualizarRelatorio.UniFormClose(Sender: TObject;
-  var Action: TCloseAction);
+procedure TFrmVisualizarRelatorio.UniFormClose(Sender: TObject; var Action: TCloseAction);
 begin
   Dm.CaminhoRelatorio := '';
   FCaminhoFR3 := '';
@@ -131,6 +154,10 @@ end;
 procedure TFrmVisualizarRelatorio.UniFormCreate(Sender: TObject);
 begin
 
+  SetLength(Dm.ArrayReportDOC, High(Dm.ArrayReportDOC) + 2);
+  Dm.ArrayReportDOC[High(Dm.ArrayReportDOC)] := TfrxReport.Create(Dm);
+
+  FfrxReportDOC := Dm.ArrayReportDOC[High(Dm.ArrayReportDOC)];
   FCaminhoFR3 := '';
   FNome := '';
   FFazExportacaoJPEG := false;
@@ -143,8 +170,7 @@ begin
 
 end;
 
-procedure TFrmVisualizarRelatorio.UniFormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TFrmVisualizarRelatorio.UniFormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if Key = vk_escape then
     self.Close;
@@ -186,11 +212,9 @@ begin
   Dm.GLOBAL_ID_INTERNO := id;
   self.Nome := 'Ficha Disciplinar';
   self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\Ficha Disciplinar.fr3';
-  if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-    inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3') then
+  if FileExists(UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3') then
   begin
-    self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
-      inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3';
+    self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3';
   end;
   self.ShowModal;
 end;
@@ -205,8 +229,70 @@ begin
 
 end;
 
-procedure TFrmVisualizarRelatorio.ExportarPDF();
+function TFrmVisualizarRelatorio.ExportarPDF(): string;
+var
+  sPdf: string;
 begin
+
+  try
+
+    Result := LimpaTexto(FNome) + FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + '.pdf';
+
+    sPdf := UniServerModule.LocalCachePath + Result;
+
+    UniServerModule.LocalCachePath;
+
+    if FCaminhoFR3 = '' then
+      FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' + inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
+
+    try
+      Dm.PDFExportDOC := TfrxPDFExport.Create(Dm);
+      Dm.PDFExportDOC.Author := 'SIAPEN 2.0';
+      Dm.PDFExportDOC.Creator := 'SIAPEN 2.0';
+      Dm.PDFExportDOC.Producer := 'SIAPEN 2.0';
+      Dm.PDFExportDOC.Title := FNome;
+      Dm.PDFExportDOC.Subject := FNome;
+      Dm.PDFExportDOC.Keywords := FNome;
+      Dm.PDFExportDOC.ShowDialog := false;
+      Dm.PDFExportDOC.OverwritePrompt := false;
+      Dm.PDFExportDOC.ShowDialog := false;
+      Dm.PDFExportDOC.ShowProgress := false;
+      Dm.PDFExportDOC.FileName := sPdf;
+
+      if FileExists(FCaminhoFR3) then
+      begin
+        try
+          FfrxReportDOC.ShowProgress := false;
+          FfrxReportDOC.StoreInDFM := false;
+          FfrxReportDOC.LoadFromFile(FCaminhoFR3);
+
+          InsereVariaveis;
+          FfrxReportDOC.EngineOptions.SilentMode := true;
+          FfrxReportDOC.EngineOptions.NewSilentMode := simSilent;
+          FfrxReportDOC.PrepareReport();
+
+          FfrxReportDOC.Export(Dm.PDFExportDOC);
+        except
+        end;
+      end
+      else
+      begin
+        ShowMessage('Não existe o arquivo:' + FCaminhoFR3);
+      end;
+    finally
+      FfrxReportDOC.Terminated := true;
+      FfrxReportDOC.Clear;
+      FfrxReportDOC.Destroy;
+      Dm.JPEGExportDOC.free;
+      Dm.JPEGExportDOC := nil;
+    end;
+  except
+    on e: exception do
+    begin
+      ShowMessage(FCaminhoFR3);
+      ShowMessage('Erro: ' + e.Message);
+    end;
+  end;
 end;
 
 procedure TFrmVisualizarRelatorio.ExportarWord;
@@ -221,41 +307,44 @@ begin
 
   try
 
-    sFoto := UniServerModule.LocalCachePath +
-      FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + LimpaTexto(FNome);
+    sFoto := UniServerModule.LocalCachePath + FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + LimpaTexto(FNome);
 
     Result := sFoto + '.1.jpg';
 
     if FCaminhoFR3 = '' then
-      FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' +
-        inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
+      FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' + inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
 
-    Dm.frxReport1.ShowProgress := false;
-    Dm.frxReport1.StoreInDFM := false;
+    try
+      Dm.JPEGExportDOC := TfrxJPEGExport.Create(Dm);
+      Dm.JPEGExportDOC.OverwritePrompt := false;
+      Dm.JPEGExportDOC.ShowDialog := false;
+      Dm.JPEGExportDOC.ShowProgress := false;
+      Dm.JPEGExportDOC.FileName := sFoto + '.jpg';
 
-    Dm.frxJPEGExport1.OverwritePrompt := false;
-    Dm.frxJPEGExport1.ShowDialog := false;
-    Dm.frxJPEGExport1.ShowProgress := false;
-    Dm.frxJPEGExport1.FileName := sFoto + '.jpg';
+      if FileExists(FCaminhoFR3) then
+      begin
+        try
+          FfrxReportDOC.ShowProgress := false;
+          FfrxReportDOC.StoreInDFM := false;
+          FfrxReportDOC.LoadFromFile(FCaminhoFR3);
 
-    if FileExists(FCaminhoFR3) then
-    begin
-      try
-        Dm.frxReport1.LoadFromFile(FCaminhoFR3);
+          InsereVariaveis;
+          FfrxReportDOC.EngineOptions.SilentMode := true;
+          FfrxReportDOC.EngineOptions.NewSilentMode := simSilent;
+          FfrxReportDOC.PrepareReport();
 
-        InsereVariaveis;
-        Dm.frxReport1.EngineOptions.SilentMode := true;
-        Dm.frxReport1.EngineOptions.NewSilentMode := simSilent;
-        Dm.frxReport1.PrepareReport();
-
-        Dm.frxReport1.Export(Dm.frxJPEGExport1);
-        Dm.frxReport1.Terminated := true;
-      except
+          FfrxReportDOC.Export(Dm.JPEGExportDOC);
+          FfrxReportDOC.Terminated := true;
+        except
+        end;
+      end
+      else
+      begin
+        ShowMessage('Não existe o arquivo:' + FCaminhoFR3);
       end;
-    end
-    else
-    begin
-      ShowMessage('Não existe o arquivo:' + FCaminhoFR3);
+    finally
+      Dm.JPEGExportDOC.free;
+      Dm.JPEGExportDOC := nil;
     end;
   except
     on e: exception do
@@ -274,13 +363,12 @@ end;
 
 procedure TFrmVisualizarRelatorio.LimpaAcessoNegado(sNomePermissao: string);
 begin
-  ShowMessage('<b><font Color=red>Acesso negado!</font></b>' +
-    '<br>Para abrir este relatório, tem que<br>ativar sua senha para:<b><font Color=navy>'
-    + BuscaTroca(sNomePermissao, 'PERMISSAO_', ' ')
+  ShowMessage('<b><font Color=red>Acesso negado!</font></b>' + '<br>Para abrir este relatório, tem que<br>ativar sua senha para:<b><font Color=navy>' +
+    BuscaTroca(sNomePermissao, 'PERMISSAO_', ' ')
 
     + '</font></b>.');
-  Dm.frxReport1.PreviewPages.Clear;
-  Dm.frxReport1.Terminated := true;
+  FfrxReportDOC.PreviewPages.Clear;
+  FfrxReportDOC.Terminated := true;
   FCaminhoFR3 := '';
   Dm.CaminhoRelatorio := '';
   UniBitBtnRecarregar.Visible := false;
@@ -416,8 +504,7 @@ begin
     end;
   end;
 
-  if ContemValor('PERMISSAO_TERAPIAOCUPACIONAL', 'xx' + FDescricaoRelatorio)
-  then
+  if ContemValor('PERMISSAO_TERAPIAOCUPACIONAL', 'xx' + FDescricaoRelatorio) then
   begin
     if not ContemValor('R', 'xx' + Dm.PERMISSAO_TERAPIAOCUPACIONAL) then
     begin
@@ -480,8 +567,7 @@ begin
     end;
   end;
 
-  if ContemValor('PERMISSAO_CONSELHODISCIPLINAR', 'xx' + FDescricaoRelatorio)
-  then
+  if ContemValor('PERMISSAO_CONSELHODISCIPLINAR', 'xx' + FDescricaoRelatorio) then
   begin
     if not ContemValor('R', 'xx' + Dm.PERMISSAO_CONSELHODISCIPLINAR) then
     begin
@@ -490,8 +576,7 @@ begin
     end;
   end;
 
-  if ContemValor('PERMISSAO_TRANSFERENCIAINTERNO', 'xx' + FDescricaoRelatorio)
-  then
+  if ContemValor('PERMISSAO_TRANSFERENCIAINTERNO', 'xx' + FDescricaoRelatorio) then
   begin
     if not ContemValor('R', 'xx' + Dm.PERMISSAO_TRANSFERENCIAINTERNO) then
     begin
@@ -509,8 +594,7 @@ begin
     end;
   end;
 
-  if ContemValor('PERMISSAO_MOVIMENTOSEMIABERTO', 'xx' + FDescricaoRelatorio)
-  then
+  if ContemValor('PERMISSAO_MOVIMENTOSEMIABERTO', 'xx' + FDescricaoRelatorio) then
   begin
     if not ContemValor('R', 'xx' + Dm.PERMISSAO_MOVIMENTOSEMIABERTO) then
     begin
@@ -552,8 +636,7 @@ end;
 
 function TFrmVisualizarRelatorio.CarregaFiltros: Boolean;
 begin
-  if ContemValor('FILTRO_INTERNO', 'xx' + FDescricaoRelatorio) OR
-    ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
+  if ContemValor('FILTRO_INTERNO', 'xx' + FDescricaoRelatorio) OR ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) then
   begin
     Prompt('Informe as iniciais do nome:', '', mtInformation, mbOKCancel,
       procedure(Sender: TComponent; AResult: integer; AText: string)
@@ -564,8 +647,7 @@ begin
           begin
             Dm.UniFormRetornoConsulta := self;
             Dm.PreDescricaoConsulta := uppercase(AText);
-            Dm.SqlConsultaObjetiva := SqlConsultaBackup.SQL.Text +
-              ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
+            Dm.SqlConsultaObjetiva := SqlConsultaBackup.SQL.Text + ' and interno.nome_interno like ' + qs(uppercase(AText) + '%') +
               ' order by interno.nome_interno ';
             Dm.CampoWhereSqlConsulta := 'interno.nome_interno';
             Dm.DESC_RETORNO_FORM := '';
@@ -589,8 +671,7 @@ begin
           end
           else
           begin
-            ShowMessage('<b><font Color=red>Filtro não informado!</font></b>' +
-              '<br>Para abrir esta consulta, tem que digitar pelo menos duas letras.');
+            ShowMessage('<b><font Color=red>Filtro não informado!</font></b>' + '<br>Para abrir esta consulta, tem que digitar pelo menos duas letras.');
             FAguardeFiltro := false;
             FCancelaExecucao := true;
             UniTimerVisualizar.Enabled := false;
@@ -607,8 +688,7 @@ begin
       end);
   end;
 
-  if ContemValor('FILTRO_PROCESSO', 'xx' + FDescricaoRelatorio) OR
-    ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
+  if ContemValor('FILTRO_PROCESSO', 'xx' + FDescricaoRelatorio) OR ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmTipoProcesso.ShowModal(
       procedure(Sender: TComponent; Result: integer)
@@ -623,8 +703,7 @@ begin
       end);
   end;
 
-  if ContemValor('FILTRO_DATA', 'xx' + FDescricaoRelatorio) OR
-    ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
+  if ContemValor('FILTRO_DATA', 'xx' + FDescricaoRelatorio) OR ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodo.ShowModal(
       procedure(Sender: TComponent; Result: integer)
@@ -639,8 +718,7 @@ begin
       end);
   end;
 
-  if ContemValor('FILTRO_PERIODO_SERVIDOR', 'xx' + FDescricaoRelatorio) OR
-    ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
+  if ContemValor('FILTRO_PERIODO_SERVIDOR', 'xx' + FDescricaoRelatorio) OR ContemValor('R4', 'xx' + Dm.CaminhoRelatorio) then
   begin
     FrmFiltroPeriodoServidor.ShowModal(
       procedure(Sender: TComponent; Result: integer)
@@ -680,13 +758,21 @@ begin
   end;
 
   if FCaminhoFR3 = '' then
-    FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' +
-      inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
+    FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' + inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
 
-  Dm.frxReport1.ShowProgress := false;
-  Dm.frxReport1.StoreInDFM := false;
-  Dm.frxReport1.LoadFromFile(FCaminhoFR3);
-  FDescricaoRelatorio := Dm.frxReport1.ReportOptions.Description.Text;
+{alexandreerro19/09/2014
+  if FFazExportacaoPDF then
+  begin
+    // já abre relatório
+    UniTimerVisualizar.Enabled := false;
+    CarregarRelatorio();
+    exit;
+  end;
+}
+  FfrxReportDOC.ShowProgress := false;
+  FfrxReportDOC.StoreInDFM := false;
+  FfrxReportDOC.LoadFromFile(FCaminhoFR3);
+  FDescricaoRelatorio := FfrxReportDOC.ReportOptions.Description.Text;
 
   FAguardeFiltro := true;
 
@@ -701,10 +787,8 @@ begin
 
   end;
 
-  if (ContemValor('FILTRO', 'xx' + FDescricaoRelatorio) OR ContemValor('R1',
-    'xx' + Dm.CaminhoRelatorio) OR ContemValor('R2', 'xx' + Dm.CaminhoRelatorio)
-    OR ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) OR ContemValor('R4',
-    'xx' + Dm.CaminhoRelatorio)) then
+  if (ContemValor('FILTRO', 'xx' + FDescricaoRelatorio) OR ContemValor('R1', 'xx' + Dm.CaminhoRelatorio) OR ContemValor('R2', 'xx' + Dm.CaminhoRelatorio) OR
+    ContemValor('R3', 'xx' + Dm.CaminhoRelatorio) OR ContemValor('R4', 'xx' + Dm.CaminhoRelatorio)) then
   begin
     // Só abre o relatório se liberar filtro
     FAguardeFiltro := true;
@@ -726,123 +810,90 @@ begin
   try
 
     Result := false;
-    Dm.frxReport1.Variables.DeleteVariable('FILTRO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'FILTRO', qs(FFiltro));
+    FfrxReportDOC.Variables.DeleteVariable('FILTRO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'FILTRO', qs(FFiltro));
 
-    Dm.frxReport1.Variables.DeleteVariable('ID_UP');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'ID_UP', Dm.GLOBAL_ID_UP);
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'ID_UP', Dm.GLOBAL_ID_UP);
+    FfrxReportDOC.Variables.DeleteVariable('ID_UP');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'ID_UP', Dm.GLOBAL_ID_UP);
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'ID_UP', Dm.GLOBAL_ID_UP);
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ID_FUNCIONARIO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_FUNCIONARIO',
-      Dm.GLOBAL_ID_FUNCIONARIO);
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_ID_FUNCIONARIO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_FUNCIONARIO', Dm.GLOBAL_ID_FUNCIONARIO);
 
-    Dm.frxReport1.Variables.DeleteVariable('ID_INTERNO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'ID_INTERNO',
-      Dm.GLOBAL_ID_INTERNO);
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'ID_INTERNO',
-      Dm.GLOBAL_ID_INTERNO);
+    FfrxReportDOC.Variables.DeleteVariable('ID_INTERNO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'ID_INTERNO', Dm.GLOBAL_ID_INTERNO);
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'ID_INTERNO', Dm.GLOBAL_ID_INTERNO);
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ORGAO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ORGAO',
-      qs(Dm.GLOBAL_ORGAO));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ORGAO',
-      qs(Dm.GLOBAL_ORGAO));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_ORGAO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_ORGAO', qs(Dm.GLOBAL_ORGAO));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_ORGAO', qs(Dm.GLOBAL_ORGAO));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_DEPARTAMENTO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DEPARTAMENTO',
-      qs(Dm.GLOBAL_DEPARTAMENTO));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DEPARTAMENTO',
-      qs(Dm.GLOBAL_DEPARTAMENTO));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_DEPARTAMENTO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_DEPARTAMENTO', qs(Dm.GLOBAL_DEPARTAMENTO));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_DEPARTAMENTO', qs(Dm.GLOBAL_DEPARTAMENTO));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_DIRETORIA');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_DIRETORIA',
-      qs(Dm.GLOBAL_DIRETORIA));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DIRETORIA',
-      qs(Dm.GLOBAL_DIRETORIA));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_DIRETORIA');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_DIRETORIA', qs(Dm.GLOBAL_DIRETORIA));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_DIRETORIA', qs(Dm.GLOBAL_DIRETORIA));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_IDAGENDA_ATENDIMENTO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_IDAGENDA_ATENDIMENTO',
-      qs(Dm.GLOBAL_IDAGENDA_ATENDIMENTO));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_IDAGENDA_ATENDIMENTO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_IDAGENDA_ATENDIMENTO', qs(Dm.GLOBAL_IDAGENDA_ATENDIMENTO));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_PADRAO_SISTEMA');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_PADRAO_SISTEMA',
-      qs(Dm.GLOBAL_PADRAO_SISTEMA));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_PADRAO_SISTEMA');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_PADRAO_SISTEMA', qs(Dm.GLOBAL_PADRAO_SISTEMA));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_1');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_1',
-      qs(Dm.GLOBAL_NIVEL_1));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_1',
-      qs(Dm.GLOBAL_NIVEL_1));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_NIVEL_1');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_1', qs(Dm.GLOBAL_NIVEL_1));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_1', qs(Dm.GLOBAL_NIVEL_1));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_2');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_2',
-      qs(Dm.GLOBAL_NIVEL_2));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_2',
-      qs(Dm.GLOBAL_NIVEL_2));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_NIVEL_2');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_2', qs(Dm.GLOBAL_NIVEL_2));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_2', qs(Dm.GLOBAL_NIVEL_2));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_3');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_3',
-      qs(Dm.GLOBAL_NIVEL_3));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_3',
-      qs(Dm.GLOBAL_NIVEL_3));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_NIVEL_3');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_3', qs(Dm.GLOBAL_NIVEL_3));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_3', qs(Dm.GLOBAL_NIVEL_3));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_NIVEL_4');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_4',
-      qs(Dm.GLOBAL_NIVEL_4));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_4',
-      qs(Dm.GLOBAL_NIVEL_4));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_NIVEL_4');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_NIVEL_4', qs(Dm.GLOBAL_NIVEL_4));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_NIVEL_4', qs(Dm.GLOBAL_NIVEL_4));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ID_TRANSFERENCIA_INTERNO');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL',
-      'GLOBAL_ID_TRANSFERENCIA_INTERNO', Dm.GLOBAL_ID_TRANSFERENCIA_INTERNO);
-    Dm.frxReport1.Variables.AddVariable('SIAP',
-      'GLOBAL_ID_TRANSFERENCIA_INTERNO', Dm.GLOBAL_ID_TRANSFERENCIA_INTERNO);
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_ID_TRANSFERENCIA_INTERNO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_TRANSFERENCIA_INTERNO', Dm.GLOBAL_ID_TRANSFERENCIA_INTERNO);
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_ID_TRANSFERENCIA_INTERNO', Dm.GLOBAL_ID_TRANSFERENCIA_INTERNO);
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_ID_MUDANCA_CELA');
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_MUDANCA_CELA',
-      Dm.GLOBAL_ID_MUDANCA_CELA);
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_ID_MUDANCA_CELA',
-      Dm.GLOBAL_ID_MUDANCA_CELA);
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_ID_MUDANCA_CELA');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_ID_MUDANCA_CELA', Dm.GLOBAL_ID_MUDANCA_CELA);
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_ID_MUDANCA_CELA', Dm.GLOBAL_ID_MUDANCA_CELA);
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_TIPOPROCESSO');
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_TIPOPROCESSO');
 
-    Dm.frxReport1.Variables.AddVariable('GLOBAL', 'GLOBAL_TIPOPROCESSO',
-      qs(Dm.GLOBAL_TIPOPROCESSO));
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_TIPOPROCESSO',
-      qs(Dm.GLOBAL_TIPOPROCESSO));
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'GLOBAL_TIPOPROCESSO', qs(Dm.GLOBAL_TIPOPROCESSO));
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_TIPOPROCESSO', qs(Dm.GLOBAL_TIPOPROCESSO));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_OFICIO');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_OFICIO',
-      qs(Dm.GLOBAL_OFICIO));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_OFICIO');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_OFICIO', qs(Dm.GLOBAL_OFICIO));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_NOME_JPEG');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_NOME_JPEG',
-      qs(FNome_JPEG));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_NOME_JPEG');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_NOME_JPEG', qs(FNome_JPEG));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_DATA_INICIAL');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DATA_INICIAL',
-      qs(Dm.GLOBAL_DATA_INICIAL));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_DATA_INICIAL');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_DATA_INICIAL', qs(Dm.GLOBAL_DATA_INICIAL));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_DATA_FINAL');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_DATA_FINAL',
-      qs(Dm.GLOBAL_DATA_FINAL));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_DATA_FINAL');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_DATA_FINAL', qs(Dm.GLOBAL_DATA_FINAL));
 
-    Dm.frxReport1.Variables.DeleteVariable('ID_FALTA_DISCIPLINAR');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'ID_FALTA_DISCIPLINAR',
-      qs(Dm.GLOBAL_ID_FALTA_DISCIPLINAR));
+    FfrxReportDOC.Variables.DeleteVariable('ID_FALTA_DISCIPLINAR');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'ID_FALTA_DISCIPLINAR', qs(Dm.GLOBAL_ID_FALTA_DISCIPLINAR));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_IDFUNCIONARIO');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_IDFUNCIONARIO',
-      Dm.GLOBAL_IDFUNCIONARIO_FILTRO);
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_IDFUNCIONARIO');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_IDFUNCIONARIO', Dm.GLOBAL_IDFUNCIONARIO_FILTRO);
 
-    Dm.frxReport1.Variables.DeleteVariable('LOGO');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'LOGO',
-      qs(UniServerModule.StartPath + '\logo\BRASIL.jpg'));
+    FfrxReportDOC.Variables.DeleteVariable('LOGO');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'LOGO', qs(UniServerModule.StartPath + '\logo\BRASIL.jpg'));
 
-    Dm.frxReport1.Variables.DeleteVariable('GLOBAL_SOLICITANTE');
-    Dm.frxReport1.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE',
-      qs(Dm.GLOBAL_SOLICITANTE));
+    FfrxReportDOC.Variables.DeleteVariable('GLOBAL_SOLICITANTE');
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE', qs(Dm.GLOBAL_SOLICITANTE));
 
     if not FCancelaExecucao then
       Result := true;
@@ -862,11 +913,32 @@ var
   nome_agora: string;
 
 begin
+
+  if FFazExportacaoPDF then
+  begin
+
+    FNome_PDF := UniServerModule.LocalCacheURL;
+    FNome_PDF := '../../'+FNome_PDF + ExportarPDF;
+
+    UniURLFrame1.URL := '/pdf/web/viewer.html?file=' + FNome_PDF + '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);;
+    UniURLFrame1.Refresh;
+    UniURLFrame1.Repaint;
+    UniURLFrame1.Update;
+
+    if Dm.GLOBAL_IDCONEXAO > 0 then
+    begin
+      try
+        Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(FNome_PDF) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+      except
+      end;
+    end;
+    FNome_PDF := '';
+    exit;
+  end;
+
   try
     try
-
-      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) +
-        LimpaTexto(FNome) + '.html';
+      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', now) + LimpaTexto(FNome) + '.html';
 
       FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
@@ -887,10 +959,10 @@ begin
 
         if InsereVariaveis then
         begin
-          Dm.frxReport1.PreviewPages.Clear;
-          Dm.frxReport1.PrepareReport();
-          Dm.frxReport1.Export(Dm.frxHTMLExport1);
-          Dm.frxReport1.Terminated := true;
+          FfrxReportDOC.PreviewPages.Clear;
+          FfrxReportDOC.PrepareReport();
+          FfrxReportDOC.Export(Dm.frxHTMLExport1);
+          FfrxReportDOC.Terminated := true;
 
           UniURLFrame1.URL := UniServerModule.LocalCacheURL + nome_agora;
 
@@ -901,17 +973,15 @@ begin
           if Dm.GLOBAL_IDCONEXAO > 0 then
           begin
             try
-              Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' +
-                qs(FCaminhoFR3) + ' where idconexao=' +
-                inttostr(Dm.GLOBAL_IDCONEXAO));
+              Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs(FCaminhoFR3) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
             except
             end;
           end;
         end
         else
         begin
-          Dm.frxReport1.PreviewPages.Clear;
-          Dm.frxReport1.Terminated := true;
+          FfrxReportDOC.PreviewPages.Clear;
+          FfrxReportDOC.Terminated := true;
           FCaminhoFR3 := '';
           UniTimerFechar.Enabled := true;
         end;
