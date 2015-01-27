@@ -18,7 +18,7 @@ object MainForm: TMainForm
     Top = 128
     Width = 1036
     Height = 480
-    ActivePage = UniTabSheetSetores
+    ActivePage = UniTabSheetPrincipal
     TabOrder = 0
     Align = alClient
     Anchors = [akLeft, akTop, akRight, akBottom]
@@ -28,10 +28,6 @@ object MainForm: TMainForm
     ExplicitHeight = 513
     object UniTabSheetPrincipal: TUniTabSheet
       Caption = 'Principal'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 256
-      ExplicitHeight = 128
       object UniBitBtnConfere: TUniBitBtn
         Left = 35
         Top = 6
@@ -994,10 +990,6 @@ object MainForm: TMainForm
     end
     object UniTabSheetSetores: TUniTabSheet
       Caption = 'Setores'
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitWidth = 256
-      ExplicitHeight = 128
       object BitBtn15: TUniBitBtn
         Left = 32
         Top = 14
@@ -3302,7 +3294,7 @@ object MainForm: TMainForm
     Left = 240
     Top = 8
     Bitmap = {
-      494C01011E002200F80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011E002200FC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000008000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000FAFFFF00FFF9FD00F8FFFE00FFFFFE00FFFDFE0000000000000000000000
@@ -5007,7 +4999,7 @@ object MainForm: TMainForm
     Left = 232
     Top = 56
     Bitmap = {
-      494C01011A006400FC0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01011A006400000120002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       000000000000360000002800000080000000E0000000010020000000000000C0
       0100000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

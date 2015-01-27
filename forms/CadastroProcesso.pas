@@ -613,6 +613,7 @@ begin
 
   PageControlProcesso.activepageindex := 0;
 
+  CdsCadastro.fieldbyname('IDPROCESSO').AsInteger := Generator('id_processo');
   CdsCadastro.fieldbyname('IDINTERNO').AsInteger := FID_INTERNO;
 
   UniDBEditInternoExit(nil);

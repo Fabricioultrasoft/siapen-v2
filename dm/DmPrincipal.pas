@@ -538,6 +538,7 @@ type
     { Private declarations }
     FIDSENHA: Integer;
     FGLOBAL_ID_UP: Integer;
+    FGLOBAL_ID_UP_FILTRO: Integer;
     Ffiltropostotrabalho: Integer;
     FGLOBAL_INDEX_DO_GRID: Integer;
     FGLOBAL_ID_INTERNO: Integer;
@@ -694,6 +695,7 @@ type
     property GLOBAL_DATA: TDateTime read FGLOBAL_DATA write FGLOBAL_DATA;
     property IDSENHA: Integer read FIDSENHA write FIDSENHA;
     property GLOBAL_ID_UP: Integer read FGLOBAL_ID_UP write FGLOBAL_ID_UP;
+    property GLOBAL_ID_UP_FILTRO: Integer read FGLOBAL_ID_UP_FILTRO write FGLOBAL_ID_UP_FILTRO;
     property filtropostotrabalho: Integer read Ffiltropostotrabalho write Ffiltropostotrabalho;
     property GLOBAL_INDEX_DO_GRID: Integer read FGLOBAL_INDEX_DO_GRID write FGLOBAL_INDEX_DO_GRID;
     property GLOBAL_ID_INTERNO: Integer read FGLOBAL_ID_INTERNO write FGLOBAL_ID_INTERNO;

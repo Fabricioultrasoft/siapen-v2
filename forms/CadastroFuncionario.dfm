@@ -44,7 +44,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
             Top = 1
             Width = 877
             Height = 521
-            ActivePage = TabSheet1
+            ActivePage = TabSheetPermissao
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]
@@ -283,7 +283,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ID_FUNCIONARIO'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object DBEdit2: TUniDBEdit
                 Left = 194
@@ -293,7 +292,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'NOME_FUNCIONARIO'
                 DataSource = DsCadastro
                 TabOrder = 2
-                Color = clWindow
               end
               object DBEdit12: TUniDBEdit
                 Left = 264
@@ -303,7 +301,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'MAE'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object DBEdit3: TUniDBEdit
                 Left = 151
@@ -313,7 +310,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'MATRICULA'
                 DataSource = DsCadastro
                 TabOrder = 8
-                Color = clWindow
               end
               object DBEditCPF: TUniDBEdit
                 Left = 258
@@ -323,7 +319,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'CPF'
                 DataSource = DsCadastro
                 TabOrder = 9
-                Color = clWindow
               end
               object DBEdit1: TUniDBEdit
                 Left = 402
@@ -333,7 +328,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'RG'
                 DataSource = DsCadastro
                 TabOrder = 10
-                Color = clWindow
               end
               object DBEdit6: TUniDBEdit
                 Left = 514
@@ -343,7 +337,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ORGAOEMISSOR'
                 DataSource = DsCadastro
                 TabOrder = 11
-                Color = clWindow
               end
               object DBEdit11: TUniDBEdit
                 Left = 619
@@ -353,7 +346,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'CLASSE'
                 DataSource = DsCadastro
                 TabOrder = 12
-                Color = clWindow
               end
               object DBEdit14: TUniDBEdit
                 Left = 696
@@ -363,7 +355,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'FATORRH'
                 DataSource = DsCadastro
                 TabOrder = 13
-                Color = clWindow
               end
               object DBEditadmissao: TUniDBEdit
                 Left = 687
@@ -373,7 +364,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ADMISSAO'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEditnascimento: TUniDBEdit
                 Left = 152
@@ -383,7 +373,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'DTNASCIMENTO'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBComboBox2: TUniDBComboBox
                 Left = 13
@@ -488,7 +477,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'PAI'
                 DataSource = DsCadastro
                 TabOrder = 7
-                Color = clWindow
               end
               object DBEditdtlotacao: TUniDBEdit
                 Left = 13
@@ -498,7 +486,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'DATA_LOTACAO'
                 DataSource = DsCadastro
                 TabOrder = 24
-                Color = clWindow
               end
               object DBComboBox4: TUniDBComboBox
                 Left = 13
@@ -553,7 +540,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataSource = DsCadastro
                 CharCase = ecUpperCase
                 TabOrder = 3
-                Color = clWindow
               end
               object DBComboBox6: TUniDBComboBox
                 Left = 13
@@ -582,7 +568,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'religiao'
                 DataSource = DsCadastro
                 TabOrder = 15
-                Color = clWindow
               end
               object DBEdit9: TUniDBEdit
                 Left = 432
@@ -592,7 +577,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'cutis'
                 DataSource = DsCadastro
                 TabOrder = 16
-                Color = clWindow
               end
               object UniLabelUnidadePenal: TUniLabel
                 Left = 199
@@ -649,7 +633,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
                 TabOrder = 53
-                Color = clWindow
                 OnExit = UniDBEditUnidadePenalExit
               end
               object UniBitBtnNaturalidade: TUniBitBtn
@@ -707,7 +690,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ID_NATURALIDADE'
                 DataSource = DsCadastro
                 TabOrder = 56
-                Color = clWindow
                 OnExit = UniDBEditNaturalidadeExit
               end
               object UniLabel6: TUniLabel
@@ -781,7 +763,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ID_CURSO'
                 DataSource = DsCadastro
                 TabOrder = 61
-                Color = clWindow
                 OnExit = UniDBEditCursoExit
               end
               object UniLabelPosto: TUniLabel
@@ -839,7 +820,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'IDPOSTO_TRABALHO'
                 DataSource = DsCadastro
                 TabOrder = 65
-                Color = clWindow
                 OnExit = UniDBEditPostoExit
               end
               object UniLabel9: TUniLabel
@@ -968,7 +948,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ENDERECO'
                 DataSource = DsCadastro
                 TabOrder = 0
-                Color = clWindow
               end
               object DBEdit15: TUniDBEdit
                 Left = 16
@@ -978,7 +957,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'BAIRRO'
                 DataSource = DsCadastro
                 TabOrder = 2
-                Color = clWindow
               end
               object DBEdit16: TUniDBEdit
                 Left = 392
@@ -988,7 +966,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'COMPLEMENTO'
                 DataSource = DsCadastro
                 TabOrder = 3
-                Color = clWindow
               end
               object DBEditcep: TUniDBEdit
                 Left = 16
@@ -998,7 +975,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'CEP'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEditfone: TUniDBEdit
                 Left = 448
@@ -1008,7 +984,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'FONE'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBEditcelular: TUniDBEdit
                 Left = 560
@@ -1018,7 +993,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'CELULAR'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object DBEdit21: TUniDBEdit
                 Left = 16
@@ -1029,7 +1003,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataSource = DsCadastro
                 CharCase = ecLowerCase
                 TabOrder = 7
-                Color = clWindow
               end
               object DBEdit22: TUniDBEdit
                 Left = 624
@@ -1039,7 +1012,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'NUMERO'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object UniBitBtnCidade: TUniBitBtn
                 Left = 179
@@ -1096,7 +1068,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'ID_CIDADE'
                 DataSource = DsCadastro
                 TabOrder = 19
-                Color = clWindow
                 OnExit = UniDBEditCidadeExit
               end
             end
@@ -1148,7 +1119,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataField = 'LOGIN'
                 DataSource = DsCadastro
                 TabOrder = 0
-                Color = clWindow
               end
               object DBEdit4: TUniDBEdit
                 Left = 122
@@ -1159,7 +1129,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 DataSource = DsCadastro
                 PasswordChar = '@'
                 TabOrder = 1
-                Color = clWindow
               end
               object Edit1: TUniEdit
                 Left = 234
@@ -1168,7 +1137,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                 Height = 21
                 PasswordChar = '@'
                 TabOrder = 2
-                Color = clWindow
               end
               object DBRadioGroupVISUALIZA_OUTRAS_UP: TUniDBComboBox
                 Left = 371
@@ -1221,7 +1189,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 0
                       OnClick = CHEditarConfereClick
@@ -1231,7 +1198,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 1
                       OnClick = CHdeletarconfereClick
@@ -1241,7 +1207,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 2
                       OnClick = CHConsultarConfereClick
@@ -1251,7 +1216,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = CHInserirConfereClick
@@ -1261,7 +1225,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = CHTodasConfereClick
@@ -1271,7 +1234,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioconfereClick
@@ -1289,7 +1251,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 0
                       OnClick = chEditarVisitanteClick
@@ -1299,7 +1260,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 1
                       OnClick = chdeletarVisitanteClick
@@ -1309,7 +1269,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 2
                       OnClick = chConsultarVisitanteClick
@@ -1319,7 +1278,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chInserirVisitanteClick
@@ -1329,7 +1287,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chTodasVisitanteClick
@@ -1339,7 +1296,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriovisitanteClick
@@ -1357,7 +1313,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarcadastroClick
@@ -1367,7 +1322,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarcadastroClick
@@ -1377,7 +1331,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarcadastroClick
@@ -1387,7 +1340,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserircadastroClick
@@ -1397,7 +1349,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodascadastroClick
@@ -1407,7 +1358,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriocadastroClick
@@ -1425,7 +1375,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 22
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chConsultaOcorrenciaClick
@@ -1435,7 +1384,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 47
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = chEditaOcorrenciaClick
@@ -1445,7 +1393,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chDeletaOcorrenciaClick
@@ -1455,7 +1402,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chInsereOcorrenciaClick
@@ -1465,7 +1411,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chRelatorioOcorrenciaClick
@@ -1475,7 +1420,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 167
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chTodasOcorrenciaClick
@@ -1485,7 +1429,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 143
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Despacho'
                       TabOrder = 6
                       OnClick = chDespachoOcorrenciaClick
@@ -1528,7 +1471,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditartrabalhoClick
@@ -1538,7 +1480,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletartrabalhoClick
@@ -1548,7 +1489,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chConsultartrabalhoClick
@@ -1558,7 +1498,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirtrabalhoClick
@@ -1568,7 +1507,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodastrabalhoClick
@@ -1578,7 +1516,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriotrabalhoClick
@@ -1596,7 +1533,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                     end
@@ -1605,7 +1541,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                     end
@@ -1614,7 +1549,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultareducacaoClick
@@ -1624,7 +1558,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserireducacaoClick
@@ -1634,7 +1567,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodaseducacaoClick
@@ -1644,7 +1576,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 70
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioeducacaoClick
@@ -1662,7 +1593,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarjuridicaClick
@@ -1672,7 +1602,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarjuridicaClick
@@ -1682,7 +1611,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarjuridicaClick
@@ -1692,7 +1620,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirjuridicaClick
@@ -1702,7 +1629,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasjuridicaClick
@@ -1712,7 +1638,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriojuridicoClick
@@ -1730,7 +1655,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultardisciplinaClick
@@ -1740,7 +1664,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditardisciplinaClick
@@ -1750,7 +1673,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletardisciplinaClick
@@ -1760,7 +1682,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirdisciplinaClick
@@ -1770,7 +1691,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasdisciplinaClick
@@ -1780,7 +1700,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriodisciplinaClick
@@ -1798,7 +1717,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarpsicossocialClick
@@ -1808,7 +1726,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarpsicossocialClick
@@ -1818,7 +1735,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarpsicossocialClick
@@ -1828,7 +1744,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirpsicossocialClick
@@ -1838,7 +1753,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodaspsicossocialClick
@@ -1848,7 +1762,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriopsicossocialClick
@@ -1866,7 +1779,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarclinicamedicaClick
@@ -1876,7 +1788,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarclinicamedicaClick
@@ -1886,7 +1797,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarclinicamedicaClick
@@ -1896,7 +1806,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirclinicamedicaClick
@@ -1906,7 +1815,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasclinicamedicaClick
@@ -1916,7 +1824,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioclinicamedicaClick
@@ -1934,7 +1841,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarenfermagemClick
@@ -1944,7 +1850,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarenfermagemClick
@@ -1954,7 +1859,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarenfermagemClick
@@ -1964,7 +1868,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirenfermagemClick
@@ -1974,7 +1877,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasenfermagemClick
@@ -1984,7 +1886,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioenfermagemClick
@@ -2002,7 +1903,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarodontologiaClick
@@ -2012,7 +1912,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarodontologiaClick
@@ -2022,7 +1921,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarodontologiaClick
@@ -2032,7 +1930,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirodontologiaClick
@@ -2042,7 +1939,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasodontologiaClick
@@ -2052,7 +1948,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioodontologiaClick
@@ -2070,7 +1965,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarfarmaciaClick
@@ -2080,7 +1974,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarfarmaciaClick
@@ -2090,7 +1983,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarfarmaciaClick
@@ -2100,7 +1992,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirfarmaciaClick
@@ -2110,7 +2001,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasfarmaciaClick
@@ -2120,7 +2010,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriofaramciaClick
@@ -2138,7 +2027,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarpedagogiaClick
@@ -2148,7 +2036,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarpedagogiaClick
@@ -2158,7 +2045,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarpedagogiaClick
@@ -2168,7 +2054,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirpedagogiaClick
@@ -2178,7 +2063,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodaspedagogiaClick
@@ -2188,7 +2072,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriopedagogiaClick
@@ -2206,7 +2089,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarterapiaocupacionalClick
@@ -2216,7 +2098,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarterapiaocupacionalClick
@@ -2226,7 +2107,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarterapiaocupacionalClick
@@ -2236,7 +2116,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirterapiaocupacionalClick
@@ -2246,7 +2125,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasterapiaocupacionalClick
@@ -2256,7 +2134,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioterapiaocupacionalClick
@@ -2274,7 +2151,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarservicosocialClick
@@ -2284,7 +2160,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarservicosocialClick
@@ -2294,7 +2169,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarservicosocialClick
@@ -2304,7 +2178,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirservicosocialClick
@@ -2314,7 +2187,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasservicosocialClick
@@ -2324,7 +2196,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioservicosocialClick
@@ -2342,7 +2213,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarpsicologiaClick
@@ -2352,7 +2222,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarpsicologiaClick
@@ -2362,7 +2231,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarpsicologiaClick
@@ -2372,7 +2240,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirpsicologiaClick
@@ -2382,7 +2249,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodaspsicologiaClick
@@ -2392,7 +2258,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriopsicologiaClick
@@ -2410,7 +2275,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarpsiquiatriaClick
@@ -2420,7 +2284,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarpsiquiatriaClick
@@ -2430,7 +2293,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarpsiquiatriaClick
@@ -2440,7 +2302,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirpsiquiatriaClick
@@ -2450,7 +2311,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodaspsiquiatriaClick
@@ -2460,7 +2320,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriopsiquiatriaClick
@@ -2478,7 +2337,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarsaudeClick
@@ -2488,7 +2346,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarsaudeClick
@@ -2498,7 +2355,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarsaudeClick
@@ -2508,7 +2364,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirsaudeClick
@@ -2518,7 +2373,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodassaudeClick
@@ -2528,7 +2382,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriosaudeClick
@@ -2546,7 +2399,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chConsultarConsDisciplinarClick
@@ -2556,7 +2408,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = chEditarConsDisciplinarClick
@@ -2566,7 +2417,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chDeletarConsDisciplinarClick
@@ -2576,7 +2426,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chInserirConsDisciplinarClick
@@ -2586,7 +2435,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rio'
                       TabOrder = 4
                       OnClick = chRelatorioConsDisciplinarClick
@@ -2596,7 +2444,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chTodasConsDisciplinarClick
@@ -2619,7 +2466,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2631,7 +2477,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2643,7 +2488,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2655,7 +2499,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2667,7 +2510,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2679,7 +2521,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       ParentFont = False
                       Font.Name = 'MS Sans Serif'
@@ -2699,7 +2540,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarMudancaCelaClick
@@ -2709,7 +2549,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarMudancaCelaClick
@@ -2719,7 +2558,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarMudancaCelaClick
@@ -2729,7 +2567,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirMudancaCelaClick
@@ -2739,7 +2576,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioMudancaCelaClick
@@ -2749,7 +2585,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasMudancaCelaClick
@@ -2767,7 +2602,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarSaidaoClick
@@ -2777,7 +2611,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarSaidaoClick
@@ -2787,7 +2620,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarSaidaoClick
@@ -2797,7 +2629,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirSaidaoClick
@@ -2807,7 +2638,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioSaidaoClick
@@ -2817,7 +2647,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasSaidaoClick
@@ -2835,7 +2664,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarCirculacaoInternoClick
@@ -2845,7 +2673,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarCirculacaoInternoClick
@@ -2855,7 +2682,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarCirculacaoInternoClick
@@ -2865,7 +2691,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirCirculacaoInternoClick
@@ -2875,7 +2700,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioCirculacaoInternoClick
@@ -2885,7 +2709,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasCirculacaoInternoClick
@@ -2903,7 +2726,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarMovimentoSemiAbertoClick
@@ -2913,7 +2735,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarMovimentoSemiAbertoClick
@@ -2923,7 +2744,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarMovimentoSemiAbertoClick
@@ -2933,7 +2753,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirMovimentoSemiAbertoClick
@@ -2943,7 +2762,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioMovimentoSemiAbertoClick
@@ -2953,7 +2771,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasMovimentoSemiAbertoClick
@@ -2971,7 +2788,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 25
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarSaidaoCadastroClick
@@ -2981,7 +2797,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarSaidaoCadastroClick
@@ -2991,7 +2806,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarSaidaoCadastroClick
@@ -3001,7 +2815,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirSaidaoCadastroClick
@@ -3011,7 +2824,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chRelatorioSaidaoCadastroClick
@@ -3021,7 +2833,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 97
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasSaidaoCadastroClick
@@ -3042,7 +2853,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarinteligenciaClick
@@ -3052,7 +2862,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarinteligenciaClick
@@ -3062,7 +2871,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarinteligenciaClick
@@ -3072,7 +2880,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinseririnteligenciaClick
@@ -3082,7 +2889,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriointeligenciaClick
@@ -3092,7 +2898,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasinteligenciaClick
@@ -3110,7 +2915,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultararmasClick
@@ -3120,7 +2924,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditararmasClick
@@ -3130,7 +2933,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletararmasClick
@@ -3140,7 +2942,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirarmasClick
@@ -3150,7 +2951,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatorioarmasClick
@@ -3160,7 +2960,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasarmasClick
@@ -3178,7 +2977,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = chconsultarmonitoramentoClick
@@ -3188,7 +2986,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = cheditarmonitoramentoClick
@@ -3198,7 +2995,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = chdeletarmonitoramentoClick
@@ -3208,7 +3004,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = chinserirmonitoramentoClick
@@ -3218,7 +3013,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = chrelatoriomonitoramentoClick
@@ -3228,7 +3022,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 73
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = chtodasmonitoramentoClick
@@ -3249,7 +3042,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarFuncionarioClick
@@ -3259,7 +3051,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarFuncionarioClick
@@ -3269,7 +3060,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarFuncionarioClick
@@ -3279,7 +3069,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirFuncionarioClick
@@ -3289,7 +3078,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioFuncionarioClick
@@ -3299,7 +3087,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasFuncionarioClick
@@ -3317,7 +3104,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarFuncaoFuncionarioClick
@@ -3327,7 +3113,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarFuncaoFuncionarioClick
@@ -3337,7 +3122,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarFuncaoFuncionarioClick
@@ -3347,7 +3131,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirFuncaoFuncionarioClick
@@ -3357,7 +3140,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioFuncaoFuncionarioClick
@@ -3367,7 +3149,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasFuncaoFuncionarioClick
@@ -3385,7 +3166,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarUnidadePenalClick
@@ -3395,7 +3175,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarUnidadePenalClick
@@ -3405,7 +3184,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarUnidadePenalClick
@@ -3415,7 +3193,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirUnidadePenalClick
@@ -3425,7 +3202,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioUnidadePenalClick
@@ -3435,7 +3211,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasUnidadePenalClick
@@ -3453,7 +3228,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarHorarioFuncionarioClick
@@ -3463,7 +3237,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarHorarioFuncionarioClick
@@ -3473,7 +3246,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarHorarioFuncionarioClick
@@ -3483,7 +3255,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirHorarioFuncionarioClick
@@ -3493,7 +3264,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioHorarioFuncionarioClick
@@ -3503,7 +3273,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasHorarioFuncionarioClick
@@ -3521,7 +3290,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarPadraoSistemaClick
@@ -3531,7 +3299,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarPadraoSistemaClick
@@ -3541,7 +3308,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarPadraoSistemaClick
@@ -3551,7 +3317,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirPadraoSistemaClick
@@ -3561,7 +3326,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioPadraoSistemaClick
@@ -3571,7 +3335,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasPadraoSistemaClick
@@ -3589,7 +3352,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarEquipeClick
@@ -3599,7 +3361,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarEquipeClick
@@ -3609,7 +3370,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarEquipeClick
@@ -3619,7 +3379,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirEquipeClick
@@ -3629,7 +3388,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioEquipeClick
@@ -3639,7 +3397,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasEquipeClick
@@ -3657,7 +3414,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarPostoLocalTrabalhoClick
@@ -3667,7 +3423,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarPostoLocalTrabalhoClick
@@ -3677,7 +3432,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarPostoLocalTrabalhoClick
@@ -3687,7 +3441,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirPostoLocalTrabalhoClick
@@ -3697,7 +3450,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioPostoLocalTrabalhoClick
@@ -3707,7 +3459,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasPostoLocalTrabalhoClick
@@ -3725,7 +3476,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarAgenteEquipeClick
@@ -3735,7 +3485,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarAgenteEquipeClick
@@ -3745,7 +3494,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarAgenteEquipeClick
@@ -3755,7 +3503,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirAgenteEquipeClick
@@ -3765,7 +3512,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioAgenteEquipeClick
@@ -3775,7 +3521,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasAgenteEquipeClick
@@ -3793,7 +3538,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 24
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Consultar'
                       TabOrder = 0
                       OnClick = ChConsultarRegraVisitacaoClick
@@ -3803,7 +3547,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 48
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Editar'
                       TabOrder = 1
                       OnClick = ChEditarRegraVisitacaoClick
@@ -3813,7 +3556,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 72
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Deletar'
                       TabOrder = 2
                       OnClick = ChDeletarRegraVisitacaoClick
@@ -3823,7 +3565,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 96
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Inserir'
                       TabOrder = 3
                       OnClick = ChInserirRegraVisitacaoClick
@@ -3833,7 +3574,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 120
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Relat'#243'rios'
                       TabOrder = 4
                       OnClick = ChRelatorioRegraVisitacaoClick
@@ -3843,7 +3583,6 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
                       Top = 144
                       Width = 65
                       Height = 17
-                      Checked = False
                       Caption = 'Todas'
                       TabOrder = 5
                       OnClick = ChTodasRegraVisitacaoClick

@@ -32,8 +32,8 @@ object FrmLogin: TFrmLogin
       730
       229)
     object UniBitBtnMostrar: TUniBitBtn
-      Left = 455
-      Top = 143
+      Left = 436
+      Top = 125
       Width = 264
       Height = 74
       Glyph.Data = {
@@ -113,8 +113,8 @@ object FrmLogin: TFrmLogin
     TabOrder = 0
   end
   object UniPageControlLogin: TUniPageControl
-    Left = 392
-    Top = 53
+    Left = 315
+    Top = 3
     Width = 320
     Height = 157
     Visible = False
@@ -257,7 +257,6 @@ object FrmLogin: TFrmLogin
           ParentShowHint = False
           CharCase = ecUpperCase
           TabOrder = 2
-          Color = clWindow
           OnExit = UniEdit1Exit
           OnKeyDown = UniEdit1KeyDown
         end
@@ -271,7 +270,6 @@ object FrmLogin: TFrmLogin
           PasswordChar = '*'
           CharCase = ecUpperCase
           TabOrder = 4
-          Color = clWindow
           ScreenMask.Message = '( Criptografando sua senha )'
           OnKeyDown = UniEdit2KeyDown
         end

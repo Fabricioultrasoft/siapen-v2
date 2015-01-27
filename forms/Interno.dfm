@@ -94,10 +94,11 @@ inherited FrmInterno: TFrmInterno
       Width = 785
       Height = 538
       OnChange = PageControlModeloCadastroChange
-      ActivePage = TabSheetCadastro
       ExplicitWidth = 785
       ExplicitHeight = 538
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelCadastro: TUniPanel
@@ -365,7 +366,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_INTERNO'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object DBEdit2: TUniDBEdit
                 Left = 232
@@ -376,7 +376,6 @@ inherited FrmInterno: TFrmInterno
                 DataSource = DsCadastro
                 CharCase = ecUpperCase
                 TabOrder = 2
-                Color = clWindow
               end
               object DBEdit3: TUniDBEdit
                 Left = 267
@@ -386,7 +385,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'RGI'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEdit7: TUniDBEdit
                 Left = 8
@@ -397,7 +395,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
                 TabOrder = 16
-                Color = clWindow
               end
               object DBLookupComboBox2: TUniDBLookupComboBox
                 Left = 66
@@ -412,6 +409,8 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_UP'
                 DataSource = DsCadastro
                 TabOrder = 17
+                ParentColor = False
+                Color = clWindow
               end
               object DBEdit24: TUniDBEdit
                 Left = 149
@@ -421,7 +420,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'OUTRO_NOME'
                 DataSource = DsCadastro
                 TabOrder = 8
-                Color = clWindow
               end
               object DBEdit25: TUniDBEdit
                 Left = 430
@@ -431,7 +429,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'VULGO'
                 DataSource = DsCadastro
                 TabOrder = 9
-                Color = clWindow
               end
               object DBEdit29: TUniDBEdit
                 Left = 443
@@ -441,7 +438,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CI'
                 DataSource = DsCadastro
                 TabOrder = 10
-                Color = clWindow
               end
               object DBEdit35: TUniDBEdit
                 Left = 168
@@ -451,7 +447,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NOME_SOCIAL'
                 DataSource = DsCadastro
                 TabOrder = 12
-                Color = clWindow
               end
               object DBComboBox3: TUniDBComboBox
                 Left = 8
@@ -476,7 +471,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NUMERO_INFOPEN'
                 DataSource = DsCadastro
                 TabOrder = 3
-                Color = clWindow
               end
               object DBComboBox2: TUniDBComboBox
                 Left = 8
@@ -512,7 +506,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NUMERO_ROUPA'
                 DataSource = DsCadastro
                 TabOrder = 18
-                Color = clWindow
               end
               object DBEdit28: TUniDBEdit
                 Left = 8
@@ -522,7 +515,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'TEMPO_CONSOLIDADO_ANO'
                 DataSource = DsCadastro
                 TabOrder = 20
-                Color = clWindow
               end
               object DBEdit31: TUniDBEdit
                 Left = 74
@@ -532,7 +524,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'TEMPO_CONSOLIDADO_MES'
                 DataSource = DsCadastro
                 TabOrder = 21
-                Color = clWindow
               end
               object DBEdit33: TUniDBEdit
                 Left = 141
@@ -542,7 +533,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'TEMPO_CONSOLIDADO_DIA'
                 DataSource = DsCadastro
                 TabOrder = 22
-                Color = clWindow
               end
               object DBComboBox5: TUniDBComboBox
                 Left = 214
@@ -600,7 +590,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NUMERO_PROCED'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBEdit84: TUniDBEdit
                 Left = 302
@@ -611,7 +600,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'FACCAO'
                 DataSource = DsCadastro
                 TabOrder = 19
-                Color = clWindow
               end
               object DBEdit8: TUniDBEdit
                 Left = 507
@@ -621,7 +609,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_ME'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object DBComboBox6: TUniDBComboBox
                 Left = 420
@@ -746,7 +733,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_PROCEDENCIA'
                 DataSource = DsCadastro
                 TabOrder = 59
-                Color = clWindow
                 OnExit = UniDBEditProcedenciaExit
               end
               object UniLabelFaccao: TUniLabel
@@ -804,7 +790,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_FACCAO'
                 DataSource = DsCadastro
                 TabOrder = 62
-                Color = clWindow
                 OnExit = UniDBEditFaccaoExit
               end
               object UniDBEditCondicao: TUniDBEdit
@@ -815,7 +800,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDCONDICAO_INTERNO'
                 DataSource = DsCadastro
                 TabOrder = 63
-                Color = clWindow
                 OnExit = UniDBEditCondicaoExit
               end
               object UniBitBtnCondicao: TUniBitBtn
@@ -873,7 +857,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_SOLICITANTE_VAGA'
                 DataSource = DsCadastro
                 TabOrder = 66
-                Color = clWindow
                 OnExit = UniDBEditOrigemExit
               end
               object UniBitBtnOrigem: TUniBitBtn
@@ -931,7 +914,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_PRESIDIO_ORIGEM'
                 DataSource = DsCadastro
                 TabOrder = 69
-                Color = clWindow
                 OnExit = UniDBEditPresidioOrigemExit
               end
               object UniBitBtnPresidioOrigem: TUniBitBtn
@@ -1249,7 +1231,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'MAE'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEdit5: TUniDBEdit
                 Left = 312
@@ -1259,7 +1240,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'PAI'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBEdit21: TUniDBEdit
                 Left = 24
@@ -1269,7 +1249,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CONDENACAO'
                 DataSource = DsCadastro
                 TabOrder = 12
-                Color = clWindow
               end
               object DBEdit22: TUniDBEdit
                 Left = 24
@@ -1279,7 +1258,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'HISTORICO'
                 DataSource = DsCadastro
                 TabOrder = 13
-                Color = clWindow
               end
               object DBEditrg: TUniDBEdit
                 Left = 137
@@ -1289,7 +1267,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'RG'
                 DataSource = DsCadastro
                 TabOrder = 0
-                Color = clWindow
               end
               object DBEditCPF: TUniDBEdit
                 Left = 352
@@ -1299,7 +1276,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CPF'
                 DataSource = DsCadastro
                 TabOrder = 2
-                Color = clWindow
               end
               object DBEdit23: TUniDBEdit
                 Left = 24
@@ -1309,7 +1285,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'SINAIS_PARTICULARES'
                 DataSource = DsCadastro
                 TabOrder = 14
-                Color = clWindow
               end
               object DBComboBox1: TUniDBComboBox
                 Left = 486
@@ -1339,7 +1314,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ALTURA'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object DBEdit27: TUniDBEdit
                 Left = 74
@@ -1349,7 +1323,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'PESO'
                 DataSource = DsCadastro
                 TabOrder = 7
-                Color = clWindow
               end
               object DBEdit30: TUniDBEdit
                 Left = 24
@@ -1359,7 +1332,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ARTIGO'
                 DataSource = DsCadastro
                 TabOrder = 11
-                Color = clWindow
               end
               object DBEdit32: TUniDBEdit
                 Left = 311
@@ -1369,7 +1341,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'COR_OLHOS'
                 DataSource = DsCadastro
                 TabOrder = 8
-                Color = clWindow
               end
               object DBEdit34: TUniDBEdit
                 Left = 458
@@ -1379,7 +1350,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'COR_CABELOS'
                 DataSource = DsCadastro
                 TabOrder = 9
-                Color = clWindow
               end
               object DBEdit83: TUniDBEdit
                 Left = 24
@@ -1389,7 +1359,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'VISITANTES'
                 DataSource = DsCadastro
                 TabOrder = 15
-                Color = clWindow
               end
               object DBEdit4: TUniDBEdit
                 Left = 312
@@ -1399,7 +1368,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'TITULO_ELEITOR'
                 DataSource = DsCadastro
                 TabOrder = 10
-                Color = clWindow
               end
               object DBEdit20: TUniDBEdit
                 Left = 241
@@ -1409,7 +1377,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ORGAO_EMISSOR_RG'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object DBComboBox4: TUniDBComboBox
                 Left = 26
@@ -1488,7 +1455,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDNATURALIDADE'
                 DataSource = DsCadastro
                 TabOrder = 42
-                Color = clWindow
                 OnExit = UniDBEditNaturalidadeExit
               end
               object UniLabelNacionalidade: TUniLabel
@@ -1546,7 +1512,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDNACIONALIDADE'
                 DataSource = DsCadastro
                 TabOrder = 45
-                Color = clWindow
                 OnExit = UniDBEditNacionalidadeExit
               end
               object UniDBEditRaca: TUniDBEdit
@@ -1557,7 +1522,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDRACA'
                 DataSource = DsCadastro
                 TabOrder = 46
-                Color = clWindow
                 OnExit = UniDBEditRacaExit
               end
               object UniBitBtnRaca: TUniBitBtn
@@ -1615,7 +1579,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDPROFISSAO'
                 DataSource = DsCadastro
                 TabOrder = 49
-                Color = clWindow
                 OnExit = UniDBEditProfissaoExit
               end
               object UniBitBtnProfissao: TUniBitBtn
@@ -1673,7 +1636,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDESCOLARIDADE'
                 DataSource = DsCadastro
                 TabOrder = 52
-                Color = clWindow
                 OnExit = UniDBEditEscolaridadeExit
               end
               object UniBitBtnEscolaridade: TUniBitBtn
@@ -1771,7 +1733,6 @@ inherited FrmInterno: TFrmInterno
                 Top = 80
                 Width = 609
                 Height = 65
-                Color = clWindow
                 TabOrder = 0
               end
               object DBGrid3: TUniDBGrid
@@ -1824,7 +1785,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDADVOGADO'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
                 OnExit = UniDBEditAdvogadoExit
               end
               object UniBitBtnAdvogado: TUniBitBtn
@@ -1957,7 +1917,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ENDERECO'
                 DataSource = DsCadastro
                 TabOrder = 0
-                Color = clWindow
               end
               object DBEdit11: TUniDBEdit
                 Left = 16
@@ -1967,7 +1926,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NUMERO'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object DBEdit12: TUniDBEdit
                 Left = 80
@@ -1977,7 +1935,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'BAIRRO'
                 DataSource = DsCadastro
                 TabOrder = 2
-                Color = clWindow
               end
               object DBEdit13: TUniDBEdit
                 Left = 16
@@ -1987,7 +1944,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'COMPLEMENETO'
                 DataSource = DsCadastro
                 TabOrder = 3
-                Color = clWindow
               end
               object DBEditcep: TUniDBEdit
                 Left = 496
@@ -1997,7 +1953,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CEP'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEditfone: TUniDBEdit
                 Left = 496
@@ -2007,7 +1962,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'FONE'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBEdit17: TUniDBEdit
                 Left = 376
@@ -2017,7 +1971,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CONTATO'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object UniDBEditCidade: TUniDBEdit
                 Left = 16
@@ -2027,7 +1980,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDCIDADE'
                 DataSource = DsCadastro
                 TabOrder = 16
-                Color = clWindow
                 OnExit = UniDBEditCidadeExit
               end
               object UniBitBtnCidade: TUniBitBtn
@@ -2085,7 +2037,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDPAIS_ENDERECO'
                 DataSource = DsCadastro
                 TabOrder = 19
-                Color = clWindow
                 OnExit = UniDBEditPaisExit
               end
               object UniBitBtnPais: TUniBitBtn
@@ -2217,7 +2168,6 @@ inherited FrmInterno: TFrmInterno
                 Anchors = [akLeft, akRight, akBottom]
                 ReadOnly = True
                 TabOrder = 4
-                Color = clWindow
               end
               object MemoDescricao: TUniMemo
                 Left = 108
@@ -2225,7 +2175,6 @@ inherited FrmInterno: TFrmInterno
                 Width = 656
                 Height = 117
                 Anchors = [akLeft, akTop, akRight]
-                Color = clWindow
                 TabOrder = 1
               end
               object DateTimePickerHistorico: TUniDateTimePicker
@@ -2367,7 +2316,6 @@ inherited FrmInterno: TFrmInterno
                   DataField = 'DESCRICAO'
                   DataSource = DsFoto
                   TabOrder = 4
-                  Color = clWindow
                 end
                 object DBGrid4: TUniDBGrid
                   Left = 373
@@ -2591,7 +2539,6 @@ inherited FrmInterno: TFrmInterno
                 Align = alClient
                 Anchors = [akLeft, akTop, akRight, akBottom]
                 TabOrder = 0
-                Color = clWindow
               end
             end
             object TabSheetMapa: TUniTabSheet
@@ -2700,7 +2647,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ARTIGO'
                 DataSource = DsCadastro
                 TabOrder = 0
-                Color = clWindow
               end
               object DBEdit16: TUniDBEdit
                 Left = 24
@@ -2710,7 +2656,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'NUMERO_PROCED'
                 DataSource = DsCadastro
                 TabOrder = 1
-                Color = clWindow
               end
               object DBComboBox7: TUniDBComboBox
                 Left = 24
@@ -2751,7 +2696,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'OBS_MAPA'
                 DataSource = DsCadastro
                 TabOrder = 4
-                Color = clWindow
               end
               object DBEdit37: TUniDBEdit
                 Left = 136
@@ -2761,7 +2705,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'CONDENACAO'
                 DataSource = DsCadastro
                 TabOrder = 5
-                Color = clWindow
               end
               object DBEdit38: TUniDBEdit
                 Left = 351
@@ -2771,7 +2714,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'TEMPO_CONSOLIDADO_ANO'
                 DataSource = DsCadastro
                 TabOrder = 6
-                Color = clWindow
               end
               object UniLabel3: TUniLabel
                 Left = 544
@@ -2884,7 +2826,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'ID_SOLICITANTE_VAGA'
                 DataSource = DsCadastro
                 TabOrder = 25
-                Color = clWindow
                 OnExit = UniDBEditOrigemExit
               end
               object UniBitBtnNaturalidade2: TUniBitBtn
@@ -2930,7 +2871,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDNATURALIDADE'
                 DataSource = DsCadastro
                 TabOrder = 27
-                Color = clWindow
                 OnExit = UniDBEditNaturalidadeExit
               end
               object UniDBEditCidade2: TUniDBEdit
@@ -2941,7 +2881,6 @@ inherited FrmInterno: TFrmInterno
                 DataField = 'IDCIDADE'
                 DataSource = DsCadastro
                 TabOrder = 28
-                Color = clWindow
                 OnExit = UniDBEditCidadeExit
               end
               object UniBitBtn2: TUniBitBtn
@@ -3006,6 +2945,8 @@ inherited FrmInterno: TFrmInterno
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
         ExplicitWidth = 777
         ExplicitHeight = 510
         inherited PanelLocalizaConsulta: TUniPanel
@@ -3054,6 +2995,7 @@ inherited FrmInterno: TFrmInterno
           Width = 777
           Height = 450
           DataSource = DsConsulta
+          ClicksToEdit = 3
           Columns = <
             item
               FieldName = 'NOME_INTERNO'
@@ -3063,6 +3005,7 @@ inherited FrmInterno: TFrmInterno
               Font.Height = -13
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -3071,6 +3014,7 @@ inherited FrmInterno: TFrmInterno
               Title.Caption = 'Prontu'#225'rio'
               Width = 60
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -3079,6 +3023,7 @@ inherited FrmInterno: TFrmInterno
               Title.Caption = 'Roupa'
               Width = 40
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -3087,6 +3032,7 @@ inherited FrmInterno: TFrmInterno
               Title.Caption = 'Sigla'
               Width = 60
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -3095,6 +3041,7 @@ inherited FrmInterno: TFrmInterno
               Title.Caption = 'Status'
               Width = 56
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -3103,6 +3050,7 @@ inherited FrmInterno: TFrmInterno
               Title.Caption = 'Foto'
               Width = 35
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
               ImageOptions.Visible = True

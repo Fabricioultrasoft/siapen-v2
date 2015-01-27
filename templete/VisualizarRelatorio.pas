@@ -125,7 +125,7 @@ uses
   DmPrincipal,
   ServerModule,
   humanejs,
-  Lib, FiltroPeriodoServidor, FiltroPeriodo, Consulta, TipoProcesso;
+  Lib, FiltroPeriodoServidor, FiltroPeriodo, Consulta, TipoProcesso, FiltroTipoProcessoUP, FiltroUP;
 // , DMSoftwareImobiliario;
 
 function FrmVisualizarRelatorio: TFrmVisualizarRelatorio;
@@ -733,6 +733,36 @@ begin
       end);
   end;
 
+  if ContemValor('FILTRO_UP_PROCESSO', 'xx' + FDescricaoRelatorio) OR ContemValor('R5', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    FrmFiltroTipoProcessoUP.ShowModal(
+      procedure(Sender: TComponent; Result: integer)
+      begin
+        if Result <> mrOK then
+        begin
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+        FAguardeFiltro := false;
+      end);
+  end;
+
+  if ContemValor('FILTRO_REL_UP', 'xx' + FDescricaoRelatorio) OR ContemValor('R6', 'xx' + Dm.CaminhoRelatorio) then
+  begin
+    FrmFiltroUP.ShowModal(
+      procedure(Sender: TComponent; Result: integer)
+      begin
+        if Result <> mrOK then
+        begin
+          FCancelaExecucao := true;
+          UniTimerVisualizar.Enabled := false;
+          UniTimerFechar.Enabled := true;
+        end;
+        FAguardeFiltro := false;
+      end);
+  end;
+
 end;
 
 function TFrmVisualizarRelatorio.InicioRelatorio: Boolean;
@@ -894,6 +924,10 @@ begin
 
     FfrxReportDOC.Variables.DeleteVariable('GLOBAL_SOLICITANTE');
     FfrxReportDOC.Variables.AddVariable('SIAP', 'GLOBAL_SOLICITANTE', qs(Dm.GLOBAL_SOLICITANTE));
+
+    FfrxReportDOC.Variables.DeleteVariable('ID_UP_FILTRO');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'ID_UP_FILTRO', Dm.GLOBAL_ID_UP_FILTRO);
+    FfrxReportDOC.Variables.AddVariable('SIAP', 'ID_UP_FILTRO', Dm.GLOBAL_ID_UP_FILTRO);
 
     if not FCancelaExecucao then
       Result := true;

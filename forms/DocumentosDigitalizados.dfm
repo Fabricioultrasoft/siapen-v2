@@ -638,7 +638,6 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Width = 260
                   CharCase = ecUpperCase
                   TabOrder = 2
-                  Color = clWindow
                 end
                 object UniLabel5: TUniLabel
                   Left = 290
@@ -727,6 +726,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   KeyField = 'ID_TIPO_DOCUMENTO'
                   ListFieldIndex = 0
                   TabOrder = 6
+                  ParentColor = False
+                  Color = clWindow
                 end
                 object UniCheckBoxComunicarCentral: TUniCheckBox
                   Left = 629
@@ -833,6 +834,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
         inherited DBGridConsulta: TUniDBGrid
           Width = 880
           Height = 522
+          WebOptions.Paged = False
+          WebOptions.CustomizableCells = False
           Columns = <
             item
               FieldName = 'NOME_INTERNO'
@@ -842,6 +845,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Font.Height = -13
               Font.Name = 'Lucida Console'
               Font.Style = [fsBold]
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -850,6 +854,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Title.Caption = 'Prontu'#225'rio'
               Width = 60
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -858,6 +863,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Title.Caption = 'Roupa'
               Width = 40
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -866,6 +872,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Title.Caption = 'Sigla'
               Width = 60
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end
@@ -874,6 +881,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               Title.Caption = 'Status'
               Width = 56
               Visible = True
+              ReadOnly = True
               Expanded = False
               CheckBoxField.FieldValues = 'true;false'
             end>

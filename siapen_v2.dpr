@@ -42,7 +42,7 @@ uses
   PresencaLocal in 'forms\PresencaLocal.pas' {FrmPresencaLocal: TUniForm},
   PresencaLocalRegistro in 'forms\PresencaLocalRegistro.pas' {FrmPresencaLocalRegistro: TUniForm},
   CadastroFaltasDisciplinares in 'forms\CadastroFaltasDisciplinares.pas' {FrmCadastroFaltasDisciplinares: TUniForm},
-  TipoProcesso in 'forms\TipoProcesso.pas' {FrmTipoProcesso: TUniForm},
+  FiltroUP in 'forms\FiltroUP.pas' {FrmFiltroUP: TUniForm},
   FiltroPeriodoServidor in 'templete\FiltroPeriodoServidor.pas' {frmFiltroPeriodoServidor: TUniForm},
   FiltroPeriodo in 'templete\FiltroPeriodo.pas' {FrmFiltroPeriodo: TUniForm},
   ConsultaInterno in 'forms\ConsultaInterno.pas' {FrmConsultaInterno: TUniForm},
@@ -56,7 +56,9 @@ uses
   FiltroInformarDoc in 'templete\FiltroInformarDoc.pas' {FrmFiltroInformarDoc: TUniForm},
   CadastroInternoTrabalho in 'forms\CadastroInternoTrabalho.pas' {FrmCadastroInternoTrabalho: TUniForm},
   MotivoDispensaTrabalho in 'forms\MotivoDispensaTrabalho.pas' {FrmMotivoDispensaTrabalho: TUniForm},
-  CadastroProcesso in 'forms\CadastroProcesso.pas' {FrmCadastroProcesso: TUniForm};
+  CadastroProcesso in 'forms\CadastroProcesso.pas' {FrmCadastroProcesso: TUniForm},
+  TipoProcesso in 'forms\TipoProcesso.pas' {FrmTipoProcesso: TUniForm},
+  FiltroTipoProcessoUP in 'forms\FiltroTipoProcessoUP.pas' {FrmFiltroTipoProcessoUP: TUniForm};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}

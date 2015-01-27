@@ -2,7 +2,6 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
   ClientHeight = 590
   ClientWidth = 984
   Caption = 'Inqu'#233'ritos / Processos / Condena'#231#245'es'
-  ExplicitTop = -84
   ExplicitWidth = 1000
   ExplicitHeight = 629
   PixelsPerInch = 96
@@ -54,7 +53,7 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
           end
           object dbeditcodigo: TUniDBEdit
             Left = 10
-            Top = 24
+            Top = 22
             Width = 49
             Height = 21
             Enabled = False
@@ -65,7 +64,7 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
           end
           object DBComboBox7: TUniDBComboBox
             Left = 72
-            Top = 64
+            Top = 65
             Width = 457
             Height = 21
             DataField = 'SITUACAOJURIDICA'
@@ -80,7 +79,7 @@ inherited FrmCadastroProcesso: TFrmCadastroProcesso
               'INQU'#201'RITO POLICIAL'
               'PROCESSADO'
               'PROVIS'#211'RIO'
-              '')
+              'MEDIDA DE SEGURAN'#199'A')
             ItemIndex = -1
             TabOrder = 3
           end

@@ -199,8 +199,8 @@
 				<Form>FrmCadastroFaltasDisciplinares</Form>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
-			<DCCReference Include="forms\TipoProcesso.pas">
-				<Form>FrmTipoProcesso</Form>
+			<DCCReference Include="forms\FiltroUP.pas">
+				<Form>FrmFiltroUP</Form>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
 			<DCCReference Include="templete\FiltroPeriodoServidor.pas">
@@ -254,6 +254,14 @@
 			</DCCReference>
 			<DCCReference Include="forms\CadastroProcesso.pas">
 				<Form>FrmCadastroProcesso</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\TipoProcesso.pas">
+				<Form>FrmTipoProcesso</Form>
+				<DesignClass>TUniForm</DesignClass>
+			</DCCReference>
+			<DCCReference Include="forms\FiltroTipoProcessoUP.pas">
+				<Form>FrmFiltroTipoProcessoUP</Form>
 				<DesignClass>TUniForm</DesignClass>
 			</DCCReference>
 			<BuildConfiguration Include="Release">

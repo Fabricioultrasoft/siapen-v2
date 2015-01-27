@@ -30,6 +30,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 953
       Height = 610
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 953
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -440,8 +441,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
               end
             end
             inherited TabSheetAdvogados: TUniTabSheet
-              ExplicitLeft = 4
-              ExplicitTop = 24
               ExplicitWidth = 935
               ExplicitHeight = 552
               inherited DBGrid3: TUniDBGrid
@@ -631,6 +630,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Font.Height = -9
                 Font.Name = 'MS Sans Serif'
                 TabOrder = 6
+                ParentColor = False
+                Color = clWindow
                 OnCloseUp = DBLookupComboBoxfaltadisciplinarClick
                 OnExit = DBLookupComboBoxfaltadisciplinarExit
                 OnEnter = DBLookupComboBoxfaltadisciplinarEnter
@@ -644,7 +645,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 ShowHint = True
                 ParentShowHint = False
                 TabOrder = 7
-                Color = clWindow
               end
               object ComboBoxconclusao: TUniComboBox
                 Left = 492
@@ -663,7 +663,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                   'CONCLUIDO/ARQUIVADO'
                   'CONCLUIDO'
                   'RECURSO'
-                  'REGREDIDO')
+                  'REGREDIDO'
+                  'PROGREDIDO')
                 TabOrder = 8
               end
               object BitBtnIncluir: TUniBitBtn
@@ -823,7 +824,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Height = 21
                 Enabled = False
                 TabOrder = 11
-                Color = clWindow
               end
               object Memo1: TUniMemo
                 Left = 6
@@ -832,7 +832,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Height = 43
                 Anchors = [akLeft, akTop, akRight]
                 ReadOnly = True
-                Color = clWindow
                 TabOrder = 12
               end
               object UniMenuButton1: TUniMenuButton
@@ -982,7 +981,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Width = 90
                     Height = 21
                     TabOrder = 7
-                    Color = clWindow
                   end
                   object ComboBoxtipoprocedimento: TUniComboBox
                     Left = 121
@@ -1038,7 +1036,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     TabOrder = 12
-                    Color = clWindow
                     OnExit = EditqtdediasPrevExit
                   end
                   object UniLabel23: TUniLabel
@@ -1071,7 +1068,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Top = 159
                     Width = 765
                     Height = 40
-                    Color = clWindow
                     TabOrder = 16
                   end
                   object Label122: TUniLabel
@@ -1091,7 +1087,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     TabOrder = 18
-                    Color = clWindow
                   end
                   object UniLabel25: TUniLabel
                     Left = 384
@@ -1168,7 +1163,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     TabOrder = 23
-                    Color = clWindow
                     OnExit = UniEditUPOrigemProcessoExit
                   end
                 end
@@ -1264,7 +1258,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     TabOrder = 8
-                    Color = clWindow
                     OnChange = EditQtdeDiasIsolamentoChange
                   end
                   object UniLabel20: TUniLabel
@@ -1332,7 +1325,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     ShowHint = True
                     ParentShowHint = False
                     TabOrder = 15
-                    Color = clWindow
                     OnChange = EditQtdeDiasIsolamentoChange
                   end
                 end
