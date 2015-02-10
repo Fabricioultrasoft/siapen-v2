@@ -95,6 +95,26 @@ end;
 
 procedure TFrmMenuRelatorios.UniBitBtnVisualizarClick(Sender: TObject);
 begin
+
+  Dm.CaminhoRelatorio := UniListBox1.Text;
+
+  if UniTreeView1.Selected.Text <> '[ Relatórios ]' then
+    Dm.CaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
+
+  if trim(Dm.CaminhoRelatorio) <> '' then
+  begin
+    // FrmVisualizarRelatorio.Nome := Dm.CaminhoRelatorio;
+    FrmVisualizarRelatorio.FazExportacaoPDF := true;
+    FrmVisualizarRelatorio.ShowModal;
+  end
+  else
+  begin
+    ShowMessage('Selecione um relatório.');
+  end;
+
+{
+
+ANTES EM HTML>>10/02/2015
   Dm.CaminhoRelatorio := UniListBox1.Text;
   if UniTreeView1.Selected.Text <> '[ Relatórios ]' then
     Dm.CaminhoRelatorio := UniTreeView1.Selected.Text + '\' + UniListBox1.Text;
@@ -108,6 +128,7 @@ begin
   begin
     ShowMessage('Selecione um relatório.');
   end;
+}
 
 end;
 

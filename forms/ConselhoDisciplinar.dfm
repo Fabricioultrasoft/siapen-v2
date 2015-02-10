@@ -44,13 +44,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
           inherited PageControlInterno: TUniPageControl
             Width = 943
             Height = 580
-            ActivePage = TabSheetConcelhoDisciplinar
+            ActivePage = UniTabSheetDigitalizados
             ExplicitWidth = 943
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
               ExplicitLeft = 4
               ExplicitTop = 24
-              ExplicitWidth = 935
+              ExplicitWidth = 934
               ExplicitHeight = 552
               inherited Label2: TUniLabel
                 Enabled = False
@@ -562,6 +562,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
             end
             object TabSheetConcelhoDisciplinar: TUniTabSheet
               Caption = 'Conselho Disciplinar'
+              ExplicitWidth = 934
               DesignSize = (
                 935
                 552)
@@ -650,7 +651,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Left = 492
                 Top = 83
                 Width = 341
-                Height = 21
                 Hint = 
                   'Situa'#231#227'o do PDI (Andamento, Concluido/Arquivado, Conclu'#237'do, Recu' +
                   'rso)'
@@ -905,7 +905,7 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                 Top = 108
                 Width = 929
                 Height = 236
-                ActivePage = UniTabSheetRecurso
+                ActivePage = UniTabSheetProcedimento
                 TabOrder = 17
                 Anchors = [akLeft, akTop, akRight]
                 object UniTabSheetProcedimento: TUniTabSheet
@@ -986,7 +986,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 121
                     Top = 97
                     Width = 210
-                    Height = 21
                     Style = csDropDownList
                     Items.Strings = (
                       ''
@@ -1189,7 +1188,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 118
                     Top = 29
                     Width = 176
-                    Height = 21
                     Style = csDropDownList
                     Items.Strings = (
                       ''
@@ -1211,7 +1209,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Left = 299
                     Top = 29
                     Width = 165
-                    Height = 21
                     Style = csDropDownList
                     Items.Strings = (
                       ''
@@ -1418,7 +1415,6 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                       Left = 17
                       Top = 117
                       Width = 270
-                      Height = 21
                       Style = csDropDownList
                       Items.Strings = (
                         ''
@@ -1485,6 +1481,242 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
                     Caption = 'Absolvido em decis'#227'o judicial.'
                     TabOrder = 2
                   end
+                end
+              end
+            end
+            object UniTabSheetDigitalizados: TUniTabSheet
+              Caption = 'Digitalizados'
+              object UniPanel10: TUniPanel
+                Left = 0
+                Top = 0
+                Width = 935
+                Height = 78
+                Align = alTop
+                Anchors = [akLeft, akTop, akRight]
+                TabOrder = 0
+                ExplicitWidth = 870
+                object UniBitBtnTodosDigitalizados: TUniBitBtn
+                  Left = 3
+                  Top = 47
+                  Width = 258
+                  Height = 25
+                  Glyph.Data = {
+                    CE020000424DCE02000000000000CE0100002800000010000000100000000100
+                    08000000000000010000120B0000120B0000660000006600000000000000FFFF
+                    FF00FF00FF00FCFBFB00FBFAFA008E5D5900845753008B250000883F1F00A337
+                    0000F8F4F2009E3E0800B7540C00B4682D00C95F0900FEF0E300FCD0A400FBCF
+                    A400FFF2E500D5812700FBD4AB00FED9B200EFC59200F0D1AB00FCD9AB00FFE7
+                    C400FFF8E500FFFCF000AFB2A4009CA69600C0CBBD00BFCBBD009DFFFF00B6FE
+                    FF00BAFEFF00C6FFFF00ACCECE00D9FFFF00EDFFFF00F3FFFF00F6FFFF00F4FB
+                    FB00FAFFFF00C0FEFF00C9FEFF00D1FEFF00E3FEFF00BBFCFF00EBFEFF0091F6
+                    FF0093F7FF0095F6FF009CF7FF009EF8FF00A4F8FF00A5F8FF00ABF8FF00AFFA
+                    FF0099F6FF00BDF8FF00D4FBFF00E1FCFF00BACFD100B2F6FF00A9D7DD00CAF8
+                    FF00B5D8DD008AEEFF0090EEFF0092EFFF0093F0FF0098F0FF0099F0FF009EF2
+                    FF009FF2FF00A3F2FF00A4F2FF00A6F2FF00A9F2FF00ABF0FC00AFF3FF00B1F4
+                    FF00B6F4FF00A0D4DD00BCF6FF00A1C7CE00CFF7FE00DDFAFF009CEFFF00BCF4
+                    FF00C5D9DD00E7FBFF00CCDADD00F0FCFF0000C4FF00EFF7FA000081BD00006F
+                    A400B1CCDC00D5DADD00FEFEFE00DDDDDD000202020260606060606060606060
+                    6002020202026022213836353A333120600202020202602B3F4D4A4846444332
+                    600205050505602C3B514E4C49474534600205181110602D415452504E4B5837
+                    60020519151460253C1E09091D4F4D396002051A1613602E3D091C1F0953512F
+                    6002051B120F602630093E5609405923600205011713602728095A5709425524
+                    600205010101602A01095C5B0961606060020501646460010109635D09615E5E
+                    60020501646460010109650109615E6002020501646460606009616009616005
+                    020205030404040404040A5F0962290502020505050505050E0D0C0B08060505
+                    020202020202020207070707020202020202}
+                  Caption = 'Unificar / Visualizar Todos PDF'
+                  TabOrder = 1
+                  ScreenMask.Enabled = True
+                  ScreenMask.WaitData = True
+                  ScreenMask.Message = 'Aguarde, unificando os arquivos  PDF...'
+                  OnClick = UniBitBtnTodosDigitalizadosClick
+                end
+                object UniEditDescricaoPDF: TUniEdit
+                  Left = 354
+                  Top = 49
+                  Width = 260
+                  CharCase = ecUpperCase
+                  TabOrder = 2
+                end
+                object UniLabel33: TUniLabel
+                  Left = 290
+                  Top = 15
+                  Width = 20
+                  Height = 13
+                  Caption = 'Tipo'
+                  TabOrder = 3
+                end
+                object UniLabel34: TUniLabel
+                  Left = 290
+                  Top = 51
+                  Width = 46
+                  Height = 13
+                  Caption = 'Descri'#231#227'o'
+                  TabOrder = 4
+                end
+                object UniBitBtnAnexar: TUniBitBtn
+                  Left = 629
+                  Top = 35
+                  Width = 124
+                  Height = 39
+                  Glyph.Data = {
+                    76060000424D7606000000000000360400002800000018000000180000000100
+                    0800000000004002000000000000000000000001000000010000FF00FF009933
+                    00009E380000A13B0000A13C0000A43E0000A6410000A9430000AB450000AD47
+                    0000AF490000A3410B00B24D0000B5500000B8530000BB560000BF590000C25C
+                    0000C5600000C8620000CB650000CC670000DB760000DD780000E9830000EA84
+                    0000EB8A1000F7991700FEA11B00000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000000000000000000000000000000000000000000000000000000000000
+                    0000000004080C0C0A0400000000000000000000000000000000081215121010
+                    11151004000000000000000000000000000819150400000000020D1506000000
+                    00000000000000000B1B1500000000000000000C150100000000000000000000
+                    011C04000000000000000001150800000000000000000000011C010000040F10
+                    0F040000110C00000000000000000000011C01000415100C0F150200100C0000
+                    0000000000000000011C01000C12010001110A00100C00000000000000000000
+                    011C0100110D000000100C00100C00000000000000000000011C0100100C0000
+                    00100C00100C00000000000000000000011C0100100C000000100C00100C0000
+                    0000000000000000011C0100100C000000100C00100C00000000000000000000
+                    011C0100100C000000100C000C0800000000000000000000011C0100100C0000
+                    00100C00000000000000000000000000011C0100100C000000100C0000000000
+                    0000000000000000011C0100100C000000100C00000000000000000000000000
+                    011C01000F0C000000100C00000000000000000000000000011C010001010000
+                    00100C00000000000000000000000000011C01000000000000100C0000000000
+                    0000000000000000011C01000000000000100C00000000000000000000000000
+                    011C0C000000000004150800000000000000000000000000001A190800000006
+                    1111010000000000000000000000000000011716121015151001000000000000
+                    0000000000000000000000010101010101000000000000000000}
+                  Caption = 'Anexar Novo'
+                  TabOrder = 5
+                  OnClick = UniBitBtnAnexarClick
+                end
+                object UniCheckBoxComunicarCentral: TUniCheckBox
+                  Left = 629
+                  Top = 12
+                  Width = 126
+                  Height = 17
+                  Caption = 'Comunicar central ?'
+                  TabOrder = 6
+                end
+                object UniDBLookupComboBoxTipoDocumento: TUniDBLookupComboBox
+                  Left = 354
+                  Top = 13
+                  Width = 260
+                  ListField = 'TIPODOCUMENTO'
+                  ListSource = DsTipoDocumento
+                  KeyField = 'ID_TIPO_DOCUMENTO'
+                  ListFieldIndex = 0
+                  TabOrder = 7
+                  ParentColor = False
+                  Color = clWindow
+                end
+              end
+              object UniURLFramePdf: TUniURLFrame
+                Left = 256
+                Top = 78
+                Width = 679
+                Height = 474
+                Align = alClient
+                Anchors = [akLeft, akTop, akRight, akBottom]
+                TabOrder = 1
+                ParentColor = False
+                Color = clBtnFace
+              end
+              object UniPanel11: TUniPanel
+                Left = 0
+                Top = 78
+                Width = 256
+                Height = 474
+                Caption = 'UniPanel11'
+                Align = alLeft
+                Anchors = [akLeft, akTop, akBottom]
+                TabOrder = 2
+                DesignSize = (
+                  256
+                  474)
+                object UniDBGrid1: TUniDBGrid
+                  Left = 1
+                  Top = 1
+                  Width = 254
+                  Height = 424
+                  DataSource = DsDocumentoProcessos
+                  Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit]
+                  ReadOnly = True
+                  WebOptions.Paged = False
+                  LoadMask.Message = 'Loading data...'
+                  OnCellClick = UniDBGrid1CellClick
+                  Align = alTop
+                  Anchors = [akLeft, akTop, akRight, akBottom]
+                  TabOrder = 1
+                  Columns = <
+                    item
+                      FieldName = 'CENTRAL'
+                      Title.Caption = 'Aviso p/ Central'
+                      Width = 85
+                      Visible = True
+                      Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
+                    end
+                    item
+                      FieldName = 'DESCRICAO'
+                      Title.Caption = 'Descri'#231#227'o (Clique para visualizar)'
+                      Width = 180
+                      Visible = True
+                      Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
+                    end
+                    item
+                      FieldName = 'DATA'
+                      Title.Caption = 'Data'
+                      Width = 80
+                      Visible = True
+                      Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
+                    end
+                    item
+                      FieldName = 'IDDOCUMENTOS_PROCESSO'
+                      Title.Caption = 'ID'
+                      Width = 64
+                      Visible = True
+                      Expanded = False
+                      CheckBoxField.FieldValues = 'true;false'
+                    end>
+                end
+                object UniBitBtnComunicarCentral: TUniBitBtn
+                  Left = 26
+                  Top = 431
+                  Width = 173
+                  Height = 25
+                  Caption = 'Comunicar Central'
+                  Anchors = [akLeft, akBottom]
+                  TabOrder = 2
+                  OnClick = UniBitBtnComunicarCentralClick
                 end
               end
             end
@@ -1678,8 +1910,8 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
   end
   object Dspvincfaltadisciplinar: TDataSetProvider
     DataSet = Sqlvincfaltadisciplinar
-    Left = 700
-    Top = 64
+    Left = 884
+    Top = 40
   end
   object Cdsvincfaltadisciplinar: TClientDataSet
     Aggregates = <>
@@ -1689,13 +1921,13 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
     PacketRecords = 0
     Params = <>
     ProviderName = 'Dspvincfaltadisciplinar'
-    Left = 728
-    Top = 64
+    Left = 912
+    Top = 40
   end
   object Dsvincfaltadisciplinar: TDataSource
     DataSet = Cdsvincfaltadisciplinar
-    Left = 757
-    Top = 64
+    Left = 941
+    Top = 40
   end
   object PopupMenuIsolamento: TUniPopupMenu
     Left = 564
@@ -1750,7 +1982,88 @@ inherited FrmConselhoDisciplinar: TFrmConselhoDisciplinar
       'inner join unidade_penal u on (vf.id_up = u.id_up)'
       'where vf.id_interno = :id_interno'
       'order by data_incidencia desc')
-    Left = 671
-    Top = 64
+    Left = 855
+    Top = 40
+  end
+  object DsDocInsert: TDataSource
+    DataSet = CdsDocInsert
+    Left = 1005
+    Top = 145
+  end
+  object CdsDocInsert: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspDocInsert'
+    Left = 977
+    Top = 145
+  end
+  object DspDocInsert: TDataSetProvider
+    DataSet = SqlDocInsert
+    Left = 949
+    Top = 145
+  end
+  object SqlDocInsert: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from DOCUMENTOS_PROCESSO'
+      '')
+    SQLConnection = Dm.Conexao
+    Left = 921
+    Top = 145
+  end
+  object SqlDocumentoProcessos: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from DOCUMENTOS_PROCESSO'
+      '')
+    SQLConnection = Dm.Conexao
+    Left = 921
+    Top = 97
+  end
+  object DspDocumentoProcessos: TDataSetProvider
+    DataSet = SqlDocumentoProcessos
+    Left = 949
+    Top = 97
+  end
+  object CdsDocumentoProcessos: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspDocumentoProcessos'
+    Left = 977
+    Top = 97
+  end
+  object DsDocumentoProcessos: TDataSource
+    DataSet = CdsDocumentoProcessos
+    Left = 1005
+    Top = 97
+  end
+  object DsTipoDocumento: TDataSource
+    DataSet = CdsTipoDocumento
+    Left = 1005
+    Top = 193
+  end
+  object CdsTipoDocumento: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DspTipoDocumento'
+    Left = 977
+    Top = 193
+  end
+  object DspTipoDocumento: TDataSetProvider
+    DataSet = SqlTipoDocumento
+    Left = 949
+    Top = 193
+  end
+  object SqlTipoDocumento: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from TIPO_DOCUMENTO'
+      '')
+    SQLConnection = Dm.Conexao
+    Left = 921
+    Top = 193
   end
 end

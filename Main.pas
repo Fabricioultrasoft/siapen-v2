@@ -248,6 +248,7 @@ type
     UniStatusBar1: TUniStatusBar;
     TimerShowAcao: TUniTimer;
     ExploredoServidor1: TUniMenuItem;
+    UniBitBtn1: TUniBitBtn;
     procedure UniBitBtnConfereClick(Sender: TObject);
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
@@ -255,8 +256,7 @@ type
     procedure UniTimerHoraSistemaTimer(Sender: TObject);
     procedure CadastrodeInternos2Click(Sender: TObject);
     procedure UniBitBtn2Click(Sender: TObject);
-    procedure UniFileUploadImagemCompleted(Sender: TObject;
-      AStream: TFileStream);
+    procedure UniFileUploadImagemCompleted(Sender: TObject; AStream: TFileStream);
     procedure rocarSenha1Click(Sender: TObject);
     procedure Informaes1Click(Sender: TObject);
     procedure Sair1Click(Sender: TObject);
@@ -278,6 +278,7 @@ type
     procedure ExploredoServidor1Click(Sender: TObject);
     procedure BitBtn5Click(Sender: TObject);
     procedure Interno2Click(Sender: TObject);
+    procedure UniBitBtn1Click(Sender: TObject);
   private
     sArquivo, sNomeJpeg: string;
     FNomeImagemUpload: String;
@@ -291,12 +292,9 @@ type
     procedure Saldacoes;
     { Private declarations }
   public
-    property NomeImagemUpload: string read FNomeImagemUpload
-      write FNomeImagemUpload;
-    property NomeCampoUpload: String read FNomeCampoUpload
-      write FNomeCampoUpload;
-    property DsUploadImagem: TDataSource read FDsUploadImagem
-      write FDsUploadImagem;
+    property NomeImagemUpload: string read FNomeImagemUpload write FNomeImagemUpload;
+    property NomeCampoUpload: String read FNomeCampoUpload write FNomeCampoUpload;
+    property DsUploadImagem: TDataSource read FDsUploadImagem write FDsUploadImagem;
     procedure MostraGrafico;
     procedure MostraAgenda;
     { Public declarations }
@@ -372,41 +370,32 @@ begin
 
     if not dm.DsPadrao.DataSet.IsEmpty then
     begin
-      dm.GLOBAL_PADRAO_SISTEMA := dm.DsPadrao.DataSet.FieldByName
-        ('SISTEMA').Asstring;
-      dm.GLOBAL_NIVEL_1 := dm.DsPadrao.DataSet.FieldByName
-        ('NOME_PAVILHAO').Asstring;
-      dm.GLOBAL_NIVEL_2 := dm.DsPadrao.DataSet.FieldByName
-        ('NOME_GALERIA').Asstring;
-      dm.GLOBAL_NIVEL_3 := dm.DsPadrao.DataSet.FieldByName
-        ('NOME_SOLARIO').Asstring;
-      dm.GLOBAL_NIVEL_4 := dm.DsPadrao.DataSet.FieldByName('NOME_CELA')
-        .Asstring;
-      dm.GLOBAL_RGI := dm.DsPadrao.DataSet.FieldByName
-        ('RGI_AUTOMATICO').Asstring;
+      dm.GLOBAL_PADRAO_SISTEMA := dm.DsPadrao.DataSet.FieldByName('SISTEMA').Asstring;
+      dm.GLOBAL_NIVEL_1 := dm.DsPadrao.DataSet.FieldByName('NOME_PAVILHAO').Asstring;
+      dm.GLOBAL_NIVEL_2 := dm.DsPadrao.DataSet.FieldByName('NOME_GALERIA').Asstring;
+      dm.GLOBAL_NIVEL_3 := dm.DsPadrao.DataSet.FieldByName('NOME_SOLARIO').Asstring;
+      dm.GLOBAL_NIVEL_4 := dm.DsPadrao.DataSet.FieldByName('NOME_CELA').Asstring;
+      dm.GLOBAL_RGI := dm.DsPadrao.DataSet.FieldByName('RGI_AUTOMATICO').Asstring;
     end;
 
   end;
 
 end;
 
-procedure TMainForm.UniFileUploadImagemCompleted(Sender: TObject;
-AStream: TFileStream);
+procedure TMainForm.UniFileUploadImagemCompleted(Sender: TObject; AStream: TFileStream);
 begin
 
   if not DirectoryExists(UniServerModule.StartPath + 'FotosSistema\') then
     ForceDirectories(UniServerModule.StartPath + 'FotosSistema\');
 
-  sArquivo := UniServerModule.StartPath + 'FotosSistema\' + FNomeImagemUpload +
-    ExtractFileExt(AStream.FileName);
+  sArquivo := UniServerModule.StartPath + 'FotosSistema\' + FNomeImagemUpload + ExtractFileExt(AStream.FileName);
 
   CopyFile(PChar(AStream.FileName), PChar(sArquivo), False);
 
   if FDsUploadImagem.DataSet.State in [dsedit, dsinsert] then
   begin
     sNomeJpeg := JpgToBmp(AStream.FileName); // ConverterBmpParaJPeg();
-    TBlobField(FDsUploadImagem.DataSet.FieldByName(FNomeCampoUpload))
-      .LoadFromFile(sNomeJpeg);
+    TBlobField(FDsUploadImagem.DataSet.FieldByName(FNomeCampoUpload)).LoadFromFile(sNomeJpeg);
   end;
 
   MainForm.FNomeImagemUpload := '';
@@ -439,8 +428,7 @@ begin
   dm.DATA_HORA_ENCERRAR := IncHour(dm.DATA_HORA_ENTRADA, dm.HORA_TIMEOUT);
   // Dm.DATA_HORA_ENCERRAR := IncSecond(Dm.DATA_HORA_ENTRADA,30);
 
-  humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' +
-    'Seja bem vindo!');
+  humane.info('<b><font Color=blue>' + sSaudacoes + '...</font></b><br>' + 'Seja bem vindo!');
 
 end;
 
@@ -448,7 +436,7 @@ procedure TMainForm.UniFormShow(Sender: TObject);
 var
   i: integer;
 begin
-//  Saldacoes();
+  // Saldacoes();
 
   UniPageControlPrincipal.ActivePageIndex := 0;
 
@@ -458,15 +446,12 @@ begin
   // UniURLFrame1.Update;
 
   if FileExists(UniServerModule.StartPath + 'logo\logo_panel1.jpg') then
-    UniImage1.Picture.LoadFromFile(UniServerModule.StartPath +
-      'logo\logo_panel1.jpg');
+    UniImage1.Picture.LoadFromFile(UniServerModule.StartPath + 'logo\logo_panel1.jpg');
 
   if FileExists(UniServerModule.StartPath + 'logo\logo_fundo.jpg') then
-    UniImage2.Picture.LoadFromFile(UniServerModule.StartPath +
-      'logo\logo_fundo.jpg');
+    UniImage2.Picture.LoadFromFile(UniServerModule.StartPath + 'logo\logo_fundo.jpg');
 
-  SqlUP.SQL.Text :=
-    'select id_up,nome_up, sigla from unidade_penal order by nome_up';
+  SqlUP.SQL.Text := 'select id_up,nome_up, sigla from unidade_penal order by nome_up';
 
   DsUP.DataSet.Close;
   DsUP.DataSet.Open;
@@ -504,9 +489,8 @@ begin
   begin
     if not FAvisoSessao then
     begin
-      humane.info
-        ('<b><font Color=yellow>Sessão encerrou, Faça novo login!</font></b><br>Salve seu trabalho,'
-        + ' o sistema fechará automáticamente em 60 segundos! Faça o login em seguida...');
+      humane.info('<b><font Color=yellow>Sessão encerrou, Faça novo login!</font></b><br>Salve seu trabalho,' +
+        ' o sistema fechará automáticamente em 60 segundos! Faça o login em seguida...');
       FAvisoSessao := true;
     end;
   end;
@@ -525,19 +509,16 @@ begin
   if (Minuto) > 0 then
     sTempo := IntToStr(Minuto) + 'm ' + IntToStr(Segundo) + 's';
   if (Hora) > 0 then
-    sTempo := IntToStr(Hora) + 'h ' + IntToStr(Minuto) + 'm ' +
-      IntToStr(Segundo) + 's';
+    sTempo := IntToStr(Hora) + 'h ' + IntToStr(Minuto) + 'm ' + IntToStr(Segundo) + 's';
 
   Hora2 := HoursBetween(dHoraFim, dHoraAtual);
   Minuto2 := MinutesBetween(dHoraFim, dHoraAtual) - (60 * Hora2);
-  Segundo2 := SecondsBetween(dHoraFim, dHoraAtual) - (60 * Minuto2) -
-    (60 * 60 * Hora2);
+  Segundo2 := SecondsBetween(dHoraFim, dHoraAtual) - (60 * Minuto2) - (60 * 60 * Hora2);
   sTempo2 := IntToStr(Segundo2) + 's';
   if (Minuto2) > 0 then
     sTempo2 := IntToStr(Minuto2) + 'm ' + IntToStr(Segundo2) + 's';
   if (Hora2) > 0 then
-    sTempo2 := IntToStr(Hora2) + 'h ' + IntToStr(Minuto2) + 'm ' +
-      IntToStr(Segundo2) + 's';
+    sTempo2 := IntToStr(Hora2) + 'h ' + IntToStr(Minuto2) + 'm ' + IntToStr(Segundo2) + 's';
 
   UniStatusBar1.Panels.Items[1].Text := dm.GLOBAL_NOME_FUNCIONARIO_LOGADO;
   UniStatusBar1.Panels.Items[3].Text := sTempo;
@@ -560,10 +541,8 @@ begin
         FJaAvisadoFechamento := true;
         humane.clickToClose(true);
         humane.timeout(49000);
-        humane.log
-          ('<b><font Color=yellow>Atualização em Andamento!</font></b><br>Salve seu trabalho, o sistema fechará automáticamente em '
-          + IntToStr(FTempoParaFechar) +
-          ' segundos! Acesse novamente em 01 minuto...');
+        humane.log('<b><font Color=yellow>Atualização em Andamento!</font></b><br>Salve seu trabalho, o sistema fechará automáticamente em ' +
+          IntToStr(FTempoParaFechar) + ' segundos! Acesse novamente em 01 minuto...');
       end;
     end
     else
@@ -572,10 +551,8 @@ begin
       begin
         FUltimoAvisoFechamento := true;
         humane.timeout(10000);
-        humane.error
-          ('<b><font Color=navy>Atualização em Andamento!</font></b><br>Salve seu trabalho, o sistema fechará automáticamente em '
-          + IntToStr(FTempoParaFechar) +
-          ' segundos! Acesse novamente em 01 minuto...');
+        humane.error('<b><font Color=navy>Atualização em Andamento!</font></b><br>Salve seu trabalho, o sistema fechará automáticamente em ' +
+          IntToStr(FTempoParaFechar) + ' segundos! Acesse novamente em 01 minuto...');
       end;
     end;
 
@@ -594,6 +571,21 @@ begin
 
 end;
 
+procedure TMainForm.UniBitBtn1Click(Sender: TObject);
+begin
+  //
+  FrmAguarde.ShowModal(
+    procedure(Sender: TComponent; Res: integer)
+    begin
+      FrmDocumentosDigitalizados.Pai := 'CONSELHO DISCIPLINAR';
+      FrmDocumentosDigitalizados.Caption := 'PADIC - Anexos';
+      FrmDocumentosDigitalizados.LabelTitulo.Caption := 'PADIC - Anexos';
+      FrmDocumentosDigitalizados.UniPanelOpcoesDigitalizacao.visible := false;
+      FrmDocumentosDigitalizados.UniBitBtnComunicarCentral.visible := false;
+      FrmDocumentosDigitalizados.ShowModal();
+    end);
+end;
+
 procedure TMainForm.UniBitBtn2Click(Sender: TObject);
 begin
   FrmEntradaVisitante.ShowModal();
@@ -605,6 +597,11 @@ begin
   FrmAguarde.ShowModal(
     procedure(Sender: TComponent; Res: integer)
     begin
+      FrmDocumentosDigitalizados.Pai := '';
+      FrmDocumentosDigitalizados.Caption := 'Documentos Digitalizados';
+      FrmDocumentosDigitalizados.LabelTitulo.Caption := 'Documentos Digitalizados';
+      FrmDocumentosDigitalizados.UniPanelOpcoesDigitalizacao.visible := true;
+      FrmDocumentosDigitalizados.UniBitBtnComunicarCentral.visible := true;
       FrmDocumentosDigitalizados.ShowModal();
     end);
   // FrmCentralDocumentosDigitalizados.ShowModal();
@@ -657,18 +654,15 @@ begin
   try
     try
 
-      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) +
-        'relatorio_tela.html';
+      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) + 'relatorio_tela.html';
 
       FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
       FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\relatorio_tela.fr3';
 
-      if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-        IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3') then
+      if FileExists(UniServerModule.StartPath + 'SYSTEM\' + IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3') then
       begin
-        FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
-          IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3';
+        FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela.fr3';
       end;
 
       dm.frxReport1.ShowProgress := False;
@@ -771,14 +765,10 @@ begin
 
   if not dm.DsPadrao.DataSet.IsEmpty then
   begin
-    dm.GLOBAL_PADRAO_SISTEMA := dm.DsPadrao.DataSet.FieldByName
-      ('SISTEMA').Asstring;
-    dm.GLOBAL_NIVEL_1 := dm.DsPadrao.DataSet.FieldByName
-      ('NOME_PAVILHAO').Asstring;
-    dm.GLOBAL_NIVEL_2 := dm.DsPadrao.DataSet.FieldByName
-      ('NOME_GALERIA').Asstring;
-    dm.GLOBAL_NIVEL_3 := dm.DsPadrao.DataSet.FieldByName
-      ('NOME_SOLARIO').Asstring;
+    dm.GLOBAL_PADRAO_SISTEMA := dm.DsPadrao.DataSet.FieldByName('SISTEMA').Asstring;
+    dm.GLOBAL_NIVEL_1 := dm.DsPadrao.DataSet.FieldByName('NOME_PAVILHAO').Asstring;
+    dm.GLOBAL_NIVEL_2 := dm.DsPadrao.DataSet.FieldByName('NOME_GALERIA').Asstring;
+    dm.GLOBAL_NIVEL_3 := dm.DsPadrao.DataSet.FieldByName('NOME_SOLARIO').Asstring;
     dm.GLOBAL_NIVEL_4 := dm.DsPadrao.DataSet.FieldByName('NOME_CELA').Asstring;
     dm.GLOBAL_RGI := dm.DsPadrao.DataSet.FieldByName('RGI_AUTOMATICO').Asstring;
   end;
@@ -836,21 +826,16 @@ begin
   // ************ FIM CADASTRO ****************//
 
   // ************ MOVIMENTAÇÃO ****************//
-  if ((dm.PERMISSAO_TRANSFERENCIAINTERNO = '') or
-    (dm.PERMISSAO_TRANSFERENCIAINTERNO = 'R')) and
-    ((dm.PERMISSAO_MUDANCACELA = '') or (dm.PERMISSAO_MUDANCACELA = 'R')) and
-    ((dm.PERMISSAO_SAIDAO = '') or (dm.PERMISSAO_SAIDAO = 'R')) and
-    ((dm.PERMISSAO_CIRCULACAOINTERNO = '') or
-    (dm.PERMISSAO_CIRCULACAOINTERNO = 'R')) and
-    ((dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or
-    (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R')) then
+  if ((dm.PERMISSAO_TRANSFERENCIAINTERNO = '') or (dm.PERMISSAO_TRANSFERENCIAINTERNO = 'R')) and
+    ((dm.PERMISSAO_MUDANCACELA = '') or (dm.PERMISSAO_MUDANCACELA = 'R')) and ((dm.PERMISSAO_SAIDAO = '') or (dm.PERMISSAO_SAIDAO = 'R')) and
+    ((dm.PERMISSAO_CIRCULACAOINTERNO = '') or (dm.PERMISSAO_CIRCULACAOINTERNO = 'R')) and
+    ((dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R')) then
   begin
     Movimentao1.Visible := False;
   end
   else
   begin
-    if (dm.PERMISSAO_TRANSFERENCIAINTERNO = '') or
-      (dm.PERMISSAO_TRANSFERENCIAINTERNO = 'R') then
+    if (dm.PERMISSAO_TRANSFERENCIAINTERNO = '') or (dm.PERMISSAO_TRANSFERENCIAINTERNO = 'R') then
     begin
       ransfernciadeInterno1.Visible := False;
       RecebimentodeTransferncia1.Visible := False;
@@ -866,20 +851,17 @@ begin
       Saido1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_CIRCULACAOINTERNO = '') or
-      (dm.PERMISSAO_CIRCULACAOINTERNO = 'R') then
+    if (dm.PERMISSAO_CIRCULACAOINTERNO = '') or (dm.PERMISSAO_CIRCULACAOINTERNO = 'R') then
     begin
       CirculaodeInterno1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or
-      (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R') then
+    if (dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R') then
     begin
       MovimentoSemiAberto1.Visible := False;
     end;
 
-    if not(ContemValor('C', dm.PERMISSAO_TRANSFERENCIAINTERNO) or
-      ContemValor('C', dm.PERMISSAO_MUDANCACELA)) then
+    if not(ContemValor('C', dm.PERMISSAO_TRANSFERENCIAINTERNO) or ContemValor('C', dm.PERMISSAO_MUDANCACELA)) then
     begin
       LocalizaoPorPronturio1.Visible := False;
     end;
@@ -911,10 +893,8 @@ begin
     BitBtn4.enabled := False;
   end;
 
-  if ((dm.PERMISSAO_PEDAGOGIA = '') or (dm.PERMISSAO_PEDAGOGIA = 'R')) and
-    ((dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R'))
-    and ((dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or
-    (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R')) then
+  if ((dm.PERMISSAO_PEDAGOGIA = '') or (dm.PERMISSAO_PEDAGOGIA = 'R')) and ((dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R')) and
+    ((dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R')) then
   begin
     Reabilitao1.Visible := False;
     BitBtn6.enabled := False;
@@ -929,27 +909,22 @@ begin
       BitBtn6.enabled := False;
     end;
 
-    if (dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R')
-    then
+    if (dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R') then
     begin
       ServicoSocial.Visible := False;
       BitBtn8.enabled := False;
     end;
 
-    if (dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or
-      (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R') then
+    if (dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R') then
     begin
       erapiaOcupacional.Visible := False;
       BitBtn9.enabled := False;
     end;
   end;
 
-  if ((dm.PERMISSAO_CLINICAMEDICA = '') or (dm.PERMISSAO_CLINICAMEDICA = 'R'))
-    and ((dm.PERMISSAO_ENFERMAGEM = '') or (dm.PERMISSAO_ENFERMAGEM = 'R')) and
-    ((dm.PERMISSAO_FARMACIA = '') or (dm.PERMISSAO_FARMACIA = 'R')) and
-    ((dm.PERMISSAO_ODONTOLOGIA = '') or (dm.PERMISSAO_ODONTOLOGIA = 'R')) and
-    ((dm.PERMISSAO_PSICOLOGIA = '') or (dm.PERMISSAO_PSICOLOGIA = 'R')) and
-    ((dm.PERMISSAO_PSIQUIATRIA = '') or (dm.PERMISSAO_PSIQUIATRIA = 'R')) and
+  if ((dm.PERMISSAO_CLINICAMEDICA = '') or (dm.PERMISSAO_CLINICAMEDICA = 'R')) and ((dm.PERMISSAO_ENFERMAGEM = '') or (dm.PERMISSAO_ENFERMAGEM = 'R')) and
+    ((dm.PERMISSAO_FARMACIA = '') or (dm.PERMISSAO_FARMACIA = 'R')) and ((dm.PERMISSAO_ODONTOLOGIA = '') or (dm.PERMISSAO_ODONTOLOGIA = 'R')) and
+    ((dm.PERMISSAO_PSICOLOGIA = '') or (dm.PERMISSAO_PSICOLOGIA = 'R')) and ((dm.PERMISSAO_PSIQUIATRIA = '') or (dm.PERMISSAO_PSIQUIATRIA = 'R')) and
     ((dm.PERMISSAO_SAUDE = '') or (dm.PERMISSAO_SAUDE = 'R')) then
   begin
     Sade1.Visible := False;
@@ -963,8 +938,7 @@ begin
   end
   else
   begin
-    if (dm.PERMISSAO_CLINICAMEDICA = '') or (dm.PERMISSAO_CLINICAMEDICA = 'R')
-    then
+    if (dm.PERMISSAO_CLINICAMEDICA = '') or (dm.PERMISSAO_CLINICAMEDICA = 'R') then
     begin
       clinicamedica.Visible := False;
       BitBtn15.enabled := False;
@@ -1023,8 +997,7 @@ begin
     Ocorrncias1.Visible := False;
   end;
 
-  if (dm.PERMISSAO_CONSELHODISCIPLINAR = '') or
-    (dm.PERMISSAO_CONSELHODISCIPLINAR = 'R') then
+  if (dm.PERMISSAO_CONSELHODISCIPLINAR = '') or (dm.PERMISSAO_CONSELHODISCIPLINAR = 'R') then
   begin
     ConselhoDi1.Visible := False;
   end;
@@ -1059,27 +1032,20 @@ begin
     Inteligncia1.Visible := False;
   end;
 
-  if (dm.PERMISSAO_MONITORAMENTO = '') or (dm.PERMISSAO_MONITORAMENTO = 'R')
-  then
+  if (dm.PERMISSAO_MONITORAMENTO = '') or (dm.PERMISSAO_MONITORAMENTO = 'R') then
   begin
     MonitoramentoEletrnico1.Visible := False;
   end;
   // ************ FIM MÓDULOS ****************//
 
   // ************ CONFIGURAÇÕES / CADASTRO ****************//
-  if ((dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R')) and
-    ((dm.PERMISSAO_FUNCAOFUNCIONARIO = '') or
-    (dm.PERMISSAO_FUNCAOFUNCIONARIO = 'R')) and
-    ((dm.PERMISSAO_UNIDADEPENAL = '') or (dm.PERMISSAO_UNIDADEPENAL = 'R')) and
-    ((dm.PERMISSAO_HORARIOFUNCIONARIO = '') or
-    (dm.PERMISSAO_HORARIOFUNCIONARIO = 'R')) and
-    ((dm.PERMISSAO_PADRAOSISTEMA = '') or (dm.PERMISSAO_PADRAOSISTEMA = 'R'))
-    and ((dm.PERMISSAO_EQUIPE = '') or (dm.PERMISSAO_EQUIPE = 'R')) and
-    ((dm.PERMISSAO_LOCALPOSTOTRABALHO = '') or
-    (dm.PERMISSAO_LOCALPOSTOTRABALHO = 'R')) and
-    ((dm.PERMISSAO_AGENTEPOREQUIPE = '') or (dm.PERMISSAO_AGENTEPOREQUIPE = 'R')
-    ) and ((dm.PERMISSAO_REGRAVISITACAO = '') or
-    (dm.PERMISSAO_REGRAVISITACAO = 'R')) then
+  if ((dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R')) and ((dm.PERMISSAO_FUNCAOFUNCIONARIO = '') or (dm.PERMISSAO_FUNCAOFUNCIONARIO = 'R'))
+    and ((dm.PERMISSAO_UNIDADEPENAL = '') or (dm.PERMISSAO_UNIDADEPENAL = 'R')) and
+    ((dm.PERMISSAO_HORARIOFUNCIONARIO = '') or (dm.PERMISSAO_HORARIOFUNCIONARIO = 'R')) and
+    ((dm.PERMISSAO_PADRAOSISTEMA = '') or (dm.PERMISSAO_PADRAOSISTEMA = 'R')) and ((dm.PERMISSAO_EQUIPE = '') or (dm.PERMISSAO_EQUIPE = 'R')) and
+    ((dm.PERMISSAO_LOCALPOSTOTRABALHO = '') or (dm.PERMISSAO_LOCALPOSTOTRABALHO = 'R')) and
+    ((dm.PERMISSAO_AGENTEPOREQUIPE = '') or (dm.PERMISSAO_AGENTEPOREQUIPE = 'R')) and ((dm.PERMISSAO_REGRAVISITACAO = '') or (dm.PERMISSAO_REGRAVISITACAO = 'R'))
+  then
   begin
     Configurao1.Visible := False;
   end
@@ -1091,26 +1057,22 @@ begin
       Funcionrio2.Visible := False;
     end;
 
-    if (dm.PERMISSAO_FUNCAOFUNCIONARIO = '') or
-      (dm.PERMISSAO_FUNCAOFUNCIONARIO = 'R') then
+    if (dm.PERMISSAO_FUNCAOFUNCIONARIO = '') or (dm.PERMISSAO_FUNCAOFUNCIONARIO = 'R') then
     begin
       FunoFuncionrio1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_UNIDADEPENAL = '') or (dm.PERMISSAO_UNIDADEPENAL = 'R')
-    then
+    if (dm.PERMISSAO_UNIDADEPENAL = '') or (dm.PERMISSAO_UNIDADEPENAL = 'R') then
     begin
       UnidadePenal2.Visible := False;
     end;
 
-    if (dm.PERMISSAO_HORARIOFUNCIONARIO = '') or
-      (dm.PERMISSAO_HORARIOFUNCIONARIO = 'R') then
+    if (dm.PERMISSAO_HORARIOFUNCIONARIO = '') or (dm.PERMISSAO_HORARIOFUNCIONARIO = 'R') then
     begin
       HorarioFuncionrio1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_PADRAOSISTEMA = '') or (dm.PERMISSAO_PADRAOSISTEMA = 'R')
-    then
+    if (dm.PERMISSAO_PADRAOSISTEMA = '') or (dm.PERMISSAO_PADRAOSISTEMA = 'R') then
     begin
       PadroSist1.Visible := False;
     end;
@@ -1120,20 +1082,17 @@ begin
       Equipe1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_LOCALPOSTOTRABALHO = '') or
-      (dm.PERMISSAO_LOCALPOSTOTRABALHO = 'R') then
+    if (dm.PERMISSAO_LOCALPOSTOTRABALHO = '') or (dm.PERMISSAO_LOCALPOSTOTRABALHO = 'R') then
     begin
       PostoLocaldeTrabalho1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_AGENTEPOREQUIPE = '') or
-      (dm.PERMISSAO_AGENTEPOREQUIPE = 'R') then
+    if (dm.PERMISSAO_AGENTEPOREQUIPE = '') or (dm.PERMISSAO_AGENTEPOREQUIPE = 'R') then
     begin
       AgenteporEquipe1.Visible := False;
     end;
 
-    if (dm.PERMISSAO_REGRAVISITACAO = '') or (dm.PERMISSAO_REGRAVISITACAO = 'R')
-    then
+    if (dm.PERMISSAO_REGRAVISITACAO = '') or (dm.PERMISSAO_REGRAVISITACAO = 'R') then
     begin
       RegraparaVisitano1.Visible := False;
     end;
@@ -1286,18 +1245,15 @@ begin
   try
     try
 
-      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) +
-        'relatorio_tela2.html';
+      nome_agora := FormatDateTime('yyyy-mm-dd-hh-mm-ss-zzz', NOW) + 'relatorio_tela2.html';
 
       FArquivo := UniServerModule.LocalCachePath + nome_agora;
 
       FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\relatorio_tela2.fr3';
 
-      if FileExists(UniServerModule.StartPath + 'SYSTEM\' +
-        IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3') then
+      if FileExists(UniServerModule.StartPath + 'SYSTEM\' + IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3') then
       begin
-        FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' +
-          IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3';
+        FCaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + IntToStr(dm.GLOBAL_ID_UP) + '\relatorio_tela2.fr3';
       end;
 
       dm.frxReport1.ShowProgress := False;
@@ -1362,8 +1318,7 @@ begin
   FrmAguarde.ShowModal(
     procedure(Sender: TComponent; Res: integer)
     begin
-      if ((dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R'))
-      then
+      if ((dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R')) then
         ShowMessage('Sem acesso!')
       else
         FrmCadastroFuncionario.ShowModal();

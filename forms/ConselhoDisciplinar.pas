@@ -13,7 +13,7 @@ uses
   uniDBCheckBox, uniDBComboBox, uniMultiItem, uniComboBox, uniDBLookupComboBox,
   uniDBEdit, uniPageControl, uniBitBtn, uniLabel, Vcl.Imaging.jpeg, uniImage,
   uniPanel, uniGroupBox, uniSpeedButton, Vcl.StdCtrls, uniMenuButton, Vcl.Menus,
-  uniMainMenu, DateUtils;
+  uniMainMenu, DateUtils, uniURLFrame;
 
 type
   TFrmConselhoDisciplinar = class(TFrmInterno)
@@ -116,6 +116,31 @@ type
     UniLabel21: TUniLabel;
     UniEditTOTAL_DIAS_SANCAO: TUniEdit;
     UniCheckBoxABSOLVIDO_JUDICIALMENTE: TUniCheckBox;
+    DsDocInsert: TDataSource;
+    CdsDocInsert: TClientDataSet;
+    DspDocInsert: TDataSetProvider;
+    SqlDocInsert: TSQLQuery;
+    SqlDocumentoProcessos: TSQLQuery;
+    DspDocumentoProcessos: TDataSetProvider;
+    CdsDocumentoProcessos: TClientDataSet;
+    DsDocumentoProcessos: TDataSource;
+    UniTabSheetDigitalizados: TUniTabSheet;
+    UniPanel10: TUniPanel;
+    UniBitBtnTodosDigitalizados: TUniBitBtn;
+    UniEditDescricaoPDF: TUniEdit;
+    UniLabel33: TUniLabel;
+    UniLabel34: TUniLabel;
+    UniBitBtnAnexar: TUniBitBtn;
+    UniCheckBoxComunicarCentral: TUniCheckBox;
+    UniURLFramePdf: TUniURLFrame;
+    UniPanel11: TUniPanel;
+    UniDBGrid1: TUniDBGrid;
+    UniBitBtnComunicarCentral: TUniBitBtn;
+    DsTipoDocumento: TDataSource;
+    CdsTipoDocumento: TClientDataSet;
+    DspTipoDocumento: TDataSetProvider;
+    SqlTipoDocumento: TSQLQuery;
+    UniDBLookupComboBoxTipoDocumento: TUniDBLookupComboBox;
     procedure BitBtnIncluirClick(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -145,8 +170,16 @@ type
     procedure EditQtdeDiasIsolamentoChange(Sender: TObject);
     procedure ComunicaodeIsolamentoPreventivo1Click(Sender: TObject);
     procedure CIdeEncaminhamentoparaCCT1Click(Sender: TObject);
+    procedure UniBitBtnAnexarClick(Sender: TObject);
+    procedure UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
+    procedure UniBitBtnComunicarCentralClick(Sender: TObject);
+    procedure UniBitBtnTodosDigitalizadosClick(Sender: TObject);
+    procedure UniDBGrid1CellClick(Column: TUniDBGridColumn);
   private
+    sArquivosPDFInterno, sPdf: String;
+    sCaminhoArquivo, sArquivo, sNomePDF, sPastaDia: string;
     procedure Limpa;
+    procedure Comunicar;
     { Private declarations }
   public
     { Public declarations }
@@ -160,7 +193,7 @@ implementation
 
 uses
   MainModule, uniGUIApplication, VincFaltaDisiciplinar, DmPrincipal, Lib,
-  Consulta, VisualizarRelatorio, ServerModule, FiltroInformarDoc;
+  Consulta, VisualizarRelatorio, ServerModule, FiltroInformarDoc, Main, humanejs, Aguarde;
 
 function FrmConselhoDisciplinar: TFrmConselhoDisciplinar;
 begin
@@ -302,6 +335,24 @@ procedure TFrmConselhoDisciplinar.EditarClick(Sender: TObject);
 begin
   inherited;
   Limpa;
+
+  SqlDocumentoProcessos.SQL.Text :=
+    'select d.*, iif(d.comunicar_central=''S'',iif(d.data_inicio_central is null,''Prioridade'',iif(d.data_fim_central is null, ''Em Andamento'', ''Finalizado'')),''Normal'') central from DOCUMENTOS_PROCESSO d where d.pai =''CONSELHO DISCIPLINAR'' and d.id_interno='
+    + DsCadastro.DataSet.fieldbyname('id_interno').AsString + ' order by d.data ';
+  // + ' order by data ';
+  CdsDocumentoProcessos.close;
+  CdsDocumentoProcessos.Open;
+
+  SqlDocInsert.SQL.Text := 'select * from DOCUMENTOS_PROCESSO d where d.id_interno=-1';
+  // + ' order by data ';
+  CdsDocInsert.close;
+  CdsDocInsert.Open;
+
+  CdsTipoDocumento.close;
+  CdsTipoDocumento.Open;
+
+  UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
+
 end;
 
 procedure TFrmConselhoDisciplinar.btnBuscarClick(Sender: TObject);
@@ -614,6 +665,131 @@ begin
 
 end;
 
+procedure TFrmConselhoDisciplinar.UniBitBtnAnexarClick(Sender: TObject);
+begin
+  inherited;
+  if UniDBLookupComboBoxTipoDocumento.KeyValue = null then
+  begin
+    showmessage('Informe o tipo de documento!');
+    exit;
+  end;
+  if UniEditDescricaoPDF.Text = '' then
+  begin
+    showmessage('Informe a descrição do documento!');
+    exit;
+  end;
+
+  MainForm.UniFileUploadPdf.OnCompleted := UniFileUploadPdfCompleted;
+  MainForm.UniFileUploadPdf.Execute;
+
+end;
+
+procedure TFrmConselhoDisciplinar.UniBitBtnComunicarCentralClick(Sender: TObject);
+begin
+  inherited;
+
+  if UniCheckBoxComunicarCentral.checked then
+  begin
+    Comunicar;
+  end
+  else
+  begin
+    MessageDlg('Comunicar central deste documento:' + CdsDocumentoProcessos.fieldbyname('DESCRICAO').AsString + '?', mtWarning, mbYesNo,
+      procedure(Sender: TComponent; Result: Integer)
+      begin
+        if Result = mrYes then
+        begin
+          Comunicar();
+        end;
+      end);
+  end;
+
+end;
+
+procedure TFrmConselhoDisciplinar.UniBitBtnTodosDigitalizadosClick(Sender: TObject);
+begin
+  inherited;
+  try
+    sArquivosPDFInterno := '';
+    sPdf := '';
+    if Dm.CONFIGURACAO = 'S' then
+    begin
+
+      DsDocumentoProcessos.DataSet.first;
+      while not DsDocumentoProcessos.DataSet.eof do
+      begin
+
+        sPdf := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsDocumentoProcessos.DataSet.fieldbyname('CAMINHO_DOC').AsString;
+
+        if FileExists(sPdf) then
+        begin
+          if sArquivosPDFInterno = '' then
+            sArquivosPDFInterno := sPdf
+          else
+            sArquivosPDFInterno := sArquivosPDFInterno + '|' + sPdf;
+        end;
+
+        DsDocumentoProcessos.DataSet.next;
+
+      end;
+
+      if sArquivosPDFInterno <> '' then
+      begin
+        if Dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('UNIFICANDO PDFS: ' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '-'
+              + DsCadastro.DataSet.fieldbyname('NOME_INTERNO').AsString + ' PDF:' + sArquivosPDFInterno) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+
+        if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf') then
+          DeleteFile(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf');
+
+        try
+          Dm.MeuPDF := TCPDFSplitMergeObj.Create(Dm);
+          Dm.MeuPDF.SetCode('Siapen - V2');
+          Dm.MeuPDF.Merge(sArquivosPDFInterno, Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf');
+        finally
+          Dm.MeuPDF.Free;
+        end;
+
+      end;
+    end
+    else
+    begin
+      if not FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf') then
+        showmessage('Não tem acesso para gerar unificação!');
+    end;
+
+    UniURLFramePdf.URL := '/logo/logo_fundo.jpg';
+
+    if FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf') then
+    begin
+      // UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+      // dscadastro.DataSet.FieldByName('id_interno').AsString + '.pdf' +
+      // '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+      UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../../files/img_doc/' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf' +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);
+
+      if Dm.GLOBAL_IDCONEXAO > 0 then
+      begin
+        try
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('VISUALIZANDO DOC: ' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '-'
+            + DsCadastro.DataSet.fieldbyname('NOME_INTERNO').AsString + ' ARQUIVO:' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '.pdf') +
+            ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+        except
+        end;
+      end;
+
+    end;
+
+  except
+  end;
+
+end;
+
 procedure TFrmConselhoDisciplinar.UniBitBtnUPOrigemProcessoClick(Sender: TObject);
 begin
   inherited;
@@ -622,10 +798,131 @@ begin
 
 end;
 
+procedure TFrmConselhoDisciplinar.UniDBGrid1CellClick(Column: TUniDBGridColumn);
+begin
+  inherited;
+  try
+    if (FileExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString))
+    // or (Dm.GLOBAL_HTTP_PDF <> '')
+    then
+    begin
+
+      // UniURLFramePdf.URL := Dm.GLOBAL_HTTP_PDF + '/img_doc/viewer.html?file=' +
+      // DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
+      // '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', Now);
+
+      UniURLFramePdf.URL := '/pdf/web/viewer.html?file=' + '../../files/img_doc/' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString +
+        '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);
+
+      if Dm.GLOBAL_IDCONEXAO > 0 then
+      begin
+        try
+          Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('VISUALIZANDO DOC: ' + dscadastro.DataSet.FieldByName('id_interno').AsString + '-'
+            + dscadastro.DataSet.FieldByName('NOME_INTERNO').AsString + ' ARQUIVO:' + DsDocumentoProcessos.DataSet.FieldByName('CAMINHO_DOC').AsString) +
+            ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+        except
+        end;
+      end;
+
+    end
+    else
+    begin
+      showmessage('Não encontrou o arquivo!');
+    end;
+  except
+  end;
+
+
+end;
+
 procedure TFrmConselhoDisciplinar.UniEditUPOrigemProcessoExit(Sender: TObject);
 begin
   inherited;
   RetornaRegistro('select NOME_UP from UNIDADE_PENAL where ID_UP=', UniEditUPOrigemProcesso, UniLabelUPOrigemProcesso);
+end;
+
+procedure TFrmConselhoDisciplinar.UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
+begin
+
+  try
+    FrmAguarde.ShowModal;
+
+    if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\') then
+      ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\');
+
+    sPastaDia := FormatDateTime('yyyy-mm-dd', now);
+
+    if not DirectoryExists(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia) then
+      ForceDirectories(Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sPastaDia);
+
+    sNomePDF := MeuGuidCreate;
+
+    if ContemValor('.PDF', UpperCase(AStream.FileName)) then
+    begin
+
+      sArquivo := sPastaDia + '\' + sNomePDF + ExtractFileExt(AStream.FileName);
+      sCaminhoArquivo := Dm.GLOBAL_CAMINHO_PDF + 'img_doc\' + sArquivo;
+      sArquivo := sPastaDia + '/' + sNomePDF + ExtractFileExt(AStream.FileName);
+
+      if CopyFile(PChar(AStream.FileName), PChar(sCaminhoArquivo), false) then
+      begin
+
+        CdsDocInsert.Append;
+        CdsDocInsert.fieldbyname('IDDOCUMENTOS_PROCESSO').AsInteger := Generator('IDDOCUMENTOS_PROCESSO');
+        CdsDocInsert.fieldbyname('DESCRICAO').AsString := UniEditDescricaoPDF.Text;
+        CdsDocInsert.fieldbyname('ID_TIPO_DOCUMENTO').AsInteger := UniDBLookupComboBoxTipoDocumento.KeyValue;
+        CdsDocInsert.fieldbyname('DATA').Asdatetime := now;
+        CdsDocInsert.fieldbyname('CAMINHO_DOC').AsString := sArquivo;
+        CdsDocInsert.fieldbyname('PAI').AsString := 'CONSELHO DISCIPLINAR';
+        CdsDocInsert.fieldbyname('IDFUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
+        CdsDocInsert.fieldbyname('ID_INTERNO').AsInteger := DsCadastro.DataSet.fieldbyname('id_interno').AsInteger;
+        CdsDocInsert.Post;
+        CdsDocInsert.ApplyUpdates(-1);
+        CdsDocInsert.close;
+        CdsDocInsert.Open;
+        CdsDocumentoProcessos.close;
+        CdsDocumentoProcessos.Open;
+        humane.clickToClose(true);
+
+        if Dm.GLOBAL_IDCONEXAO > 0 then
+        begin
+          try
+            Dm.Conexao.ExecuteDirect('update conexao set tela_momento = ' + qs('ANEXO DOC: ' + DsCadastro.DataSet.fieldbyname('id_interno').AsString + '-' +
+              DsCadastro.DataSet.fieldbyname('NOME_INTERNO').AsString + ' ARQUIVO:' + sArquivo) + ' where idconexao=' + inttostr(Dm.GLOBAL_IDCONEXAO));
+          except
+          end;
+        end;
+
+        humane.success('<b><font Color=yellow>Salvo!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> foi salvo com sucesso!');
+
+        CdsDocumentoProcessos.Last;
+        if UniCheckBoxComunicarCentral.checked then
+        begin
+          UniBitBtnComunicarCentralClick(nil);
+          UniCheckBoxComunicarCentral.checked := false;
+        end;
+        UniDBGrid1CellClick(nil);
+
+        UniDBLookupComboBoxTipoDocumento.KeyValue := null;
+        UniEditDescricaoPDF.Text := '';
+
+      end
+      else
+      begin
+        showmessage('O documento, não foi salvo!');
+        humane.clickToClose(true);
+        humane.success('<b><font Color=yellow>Atenção!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> não foi salvo, tente novamente!');
+
+      end;
+    end
+    else
+    begin
+      humane.log('<b><font Color=yellow>Não é PDF!</font></b><br>O arquivo <b>' + UniEditDescricaoPDF.Text + '</b> não foi salvo, tem que ser formato PDF!');
+    end;
+
+  except
+  end;
+
 end;
 
 procedure TFrmConselhoDisciplinar.UniFormShow(Sender: TObject);
@@ -894,6 +1191,26 @@ begin
 
 end;
 
+procedure TFrmConselhoDisciplinar.Comunicar;
+begin
+  try
+    CdsDocumentoProcessos.edit;
+    CdsDocumentoProcessos.fieldbyname('IDFUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
+    CdsDocumentoProcessos.fieldbyname('COMUNICAR_CENTRAL').AsString := 'S';
+    CdsDocumentoProcessos.Post;
+    CdsDocumentoProcessos.ApplyUpdates(-1);
+    CdsDocumentoProcessos.close;
+    CdsDocumentoProcessos.Open;
+    humane.success('<b><font Color=yellow>Comunicação em andamento.</font></b><br>A central será comunicada deste documento.');
+  except
+    on E: Exception do
+    begin
+      showmessage('Sistema diz: ' + E.Message);
+    end;
+  end;
+
+end;
+
 procedure TFrmConselhoDisciplinar.PageControlModeloCadastroChange(Sender: TObject);
 begin
   // inherited;
@@ -1017,7 +1334,7 @@ begin
   RadioGroupHomologado.ItemIndex := -1;
   ComboBoxtipoprocedimento.ItemIndex := -1;
   UniComboBoxResultadoCCT.ItemIndex := -1;
-  UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked := false ;
+  UniCheckBoxABSOLVIDO_JUDICIALMENTE.checked := false;
   Editreabilitacao.Text := '';
   Editnprocedimento.Text := '';
   Editprocedimento.Text := '';

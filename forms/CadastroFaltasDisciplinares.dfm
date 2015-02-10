@@ -1,5 +1,7 @@
 inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
   Caption = 'Cadastro de Faltas Disciplinares'
+  ExplicitWidth = 865
+  ExplicitHeight = 430
   PixelsPerInch = 96
   TextHeight = 13
   inherited PanelBotoes: TUniPanel
@@ -10,7 +12,12 @@ inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
   end
   inherited PanelModeloCadastro: TUniPanel
     inherited PageControlModeloCadastro: TUniPageControl
+      ActivePage = TabSheetCadastro
       inherited TabSheetCadastro: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 733
+        ExplicitHeight = 294
         inherited PanelCadastro: TUniPanel
           object Label2: TUniLabel
             Left = 16
@@ -53,7 +60,6 @@ inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
             DataField = 'ID_FALTA_DISCIPLINAR'
             DataSource = DsCadastro
             TabOrder = 5
-            Color = clWindow
           end
           object DBEdit2: TUniDBEdit
             Left = 72
@@ -64,7 +70,6 @@ inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
             DataSource = DsCadastro
             CharCase = ecUpperCase
             TabOrder = 6
-            Color = clWindow
           end
           object DBEdit3: TUniDBEdit
             Left = 16
@@ -74,7 +79,6 @@ inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
             DataField = 'TEMPOREABILITACAO'
             DataSource = DsCadastro
             TabOrder = 7
-            Color = clWindow
           end
           object DBComboBox1: TUniDBComboBox
             Left = 192
@@ -93,6 +97,10 @@ inherited FrmCadastroFaltasDisciplinares: TFrmCadastroFaltasDisciplinares
         end
       end
       inherited TabSheetConsulta: TUniTabSheet
+        ExplicitLeft = 4
+        ExplicitTop = 24
+        ExplicitWidth = 733
+        ExplicitHeight = 294
         inherited DBGridConsulta: TUniDBGrid
           Columns = <>
         end

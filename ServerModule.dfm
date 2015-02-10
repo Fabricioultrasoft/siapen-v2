@@ -781,6 +781,14 @@ object UniServerModule: TUniServerModule
   SSL.SSLOptions.VerifyMode = []
   SSL.SSLOptions.VerifyDepth = 0
   Options = []
+  ConnectionFailureRecovery.ErrorMessage = 'Connection Error'
+  ConnectionFailureRecovery.RetryMessage = 'Retrying...'
   Height = 150
   Width = 215
+  object Timer1: TTimer
+    Interval = 10000
+    OnTimer = Timer1Timer
+    Left = 80
+    Top = 48
+  end
 end

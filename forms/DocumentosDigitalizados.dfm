@@ -63,6 +63,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
     inherited PageControlModeloCadastro: TUniPageControl
       Width = 888
       Height = 610
+      ActivePage = TabSheetCadastro
       ExplicitWidth = 888
       ExplicitHeight = 610
       inherited TabSheetCadastro: TUniTabSheet
@@ -80,6 +81,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
             ExplicitWidth = 878
             ExplicitHeight = 580
             inherited TabSheetPrincipal: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label2: TUniLabel
@@ -300,6 +303,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetDadosGerais: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited Label11: TUniLabel
@@ -495,10 +500,14 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetEndereco: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end
             inherited TabSheetHistorico: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               DesignSize = (
@@ -544,6 +553,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetFotos: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited UniPanelFoto: TUniPanel
@@ -573,6 +584,8 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMovAnterior: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
               inherited DBMemo2: TUniDBMemo
@@ -583,12 +596,14 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
               end
             end
             inherited TabSheetMapa: TUniTabSheet
+              ExplicitLeft = 4
+              ExplicitTop = 24
               ExplicitWidth = 870
               ExplicitHeight = 552
             end
             object UniTabSheet1: TUniTabSheet
               Caption = 'Digitalizados'
-              object UniPanel10: TUniPanel
+              object UniPanelOpcoesDigitalizacao: TUniPanel
                 Left = 0
                 Top = 0
                 Width = 870
@@ -655,7 +670,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                   Caption = 'Descri'#231#227'o'
                   TabOrder = 4
                 end
-                object UniBitBtn3: TUniBitBtn
+                object UniBitBtnAnexar: TUniBitBtn
                   Left = 629
                   Top = 35
                   Width = 124
@@ -715,7 +730,7 @@ inherited FrmDocumentosDigitalizados: TFrmDocumentosDigitalizados
                     0000000000000000000000010101010101000000000000000000}
                   Caption = 'Anexar Novo'
                   TabOrder = 5
-                  OnClick = UniBitBtn3Click
+                  OnClick = UniBitBtnAnexarClick
                 end
                 object UniDBLookupComboBoxTipoDocumento: TUniDBLookupComboBox
                   Left = 354

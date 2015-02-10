@@ -179,6 +179,7 @@ end;
 
 procedure TFrmVisualizarRelatorio.UniFormShow(Sender: TObject);
 begin
+  FFazExportacaoPDF := true;
   InicioRelatorio;
 end;
 

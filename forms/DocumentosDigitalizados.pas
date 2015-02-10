@@ -21,12 +21,12 @@ type
     DspDocumentoProcessos: TDataSetProvider;
     CdsDocumentoProcessos: TClientDataSet;
     DsDocumentoProcessos: TDataSource;
-    UniPanel10: TUniPanel;
+    UniPanelOpcoesDigitalizacao: TUniPanel;
     UniBitBtnTodosDigitalizados: TUniBitBtn;
     UniEditDescricaoPDF: TUniEdit;
     UniLabel5: TUniLabel;
     UniLabel6: TUniLabel;
-    UniBitBtn3: TUniBitBtn;
+    UniBitBtnAnexar: TUniBitBtn;
     UniURLFramePdf: TUniURLFrame;
     DsTipoDocumento: TDataSource;
     CdsTipoDocumento: TClientDataSet;
@@ -46,15 +46,17 @@ type
     procedure UniDBGrid1CellClick(Column: TUniDBGridColumn);
     procedure UniBitBtnTodosDigitalizadosClick(Sender: TObject);
     procedure UniFileUploadPdfCompleted(Sender: TObject; AStream: TFileStream);
-    procedure UniBitBtn3Click(Sender: TObject);
+    procedure UniBitBtnAnexarClick(Sender: TObject);
     procedure UniBitBtnComunicarCentralClick(Sender: TObject);
     procedure UniFormCreate(Sender: TObject);
   private
+    FPai: String;
     sArquivosPDFInterno, sPdf: String;
     sCaminhoArquivo, sArquivo, sNomePDF, sPastaDia: string;
     procedure Comunicar;
     { Private declarations }
   public
+    property Pai: String read FPai write FPai;
     { Public declarations }
   end;
 
@@ -77,9 +79,15 @@ procedure TFrmDocumentosDigitalizados.EditarClick(Sender: TObject);
 begin
   inherited;
 
-  SqlDocumentoProcessos.SQL.Text :=
-    'select d.*, iif(d.comunicar_central=''S'',iif(d.data_inicio_central is null,''Prioridade'',iif(d.data_fim_central is null, ''Em Andamento'', ''Finalizado'')),''Normal'') central from DOCUMENTOS_PROCESSO d where d.id_interno='
-    + dscadastro.DataSet.FieldByName('id_interno').AsString + ' order by d.data ';
+  if FPai = '' then
+    SqlDocumentoProcessos.SQL.Text :=
+      'select d.*, iif(d.comunicar_central=''S'',iif(d.data_inicio_central is null,''Prioridade'',iif(d.data_fim_central is null, ''Em Andamento'', ''Finalizado'')),''Normal'') central from DOCUMENTOS_PROCESSO d where d.pai is null and d.id_interno='
+      + dscadastro.DataSet.FieldByName('id_interno').AsString + ' order by d.data '
+  else
+    SqlDocumentoProcessos.SQL.Text :=
+      'select d.*, iif(d.comunicar_central=''S'',iif(d.data_inicio_central is null,''Prioridade'',iif(d.data_fim_central is null, ''Em Andamento'', ''Finalizado'')),''Normal'') central from DOCUMENTOS_PROCESSO d where d.pai ='
+      + quotedstr(FPai) + ' and d.id_interno=' + dscadastro.DataSet.FieldByName('id_interno').AsString + ' order by d.data ';
+
   // + ' order by data ';
   CdsDocumentoProcessos.close;
   CdsDocumentoProcessos.open;
@@ -98,7 +106,7 @@ begin
 
 end;
 
-procedure TFrmDocumentosDigitalizados.UniBitBtn3Click(Sender: TObject);
+procedure TFrmDocumentosDigitalizados.UniBitBtnAnexarClick(Sender: TObject);
 begin
   inherited;
   if UniDBLookupComboBoxTipoDocumento.keyvalue = null then
@@ -309,6 +317,10 @@ begin
         CdsDocInsert.FieldByName('ID_TIPO_DOCUMENTO').AsInteger := UniDBLookupComboBoxTipoDocumento.keyvalue;
         CdsDocInsert.FieldByName('DATA').AsDateTime := now;
         CdsDocInsert.FieldByName('CAMINHO_DOC').AsString := sArquivo;
+
+        if FPai <> '' then
+          CdsDocInsert.FieldByName('PAI').AsString := FPai;
+
         CdsDocInsert.FieldByName('IDFUNCIONARIO').AsInteger := Dm.GLOBAL_ID_FUNCIONARIO;
         CdsDocInsert.FieldByName('ID_INTERNO').AsInteger := dscadastro.DataSet.FieldByName('id_interno').AsInteger;
         CdsDocInsert.Post;
