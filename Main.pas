@@ -249,6 +249,7 @@ type
     TimerShowAcao: TUniTimer;
     ExploredoServidor1: TUniMenuItem;
     UniBitBtn1: TUniBitBtn;
+    PortedeArma1: TUniMenuItem;
     procedure UniBitBtnConfereClick(Sender: TObject);
     procedure UniBitBtn4Click(Sender: TObject);
     procedure UniFormShow(Sender: TObject);
@@ -279,6 +280,7 @@ type
     procedure BitBtn5Click(Sender: TObject);
     procedure Interno2Click(Sender: TObject);
     procedure UniBitBtn1Click(Sender: TObject);
+    procedure PortedeArma1Click(Sender: TObject);
   private
     sArquivo, sNomeJpeg: string;
     FNomeImagemUpload: String;
@@ -316,7 +318,7 @@ uses
   CadastroFaltasDisciplinares, humanejs, ConsultaInterno,
   DocumentosDigitalizados, CentralDocumentosDigitalizados, HistoricoInterno,
   Aguarde, CadastroFuncionario, FileExplorer_Frame, Explore,
-  CadastroInternoTrabalho;
+  CadastroInternoTrabalho, CadastroFunciPorteArma;
 
 function MainForm: TMainForm;
 begin
@@ -580,8 +582,8 @@ begin
       FrmDocumentosDigitalizados.Pai := 'CONSELHO DISCIPLINAR';
       FrmDocumentosDigitalizados.Caption := 'PADIC - Anexos';
       FrmDocumentosDigitalizados.LabelTitulo.Caption := 'PADIC - Anexos';
-      FrmDocumentosDigitalizados.UniPanelOpcoesDigitalizacao.visible := false;
-      FrmDocumentosDigitalizados.UniBitBtnComunicarCentral.visible := false;
+      FrmDocumentosDigitalizados.UniPanelOpcoesDigitalizacao.visible := False;
+      FrmDocumentosDigitalizados.UniBitBtnComunicarCentral.visible := False;
       FrmDocumentosDigitalizados.ShowModal();
     end);
 end;
@@ -705,8 +707,27 @@ begin
       end;
     end;
 
-    UniURLFrameGrafico.Visible := true;
+    UniURLFrameGrafico.visible := true;
   except
+  end;
+
+end;
+
+procedure TMainForm.PortedeArma1Click(Sender: TObject);
+begin
+
+  if ContemValor(dm.LOGIN_CONECTADO, 'XX' + dm.GLOBAL_LOGIN_ACESSA_PORTE_ARMA) then
+  begin
+
+    FrmAguarde.ShowModal(
+      procedure(Sender: TComponent; Res: integer)
+      begin
+        FrmCadastroFunciPorteArma.ShowModal();
+      end);
+  end
+  else
+  begin
+    ShowMessage('Seu login (' + dm.LOGIN_CONECTADO+') não tem permissão de acessar o: <br>Porte de Arma');
   end;
 
 end;
@@ -794,33 +815,33 @@ begin
   begin
     if (dm.PERMISSAO_CONFERE = '') or (dm.PERMISSAO_CONFERE = 'R') then
     begin
-      Cadastro1.Visible := False;
+      Cadastro1.visible := False;
     end
     else
     begin
-      Pavilho1.Visible := False;
-      Galeria1.Visible := False;
-      Solario1.Visible := False;
-      Cela1.Visible := False;
-      CondiodoInterno1.Visible := False;
-      Advogado1.Visible := False;
-      Faco1.Visible := False;
-      cIDADE1.Visible := False;
-      Raa1.Visible := False;
-      Escolaridade1.Visible := False;
-      Nacionalidade1.Visible := False;
-      Procedncia1.Visible := False;
-      Destino1.Visible := False;
-      Fornecedor1.Visible := False;
-      Profisso1.Visible := False;
-      CTC1.Visible := False;
+      Pavilho1.visible := False;
+      Galeria1.visible := False;
+      Solario1.visible := False;
+      Cela1.visible := False;
+      CondiodoInterno1.visible := False;
+      Advogado1.visible := False;
+      Faco1.visible := False;
+      cIDADE1.visible := False;
+      Raa1.visible := False;
+      Escolaridade1.visible := False;
+      Nacionalidade1.visible := False;
+      Procedncia1.visible := False;
+      Destino1.visible := False;
+      Fornecedor1.visible := False;
+      Profisso1.visible := False;
+      CTC1.visible := False;
     end;
   end
   else
   begin
     if (dm.PERMISSAO_CONFERE = '') or (dm.PERMISSAO_CONFERE = 'R') then
     begin
-      CadastrodeInternos2.Visible := False;
+      CadastrodeInternos2.visible := False;
     end;
   end;
   // ************ FIM CADASTRO ****************//
@@ -831,39 +852,39 @@ begin
     ((dm.PERMISSAO_CIRCULACAOINTERNO = '') or (dm.PERMISSAO_CIRCULACAOINTERNO = 'R')) and
     ((dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R')) then
   begin
-    Movimentao1.Visible := False;
+    Movimentao1.visible := False;
   end
   else
   begin
     if (dm.PERMISSAO_TRANSFERENCIAINTERNO = '') or (dm.PERMISSAO_TRANSFERENCIAINTERNO = 'R') then
     begin
-      ransfernciadeInterno1.Visible := False;
-      RecebimentodeTransferncia1.Visible := False;
+      ransfernciadeInterno1.visible := False;
+      RecebimentodeTransferncia1.visible := False;
     end;
 
     if (dm.PERMISSAO_MUDANCACELA = '') or (dm.PERMISSAO_MUDANCACELA = 'R') then
     begin
-      ransfernciadeInternoMovimentoInterno1.Visible := False;
+      ransfernciadeInternoMovimentoInterno1.visible := False;
     end;
 
     if (dm.PERMISSAO_SAIDAO = '') or (dm.PERMISSAO_SAIDAO = 'R') then
     begin
-      Saido1.Visible := False;
+      Saido1.visible := False;
     end;
 
     if (dm.PERMISSAO_CIRCULACAOINTERNO = '') or (dm.PERMISSAO_CIRCULACAOINTERNO = 'R') then
     begin
-      CirculaodeInterno1.Visible := False;
+      CirculaodeInterno1.visible := False;
     end;
 
     if (dm.PERMISSAO_MOVIMENTOSEMIABERTO = '') or (dm.PERMISSAO_MOVIMENTOSEMIABERTO = 'R') then
     begin
-      MovimentoSemiAberto1.Visible := False;
+      MovimentoSemiAberto1.visible := False;
     end;
 
     if not(ContemValor('C', dm.PERMISSAO_TRANSFERENCIAINTERNO) or ContemValor('C', dm.PERMISSAO_MUDANCACELA)) then
     begin
-      LocalizaoPorPronturio1.Visible := False;
+      LocalizaoPorPronturio1.visible := False;
     end;
   end;
   // ************ FIM MOVIMENTAÇÃO ****************//
@@ -871,32 +892,32 @@ begin
   // ************ SETORES ****************//
   if (dm.PERMISSAO_DISCIPLINA = '') or (dm.PERMISSAO_DISCIPLINA = 'R') then
   begin
-    disciplina1.Visible := False;
+    disciplina1.visible := False;
     BitBtn1.enabled := False;
   end;
 
   if (dm.PERMISSAO_EDUCACAO = '') or (dm.PERMISSAO_EDUCACAO = 'R') then
   begin
-    SetordeEducao1.Visible := False;
+    SetordeEducao1.visible := False;
     BitBtn2.enabled := False;
   end;
 
   if (dm.PERMISSAO_JURIDICA = '') or (dm.PERMISSAO_JURIDICA = 'R') then
   begin
-    Jurdica1.Visible := False;
+    Jurdica1.visible := False;
     BitBtn3.enabled := False;
   end;
 
   if (dm.PERMISSAO_PSICOSSOCIAL = '') or (dm.PERMISSAO_PSICOSSOCIAL = 'R') then
   begin
-    PSICOSSOCIAL1.Visible := False;
+    PSICOSSOCIAL1.visible := False;
     BitBtn4.enabled := False;
   end;
 
   if ((dm.PERMISSAO_PEDAGOGIA = '') or (dm.PERMISSAO_PEDAGOGIA = 'R')) and ((dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R')) and
     ((dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R')) then
   begin
-    Reabilitao1.Visible := False;
+    Reabilitao1.visible := False;
     BitBtn6.enabled := False;
     BitBtn8.enabled := False;
     BitBtn9.enabled := False;
@@ -905,19 +926,19 @@ begin
   begin
     if (dm.PERMISSAO_PEDAGOGIA = '') or (dm.PERMISSAO_PEDAGOGIA = 'R') then
     begin
-      Pedagogia.Visible := False;
+      Pedagogia.visible := False;
       BitBtn6.enabled := False;
     end;
 
     if (dm.PERMISSAO_SERVICOSOCIAL = '') or (dm.PERMISSAO_SERVICOSOCIAL = 'R') then
     begin
-      ServicoSocial.Visible := False;
+      ServicoSocial.visible := False;
       BitBtn8.enabled := False;
     end;
 
     if (dm.PERMISSAO_TERAPIAOCUPACIONAL = '') or (dm.PERMISSAO_TERAPIAOCUPACIONAL = 'R') then
     begin
-      erapiaOcupacional.Visible := False;
+      erapiaOcupacional.visible := False;
       BitBtn9.enabled := False;
     end;
   end;
@@ -927,7 +948,7 @@ begin
     ((dm.PERMISSAO_PSICOLOGIA = '') or (dm.PERMISSAO_PSICOLOGIA = 'R')) and ((dm.PERMISSAO_PSIQUIATRIA = '') or (dm.PERMISSAO_PSIQUIATRIA = 'R')) and
     ((dm.PERMISSAO_SAUDE = '') or (dm.PERMISSAO_SAUDE = 'R')) then
   begin
-    Sade1.Visible := False;
+    Sade1.visible := False;
     BitBtn15.enabled := False;
     BitBtn14.enabled := False;
     BitBtn10.enabled := False;
@@ -940,66 +961,66 @@ begin
   begin
     if (dm.PERMISSAO_CLINICAMEDICA = '') or (dm.PERMISSAO_CLINICAMEDICA = 'R') then
     begin
-      clinicamedica.Visible := False;
+      clinicamedica.visible := False;
       BitBtn15.enabled := False;
     end;
 
     if (dm.PERMISSAO_ENFERMAGEM = '') or (dm.PERMISSAO_ENFERMAGEM = 'R') then
     begin
-      Enfermagem.Visible := False;
+      Enfermagem.visible := False;
       BitBtn14.enabled := False;
     end;
 
     if (dm.PERMISSAO_FARMACIA = '') or (dm.PERMISSAO_FARMACIA = 'R') then
     begin
-      farmacia.Visible := False;
+      farmacia.visible := False;
       BitBtn10.enabled := False;
     end;
 
     if (dm.PERMISSAO_ODONTOLOGIA = '') or (dm.PERMISSAO_ODONTOLOGIA = 'R') then
     begin
-      Odontologia.Visible := False;
+      Odontologia.visible := False;
       BitBtn11.enabled := False;
     end;
 
     if (dm.PERMISSAO_PSICOLOGIA = '') or (dm.PERMISSAO_PSICOLOGIA = 'R') then
     begin
-      Psicologia.Visible := False;
+      Psicologia.visible := False;
       BitBtn12.enabled := False;
     end;
 
     if (dm.PERMISSAO_PSIQUIATRIA = '') or (dm.PERMISSAO_PSIQUIATRIA = 'R') then
     begin
-      Psiquiatria.Visible := False;
+      Psiquiatria.visible := False;
       BitBtn13.enabled := False;
     end;
 
     if (dm.PERMISSAO_SAUDE = '') or (dm.PERMISSAO_SAUDE = 'R') then
     begin
-      Sade2.Visible := False;
+      Sade2.visible := False;
       BitBtn16.enabled := False;
     end;
 
     if (dm.PERMISSAO_FARMACIA = '') or (dm.PERMISSAO_FARMACIA = 'R') then
     begin
-      Remdio1.Visible := False;
+      Remdio1.visible := False;
     end;
   end;
 
   if (dm.PERMISSAO_TRABALHO = '') or (dm.PERMISSAO_TRABALHO = 'R') then
   begin
-    SetorTrabalho1.Visible := False;
+    SetorTrabalho1.visible := False;
     BitBtn5.enabled := False;
   end;
 
   if (dm.PERMISSAO_OCORRENCIA = '') or (dm.PERMISSAO_OCORRENCIA = 'R') then
   begin
-    Ocorrncias1.Visible := False;
+    Ocorrncias1.visible := False;
   end;
 
   if (dm.PERMISSAO_CONSELHODISCIPLINAR = '') or (dm.PERMISSAO_CONSELHODISCIPLINAR = 'R') then
   begin
-    ConselhoDi1.Visible := False;
+    ConselhoDi1.visible := False;
   end;
   // ************ FIM SETORES ****************//
 
@@ -1008,20 +1029,20 @@ begin
   begin
     if not(dm.PERMISSAO_ENTRADAVISITANTE = 'S') then
     begin
-      Visitantes1.Visible := False;
+      Visitantes1.visible := False;
     end
     else
     begin
-      Consulta1.Visible := False;
-      GrauParentesco1.Visible := False;
-      Visitante1.Visible := False;
+      Consulta1.visible := False;
+      GrauParentesco1.visible := False;
+      Visitante1.visible := False;
     end;
   end
   else
   begin
     if not(dm.PERMISSAO_ENTRADAVISITANTE = 'S') then
     begin
-      EntradadeVisitantes1.Visible := False;
+      EntradadeVisitantes1.visible := False;
     end;
   end;
   // ************ FIM VISITANTES ****************//
@@ -1029,12 +1050,12 @@ begin
   // ************ MÓDULOS ****************//
   if (dm.PERMISSAO_INTELIGENCIA = '') or (dm.PERMISSAO_INTELIGENCIA = 'R') then
   begin
-    Inteligncia1.Visible := False;
+    Inteligncia1.visible := False;
   end;
 
   if (dm.PERMISSAO_MONITORAMENTO = '') or (dm.PERMISSAO_MONITORAMENTO = 'R') then
   begin
-    MonitoramentoEletrnico1.Visible := False;
+    MonitoramentoEletrnico1.visible := False;
   end;
   // ************ FIM MÓDULOS ****************//
 
@@ -1047,54 +1068,54 @@ begin
     ((dm.PERMISSAO_AGENTEPOREQUIPE = '') or (dm.PERMISSAO_AGENTEPOREQUIPE = 'R')) and ((dm.PERMISSAO_REGRAVISITACAO = '') or (dm.PERMISSAO_REGRAVISITACAO = 'R'))
   then
   begin
-    Configurao1.Visible := False;
+    Configurao1.visible := False;
   end
   else
   begin
 
     if (dm.PERMISSAO_FUNCIONARIO = '') or (dm.PERMISSAO_FUNCIONARIO = 'R') then
     begin
-      Funcionrio2.Visible := False;
+      Funcionrio2.visible := False;
     end;
 
     if (dm.PERMISSAO_FUNCAOFUNCIONARIO = '') or (dm.PERMISSAO_FUNCAOFUNCIONARIO = 'R') then
     begin
-      FunoFuncionrio1.Visible := False;
+      FunoFuncionrio1.visible := False;
     end;
 
     if (dm.PERMISSAO_UNIDADEPENAL = '') or (dm.PERMISSAO_UNIDADEPENAL = 'R') then
     begin
-      UnidadePenal2.Visible := False;
+      UnidadePenal2.visible := False;
     end;
 
     if (dm.PERMISSAO_HORARIOFUNCIONARIO = '') or (dm.PERMISSAO_HORARIOFUNCIONARIO = 'R') then
     begin
-      HorarioFuncionrio1.Visible := False;
+      HorarioFuncionrio1.visible := False;
     end;
 
     if (dm.PERMISSAO_PADRAOSISTEMA = '') or (dm.PERMISSAO_PADRAOSISTEMA = 'R') then
     begin
-      PadroSist1.Visible := False;
+      PadroSist1.visible := False;
     end;
 
     if (dm.PERMISSAO_EQUIPE = '') or (dm.PERMISSAO_EQUIPE = 'R') then
     begin
-      Equipe1.Visible := False;
+      Equipe1.visible := False;
     end;
 
     if (dm.PERMISSAO_LOCALPOSTOTRABALHO = '') or (dm.PERMISSAO_LOCALPOSTOTRABALHO = 'R') then
     begin
-      PostoLocaldeTrabalho1.Visible := False;
+      PostoLocaldeTrabalho1.visible := False;
     end;
 
     if (dm.PERMISSAO_AGENTEPOREQUIPE = '') or (dm.PERMISSAO_AGENTEPOREQUIPE = 'R') then
     begin
-      AgenteporEquipe1.Visible := False;
+      AgenteporEquipe1.visible := False;
     end;
 
     if (dm.PERMISSAO_REGRAVISITACAO = '') or (dm.PERMISSAO_REGRAVISITACAO = 'R') then
     begin
-      RegraparaVisitano1.Visible := False;
+      RegraparaVisitano1.visible := False;
     end;
   end;
 
@@ -1108,7 +1129,7 @@ begin
   // ************ GERAL ****************//
   if not ContemValor('C', dm.PERMISSAO_CONFERE) then
   begin
-    ConsultaInterno1.Visible := False;
+    ConsultaInterno1.visible := False;
   end;
   // ************ FIM GERAL ****************//
 
@@ -1296,7 +1317,7 @@ begin
       end;
     end;
 
-    UniURLFrameAgenda.Visible := true;
+    UniURLFrameAgenda.visible := true;
 
   except
   end;

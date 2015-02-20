@@ -79,6 +79,7 @@ type
     procedure UniBitBtnRecarregarClick(Sender: TObject);
     procedure UniTimerFecharTimer(Sender: TObject);
   private
+    FIDARMA: integer;
     FfrxReportDOC: TfrxReport;
     FArquivo: String;
     FCaminhoFR3: String;
@@ -111,6 +112,7 @@ type
     property NomeTela: String read FNomeTela write FNomeTela;
     property CaminhoFR3: String read FCaminhoFR3 write FCaminhoFR3;
     procedure CarregarFichaDisciplinar(id: integer);
+    procedure CarregarPorteDeArma(id: integer);
     { Public declarations }
   end;
 
@@ -218,6 +220,19 @@ begin
     self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Ficha Disciplinar.fr3';
   end;
   self.ShowModal;
+end;
+
+procedure TFrmVisualizarRelatorio.CarregarPorteDeArma(id: integer);
+begin
+  FIDARMA := id;
+  self.Nome := 'Porte de Arma';
+  self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\Porte de Arma.fr3';
+  if FileExists(UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Porte de Arma.fr3') then
+  begin
+    self.CaminhoFR3 := UniServerModule.StartPath + 'SYSTEM\' + inttostr(Dm.GLOBAL_ID_UP) + '\Porte de Arma.fr3';
+  end;
+  self.ShowModal;
+
 end;
 
 procedure TFrmVisualizarRelatorio.Excel1Click(Sender: TObject);
@@ -791,15 +806,15 @@ begin
   if FCaminhoFR3 = '' then
     FCaminhoFR3 := UniServerModule.StartPath + 'relatorios\' + inttostr(Dm.GLOBAL_ID_UP) + '\' + FNome + '.fr3';
 
-{alexandreerro19/09/2014
-  if FFazExportacaoPDF then
-  begin
+  { alexandreerro19/09/2014
+    if FFazExportacaoPDF then
+    begin
     // já abre relatório
     UniTimerVisualizar.Enabled := false;
     CarregarRelatorio();
     exit;
-  end;
-}
+    end;
+  }
   FfrxReportDOC.ShowProgress := false;
   FfrxReportDOC.StoreInDFM := false;
   FfrxReportDOC.LoadFromFile(FCaminhoFR3);
@@ -841,6 +856,11 @@ begin
   try
 
     Result := false;
+
+    FfrxReportDOC.Variables.DeleteVariable('IDARMA');
+    FfrxReportDOC.Variables.AddVariable('GLOBAL', 'IDARMA', FIDARMA);
+
+
     FfrxReportDOC.Variables.DeleteVariable('FILTRO');
     FfrxReportDOC.Variables.AddVariable('GLOBAL', 'FILTRO', qs(FFiltro));
 
@@ -953,7 +973,7 @@ begin
   begin
 
     FNome_PDF := UniServerModule.LocalCacheURL;
-    FNome_PDF := '../../'+FNome_PDF + ExportarPDF;
+    FNome_PDF := '../../' + FNome_PDF + ExportarPDF;
 
     UniURLFrame1.URL := '/pdf/web/viewer.html?file=' + FNome_PDF + '#page=1&zoom=100&time=' + FormatDateTime('yyyymmdhhnnsszzz', now);;
     UniURLFrame1.Refresh;

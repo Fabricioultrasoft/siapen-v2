@@ -44,7 +44,7 @@ inherited FrmCadastroFuncionario: TFrmCadastroFuncionario
             Top = 1
             Width = 877
             Height = 521
-            ActivePage = TabSheetPermissao
+            ActivePage = TabSheet1
             TabOrder = 1
             Align = alClient
             Anchors = [akLeft, akTop, akRight, akBottom]

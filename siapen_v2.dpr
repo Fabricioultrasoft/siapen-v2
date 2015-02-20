@@ -58,7 +58,8 @@ uses
   MotivoDispensaTrabalho in 'forms\MotivoDispensaTrabalho.pas' {FrmMotivoDispensaTrabalho: TUniForm},
   CadastroProcesso in 'forms\CadastroProcesso.pas' {FrmCadastroProcesso: TUniForm},
   TipoProcesso in 'forms\TipoProcesso.pas' {FrmTipoProcesso: TUniForm},
-  FiltroTipoProcessoUP in 'forms\FiltroTipoProcessoUP.pas' {FrmFiltroTipoProcessoUP: TUniForm};
+  FiltroTipoProcessoUP in 'forms\FiltroTipoProcessoUP.pas' {FrmFiltroTipoProcessoUP: TUniForm},
+  CadastroFunciPorteArma in 'forms\CadastroFunciPorteArma.pas' {FrmCadastroFunciPorteArma: TUniForm};
 
 {$R *.res}
 {$IFNDEF UNIGUI_VCL}

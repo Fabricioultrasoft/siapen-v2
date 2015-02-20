@@ -80,7 +80,7 @@ const
   CLASS_CPDFSplitMergeObj: TGUID = '{50D41702-B618-41BA-8153-7AD7E8535574}';
 
 type
-//  TArrayReport = array of TfrxReport;
+  // TArrayReport = array of TfrxReport;
 
   // *********************************************************************//
   // Forward declaration of types defined in TypeLibrary
@@ -160,7 +160,6 @@ type
     property DefaultInterface: IPDFSplitMerge read GetDefaultInterface;
   published
   end;
-
 
   TDm = class(TUniGUIMainModule)
     Conexao: TSQLConnection;
@@ -644,6 +643,7 @@ type
     FGLOBAL_HTTP_PDF: string;
     FGLOBAL_CAMINHO_PDF: string;
     FGLOBAL_URL_HTML_LOGIN: string;
+    FGLOBAL_LOGIN_ACESSA_PORTE_ARMA: string;
     FGLOBAL_CENTRAL_DOCUMENTOS: string;
     Fvar_disciplinar: string;
     Fvar_data_disciplinar: TDateTime;
@@ -665,8 +665,8 @@ type
     ArrayReportDOC: array of TfrxReport;
     property PDFExportDOC: TfrxPDFExport read FPDFExportDOC write FPDFExportDOC;
     property JPEGExportDOC: TfrxJPEGExport read FJPEGExportDOC write FJPEGExportDOC;
-//    Array
-//    property ArrayReportDOC: TArrayReport read FArrayReportDOC write FArrayReportDOC;
+    // Array
+    // property ArrayReportDOC: TArrayReport read FArrayReportDOC write FArrayReportDOC;
     property GLOBAL_SOLICITANTE: String read FGLOBAL_SOLICITANTE write FGLOBAL_SOLICITANTE;
     property PreDescricaoConsulta: String read FPreDescricaoConsulta write FPreDescricaoConsulta;
     property CampoWhereSqlConsulta: String read FCampoWhereSqlConsulta write FCampoWhereSqlConsulta;
@@ -685,6 +685,7 @@ type
     property GLOBAL_CENTRAL_DOCUMENTOS: String read FGLOBAL_CENTRAL_DOCUMENTOS write FGLOBAL_CENTRAL_DOCUMENTOS;
     property GLOBAL_CAMINHO_PDF: String read FGLOBAL_CAMINHO_PDF write FGLOBAL_CAMINHO_PDF;
     property GLOBAL_URL_HTML_LOGIN: String read FGLOBAL_URL_HTML_LOGIN write FGLOBAL_URL_HTML_LOGIN;
+    property GLOBAL_LOGIN_ACESSA_PORTE_ARMA: String read FGLOBAL_LOGIN_ACESSA_PORTE_ARMA write FGLOBAL_LOGIN_ACESSA_PORTE_ARMA;
     property GLOBAL_HTTP_PDF: String read FGLOBAL_HTTP_PDF write FGLOBAL_HTTP_PDF;
     property MeuPDF: TCPDFSplitMergeObj read FMeuPDF write FMeuPDF;
     property GLOBAL_IDFUNCIONARIO_FILTRO: Integer read FGLOBAL_IDFUNCIONARIO_FILTRO write FGLOBAL_IDFUNCIONARIO_FILTRO;
@@ -842,7 +843,7 @@ begin
       begin
 
         ini := TIniFile.Create(UniServerModule.StartPath + 'Config\Conexao.ini');
-        //Siapen1StartPath := ini.ReadString('SIAPEN', 'UniServerModule.StartPath', UniServerModule.StartPath);
+        // Siapen1StartPath := ini.ReadString('SIAPEN', 'UniServerModule.StartPath', UniServerModule.StartPath);
 
         SUBPASTA := (ini.ReadString('SGBD', 'ACESSA', '-') = 'SUBPASTA');
         FMaquinaDesenvolvimento := (ini.ReadString('SGBD', 'MaquinaDesenvolvimento', '') = 'Sim');
@@ -859,7 +860,9 @@ begin
 
         FGLOBAL_CAMINHO_PDF := ini.ReadString('SIAPEN', 'GLOBAL_CAMINHO_PDF', UniServerModule.StartPath);
         FHORA_TIMEOUT := ini.ReadInteger('SIAPEN', 'HORA_TIMEOUT', 1);
-        FGLOBAL_URL_HTML_LOGIN:= ini.ReadString('SIAPEN', 'GLOBAL_URL_HTML_LOGIN', UniServerModule.StartPath);
+        FGLOBAL_URL_HTML_LOGIN := ini.ReadString('SIAPEN', 'GLOBAL_URL_HTML_LOGIN', UniServerModule.StartPath);
+
+        FGLOBAL_LOGIN_ACESSA_PORTE_ARMA := ini.ReadString('SIAPEN', 'GLOBAL_LOGIN_ACESSA_PORTE_ARMA', UniServerModule.StartPath);
 
       end;
 
